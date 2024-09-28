@@ -51,11 +51,9 @@
 \date{\vspace{-5ex}}
 %\end{comment}
 
-
 \begin{document}
 
 \pagestyle{fancy}
-
 
 \fancyhead[R]{M 601, Fall 2024, by M. Strauch}
 
@@ -158,9 +156,9 @@ So, Heuristically, 61\% primes are regular.
 \chapter{The ring of integers \texorpdfstring{\(\mathcal{O} _K\)}{} }
 
 \begin{definition}
-    i. A \underline{number field} is a finite field extension of \(\mathbb{Q}\).
+    i. A \underline{number field} is a finite field extension of \(\mathbb{Q} \).
     
-    Its elements are the \underline{algebraic numbers}
+    Its elements are called \underline{algebraic numbers}
 
     ii. If \(K / \mathbb{Q}\) is a number field, then \(\alpha \in K\) is called an \underline{algebraic integer} (or \underline{integral over} \(\mathbb{Z}\)), if \(\exists \) monic polynomial \(f(x) \in \mathbb{Z} [x]\) such that \(f(\alpha ) = 0\)
     
@@ -218,15 +216,15 @@ Then \(S \cdot S^{\ast} = S^{\ast} \cdot S = \det(S)I\)
     This gives us a linear equation:
 
     \(\underbrace{(bI_r - (a_{ij}))}_{\eqqcolon S}\begin{pmatrix}
-            c_1 \\
-            c_2 \\
-            \vdots  \\
-            c_r \\
+         c_1 \\
+         c_2 \\
+         \vdots  \\
+         c_r \\
     \end{pmatrix} = \begin{pmatrix}
-            0 \\
-            0 \\
-            \vdots \\
-            0 \\
+         0 \\
+         0 \\
+         \vdots \\
+         0 \\
     \end{pmatrix}\) 
     
     So \(S \vec{c} = \vec{0}\) 
@@ -261,7 +259,9 @@ So, \(\mathcal{O}_K\) is a ring!
 
 Recap: Given \underline{rings} \(A \subset B\) we define the integral closure of $A$ in $B$ as
 
-\[\overline{A} = \{ b\in B \mid b \text{ is integral over } A \} \].
+\[
+    \overline{A} = \{ b\in B \mid b \text{ is integral over } A \}.
+\]
 
 Corollary 1.3: \(\overline{A}\) is a subring of \(B\)
 
@@ -435,7 +435,7 @@ We now show that the \(d(\alpha_1, \dots , \alpha_n)\) is in \(K\). Let \(S\) be
 \[
     =\det \left[ \left[ \sum_{k} \sigma_k(\alpha_i)\sigma_k(\alpha_j) \right]_{ij}\right] = \det \left[ \left[ \sum_{k} \sigma_k(\alpha_i\alpha_j) \right]_{ij}\right]
 \]
-    
+ 
 \[
     = \det \left[ (\Tr_{L / K} (\alpha_i \alpha_j) )_{ij} \right] 
 \]
@@ -529,30 +529,30 @@ So, the norm and trace of elements of \(B\) are contained in \(A\).
         a_1 \\
         \vdots \\
         a_n \\
-    \end{bmatrix}\). Therefore,
+   \end{bmatrix}\). Therefore,
 
-    \[
+   \[
     \begin{bmatrix}
         \Tr(\alpha_1 \alpha) \\
         \vdots \\
         \Tr(\alpha_n \alpha) \\
-        \end{bmatrix}=\underbrace{[\overbrace{\Tr(\alpha_i \alpha_j)}^{\in A}]_{1 \leq i, j \leq n}}_{S} \begin{bmatrix}
-                a_1 \\
-                \vdots \\
-                a_n \\
+      \end{bmatrix}=\underbrace{[\overbrace{\Tr(\alpha_i \alpha_j)}^{\in A}]_{1 \leq i, j \leq n}}_{S} \begin{bmatrix}
+             a_1 \\
+             \vdots \\
+             a_n \\
         \end{bmatrix}
-    \]
+   \]
 
     Multiplying on the left by \(S^{\ast}\) [the adjugate matrix of \(S\)],
 
     \[S^{\ast} S \begin{bmatrix}
-            a_1 \\
-            \vdots \\
-            a_n \\
+         a_1 \\
+         \vdots \\
+         a_n \\
     \end{bmatrix} = S^{\ast} \begin{bmatrix}
-            \Tr(\alpha_1 \alpha) \\
-            \vdots \\
-            \Tr(\alpha_n \alpha) \\
+         \Tr(\alpha_1 \alpha) \\
+         \vdots \\
+         \Tr(\alpha_n \alpha) \\
     \end{bmatrix}
     \] 
 
@@ -560,14 +560,14 @@ So, the norm and trace of elements of \(B\) are contained in \(A\).
         a_1 \\
         \vdots \\
         a_n \\
-    \end{bmatrix} = \underbrace{S^{\ast}}_{\text{all entries are in } A} \begin{bmatrix}
+   \end{bmatrix} = \underbrace{S^{\ast}}_{\text{all entries are in } A} \begin{bmatrix}
         \Tr(\alpha_1 \alpha) \\
         \vdots \\
         \Tr(\alpha_n \alpha)\\
-    \end{bmatrix} \in A^n
-    \]
+   \end{bmatrix} \in A^n
+   \]
 
-    Therefore, \(d(\alpha_1, \dots , \alpha_n)\alpha  = (\underbrace{d(\alpha_1, \cdots , \alpha_n) a_1}_{\in A}) \alpha_1 + \cdots + (\underbrace{d(\alpha_1, \cdots , \alpha_n) a_1}_{\in A})\alpha_n\) 
+   Therefore, \(d(\alpha_1, \dots , \alpha_n)\alpha  = (\underbrace{d(\alpha_1, \cdots , \alpha_n) a_1}_{\in A}) \alpha_1 + \cdots + (\underbrace{d(\alpha_1, \cdots , \alpha_n) a_1}_{\in A})\alpha_n\) 
 
 \end{proof}
 
@@ -616,7 +616,7 @@ Note that integral basis is \underline{not guaranteed} to exist.
 \begin{proof}
     Write \(M = \sum_{i=1}^{s} B \alpha_i\) with \(\alpha_i \in L^\times\). By the remark 1 above, we can find \(a \in A \setminus \{ 0 \} \) such that \(a \alpha_i \in B\) for \(1 \leq i \leq s\).
 
-    Therefore, \(a \cdot M \subset B\). Since \(\underset{ax \mapsfrom x}{aM \cong M} \) [as \(A\)-module], we may assume \(M \subset B\). 
+    Therefore, \(a \cdot M \subset B\). Since \(\underset{ax \leftarrow x}{aM \cong M} \) [as \(A\)-module], we may assume \(M \subset B\). 
     
     Therefore, \(\alpha_1 B = \underset{\neq 0}{B \alpha_1} \subset M \subset B\). (1)
 
@@ -663,13 +663,13 @@ Recall that \(\operatorname{disc}(p) = \operatorname{resultant}(p, p^{\prime}) \
 \begin{enumerate}[label=\arabic*)]
     \item \(\mathbb{Z}\) is a PID \(\overset{1.11}{\implies}\) every \(I\) as in \((1)\) is indeed free of rank \(n = [K : \mathbb{Q}]\) over \(\mathbb{Z}\).
     \item \(d(I)\) doesn't depend on the choice of a basis. If \((\beta_1, \cdots, \beta_n)\) is another basis \(I\) over \(\mathbb{Z}\), then we can find a matrix \(M \in M_n(\mathbb{Z})\) such that \(M \begin{bmatrix}
-            \alpha_1 \\
-            \vdots \\
-            \alpha_n \\
+         \alpha_1 \\
+         \vdots \\
+         \alpha_n \\
     \end{bmatrix} = \begin{bmatrix}
-            \beta_1 \\
-            \vdots \\
-            \beta_1 \\
+         \beta_1 \\
+         \vdots \\
+         \beta_1 \\
     \end{bmatrix}\). Note that \(M\)  must be invertible in \(M_n(\mathbb{Z})\) since we can also express the elements of the first basis as linear combination of the elements of the second basis with integral coefficients. Therefore, \(\det(M) \in \{ \pm 1 \}\).
 
     Therefore, \(\det(\beta_1, \cdots, \beta_n) = \det(M)^2 d(\alpha_1, \cdots, \alpha_n) = d(\alpha_1, \cdots, \alpha_n)\).
@@ -750,7 +750,7 @@ Suppose \(K\) is a number field, and \(\mathcal{O} = \mathcal{O}_K\).
     An element \(\alpha \in \mathcal{O} \setminus \{ 0 \} \) is called \underline{irreducible} if \(\alpha\) is not a unit \([\alpha \notin \mathcal{O} ^\times]\) and whenever \(\alpha = \beta \gamma\) with \(\beta , \gamma \in \mathcal{O}\) then either \(\beta \in \mathcal{O} ^\times \) or \(\gamma \in \mathcal{O} ^\times \) 
 \end{definition}
 
-This is not the same as the definition of a prime element. In general, irreduibles might not be equal to primes.
+This is not the same as the definition of a prime element. In general, irreducible elements may not be prime elements (which are those non-zero elements which generate prime ideals).
 
 \underline{Observation}: Every \(0 \neq \alpha \in \mathcal{O}  \setminus \mathcal{O} ^\times\) can be expressed as a product of irreducible elements.
 
@@ -811,9 +811,9 @@ This gives us the inspiration to define Dedekind domain.
     \end{enumerate} 
 \end{definition}
 
-Theorem 2.1 \(\iff \mathcal{O}_K\) is a \underline{Dedekind domain}.
+By Theorem 2.1, \(\mathcal{O}_K\) is a \underline{Dedekind domain}.
 
-\underline{Example}: 
+Moreover, we have:
 
 \begin{enumerate}[label=\arabic*)]
     \item \(k[x]\) when \(k\) is a field is a Dedekind domain.
@@ -925,8 +925,6 @@ From now on, \(\mathcal{O}\) denotes a Dedekind domain.
     \]
 
     with \(P_1, \cdots , P_r \in \operatorname{Max}(\mathcal{O})\), and this factorization is unique upto ordering. 
-
-    Conventionally, the empty product is the unit ideal.
 \end{theorem}
 
 \section*{Tuesday, 9/10/2024}
@@ -990,7 +988,7 @@ From now on, \(\mathcal{O}\) denotes a Dedekind domain.
     
     The non-zero ideals of \(\mathcal{O}\) are called \underline{integral ideals}.
 
-    We denote by \(\mathcal{J}_K\) the set of fractional ideals of \(K\), and by \(\mathcal{P}_K\) the set of principal fractional ideals.
+    We denote by \(J_K\) the set of fractional ideals of \(K\), and by \(P_K\) the set of principal fractional ideals.
 
 \end{definition}
 
@@ -1022,32 +1020,32 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 \begin{proof}
     First we prove that the product of two fractional ideals are fractional ideals.
 
-    \(I, J \subset \mathcal{J}_K \implies cI \subset \mathcal{O}, dJ \subset \mathcal{O}\). Therefore, \((cd)IJ = (cI)(dJ) \subset \mathcal{O}\). Therefore, \(IJ \subset \mathcal{J}_K\).
+    \(I, J \subset J_k \implies cI \subset \mathcal{O}, dJ \subset \mathcal{O}\). Therefore, \((cd)IJ = (cI)(dJ) \subset \mathcal{O}\). Therefore, \(IJ \subset J_K\).
 
     Commutatitivty and associativity follows from \(\mathcal{O}\) itself being a commutative ring.
 
     We need to prove the existence of inverses. Idea: \((P_1 \cdots P_r) ^{-1} = P_1 ^{-1} \cdots P_r ^{-1}\) 
 
-    Given \(I \subset \mathcal{J}_K, \exists c \in \mathcal{O} \setminus \{ 0 \} \) such that \(cI \subseteq \mathcal{O} \).
+    Given \(I \subset J_K, \exists c \in \mathcal{O} \setminus \{ 0 \} \) such that \(cI \subseteq \mathcal{O} \).
 
     We can factor \(cI\) into primes. Thus, \(cI = P_1 \cdots P_r\).
 
-    For any \(J \in \mathcal{J}_K\), we define \(\overline{J} = \{ x \in K \mid xJ \subseteq \mathcal{O} \} \).
+    For any \(J \in J_K\), we define \(\overline{J} = \{ x \in K \mid xJ \subseteq \mathcal{O} \} \).
 
     Note that, if \(d\in J \setminus \{ 0 \}\), we have \(d \overline{J} \subseteq \mathcal{O}\).
 
     Furthermore, \(d \overline{J} \) is finitely generatd implies \(\overline{J} = \frac{1}{d} = \frac{1}{d}(d \overline{J})\) is finitely generated as a \(\mathcal{O}\)-module. 
     
-    Thus, \(\overline{J} \in \mathcal{J}_K\).
+    Thus, \(\overline{J} \in J_K\).
 
     Going back to \(I\), we see that \((c) \overline{P_1} \cdots \overline{P_r} I = \overline{P_1} \cdots \overline{P_r} (cI) = (\overline{P}_1 P_1) \cdots (\overline{P_r} P_r) = \mathcal{O} \cdots \mathcal{O} = \mathcal{O}\).  
 
-    Thus, \(\forall J \in \mathcal{J}_K, \exists J ^{-1} \in \mathcal{J}_K\) such that \(J ^{-1} \cdot J = J \cdot J ^{-1} = \mathcal{O}\).
+    Thus, \(\forall J \in J_K, \exists J ^{-1} \in J_K\) such that \(J ^{-1} \cdot J = J \cdot J ^{-1} = \mathcal{O}\).
 
 \end{proof}
 
 \begin{corollary}
-    Every \(I \in \mathcal{J}_K\) has a factorization:
+    Every \(I \in J_K\) has a factorization:
 
     \[
         I = P_1 ^ {e_1} \cdots P_r^{e_r}
@@ -1055,7 +1053,7 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 
     where \(P_1, \cdots , P_r\) are pairwise distinct prime/maximal ideals and \(e_1, \cdots , e_r\) are uniquely determiend integers.
 
-    As usual, if \(e < 0\) then \(J^e \coloneqq (J ^{-1} )^{-e}\) for any \(J \in \mathcal{J}_K\).
+    As usual, if \(e < 0\) then \(J^e \coloneqq (J ^{-1} )^{-e}\) for any \(J \in J_K\).
 
 \end{corollary}
 
@@ -1075,25 +1073,25 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 Note that, in the group of (fractional) ideals, the principal ideals form a subgroup.
 
 \begin{definition}
-    The \underline{ideal class group} of \(K\) is defined as \(\mathcal{J}_K / \mathcal{P}_K\) and denoted by \(\Cl_K\). We call \(h_K = \vert \Cl_K \vert \) the \underline{class number} of \(K\).
+    The \underline{ideal class group} of \(K\) is defined as \(J_K / P_K\) and denoted by \(\Cl_K\). We call \(h_K = \vert \Cl_K \vert \) the \underline{class number} of \(K\).
 \end{definition}
 
 We have the exact sequences:
 
 \[
-    1 \to \mathcal{P}_K \to \mathcal{J}_K \to \Cl_K \to 1
+    1 \to P_K \to J_K \to \Cl_K \to 1
 \]
 
 \[
-    1 \to \mathcal{O} ^\times \to \underset{c}{K^\times} \underset{\mapsto}{\to} \underset{c \mathcal{O}}{\mathcal{P}_K} \to 1
+    1 \to \mathcal{O} ^\times \to \underset{c}{K^\times} \underset{\mapsto}{\to} \underset{c \mathcal{O}}{P_K} \to 1
 \]
 
 \underline{Remark}: \(\mathcal{O}\) is a PID \(\iff \Cl_K = \{ 1 \}\)
 
 \begin{proof}
-    Suppose \(I\) is a fractional ideal. Then, \(cI\) is an ideal for some \(c\). Since \(\mathcal{O}\) is a PID, we see that \(cI\) is a principal ideal, so \(cI = (d)\). Therefore, \(I = \frac{d}{c} \mathcal{O}\). Thus, \(\mathcal{J}_K = \mathcal{P}_K \implies \Cl_K = \{ 1 \}\).
+    Suppose \(I\) is a fractional ideal. Then, \(cI\) is an ideal for some \(c\). Since \(\mathcal{O}\) is a PID, we see that \(cI\) is a principal ideal, so \(cI = (d)\). Therefore, \(I = \frac{d}{c} \mathcal{O}\). Thus, \(J_K = P_K \implies \Cl_K = \{ 1 \}\).
 
-    For the other direction, suppose \(\Cl_K = \{ 1 \}\). Then, \(\mathcal{J}_K = \mathcal{P}_K\). Given \(I \in \operatorname{Id^\times }(\mathcal{O})\) there exists \(c\in K^\times\) such that \(I = c \mathcal{O}\). Since \(c\in I\) we see that \(I\) is a principal ideal. 
+    For the other direction, suppose \(\Cl_K = \{ 1 \}\). Then, \(J_K = P_K\). Given \(I \in \operatorname{Id^\times }(\mathcal{O})\) there exists \(c\in K^\times\) such that \(I = c \mathcal{O}\). Since \(c\in I\) we see that \(I\) is a principal ideal. 
 \end{proof}
 
 Note that \(\Cl_K\) being trivial is also equivalent to \(\mathcal{O}\) being a UFD.
@@ -1122,7 +1120,7 @@ c.f. Neuker, ch I
 Here, \(K =\) number field, \(\mathcal{O} = \mathcal{O}_K, n = [K : \mathbb{Q}]\).
 
 \begin{definition}
-    Given a prime number \(p \in \mathbb{Z}_{> 0}\) we write \(p \cdot \mathcal{O}_K = P_1^{e_1} \cdots P_r^{e_r} \quad (\ast)\). \(p\) is called:
+    Given a prime number \(p \in \mathbb{Z}_{> 0}\) we write \(p \cdot \mathcal{O}_K = P_1^{e_1} \cdots P_r^{e_r} \quad (\ast)\) with pairwise distinct maximal ideals $P_i$. \(p\) is called:
 
     \begin{enumerate}[label=\roman*)]
         \item \underline{unramified} (in \(K\)) if \(e_1 = \cdots = e_r = 1\).
@@ -1144,7 +1142,7 @@ Here, \(K =\) number field, \(\mathcal{O} = \mathcal{O}_K, n = [K : \mathbb{Q}]\
 \underline{Fundamental Questions}: Given \(K\), how can we characterize
 
 \[
-    \operatorname{Spl}_K = \{ p \in \mathbb{Z} _{>0} \mid p \text{ is totally split in } K \}
+    \operatorname{Spl}_K = \{ p \in \mathbb{Z} _{>0} \text{ is prime} \mid p \text{ is totally split in } K \} \,?
 \]
 
 In \(\mathbb{Q} (i)\) we have a rule: \(p \equiv 1 \pmod 4\) if and only if \(p\) is totally split. For quadratic extensions we have similar rules. More generally, if the Galois closure of $K$ over $\mathbb{Q}$ has an abelian Galois group over $\mathbb{Q}$, then $\operatorname{Spl}_K$ can be described using congruence conditions.
@@ -1240,7 +1238,7 @@ We can write:
 
     Let \(\mu_i(x) \in \mathbb{Z} [x]\) be any polynomial such that \(\mu_i \mod p = \overline{\mu}_i\)
 
-    Then, the ideal \(P_i \coloneqq (p, \mu_i(\theta)) \in \operatorname{Max} (\mathcal{O})\) for \(1 \leq i \leq r\) and \(p\mathcal{O} =P_e^{e_1}\cdots P_r^{e_r}\)  
+    Then, \(P_i \coloneqq (p, \mu_i(\theta)) \in \operatorname{Max} (\mathcal{O})\) for \(1 \leq i \leq r\) and \(p\mathcal{O} =P_e^{e_1}\cdots P_r^{e_r}\)  
 \end{theorem}
 
 Note that, \(p\mathcal{O} + C = \mathcal{O}\) implies \(\mathbb{Z} [\theta] / p \mathbb{Z} [\theta] \cong \mathcal{O} / p \mathcal{O}\).
@@ -1312,7 +1310,7 @@ Note that, \(p\mathcal{O} + C = \mathcal{O}\) implies \(\mathbb{Z} [\theta] / p 
         \implies \bigcap_{i=1}^{r} \overline{\mathcal{P}_i^{e_i}} = (0_{\mathcal{O} / p \mathcal{O}}) \implies \prod_{i=1}^{r} \mathcal{P}_i^{e_i} \subset p \mathcal{O}
     \]
 
-    If \(n = [K : \mathbb{Q}]\) then \(p^n = \underset{[\underset{\oplus_1^n \mathbb{Z} \alpha_i}{\mathcal{O}} : \underset{\oplus_1^n p \mathbb{Z} \alpha_i}{p \mathcal{O} ]}}N(p\mathcal{O}) \leq \prod_{i=1}^r (P_i^{e_i}) = \prod N(P_i)^{e_i} = \prod [\mathcal{O} : P_i]^{e_i}\). 
+    If \(n = [K : \mathbb{Q}]\) then \(p^n = \underset{[\underset{\oplus_1^n \mathbb{Z} \alpha_i}{\mathcal{O}} : \underset{\oplus_1^n p \mathbb{Z} \alpha_i}{p \mathcal{O} ]}}N(p\mathcal{O}) \leq \prod_{i=1}^r (P_i^{e_i}) = \prod N(P_i)^{e_i} = \prod [\mathcal{O} : P_i]^{e_i} = p^{\deg(\mu)} = p^n\). 
     
     Therefore, \(p^n = \prod_{i=1}^{r} N(P_i^{e_i}) \implies \boxed{\prod_{i=1}^r P_i^{e_i} = p \mathcal{O}}\) 
 
@@ -1351,7 +1349,7 @@ Note that, \(p\mathcal{O} + C = \mathcal{O}\) implies \(\mathbb{Z} [\theta] / p 
         \operatorname{Spl}_{\mathbb{Q} (\sqrt{D} )} \overset{.}{=} \left\{ p \text{ prime } \mid  p\nmid D \text{ and the Jacobi symbol } \left( \frac{p}{D} \right) = 1\right\} 
     \]
 
-    \(\overset{.}{=}\) means only finitely many exceptions.
+    \(\overset{.}{=}\) means ``up to at most finitely many exceptions''.
 
     If \(D=q\) a prime number, then we have,
 
@@ -1365,7 +1363,7 @@ Note that, \(p\mathcal{O} + C = \mathcal{O}\) implies \(\mathbb{Z} [\theta] / p 
         \left( \frac{q}{p} \right) = \left( \frac{p}{q} \right) 
     \]
 
-    Writing \(D = \prod_{i=1}^r q_i\), we have,
+    If \(D = \prod_{i=1}^r q_i\) we have,
 
     \[
         \left( \frac{p}{D} \right) = \prod_{i=1}^r \left( \frac{p}{q_i} \right) 
@@ -1378,7 +1376,6 @@ Note that, \(p\mathcal{O} + C = \mathcal{O}\) implies \(\mathbb{Z} [\theta] / p 
     \]
 
 \end{example}
-
 
 \section*{Tuesday, 9/17/2024}
 
@@ -1643,9 +1640,9 @@ Then we have the following lemma:
 
     \underline{Proof of Claim}: Given \(\gamma \in \Gamma\) write \(\gamma = \mu(\gamma) + \gamma_0(\gamma)\) where \(\gamma_0(\gamma) \in \Gamma_0\) and \(\mu(\gamma) \in \Phi_0\).
 
-    Then, \(S = \{ \mu(\gamma) \mid \gamma \in \Gamma \} \subseteq \Gamma \cap \overline{\Phi}_0\). 
+    Note that $\mu(\gamma) \in \Gamma$. Hence \(S = \{ \mu(\gamma) \mid \gamma \in \Gamma \} \subseteq \Gamma \cap \overline{\Phi}_0\). 
 
-    \(\Gamma \cap \overline{\Phi_0}\) is compact and discrete, so it must be finite. Therefore, \(S\) must also be finite. 
+    As $\Gamma$ is closed and $\overline{\Phi_0}$ is compact, \(\Gamma \cap \overline{\Phi_0}\) is closed in a compact set and hence compact. But it is also discrete (as $\Gamma$ is discrete), so it is finite. Therefore, \(S\) must also be finite. 
 
     Thus, \([\Gamma : \Gamma_0]\) is finite.
 
@@ -1657,9 +1654,9 @@ Then we have the following lemma:
         \Gamma \subset \frac{1}{q}\Gamma_0 = \mathbb{Z}\left( \frac{1}{q}v_1 \right) \oplus \cdots \oplus \mathbb{Z} \left( \frac{1}{q}v_m \right) 
     \]
 
-    Thus, \(\Gamma\) is contained in a finitely generated abelian group of rank \(m\), therefore \(\Gamma\) must be a finitely generated abelian group of rank \(r \leq m\). 
+    Thus, \(\Gamma\) is contained in a finitely generated abelian group of rank \(m\) which is generated by an $\mathbb R$-linearly independent set of vectors. This implies that \(\Gamma\) itself is generated by an $\mathbb R$-linearly independent set of vectors. 
 
-    Thus \(\Gamma\) must be a lattice.
+    Thus \(\Gamma\) is a lattice.
 
 \end{proof}
 
@@ -1827,7 +1824,6 @@ Set \(\Sigma_K = \{ \sigma : K \hookrightarrow \mathbb{C} \mid \sigma  \text{ is
 If \(K = \mathbb{Q} (\theta)\) and \(\mu_{\theta ,\mathbb{Q}}(x) = \prod_{i=1}^n (x - \theta_i)\) where \(\theta_i \in \mathbb{C}\)  then the map \(\Sigma_K \to \{ \theta_1, \cdots , \theta_n \}, \sigma \mapsto \sigma(\theta)\) is bijective.
 
 We call \(\tau \in \Sigma_K\) \underline{real} (respectively \underline{complex}) if \(\tau(K) \subset \mathbb{R}\) (respectively \(\tau(K) \not\subset \mathbb{R}\)).
-
 
 \section*{Tuesday, 9/24/2024}
 
@@ -2219,7 +2215,7 @@ This gives us a homomorphism \(\mathcal{J}_K \to \mathbb{Q}^\times \).
 
     \underline{Claim}: \((2,\omega)(3,\omega)^2 = (\omega)\)
     
-    Proof of Claim is in HW5.
+    Proof of Claim is in HW 6.
 
     \underline{Note}: \((2,\omega)\) is \underline{not} principal \(\implies \operatorname{ord}(\underbrace{[2,\omega]}_{\text{class in }\operatorname{Cl}_K}) = 2\).
 
@@ -2249,7 +2245,7 @@ Define \(l:K_{\mathbb{R}}^\times \to \mathbb{R}^{r+s}\) so that:
 
 \[
     l((x_1, \cdots , x_r, z_1, \cdots , z_s, \overline{z}_1, \cdots , \overline{z}_s)) = (\log \vert x_1 \vert , \cdots , \log \vert x_r \vert, 2 \log \vert z_1 \vert, \cdots , 2 \log \vert z_s \vert)
-\].\
+\]
 
 Suppose \(\Tr:\mathbb{R}^{r+s}\to \mathbb{R}\) given by \(\Tr(x_1, \cdots , x_r, y_1, \cdots , y_s) = \sum_{i=1}^r x_i + \sum_{j=1}^s y_j\).
 
@@ -2263,7 +2259,7 @@ Thus, \(\lambda (\varepsilon) \in \ker (\Tr) \eqqcolon  H\) which is the trace z
 
 Set \(\Gamma = \lambda(\mathcal{O}_K^\times) \subset H\). This is a \underline{complete lattice} in \(H\), which we will prove later.
 
-Suppose \(\mu_K\) is the group of roots of unity in \(K\). \(\mu_K\) must be finite.
+Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
 
 \begin{theorem} We have the following exact sequence:
     \[
@@ -2272,3 +2268,4 @@ Suppose \(\mu_K\) is the group of roots of unity in \(K\). \(\mu_K\) must be fin
 \end{theorem}
 
 \end{document}
+
