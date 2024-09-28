@@ -1,0 +1,3334 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, bbm, mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+
+\newcommand{\Bin}{\operatorname{Bin}}
+\newcommand{\Pois}{\operatorname{Pois}}
+
+\title{Probability 564}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+
+\maketitle
+
+Class 1: 01/09
+
+\section*{23: Poisson Processes}
+
+Poisson approximation, law of small numbers.
+
+Take \(\Bin(n,p_{n})=\displaystyle \sum_{k=1}^{n} \mathbbm{1}_{[\text{trial k is a success} ]} \)
+
+Where \(p_{n} =\frac{\lambda}{n},\lambda \in (0,\infty)\) 
+
+Then we have,
+
+\begin{proposition}
+    \(\Bin(n,\frac{\lambda}{n}) \to \Pois(\lambda)\)    
+\end{proposition}
+
+Where the convergence is convergence in distribution, or it converges weakly. It means that the cdf converges pointwise.
+
+Let \(F_n(x)\) be the cdf of \(\Bin(n,p_{n})\) and let \(F(x)\) be the cdf of \(\Pois(\lambda)\).
+
+Then, \(F_n(x)\to F(x)\) for every \(x\) where \(F\) is continuous.
+
+The definition of cdf tells us that,
+
+\(F_{X} (x)\coloneqq \Pr_{}(X\leq x) \) 
+
+The cdf only changes at the `atoms'.
+
+Suppose \(x\in (k,k-1)\). Then,
+
+\(F_{n} (x)=\displaystyle \sum_{j=0}^{k} \Pr[X_{n} =j]\) 
+
+\(F(x)=\displaystyle \sum_{j=0}^{k} \Pr[X=j]\)  
+
+Thus, We only need to show that,
+
+\(\Pr[\Bin(n,\frac{\lambda}{n})=k]\to \Pr[\Pois(\lambda)=k]\) for all \(k\in \mathbb{N}\)  
+
+\begin{proof}
+    We need to show that,
+
+    \[
+        \binom{n}{k} \left( \frac{\lambda}{n} \right)^k \left( 1-\frac{\lambda}{n} \right)^{n-k}  \to e^{-\lambda}\frac{\lambda^k}{k!}
+    \]
+
+    \[
+        \impliedby \frac{n(n-1)\dots (n-k+1)}{k!}\frac{\lambda^k}{n^k}\frac{(1-\frac{\lambda}{n})^n}{(1-\frac{\lambda}{n})^k} \to e^{-\lambda}\frac{\lambda^k}{k!} 
+    \]
+
+    \[
+        \impliedby \frac{n(n-1)\dots (n-k+1)}{n^k}\left(1-\frac{\lambda}{n}\right)^n \left(1-\frac{\lambda}{n}\right)^{-k} \to e^{-\lambda} 
+    \]
+
+    Which is obvious.
+
+\end{proof}
+
+\begin{theorem}[23.2 Law of Rare Events]
+    Suppose that \(\forall n, \langle z_{n,k}; k\leq r_{n}  \rangle \) are independent indicator r.v.s. If \(\displaystyle \lim_{n \to \infty} \sum_{k=1}^{r_{n}} \Pr[z_{n,k}=1]=\lambda \in [0,\infty)\) and \(\displaystyle \lim_{n \to \infty} \max _{1\leq k\leq r_{n} }\Pr[z_{n,k}=1]=0\), then \(\displaystyle \sum_{k=1}^{r_{n} } z_{n,k} \to \Pois(\lambda)\)
+\end{theorem}
+
+\begin{proof}
+    Set \(p_{n,k} \coloneqq  \Pr[z_{n,k}=1]\) and \(\lambda_{n} \coloneqq \displaystyle \sum_{k=1}^{r_n} p_{n,k}\). Since \(\lambda_n \to  \lambda \), we have \(\Pois(\lambda _{n} ) \to \Pois(\lambda )\).
+    
+    So, it suffices to show that \(\displaystyle \Pr \left[ \sum_{k=1}^{r_{n} } z_{n,k} = i \right] - e^{-\lambda_n}\frac{\lambda_{n}^i}{i!} \to 0\)
+    
+    We do this by finding r.v.s \(V_n,W_n\) on a common probability space such that \(\displaystyle V_n=\sum_{k=1}^{r_n} z_{n,k} , W_n\sim \Pois(\lambda _{n} )\) and \(\Pr[V_n\neq W_n]\to 0\).
+    
+    [Rest of proof not clear from images. Need to rewrite]
+
+\end{proof}
+
+
+\hrule
+\hfil
+
+Class 2: 01/11
+
+[Insert Picture for finishing proof of law of rare events]
+
+Basically \(V \cup W \sim \Pois(p)\)
+
+\(U_{k} \sim U(0,1)\) independent
+
+We have \(V_{n,k},W_{n,k}\) 
+
+We have \(V_{n}\coloneqq \sum_{k=1}^{r_{n} } V_{n,k}\) and \(W_{n}\coloneqq \sum_{k=1}^{r_{n} } Z_{n,k}\) 
+
+Since \(\forall n, \langle V_{n,k}:1\leq k\leq r_{n}  \rangle \overset{\mathcal{D}}{=} \langle Z_{n,k}:1\leq k\leq r_{n} \rangle \) 
+
+Thus \(\sum_{k=1}^{r_{n} } V_{n,k}\overset{\mathcal{D} }{=} \sum_{k=1}^{r_{n} } Z_{n,k}\) 
+
+Recall that for random variable \(X:(\Omega ,\Pr,\mathcal{F} )\to (E,\mathcal{E})\) the distribution is given by the pushforward \(\Pr\circ X^{-1}=X_{\ast} P\) 
+
+So, if we have a composition \(X\to f(X)\) 
+
+\((\Omega,\Pr,\mathcal{F} )\overset{X}{\to } (E,\mathcal{E})\overset{f}{\to }(\mathbb{R} ,\mathcal{R} ) \) 
+
+So we have the pushforward \(f_{\ast} X_{\ast} \Pr\) for composition. [Don't understand this properly]
+
+Now, since \(W_{n} \) is just sum of independent Poisson r.v.s, \(W_{n} \sim \Pois(\sum_{k=1}^{r_{n} } p_{n,k} )=\Pois(\lambda _{n})\) 
+
+We want to show that \(\Pr[V_{n} \neq W_{n} ] \to 0\).
+
+\(\Pr[V_{n} \neq W_{n} ] \leq \Pr[\exists k:V_{n,k}\neq W_{n,k}]\) 
+
+From picture, for each \(k\), the RHS probability is \(\leq \sum_{k=1}^{r_{n} } \Pr[V_{n,k}\neq W_{n,k}]\)  [Union Bound]
+
+\(=\sum_{k=1}^{r_{n} } =\sum_{k=1}^{r_{n} } \Pr[V_{n,k}=1]-\Pr[W_{n,k}=1]=\sum_{k=1}^{r_{n} } (p_{n,k}-e^{-p_{n,k}p_{n,k}}=\sum_{k=1}^{r_{n} } p_{n,k}(1-e^{-p_{n,k}}))\)
+
+\( \leq \max p_{n,k}\cdot \sum_{k} (1-e^{-p_{n,k}} \leq \max p_{n,k}\cdot \sum_{k} p_{n,k}) \to 0 \) 
+
+We finally start studying Poisson Processes.
+
+There's also Poisson Point Processes. FIrst we look at examples
+
+Suppose you're manufacturing, and you have surface of a tablet. You don't want defects, but defects are random. You can model that with a poisson point process.
+
+Also suppose you're raising dough for baking cookies. Raise isn't predictable, it can be modeled as a poisson point process.
+
+Typos in location of book is a poisson point process.
+
+Before people understood what stars were, they were assumed to be randomly distributed, poisson point process.
+
+First of all, there are stochastic processes. This course isn't explicitly about them, but we have studied them in Markov Processes. We can consider random variables indexed by time, or we can consider indexed by sets in the space case.
+
+Time \(t\) is positive real variable. For each \(t\) we can define \(N(t)\)
+
+\(\langle N(t) ; t\geq 0 \rangle \) 
+
+Before Poisson Process, we're going to talk about something more general: A counting process. Since we're counting particles or something in space or in time. These values are going to be non-negative integers. \(N(t)\) is the (finite) member of ``events'' that occur in \((0,t]\) , if something happens that is called an event. [This is not related to measurable subsets of the probability space.]
+
+Thus, for \(s\leq t\), we have, \(N(t)-N(s)\) counting the number of events in \((s,t]\)  
+
+Formal definition:
+
+\begin{definition}
+    Counting Process: For \(\forall t, N(t)\) is an \(\mathbb{N} \)-valued r.v., so that \(\forall s<t,N(s)\leq N(t)\), and \(N(\cdot)\) is right-continuous a.s.  
+\end{definition}
+
+Right continuity is equivalent to taking the time interval to be closed on the right.
+
+\begin{definition}
+    The increments of \(N(\cdot)\) are \(\langle N(t)-N(s); 0\leq s<t \rangle \) 
+\end{definition}
+
+
+\begin{definition}
+    We say \(N(\cdot)\) has \underbar{independent increments} if suppose we have an independent finite sequence of times \(0=t_0, t_1, \dots, t_n \) implies \(\langle N(t_{i+1}-N(t_i)); 0\leq t<n \rangle \) are independent.    
+\end{definition}
+
+\begin{definition}
+    We say \(N(\cdot)\) has \underbar{stationary increments} if the distribution of \(N(t)-N(s)\) where \(s<t\) depends only on \(t-s\). 
+\end{definition}
+
+Note that these conditions require uncountably many things!
+
+Poisson processes are Counting processes that satisfy both. Added stipulation, assume that two events cannot happen at the same time. These are simple counting processes.
+
+First we think of them as discrete times. Then time is indexed by \(\mathbb{N} \) and we have bernoulli process in each time slot.
+
+Poisson Processes are essentially limit of Bernoulli processes.
+
+\begin{theorem}
+    Suppose that \(N(\cdot)\) is a counting process with independent stationary increments that never jumps by \(>1\). Suppose \(N(0)=0\) but \(N\not\equiv 0\). Then \(\exists \lambda \in (0,\infty)\) so that \(\forall t, N(t)\sim \Pois(\lambda t)\).  
+\end{theorem}
+
+\begin{definition}
+    A process satisfying those hypotheses is called a \underbar{Poisson process with rate} \(\lambda\). 
+\end{definition}
+
+\begin{proof}
+    We use theorem 23.2 (law of rare events) as extended in the HW.
+
+    [draw picture from 0 to t with x where the event occurs]
+
+    [divide the picture into n equal parts with length t/n]
+
+    [at each interval we have increments]
+
+    [number of events can be anything. but if we take small enough intervals there can only be at most 1 event in any interval]
+
+    [it is almost an indicator function]
+
+    [increments are nearly indicators, independent and have similar probability, which means they're bernoulli.]
+
+    Fix \(t > 0\) and let \(X_{n,i}\coloneqq N(\frac{it}{n})-N(\frac{(i-1)t}{n})\) for \(1\leq i\leq n\). Thus \(N(t)=\sum_{j=1}^{n} X_{n,i}\). Because \(N(\cdot)\) is simple (it never jumps by \(>1\) ), we have \(N(t)=\sum_{r=1}^{n} \mathbbm{1}_{[X_{n,i}\geq 1]} \) for large enough \(n\).
+    
+    Let \(p_n\coloneqq \Pr[X_{n,1}=1]=\Pr[X_{n,i}=1]\) 
+
+    Take a subsequence \(\langle n_k;k\geq 1 \rangle \) so that \(n_k p_{n_k}\) converges in \([0,\infty ]\). Call its limit \(g(t)\).
+
+    The Homework [Insert Problem from HW1] implies, \(N(t)\sim \Pois(g(t))\) 
+
+    Thus, \(g(t)\) must also be finite, and \(g(t)=E[N(t)]\).
+
+    So, \(g(t)\) does not depend on \(\langle n_k \rangle \). So the limit must exist.
+    
+    Now let \(t\) vary. Then \(g(s+t)=E[N(s+t)]=E[N(s)+(N(s+t)-N(s))]=E[N(s)]+E[N(t)]=g(s)+g(t)\)
+    
+    Since \(g\) is non-decreasing (since \(N\) is non-decreasing), we can use Cauchy's Functional Equation to conclude that \(g(t)=\lambda t\).
+    
+    So, \(N(t)\sim \Pois(\lambda t)\) 
+
+\end{proof}
+
+\hrule
+\hfil
+
+Class 3: 01/16
+
+Correction: Suppose you have a counting process of some qualiative stuff. Then the points of incerement are distributed via poisson.
+
+[Picture of interval [0,t]  divided into parts]
+
+Then, \(N(t) = \displaystyle \sum_{i=1}^{n} \mathbbm{1}_{[X_{n,i}\geq 1]} \) for large \(n\). Basically, there is a \(n\) for each \(\omega\).
+
+That is, \(N(t)=\displaystyle \lim_{n \to \infty} \sum_{i=1}^{n} \mathbbm{1}_{[X_{n,i}\geq 1]} \) 
+
+So, \(N(t)\) is the weak limit of the \(\sum\).
+
+Now, if we set \(p_n \coloneqq P[X_{n,i}\geq 1]\)
+
+Then \(\displaystyle \sum_{i=1}^{n} \mathbbm{1}_{[X_{n,i}\geq 1]} \sim Bin(n,p_n)\) 
+
+\(n_k\) so that \(np_{n_k} \to \lambda \in [0,\infty]\) 
+
+[Insert Picture |---x--t-x----x-------x-----> ]
+
+We have arrival times, and inbetween we have waiting times. A lot of the terminology comes from the original application, queueing theory.
+
+Let \(X_1 \coloneqq \) time of the first arrival.
+
+\(P[X_1 \leq t]=1-e^{-\lambda t}\)
+
+Since \(P[X_1 > t]=P[N(t)=0]=e^{-\lambda t}\) 
+
+Since, \([N(t)=0]=[X_1>t]\) 
+
+Thus we have, \(X_1 \sim Exp(\lambda)\) 
+
+Note, exponential random variables are important because of its `memorylessness', aka \(P[X_1 > s+t | X_1 > s]=P[X_1 > t]\). One discrete analogue is \(geom(p)\) random variables, since that is also memoryless.
+
+We can assume wait times are i.i.d. exponential random.
+
+Now time to prove it rigorously.
+
+\begin{theorem}
+    \(\forall \lambda \in (0,\infty ) \exists \) Poisson process of rate \(\lambda\).  
+\end{theorem}
+
+\begin{proof}
+    Let \(X_n \sim Exp(\lambda)\) be independent. Now, define \(S_n \coloneqq \displaystyle \sum_{i=1}^{n} X_i \) 
+
+    In particular, by the strong law of large numbers, \(S_n \to \infty\) a.s.
+
+    Also, \(X_i > 0\) a.s.
+    
+    Assume those hold always. Define \(N(t)=\max_n \left\{ n; S_n\leq t \right\} \)
+
+    Note that \(N(t)\) is a random variable since firstly it's defined in the same probability space and measurable?
+
+    \([N(t) \geq n]=[S_n \leq t]\) and \([N(t)=n]=[S_n \leq t < S_{n+1}]\)
+
+    In particular, \(N\) is indeed a random variable.
+
+    Also, it is clearly a counting process with \(N(0)=0\), never jumps by more than \(1\), and \(N \not\equiv 0\).
+    
+    Fix \(t\). The waiting times after \(t\) are \(X_1^{(t)}\coloneqq S_{N(t)+1}-t\)
+    
+    \(X_2^{(t)}\coloneqq X_{N(t)+2},X_3^{(t)}\coloneqq X_{N(t)+3},\dots \)
+    
+    The counting process \(\langle N(t+s) - N(t) ; s\geq 0 \rangle \) is defined via waiting times exactly as \(\langle N(t), t\geq 0 \rangle \) defined via \(\langle X_n; n\geq 1 \rangle \) 
+    
+    The memory loss property is responsible for \(\langle N(t+s)-N(t), s\geq 0 \rangle \) being independent of \(N(t)\) and with the same law as \(N(\cdot)\). This gies that the increments of \(N(\cdot)\) are independent and stationary.
+    
+    To establish this rigorously, we can prove the following:
+
+    (i) \(\forall j\geq 0, n \geq 0\),
+
+    \(P[S_n \leq t < S_{n+1},S_{n+1}-t>y]=e^{-\lambda y} P[S_n \leq t < S_{n+1}]\) 
+
+    (ii) \(\forall n \geq 0 \forall j\geq 0\) \(P[S_n \leq t < S_{n+1},S_{n+1}-t > y_1, X_{n+2}>\vec{y_2} \dots ,X_{n+j} > y_j]=P[S_n \leq t < S_{n+1}]\cdot e^{-\lambda y_1}\cdots e^{-\lambda y_j} \)  
+
+    (iii) \(\forall n \geq 0 \forall j \geq 1, \forall H\in \mathcal{R} ^0, P[N(t)=n,(X_1^{(t)},\dots ,X_j^{(t)})\in H]=P[N(t)=n],P[(X_1,\cdots,X_j)\in H]\) 
+
+    (iv) \(\forall u\geq 1 \forall  m_1 \geq 0 \forall  n\geq  0 \forall 0 < s_1 < s_2 < \dots < s_u\),
+
+    \(P[N(t)=n, \forall i\in [1,n] N(t+s_i)-N(t)=m_i]=P[N(t)=n]P[\forall i\in [1,n] N(s_i)=m_i]\)
+    
+    (v) \(\forall k\geq 1 \forall n_i \geq 0 \forall 0=t_0<t_1<\dots <t_k\), 
+    
+    \(P[\forall i\in [1,k], N(t_i)-N(t_{i-1})=n_i]=\displaystyle \prod_{i=1}^{k} P[N(t_i - t_{i-1} )=n_i]\) 
+
+    Proof of i:
+
+    \(P[S_n \leq t< S_{n+1}, S_{n+1}-t > y]=P[S_n=t,X_{n+1}> t+y-S_n]\)
+    
+    \(\displaystyle = \int_{x \leq t}^{} P[X_{n+1}>t+y-x] \,\mathrm{d}F_{S_n}(x)= e^{-\lambda y}P[S_n \leq t < S_{n+1}] =e^{-\lambda y} P[X_{n+1}>t-x]\) 
+
+    Proof of ii: First, \(X_{n+2},\dots ,X_{n+j}\) are independent of \([S_n \leq t < S_{n+1}] \cap [S_{n+1}-t  y_1]\) so we an take out \(X_{n+i}>y_i\) and use (i).
+    
+    Proof of iii: if \(H = (y_1,\infty)\times (y_2,\infty)\times \dots (y_j,\infty)\) then this is the same as ii. \(\pi-\lambda\) theorem gives  this to us. [Theorem 10.4]
+
+    (iv) Use (3) with \(j=\sum_{i=1}^u w_i \star 1\) and
+    
+    \(H\coloneqq \left\{ (x_1,\dots x_j)\in\mathbb{R} ^j: \forall i\in [1,u]X_1 + \dots + X_{m_i} \leq S_i < X_1 + \dots +X_{m_i +1}  \right\} \)
+
+
+\end{proof}
+
+\hrule
+\hfill
+
+Class 4: 01/18
+
+iv: \(\forall u \geq 1, \forall m_i \geq 0, \forall 0 < s_{1}<s_{2}<\dots <s_{n}\), \(P[N(t)=n, \forall i\in [1,n], N(t+s_{i} )-N(t)=m_i] = P[N(t)=n]P[\forall i\in [1,n], N(s_i)=m_i]\)
+
+v: \(\forall n_i \geq 0, \forall k \geq 1, \forall 0 = t_0 < t_1 < \dots < t_k\), \(P[\forall i\in [1,k], N(t_i)-N(t_{i-1} )=n_i] = \prod_{i=1}^{k} P[(N(t_{i} - t_{i-1}  ) = n_i)]\) 
+
+How to get iv \(\implies \) v?
+
+The increments are not the same. The increments in v are successive. But the first one we can. In v, set \(t_1=t\), then first one is the same. Note, in iv, \(N(t+s_i)-N(t)\) got changed to \(N(s_i)\) so starting time became $0$. We keep going, and by induction on \(k\), the number of terms, we get v from iv.
+
+Basically,
+
+\(n\coloneqq n_1, u\coloneqq k-1\) 
+
+\(m_i=n_2 + \dots +n_{i+1} \) 
+
+\(s_1=t_2 - t_1, s_i = t_{i+1} - t_1  \) 
+
+Now we need to show that \(\lambda\) is indeed the correct parameter for the poisson process.
+
+Now, \(P[N(1)=0]=P[X_1>1]=e^{-\lambda\cdot 1} \) 
+
+This tells us \(\lambda\) is indeed the right variable for this distribution.
+
+\begin{theorem}
+    If \(N(\cdot)\) is a Poisson process with rate \(\lambda\) then there exists independent \(X_k \sim Exp(\lambda) \) so that almost surely (a.s.) \(\forall t, N(t)=\max\{n:\sum_{k=1}^{n} X_k \leq t\}\) 
+\end{theorem}
+
+This is the same relationship we used to construct \(N\) from $X$ in the previous theorem.
+
+\begin{proof}
+    Define \(S_n\coloneqq \inf \left\{ t; N(t)\geq n \right\} \) for \(n\geq 0\) 
+
+    We use infimum instead of minimum since a priori we don't know it exists. It is a.s. a minimum.
+
+    Then \(X_n \coloneqq S_n - S_{n-1} \) for \(n\geq 1\) 
+
+    First, we show that these are actually random variables.
+
+    So,\([S_n \leq t]\) has to be measureable.
+
+    \([S_n\leq t] = [N(t) \geq n]\) 
+
+    Since \(N(t)\) is a random variable the latter set must be measurable, so the former set is measureable so \(S_n\) is indeed a random variable.
+
+    Now, \(P[X_1 > t]=P[S_1>t]=P[N(t)=0]=e^{-\lambda t}\) which means \(X_1 \sim Exp(\lambda)\)
+
+    Intuition behind why \(X_k\) is independent: memorylessness!!!
+
+    Suppose we know the value of \(X_1\), then after that \(X_2,X_3,\dots \) must also be random similarly. Pursuing this argument is a bit difficult since \(X_1\) is random so we can't actually set \(t=X_1\) 
+
+    Our proof will be to show that \((S_1,\dots ,S_k)\) has density \(\lambda ^k e^{-\lambda y_k} \)
+    
+    on \(\left\{ y\in \mathbb{R} ^k; 0<y_1 < \dots < y_k \right\} \) and \(0\) elsewhere.
+
+    Then deduce that \((X_1, \dots ,X_k)\) has density \(\prod _{i=1}^k (\lambda e^{-\lambda x_i})\) on \(x\in\mathbb{R} ^k; \forall i x_i > 0\) and \(0\) elsewhere.
+
+    The second stepfollows from 20.20, using the linear map \(x_i \coloneqq  y_i - y_{i-1}  \) with the Jacobian \(=1\)
+
+    Consier \(0 \leq s_1 < t_1 \leq s_2 < t_2 \leq \dots \leq s_k < t_k\)
+
+    0---s1----S1----t1-----s2----S2---t2 
+
+    Then \(P[s_i < S_i \leq t_i \text{ for } 1 \leq i \leq k ] = P[N(s_1)=0,N(t_1)-N(s_1)=1,N(s_2)-N(t_1)=0,\dots ,N(t_k)-N(s_k)\geq 1]\)
+
+    We have expressed the probability over disjoint intervals of \(N\) so we can just multiply to get the probability
+
+    \(=e^{-\lambda s_1}e^{-\lambda(t_1-s_1)}\lambda (t_1-s_1)e^{-\lambda (s_2 - t_1)}e^{-\lambda (t_2 - s_2)}\lambda(t_2 - s_2)\cdots e^{-\lambda (s_k - t_{k-1})}(1-e^{-\lambda (t_k - s_k)})\) 
+
+    \(=\lambda^{k-1} e^{-\lambda s_k}(t_1 - s_1)(t_2 -s_2)\dots (t_{k-1} - s_{k-1})(1-e^{-\lambda (t_k - s_k)}) \) 
+
+    \(=\lambda^{k-1}(\prod_{i=1}^{k-1} (t_i - s_i ))(e^{-\lambda s_k}-e^{-\lambda t_k})\) 
+
+    \(=\displaystyle \int_{A}^{} \lambda ^k e^{-\lambda y_k} \,\mathrm{d}y \) for \(A=(s_1,t_1]\times \dots \times (s_k,t_k]\) 
+
+    So, the densities actually give us probabilities.
+
+    That is, if \(A\) is a rectangle contained in \(G=\left\{ y; 0 < y_1 < y_2 \dots < y_k \right\} \) we have \(P[(S_1 , \dots , S_k)\in A]= \displaystyle \int_A \lambda ^k e^{-\lambda y_k} \, \mathrm{d}y \) 
+
+    These rectangles form a \(\pi\)-system that generates the sigma algebra that has all the borel sets contained in \(G\) which is \(R^k\cap G\)
+
+    So this holds for all \(A\) in \(R^k\cap G \). This gives us the density we wanted.
+    
+    Since \(S_n\) strictly increases to \(\infty \) almost surely we get the desired relation.
+
+\end{proof}
+
+Let \(N(\cdot)\) be a poisson process with parameter \(\lambda\). Modify it with the deterministic function \(f(t)\coloneqq t \mathbbm{1}_{\mathbb{Q} }(t)\) and \(M(t)\coloneqq N(t)+f(t+X_1)\) 
+
+Suppose \(t\) is fixed. Then \(t+X_1\) is irrational a.s.
+
+So we're adding \(0\) a.s.
+
+So \(M(t)=N(t)\) a.s.
+
+So, finite dimensional distributions of \(M\) and \(N\) are the same - a poisson process
+
+But \(M\) is not a counting process.
+
+So knowing finite dimensional distributions only is not enough. This makes Brownian Motion very difficult.
+
+\hfil
+\hrule
+
+Class 05: 01/23
+
+For HW1 P1, the simplest solution is just using Scheff\'e's theorem.
+
+Today we work with central limit theorem.
+
+This is called central because it's central to so many things.
+
+Chapter 5: Convergence of Distributions.
+
+Section 25: Weak Convergence
+
+Weak convergence is denoted by \(\implies\). It is the same thing as convergence in distribution.
+
+We can look at:
+
+\(F_n \implies F\)
+
+\(\mu_n \implies \mu\)
+
+\(X_n \implies X\) 
+
+Note that for weak convergence, \(X_n,X\) don't HAVE to be on the same space.
+
+Section 25 is about the interplays between these 3.
+
+Theorem 25.1 we omit.
+
+\begin{theorem}
+    [25.2:] Suppose that \(X_n,X\) are real valued random variables on the same probability space.
+
+    Then, \(X_n \overset{a.s.}{\to} X\) implies \(X_n \overset{P}{\to} X\) implies \(X_n \implies X\)  
+
+\end{theorem}
+
+\begin{proof}
+    We just prove \(X_n \overset{P}{\to } X\) implies \(X_n \implies X\) 
+
+    Let \(x\) be a point where \(F\) is continuous and \(\epsilon >0\). We are interested in comparing probabilities of \([X\leq x]\) and \([X_n\leq x]\).
+    
+    Consider the event \([\vert X_n - X \vert \geq \epsilon ]\). This goes to \(0\) as \(n \to \infty\) 
+
+    Then,
+
+    \([X\leq x-\epsilon] \subseteq [X_n\leq x] \cup [\vert X_n - X \vert \geq \epsilon]\) 
+
+    Because if \(X \leq x - \epsilon\) then \(X_n \leq x\) or \(\vert X_n - X \vert \geq \epsilon\) 
+
+    Also,
+
+    \([X_n \leq x] \subseteq [X \leq x+\epsilon] \cup [\vert X_n - X \vert \geq \epsilon]\) 
+
+    Because if \(X_n \leq x\) then \(X \leq x+\epsilon\) or \(\vert X_n - X \vert \geq \epsilon\) 
+
+    Taking probability,
+
+    \(P[X\leq x-\epsilon] \leq P[X_n \leq x]+P[\vert X_n - X \vert \geq \epsilon  ]\) 
+
+    \(P[X_n \leq x] \leq P[X \leq x+\epsilon]+P[\vert X_n - X \vert \geq \epsilon]\) 
+
+    Let \(n\to \infty\). Since we'renot sure the limits exist we take limsup/liminf as it suits us.
+
+    \(P[X\leq x-\epsilon]\leq \liminf_{n \to \infty} P[X_n \leq x]\)
+    
+    \(\limsup_{n \to \infty} P[X_n \leq x]\leq P[X\leq x+\epsilon]\) 
+
+    Now let \(\epsilon \to 0\)
+    
+    Then,
+
+    \(P[X \leq x] \leq \liminf_{n \to \infty} P[X_n \leq x] \leq \limsup_{n \to \infty} P[X_n \leq x]\leq P[X\leq x]\)
+    
+    So we're done.
+
+\end{proof}
+
+At this point, we depart from the order of the book. We prove a later theorem and use that to prove some intermediate theorem.
+
+We have \((X_n \overset{a.s.}{\to} X) \implies (X_n \overset{P}{\to } X) \implies (X_n \implies X)\).
+
+We can also go from last to first under some kind of conditions and stuff. This is theorem 25.6, due to Skorohod.
+
+\begin{proposition}
+
+    If \(X_n \implies X\), then \(\exists Y_n,Y\) on a common probability space with \(Y_n \overset{\mathcal{D}}{=} X_n\) and \(X \overset{\mathcal{D}}{=} Y\), and \(Y_n \to Y \) pointwise.
+
+\end{proposition}
+
+\begin{proof}
+    
+    Remember the proof of Poisson? We put them in the same probability space. This is also a similar idea.
+
+    We use Lebesuge Measure on \((0,1)\) and let \(Y_n,Y\) be the `inverses' of the cdf's of \(X_n,X\)
+    
+    [Insert Picture here]
+
+    The graphs converge in the L\'evy metric as defined in Problem 14.5:
+
+    \(F(x-\epsilon)-\epsilon \leq F_n(x) \leq F(x+\epsilon) +\epsilon\) 
+
+    We have a problem in places where cdf is constant. But there can only be countably many such places, so the problematic stuff has lebesgue measure \(0\). So we can just not care about it.
+
+\end{proof}
+
+Now we use this to prove theorem 25.3:
+
+\begin{proposition}
+    If \(a\in\mathbb{R}\) and \(X_n \implies a\), Then \(X_n \overset{``P''}{\to } a\) in the sense that \(\forall \epsilon >0\) we have \(P[\vert X_n - a  \vert \geq \epsilon ] \to 0\) as \(n\to \infty\) although \(X_n\) may not be defined in the same probability space. 
+\end{proposition}
+
+\begin{proof}
+    We can just use 25.6 to change them in variables so that they converge almost surely, and then just use 25.2.
+\end{proof}
+
+Now consider theorem 25.4:
+
+\begin{proposition}
+    Let \(X_n,Z_n\) be defined on the same probability space for each \(n\) seperately. [\(X_j,Z_J\) on the same space, not necessarly \(X_j,X_k\) or \(Z_j,Z_K\) ]. Suppose \(X_n \implies X, Z_n \implies 0\). Then \(X_n + Z_n \implies X\)
+\end{proposition}
+
+We can't directly use Skorohood because even though we can send \(X_n\) to something, we can't do it with \(X_n + Z_n\) 
+
+The proof is similar to the proof of theorem 25.2
+
+Convergence in Distribution we can have some leeway, in our \(\epsilon\) 
+
+\begin{proof}
+
+    Consider \(x\) so that \(P[X=x]=0\) 
+
+    Then we may choose \(x^{\prime} < x < x^{\prime\prime} \) so that \(P[X \in (x^{\prime} ,x^{\prime\prime} ]]\) is arbitrarily small \underline{and} such that \(P[X\in \{ x^{\prime} ,x^{\prime\prime}  \} ] = 0\). Now,
+
+    \([X_n \leq x^{\prime} ] \subseteq [X_n + Z_n \leq x] \cup [\vert Z_n \vert \geq x - x^{\prime}]\) 
+
+    \([X_n + Z_n \leq x] \subseteq [X_n \leq x^{\prime\prime} ] \cup [\vert Z_n \vert \geq x^{\prime\prime} -x]\) 
+
+    Taking \(n\to \infty\) 
+
+    \(P[X \leq x^{\prime} ] \leq \liminf_{n \to \infty} P[X_n + Z_n \leq x]\)
+
+    \(\limsup_{n \to \infty} P[X_n + Z_n \leq x] \leq P[X \leq x^{\prime\prime} ]\) 
+
+    This gives us
+
+    \(P[X_n + Z_n \leq x] \to P[X \leq x]\) 
+
+\end{proof}
+
+This is Slutsky's theorem.
+
+Omit theorem 25.5
+
+In HW, the first problems we can already do with what we have.
+
+\hfil
+\hrule
+
+Class 06: 01/25
+
+Note about HW: you will have more mathematical power if you do less calculation and understand more.
+
+\begin{theorem}[25.7, Mapping Theorem]
+    Let \(h:\mathbb{R} \to \mathbb{R} \) be Borel, \(X_n \implies X\), \(P[h \text{ discontinuous at }X ]=0\). Then \(h \circ X_n \implies h \circ X\) 
+\end{theorem}
+
+\begin{proof}
+    We use Skorohood. Let \(Y_n \overset{\mathcal{D} }{=} X, Y \overset{\mathcal{D} }{=} X, Y_n \to  Y  \) pointwise. Then \(h\circ Y_n \to h\circ y\) when \(h\) is continuous at \(Y\). Note that \(P[h \text{ discontinuous on }X ]=0\) statement only depends on the distribution of \(X\) since distribution is a probability measure on the values \(X\) can take, so \(h\circ Y_n \to h\circ Y\) on the set of probability \(1\).  
+
+    Formally, the hypothesis is \((X_\ast P(\text{discont. set of }h )=0)\) 
+
+    Therefore, \(h\circ Y_n \implies h\circ Y\) and thus \(h\circ X_n \implies h\circ X_n\) 
+
+\end{proof}
+
+Some notation:
+
+\begin{definition}
+    \[
+        D_h \coloneqq \{ x\in \mathbb{R} ; h \text{ is discontinuous set of } x \} 
+    \] 
+\end{definition}
+
+So, the hypothesis was: \(P[X\in D_h]=0\) 
+
+We need \(D_h\) to be a borel set for \([X\in D_h]\) to be an event.
+
+\underline{Claim:} \(D_h\) is a borel set for all function \(h\) [not necessarily borel \(h\)].
+
+\begin{proof}
+    \[
+        D_h = \bigcup_{\epsilon > 0}^{} \bigcap_{\delta > 0} A_h(\epsilon , \delta) 
+    \]
+
+    Where \(A_h(\epsilon ,\delta)\coloneqq \{ x; \exists y,z \in (x-\delta ,x+\delta ), \vert h(y)-h(z) \vert \geq \epsilon \} \) is open.
+
+    This is not countable union and intersection but we can make it countable using \(\frac{1}{n}\) 
+
+\end{proof}
+
+If \(\mu \) is the law of \(X\) then \(\mu \circ h^{-1}=h_\ast \mu\) is the law of \(h\circ X\) 
+
+\begin{theorem}[25.8, Portmonteau Theorem]
+
+    Note: a word blending the sounds and combining the meanings of two others, for example motel (from `motor' and `hotel') or brunch (from `breakfast' and `lunch').
+
+    Let \(\mu_n,\mu\) be probabilities on \(\mathbb{R}\). The Following Are Equivalent (TFAE):
+
+    \begin{enumerate}
+        \item \(\mu_n \implies \mu\) 
+        \item \(\int_{}^{} f \,\mathrm{d}\mu_n = \int_{}^{} f \,\mathrm{d}\mu , \forall f\in C_b(\mathbb{R})\) [bounded, continuous]
+        \item \(\int_{}^{} f \,\mathrm{d}\mu_n = \int_{}^{} f \,\mathrm{d}\mu\) if \(f\) is bounded, borel and \(\mu(D_f)=0\)
+        \item \(\mu_n(A)\to \mu(A)\) if \(A\) is borel and \(\mu(\partial A) = 0\)
+    \end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+    \(3 \implies 2,4\) clearly. \(4 \implies 1\) by taking \(A\coloneqq (-\infty,x]\) 
+
+    For \(1 \implies 3\): Let \(Y_n \sim \mu _n,Y \sim \mu, Y_n \to Y\) pointwise.
+
+    If \(\mu(D_f)=0\) then \(f\circ Y_n \to f\circ Y\) by mapping theorem and so \(E[f\circ Y_n] \to E[f\circ Y]\) which gives us \(3\). [eqn 21.1] by dominated convergence since \(f\) is bounded.
+
+    For \(2 \implies 1\),
+
+    Let \(f=\mathbbm{1}_{(-\infty ,x]} \) 
+
+    draw picture:
+
+    \(f\) is not necessarily continuous. But we can bound \(f\) by continuous functions that converge to \(f\) :
+    
+    \(g_k \leq \mathbbm{1}_{(0,-\infty ]} \leq f_k \) 
+
+    \[
+        \lim_{n \to \infty} \int g_k d\mu \leq \mu(-\infty,x] \leq \lim_{n \to \infty} \int f_k d\mu 
+    \]
+
+    Note: on real numbers, sometimes ineqalities are enough. This is an important trick, might be on exams.
+
+\end{proof}
+
+\hfil
+\hrule
+
+Class 07: 01/30
+
+For definition of Weak\(^{\star}\) topologies look at the note in canvas.
+
+This is useful because of the Riesz Representation Theorem, identifying \(M(\mathbb{R})\) [the banach space of finite, signed measures on \(\mathbb{R} \) wit norm being the total variation] asthe dual of \(C_0(\mathbb{R})\) [the space of continuous functions on \(\mathbb{R}\) that vanish - tend to \(0\)- at \(\infty\), with the \(\sup\) norm]. Kakutani extended this from \(\mathbb{R} \) to every locally compact Hausdorff space, such as \(\mathbb{R}^d\). Recall some basic facts from functional analysis
+
+Just read the note. Won't write the rest.
+
+Basically, \(\mu_n \overset{w^{\star} }{\to } \mu \) if and only if \(\int f\,\mathrm{d} \mu _n \to \int f\,\mathrm{d} \mu \) for all \(f\in C_0(\mathbb{R})\) [if we required it for \(f\in C_b(\mathbb{R})\) then by portmanteau theorem, this is the same as weak convergence for probability measures.]
+
+Uniform Integrability: [Look at notes]
+
+Let \(\mathcal{X} \) be a class of real valued random variables. \(\mathcal{X} \) is \underline{uniformly integrable} (UI) if:
+
+\[
+    \lim_{\alpha  \to 0} \sup_{X\in \mathcal{X}} E[\vert X \vert : \vert X \vert \geq \alpha ] = 0
+\]
+
+If \(\phi:[0,\infty)\to [0,\infty)\) is Borel and \(\lim_{x \to \infty} \phi(x) / x = \infty\) then for all \(M < \infty \) we have \(\{ X; E[\phi(|X|)< M] \} \) is UI.
+
+Also, UI \(\iff \sup \{ E[\vert X \vert ]; X\in \mathcal{X} \} < \infty \) and
+
+\[
+    \forall \epsilon >0 \exists \delta >0: P(A)<\delta \implies \sup \{ E[\vert X \vert ; A] ; X \in \mathcal{X} \} < \epsilon 
+\]
+
+Thus if \(\mathcal{X} \) is UI so is its convex hull.
+
+Corollary: Let \(X,X_n\) be integrable random variables with \(X_n \to X\) a.s. Then TFAE:
+
+\begin{enumerate}
+    \item \(\{ X_n \} \) is UI
+    \item \(E[\vert X_n - X \vert ] \to 0\)
+    \item \(E[\vert X_n \vert ] \to E[\vert X \vert ]\)  
+\end{enumerate}
+
+We could have a sequence of bounded measure that converges to a not measure. Note that bounded would mean we can't have infinite mass so we can't do the trick in assignment.
+
+A collection \(\mathcal{M}\) of probability measures on \(\mathbb{R}\) is \underline{tight} [masses can't run off to infinity] if \(\lim_{a \to \infty} \sup _{\mu \in \mathcal{M} }\mu ((-a,a)^c)=0\) 
+
+Equivalently, \(\lim_{a \to \infty} \inf_{\mu \in \mathcal{M}} \mu (-a,a)=1\). Here we're talking about probability measures, the first one is true for any measures.
+
+Fatou's lemma for weak convergence:
+
+\[
+    X_n \implies X \implies E[\vert X \vert ] \leq \liminf_{n \to \infty} E[\vert X_n \vert ]
+\]
+
+\section*{Characteristic Functions [Section 26]}
+
+They are basically Fourier Transforms. So alternative name for this section is Fourier Analysis.
+
+\begin{definition}
+    The \underline{characteristic function} or \underline{fourier transform} of a probability measure \(\mu\) (or of a random variable \(X\) with law \(\mu \) or distribution \(F\) of \(\mu \) ) is the function \(\phi:\mathbb{R}\to \mathbb{C}\) given by
+
+    \[
+        \boxed{\phi(t)\coloneqq \hat{\mu}(t)\coloneqq \int_{-\infty}^{\infty} e^{itx}  \,\mathrm{d}\mu (x) = E[e^{itX} ] = \int_{-\infty}^{\infty} e^{itx}  \,\mathrm{d}F(x)}
+    \]
+
+    Note that as long as \(\mu \) is a finite measure this is well-defined.
+
+\end{definition}
+
+Alternate definitions: \(e^{\pm itx}, \frac{1}{\sqrt{2\pi} }e^{\pm itx},\frac{1}{2\pi }e^{\pm itx}\) 
+
+Note that we write \(\hat{\mu}\) but not \(\hat{X} \) or \(\hat{F}\). But if \(F\) has a density, \(f\), then we can write \(\hat{f}\).
+
+Note that this is defined since the integrand \(e^{itx} \) has absolute value \(1\). So \(\vert \hat{\mu}  \vert \leq 1\).
+
+Note that we have \(\hat{\mu}(s)-\hat{\mu}(t) = \int_{-\infty}^{\infty} (e^{isx} - e^{itx}  ) \,\mathrm{d}\mu(x) \) 
+
+If \(s_n \to t\) then \(\hat{\mu}(s_n)\to \hat{\mu}(t)\) by Bounded Convergence Theorem (BCT).
+
+Thus, \(\hat{\mu} \in C_b(\mathbb{R})\) 
+
+The reason this is useful to us:
+
+\begin{enumerate}
+    \item Independence: if \(X,Y\) are independent then \(E[e^{it(X+Y)}]=E[e^{itX}]E[e^{itY}]\) 
+    \item Uniqueness: [to be proved] \(\mu \mapsto \hat{\mu} \) is 1-1 [injective]. So if we can find the characteristic function we know what the measure is.
+    \item Weak Convergence: [to be proved] \(\mu_n \implies \mu\) iff \(\hat{\mu}_n \to \hat{\mu} \) pointwise.
+\end{enumerate}
+
+\(\vert e^{ix} - 1 \vert \leq \vert x \vert \) for \(x\in \mathbb{R}\) 
+
+To see this, just draw unit circle.
+
+Recall [Example 18.4]:
+
+\[
+    \lim_{T \to \infty} \int_{0}^{T} \frac{\sin x}{x} \,\mathrm{d}x = \frac{\pi}{2}
+\]
+
+Let \(S(T)\coloneqq \int_{0}^{T} \frac{\sin x}{x} \,\mathrm{d}x \) 
+
+Then for real \(\theta \neq 0\),
+
+\[
+    \int_{-T}^{T} \frac{e^{it \theta } }{2it} \,\mathrm{d}t 
+\]
+
+This is not Lebesuge integrable. We can write \(e^{it \theta }=\cos (t \theta )+ i \sin (t \theta) \), since \(\cos \) is even and divided by odd it is odd and goes away. So we have:
+
+\[
+    \int_{0}^{T} \frac{\sin(t \theta)}{t} \,\mathrm{d}t = \int_{t=0}^{T} \frac{\sin(t \theta)}{t \theta} \,\mathrm{d}(t \theta) = \operatorname{sgn}\theta S(T \vert \theta \vert )
+\]
+
+Also, given \(\hat{\mu} \) we can find \(\mu\) 
+
+Inversion and Uniquness:
+
+\begin{theorem}[26.2, Inversion Formula]
+
+    If \(a \leq b\) and \(\mu \{ a,b \} = 0\) then
+    
+    \[
+        \mu (a,b] = \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-ita}-e^{-itb}}{it} \hat{\mu}(t) \,\mathrm{d}t
+    \]  
+
+    The map \(\mu \mapsto \hat{\mu}\) is \(1-1\) 
+
+\end{theorem}
+
+Last piece of motivation [vague]: we can think of \(\mu (a,b]\) as \(\mathbbm{1}_{[a,b)} \). Think of its fourier transform:
+
+\[
+    \hat{\mathbbm{1}}_{(a,b]}(t)=\int_{-\infty}^{\infty} e^{itx} \mathbbm{1}_{(a,b]}(x) \,\mathrm{d}x = \int_{a}^{b} e^{itx} \,\mathrm{d}x = \frac{e^{itx}}{it}\bigg|^b_a = \frac{e^{itb} - e^{ita}}{it} 
+\]
+
+Look at the similarity with Inversion Formula. Proof next time.
+
+\hfil
+\hrule
+
+Class 08: 02/01
+
+\(\vert e^{ix} - 1 \vert \leq \vert x \vert \) for \(x\in \mathbb{R} \)
+
+\[
+    S(T)\coloneqq \int_{0}^{T} \frac{\sin x}{x} \,\mathrm{d}x 
+\]
+
+\[
+    \int_{-T}^{T} \frac{e^{it \theta} }{2it} \,\mathrm{d}t = \operatorname{sgn}(T \vert \theta  \vert ) \text{ when \(\theta \neq 0\) } 
+\]
+
+We also had theorem 26.2 above.
+
+\begin{proof}
+    Note that the integrand is bounded by \(b-a\) in absolute value.
+
+    Let's talk about uniqueness first.
+
+    We have \(\mu (a,b] = F(b) - F(a)\) if \(F\) is the distribution function of \(\mu \).
+
+    We can let \(a \to -\infty\), and we don't get in trouble since \(\mu (\{ a \} )\) is non-zero for only countably many, and \(\mu (b)\) is zero because we define it that way.
+
+    Since this is increasing, we can say that \(F\) is the distribution function of \(\mu \) when \(\mu (\{ b \} ) = 0\). Since \(F\) is right continuous we use that on both sides of \(b\) to see that \(F\) is actually the distribution function everywhere. That gives us uniqueness.
+    
+    To prove the inversion formula, calculate the RHS.
+
+    \[
+        \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-ita} - e^{-itb}}{it}\hat{\mu} \,\mathrm{d}t 
+    \]
+
+    \[
+        =\frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-ita} - e^{-itb}}{it}\int_{-\infty}^{\infty} e^{itx} \,\mathrm{d}\mu(x)  \,\mathrm{d}t 
+    \]
+
+    The integrand is bounded (in \((x,t)\)) and te product measure is finite so we can apply Fubini's Theorem to get:
+
+    \[
+        =\int_{-\infty}^{\infty} \int_{-T}^{T} \frac{e^{-ita} - e^{-itb}}{it}e^{itx} \,\mathrm{d}t  \,\mathrm{d}\mu(x) 
+    \]
+
+    \[
+        =\int_{-\infty}^{\infty} \int_{-T}^{T} \frac{e^{-it(x-a)} - e^{-it(x-b)}}{it} \,\mathrm{d}t \,\mathrm{d}\mu(x)
+    \]
+
+    \[
+        =\int_{-\infty}^{\infty} 2 [\operatorname{sgn}(x-a)\cdot S(T \vert x-a \vert )-\operatorname{sgn}(x-b)\cdot S(T \vert x-b \vert )] \,\mathrm{d}\mu(x)
+    \]
+
+    We want to take the limit \(T \to \infty\) inside the integral. We can do this because of the bounded convergence theorem.
+
+    [Taking limit \(T \to \infty\) ]
+
+    \[
+        = \frac{1}{2\pi} \int_{-\infty}^{\infty} (\dots) \,\mathrm{d}\mu (x) 
+    \]
+
+    Note that, when \(x \neq a,b\), as \(T \to \infty\) we have \(S(T\vert x-a \vert )\to \frac{\pi}{2}\), same for \(x-b\). Using this, 
+
+    \[
+        = \frac{1}{2\pi} \int_{-\infty}^{\infty} 2[\mathbbm{1}_{(-\infty,a)}(x)[0] + \mathbbm{1}_{(a,b)}(x)[\pi] + \mathbbm{1}_{(b,\infty)}(x)[0] ] \,\mathrm{d}\mu (x)  
+    \]
+
+    \[
+        = \int_{a}^{b} \,\mathrm{d}\mu (x) = \mu (a,b]
+    \]
+
+    Which was what we wanted.
+
+\end{proof}
+
+Finally, Continuity Theorem
+
+\begin{theorem}
+
+    [26.3, Continuity Theorem] Let \(\mu _n, \mu \) be probabilities. Then \(\mu_n \implies \mu \iff \hat{\mu_n} \to \hat{\mu}\) pointwise. In fact, [Stronger Condition] if \(\mu_n\) are probabilities with \(\hat{\mu_n} \to g \) pointwise then there exist probability \(\mu\) such that \(g = \hat{\mu}\) and \(\mu_n \implies \mu \).  
+
+\end{theorem}
+
+\begin{proof}
+    \(\implies \) is the easy one, weak convergence implies pointwise transform of the characteristic function.
+
+    Look at the formula:
+
+    \[
+        \hat{\mu}(t) = \int_{-\infty}^{\infty} e^{itx} \,\mathrm{d}\mu(x) 
+    \]
+
+    Note that \(f \coloneqq e^{itx}\) is a bounded continuous function.
+
+    So, if \(\mu_n \implies \mu \) then using theorem 25.8 with \(x \mapsto e^{itx}\) being the function in \(C_b(\mathbb{R})\) we directly get the result.
+
+    For \(\impliedby\):For the converse: we use a ``mysterious'' calculation.
+
+    A key concept is tightness of \(\mu_n\) so the `mass' outside big intervals \((-a,a)\) goes to \(0\). We want to get that from pointwise convergence of \(\hat{\mu}\) 
+
+    \(x \mapsto e^{itx}\) is a function of \(f\) and it's frequency of oscillation is determined by how big \(t\) is. If we have a lot of oscillation we're more likely to have cancellations.
+
+    So, we'll try to bound the oscillation for small \(t\) 
+
+    Calculation: \(\forall u > 0\) we look at the integral:
+
+    \[
+        \frac{1}{u}\int_{-u}^{u} (1 - \hat{\mu _n}(t)) \,\mathrm{d}t 
+    \]
+
+    \[
+        = \int_{-\infty}^{\infty} \frac{1}{u}\int_{-u}^{u} (1 - e^{itx}) \,\mathrm{d}t  \,\mathrm{d}\mu_n(x)  
+    \]
+
+    \[
+        = \int_{-\infty}^{\infty} \left( 2 - \frac{e^{itx}}{uix} \bigg|^u_{-u} \right)  \,\mathrm{d}\mu_n(x) 
+    \]
+
+    \[
+        = \int_{-\infty}^{\infty} \left( 2 - \frac{e^{ixu}-e^{-ixu}}{uix} \right)  \,\mathrm{d}\mu_n(x) 
+    \]
+
+    \[
+        = \int_{-\infty}^{\infty} \left( 2 - \frac{2 \sin (xu)}{xu} \right)  \,\mathrm{d}\mu_n(x) 
+    \]
+
+    \[
+        = 2 \int_{-\infty}^{\infty} \left( 1 - \frac{\sin (ux)}{ux} \right)  \,\mathrm{d}\mu_n(x)
+    \]
+
+    \[
+        \geq 2 \int_{\vert x \vert \geq \frac{2}{u} }^{} \left( 1 - \frac{1}{\vert ux \vert } \right)  \,\mathrm{d}\mu _n(x) 
+    \]
+
+    \[
+        \geq 2\cdot \frac{1}{2} \mu_n \left( \left[ - \frac{2}{u}, \frac{2}{u} \right] ^c \right) = \mu_n \left( \left[ - \frac{2}{u}, \frac{2}{u} \right] ^c \right)
+    \]
+
+    Now, \(g(0)=\lim_{n \to \infty} \hat{\mu_n}(0)=1\). So, \(1-g(t)\approx 0\) for \(t\approx 0\). That is, given \(\epsilon > 0\) choose \(u\) so that \(\frac{1}{u} int_{-u}^{u} (1-g(t)) \,\mathrm{d}t < \epsilon\).
+
+    By Bounded Convergence Theore, there exists \(n_0\) so that \(n \geq n_0\) such that \(\frac{1}{u}\int_{-u}^{u} (1 - \hat{\mu_n(t)}) \,\mathrm{d}t < \epsilon \) 
+
+    Thus \(n \geq n_0 \implies \mu_n[-\frac{2}{u},\frac{2}{u}]^c < \epsilon\) 
+
+    If we choose \(a \geq \frac{2}{u}\) such that \(n < n_0 \implies \mu _n[-a,a]^c < \epsilon\) then for all \(n\) we have \(\mu_n[-a,a]^c < \epsilon\).
+
+    So we have tightness.
+
+    Use the corollary from the weak* note.
+
+    So we have a subsequential weak limit.
+
+    Then we only have to show that the only subsequential weak limit has \(g\) as characteristic function by theorem 26.2.
+
+    This follows from our first part.
+
+\end{proof}
+
+Note that \(\vert \vert \hat{\mu} \vert  \vert_{\infty} \leq \vert \vert \mu  \vert  \vert_{M(\mathbb{R})}  \).
+
+In particular, \(\lVert \hat{f} \rVert_{\infty} \leq \lVert f \rVert _{L^1(\mathbb{R})}\) 
+
+Where \(\mu  = f\cdot \lambda\) 
+
+\begin{theorem}
+    [26.1, Riemann-Lebesgue Lemma]
+    
+    If \(f \in L^1(\mathbb{R})\) then \(\hat{f}\in C_0(\mathbb{R})\)  
+\end{theorem}
+
+Lots of ways to prove this.
+
+Note that step functions are finite linear combinations of indicator functions of intervals, and thus are \(C_0(\mathbb{R})\). But any \(f\in L^1(\mathbb{R})\) can be approximated by step functions! Then we just use the inequality.
+
+Now we have everything needed to to HW.
+
+\hfil
+\hrule
+
+Class 09: 02/06
+
+Today we prove:
+
+\(\left\vert \frac{e^{-ita}-e^{-itb}}{it} \right\vert \leq b - a\) 
+
+We prove that using the fact \(\lVert \hat{f}  \rVert _\infty \leq \lVert f \rVert _{L^1(\mathbb{R})}\) 
+
+See that \(\hat{\mathbbm{1}}_{(a,b]}(t)=\frac{e^{itb}-e^{ita}}{it}\), taking the L1 norm it's \(b-a\) so we have the inequality.
+
+For \(x\in\mathbb{R}\),
+
+We prove \(\vert e^{ix} - 1 \vert \leq \vert x \vert \) 
+
+For \(x\in\mathbb{R}\),
+
+\(\vert e^{ix} - (1 + ix - \frac{x^2}{2}) \vert \leq \min \{ \frac{\vert x \vert ^3}{6}, \vert x \vert ^2 \} \) 
+
+To prove this: [not geometric, taylor series with remainder]
+
+Integrate by parts to get, for \(n\geq 0\),
+
+\[
+    \int_{0}^{x} (x-s)^n e^{is}  \,\mathrm{d}s = \frac{x^{n+1}}{n+1} + \frac{i}{n+1}\int_{0}^{x} (x-s)^{n+1} e^{is} \,\mathrm{d}s 
+\]
+
+This gives, for any \(n\geq 0\),
+
+\[
+    e^{ix} = \sum_{k=0}^{n} \frac{(ix)^k}{k!} + \frac{i^{n+1}}{n!}\int_{0}^{x} (x-s)^n e^{is}  \,\mathrm{d}s 
+\]
+
+Use \(n=2\) case, we get upper bound:
+
+\[
+    \left\vert \frac{i^3}{2!} \int_{0}^{x} (x-s)^2 e^{is} \,\mathrm{d}s  \right\vert \leq \frac{1}{2} \left\vert \frac{x^3}{3} \right\vert =\frac{\vert x \vert^3 }{6}
+\]
+
+For \(n=1\) case, we get,
+
+\[
+    \vert e^{ix}-(1+ix) \vert \leq \left\vert \frac{i^2}{1!}\int_{0}^{x} (x-s)^1 e^{is} \,\mathrm{d}s  \right\vert \leq \frac{x^2}{2}
+\]
+
+Triangle inequality gives us the other bound since \(\frac{x^2}{2}+\frac{x^2}{2}=x^2\) 
+
+\section*{Central Limit Theorem (CLT) [Section 27]}
+
+\begin{theorem}
+    [Standard CLT, the plain version, 27.1, Lindenberg - L\'evy]
+
+    This applies for an infinite i.i.d. sequence of random variables.
+
+    Let \(\langle X_n;n\geq 1 \rangle\) be i.i.d. with mean \(c\) and standard deviation \(\sigma \in (0,\infty)\)
+
+    If \(S_n \coloneqq \sum_{k=1}^{n} X_k\),
+
+    Question: What is the approximate law of \(S_n\) as \(n\) is big?
+
+    \[
+        \frac{S_n - nc}{\sigma \sqrt{n} } \implies N(0,1)
+    \]
+
+\end{theorem}
+
+We're going to only see the idea of this, and see the proof of a more general version.
+
+\underline{Idea:} Weak convergence is the same as pointwise convergence of characteristic function. For ease of writing, take \(c=0,\sigma =1\). Then, we have,
+
+\[
+    E[e^{itS_n / \sqrt{n}}] = (E[e^{itX / \sqrt{n} }])^n
+\]
+
+\[
+    \text{[we have to justify this]}\approx \left( E \left[ 1 + \frac{itX}{\sqrt{n}} - \frac{t^2 X^2}{2n} \right]  \right)^n 
+\]
+
+\[
+    = \left( 1 - \frac{t^2}{2n} \right) ^n \to e^{-t^2 / 2}
+\]
+
+The generality we will work with:
+
+We will assume independence, but do not assume i.i.d.
+
+Second generality:
+
+This is just an statement about distribution. So, they don't have to be in the same probability space.
+
+For each \(n\), we can have independent random variables:
+
+\(X_{n,1},\dots ,X_{n,r_n}\) [not necessarily identically distributed]
+
+\begin{theorem}
+    [27.2, Lindeberg]
+
+    Let \(\langle X_{n,k}; 1 \leq k \leq r_n \rangle \) be independent for each \(n\) and let \(E[X_{n,k}] = 0\) and \(\sigma_{n,k}^2 = E[X_{n,k}^2], s_n^2 = \sum_{k=1}^{r_n} \sigma_{n,k}^2 \in (0,\infty)\).
+    
+    If we have the condition [Lindeberg Condition, 27.8]:
+
+    \[
+        \forall \epsilon >0, \lim_{n \to \infty} \sum_{k=1}^{r_n} \frac{1}{s_n^2} \int_{\vert X_{n,k} \vert \geq \epsilon S_n}^{} X_{n,k}^2 \,\mathrm{d}P = 0
+    \]
+    
+    [In words, we can't have any set of random variables dominating the others. So, if we compute the normalized total variance in the space where all the random variables are somewhat big, that must be 0]
+    
+    \(S_n \coloneqq \sum_{k=1}^{r_n} X_{n,k}\)
+
+    Then,
+
+    \[
+        \frac{S_n}{s_n} \implies N(0,1)
+    \]
+
+\end{theorem}
+
+For intuition of the fact that no one is dominating:
+
+\[
+    \max_{1 \leq k \leq r_n} \frac{\sigma_{n,k}^2}{s_n^2} = \max_{1\leq k\leq r_n} \frac{1}{s_n^2} \left( \int_{\vert X_{nk} < \epsilon s_n \vert }^{} X_{nk}^2 \,\mathrm{d}P + \int_{\vert X_{nk} \vert \geq \epsilon s_n}^{} X_{nk}^2 \,\mathrm{d}P   \right) 
+\] 
+
+as \(n\to \infty\) this is \(\leq \epsilon^2 + o(1)\) [use the fact that max is < sum]
+
+Example: Theorem 27.1 follows, we only need to verify the Lindeberg condition. That becomes: \(\forall \epsilon >0\),
+
+\[
+    \lim_{n \to \infty} \sum_{k=1}^{n} \frac{1}{n \sigma ^2} \int_{\vert X \vert > \epsilon \sigma \sqrt{n} }^{} X^2 \,\mathrm{d}P = \lim_{n \to \infty} \frac{1}{\sigma^2}\int_{\vert X \vert > \epsilon \sigma \sqrt{n} }^{} X^2 \,\mathrm{d}P \to 0
+\]
+
+Which must be true since \(\int X^2\,\mathrm{d} P\) is finite.
+
+Lindeberg condition is complicated, so sometimes we might want a sufficient easier condition.
+
+Example: Lindeberg condition holds \underline{if} for some \(\delta > 0\),
+
+\[
+    \lim_{n \to \infty} \sum_{k=1}^{r_n} \frac{1}{s_n^{2+\delta}} E[\vert X_{n,k} \vert ^{2+\delta}] = 0
+\]
+
+This is called Lyapounov's Condition.
+
+Suppose \(\delta = 1\) then we ae talking about the third moment.
+
+\begin{proof}
+    \[
+        \sum_{k=1}^{r_n} \frac{1}{s_n^2} \int_{\vert X_{n,k} \vert > \epsilon s_n}^{} X_{n,k}^2 \,\mathrm{d}P \leq \sum_{k=1}^{r_n} \frac{1}{s_n^2} \int_{\vert X_{n,k} \vert \geq \epsilon s_n}^{} \frac{\vert X_{n,k} \vert ^{2+\delta}}{(\epsilon s_n)^\delta} \,\mathrm{d}P 
+    \]
+
+    \[
+        \leq \frac{1}{\epsilon^\delta} \sum_{k=1}^{r_n} \frac{1}{s_n^{2+\delta}}E[\vert X_{n,k} \vert ^{2+\delta}] \to 0
+    \]
+
+\end{proof}
+
+\underline{Example 27.4} (27.8) holds if \(\sup_{n,k} \lVert X_{n,k} \rVert _{\infty} < \infty\) and \(s_n \to \infty\) 
+
+\begin{proof}
+    \[
+        \sum_{k=1}^{r_n} \int_{\vert X_{n,k} \vert \geq \epsilon s_n}^{} X_{n,k}^2 \,\mathrm{d}P = 0 
+    \]
+\end{proof}
+
+Since for big enough \(n\), \(\epsilon s_n\) is big enough so that we're integrating where \(X_{n,k}\) can't be that big.
+
+\begin{proof}
+    We start today, but we won't finish today.
+
+    To prove 27.2, we use two easy estimates.
+
+    \(e^x - (1+x) = o(x)\) as \(x \to 0\) 
+
+    If \(\vert z_i \vert , \vert w_i \vert \leq 1\) then,
+
+    \[
+        \left\vert \prod_{i=1}^{m} z_i - \prod_{i=1}^{m} w_i  \right\vert \leq \sum_{i=1}^{m} \vert z_i - w_i \vert 
+    \]
+    
+    Proof by induction.
+
+    \[
+        \left\vert \prod_{i=1}^{m} z_i - \prod_{i=1}^{m} w_i  \right\vert = \left\vert \prod_{i=1}^{m-1} z_i(z_m - w_m) + w_m \left( \prod_{i=1}^{m-1} z_i - \prod_{i=1}^{m-1} w_i \right)  \right\vert \leq \vert z_m - w_m \vert + [\dots]
+    \]
+
+\end{proof}
+
+\hfil
+\hrule
+
+Class 10: 02/08
+
+\begin{proof}
+    [Billingsley 27.2]
+
+    WLOG, \(s_n^2 = 1\).
+
+    \[
+        \left\vert E[e^{it X_{n,k}}] - \left( 1 - \frac{1}{2}t^2 \sigma_{n,k}^2 \right)  \right\vert 
+    \]
+
+    \[
+        = \left\vert E \left[ e^{it X_{n,k}} - \left( 1 + i t X_{n,k} + \frac{(it X_{n,k})^2}{2} \right)  \right]  \right\vert 
+    \]
+
+    \[
+        \leq E \left[ \left\lvert e^{it X_{n,k}} - \left( 1 + i t X_{n,k} + \frac{(it X_{n,k})^2}{2} \right) \right\rvert \right]
+    \]
+
+    \[
+        \leq E \left[ \min\left\{ \frac{\vert t X_{n,k} \vert ^3}{6}, \vert t X_{n,k} \vert ^2 \right\}  \right] 
+    \]
+
+    When random variable is small, first inequality is better. When random variable is big, second inequality is better. For all \(\epsilon > 0\),
+
+    \[
+        \leq \int_{\vert X_{n,k} \vert < \epsilon}^{} \frac{1}{6}\vert t X_{n,k} \vert ^3 \,\mathrm{d}P + \int_{\vert X_{n,k} \vert \geq \epsilon}^{} \vert t X_{n,k} \vert ^2 \,\mathrm{d}P 
+    \]
+
+    For first integral, bounding by \(\epsilon^3\) isn't good enough since it'll become \(r_n \epsilon ^3\). But since \(\sum \vert X_{n,k}^2 \vert \) is bounded, we can do a trick:
+
+    \[
+        \leq \frac{\epsilon \vert t \vert ^3}{6} \int_{\vert X_{n,k} \vert < \epsilon }^{} X_{n,k}^2 \,\mathrm{d}P + t^2 \int_{\vert X_{n,k} \vert \geq \epsilon }^{} X_{n,k}^2 \,\mathrm{d}P  
+    \]
+
+    Adding all this over \(k\), for every \(\epsilon\) we have,
+
+    \[
+        \sum_{k=1}^{r_n} \left\vert E[e^{itX_{n,k}}]  - \left( 1 - \frac{1}{2}t^2 \sigma ^2_{n,k} \right) \right\vert \leq \frac{\epsilon \vert t \vert ^3}{6} + t^2 \sum_{k=1}^{r_n} \int_{\vert X_{n,k} \vert \geq \epsilon}^{} X_{n,k}^2 \,\mathrm{d}P 
+    \]
+
+    Thus, taking limit,
+
+    \[
+        \limsup_{n \to \infty} \sum_{k=1}^{r_n} \left\vert E[e^{itX_{n,k}}]  - \left( 1 - \frac{1}{2}t^2 \sigma ^2_{n,k} \right) \right\vert \leq \epsilon \frac{\vert t \vert ^3}{6}
+    \]
+
+    \[
+        \lim_{n \to \infty} \sum_{k=1}^{r_n} \left\vert E[e^{itX_{n,k}}]  - \left( 1 - \frac{1}{2}t^2 \sigma ^2_{n,k} \right) \right\vert = 0
+    \]
+
+    \hrule
+    \hfil
+
+    Now consider the characteristic function of normals.
+
+    \[
+        \sum_{k=1}^{r_n} \left\vert \left( 1 - \frac{1}{2}t^2 \sigma _{n,k}^2 \right) - e^{-t^2 \sigma_{n,k}^2 / 2} \right\vert 
+    \]
+
+    Recall that \(\max_k \frac{\sigma_{n,k}^2}{s_n^2}\to 0\). Using that, 
+
+    \[
+        = \sum_{k=1}^{r_n} o \left( \frac{t^2 \sigma_{n,k}^2}{2} \right) = o \left( \frac{t^2}{2} \right) 
+    \]
+
+    Therefore,
+
+    \[
+        \lim_{n \to \infty} \sum_{k=1}^{r_n} \left\vert \left( 1 - \frac{1}{2}t^2 \sigma _{n,k}^2 \right) - e^{-t^2 \sigma_{n,k}^2 / 2} \right\vert \to \infty
+    \]
+
+    Therefore, for all \(t\),
+    
+    \[
+        \lim_{n \to \infty} \sum_{k=1}^{r_n} \left\vert E[e^{itX_{n,k}}] - e^{-t^2 \sigma _{n,k}^2 / 2} \right\vert \to 0
+    \]
+
+    From yesterday's lemma,
+
+    \[
+        \lim_{n \to \infty} \left\vert E[e^{it S_n}] - e^{-t^2 / 2} \right\vert \to 0
+    \]
+
+    Therefore, \(S_n \implies N(0,1)\) 
+
+\end{proof}
+
+Estimating the parameter of Exponential Distribution [Useful for, lets say, radioactive decay]
+
+\textbf{Example 27.2:} 
+
+Suppose we want to estimate the parameter of an exponential disribution. If i.i.d.\ \(X_k \sim Exp(\alpha)\) then \(\overline{X}_n \coloneqq \frac{1}{n}X_k \to \frac{1}{\alpha}\) a.s. Furthermore,
+
+\[
+    \frac{S_n - \frac{n}{\alpha}}{\frac{1}{\alpha}\sqrt{n} } \implies N(0,1)
+\]
+
+\[
+    \implies \alpha \sqrt{n} \left( \overline{X} _n - \frac{1}{\alpha} \right) \implies N(0,1) 
+\]
+
+\[
+    \implies \vert X_n \vert \approx N \left( \frac{1}{\alpha}, \frac{1}{n \alpha ^2} \right) 
+\]
+
+How good of an estimate of \(\alpha\) is \(\overline{X}_n^{-1}\) ?
+
+First, we're working with weak convergence. Apply Skorohod to get \(Z_n \overset{\mathcal{D}}{=} \alpha \sqrt{n} (\overline{X} _n - \frac{1}{\alpha}) \) 
+
+So \(Y_n \overset{\mathcal{D} }{=} \overline{X}_n\) and \(Y_n^{-1} \overset{\mathcal{D}}{=}\overline{X}_n^{-1} \) 
+
+Moreover,
+
+\[
+    \frac{\sqrt{n}}{\alpha}(Y_n^{-1}- \alpha ) = \frac{\sqrt{n}}{Y_n}\left( \frac{1}{\alpha}- Y_n \right) = - \frac{Z_n}{\alpha Y_n}
+\]
+
+Note that \(Z_n\) is going to \(Z\) and \(\alpha Y_n \to 1\). So, this goes to \(-Z\sim N(0,1)\)  
+
+Thus, \(\frac{\sqrt{n}}{\alpha}(\overline{X}_n^{-1}-\alpha) \implies N(0,1)\) 
+
+We can say \(\overline{X}_n \thickapprox N(\alpha,\alpha ^2 / n)\) 
+
+Weak convergence is a precise statement, but \(\thickapprox\) is not a precise mathematical statement.
+
+Caution: \(\alpha\) is NOT \(E[\overline{X}_n^{-1}]\) and \(\frac{\alpha^2}{n}\) is not \(Var[(\overline{X}_n^{-1} )]\). In fact, expectation can be infinite, and convergence statements can be true.
+
+We omit page 363-367, which is CLT for approximate independence, not true independence.
+
+Something that is in the book but we do not prove: CLT says it converges, but how should we tell the `rate' of convergence?
+
+\begin{theorem}
+    [Berry-Esseen] Suppose that \(X_k\) are i.i.d.\ of mean \(0\), variance \(\sigma ^2\), and \(E[\vert X_k \vert ^3] = \rho < \infty\).
+    
+    If \(F_n\) is the distribution function of \(\frac{S_n}{\sigma \sqrt{n} }\) and \(\Phi\) is the distribution functionalion of \(N(0,1)\) then \(\lVert F_n - \Phi \rVert _\infty \leq \frac{3 \rho}{\sigma ^3 \sqrt{n} }\) 
+\end{theorem}
+
+We skip section 28 and go to section 29, which is CLT in \(\mathbb{R}^k\) 
+
+First we do weak convergence. First we recall distribution functions in higher dimension.
+
+Suppose \(X\) is an \(\mathbb{R} ^k\)- valued random variable.
+
+Its distribution function \(F\) is defined by:
+
+\[
+    F(x)\coloneqq P[X \leq x]
+\]
+
+for \(x\in \mathbb{R} ^k\). \(\leq\) in \(\mathbb{R}^k\) means \(\leq\) in \underline{every} coordinate. For `boxes' \(A\) the total mass in them can be calculated by principle of inclusion and exclusion, and that is called \(\Delta_A F\).
+
+\(F_n \implies F\) means \(F_n(x) \to F(x)\) when \(x\) is a continuity point of \(F\).
+
+That also gives us the notion of \(\mu_n \implies \mu \) and \(X_n \implies X\) 
+
+First we do Portmonteau theorem.
+
+\begin{theorem}
+    [Portmonteau Theorem in \(\mathbb{R}^k\)]
+
+    Let \(\mu_n,\mu\) be probability measures on \(\mathbb{R}^k\). Then TFAE:
+
+    \begin{enumerate}
+        \item \(\mu_n \implies \mu \) 
+        \item \(\int_{}^{} f \,\mathrm{d}\mu_n \to \int_{}^{} f \,\mathrm{d}\mu,\forall f\in C_b(\mathbb{R}^k)  \) 
+        \item \(\mu _n(A) \to \mu (A)\) whenever \(A\) is borel and \(\mu (\partial A) = 0\) 
+        \item \(\limsup_{n \to \infty} \mu _n(C) \leq \mu (C)\) for all closed \(C\) 
+        \item \(\liminf_{n \to \infty} \mu _n(G)\geq \mu (G)\) for all open \(G\)
+    \end{enumerate}
+\end{theorem}
+
+1,2,3 are what we expected from 1 dimensional version. In 4,5 we have inequalities instead of equality.
+
+\begin{proof}
+    \(1 \implies 2\):
+
+    We look at boxes (open in left, down etc) even though 2 doesn't talk about boxes. The boxes aren't closed or open.
+
+    We have \(\mu_n(A) = \Delta_A F \to \Delta_A F = \mu(A)\) whenever \(A\) is a box all of whose corners are continuity points of \(F\).
+    
+    Given \(f\in C_b(\mathbb{R}^k)\), \(\epsilon > 0\), let \(A\) be a bounded box with corners at \(F\)-continuity points and \(\mu (A^c) < \epsilon\). We can choose because we have countable discontinuous \underline{hyperplanes}.
+\end{proof}
+
+\hfil
+\hrule
+
+Class 11: 02/13
+
+We finish the proof from yesterday.
+
+\begin{proof}
+    \(1 \implies 2\):
+
+    \(\mu_n(A) = \Delta _A F_n \to \Delta_A F = \mu(A)\) when \(A\) is a box with \(F\)-continuous corners. Given \(f\in C_b(\mathbb{R}^k)\) and \(\epsilon > 0\) let \(A\) be a bounded box with \(F\)-continuous corners and \(\mu(A^c) < \epsilon\).  We can choose because we have countably many hyperplanes with positive measure.
+
+    Another way to see this is: fix a line, and consider the family of hyperplanes perpendicular to that line. We can `project' to get a measure on the real line, by passing the measure of the half space to that of the `left' of the line.
+
+    [insert picture]
+
+    Claim: for \(n\) large, \(\mu_n(A^c) < \epsilon\).
+
+    To see this, note that \(\mu_n(A) \to \mu(A)\) so \(\mu_n(A^c)\to\mu(A^c)\) and thus \(\mu_n(A^c)<\epsilon\) for large enough \(n\).
+
+    What happens inside \(A\)?
+
+    Note that \(f\) is uniformly continuous in \(A\).
+
+    Notation: \(f \upharpoonright A\) means \(f\) restricted to \(A\).
+
+    We may partition \(A\) into boxes \(A_1, \dots , A_r\) with corners \(F\)-continuous and \(\sup f\upharpoonright A_i - \inf f\upharpoonright A_i < \epsilon\). Then,
+
+    \[
+        \limsup_{n \to \infty} \int_{}^{} f \,\mathrm{d}\mu_n \leq \limsup_{n \to \infty} \left( \epsilon \lVert f \rVert _\infty + \sum_{i=1}^{r} \int_{A_i}^{} f \,\mathrm{d}\mu_n  \right)
+    \]
+    
+    \[
+        \leq \epsilon \lVert f \rVert _\infty + \limsup_{n \to \infty} \sum_{i=1}^{r} (\max f\upharpoonright A_i)\mu_n(A_i)
+    \]
+
+    \[
+        = \epsilon \lVert f \rVert _\infty + \sum_{i=1}^{r} (\max f\upharpoonright A_i)\mu(A_i)
+    \]
+
+    \[
+        \leq 2 \epsilon \lVert f \rVert _\infty + \int_{}^{} f \,\mathrm{d}\mu + \epsilon 
+    \]
+
+    Likewise,
+
+    \[
+        \liminf_{n \to \infty} \int_{}^{} f \,\mathrm{d}\mu_n \geq - 2 \epsilon \lVert f \rVert _\infty + \int_{}^{} f \,\mathrm{d}\mu - \epsilon
+    \]
+
+    Hence \(\int_{}^{} f \,\mathrm{d}\mu_n \to \int_{}^{} f \,\mathrm{d}\mu \) 
+
+    Now, \(2 \implies 4\):
+
+    We want to take \(C_b(\mathbb{R}^k)\ni f \geq \mathbbm{1}_{C} \) with close integrals w.r.t.\ \(\mu \).
+    
+    \underline{Construction:} For \(x\in C\), set \(f(x) = 1\) 
+
+    For \(x\notin C\) do linear interpolation with \(dist(x,C)\) from \(1\) to \(0\) over a distance \(\epsilon\). Then,
+
+    \[
+        \limsup_{n \to \infty} \mu_n(C) = \limsup_{n \to \infty} \int_{}^{} \mathbbm{1}_{C}  \,\mathrm{d}\mu_n \leq \limsup_{n \to \infty} \int_{}^{} f \,\mathrm{d}\mu_n = \int_{}^{} f \,\mathrm{d}\mu = \mu(C + B_{\epsilon}(0))
+    \]
+
+    Where \(C + B_{\epsilon} (0)\) is `adding' the ball of radius \(\epsilon\) to every point in \(C\), which means it contains stuff \(\epsilon\) distance away. Since \(C\) is closed, \(\mu(C+B_{\epsilon}(0))\) has limit \(\mu(C)\) when \(\epsilon \to 0\). That gives us \(4\).
+    
+    \(4 \iff 5\) by taking complement, \(\mu_n(\mathbb{R}^k) = 1 = \mu_n(G)+\mu_n(G^c)\) 
+
+    \(5 \implies 3:\) Since \(4 \iff 5\) we can use both \(4\) and \(5\).
+
+    Since \(\mu(\partial A) = 0\), we have:
+    
+    \[
+        \mu(A) = \mu(A^o) \leq \liminf_{n \to \infty} \mu_n(A^0) \leq \liminf_{n \to \infty} \mu_n(A) \leq \limsup_{n \to \infty} \mu_n(A)
+    \]
+    
+    \[
+        \leq \limsup_{n \to \infty} \mu_n(\overline{A}) \leq \mu(\overline{A}) = \mu(A)
+    \]
+
+    Finally, we prove that \(3 \implies 1\) to finish the proof.
+
+    \(1\) is just a special case of \(3\). Take \(A\) to be a box \(\{ y : y \leq x \} \) with \(F\) continuous at \(x\). From definition of continuity means \(\mu(\partial A) = 0\). This gives us the result.
+
+\end{proof}
+
+\begin{definition}
+    \underline{Tightness} in \(\mathbb{R}^k\): A collection \(\mathcal{M}\) of probabilities on \(\mathbb{R}^k\) is \underline{tight} if \(\lim_{a \to \infty} \sup_{\mu\in \mathcal{M}}\mu \left( \left( (-a,a]^k \right)^c  \right) = 0 \) 
+\end{definition}
+
+\begin{theorem}
+    [29.3] Every tight sequence has a weakly convergent subsequence.
+\end{theorem}
+
+This is sequential compactness of measures. This proof is different from the 1d case.
+
+\begin{proof}
+    Let \(\langle \mu_n ; n \geq 1 \rangle \) be tight.
+
+    Regardless of tightness, there is a subsequence that converges in weak*.
+
+    Take a subsequence \(\langle \mu_{n_j}; k \geq 1 \rangle \) that converges weak* [by Banach-Alaoglu] to some \(\mu\).
+
+    We will show that \(\mu_{n_j} \implies \mu\).
+
+    We are going to use part 2 of Portmonteau Theorem. Consider \(f\in C_b(\mathbb{R}^k), \epsilon > 0\). Choose \(a > 0\) such that \(\mu((-a,a]^k) < \epsilon\) [since \(\mu\) is finite] and for all \(n\), \(\mu_n(((-a,a]^k)^c)< \epsilon\) [since tight].
+
+    We want to approximate \(f\in C_b(\mathbb{R}^k)\) with \(g\in C_0(\mathbb{R}^k)\).
+
+    Define \(g\in C_0(\mathbb{R}^k)\) so that \(f = g\) on \((-a,a]^k\) and \(\lVert g \rVert _\infty \leq \lVert f \rVert _\infty\). Why can we do something like this?
+
+    Take \(A = (-a,a]^k\), take \(h\in C_0\) that goes to \(0\) by linear interpolation and \(1\) in \(A\), and take \(g = fh\).
+
+    Other construction: Instead of \(A\) take a ball containing \(A\), make \(g = f\) in \(A\), and go down linearly on the rays. That gives us a \(g\).
+
+    We can also make make \(g\) have compact support.
+
+    Then,
+
+    \[
+        \left\vert \int_{}^{} f \,\mathrm{d}\mu_{n_j} - \int_{}^{} f \,\mathrm{d}\mu  \right\vert \leq \int_{}^{} \vert f - g \vert  \,\mathrm{d}\mu_{n_j} + \left\vert \int_{}^{} g \,\mathrm{d}\mu_{n_j} - \int_{}^{} g \,\mathrm{d}\mu  \right\vert + \int_{}^{} \vert g - f \vert \,\mathrm{d}\mu
+    \]
+
+    Define the integrals to be \(I_1, I_2, I_3\) 
+    
+    Then, \(I_1 \leq 2 \epsilon \lVert f \rVert _\infty  \) 
+
+    \(I_2 \to 0\) because weak*.
+
+    \(I_3 \leq 2 \epsilon \lVert f \rVert _\infty \) 
+
+    Thus, \(I_2 + I_2 + I_3 \leq 4 \epsilon \lVert f \rVert _ \infty\).
+
+    Thus \(\mu_n \implies \mu\).
+
+    Now we need to prove that \(\mu\) is a probability measure. That is given by taking \(f \equiv 1\).
+
+\end{proof}
+
+It follows that \(\langle \mu_n ; n \geq 1 \rangle \) is tight if and only if every subsequence contains a further weakly convergent subsequence.
+
+Why is the reverse direction true? Recall the definition of tightness. If not tight, then we can find \(\epsilon\) so that for some \(\mu\) in the sequence \(\sup\mu (((-a,a]^k)^c)\), so by varying \(a\) we can find a subsequence so \(\mu_{n_j} (((-j,j]^k)^c) > \epsilon\). We can choose \(\mu_{n_{j_l}} \implies \mu\). Thus, \(\mu(((-j,j]^k)^c) > \epsilon\) for all \(j\). So \(\mu\) is not a probability measure \(\mu(\mathbb{R}^k) < 1-\epsilon\).
+
+\hrulefill
+
+Class 12: 02/20
+
+Today we talked about Exam 1 solutions.
+
+Before the exam, we were doing weak convergence in \(\mathbb{R}^k\) in order to do CLT in \(\mathbb{R}^k\).
+
+We also had theorem 29.3: every tight sequence has a weakly convergent subsequence.
+
+\underline{Lemma:} Let \(\langle \mu_n ; n\geq 1 \rangle \) be a tight sequence of probability measures on \(\mathbb{R}^k\) Let \(\mu\) be a sub-probability measure. Then \(\mu_n \implies \mu \iff \mu_n \overset{w^{\ast}}{\to} \mu\).
+
+Proof is in the lecture notes.
+
+We also had corollary: If \(\langle \mu_n, n \leq 1 \rangle \) is a tight sequence with \(\leq 1\) weak limit point, then it has a weak limit.
+
+\begin{proof}
+
+    By theorem 29.3 the sequence has some a limit point. Let it be \(\mu\). Thus, it has exactly one weak limit point.
+
+    [if we had a metric then it would be over. but we might not so we go the weak * route]
+
+    For every subsequence of \(\mu_n\) that converges weakly to \(\mu\), it converges weakstarly to \(\mu\). Since we have a metric in weakstar, the sequence converges to \(\mu\) in weakstar and thus it converges weakly to \(\mu\).
+
+    Since the sequence has exactly one weak limit point, it only has one weak* limit point. By the metrizability of the weak* topology, \(\mu_n \overset{w^{\ast}}{\to} \mu\). Thus, \(\mu_n \implies \mu\).
+
+\end{proof}
+
+\section*{Characteristic Function on \(\mathbb{R}^k\)}
+
+\begin{definition}
+
+For a \(\mathbb{R}^k\)-valued random variable \(X\), \(t\in\mathbb{R}^k\), we define the characteristic function:
+
+\[
+    t \mapsto E[e^{it\cdot X}]
+\]
+
+Note that instead of multiplying we have the dot product. We write it as \(\hat{u}(t)\) if the law of \(X\) is \(\mu\).
+
+\end{definition}
+
+The proof that \(\mu \mapsto \hat{\mu}\) is \(1-1\): in \(\mathbb{R}\) was by the `inversion formula'. That extends to \(\mathbb{R}^k\) as follows:
+
+If \(A = (a_1,b_1]\times\cdots (a_k,b_k]\) is a bounded rectangle such that \(\mu(\partial A)=0\), then:
+
+\[
+    \mu(A) = \lim_{T \to \infty} \frac{1}{(2\pi)^k}\int_{[-T,T]^k}^{} \prod_{j=1}^{k} (e^{-it_j a_j}-e^{-it_j b_j})\cdot\hat{\mu}(t) \,\mathrm{d}t 
+\]
+
+Indeed, \(\hat{\mu}(t)=\int_{\mathbb{R}^k}^{} \prod_{j=1}^k e^{i t_j x_j} \,\mathrm{d}\mu(x)\) 
+
+The integrand in the inversion formula is product of two things that are uniformly bounded so we can apply Fubini. Lebesgue measure is a product measure. Thus,
+
+\[
+    \lim_{T\to\infty} \int_{\mathbb{R}^k}^{} \prod_{j=1}^k \left[\frac{1}{\pi}sgn(x_j - a_j)S(T\vert x_j - a_j \vert )-\frac{1}{\pi} sgn(x_j - b_j) S(T \vert x_j - b_j \vert )\right] \,\mathrm{d}\mu(x) 
+\]
+
+Applying Bounded Convergence Theorem
+
+\[
+    = \int_{\mathbb{R}^k}^{} \prod_{j=1}^k \mathbbm{1}_{(a_j,b_j]} (x) \,\mathrm{d}\mu(x) = \int_{\mathbb{R}^k}^{} \mathbbm{1}_{A} (x) \,\mathrm{d}\mu(x) = \mu(A)
+\]
+
+So, \(\mu\) is detemined uniquely on bounded rectangles. This determines the distribution function \(F_\mu\) where it is continuous. Since \(F_\mu\) is right continuous and continuity points are dense, \(F_\mu\) is determined everywhere. So \(\mu\) is also determined.
+
+Write \(h_t(x)\coloneqq t\cdot x\). If \(t\) is a unit vector, then \(t\cdot x\) is the length of the orthogonal projection. So it is the length of orthogonal projection scaled by the length of \(t\).
+
+So, inverse image of any point is a hyperplane.
+
+Suppose \(\alpha \in \mathbb{R}\). We look at \(h_t ^{-1} (-\infty ,\alpha]\). This gives us one side of the hyperplane, that is a half space. Also, for \(s\in \mathbb{R}\),
+
+\[
+    \widehat{\mu\circ h_t^{-1}}(s)=\int_{\mathbb{R}}^{} e^{isy} \,\mathrm{d}(\mu h_t ^{-1}) (y)
+\]
+
+Using theorem 16.13,
+
+\[
+    = \int_{\mathbb{R}^k}^{} e^{ish_t(x)} \,\mathrm{d}\mu (x)
+\]
+
+\[
+    = \int_{\mathbb{R}^k}^{} e^{ist\cdot x} \,\mathrm{d}\mu(x) = \hat{\mu} (st)
+\]
+
+Thus, the values of \(\mu\) on half spaces determine all measures \(\mu h_t^{-1}\), hence \(\widehat{\mu h_t^{-1}}\) hence all \(\hat{\mu}\) and hence \(\mu\).
+
+\begin{theorem}
+    [29.4, Cram\'er-Wold device]
+
+    \(X_n \implies Y \iff \forall t\in \mathbb{R}^k, t\cdot X_n \implies t\cdot Y\) 
+\end{theorem}
+
+\hrulefill
+
+Class 13: 02/22
+
+We try to construct a counterexample to the case \(X_n^{(i)} \implies Y^{(i)}\) but \(X_n\not\implies Y\).
+
+We use \underline{dependence}.
+
+Suppose all the \(X_n^{(j)}\) have same distribution as \(Y^{(j)}\). But we can use dependence to show that \(X_n\)  might not converges to \(Y\).
+
+\begin{proof}
+    Easy direction: Suppose \(X_n \implies Y\). Then, for all \(f\in C_b(\mathbb{R})\) we need to prove that \(E[f(t\cdot X_n)]\implies E[f(t\cdot Y)]\).
+    
+    Note that \(E[f(t\cdot X_n)]= E[(f\circ h_t)(X_n)]\implies E[(f\circ h_t)(Y_n)] = E[f(t\cdot Y)]\) 
+
+    Thus \(t\cdot X_n \implies t\cdot Y\).
+
+    Hard direction: If for all \(t\) we have \(t\cdot X_n \implies t\cdot Y\), 
+
+    \(\phi_{t\cdot X_n}(1) = E[e^{it\cdot X_n}]\)
+    
+    Since \(y \mapsto e^{iy}\in C_b(\mathbb{R})\) we have:
+
+    \(E[e^{it\cdot X_n}] \to E[e^{it\cdot Y}]\) 
+
+    Thus, \(\phi_{X_n}(t) \to \phi_Y (t)\) 
+
+    Note that \(\{ X_n; n\geq 1 \} \) is tight by HW [29.3b].
+
+    So, there is at least one weak limit.
+
+    Recall that weak convergence implies convergence in characteristic functions. The above shows that every weak limit has the same characteristic function as \(Y\), so by the uniqueness of characteristic functions, \(\langle X_n \rangle \) has \(\leq 1\) weak limit. Thus, it converges to \(Y\).
+    
+\end{proof}
+
+Thus, \(X_n \implies Y\) if and only if \(\phi_{X_n}\to \phi_Y\) 
+
+\section*{Multivariate Normal Distribution}
+
+Key: all we need are means of the coordinates and covariances of the coordinates.
+
+Notation: for \(x\in\mathbb{R} ^k\), we will use \(\vert x \vert \coloneqq \sqrt{x\cdot x} \).
+
+The function:
+
+\[
+    \boxed{x \mapsto (2\pi)^{-\frac{k}{2}}e^{-\vert x \vert^2 / 2}}
+\]
+
+is a density, called the \underline{standard normal density}.
+
+If \(X = (X_1, \cdots, X_k)\) has this density, then \(X_1, \cdots, X_k\) are independent \(N(0,1)\) random variables by section 20 and conversely.
+
+\[
+    E[e^{it\cdot X}]=\prod_k E[e^{i t_k X_k}] = \prod_k \phi_{X_k}(t_k)=\prod_k e^{-t_k^2 / 2} = e^{-\sum_k t_k^2 / 2} = \boxed{ e^{- \vert t \vert ^2 / 2} }
+\]
+
+Now we need to discuss the \underline{Covariance Matrix}.
+
+Let \(X\) be a \(n\)-dimensional random variable with mean 0, that is \(E[X] = 0\), the \underline{covariance matrix} has \(i,j\)-th entry given by \(E[X_i X_j]\).
+
+We write it in matrix form. If \(s,t\) are column vectors, then \(s\cdot t = s ^{\top} t\). But in probability, transpose is denoted often by \(^{\prime} \). So we write \(s^{\prime} t\) instead of \(s ^{\top} t\).
+
+Thus, if \(X\) is a column vector random variable, the \underline{covariance matrix} is given by:
+
+\[
+    \boxed{ \Sigma \coloneqq  E[X X^{\prime}] }
+\]
+
+\(\Sigma\) is \underline{non-negative definite}/\underline{positive semidefinite}, meaning for al \(x\in\mathbb{R}^k\) [column vector], we have \(x^{\prime} \Sigma x \geq 0\).
+
+\(x^{\prime} \Sigma x = x^{\prime} E[X X^{\prime}]x=E[x^{\prime} X X^{\prime} x] = E[(X^{\prime} x)^{\prime} X^{\prime} x]=E[\vert X^{\prime} x \vert^2] \geq 0\) 
+
+\begin{proposition}
+    For every symmetric p.s.d. \(\Sigma \), there is a \underline{normal distribution} \(N(0,\Sigma)\) with covariance matrix \(\Sigma\).
+\end{proposition}
+
+\begin{proof}
+
+    Because \(\Sigma\) is symmetric, we can diagonalize it by an orthogonal matrix \(U\). Because it is p.s.d., the eigenvalues must be \(\geq 0\). Thus \(\Sigma = U D U^{\prime} \) where \(D\) is diagonal. Columns of \(U\) are the eigenvectors.
+
+    Notation: positive semidefinite is also written as \(\Sigma \geq 0\). That tells us \(D \geq 0\).
+
+    Let \(A \coloneqq U \sqrt{D}\). Then \(A A^{\prime} = U \sqrt{D} \sqrt{D} U^{\prime} = U D U^{\prime} = \Sigma\).
+
+    Now, if \(X\sim N(0,I)\) [standard normal in \(k\) variables], Define:
+
+    \[
+        \boxed{Y \coloneqq A X}
+    \]
+
+    We have \(E[Y Y^{\prime} ] = E[A X X^{\prime} A^{\prime} ] = A E[X X^{\prime} ] A^{\prime} = A I A^{\prime} = A A^{\prime} = \Sigma\).
+
+\end{proof}
+
+Lets calculate the characteristic function of \(Y = AX\).
+
+\[
+    \phi_Y(t) = E[e^{it\cdot Y}] = E[e^{i t^{\prime} A X}] = E[e^{i (A^{\prime} t)\cdot X}] = \phi_X(A^{\prime} t) = e^{- \vert A^{\prime} t \vert ^2 / 2}
+\]
+
+\[
+    = e^{- t^{\prime} A A^{\prime} t / 2} = \boxed{e^{- t^{\prime} \Sigma t / 2}}
+\]
+
+Thus the characteristic function only depends on \(\Sigma\).
+
+This shows that the distribution depends only on \(\Sigma\).
+
+If \(\Sigma\) is singular, then so is \(D\) since one of the eigenvalues must be \(0\). So \(A\) must be singular as well.
+
+We defined \(Y \coloneqq AX\). Since \(A\)  is singular, \(A\) must have a null space. So, \(Y\) does not have a density. Canonical example: \(\Sigma = \begin{pmatrix}
+    1 &  0 \\
+    0 &  0 \\
+\end{pmatrix}\), then \(Y = \begin{pmatrix}
+     X_1 \\
+     0 \\
+\end{pmatrix}\) which does not have a density in \(\mathbb{R}^2\).
+
+If \(\Sigma\) is invertible then so is \(A\). We claim that in this case \(Y\) does have a density.
+
+Let \(f\) be the density of \(X\).
+
+Let \(\lambda_k\) be the lebesgue measure on \(\mathbb{R}^k\).
+
+Then \(Y\) has law \((f \lambda_k)\circ A^{-1} = (f\circ A ^{-1} )(\lambda_k\circ A ^{-1})\) 
+
+Since \(\int h d(f \lambda_k)\circ A ^{-1} = \int h\circ A d(f \lambda _k) = \int (h\circ A)f d \lambda _k\) 
+
+And \(\int h(f\circ A ^{-1} )d(\lambda_k \circ A ^{-1} ) = \int (h\circ A)f d \lambda_k\).
+
+Now, \((f\circ A ^{-1} )(x) = (2 \pi )^{- k / 2}e^{-\vert A ^{-1} x \vert ^2 / 2} = (2\pi )^{- k / 2}e^{- x^{\prime} A^{\prime-1} A ^{-1}  x / 2}\) 
+
+\(= (2\pi )^{-k / 2}e^{- x^{\prime} \Sigma ^{-1} x / 2}\) 
+
+And \(\lambda_k \circ A ^{-1} = \vert \det A ^{-1} \vert  \lambda _k = \vert \det A \vert ^{-1} \lambda_k = (\det \Sigma)^{\frac{1}{2}} \lambda_k\) 
+
+Therefore, \(Y\) has density:
+
+\[
+    (2\pi)^{-k / 2}(\det \Sigma)^{-1 / 2}e^{-x^{\prime} \Sigma ^{-1} x / 2}
+\]
+
+There are several properties of multivariate normal random variables.
+
+If two random variables are independent then they are uncorrelated. The converse is not true: random variables can be uncorrelated and dependent.
+
+We construct a counterexample. Suppose \(X,Y\) have mean \(0\), indepdendent [so \(E[XY] = 0\)] and \(E[Y^3] = 0\)  
+
+Take \(X - aY^2, Y\). 
+
+Then \(E[(X-aY^2)Y] = 0 - a E[Y^3] = 0\)
+
+So they are uncorrelated for all \(a\).
+
+Uncorrelatedness is a one-dimensional phenomenon, independence is more general and thus more restrictive.
+
+We want to show that for multivariate/joint normal, uncorrelatedness is equivalent to independence.
+
+\hrulefill
+
+Class 14: 02/27
+
+Recall:
+
+\underline{Uncorrelation} is a one dimensional concept, \underline{Independence} is infinite dimensional. So we do not expect uncorrelated to imply indepndent, but that happens for joint normal. Today we see why.
+
+\begin{proposition}
+    Suppose \((X_1, \dots, X_k )\) has a normal distribution. Then so does \(X_1,\dots, X_j\) is normal for all \(j < k\)
+\end{proposition}  
+
+\begin{proof}
+    There is a covariance matrix for \(X = (X_1,\cdots, X_k)\). Say that is \(A\). Then \(X = AY\) where \(Y\) is a standard normal.
+    
+    Let \(\pi\) be the projection on the first \(j\) coordinates. If \(Z = (X_1,\cdots, X_j)\) then we have:
+
+    \(Z = \pi(X) = \pi(AY)=\pi\circ A(Y)\)
+    
+    Then, \(Z^{\prime} = (X_1,\cdots,X_j,0,\cdots, 0)\in\mathbb{R}^k\) is normal because of the covariance matrix \(\pi\circ A\).
+
+    We are going nowhere.
+
+    \(X\) has a covariance matrix, so does \(Z\). Let them be \(\Sigma_1,\Sigma_2\) 
+    
+    \(E[e^{it\cdot X}] = e^{-t^{\prime} \Sigma_1 t / 2}\) 
+
+    \(E[e^{is\cdot Z}] = e^{-t^{\prime} \Sigma _2 t / 2}\)
+    
+    for each \(s\in\mathbb{R}^j\) we have \(t\in\mathbb{R} ^k\) so that \(s\cdot Z = t\cdot X\) 
+
+    So we have the characteristic function, so it is normal.
+
+\end{proof}
+
+Suppose all coordinates of \(X\) are uncorrelated. We want to show they are independent.
+
+Since all coordinates of \(X\) are uncorrelated, \(\Sigma\) is diagonal.
+
+Then, the characteristic function is \(t \mapsto e^{-\sum_{i} \sigma_i^2 t_i^2 / 2}\) where \(\sigma_i^2=Var(X_i)\).
+
+We can write it as \(\prod_i e^{-\sigma_i^2 t_i^2 / 2}\) 
+
+This is the same characteristic function we would have if they were independent, therefore they must be independent.
+
+Characteristic functions are product if and only if random variables are independnet.
+
+General statement: if \(Y\in\mathbb{R}^k\) is normal and \(M\) is a linear transformation \(\mathbb{R}^k \to \mathbb{R} ^j\), then \(MY\in\mathbb{R}^j\) is also normal.
+
+Note that this also means normality doesn't depend on the basis, it is a property of the space.
+
+If the covariance matrix of \(Y\) is \(\Sigma\), then,
+
+\[
+    E[e^{it^{\prime} MY}] = E[e^{i(M^{\prime} t)^{\prime} Y / 2}] = e^{- t^{\prime} M \Sigma M^{\prime}  t / 2} = e^{-t^{\prime} (M \Sigma M^{\prime} ) t / 2}
+\]
+
+Note that \(M \Sigma M^{\prime}\) is symmetric and positive semidefinite, therefore it is a covariance matrix, and as a result this is the characteristic function of a normal random variable. Thus this is a normal random variable.
+
+\begin{theorem}
+    [29.5, IID]
+
+    Let \(X_n\) be i.i.d.\ \(\mathbb{R} ^k\) valued random variables with all components having finite 2nd moment. Let \(c = E[X_n]\) and \(\Sigma = E[(X_n - c)(X_n - c)^{\prime}]\). Let \(S_n \coloneqq \sum_{k=1}^{n} X_k\).
+    
+    Then, \(\frac{S_n - nc}{\sqrt{n}} \implies N(0,\Sigma)\).
+    
+    If \(\Sigma\) is invertible, \(\sqrt{\Sigma}^{-1} \frac{S_n - nc}{\sqrt{n} } \implies N(0,I) \).
+    
+\end{theorem}
+
+\begin{proof}
+    Recall Cram\'er-Wold, we only need to show one dimensional.
+
+    Let \(Y\sim N(0,\Sigma)\). By 29.4, it suffices to prove that for all \(t\in\mathbb{R}^k\),
+    
+    \(t^{\prime} (S_n - nc) / \sqrt{n} \implies t^{\prime} Y \).
+    
+    Note that, \(t^{\prime} Y \sim N(0,t^{\prime} \Sigma t)\).
+
+    \(t^{\prime} \frac{S_n -c}{\sqrt{n}} = \frac{\sum_{k=1}^{n} t^{\prime} (X_k - c)}{\sqrt{n}}\) 
+
+    So, we are summing i.i.d.\  random variables in the numerator with mean \(E[t^{\prime} (X_k - c)] = t^{\prime} E[X_k - c] = t^{\prime} 0 = 0\) and variance \(E[(t^{\prime} (X_k -c))^2] = E[t^{\prime} (X_k - c)(X_k - c)^{\prime} t] = t^{\prime} E[(X_k - c)(X_k - c)^{\prime} ] t = t^{\prime} \Sigma t\).
+    
+    If \(t^{\prime} \Sigma t = 0\) then these random variables have mean \(0\) and variance \(0\), so the random variables are trivially \(0\).
+
+    If not, we can divide by \(t^{\prime} \Sigma t\) [this is just a number], and since \(t^{\prime} (X_k - c)\) are i.i.d.\  we have our result by the Lindeber L\'evy theorem.
+
+\end{proof}
+
+Now we go to chapter 6.
+
+\section*{Chapter 6: Derivatives and Conditional Probability}
+
+Section 32: The Radon-Nikodym Theorem.
+
+
+Recall that if \(\mu ,\nu \) are signed or complex measures on the same measurable space, we call \(\nu\) \underline{absolutely continuous} with respect to \(\mu\), written \(\nu \ll \mu\) if every \(\mu\)-null set is a \(\nu\)-null set. Recall that, a null set is a set such that every subset of that set has measure \(0\).
+
+If \(\nu\) is finite, this is equivalent to: \(\forall \epsilon >0 \exists \delta >0 \forall \) measurable \(E\), \(\vert \mu  \vert E < \delta \implies \vert \nu  \vert < \epsilon\).
+
+If there is a \(\mu\)-null set whose complement is \(\nu\)-null, then we call \(\mu \) and \(\nu \) \underline{singular}, written \(\mu \perp \nu\)
+
+\begin{theorem}
+    [Lebesgue-Radon-Nikodym Theorem]
+
+    Let \(\mu ,\nu \) be \(\sigma\)-finite [the whole set can be written as a countable union of sets with finite measure] signed or complex measures on \((\Omega , \mathcal{F})\). Then there are unique signed or complex measures \(\nu_a\) and \(\nu_s\) on \(\Omega , \mathcal{F}\) such that:
+
+    \(\nu = \nu_a + \nu_s\) 
+
+    \(\nu_a \ll \mu\) 
+
+    \(\nu_s \perp \mu\) 
+
+    This is a lebesgue decomposition.
+
+    There is a function \(f: \Omega \to \mathbb{C}\), unique upto \(\nu\)-null modifications, such that \(\nu_a = f \mu\). This means any two are equal \(\mu\)-almost everywhere. We denote \(f\) by \(\frac{\mathrm{d}\nu_a}{\mathrm{d}\nu} \). Also, \(\nu_a\) is finite if and only if \(f\in L^1(\vert \mu \vert )\).
+\end{theorem}
+
+\section*{33. Conditional Probabilities}
+
+Instead of conditioning on an event, we condition on a \(\sigma\)-field.
+
+How do we define \(P(A|\mathcal{G})\), for a \(\sigma\)-field \(\mathcal{G} \subseteq \mathcal{F}\)?
+
+Typically, \(\mathcal{G}\) is generated by a (or some) random variables. Consider the simplest case: \(\mathcal{G} = \{ \varnothing, \Omega \} \).
+
+This doesn't give us any information, so it should be that \(P(A|\{ \varnothing , \Omega \} ) = P(A)\).
+
+Next, suppose \(\mathcal{G} = \{ \varnothing , B, B^c, \Omega \} \).
+
+This gives us information on whether \(B\) happened or not. So, this gives us different values, and thus this is actually a random variable!
+
+\(P(A|\mathcal{G}) = P(A|B)\mathbbm{1}_{B} + P(A|B^c)\mathbbm{1}_{B^c} \) 
+
+Similarly, if \(\mathcal{G}\) is generated by a countable partition \(\mathcal{P} \), then,
+
+\(P(A|\mathcal{G}) = \sum_{B\in \mathcal{P}}^{} P(A|B)\mathbbm{1}_{B}\) 
+
+To generalize, note that,
+
+\(P(A|\mathcal{G})\) is a random variable. It is measureable with respect to \(\mathcal{F}\), but it is also measureable with respect to \(\mathcal{G}\). We write it as \(P(A|\mathcal{G})\in \mathcal{G}\).
+
+\(\forall G\in \mathcal{G}\) , \(\int_G P(A|\mathcal{G})\,\mathrm{d} P\). Since we're integrating on \(G\), we're integrating over all possible sets. Thus, we have
+
+\(\int_G P(A|\mathcal{G})\,\mathrm{d}P = \sum_{B\in \mathcal{P}}^{} \int_G P(A|B)\mathbbm{1}_{B} \,\mathrm{d} P = \sum_{B\in \mathcal{P}}^{} P(A | B)P(B\cap G) \) 
+
+Note that, \(B\cap G=B\) or \(\varnothing\) 
+
+\(=\sum_{B\in \mathcal{P} , B \subseteq G}^{} P(A|B)P(B) = \sum_{B\in \mathcal{P} ,B \subseteq G}^{} P(A\cap B)=P(A\cap G)\). 
+
+\hrulefill
+
+Class 15: 02/29
+
+Last time, we saw conditional probability given a \(\sigma \)-field. It had two properties:
+
+\begin{definition}
+    
+    Any random variable \(P(A|\mathcal{G})\) such that:
+
+    i: \(P(A|\mathcal{G})\) is \(\mathcal{G}\)-measurable and integrable random variable
+
+    ii: For any \(G\in \mathcal{G}\) if we integrate the random variable on this set, \(\int_{G}^{} P(A | \mathcal{G}) \,\mathrm{d}P = P(A\cap G)\) 
+
+    is called a \underline{version} of the probability of \(A\) given \(\mathcal{G}\)
+
+\end{definition}
+
+Recall from real analysis: if we have a measurable function on some measure, and we know the integral of that function on every set of the sigma field, then we know the function except on a set of measure 0. That implies this.
+
+Another way: think of this as a function times a measure instead of a fucntion, where the measure is defined by the formula \(\int_{G}^{} P(A|\mathcal{G}) \,\mathrm{d}P \). Then this tells us what is the measure of the sigma field. Question: why is it absolutely continuous w.r.t.\ \(P\)? because it's a function times \(P\).
+
+\begin{theorem}
+    \(\forall A \in \mathscr{F}\), \(\forall \sigma\) field \(\mathscr{G} \subset \mathscr{F} \) there is a version of \(P(A|\mathscr{G})\). It is unique up to \(P\)-null modifications.
+\end{theorem}
+
+This theorem is due to Kolmogorov.
+
+\begin{proof}
+    This will be a radon nikodym derivative.
+
+    Fix \(A,\mathscr{G}\). Let \(P_{\mathscr{G}}\coloneqq P \upharpoonright \mathscr{G} \), \(P\) restricted to \(\mathscr{G}\) 
+    
+    Define \(\nu_A : G \to P(A\cap G)\) on \(\mathscr{G}\)
+
+    These are measures in \(\mathscr{G}\).
+
+    We have \(\nu_A \ll P_{\mathscr{G}} \).
+    
+    By Radon-Nikodym theorem, we may set \(P(A|\mathscr{G})\coloneqq \frac{\mathrm{d}\nu_A}{\mathrm{d}P_{\mathscr{G}} }\)
+    
+    This gives us what we wanted.
+
+\end{proof}
+
+Example: \(P(A | \mathscr{F}) = \mathbbm{1}_{A} \) almost surely.
+
+Example: if \(A\in \mathscr{G}\) we have
+
+\(P(A|\mathscr{G})=\mathbbm{1}_{A} \) 
+
+Example 33.6: If \(A\) is independent of \(\mathscr{G}\), then \(P(A|\mathscr{G})=P(A)\) almost surely.
+
+If \(\mathscr{X}\) is a collection of random variables, we write \(P(A|\mathscr{X})\) for \(P(A|\sigma(\mathscr{X}))\). If \(\mathscr{X} = \{ X \} \) we just write \(P(A|X)\) 
+
+\(P(A|X)\) must be measurable with respect to \(X\) aka \(\sigma(X)\)
+
+By theorem 20.1, if \(\mathscr{X} =\{ X \} \) then \(P(A|X)\) is a function of \(X\). This is because random variables are measurable with respect to a random variable, it is a function of that random variable.
+
+\section*{Conditioning on a random varible with density}
+
+Example 33.5: Suppose that \((X,Y)\sim f \lambda_2\) [\(f\) is density, \(\lambda_2\) is lebesgue measure, so \(f\) is lebesgue measurable].
+
+What is \(P(Y\in\cdot | X)\)?
+
+The classical formula says that it has a density:
+
+When \(X = x\), it is \(y \mapsto \frac{f(x,y)}{\int_{\mathbb{R}}^{} f(x,t) \,\mathrm{d}t }\) 
+
+In other words, we want a version of \(P(Y\in C|X)\) to be:
+
+\[
+    \frac{\int_{y\in C}^{} f(X,y) \,\mathrm{d}y}{\int_{\mathbb{R}}^{} f(X,t) \,\mathrm{d}t }
+\]
+
+This is a measurable function of \(X\) by theorem 18.3 [fubini].
+
+So, this is \(\sigma(X)\) measurable.
+
+Now, for every \(G\in \sigma (X)\), we have \(G = [X\in H]\) for some borel set \(H\in \mathscr{R} ^1\), hence
+
+\[
+    \int_{G}^{} \frac{\int_{t\in C}^{} f(X,t) \,\mathrm{d}t}{\int_{t\in\mathbb{R}}^{} f(X,t) \,\mathrm{d}t } \,\mathrm{d}P = \int_{[X\in H]}^{} \frac{\int_{t\in C}^{} f(x,t) \,\mathrm{d}t }{\int_{t\in\mathbb{R} }^{} f(X,t) \,\mathrm{d}t } \,\mathrm{d}P  
+\]
+
+Change of varibles fn of \((X,Y)\) 
+
+\[
+    \int_{x\in H, y\in\mathbb{R}}^{} \frac{\int_{t\in C}^{} f(x,t) \,\mathrm{d}t}{\int_{t\in\mathbb{R} }^{} f(x,t) \,\mathrm{d}t } f(x,y) \,\mathrm{d}\lambda_2(x,y)
+\]
+
+By Tonelli:
+
+\[
+    = \int_{x\in H}^{} \int_{y\in\mathbb{R}}^{} \frac{\int_{t\in C}^{} f(x,t) \,\mathrm{d}t}{\int_{t\in\mathbb{R} }^{} f(x,t) \,\mathrm{d}t } f(x,y) \,\mathrm{d}y  \,\mathrm{d}x 
+\]
+
+\[
+    = \int_{x\in H}^{} \int_{t\in C}^{} f(x,t) \,\mathrm{d}t  \,\mathrm{d}x 
+\]
+
+\[
+    = (f \lambda _2)(H\times C) = P[(X,Y)\in H\times C] = P[X\in H, Y\in C]
+\]
+
+\[
+    = P[G\cap [Y\in C]]
+\]
+
+So we have verified property 2. It is indeed a version.
+
+Now we prove some general properties of conditional probability theory.
+
+A key idea in undergrad probability is: if we condition on an event, we are reducing the probability space.
+
+\begin{theorem}
+    [33.2]:
+
+    i: If \(P(A)=0\) then \(P(A|\mathscr{G})=0\) a.s.
+
+    ii: If \(P(A)=1\) then \(P(A|\mathscr{G})=1\) a,s,
+    
+    iii: If \(\langle A_n; n\geq 1 \rangle \) are disjoint, then \(P(\bigcup_{n}^{} A_n | \mathscr{G})=\sum_{n} P(A_n|\mathscr{G})\) 
+
+    iv: \(0 \leq P(A|\mathscr{G}) \leq 1\) a.s.
+
+    v: If \(A \subseteq B\) then \(P(A|\mathscr{G}) \leq P(B|\mathscr{G})\) 
+
+    vi: If \(A_n\uparrow A\) or \(A_n\downarrow A\) then \(P(A_n|\mathscr{G}) \to P(A|\mathscr{G})\) a.s.
+\end{theorem}
+
+\begin{proof}
+    i: just check definition
+
+    ii: just check definition
+
+    iii: Let \(A\coloneqq \cup A_n\) then \(\int_{G}^{} \sum_{n} P(A_n|\mathscr{G}) \,\mathrm{d}P = \sum_{n} \int_{G}^{} P(A_n|\mathscr{G}) \,\mathrm{d}P = \sum_{n} P(A_n\cap G) = P(A\cap G)\) 
+
+    iv: Let \(G\coloneqq [P(A|\mathscr{G}) < 0]\in \mathscr{G}\)
+    
+    \(\int_{G}^{} P(A|\mathscr{G}) \,\mathrm{d}P = P(A\cap G)\geq 0 \) 
+
+    Therefore \(P(A|\mathscr{G})\geq 0\) a.s.
+
+    For \(\leq 1\) just take \(G\coloneqq [P(A|\mathscr{G})>1]\) and do the same.
+
+    v: part iii with part iv
+
+    vi: by part v, the limit exists by v. We want that to be a version of \(A\).
+
+    Check that it is a version of \(P(A|\mathscr{G})\) by MCT or BCT and continuity of probability.
+
+\end{proof}
+
+\begin{theorem}
+    [33.1]
+
+    Let \(\mathscr{G} = \sigma(\mathscr{P})\) where \(\mathscr{P}\) is a \(\pi\) system, \(\Omega\) a countable union of \(\mathscr{P}\)-sets. An integrable \(f\in \mathscr{G}\) is a version of \(P(A|\mathscr{G})\) if for all \(G\in \mathscr{P}\) we have:
+
+    \[
+        \int_{G}^{} f \,\mathrm{d}P = P(A\cap G)
+    \]
+\end{theorem}
+
+idea: we have a finite measure on each side and they agree on \(\mathscr{P}\). Since they agree on \(\mathscr{P}\) they agree on \(\mathscr{G}\) on theorem 10.4.
+
+\hrulefill
+
+Class 16: 03/05
+
+The following theorem we state without proof.
+
+We use for motivation an example. Suppose two random variable have joint density. Classical formula of density of \(y\) given \(x\) we can interpet as given any set of \(Y\) we integrate over that set for density of \(X\).
+
+\begin{theorem}
+    [33.3]
+
+    Suppose that \((\Omega ,\mathscr{F} , P)\) is a probability space, and we have \(\mathscr{G} \subseteq \mathscr{F} \) a sub \(\sigma\) field and \(X: (\Omega, \mathscr{F}) \to (T, \mathscr{T})\) with \(\mathscr{T}\) is the collection of borel sets of a complete seperable metric space with \(\mathscr{T}\) the borel sets of complete, seperable metric space \(T\). Then there exists \(\mu : \sigma (X)\times \Omega \to [0,1]\) we have:
+
+    \begin{enumerate}
+        \item \(\forall \omega \in \Omega, \mu (\cdot,\omega)\) is a probability measure of \(\sigma(X)_i\) 
+        \item \(\forall A\in \sigma (X)\), \(\mu (A,\cdot)\) is a version of \(P(A|\mathscr{G})\).
+    \end{enumerate}
+
+    We call such a \(\mu\) a \underline{regular conditional distribution of} \(X\) \underline{given} \(\mathscr{G}\)
+    
+    Example 33.5 was such an example with \(T = \mathbb{R}\) for the law of \(y\) given \(x\).
+
+    See ex. 33.12 for more on this.
+
+    If \((\Omega , \mathscr{F} ) = (T, \mathscr{T})\) and \(X = id\) then \(\mu \) is called a \underline{regular conditional probability}.
+
+\end{theorem}
+
+\begin{proof}
+    We oit the proof. It is done first for \(T = \mathbb{R}\) as in Billingsley, and then extended by mapping \(T\) surjectively to \([0,1]\). See Durrett.
+\end{proof}
+
+\section*{Conditional Expectation}
+
+Note that when \(\mathscr{G} = \sigma (\mathscr{P})\) with \(\mathscr{P} \) a countable partition, the formula:
+
+\[
+    P(A) = \sum_{B\in \mathscr{P}} P(A|B)P(B) = \int_{\Omega}^{} P(A|\mathscr{G}) \,\mathrm{d}P = E[P(A|\mathscr{G})]
+\]
+
+This is a way to compute \(P(A)\).
+
+Likewise, we can compute expectation:
+
+\[
+    E[X] = E\left[\sum_{B\in \mathscr{P}} \mathbbm{1}_{B}\right] = \sum_{B\in \mathscr{P}} E[X \mathbbm{1}_{B}] = \sum_{B\in \mathscr{P}} E[X|B] P(B) = \int_{\Omega}^{} E[X|\mathscr{G}] \,\mathrm{d}P = E[E[X|\mathscr{G}]]
+\]
+
+Similarly, for \(G\in \mathscr{G}\),
+
+\[
+    E[X \mathbbm{1}_{G}] = E[X;G] = \int_{G}^{} X \,\mathrm{d}P = \int_{G}^{} E[X|\mathscr{G}] \,\mathrm{d}P 
+\]
+
+The case \(X = \mathbbm{1}_{A}\) is conditional probability.
+
+\begin{definition}
+    Let \(X\in L^1(\Omega ,\mathscr{F} ,\mathscr{P})\) and \(\mathscr{G} \subseteq \mathscr{F}\) be a \(\sigma \) field. A random variable \(E[X|\mathscr{G}]\) such that:
+
+    \begin{enumerate}
+        \item \(E[X|\mathscr{G}] \in L^1(\Omega,\mathscr{G},P \upharpoonright \mathscr{G})\) 
+        \item \(\forall G\in \mathscr{G} \) 
+        
+        \[
+            \int_{G}^{} E[X|\mathscr{G}] \,\mathrm{d}P = \int_{G}^{} X \,\mathrm{d}P 
+        \]
+
+        is called a \underline{version} \underline{of the conditional expectation of \(X\) given \(\mathscr{G}\)}.
+    \end{enumerate}
+
+    For \(G = \Omega\) ii becomes \(E[E[X|\mathscr{G}]]=E[X]\), In general, ii says:
+
+    \[
+        E[X|\mathscr{G}](P\upharpoonright \mathscr{G}) = (XP)\upharpoonright \mathscr{G}
+    \]
+
+\end{definition}
+
+\begin{theorem}
+    Conditional expectations exist and are unique up to \(P\)-null modifications.
+\end{theorem}
+
+\begin{proof}
+    \(E[X|\mathscr{G}]\) is the radon nikodym derivative of \((XP)\upharpoonright \mathscr{G}\) w.r.t.\ \((P\upharpoonright \mathscr{G})\). We prove that the conditions are satisfied.
+
+    Set \(P_{\mathscr{G}} \coloneqq P\upharpoonright \mathscr{G}\) 
+
+    \(\nu _X : G \mapsto \int_{G}^{} X \,\mathrm{d}P \). Then \(\nu _X \ll P_{\mathscr{G}} \). So the conditions are satisfied, and thus we're done.
+
+\end{proof}
+
+Example: \(E[X|\{ \varnothing ,\Omega \} ]=E[X]\) 
+
+\(E[X|\mathscr{F}] = X\) 
+
+We can think about expectation to be the best guess of what \(X\) is. That is, it minimizes the square error.
+
+Checking part ii might be complicated. It suffices to check on some special sets.
+
+\begin{theorem}
+    [34.1] Let \(\mathscr{P} \subseteq \mathscr{F}\) be a \(\pi\)-system, \(\mathscr{G} = \sigma (\mathscr{P})\) and \(X\in L^1(\Omega , \mathscr{F} ,\mathscr{P})\), \(f\in L^1(\Omega , \mathscr{G} ,P\upharpoonright \mathscr{G})\). Then, \(f=E[X|\mathscr{G}]\) almost surely if and only if for all \(G\in \mathscr{P}\) we have \(\int_{G}^{} f \,\mathrm{d}P = \int_{G}^{} X \,\mathrm{d}P \) 
+\end{theorem}
+
+\begin{proof}
+    Use 16.10
+\end{proof}
+
+\begin{theorem}
+    [34.2] Let \(X,Y,X_n\in L^1(\Omega,\mathscr{F} ,\mathscr{P})\) and \(\mathscr{G} \subseteq \mathscr{F}\) sigma field. We have the following properties:
+
+    \begin{enumerate}
+        \item \(\forall a\in\mathbb{E} \) we have \(E[a|\mathscr{G}] = a\) a.s.
+        \item \(\forall a,b\in\mathbb{R}\) we have \(E[aX+bY|\mathscr{G}] = aE[X|\mathscr{G}]+bE[Y|\mathscr{G}]\) a.s.
+        \item \(X \leq Y\) a.s. implies \(E[X|\mathscr{G}] \leq E[Y|\mathscr{G}]\)
+        \item \(\vert E[X|\mathscr{G}] \vert \leq E[\vert X \vert | \mathscr{G}]\) a.s.
+        \item c-LDCT: \(X_n \to X\) a.s., \(\vert X_n \vert \leq Y\) a.s. implies \(E[X_n|\mathscr{G}]\to E[X|\mathscr{G}]\)a.s. 
+    \end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+
+    \begin{enumerate}
+        \item obvious
+        \item check definition
+        \item \(E[Y-X|\mathscr{G}]\geq 0\) by the positivity of the radon nikodym derivative.
+        \item We want \(-E[\vert X \vert | \mathscr{G}] \leq E[X|\mathscr{G}] \leq E[\vert X \vert | \mathscr{G}]\) a.s., which follows from iii, ii and \(- \vert X \vert \leq  X \leq \vert X \vert \) 
+        \item Convert it to easier problem: define \(Z_n \coloneqq \sup_{k \geq n} \vert X_k - X \vert \) , then \(Z_n\) goes to \(0\) a.s. monotonically. Since \(\vert Z_n \vert \leq 2Y\) a.s., if we proved that \(E[Z_n|\mathscr{G}]\to 0\) almost surelythen we may deduce \(E[X_n | \mathscr{G}] \to E[X|\mathscr{G}]\) a.s. by iv. To prove the former, note that \(Z_n\) decreases as \(n\) increases, so by iii \(E[Z_n|\mathscr{G}]\) is also decreasing. So, by MCT, we have some limit \(Z\geq 0\). We want to show \(Z = 0\) a.s. Consider \(E[Z]\leq E[E[Z_n|\mathscr{G}]]=E[Z_n]\) and \(E[Z_n]\to 0\) since \(Z_n \to 0\) and \(\vert Z_n \vert < 2Y\) so we can use dominated convergence.
+            
+    \end{enumerate}
+
+\end{proof}
+
+\begin{theorem}
+    [34.3]
+
+    If \(X\) is \(\mathscr{G}\)-measurable and \(Y,XY\in L^1(\Omega ,\mathscr{F} ,\mathscr{P})\) then \(E[XY|\mathscr{G}] = X E[Y|\mathscr{G}]\) a.s.
+\end{theorem}
+
+Intuition: we know everything \(\mathscr{G}\) tells us. Since \(X\) is \(\mathscr{G} \) measurable, we treat \(X\) as a constant.
+
+\begin{proof}
+    If \(X = \mathbbm{1}_{H} \) for \(H\in \mathscr{G}\) then we must check that for all \(G\in \mathscr{G}\) 
+    
+    \[
+        \int_{G}^{} \mathbbm{1}_{H} Y \,\mathrm{d}P = \int_{G}^{} \mathbbm{1}_{H} E[Y|\mathscr{G}] \,\mathrm{d}P 
+    \]
+
+    Which means
+
+    \[
+        \int_{G\cap H}^{} Y \,\mathrm{d}P = \int_{G\cap H}^{} E[Y|\mathscr{G}] \,\mathrm{d}P 
+    \]
+
+    Which is true by the definition of conditional expectation.
+
+\end{proof}
+
+\hrulefill
+
+Class 17: 03/07
+
+We complete the proof.
+
+\begin{proof}
+    We have proved for indicator function.
+
+    By theorem 34.2(ii), our equation holds whenever \(X\) is simple.
+
+    In general, take simple \(X_n\in \mathscr{G}\) such that \(\vert X_n \vert \leq \vert X \vert \) and \(X_n \to X\). Then,
+
+    \[
+        E[X_n Y | \mathscr{G}] = X_n \cdot E[Y|\mathscr{G}]
+    \]
+
+    Now, by LDCT, [34.2(v)]
+
+    \[
+        E[XY|\mathscr{G}] \overset{a.s.}{=} \lim_{n \to \infty} E[X_n Y | \mathscr{G}] \overset{a.s.}{=} \lim_{n \to \infty} X_n E[Y|\mathscr{G}] \overset{a.s.}{=} X\cdot E[Y|\mathscr{G}]
+    \]
+
+\end{proof}
+
+\begin{theorem}
+    [34.4]
+
+    Let \(X\in L^1(\Omega , \mathscr{F} , \mathscr{P})\) 
+
+    Suppose \(\mathscr{G} _1 \subseteq \mathscr{G} _2 \subseteq \mathscr{F}\) are finite \(\sigma\)-fields. Then,
+
+    \[
+        E[E[X|\mathscr{G}_2]|\mathscr{G}_1] = E[X|\mathscr{G}_1] = E[E[X|\mathscr{G}_1]|\mathscr{G}_2]
+    \]
+
+    a.s.
+
+    In the trivial sigma field this is just law of total expectation.
+
+\end{theorem}
+
+\begin{proof}
+    We prove the second equality first. Intuitively, since \(\mathscr{G}_1 \subseteq \mathscr{G} _2\), if \(X\) is \(\mathscr{G}_1\) measureable then it is \(\mathscr{G}_2\) measureable. So we don't get any extra info, so expectation remains the same.
+
+    \[
+        E[X|\mathscr{G}_1]\in \mathscr{G}_1 \subseteq \mathscr{G}_2
+    \]
+
+    So it doesn't change when we compute its conditional expectation w.r.t.\ \(\mathscr{G}_2\) 
+
+    Also,
+
+    \(E[E[X|\mathscr{G}_2]|\mathscr{G}_1](P\upharpoonright \mathscr{G}_1) = (E[X|\mathscr{G}_2]P)\upharpoonright \mathscr{G}_1\)
+    
+    \(= (E[X|\mathscr{G}_2](P\upharpoonright \mathscr{G}_2)\upharpoonright \mathscr{G}_1)\) 
+
+    \(= ((XP)\upharpoonright \mathscr{G}_2)\upharpoonright \mathscr{G}_1\) 
+
+    \(= (XP)\upharpoonright \mathscr{G}_1\) 
+    
+    \(= E[X|\mathscr{G}_1](P\upharpoonright \mathscr{G}_1)\) 
+
+    Therefore,
+
+    \[
+        E[E[X|\mathscr{G}_2]|\mathscr{G}_1] = E[X|\mathscr{G}_1]
+    \]
+
+    This is very commonly used. This is called the `Tower Property'.
+
+\end{proof}
+
+\begin{theorem}
+    [34.5]
+
+    Suppose that \(\mu\) is a regular conditional probability for \(P[\cdot | \mathscr{G}]\). Then, for \(X\in L^1(P)\) for \(P\)-a.e.\(\omega\),
+
+    \[
+        E[X|\mathscr{G}](\omega) = \int_{\omega^{\prime} }^{} X(\omega^{\prime}) \,\mathrm{d}\mu(\omega^{\prime} , \omega) 
+    \]
+
+\end{theorem}
+
+\begin{proof}
+    Suppose \(X = \mathbbm{1}_{A}\). Then \(E[X|\mathscr{G}](\omega) = P(A|\mathscr{G})(\omega)\) and
+
+    \[
+        \int_{}^{} X(\omega ^{\prime}) \,\mathrm{d}\mu (\omega ^{\prime} ,\omega) = \mu (A,\omega)
+    \]
+
+    Thus, these are equal by hypothesis.
+
+    Build from there by using theorem 34.2(ii),(v).
+
+\end{proof}
+
+\underline{Jensen's Inequality for Conditional Expectation}:
+
+\begin{theorem}
+
+    Let \(X\in L^1(P)\) and let \(\phi\) be convex on an interval containing the range of \(X\) and \(\phi \circ X \in L^1(P)\).
+
+    Then, for all \(\mathscr{G} \subseteq \mathscr{F}\) 
+
+    \[
+        \phi (E[X|\mathscr{G}]) \leq E[\phi \circ X | \mathscr{G} ]
+    \]
+
+    a.s.
+
+\end{theorem}
+
+\begin{proof}
+    \(\varphi\) is the pointwise sup of all linear functions that are \(\leq \varphi\).
+
+    We can choose a countable class of such linear functions for which their sup is still \(\varphi\) 
+
+    For linear function, the inequality we want is actually an equality.
+
+    Hence,
+
+    \[
+        \varphi (E[X|\mathscr{G}]) = \sup_l l(E[X|\mathscr{G}]) \overset{a.s.}{=}  \sup_l E[l(X)|\mathscr{G}] \leq E[\varphi(X)|\mathscr{G}]
+    \]
+
+\end{proof}
+
+Omit page 450 to end of section.
+
+\section*{Martingales}
+
+We use notes.
+
+Suppose we are gambling, and \(X_n \coloneqq \) our fortune after \(n\) plays.
+
+\(\mathscr{F}_n \coloneqq \sigma(X_1,\cdots, X_n)\) or more.
+
+Suppose we have a fair game. Then, our expected fortune after the next gamble would be equal to our current fortune:
+
+\(X_n = E[X_{n+1}| \mathscr{F}_n]\) fair.
+
+\(X_n \geq E[X_{n+1}| \mathscr{F}_n]\) unfavorable
+
+\(X_n \leq E[X_{n+1}|\mathscr{F}_n]\) favorable
+
+One way to be favorable: before we gamble we get handed some amount of money, and then we make a fair bet. Example: Casino gives you free chips.
+
+The amount of money doesn't need to be definite, it can be random with positive expectation.
+
+\begin{definition}
+    Let \(X_n \in L^1(\Omega , \mathscr{F} , P)\) and \(\mathscr{F}_n \subseteq \mathscr{F}\) be \(\sigma\) fields. We get more and more information, since the \(\sigma\) fields are monotonically increasing.
+
+    We call \(\langle \mathscr{F}_n ; n \geq 1 \rangle \) a \underline{filtration} if \(\forall n,\) \(\mathscr{F}_n \subseteq \mathscr{F}_{n+1}\) 
+
+    We call \(\langle X_n ; n \geq 1 \rangle \) adaped to \(\langle \mathscr{F}_n \rangle \) if \(\forall n, X_n \in \mathscr{F}_n\) 
+
+    We call \(\langle (X_n, \mathscr{F}_n) ; n\geq 1 \rangle \) a \underline{martingale} (\underline{submartingale}, \underline{supermartingale}) if:
+
+    \(\langle X_n \rangle \) is adapted to the filtration \(\langle \mathscr{F}_n \rangle \) and for all \(n\) , \(X_n = E[X_{n+1}|\mathscr{F}_n]\) a.s. \((\leq ; \geq)\) 
+
+    So, we go up in submartingales and down in supermartingales.
+
+    The reason for this is submartingales correspond to subharmonic and supermartingales correspond to superharmonic functions.
+
+    We call \(\langle X_n; n\geq 1 \rangle \) a \underline{martingale} if there exists some filtration w.r.t.\ it is a martingale. If there exists such a filtration, \(\mathscr{F}_n = \sigma(X_1,\cdots, X_n)\) always works.
+
+    Suppose \(X_n \in \mathscr{F}_n^{\prime}\) where \(\langle \mathscr{F}_n^{\prime} \rangle \) is a filtration and \(X_n = E[X_{n+1}|\mathscr{F}_n^{\prime}]\) a.s.
+
+    We know \(X_n \in \mathscr{F}_n \subseteq \mathscr{F}_n^{\prime} \) thus,
+
+    \[
+        E[X_{n+1}|\mathscr{F}_n] \overset{a.s.}{=} E[E[X_{n+1}|\mathscr{F}_n^{\prime} ]|\mathscr{F}_n] \overset{a.s.}{=} E[X_n | \mathscr{F}_n] \overset{a.s.}{=} X_n
+    \]
+
+    In general, if \(\langle (X_n, \mathscr{F}_n) \rangle \) is a martingale, then using tower property,
+
+    \[
+        E[X_m | \mathscr{F}_n] = X_{m \land n} = X_{\min(m,n)}
+    \]
+
+\end{definition}
+
+Also, \(E[X_n]\) is the same for all \(n\).
+
+\hrulefill
+
+Class 18: 03/19
+
+Today we do examples of \underline{martingales}.
+
+A popular example is: sums of independent random variable.
+
+\underline{Example 35.1} Suppose \(Y_n\) are independent random variables, \(E[\vert Y_n \vert ] < \infty\).
+
+Then \(Y_n\) is the \underline{change} in fortune after the \(n\)'th game [we're gambling], and we're looking at the cumulative change, aka partial sums.
+
+\[
+    X_n \coloneqq \sum_{k=1}^{n} Y_k
+\]
+
+These are neither martingales or submartingales or supermartingales without additional assumptions.
+
+If \(E[Y_n] = 0 \forall n\) then \(E[X_{n + 1}| \sigma(X_1,\cdots,X_n)]\)
+
+\(=E[X_{n+1}|\sigma(Y_1,\cdots,Y_n)]\)
+
+\(=E[X_n + Y_{n+1}|\sigma(Y_1,\cdots, Y_n)]\)
+
+\(= X_n + E[Y_{n+1}|\sigma(Y_1,\cdots, Y_n)]\)
+
+They are independent and all have expectation \(0\). Thus this equals \(X_n\) a.s.
+
+So this is a martingale.
+
+Correspondingly, if the expectations were all non-negative, we would have:
+
+\(X_n + E[Y_{n+1}|\sigma(Y_1,\cdots,Y_n)]\geq X_n\) so this is a submartingale.
+
+Correspondingly, non-positive would give us a supermartingale.
+
+Another different example. Significant for the theory.
+
+\underline{Example 35.5} If \(Z\in L^1(\Omega , \mathscr{F} , P)\) and \(\langle \mathscr{F}_n \rangle \) is a filtration. Then,
+
+\[
+    \langle (E[Z|\mathscr{F}_n],\mathscr{F}_n) \rangle 
+\]
+
+is a martingale by the tower property:
+
+\[
+    E[E[Z|\mathscr{F}_{n+1}]|\mathscr{F}_n] = E[Z|\mathscr{F}_n]
+\]
+
+\underline{Example 35.2} On \((\Omega, \mathscr{F})\), let \(P\) be a probability measure and \(\nu\) be a finite, signed measure. Let \(\langle \mathscr{F}_n \rangle \)  be a filtration.
+
+We can only talk about Radon-Nikodym derivative if we have absolute continuity. Suppose that \(\forall n, \nu \upharpoonright \mathscr{F}_n \ll P\upharpoonright \mathscr{F}_n\). Let
+
+\[
+    X_n \coloneqq \frac{\mathrm{d} (\nu \upharpoonright \mathscr{F}_n)}{\mathrm{d}(P\upharpoonright \mathscr{F}_n)}
+\]
+
+Then \(\langle (X_n, \mathscr{F}_n) \rangle \)  is a martingale:
+
+\(E[X_{n+1}|\mathscr{F}_n](P\upharpoonright \mathscr{F}_n)=(X_{n+1}P)\upharpoonright \mathscr{F}_n=(X_{n+1}P\upharpoonright \mathscr{F}_{n+1})\upharpoonright \mathscr{F}_n\) 
+
+\(=(\nu\upharpoonright \mathscr{F}_{n+1})\upharpoonright \mathscr{F}_n = \nu\upharpoonright \mathscr{F}_n = X_n(P\upharpoonright \mathscr{F}_n)\) 
+
+\underline{Exercise 35.3} Let \(P\) be Lebesgue measure on \((0,1]\) and \(\mathscr{F}_n\coloneqq \sigma(I_k^{(n)};0 \leq k \leq 2^n)\) where \(I_k^{(n)}\coloneqq (k2^{-n},(k+1)2^{-n}]\). Since \((A\in \mathscr{F}_n, P(A)=0) \implies A = \varnothing\) we have for all \(\nu, \nu \upharpoonright \mathscr{F}_n \ll P\upharpoonright \mathscr{F}_n\). In this case,
+
+\[
+    X_n = \sum_{k=0}^{2^n - 1} \mathbbm{1}_{I_k^{(n)}} \frac{\nu(I_k^{(n)})}{P(I_k^{(n)})} = \sum_{k=0}^{2^n - 1} \mathbbm{1}_{I_k^{(n)}} \nu(I_k^{(n)}) 2^n
+\]
+
+\underline{Exercise 35.8} If \(\langle (X_n, \mathscr{F}_n) \rangle \) is a martingle, then \(\langle \vert X_n \vert , \mathscr{F}_n \rangle \) is a submartingale.
+
+\begin{theorem}
+    [35.1] Let \(\langle X_n \rangle \subseteq L^1(P)\) adapted to a filtration \(\langle \mathscr{F} _n \rangle \), and let \(\varphi\) be convex on an interval containing all the ranges of \(X_n\), and let \(\varphi \circ X_n\in L^1(P)\). Then \(\langle (\phi \circ X_n, \mathscr{F}_n) \rangle \) is a submartingale if either:
+
+    \begin{enumerate}
+        \item \(\langle (X_n, F_n) \rangle \) is a martingale
+        \item is a submartingale and \(\varphi\) is increasing
+        \item is a supermartingale and \(\varphi\) is decreasing   
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    In all cases, we have:
+
+    \[
+        \varphi(X_n) \leq \varphi(E[X_{n+1}|\mathscr{F}_n])
+    \]
+
+    by using monotonicity and convexity.
+
+    By Jensen, this is \(\leq E[\varphi(X_{n+1})|\mathscr{F}_n]\) 
+\end{proof}
+
+Now we depart from the book.
+
+\section*{Wald's Equation}
+
+This is about expectation of adding up random variables but the number of random variables is itself random.
+
+\begin{theorem}
+    [Wald's Equation]
+
+    Let \(Z_n \in L^1(P)\) for \(n\geq 1\) and let \(\tau\) be an \(\mathbb{N}\)-valued random variable, and \(\mu\in\mathbb{R}\).
+
+    Suppose that,
+
+    \begin{enumerate}
+        \item \(\forall n \geq 1, P[\tau \geq n]>0 \implies E[Z_n|\tau\geq n]=\mu\) [or \(\leq\) or \(\geq\)  ]
+        \item one of the following holds:
+            \begin{enumerate}
+                \item \(\forall n, Z_n \geq 0\) 
+                \item \(\sup_{n;P[\tau\geq n]>0}E[\vert Z_n \vert | \tau \geq n]<\infty\) and \(E[\tau]<\infty\)  
+                \item \(E[\vert \sum_{n=1}^{\tau} Z_n  \vert ]<\infty\) and \(\lim_{n \to \infty} E[\sum_{k=1}^n Z_k \mathbbm{1}_{[\tau > n]}]=0\)  
+            \end{enumerate}
+    \end{enumerate}
+
+    then \(E[\sum_{n=1}^{\tau} Z_n]=\mu E[\tau]\) [or \(\leq\) or \(\geq\)]
+
+    where \(0\cdot \infty = 0\) 
+
+\end{theorem}
+
+\begin{proof}
+    In case a, we have
+
+    \(E[\sum_{n=1}^{\tau} Z_n] = E[\sum_{n=1}^{\infty} Z_n \mathbbm{1}_{[\tau \geq n]}]\overset{\text{tonelli/MCT}}{=} \sum_{n=1}^{\infty} E[Z_n \mathbbm{1}_{[\tau \geq n]} ]=\sum_{n=1}^{\infty} E[Z_n|\tau \geq n]P[\tau \geq n]=\sum_{n=1}^{\infty} \mu P[\tau \geq n] = \mu E[\tau]\).
+
+    This is equation N1.
+
+    In case b, we have
+
+    \(E[\sum_{n=1}^{\infty} \vert Z_n \vert \mathbbm{1}_{[\tau \geq n]}]=\sum_{n=1}^{\infty} E[\vert Z_n \vert | \tau \geq n]P[\tau \geq n]\leq \sup E[\cdots] \cdot \sum P[\tau \geq n] = \sup E[\cdots]\cdot E[\tau]<\infty \) 
+
+    Now we do the previous calculation with Fubini.
+
+    In case c, we have
+
+    \(E[\sum_{k=1}^{\tau} Z_k]\overset{\text{LDCT}}{=} \lim_{n \to \infty} E[\sum_{k=1}^{\tau} Z_k \mathbbm{1}_{[\tau \leq n]}] \) 
+
+    \(=\lim_{n \to \infty} E[\sum_{k=1}^{n} Z_k \mathbbm{1}_{k \leq \tau  \leq n}]\) 
+
+    \(=\lim_{n \to \infty} E[\sum_{k=1}^n Z_k (\mathbbm{1}_{[\tau \geq k]} - \mathbbm{1}_{[\tau>n]}  )]\) 
+
+    by the second condition of part c,
+
+    \(=\lim_{n \to \infty} E[\sum_{k=1}^n Z_k \mathbbm{1}_{[\tau \geq k]}] = \lim_{n \to \infty} \sum_{k=1}^{n} \mu P[\tau \geq k] = \mu E[\tau] \) 
+
+\end{proof}
+
+Stopping times will be important.
+
+Make sure you are familiar with homework!!!
+
+\hrulefill
+
+Class 18 and 19 skipped
+
+\hrulefill
+
+Class 20: 04/02
+
+We are betting on whether a card is red. We have 52 cards, 26 red, 26 black and we keep seeing one by one. Assume uniform shuffle.
+
+\(A_k \coloneqq\) event that the \(k\)'th card is red.
+
+\(\tau\coloneqq\) the time \(k\) we bet.
+
+\(\mathscr{F} _k \coloneqq \sigma (A_1,\cdots, A_{k-1})\) 
+
+\(\tau\) is a stopping time.
+
+\([\tau = k] \in \mathscr{F}_k\)
+
+At time \(k\) the chance of winning would be:
+
+\(P(A_k \mid \mathscr{F}_k)\eqqcolon X_k\) 
+
+\(X_k\) is between \(0\) and \(1\)
+
+The chance of winning for stopping time \(\tau\) is \(X_\tau\) 
+
+\(X_\tau\) is random. Our actual chance is \(E[X_\tau]\) 
+
+We check if \(X_k\) is a martingale:
+
+\(E[X_{k+1}\mid \mathscr{F}_k] = E[P(A_{k+1}\mid \mathscr{F}_{k+1})\mid \mathscr{F}_k]\)
+
+By tower property, \(=P(A_{k+1}\mid \mathscr{F}_k)\) 
+
+We have information about \(k-1\) cards. We want to know if card number \(k+1\) is red. It is the same as the \(k\)'th card being red. So this is equal to \(X_k\). For \(k \leq 51\). 
+
+This is a finite martingale!
+
+\(\langle X_k ; 1 \leq k \leq 52 \rangle \) is a martingale.
+
+So, \(E[X_\tau]=E[X_1]=\frac{1}{2}\) 
+
+Just read notes for this section.
+
+\hrulefill
+
+Class 21: 04/04
+
+...
+
+Class 22: 04/09
+
+We did Doob's Maximal Inequality.
+
+\section*{Chapter 7: Stochastic Processes}
+
+Recall a stochastic process is a collection of random variables on the same space indexed by some set, \(T\).
+
+For example, we can think about \(N((s,t])\) where \(T\) contains intervals.
+
+In higher dimension, we can have half open boxes, or even the set of borel sets as the index set.
+
+\section*{Section 36: Kolmogorov's Existence/Consistency Theorem}
+
+\(P[(X_{k_1},\cdots,X_{t_k})\in H]\) for \(t_1,\cdots,t_k\in T, H\in \mathcal{R}^k\) are the 
+
+\underline{finite dimensional distributions/marginals} (f.d.d.) of the process.
+
+\(\langle X_k; t\in T \rangle \in \mathbb{R}^T = ^T\mathbb{R} \) 
+
+
+For \(t\in T\) write \(Z_t=\mathbb{R}^t \to \mathbb{R}\) by \(x \mapsto x(t)=x_k\)  
+
+For \(S \subseteq T\) set \(\mathcal{R}^S_T \coloneqq \sigma(Z_t:t\in S)\). This is not a sigma field on \(\mathcal{R}^S\), rather it is a sigma field on \(\mathcal{R}^T\)  
+
+These are sub-\(\sigma\)-fields of \(\mathcal{R}^T_T\)
+
+The f.d.d.'s are the probability measures \(\mu_F\) on \(\mathcal{R} ^F_T\) for finite \(F \subseteq T\).
+
+We can think of \(\mathcal{R}^F_T\) as
+
+\[
+    \{ \underbrace{A\times\mathbb{R}^{T\setminus F}}_{\in \mathcal{R}^T_T};A\in \mathcal{R}^F_F \} 
+\]
+
+These satisfy the consistency condition:
+
+\[
+    F_1 \subseteq F_2 \implies \mu_{F_2}\upharpoonright \mathcal{R}_T^{F_1} = \mu_{F_1} \quad (\ast)
+\]
+
+Thus, \(\langle Z_k; t\in T \rangle \) is a stochasting process w.f.d.d.'s \(\langle \mu_F ; F \subseteq T \text{ finite}  \rangle \)  
+
+\begin{proof}
+    Define \(\mathcal{R}^T_0 \coloneqq \bigcup \{ \mathcal{R}_T^F ; F \subseteq T, F \text{ finite}  \} \).
+    
+    Sets in \(\mathcal{R}^T_0\) are called \underline{finite-dimensional} or \underline{cylinders}. This is a field since given \(F_1\) and \(F_2\) 
+    
+    \[
+        \mathcal{R}^{F_1}_T \cup \mathcal{R}^{F_2}_T \subseteq \mathcal{R}_T^{F_1\cup F_2} \quad (\ast\ast)
+    \]
+
+    Thus, the plan is to use theorem 3.1:
+
+    Define \(\mathcal{P}\) on \(\mathcal{R}^T_0\) and show that \(\mathcal{P}\) is countably additive there.
+    
+    To define \(\mathcal{P}\) on \(\mathcal{R}^T_0\), set \(P(A)\coloneqq \mu_F(A)\) for any \(F\) with \(A\in \mathcal{R}^F_T\). By \((\ast)\) this is well defined. Also, since \(\mu_F\) is a probability measure, \(P\) is finitely additive on \(\mathcal{R}^F_T\), hence on \(\mathcal{R}^T_0\). by \((\ast\ast)\) 
+
+    To show countable additivity, recall from example 2.10 that it suffices to show for \(A_n\in \mathcal{R}^T_0\) with \(A_n\downarrow \varnothing\), we have \(P(A_n)\to 0\).
+    
+    Equivalently, if \(A_n\downarrow A\) and \(P(A_n)\geq \epsilon > 0\) then \(A \neq \varnothing\). Now, eah \(A_n\in \mathcal{R}_T^{F_n}\) for some finite \(F_n\). By regularity (thm 12.3) there exists compact \(K_n \subseteq \mathbb{R}^{F_n}\) such that \(K_n\times\mathbb{R}^{T \setminus F_n} \subseteq A_n\) and \(\mu_{F_n}(A_n \setminus (K_n \times \mathbb{R}^{T \setminus F_n}))< \epsilon / 2^{n+1} \). Then \(A \supseteq \bigcap_n (K_n \times \mathbb{R}^{T \setminus F_n})\). We claim that this is non \(\varnothing\).
+    
+    FIrst, note that \(A_n \setminus (K_n \times \mathbb{R}^{T \setminus F_n})\)
+    
+    \(= \bigcup_{n \leq N} (A_N \setminus (K_n \times \mathbb{R}^{T \setminus F_n}))\)
+    
+    \(\leq \bigcup_{n \leq N}(A_n \setminus (K_n \times \mathbb{R}^{T \setminus F_n}))\) 
+
+    has probability \(< \sum_{n\leq N}^{} \epsilon / 2^{n+1} < \epsilon /2 \) 
+
+    whence \(P(\bigcap (K_n \times \mathbb{R}^{T \setminus F_n})) > \epsilon / 2\) 
+
+    Thus, \(\forall N \geq 1 \exists x^{(N)}\upharpoonright F_n \in K_n\) for \(1 \leq n \leq N\). Let \(\langle N_1(j); j \geq 1 \rangle \) be a subsequence such that \(x^{(N,(j))}\upharpoonright F\) covergence. Recursively, choose \(\langle N_{m+1}(j)l j \geq 1 \rangle \) to e a subsequence of \(\langle N_m(j) \rangle \) such that \(x^{N_{m+1}(j)}\upharpoonright F_{m+1}\) converges. Then \(x^{(N_m(m))}\upharpoonright F_n\) converges for all \(n\).
+
+    Define \(x(t)\coloneqq x^{N_m(m)}(t)\) if \(t\in \cup_n F_n\) and \(0\) otherwise. Then \(x\in A\) so \(A \neq \varnothing\).  
+
+\end{proof}
+
+\hrulefill
+
+Class 23: 04/11
+
+If \(X: \Omega \to \Omega ^{\prime} \) and \(\mathscr{A} \subseteq 2 ^{\Omega ^{\prime} }\) then \(\sigma (X ^{-1} \mathscr{A}) = X ^{-1} (\sigma(\mathscr{A}))\)
+
+The relevant operations of \(\sigma\) fields (intersection union complements) commutes with pre-image so this is expected.
+
+Thus, given \(X_t : \Omega \to \mathbb{R}\) [\(t\in T\)] stochastic process, let \(X: \Omega \to \mathbb{R}^T\) be \(\langle X_t ; t\in T \rangle \)  
+
+\underline{Claim}: \(\sigma(X) = \sigma(\{ X_t; t\in T \} )\) 
+
+To see this, note first that:
+
+\[
+    \begin{tikzcd}
+        \Omega \ar[r,"X"] \ar[rd,"X_t"] & \mathbb{R}^T \ar[d,"Z_t"] \\ & \mathbb{R} 
+    \end{tikzcd}
+\]
+
+So \(X_t = Z_t \circ X\) 
+
+Thus, \(\sigma (\{ X_t ; t\in T \} )= \sigma (\{ X_t ^{-1} \mathcal{R} ; t\in T \} )\)
+
+\(= \sigma(X ^{-1} (\{ Z_t ^{-1} \mathcal{R} \} ))\) 
+
+\(= X ^{-1} (\sigma(\{ Z_t ^{-1} \mathcal{R} \} ))\) 
+
+\(= X ^{-1} \mathcal{R}^T_T\) by definition of \(\mathcal{R}^T_T\) 
+
+\(= \sigma(X)\) 
+
+Note also that \(\bigcup \{ \sigma (\{ X_t ; t\in S \} ) ; S \subseteq T, S \text{ countable}  \} \) is a \(\sigma\)-field.
+
+So, it equals \(\sigma (X)\)
+
+That is, every set in \(\sigma (X)\) depends on only countably many coordinates!
+
+Consider \(T = [0,\infty), \Omega = \mathbb{R}^T, X_t \coloneqq Z_t\).
+
+Consider the class of continuous functions \(C(T)\).
+
+\(C(T)\) can't depend on only a countable set since knowing the values on a countable set doesn't tell us whether something is continuous.
+
+So, \(C(T)\) is not measurable here!
+
+This means this space is not good enough to model brownian motion.
+
+\section*{37 - Brownian Motion}
+
+We consider brownian motion on only one dimension. For bigger dimension we can take independent brownian motion in perpendicular direction.
+
+Consider \(\langle W_t ; t\in [0,\infty) \rangle \) a stochastic process that has independent stationary increments and continuous sample paths.
+
+\(W\) stands for Wiener.
+
+\(W_t\) is uniformly continuous on \([0,1]\) so:
+
+\[
+    H_n \coloneqq \sup_{1 \leq k \leq n} \left\vert W \left( \frac{k}{n} \right) - W \left( \frac{k-1}{n} \right)   \right\vert 
+\]
+
+Which \(\to 0\) as \(n\to \infty\)  
+
+Hence \(\forall \delta >0, P[H_n \geq \delta]\to 0\)
+
+Now, \(P[H_n \geq \delta] = 1 - P[H_n < \delta]\)
+
+\(= 1 - \prod_{k=1}^n P[\vert W(\frac{k}{n}) - W(\frac{k-1}{n}) \vert < \delta]= 1 - P[\vert W(\frac{1}{n}) - W(0) \vert < \delta ]^n\)
+
+\(= 1 - \{ 1 - P[\vert W(\frac{1}{n}) - W(0) \vert \geq \delta ] \}^n \geq 1 - e^{- n \cdot P[\vert W(\frac{1}{n}) - W(0) \vert \geq \delta ]} \) 
+
+\(\geq 0\).
+
+So, \(1-e^{-n\cdot P[\vert W(\frac{1}{n}) - W(0) \vert \geq \delta ]} \to 0\)
+
+Which implies \(P[\vert W(\frac{1}{n})- W(0) \vert \geq \delta ]\to 0\) 
+
+(\(\ast\)) \(\forall \delta > 0, \lim_{h \downarrow 0} \frac{P[\vert W(h) - W(0) \vert \geq \delta ]}{h} = 0\) 
+
+This implies that \((\ast\ast) \exists \mu \in\mathbb{R} \exists \sigma \geq 0 \forall t \geq 0\),
+
+\(W(t)-W(0)\sim \mathcal{N}(\mu t, \sigma^2 t)\) 
+
+\begin{theorem}
+    For a stochastic process with independent stationary increment, \((\ast) \iff (\ast\ast)\) 
+\end{theorem}
+
+Why should such a process exist?
+
+Let \(\langle Y_n \rangle \) be symmetric \(\pm 1\) i.i.d.\  steps, \(\Delta x > 0, \theta > 0\)
+
+\[
+    D(t) \coloneqq \sum_{k=1}^{\lfloor t / \Delta t \rfloor} \delta x \cdot Y_k
+\]
+
+Then \(Var(D(t))=(\Delta x)^2 \lfloor \frac{t}{\Delta t} \rfloor\) 
+
+So, if \(D(t)\) `converges' to \(W_t\) we should have \(\frac{(\Delta x)^2}{\Delta t} \to 1\) 
+
+So take \(\Delta t \coloneqq \frac{1}{n}, \Delta x = \frac{1}{\sqrt{n} }\) 
+
+Let \(D_n(t)\) be the corresponding process of partial sums:
+
+\[
+    D_n(t) = \frac{1}{\sqrt{n} } \sum_{k=1}^{\lfloor n t \rfloor} Y_k 
+\]
+
+So, \(D_n(t)\) converges weakly to normal.
+
+\hrulefill
+
+Class 24: 04/16
+
+\[
+    D(t) = \sum_{k=1}^{\lfloor t / \Delta t \rfloor} \Delta x\cdot y_k
+\]
+
+\[
+    \frac{(\Delta x)^2}{\Delta t} \to \sigma ^2
+\]
+
+\begin{definition}
+    A \underline{Brownian Motion} (BM) or \underline{Wiener Process} with \underline{drift} \(\mu\) and
+    
+    \underline{variance parameter} \(\sigma^2\) is a stochastic process \(\langle W_t; t\geq 0 \rangle \) such that:
+    
+    i: If \(0 \leq t_0 < t_1 < \cdots < t_k\) then \(\langle W_{t_i} - W_{t_{i-1}}, 1 \leq i \leq k \rangle \sim \mathcal{N}(\mu \langle t_i - t_{i-1}; 1 \leq i \leq k \rangle, \sigma^2 \cdot \operatorname{diag}(\langle t_i - t_{i-1}; 1 \leq i \leq k \rangle )  ) \)  
+
+    And \(W_0\) is independent of \(\sigma(W_t - W_0; t\geq 0)\) 
+
+    ii: For every \(\omega, t \mapsto W_t(\omega)\) is continuous.
+    
+    If \(\mu = 0, \sigma = 1, W_0 \equiv 0\) then the process is \underline{standard} \underline{B.M.} or just \underline{B.M.} 
+\end{definition}
+
+Existence by Kolmogorov
+
+Question: What are the f.d.d.'s?
+
+Assume \(W_0 \equiv 0\) and \(t_0 = 0\) 
+
+Let \(M\) b the linear transformation that takes \(\langle y_1, y_2 - y_1, \cdots, y_k - y_{k-1} \rangle \) to \(\langle y_1, y_2,\cdots,y_k \rangle \)
+
+\[
+    M = \begin{pmatrix}
+        1 & 0 & 0 & \cdots &  0 \\
+        1 & 1 & 0 & \cdots &  0 \\
+        1 & 1 & 1 & \cdots &  0 \\
+        \vdots & \vdots & \vdots & \ddots &  \vdots \\
+        1 & 1 & 1 & \cdots &  1 \\
+    \end{pmatrix}
+\]
+
+Recall that if \(Y \sim \mathcal{N}(c,\Sigma)\) then \(MY \sim \mathcal{N}(Mc, M \Sigma M^{\prime})\)  
+
+Use this with \(Y = \langle W_{t_1} - W_{t_0},\cdots, W_{t_k} - W_{t_{k-1}} \rangle \) and \(c = \mu \langle t_1 - t_0, \cdots, t_k - t_{k-1} \rangle \) 
+
+\(\Sigma = \sigma^2 \operatorname{diag} (\langle t_1 - t_0, \cdots, t_k - t_{k-1} \rangle ) \) 
+
+Then \(MY = \langle W_{t_1},\cdots,W_{t_k} \rangle \) 
+
+\(Mc = \mu\langle t_1,\cdots,t_k \rangle \) 
+
+And the covariances are: for \(0 \leq s \leq t\) 
+
+\(\operatorname{Cov}(W_s, W_t) = E[(W_s - \mu s)(W_t - \mu t)]\) 
+
+We use independent increments to calculate it. \(W_t - \mu t = W_s - \mu s + (W_t - W_s + \mu(t-s))\) 
+
+So, \(E[(W_s - \mu s)(W_t - \mu t)] = \operatorname{Var}(W_s) + 0 = \sigma^2 s\)
+
+Thus, \(M \Sigma M^{\prime} = \sigma^2 (\min\{ t_i, t_j \} )_{1 \leq i, j \leq k}\)
+
+These f.d.d.'s are consistent so Kolmogorov's theorem gives a process that satisfies (i).
+
+If \(W_0 \not \equiv 0\) then take \(X\) independent of the process \(\langle W_t ; t \geq 0 \rangle \)  constructed by Kolmogorov's theorem with \(X\) having law of \(W_0\) and use a new process \(\langle X + \tilde{W}_t ; t \geq 0 \rangle \) 
+
+We now modify the process given by Kolmogorov's theorem to ensure continuity. We'll do this for standard brownian motion and then show how to
+
+Let \(D \coloneqq \{ k 2 ^{-n} ; n,k\in\mathbb{N}  \} \) 
+
+Claim: \(\forall \delta > 0, \forall \alpha  > 0\) 
+
+\[
+    P[\sup \{ \vert W(r \delta) \vert ; r\in [0,1]\cap D \} > \alpha ] \leq \frac{3 \delta^2}{\alpha^4}
+\]
+
+It suffices to prove this with \(D\) replaced by \(D_n \coloneqq \{ k 2^{-n} ; k\in \mathbb{N} \} \) since these eents are increasing in \(n\) 
+
+Now, \(\langle W(r \delta) ; r \in [0,1] \cap D_n \rangle \) 
+
+Forms the partial sums of i.i.d.\ mean \(0\) random variables, hence, a martingale.
+
+Therefore, \(\langle W(r \delta)^4 \rangle \) is a submartingale.
+
+Applying Doob's inequality (thm 35.3),
+
+\[
+    P[\sup_{r\in [0,1]\cap D_n} \vert W(r \delta) \vert > \alpha ] = P[\sup W(r \delta)^4 > \alpha ^4] \leq \frac{E[W(\delta)^4]}{\alpha^4}
+\]
+
+Note, \(W(\delta)\sim \mathcal{N}(0,\delta)=\sqrt{\delta} N(0,1)\) 
+
+So, fourth moment is \(3\) 
+
+Thus, our probability is bounded by \(\frac{3 \delta^2}{\alpha^4}\) 
+
+Let \(I_{n,k} \coloneqq [k 2^{-n}, (k+1)2^{-n}]\) 
+
+\(M_{n,k}=\sup \{ \vert W(r) - W(k 2^{-n}) \vert ; r\in I_{n,k}\cap D \} \),
+
+\(M_n \coloneqq \max \{ M_{n,k}; 0 \leq k < n 2^n\} \)
+
+\underline{Claim}: \(P[M_n > \frac{1}{n}] \leq \frac{3n^5}{2^n}\) 
+
+For we have by stationarity of moments that for \(\delta  = 2^{-n}\),
+
+\[
+    P[M_{n,k}>\frac{1}{n}] = P[\sup_{r\in [0,1]\cap D} \vert W(r \delta) \vert > \frac{1}{n} ] \leq \frac{3n^4}{2^{2n}}
+\]
+
+THerefore,
+
+\[
+    P[M_{n,k}>\frac{1}{n}] \leq \sum_{k=0}^{n2^n - 1} P[M_{nk}>\frac{1}{n}>\frac{1}{n}] \leq n 2^n \cdot \frac{3n^4}{2^{2n}} = \frac{3n^5}{2^n} 
+\]
+
+Therefore, \(\sum_{n} P[M_n > \frac{1}{n}] < \infty\) 
+
+So we can use Borel Cantelli
+
+Let \(B\coloneqq \{ \omega ; M_n(\omega) > \frac{1}{n} i.o. \} \) 
+
+Then \(P(B)=0\) by Borel Cantelli
+
+Claim: \(\forall t > 0, \forall \omega \not\in B, W(r, \omega)\) is uniformly continuous in \(r\in [0,t]\cap D\) 
+
+For let \(t > 0, \omega \not\in B, \epsilon > 0.\) Choose \(n\) such that \(n > t, n > \frac{3}{\epsilon}, M_n(\omega)\leq \frac{1}{n}\). Set \(\delta \coloneqq 2^{-n}\).
+
+Let \(r, r^{\prime} \in [0,t]\cap D\) with \(\vert r - r^{\prime} \vert < \delta \).
+
+Then \(\exists k \in [0, n2^n]\) such that \(r\in I_{n,k}\) and \(r^{\prime} \in I_{n,k+1}\) so that
+
+\[
+    \vert W(r,\omega) - W(r^{\prime}, \omega) \vert \leq \vert W(r, \omega) - W(k 2^{-n}, \omega) \vert + \vert W(k 2^{-n}, \omega) - W((k+1)2^{-n}, \omega) \vert 
+\]
+
+\[
+    + \vert W((k+1)2^{-n}-W(r^{\prime} ,\omega)) \vert \leq 2 M_{n k}(\omega) + M_{n,k+1}(\omega) \leq 3 M_n(\omega) \leq \frac{3}{n} < \epsilon
+\]
+
+\hrulefill
+
+Class 25: 04/18
+
+\(W(t), t\in D\)
+
+unifomrly continuous on \([0,t]\cap D\) for all \(t > 0\) 
+
+off \(B, P(B) = 0\) 
+
+Now, define \(W_t^{\prime} (\omega)\) to be \(0\) if \(\omega \in B\) and to be \(\lim W_r(\omega)\) as \(r \to t\) with \(r\in D\) for \(\omega \in B\):
+
+This is because of the cauchy property. This holds by uniform contunity.
+
+Also, \(W_t^{\prime} (\omega)\) is continuous int for all \(\omega\) (if \(t,t^{\prime}\) are close then \(\exists r\) close to \(t\) and \(r^{\prime}\) close \(t^{\prime}\) such that \(W_r(\omega)\) is close to \(W_t(\omega)\) and \(W_{r^{\prime}}(\omega)\) is close to \(w_{t^{\prime}}(\omega)\) but \(r,r^{\prime}\) are close so \(W_r(\omega), W_{r^{\prime}}(\omega)\) are close) and \(W_t^{\prime} (\omega) = W_t(\omega)\) for \(t\in D\) for \(\omega \notin B\)
+
+Finally, we claim that \(\langle W_t^{\prime} ; t \geq 0\rangle\) has the same fdd's as \(\langle W_t ; t \geq 0 \rangle \). Given \(t_1,\cdots,t_k\in [0,\infty )\) let \(r_i^{(n)} \to t_i, r_i^{(n)}\in D\) 
+
+Then \(\langle W_{r_i(n)} \rangle \to \langle W_{t_i}^{\prime}  \rangle \) everewhere.
+
+Since we have pointwise convergence we also have weak convergence.
+
+The covariance matrices \([\min \{ r_i^{(n)}, r_j^{(n)} \} ]_{i,j}\) converges to \([\min \{ t_i, t_j \} ]_{i,j}\) 
+
+\begin{theorem}
+    [37.1] Standard B.M. exists.
+\end{theorem}
+
+\(C([0,\infty),\mathbb{R})\) 
+
+To get a general B.M. with any \(W_0, \mu , \sigma\) let \(\langle W_t^{\prime}  \rangle \) be a std B.M. and let \(X\) be a random variable independent of \(\langle W_t^{\prime}  \rangle \) with \(X\) having the law of the desired \(W_0\). Set \(W_t \coloneqq X + \mu t + \sigma W_t^{\prime} \).
+
+\(W_t - W_s = \mu(t-s) + \sigma(W_t^{\prime} - W_s^{\prime}) \sim \mathcal{N}(\mu(t-s), \sigma ^2(t-s))\) 
+
+\section*{Symmetries of BM, or new BMs from old}
+
+Let \(\langle W_t \rangle \) be a std BM. Then so is \(\langle - W_t ; t \geq 0 \rangle \)  (space reversal). Also, given \(t_0 > 0, \langle W_{t_0 - t} - W_{t_0} \rangle _{0 \leq t \leq t_0}\) has the law of BM on \([0,t_0]\) [time reversal].
+
+In addition, \(\langle W_{t_0 + t} - W_{t_0} \rangle _{t\geq 0}\) is BM [time transition]
+
+If \(c > 0\) then \(\langle W_t^{\prime} \coloneqq \frac{1}{c} W_{c^2 t} \rangle_{t \geq 0} \) is B.M. [scale invariance]
+
+\(\frac{1}{c^2} \min \{ c^2 s, c^2 t \} \) 
+
+
+Suppose \(\frac{W(t_0 + \Delta t_0)-W(t_0)}{\Delta t_0} > \epsilon\)
+
+\((c \{ W^{\prime} \left( \frac{t_0}{c^2} + \frac{\Delta t_0}{c^2} \right) - W^{\prime} (\frac{t_0}{c^2})  \} / \Delta t_0 )\) 
+
+Let \(t_1 \coloneqq t_0 / c^2, \Delta t_1 = \Delta t_0 / c^2\) 
+
+\[
+    \frac{W^{\prime}(t_1 + \Delta t_1) - W^{\prime} (t_1)}{\Delta t_1} > c \epsilon
+\]
+
+Taking \(c\) large, we see that there are chords of arbitrarily large slope arbitrarily close to \(0\) 
+
+\begin{theorem}
+    [37.3] On a set of probability 1, \(\forall t\),
+    
+    \[
+        \limsup_{s \downarrow t} \left\vert \frac{W_s - W_t}{s-t} \right\vert = + \infty  
+    \]
+
+    \[
+        \limsup_{s \uparrow t} \left\vert \frac{W_s - W_t}{s-t} \right\vert = + \infty
+    \]
+\end{theorem}
+
+\begin{proof}
+    By symmetry enough to prove the first for \(t\in [0,1)\) 
+
+    Fix \(c > 0\) and let 
+
+    \[
+        A_n \coloneqq \left[ \exists t \in [0,1) \forall s \in (t, t+\frac{4}{n}), \left\vert \frac{W_s - W_t}{s-t} \leq c \right\vert  \right] 
+    \]
+
+    It suffices to show there exists event \(A_n^{\prime} \) containing \(A_n\) and \(P(A_n^{\prime} )\implies 0\)
+    
+    If \(\omega \in A_n\) and \(t\) is a witness (that \(\omega \in A_n\) ), let \(k\) be such that \(\frac{k-1}{n} \leq t < \frac{k}{n}\)
+    
+    We compare \(W \left( \frac{k+j}{n} \right) \) to \(W(t)\) for \(j=0,1,2,3\) to get \(\vert W(\frac{k+j}{n})- W(t) \vert \leq C \left\vert \frac{k+j}{n} - t \right\vert \leq \frac{4C}{n} \) 
+
+    whence \(\left\vert \frac{W(k+j+1)}{n} - W(\frac{k+j}{n}) \right\vert \leq \frac{8C}{n}\) for \(j=0,1,2\) 
+
+    On the other hand,
+
+    \(P[\vert W(\frac{k+j+1}{n}) - W(\frac{k+j}{n}) \vert  \leq \frac{8C}{n}] = P[\vert W(\frac{1}{n}) \vert \leq \frac{8C}{n}]\) 
+
+    \(=P[\vert W(1) \vert \leq \frac{8C}{\sqrt{n}}] \leq \frac{16C}{\sqrt{2\pi n}}\) 
+
+    since the standard normal density is \(\leq \frac{1}{\sqrt{2\pi}}\) 
+
+    Therefore, \(A_n \subseteq A_n^{\prime} \coloneqq \left[ \exists k\in [1,n] s.t. \forall j = 0,1,2, \vert W(\frac{k+j+1}{n}) - W(\frac{k+j}{n}) \vert \leq \frac{8C}{n} \right] \) 
+    
+    with \(P(A_n^{\prime}) \leq n \left( \frac{16C}{\sqrt{2\pi n} } \right)^3 \to 0 \) 
+    
+\end{proof}
+
+\hrulefill
+
+Class 26: 04/23
+
+Let \(X(t) = \frac{W(t)}{t}\) [\(t > 0\)]
+
+Then \(\langle X(t) ; t > 0 \rangle\) is a \underline{Gaussian Process} (i.e. all f.d.d.s are multivariate normal).
+
+Covariances: \(E[X(s)X(t)] = \frac{1}{st} E[W(s)W(t)]=\frac{1}{s t}(s\land t)=\frac{1}{t}\land \frac{1}{s}\)
+
+Thus, if \(W^{\prime\prime} (t) \coloneqq X(\frac{1}{t})\) then \(\langle W^{\prime\prime} (t); t > 0 \rangle \)  has f.d.d.'s of B.M.
+
+\underline{Claim}: If we define \(W^{\prime\prime} (0) \coloneqq 0\) then \(W^{\prime\prime}\) has the law of B.M.
+
+IE we want \(\lim_{t \downarrow 0} W^{\prime\prime} (t) = 0\) a.s.
+
+To see this, note that \(W^{\prime\prime}\) has same f.d.d.s as BM on \([0,\infty)\). In particular, on dyadic rationals.
+
+Therefore, \(W^{\prime\prime}\) is uniformly continuous on the dyadic rationals a.s.
+
+So if we complete \(W^{\prime\prime}\) by continuity, we get B.M. But \(W^{\prime\prime}\) is already continuous on \((0,\infty)\) and has the right value at \(0\) 
+
+Note that, \(W^{\prime\prime} (t) \coloneqq \begin{dcases}
+    t W(\frac{t}{t}), &\text{ if } t > 0 ;\\
+    0, &\text{ if } t = 0 ;
+\end{dcases}\) 
+
+this is called \underline{time inversion} 
+
+\underline{Claim}:
+
+\[
+    \limsup_{n \to \infty} W_n = \infty
+\]
+
+\[
+    \liminf_{n \to \infty} W_n = -\infty
+\]
+
+Both a.s.
+
+To see this, note that \(W_n = \sum_{k=1}^n (W_k - W_{k-1}) \) with \(W_k - W_{k-1}\) being i.i.d.\ \(N(0,1)\).
+
+Each of the events in question belong to the tail \(\sigma\)-field of \(\langle W_k - W_{k-1} ; k \geq 1 \rangle \) 
+
+By Kolmogorov's 0-1 law, each has probability \(0\) or \(1\) 
+
+Both probabilities are equal by space symmetry.
+
+Case 1: both \(0\). Means \(\limsup_{n \to \infty}, \liminf_{n \to \infty} \) both finite. Meaning \(W_n\) is bounded above and below. Then \(\vert W_n \vert\) is bounded.
+
+But \(P[\vert W_n \vert < n^{\frac{1}{4}}] = P[\sqrt{n} \vert W_1 \vert \leq n^{\frac{1}{4}}] = P[\vert W_1 \vert \leq n^{-\frac{1}{4}}] \to 0\) as \(n \to \infty\) 
+
+So, probability is actually \(1\) 
+
+Thus, \(\langle W_t \rangle\) changes sign i.o. as \(t \to \infty\)  
+
+Time inversion tells us \(\langle W_t \rangle\) changes sign i.o. as \(t \downarrow 0\) 
+
+In particular, the zero set \(\{ t ; W_t = 0 \}\) has \(0\) as a limit point.
+
+\begin{theorem}
+    [37.4] The zero set of B.M. is almost surely perfect [every point of it is a limit point], has lebesgue measure \(0\) and is unbounded.
+\end{theorem}
+
+\begin{proof}
+    Let \(\mathscr{Z}(\omega) \coloneqq \{ t; W_t(\omega)=0 \}\)
+    
+    Let \(\lambda\) be lebesgue measure. Then,
+    
+    \[
+        \int \lambda(\mathscr{Z}(\omega))\, \mathrm{d} P(\omega) = \int \int \mathbbm{1}_{A} (t, \omega) \, \mathrm{d} \lambda(t) \, \mathrm{d} P(\omega)
+    \]
+
+    Where \(A \coloneqq \{ (t,\omega) ; W_t(\omega) = 0\} \)
+    
+    If we show that \(A\) is measurable \((\mathcal{R}^1 \times \mathscr{F})\) then we can use Fubini to get:
+    
+    \[
+        \int \int \mathbbm{1}_{A} (t, \omega) \, \mathrm{d} P(\omega) \, \mathrm{d} \lambda(t)
+    \]
+
+    \[
+        = \int_{0}^{\infty} \underbrace{P \{ \omega ; W_t(\omega) = 0 \}}_{=0} \,\mathrm{d}\lambda(t) = 0
+    \]
+
+    So we only nead to show measurability of \(A\) 
+
+    In fact, we will show (thm 37.2) that \((t,\omega) \mapsto W_t(\omega)\) is measurable.
+
+    Now we show that \(\mathscr{Z}(\omega)\) is perfect. 
+
+    The idea is to treat \(t\in \mathscr{Z}(\omega)\) the start of a `new' brownian motion.
+
+    We know about time \(0\).
+
+    Now this can't be exactly right, since \(\exists t \in \mathscr{Z}(\omega)\) such that \(\forall \epsilon > 0\) with \((t,t+\epsilon)\cap \mathscr{Z}(\omega)=\varnothing\). But, apparently, such \(t\) are limits of points \(< t\) in \(\mathscr{Z}(\omega)\).
+
+    Indeed, when \(t\) is \underline{NOT} a limit point from below, \(\exists r \in \mathbb{Q} ^+\) such that \((r,t)\cap \mathscr{Z} (\omega) = \varnothing\) 
+
+    i.e. \(t\) is the \underline{first zero after \(r\)}.
+    
+    So, for \(r\in\mathbb{Q}^+\) let \(\tau(\omega) \coloneqq \tau_r (\omega) \coloneqq \inf \{ t \geq r ; W_t(\omega) = 0 \} \)  
+
+    \(\tau\) is a random variable since we may write \(\{ \omega ; \tau(\omega) \leq t\} = \{ \omega; \inf_{s\in [r,t]\cap\mathbb{Q}} \vert W_s(\omega) \vert = 0 \}  \)  
+
+    \(\in \sigma(W_s ; s\in \mathbb{Q} , s \leq t)\subseteq \sigma(W_s ; s \leq t)\) 
+
+    Thus, \(\tau\) is a \underline{stopping time} (\(\tau \geq 0\) and \([\tau \leq t]\in \sigma (W_s; s \leq t)\)) 
+
+    Define \(W_t^{\ast}(\omega) \coloneqq W_{\tau(\omega)+t}(\omega) - W_{\tau(\omega)}(\omega) = W_{\tau(\omega)+t}(\omega)\) for \(t \geq 0\)  
+
+    We will show (theorem 37.5) that \(\langle W_t ^{\ast} ; t \geq 0 \rangle \) is a B.M.
+
+    Hence \(\tau_r\) is a.s. a limit point of \(\mathscr{Z}\)  
+
+    Now, every point of \(\mathscr{Z}\) that is not a limit point from below in \(\mathscr{Z}\) is equal to \(\tau_r\) for some \(r\in\mathbb{Q}^+\)
+    
+    Hence it is a limit of \(\mathscr{Z}\) too.
+    
+    Let \(B_r\) be a set of pr. \(0\) such that \(\forall \omega \notin B_r\), \(\tau_r(\omega)\) is a limit point of \(\mathscr{Z}(\omega)\).
+    
+    Then \(\forall \omega \notin \bigcup_{r\in\mathbb{Q}^+}B_r, \forall r\in\mathbb{Q}^+,\)
+    
+    \(\tau_r(\omega)\) is a limit point of \(\mathscr{Z}(\omega)\) and \(P(\bigcup_r B_r) = 0\)   
+
+\end{proof}
+
+\begin{theorem}
+    [37.2] B.M is measurable \(\mathcal{R}^1 \times \mathscr{F}\) 
+\end{theorem}
+
+\begin{proof}
+    Set \(W^{(n)}(t,\omega) \coloneqq  W(\lfloor n t \rfloor / n, \omega)\)
+    
+    HW: show \(W^{(n)}\) is measurable \(\mathcal{R}^1 \times \mathscr{F}\)
+    
+    By continuity of simple paths,
+
+    \(W^{(n)} \to W\) everywhere as \(n \to \infty\) so \(W\) is measurable.  
+\end{proof}
+
+\hrulefill
+
+Class 27: 04/25
+
+HW Exercise 37.2:
+
+\(W\left( \frac{2k+1}{2^{n+1}} \right) = \cdots \) [rank \(n\)]
+
+---
+
+Let \(\mathscr{F}_t \coloneqq \sigma(W_s ; s \leq t)\).
+
+\(\tau\) is an \(\langle \mathscr{F}_t ; t \geq 0 \rangle \)  stopping time if \(\forall t\), \([\tau \leq t] \in \mathscr{F}_t\)
+
+\underline{Fix \(\tau\)} a.s. finite.
+
+\(W_t ^{\ast} (\omega) \coloneqq W_{\tau(\omega) + t}(\omega) - W_{\tau(\omega)}(\omega)\)
+
+\(W_t^{\ast} \coloneqq W_{\tau + t} - W_{\tau} \) 
+
+\(\mathscr{F}_{\tau \coloneqq \{ A ; \forall t, A\cap [\tau \leq t]\in \mathscr{F}_t \} } \) 
+
+\(\mathscr{F} ^{\ast} _\tau \coloneqq \sigma(W_t^{\ast} ; t\geq 0)\)
+
+\begin{theorem}
+    [37.5] (Strong Markov Property):
+
+    If \(\tau\) is an a.s. finite stopping time, then \(\langle W_t^{\ast} ; t\geq 0\rangle \) is a std B.M. and \(\mathscr{F}^{\ast}_{\tau} \) is independent of \(\mathscr{F}_{\tau} \) 
+\end{theorem}
+\(\tau_a \coloneqq \inf \{ t ; W_t = a \}, (a\neq 0)\)
+
+This is finite a.s. since \(\overline{\lim} W_t = +\infty \) a.s. and \(\underline{\lim} W_t = -\infty\) a.s.
+
+Also, \(\tau\) is a r.v. and is a stopping time.
+
+\([\tau_a \leq t] = [\inf_{s \in [0,t]\cap\mathbb{Q}} \vert W_s - a \vert = 0]\) 
+
+\underline{The reflection Principle} 
+
+Look at the first time BM hits \(a\), and from that point on reflect the brownian motion.
+
+Then what we get is also a brownian motion.
+
+\(W_t^{\prime} \coloneqq \begin{dcases}
+    W_t, &\text{ if } t \leq \tau_a\\
+    W_{\tau_a} - (W_t - W_{\tau_a}) = 2 W_{\tau _a} - W_t = 2a - W_t, &\text{ if } t \geq \tau_a
+\end{dcases}\) 
+
+\begin{theorem}
+    \(\langle W_t^{\prime} ; t \geq 0 \rangle \) is a B.M. In fact, this holds for any a.s. finite stopping time instead of \(\tau_a\) [though we might not have the simplification \(2a - W_t\)].
+\end{theorem}
+
+\begin{proof}
+
+    Note that \(W_t - W_{\tau}\) is \(W_t^{\ast}\)  
+
+    So, we can think of \(W^{\prime}\) as the pair \((\langle W_t ; t \leq \tau \rangle, \langle W_t^{\ast} ; t\geq 0 \rangle  )\).
+
+    Conversely, from the pair we can get \(W^{\prime}\) 
+
+    Think of \(W\) as \((\langle W_t ; t \leq \tau \rangle, \langle W_t^{\ast} ; t \geq 0 \rangle  )\) 
+
+    Similarly, think of \(W^{\prime}\) as \((\langle W_t^{\prime} ; t \leq \tau \rangle, \langle (W^{\prime} _t)^{\ast} ; t\geq 0 \rangle  )\)  
+
+    \(\langle W_t ; t \leq \tau \rangle = \langle W_t^{\prime} ; t \leq \tau \rangle\)
+
+    \(\langle W_t^{\ast} ; t\geq 0 \rangle = \langle -(W^{\prime})^{\ast}_t ; t \geq 0 \rangle  \) 
+
+    By theorem 37.5, in both cases, the first element of the path is independent of the second element. Hence the theorem is an instance of the general lemma:
+
+    If \(X,Y,Z\) are r.v.'s with \(X,Y\) independent and \(X,Z\) independent and \(Y \overset{\mathscr{D}}{=} Z \) then \((X,Y) \overset{\mathscr{D}}{=} (X,Z) \)
+    
+\end{proof}
+
+We use the reflection principle on \(\tau_a\).
+
+Let \(M_t \coloneqq \sup_{s \leq t} W_s\)
+
+\(M_t\) is a non-negative random variable, non-decreasing in \(t\).
+
+What is the law [cdf]of \(M_t\)? Easier to calculate tail probability.
+
+Note that \([M_t \geq a] = [\tau_a\leq t]\) so this is indeed an event.
+
+This is disjoint union of \([W_t \geq a]\) and \([M_t \geq a, W_t < a]\)
+
+Note: \([M_t \geq a, W_t < a] = [W_t^{\prime} > a]\) 
+
+It is a disjoint union. So, we can calculate the probability:
+
+\(P[M_t \geq a] = P[W_t \geq a] + P[W_t^{\prime} > a] = 2 P[W_t \geq a]\) 
+
+\(W_t\) is normal with mean \(0\), variance \(t\)
+
+\(= \sqrt{\frac{2}{\pi}} \int_{a / \sqrt{t} }^{\infty} e^{-\frac{y^2}{2}} \,\mathrm{d}y\) 
+
+Or we can just write: \(P[\vert W_t \vert \geq a]\) 
+
+So, \(M_t \overset{\mathscr{D}}{=} \vert W_t\vert \) 
+
+This may also remind you of maximal inequality.
+
+\underline{Corollary}: \(\forall a\neq 0, \tau_a \overset{\mathscr{D}}{=} \frac{a^2}{W_1^2} \) and \(E[\sqrt{\tau_a}]=\infty\)
+
+\begin{proof}
+    By symmetry, we may assume \(a > 0\) 
+
+    For \(t > 0\) \(P[\tau_a \leq t] = P[M_t \geq a] = P[\vert W_t \vert \geq a] = P[W_t^2 \geq a^2] = P[t W_1^2 \geq a^2] = P[\frac{a^2}{W_1^2}\leq t]\) which proves the first part.
+
+    \(E[\sqrt{\tau_a}] = E[\frac{a}{\vert W_1 \vert }] = a E[\frac{1}{\vert W_1 \vert}] = a \int_{-\infty}^{\infty} \frac{1}{\vert t \vert} \phi(t) \,\mathrm{d}t \) 
+
+    \(\phi\) is density of standard normal. 
+
+    This is essentially integrating \(\frac{1}{\vert t \vert}\) for \(t\) near \(0\) so this is infinity which gives us the second part. 
+
+\end{proof}
+
+Also interesting: \(E[\tau_a ^{-1}]=E[\frac{W_1^2}{a^2}]=\frac{1}{a^2}\) 
+
+
+
+\end{document}

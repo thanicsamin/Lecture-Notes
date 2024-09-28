@@ -1,0 +1,408 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\acts}{\scalebox{1}[-1]{\circlearrowleft}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{Talks I attended, Fall 2024}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Friday, 9/13/2024}
+
+\subsection*{\centering Extending The Fundamental Theorem of Algebra, by Dmitry Khavinson, University of South Florida}
+
+Quadratic equations have two roots.
+
+\[
+    ax^2 + bx + c = 0
+\]
+
+\[
+    \iff x = \frac{-b+\sqrt{b^2 - 4ac}}{2a}
+\]
+
+Quadratic equations: 1800-1600 B.C>
+
+Cubic Equations - 16th Century! 
+
+Quartic Equations - Also 16th Century
+
+These were expressed as explicit formulas.
+
+19th Century - Abel, Galois proved there's no explicit formula for the general equation of degree \(\geq 5\). 
+
+Question: How many complex solution does equation of degree \(n\geq 1\) have? 
+
+\subsection*{Fundamental Theorem of Algebra}
+
+\begin{theorem}[Fundamental Theorem of Algebra]
+    Every complex polynomial:
+
+    \[
+        p(z) \coloneqq  a_n z^n + \cdots + a_0, a_n \neq 0
+    \]
+
+    of degree \(n\) has precisely \(n\) complex root (counted with multiplicities).
+\end{theorem}
+
+First Proved in 1799 by Gauss.
+
+In 1990s, T. Sheil-Small, A. Wilmshust proposed to extend FTA to a larger clas of polynomials, \underline{harmonic polynomials}.
+
+\[
+    h(z) \coloneqq p(z) - \overline{q(z)}, n \coloneqq \deg p > m \coloneqq \deg q
+\]
+
+\begin{theorem}
+    [A. Wilmshurst, '92]
+
+    \[
+        \#\{ z : h(z) = 0 \} \leq n^2
+    \]
+
+    Moreover, there exist \(p,q\) so that \(\deg q = n-1\) and the upper bound \(n^2\) is attained.
+\end{theorem}
+
+Upper bound of \(n^2\) is not surprising, from Bezout's Theorem in Algebraic Geometry.
+
+If we write,
+
+\[
+    h(x,y) = A(x,y) + i B(x,y)
+\]
+
+In \(\mathbb{C}^2\), we have a bunch of (\(n\)) curves where \(A = 0\), and curves where \(B = 0\).
+
+These intersections live in \(\mathbb{C}^2\). We are interested where \(x,y\) are real, and if we put it there, we expect the solutions to combinatorially be \(n^2\). 
+
+Wilmshurst's example from \(n=2\):
+
+[insert picture] 
+
+\(n\) lines on the left, \(n\) lines on the right, all of them intersect each other, so we get \(n^2\).
+
+If we write harmonic polynomials algebraically,
+
+\[
+    h(z)\coloneqq \operatorname{Im} (e^{-i \pi / 4}z^n) + i \operatorname{Im} (e^{i \pi / 4}(z-1)^m)
+\]
+
+We can do some algebra to get a better expression:
+
+\[
+    h(z) \coloneqq z^n + (z-1)^n + i \overline{z}^n - i (\overline{z}-1)^n
+\]
+
+Note: \(m \coloneqq n-1\) 
+
+\underline{Question}: If \(m \ll n\) what is the precise upper bound for the zeroes of \(p(z) - \overline{q(z)} \) ?
+
+\begin{conjecture}
+    [A. Wilmshurst, '92]
+
+    \[
+        \#\{ z \mid p(z) - \overline{q(z)} = 0 \} \leq m(m-1) + 3n-2
+    \]
+\end{conjecture}
+
+Was proven false in 2011-2013, by S.Y. Le, A.Lerario, E. Lundberg.
+
+For \(m = n-3\) we have the bound:
+
+\[
+    n^2 - 4n + 10
+\]
+
+L-L-L 2013 Theorem gives a bound:
+
+\(n^2 -3n + O(1)\) 
+
+Example: for \(n = 9, m = 6, a = 0.1 + 0.012i\), we have:
+
+[a polynomial, and a picture]
+
+\begin{conjecture}
+    For \(m = 1\) this becomes:
+
+    \[
+        \#\{ z \mid  p(z) - \overline{z} = 0 \} \leq 3n - 2
+    \]
+\end{conjecture}
+
+Conjecture 2: In 1990s, D. Sarason and B. Crofoot, and independently, D. Bshouty, A. Lyzzaik and W. Henagartner verified it for \(n = 2,3\) 
+
+In 2003, using elementary complex dynamics and the argument principle for harmonic mappings, G> Swiatek and DK proved conjecture 2 for \(n > 1\) 
+
+In 2008, L. Geyer showed, using dynamics that the \(3n - 2\) is sharp for all \(n\).
+
+\begin{theorem}
+    [G. Swiatek - DK, '03]
+
+    \[
+        \#\{ z \mid p(z) - \overline{z} = 0, n > 1 \} \geq 3n-2
+    \]
+
+    The boundis sharp for all \(n\).
+\end{theorem}
+
+Now, let \(r(z) \coloneqq \frac{p(z)}{q(z)}\) be a rational function, \(p,q\) polynomials.
+
+\(\deg r = \max(\deg p, \deg q)\).  
+
+\begin{theorem}
+    \[
+        \#\{ z \mid r(z) - \overline{z} = 0, n \coloneqq \deg r > 1 \} \leq 5n - 5
+    \]
+
+    The bound is sharp for all \(n\).
+\end{theorem}
+
+Refinements by J. Liesen, O. Sete, uce, J. Zur - '15-'23
+
+\subsection*{Geometric Optics}
+
+[General Picture of light through a lens of focus f]
+
+Optics is actually not that perfect. Parallel lines don't always meet on the line above focus, for example. Also, lenses have errors. White light is not monochromatic, like newton's prism different colors can go to different places as they have different wavelengths.
+
+This can have a probllem: we percieve points that don't exist as sources of light
+
+[black image]
+
+\subsection*{Gravitational Microlensing}
+
+Conditions:
+
+\begin{itemize}
+    \item \(n\) co-planar point masses [e.g. condensed galaxies, black holes etc] in \textit{lense plane}
+    
+    etc else
+\end{itemize} 
+
+[picture for gravitational lensing]
+
+when light goes near mass, it bends. So, observer thinks there are two sources of light!!! sometimes it could be a whole curve!
+
+[insert pic]
+
+\underline{Exciting fact}:
+
+The map from the distorted picture to the original is a \underline{planar harmonic map}.
+
+[insert pic for lensing by multiple massive objects]
+
+\subsection*{Lens Equation}
+
+Light source is in position \(w\) in the \underline{source plane}. The lensed image is at \(z\) in the lens plane. Masses are in \(z_j\).
+
+\[
+    w = z - \sum_{j=1}^n \frac{\sigma_j}{\overline{z} - \overline{z}_j}
+\]
+
+where \(\sigma_j\) are real constants.
+
+\[
+    r(z) = \sum_{j=1}^n \frac{\sigma_j}{z -z_j} + w 
+\]
+
+the lens equation becomes:
+
+\[
+    \overline{w} = z -\overline{r(z)} 
+\]
+
+[picture for galaxies, quasar]
+
+How do we know spectral pictures give us one galaxy?
+
+History of Gravitational lensing
+
+\begin{itemize}
+    \item Newton 1704
+    \item Cavendish 1784, Lalace 178?
+    \item Soldner (1804)
+    \item Calculations missed correct value of deflection angle by a factor of 2
+    \item Eisntein (1911), same error, fixed in 1915 based on general relativity, curvature of the space around the mass. 
+\end{itemize} 
+
+Motivation: Bible talked about a lot of Supernovas. Maybe they're the same supernovas? lensed to different?
+
+Actually they were different.
+
+\underline{Recent History} 
+
+\begin{itemize}
+    \item \(n = 1\) [one mass]: Eistein (1012 - 1933), either two emages or the whole circle ("Einstein Ring"). Equation is: \(z - \frac{c}{\overline{z} - a} = 0\). Pretty easy to solve.
+    \item H. Witt('90) for \(n > 1\) the max number of observed images is \(\leq n^2 + 1\). S. Mao, A. Petters and H. Witt('97) shows that max is \(\geq 3n + 1\).
+    \item S.H. Rhie ('01) conjectured the upperbound of the number of lensed images for an \(n\)-lens is \(5n - 5\).
+\end{itemize} 
+
+\begin{corollary}
+    [G. Neumann - DK '06] The number of lensed images by an \(n\)-mass lens an not exceed \(5n - 5\) and this bound is sharp (Rhie, '03). Moreover, the numberof images is even when \(n\) is odd, and odd when \(n\) is even. The upper bound is attained with a positive `probability ' i.e. for an open set of parameters (P. Bleher, Y. Homma, L. Ji and K. Roeder, 2014)
+\end{corollary}
+
+\subsection*{Ideas Involved}
+
+\[
+    h(z) \coloneqq z - \overline{p(z)}, \deg p = n > 1
+\]
+
+Critical set of \(h\):
+
+\[
+    L \coloneqq \{ z : \text{Jacobian}(h) = 1 - \overline{p^{\prime} } ^2 = 0  \} 
+\]
+
+is a lemniscate with at most \(n-1\) connected components.
+
+\begin{itemize}
+    \item Inside each component, \(h\) is sense-preserving. God willing, \(h\) \underline{would be univalent} inside \(L\). There will be at most \(n-1\) zeroes of \(h\) where \(\vert p^{\prime}  \vert \leq 1\) 
+    \item Outside \(L\), \(h\) is sense reversing and all of its \(n_-\) sense reversing zeroes are finite.
+    \[
+        - (n-1) \leq - \Delta _L \operatorname{arg}h = n - n_-
+    \]
+
+    so \(n_- \leq 2n - 1\) 
+
+    \item So the total number of zeroes is [i missed]
+\end{itemize} 
+
+\begin{example}
+    Consider
+
+    \[
+        h(z) = z - \overline{\frac{1}{2}(3z - z^3)} 
+    \]
+
+    \(2\) sense preserving zeroes at \(\pm 1\) and \(5\) sense reversing zeroes.
+\end{example}
+
+But God is Not willing. Not necessarily sense preserving.
+
+We need help from dynamics.
+
+\begin{proposition}
+    Let \(\deg p = n\). Then number of attracting fixed points is given by:
+    
+    \[
+        \#\{ z : z - \overline{p(z)} = 0, \vert p^{\prime} (z) \vert < 1 \} \leq n-1
+    \]
+
+    How? We need analaytic.
+
+    \[
+        Q(z) \coloneqq \overline{p(\overline{p(z)} )}
+    \]
+
+    is analytic.
+
+    Every attracting fixed point of \(\overline{p} \) is an attracting fixed point of \(Q\) and by Fatou's theorem it attracts at least one CRITICAL point of \(Q\) where \(Q^{\prime} (z) = 0\) 
+\end{proposition}
+
+\begin{lemma}
+    Each attracting fixed point of \(\overline{p(z)} \) gives us \(n+1\) dot dot dot
+\end{lemma}
+
+Rhie's Construction for $5n-5$:
+
+13 images for non-purturbed lenses and 20 iages after adding a small mass at the origin.
+
+\subsection*{Questions}
+
+Algebra:
+
+How many zeroes does:
+
+\[
+    h \coloneqq \overline{z}^m - p(z)
+\]
+
+\(\deg p = n > m\) have? Wilmshurst's Conjecture suggests upper bound is \(3n\). Is it true?
+
+D. Khavinson, E. Lundberg, S. Perry - '24, and independently by O. Sete, J. Zur - '24 deal with more general polyanalytic polynomials.
+
+W. Hengartner's valence problm - '00: What's the maximal valence of logharmonic polynoials \(f(z) = p(z) \overline{q(z)}\)? \(m,n\) are degrees
+
+Conjecture 4: in the case \(m=1\) the max valence is \(3n-1\) 
+
+Henagartner's Problem: Bezout's theorem gives an upper bound of \((n+m)^2\) on the valence.
+
+Conjecture 5: the bezout bound fails to be sharp for \(m,n \geq 1\).
+
+\begin{theorem}
+    Let \(f = p \overline{q} \) be a logharmonic poly with \(n \coloneqq \deg p \geq 1, m \coloneqq \deg q \geq 1\) and \(p\) not constant multiple of \(q\). Then valence of \(f\) is at most \(n^2 + m^2\) and maximal valence for \(m=1\) is \(3n-1\)
+\end{theorem}
+
+\begin{theorem}
+    An elliptic galaxy \(\Omega\) with a uniform mass density may produce at most 4 bright lensing images of a point light source outside \(\Omega \) and at most one `dim'image inside \(\Omega\) ie at most 5 lensing images altogether.
+
+    Moreover, an elliptic galaxy \(\Omega \) with mass density that is contast may produce at most 4 etc.
+
+    Proof by images
+\end{theorem}
+
+\begin{theorem}
+    Einstein Rings are Ellipses: For any lens \(\mu\) if the lensig produces an image curve surrounding the lens, it is either a circle in the case when the shear, ie agravitational pull by a galaxy far far away \(= 0\) 
+    
+    more nasa pictures.
+\end{theorem}
+
+Isothermal Elliptical Lenses:
+
+The density is important, but never constant. We get isothermal density by projecting onto the lens plane the realistic three dimensional density \(\sim\frac{1}{\rho^2}\) where \(\rho \) is the 3d distance from origin. Then, lens equation becomes:
+
+\[
+    z - C \int_{0}^{1} \frac{1}{\sqrt{\overline{z} ^2 - c^2 t^2} } \,\mathrm{d}?
+\]
+
+Final remarks:
+
+An isothermal sphere with a shear is covered by'06 DK-G., Neumann theorem and may produce at most 4 images.
+
+DK and Lundberg proved etc etc.
+
+
+\end{document}

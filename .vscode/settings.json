@@ -1,0 +1,22 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.aux": true,
+        "**/.fdb_latexmk": true,
+        "**/.fls": true,
+        "**/.log": true,
+        "**/.synctex.gz": true,
+        "**/*.aux": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.log": true,
+        "**/*.out": true,
+        "**/*.gz": true
+    },
+    "explorerExclude.backup": {}
+}

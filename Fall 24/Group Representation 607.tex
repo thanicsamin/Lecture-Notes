@@ -1,0 +1,2740 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\acts}{\curvearrowright}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{Group Representations MATH 607}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+
+\maketitle
+
+Texts: Lang, Algebra, Revised Third Edition, Chapter 17 (sections 1-5) and 18 (sections 1-8)
+
+Serre, Linear Representations of Finite Groups, Parts II and III
+
+\section*{Monday, 8/26/2024}
+
+Today:
+
+History
+
+Modular
+
+Quotients
+
+Matrices
+
+Lang XVII, Section 1
+
+\subsection*{(Fake) History}
+
+History of Groups 
+
+Most notions (let's say what is a vector spce, what is a group) were vague.
+
+Originally, groups were seen as:
+
+\begin{itemize}
+    \item Symmetry Groups \(S_n\) 
+    \item \(GL_n(\mathbb{R})\) aka \(n \times n\) invertible matrices
+    \item Subgroups of the above
+    \item \underline{Representations} of the above
+\end{itemize}
+
+For representation, consider \(G\) and a homomorphism \(G \to S_n\) [which is a group action \(G \curvearrowright \{ 1,2,\dots ,n \} \) ] or a homomorphism \(G \to GL_n\) [which is a group action on vector space].
+
+Part I of this course will be Ring Theory.
+
+\subsection*{Part I: Ring Theory}
+
+\subsection*{Module}
+
+Convention: \(R = \) Ring with unity
+
+\begin{definition}
+    [Left Module]
+
+    Left Module is an abelian group \(M\) with a function \(R \times M \to M\) so that \((r,m) \mapsto rm\) such that \(R \times M \to M\) is \(\mathbb{Z}\)-billinear.
+
+    Meaning, we have:
+
+    \((r+r^{\prime} )m = rm + r^{\prime} m\) 
+
+    \(r(m + m^{\prime} ) = r m + r m^{\prime} \) 
+
+    Also \((r r^{\prime} )m = r(r^{\prime} m)\) 
+
+    And finally \(1m = m\) 
+\end{definition}
+
+By default, module = left module (since Jim doesn't want Trump to get reelected, he prefers left module)
+
+module / field [module over field] = vector space
+
+We can have submodules \(M^{\prime} \triangleleft M\)
+
+We have quotients \(M / M^{\prime} \) 
+
+We have the short exact sequence:
+
+\[
+    0 \to M^{\prime} \to M \to M / M^{\prime} \to 0
+\]
+
+which means in each homomorphism, im = ker
+
+So, \(M^{\prime} \to M\) is injective and \(M \to M / M^{\prime} \) is surjective.
+
+Also, kernel of \(M \to M / M^{\prime} \) is \(M^{\prime} \)
+
+
+\begin{remark}
+    Note that \(R\) is itself an \(R\)-module. 
+
+    Convention: Submodule \(M\) of \(R\) = left ideal of \(R\). 
+
+    Left ideals are not enough to take quotients (like how we need normal subgroup for group quotients).
+\end{remark}
+
+So we need two sided ideals.
+
+\begin{definition}
+    [Two Sided Ideals]
+
+    \(I \subset R\) is \underline{2-sided ideal} if \(I\) is abelian subgroup and \(ri \in I, ir \in I\) aka ``closed''.
+\end{definition}
+
+\begin{example}
+
+    Consider a homomoprhism \(f: R \to R^{\prime} \). Then \(\ker f\) is a 2-sided ideal of \(R\).
+
+\end{example}
+
+For ring homomorphism we need:
+
+\(f(r+r^{\prime} )=f(r)+f(r^{\prime} )\) 
+
+\(f(r r^{\prime} )=f(r)f(r^{\prime} )\) 
+
+\(f(1)=1\) 
+
+If \(I \subset R\) is 2-sided then \(R / I\) is a quotient ring.
+
+For example, \(M_2(\mathbb{R})\) has no proper \(2\)-sided ideal. But there exists left ideals!
+
+\(\begin{pmatrix}
+    \ast &  0 \\
+    \ast &  0 \\
+\end{pmatrix}\) is a left ideal 
+
+Matrices are a good `source' of non-commutative rings.
+
+Given any ring \(R\) we can consider ring \(M_n(R)\) of \(n \times n\) matrices.
+
+Given \(R\)-module \(M\) we can get \(\text{End}_R(M) = \{ f: M \to M, f \text{ is } R\text{-module map} \}\)
+
+We have \((f+g)m=f(m)+g(m), (fg)m = f(g(m))\).
+
+This is a `coordinate free approach' to matrices.
+
+\begin{remark}
+
+    \(M_n(R)\) and \(\text{End}_R(R^n)\) often looks the same, but in general \(M_n(R) \not\cong \text{End}_R(R^n)\).
+
+\end{remark}
+
+Let's first take \(n = 1\). Let \(r_0 \in R\).
+
+Consider \(R \to R\) map \(r \mapsto r_0 r\) 
+
+We don't like this because \underline{this is not a left module map!!!} 
+
+So this is not even in \(\text{End}_R(R)\) 
+
+What if we consider \(r \mapsto r r_0\)?
+
+This is a left module map, aka \(\in \text{End}_R(R)\) 
+
+But \(R \to \text{End}_R(R)\) is not a ring homomorphism.
+
+So we are going to take the opposite ring.
+
+\underline{Fix 1}:
+
+Given ring \(R\), we can look into the mirror and find opposite ring \(R^{op}\)
+
+Elements of \(R^{op} =\) elements of \(R\).
+
+\(0, 1, +\) remain the same 
+
+But multiplication is reversed: define \(r \cdot_{op} r^{\prime} = r^{\prime} r\) 
+
+Alternate notation, we write \(op\) on elements.
+
+Then \(r^{op}(r^{\prime} )^{op} = (r^{\prime} r)^{op}\) 
+
+Then we have isomorphism \(R^{op} \cong \text{End}_R(R)\) which is a ring homomoprhism!
+
+\begin{exercise}
+
+
+    \begin{enumerate}[label=\arabic*)]
+
+        \item \(R \cong R^{op} \iff \exists\) antiautomorphism \(\alpha : R \to R\) 
+
+        Antiautomorphism means \(\alpha\) preserves \(0, 1, +\) but reverses mutliplication
+
+        \item \(R\) commutative, then \((M_n R) \cong (M_n R)^{op}\) 
+
+        \item Real quaternions \(\mathbb{H} \cong \mathbb{H} ^{op}\) 
+
+    \end{enumerate}
+
+\end{exercise}
+
+
+\begin{remark}
+    If you take right modules, you don't need op.
+\end{remark}
+
+There is a \underline{contravariant endofunctor} in the category of rings which takes objects of rings to their opposite.
+
+\(\text{Ring}^{op} \to \text{Ring}\) [opposite category, not the same thing]
+
+\(R \mapsto R^{op}\) 
+
+\underline{Fix 2}: [From Lang]
+
+Suppose we have module homomorphism \(\phi : E = E_1 \oplus \cdots \oplus  E_n \to F_1 \oplus \cdots \oplus F_m = F\) 
+
+Then we have \(E_j \to E \overset{\phi }{\to } F \to F_i\) which we define to be \(E_j \overset{\phi_{ij}}{\to } F_i\) 
+
+Then we have a matrix \(M(\phi)\) so that \(M(\phi)=(\phi)_{ij}\) 
+
+Then for \(\begin{pmatrix}
+     x_1 \\
+     \vdots \\
+     x_n \\
+\end{pmatrix}\in E_1 \oplus \cdots \oplus E_n\) 
+
+Then \(\phi (x) = (\phi_{ij}) \begin{pmatrix}
+     x_1 \\
+     \vdots \\
+     x_n \\
+\end{pmatrix}\) 
+
+So, if we have \(E^n = E \oplus \dots \oplus E\) [n times]
+
+Lang says, there is a ring isomorphism
+
+\[
+    \text{End}_R(E^n) \overset{\cong}{\to } M_n(\text{End}_R E)
+\]
+
+\[
+    \phi \mapsto (\phi_{ij})
+\]
+
+If \(E = R\) as left module, then \(\text{End}_R R \cong R^{op}\) 
+
+By combining these, \(\text{End}_R(R^n)\cong M_n(R^{op})\) 
+
+
+\section*{Wednesday, 8/28/2024}
+
+Today:
+
+Group ring
+
+Category
+
+Simple modules
+
+Question: The course is about `group representations'. So why study rings?
+
+Answer: A group representation [homomorphism \(G \to GL_n(\mathbb{R})\)] is exactly the same as a module over the ring \(\mathbb{R} G\).
+
+So knowing everything about modules would tell us everything about representation.
+
+Abelian Category!
+
+Suppose we have a ring \(R\) and a group \(G\). We can get a ring out of \(G\)
+
+\begin{definition}
+    [Group Ring \(RG\)]
+
+    As an abelian group, this is the free \(R\)-module with basis the elements of \(G\).
+
+    Elements are symbols of the form \(r_1 g_1 + \dots + r_n g_n\) [finite linear combination].
+
+    \(0\) is the trivial linear combination. So \(0 = 0\)
+
+    \(1 = 1e = 1_R e_G\)
+    
+    Multiplication is defined in the obvious way.
+
+    \((\sum_{i} r_i g_i)(\sum_{j} r_j^{\prime} g_j^{\prime} ) = \sum_{i, j} r_i r_j^{\prime} g_i g_j^{\prime} \) 
+
+\end{definition}
+
+Suppose \(V\) is a \(R\)-module.
+
+Then a homomorphism \(\rho : G \to \text{Aut}_R(V) \leftrightarrow V\) is \(RG\)-module.
+
+\(\rho \mapsto (\sum_{i} r_i g_i)v \coloneqq \sum_{i} r_i \rho(g_i)v\)
+
+\(g \mapsto (v \to gv) \leftarrow V\) \(RG\) module.
+
+\begin{example}
+    \(C_2 = \{ 1,t \}\) 
+
+    Then we have \(\mathbb{Z} C_2 = \{ a + bt \mid a, b\in\mathbb{Z}, t^2 = 0\} = \mathbb{Z} [t] / (t^2) \) 
+
+    Note that \((1+t)(1-t) = 1-t^2 = 0\) so we have zero divisors.
+
+    Take \(C_\infty = \langle t \rangle \) 
+
+    Then \(\mathbb{Z} C_\infty =\mathbb{Z} [t, t^{-1}]\) the laurent polynomial ring.
+
+    \(\mathbb{Q} C_\infty = \mathbb{Q}[t, t^{-1}]\) is a PID [since it is a euclidean ring]
+
+\end{example}
+
+Now we see categories.
+
+If we fix \(R\) then we have a functor \(\text{Group} \to \text{Ring}\) given by \(G \mapsto RG\)
+
+Or we could say we have a functor \(\text{Ring} \times \text{Group} \to \text{Ring}\) given by \((R, G) \to RG\) 
+
+\begin{definition}
+    A category \(\mathcal{C}\) consists of:
+
+    \begin{itemize}
+        \item objects \(\text{Ob } \mathcal{C}\) 
+
+        \item morphism \(C(X,Y)\) for \(X, Y \in \text{Ob } \mathcal{C}\)
+    
+        \item compositions \(C(X,Y) \times C(Y,Z) \to C(X,Z)\) given by \((g,f) \mapsto f \circ g\) 
+
+        \item identity \(\text{Id}_X \in C(X,X) \forall X\in \text{Ob} \mathcal{C}\) 
+
+    \end{itemize}
+    
+    Such that we have:
+
+    \begin{itemize}
+  
+    \item associativity: \((f \circ g)\circ h = f\circ (g\circ h)\) 
+
+    \item composition with identity: \(\text{Id}_Y \circ f = f = f\circ \text{Id}_X\) for \(f\in C(X,Y)\)
+
+    \end{itemize}
+
+    For example in the cateogry of groups, we have objects groups and morphisms homomorphism. 
+
+    Morphism notations: \(f: X \to Y\) or \(X \overset{f}{\to } Y\) for \(f\in C(X,Y)\) 
+
+\end{definition}
+
+\begin{definition}
+    \(f: X \to Y\) is isomorphism if \(\exists g:Y \to X\) such that \(f\circ g = \text{Id}, g\circ f = \text{Id}\). Thehen we say \(X\) and \(Y\) are isomorphic and write \(X \cong Y\).
+\end{definition}
+
+\begin{example}
+
+    Example of Categories:
+
+    \begin{itemize}
+        \item Set 
+        \item Ring
+        \item Group
+        \item Ab (Abelian Groups)
+        \item \(R\)-modules (objects are modules, morphisms are homomorphisms \(h(rm) = rh(m)\) )
+        \item Given a group \(G\) we can get a category \(BG\) such that:
+
+        \(\text{Ob } BG = \{ \ast \} \)  and \(BG(\ast,\ast) = G\) 
+        
+        In this category, there is only one object \(\ast\). The elements of the group are morphisms.
+        
+    \end{itemize} 
+
+
+
+\end{example}
+
+\begin{definition}
+    Functor \(F: \mathcal{C} \to \mathcal{D}\) is \(F: \text{Ob } \mathcal{C} \to \text{Ob } \mathcal{D}\) given by \(X \mapsto F(X)\)
+
+    And \(F: \mathcal{C} (X,Y) \to \mathcal{D}(F(X),F(Y))\) such that
+
+    \(X \overset{f}{\to} Y\) gives us \(F(X) \overset{F(f)}{\to} F(Y)\) 
+
+    such that \(F(f\circ g) = F(f)\circ F(g)\) and \(F(\text{Id}_X) = \text{Id}_{F(X)}\) 
+\end{definition}
+
+\begin{example}
+
+    Unit Functor Ring \(\to\) Group given by \(R \mapsto R^\times = \{ r\in R \mid \exists s\in R, rs = 1 = sr \} \)
+
+    For example, \(\mathbb{Q} ^\times \cong C_2 \oplus \mathbb{Z} ^{\infty} [=\pm p_1^{e_1}p_2^{e_2}\cdots]\) 
+
+    \(\mathbb{Z} ^\times \cong \{ \pm 1 \} = C_2\) 
+
+    \((\mathbb{Z} C_2)^\times \cong \{ \pm 1, \pm t \} \cong C_2 \times C_2\)
+
+\end{example}
+
+\begin{definition}
+    \(R\) is a division ring (= skew field) if \(1 \neq 0\) and \(R^\times = R - 0\).
+\end{definition}
+
+\begin{definition}
+    Quaternions
+
+    \(\mathbb{H} = \{ a + bi + cj + dh \mid a,b,c,d,\in \mathbb{R} \} \) 
+
+    Where \(i^2 = j^2 = k^2 = -1\) 
+
+    \(ij = k, jk = i, ki = j, ji = -k, kj = -i, ik = -j\) 
+
+    This is a division ring since we can write down inverses.
+
+    \(\alpha = a + bi + cj + dk\) gives us \(\overline{\alpha} = a - bi - cj - dk\) 
+
+    So, \(\text{norm}(\alpha) = \alpha \overline{\alpha } = a^2 + b^2 + c^2 + d^2\) 
+
+    So, \(\alpha ^{-1} = \frac{\overline{\alpha }}{\text{norm}(\alpha)}\) 
+\end{definition}
+
+\begin{remark}
+
+    Note that the quaternion group \(Q_8 = \{ \pm 1, \pm i, \pm j, \pm k\} \) is a subgroup of \(\mathbb{H} ^\times = GL_1(\mathbb{H})\).
+
+    So, \(\mathbb{H}\) is a \(\mathbb{R} Q_8\) module.
+
+\end{remark}
+
+\begin{theorem}
+    [Weddenburn's Little Theorem]
+
+    a. A finite commutative domain is a field [easy]
+
+    b. A finite skew field is a field [aka commutative]
+
+\end{theorem}
+
+a is easy: suppose \(F\) is finite commutative domain. For \(0 \neq f\in F,\) consider multiplication by \(f\) as a map \(F \to F\). It is injective, and finiteness implies surjective. So, it is bijective, and there exsits inverse.
+
+eg \(\mathbb{Z} / p\) is a field.
+
+\subsection*{Simple Modules}
+
+These are like primes. We also have some analogue of prime factorization.
+
+\begin{definition}
+    \(R\)-module \(E\) is \underline{simple} if:
+
+    \(E \neq 0\)
+
+    No proper submodules, aka \(M \triangleleft E \implies M = 0\) or \(E\)
+
+    In other words, \(E\) is a simple module if it only has two submodules: \(0\) and \(E\).
+
+\end{definition}
+
+eg simple \(\mathbb{R}\)-modules are 1 dim vector spaces, aka \(\mathbb{R}\) 
+
+\begin{exercise}
+
+    \begin{enumerate}[label=\alph*)]
+
+        \item \(\mathbb{R}^2\) is a simple \(M_2(\mathbb{R})\)-module 
+
+        \item Express \(M_2(\mathbb{R})\) as direct sum of simple modules. 
+    \end{enumerate}
+
+\end{exercise}
+
+\section*{Friday, 8/30/2024}
+
+\begin{exercise}
+
+    Suppose finite \(G \neq 1\) and \(R \neq 0\) Prove that \(RG\) has zero divisors.
+
+\end{exercise}
+
+\begin{definition}
+    Direct product of rings \(R \times S\), addition and multiplication is done componentwise.
+
+    It is a product in the category of rings. aka:
+
+    \begin{center}  
+        \begin{tikzcd}
+            & T \ar[ld, "f_1", swap] \ar[d, dotted, "f"] \ar[rd, "f_2"] & \\
+            R & R \times S \ar[l, "\pi_1"] \ar[r, "\pi_2",swap] & S
+        \end{tikzcd}
+    \end{center}
+
+    for any pair of ring homomorphisms \(T \overset{f_1}{\to} R\) and \(T \overset{f_2}{\to} S\) we have a unique ring homomorphism \(f: T \overset{f}{\to } R \times S\) so that the diagram commutes.
+
+\end{definition}
+
+\begin{definition}
+    \(e\in R\) is an \underline{idempotent} if \(e^2 = e\). 
+
+\end{definition}
+
+\(0,1\) are trivial idempotents.
+
+\(\begin{pmatrix}
+    0 &  0 \\
+    0 &  1 \\
+\end{pmatrix}\) is an idempotent in \(M_2(\mathbb{R})\) 
+
+\((0,1)\) is an idempotent in \(\mathbb{R} \times \mathbb{R} \) 
+
+If \(e\) is an idempotent so is \(1 - e\) 
+
+\begin{definition}
+    Idempotent \(e\in R\) is central if \(\forall r\) we have \(er = re\) 
+\end{definition}
+
+\(\begin{pmatrix}
+    0 &  0 \\
+    0 &  1 \\
+\end{pmatrix}\) is not central, but \((0,1)\) is.
+
+\begin{exercise}
+
+    A ring can be written as a product ring, aka \(R \cong R_1 \times R_2\) with \(R_i \neq 0\) if and only if there exists a nontrivial central idempotent.
+
+\end{exercise}
+
+\subsection*{Semisimiple Modules}
+
+\begin{definition}
+    \(E\) is a \underline{simple} \(R\)-module if it doesn't have any nontrivial submodules.
+
+    If \(E \neq 0\) and \(M \triangleleft E\) then \(M \neq 0\) or \(M = E\) 
+\end{definition}
+
+\begin{example}
+
+    \(R^2\) is a simple \(M_2\mathbb{R}\)-module.
+
+
+    \(\mathbb{R} \times 0\) is a simple \(\mathbb{R} \times \mathbb{R}\) module.
+
+    \(\mathbb{Z} / p\mathbb{Z}\) is a simple \(\mathbb{Z}\)-module
+
+\end{example}
+
+\begin{lemma}
+
+    [Schur's Lemma]: Let \(E, F\) be simple \(R\)-modules. Then any nonzero homomoprhism \(f: E\to F\) is an isomorphism.
+
+\end{lemma}
+
+\begin{proof}
+    \(f \neq 0\) means \(\ker f \neq E\) and \(\text{im } f \neq 0\).
+    
+    Since they are submodules, \(\ker f = 0\) and \(\text{im } f = F\) 
+
+    So \(f\) is bijective.
+\end{proof}
+
+\begin{corollary}
+
+    If \(E\) is simple, then \(\text{End}_R E\) is a skew field [any non-zero element is invertible]
+
+\end{corollary}
+
+\begin{example}
+
+    Commutative example: \(\text{End}_{M_2\mathbb{R}}(\mathbb{R}^2)\) is a skew field.
+
+    In fact, \(\text{End}_{M_2\mathbb{R}}(\mathbb{R}^2) \cong \mathbb{R}\) 
+
+\end{example}
+
+
+
+\begin{definition}[Direct Sum]
+    Suppose \(M_i \triangleleft M\) for \(i \in I\) 
+
+    Then, \(M = \bigoplus_{i\in I} M_i\) means, \(\forall m\in M_i\) we have \(m = \sum_{i\in I} m_i\) with \(m_i \in M_i\) \underline{uniquely}.
+
+    There are notions of internal and external direct sums. The above is an internal direct sum.
+
+    External direct sum: given \(\{ M_i \}_{i\in I}\) we can construct \(\bigoplus_{i\in I} M_i\) 
+
+\end{definition}
+
+\begin{proposition}
+    [Universal Property] Given a collection of homomorphisms \(\{ t_i : M_i \to N \}_{i\in I}\), it extends directly to a homomorphism \(\bigoplus M_i \to N\). We denote this by \(\bigoplus f_i\)
+\end{proposition}
+
+ 
+\begin{remark}
+    Note: Maps to product are easy, maps from direct sum are easy.    
+\end{remark}
+
+\begin{proposition}
+    [1.2, Lang XVII]
+
+    Suppose we have isomorphism \(E_1^{n_1} \oplus \dots \oplus E_r^{n_r} \overset{\cong }{\to } F_1^{m_1} \oplus \dots \oplus F_s^{m_s}\) with \(E_i\) and \(F_j\) simple and non-isomorphic [ie for all \(k \neq i, E_k \not \cong E_i\) and \(k \neq j, F_k \not\cong F_j\)  ]
+    
+    Then \(r = s\) and there exists a permutatation \(\sigma \in S_r\) so that \(E_j \cong F_{\sigma(j)}\) and \(n_j = m_{\sigma(j)}\) 
+\end{proposition}
+
+\underline{Corollary}: If \(E\) is a finite direct sum of simple modules, then the isomorphism class of simple components of \(E\) and multiplicities are well-defined.
+
+\begin{proof}
+    We use Schur's Lemma.
+
+    We write \(\phi\) as a matrix \((\phi_{ji}: E_i^{n_i} \to F_j^{m_j})\)
+
+    Since \(\phi\) is injective, for all \(i\) there exists a \(j\) such that \(\phi_{ji} \neq 0\)
+
+    Then, \(E_i \cong F_j\) by Schur's Lemma
+
+    Note that \(F_j\) are isomorphic. So, for all \(i\), the \(j\) such that \(\phi_{ji} \neq 0\) is unique!
+
+    We also get \(\sigma:\{ 1, \dots , r \} \to \{ 1,\dots ,s \} \) so that \(\sigma(i)=j\) 
+
+    Since \(\sigma ^{-1} \) exists\, \(\sigma ^{-1}\) exists, and thus \(r = s\) 
+
+    Since \(\phi\) is an isomorphism, individual \(\phi_{ji} : E_i^{n_i} \to F_{\sigma(i)}^{m_{\sigma(i)}}\) are isomorphisms.
+
+    To complete the proof, we need a lemma
+
+    \underline{Lemma}: Let \(E\) be simple. If \(E^n \cong E^m\) then \(n = m\)
+    
+    Proof of lemma; Let \(D = \text{End}_R E\). By Schur's Lemma, \(D\) is a division ring.
+
+    Since \(E^n \cong E^m\), we have \(\text{End}_R(E^n) \cong \text{End}_R(E^m)\)
+
+    So, \(M_n(D) \cong M_m(D)\) 
+
+    Also, isomorphism not just as rings, but also as \(D\)-modules.
+
+    Every module over a skew field is free, and the number of dimensions is the same.
+
+    So, \(n^2 = m^2 \implies n = m\) 
+
+    This finishes the proof.
+
+\end{proof}
+
+\subsection*{Lang XVII section 2}
+
+\begin{theorem}
+    Let \(E\) be an \(R\)-module. Then TFAE:
+
+    SS1: \(E\) is a sum of simple modules [so, we can write \(m\in E\) as sum of \(m_i\) but it is not unique]
+
+    SS2: \(E\) is a direct sum of simple modules [we can write as a sum, and it's unique]
+
+    SS3: Every submodule of \(E\) is a summand.
+
+    \(F \triangleleft E \impliedby \) we can find \(F^{\prime}\) so that \(E = F \oplus F^{\prime}\) 
+
+    SS3\(^{\prime} \)  : any monomorphism \(F \to E\) `splits'
+
+    SS3\(^{\prime\prime} \) Short exact sequence
+
+    \[
+        0 \to F \to E \to H \to 0
+    \]
+
+    splits.
+
+\end{theorem}
+
+This leads us to:
+
+\begin{definition}
+    \(E\) is semisimple if it satisfies one of the above.
+\end{definition}
+
+Davies: SS2 is best
+
+eg: \(R = \mathbb{R} \times \mathbb{R} \) 
+
+\(E = \mathbb{R} \times \mathbb{R}\) is semisimple but not simple.
+
+Because: \(E = \mathbb{R} \times 0 \oplus 0 \times \mathbb{R}\) 
+
+
+\section*{Wednesday, 9/4/2024}
+
+Recap: Semisimple modules.
+
+\begin{lemma}
+    If \(E = \sum_{i\in I} E_i\) with \(E_i\) simple. Then, \(\exists J \subset I\) such that \(E = \bigoplus_{j\in J} E_j\)
+\end{lemma}
+
+\begin{corollary}
+    SS1 \(\implies\) SS2
+\end{corollary}
+
+\begin{proof}
+    Let \(J \subset I\) be maximal such that \(\sum_{j\in J} E_j = \bigoplus_{j\in J} E_j\)
+
+    This exists by Zorn's lemma.
+
+    \(\forall i\in I - J\), we have \(E_i \cap \bigoplus_{j\in J}E_j \neq \varnothing\) by maximality.
+
+    Since \(E_i\) is simple, \(E_i \subset \bigoplus_{j\in J}E_j\). Therefore, \(E = \bigoplus_{j\in J} E_j\).
+
+\end{proof}
+
+\underline{True of False}? Every module has a maximal proper submodule.
+
+False!!! Exercise.
+
+\begin{exercise}
+    \begin{enumerate}[label=\alph*)]
+        \item If \(M \triangleleft F\) proper and \(M\) maximal, then \(F / M\) is simple. 
+        \item Find a ring \(R\), module \(M\) which does not have proper maximal submodules.
+        \item If \(F\) is a finitely generated \(R\)-module, then it is contained in a proper maximal submodule.
+    \end{enumerate} 
+\end{exercise}
+
+\begin{proof}
+    [Proof of SS2 \(\implies\) SS3]
+
+    Suppose \(F \triangleleft E = \bigoplus_{i\in I}E_i\) with \(E_i\) simple. Let \(J \subset I\) be maximal such that:
+
+    \[
+        F + \bigoplus_{j\in J} E_j = F \oplus \bigoplus_{j\in J} E_j
+    \]
+
+    Take any \(i \in I - J\). Then, \(E_i \cap \left[ F \oplus \bigoplus_{j\in J} E_j \right] \neq 0\) by maximality of \(J\).
+
+    Since \(E_i\) is simple, \(E_i \subset F \oplus \bigoplus_{j\in J}E_j\).
+
+    Therefore, \(E = F \oplus \underbrace{\bigoplus_{j\in J}E_j}_{F^{\prime}}\).
+
+    We have found \(F^{\prime}\), which proves SS3.
+
+\end{proof}
+
+\begin{proof}
+    [Proof of SS3 \(\implies\) SS1]
+
+    \begin{lemma}
+        \(0 \neq F \triangleleft E\) and \(E\) satisfies SS3. Then, there exists simple finitely generated \(S \triangleleft F\).
+    \end{lemma}
+    
+    \underline{Plan}: \(M \underset{\not-}{\triangleleft} \underset{\text{f.g.}}{F_0} \triangleleft F \triangleleft E\).
+
+    Then, choose \(0 \neq v\in F\). Let \(F_0 = Rv\).
+
+    \begin{exercise}
+        \(M\) exists. [Zorn's Lemma]
+    \end{exercise}
+
+    Let \(E = \sum_{\text{simple } S \triangleleft E} S\).
+
+    Then, by SS3, \(E = E_0 \oplus E_0^{\prime}\).
+
+    Lemma and definition of \(E_0\) implies: \(E_0^{\prime} = 0\). So, \(E\) is indeed a sum of simple \(R\)-modules. We're done!
+
+\end{proof}
+
+\begin{proposition}
+    [2.2] Every quotient module and submodule of a semisimple modules is semisimple.
+\end{proposition}
+
+\begin{proof}
+    Quotients: Suppose \(M = E / N\). We have surjective \(f: E \to M\) with \(E\) semisimple.
+
+    SS1 implies \(E = \sum_{i\in I} S_i\) with \(S_i\) simple.
+
+    Then, \(M = \sum_{i\in I} f(S_i)\)
+
+    Schur's lemma implies \(f(S_i)\) is either \(0\) or simple, so \(M\) satisfies SS1.
+
+    Submodules: Suppose \(F \triangleleft E\) with \(E\) semisimple. SS3 implies \(E = F \oplus F^{\prime}\). Thus \(E \cong E / F^{\prime}\), so it is semisimple by the quotient result.
+
+\end{proof}
+
+\underline{Preview}:
+
+\begin{definition}
+
+    A ring \(R\) is \underline{semisimple} if and only if all \(R\)-modules are semisimple.
+
+    Lang defines semisimple differently: A ring \(R\) is semisimple if it is semisimple as an \(R\)-module.
+
+\end{definition}
+
+\begin{theorem}
+    [Artin-Weddenburn Theorem]
+
+    A ring is semisimple if and only if it is isomorphic to a finite product of matrix rings over division algebras:
+
+    \[
+        R \cong M_{n_1}(D_1) \times \cdots \times M_{n_k}(D_k)
+    \]
+
+\end{theorem}
+
+\(\mathbb{C} G, \mathbb{R} G\) are semisimple. We also have the result:
+
+\begin{theorem}
+    [Maschke's Theorem] The group ring \(kG\) is semisimple if \(G\) is finite and \(k\) is a field of characteristic prime to \(G\).
+
+    This also works with \(\operatorname{char} k = 0\). It is in fact an if and only if.
+\end{theorem}
+
+So \(\mathbb{F}_p G\) is also semisimple given \(p \nmid \vert G \vert\)
+
+\begin{proof}
+    Outline: let \(\vert G \vert = n\). We will verify SS3.
+
+    Let \(F \triangleleft E\) be \(kG\) modules.
+    
+    \(k\) is a field, so there exists a \(k\)-linear projection \(\pi : E \to F\) such that \(\pi(f) = f\) for \(f\in F\) [take a basis of \(F\) as a \(k\)-vector space, complete it to a basis of \(E\)].
+
+    Now, define an `average'.
+    \[
+        \pi ^{\prime}(e) = \frac{\sum_{g\in G} g \pi (g ^{-1} e)}{n}
+    \]
+
+    Then, \(\pi ^{\prime} : E \to F\) is a \(kG\)-linear projection, meaning \(\pi ^{\prime} (ge) = g \pi ^{\prime} (e)\).
+
+    Then \(E = \underset{F}{\im \pi ^{\prime}} \oplus \underset{F^{\prime}}{\ker \pi ^{\prime} }  \) 
+
+\end{proof}
+
+
+\section*{Friday, 9/6/2024}
+
+\subsection*{Lang XVII, Sectiion 3}
+
+``Density Theorem''
+
+Suppose \(R\) is a ring and \(E\) is a \(R\)-module. Then we have maps \(R \times E \to E\) by mutliplication on the left.
+
+\begin{definition}
+    [Commutant]
+
+    \(R^{\prime} = R^{\prime} (E) = \End_R(E)\) is a ring. 
+
+    \(\phi \in R^{\prime} \iff \phi : E \to E\) such that \(\phi(re) = r \phi (e)\). It `commutes with \(E\)'.
+
+    Note that \(E \) is also an \(R^{\prime}\)-module, with \(R^{\prime} \times E \to E\) given by \((\phi , e) = \phi(e)\). 
+\end{definition}
+
+\begin{definition}
+    [Double Commutant]
+
+    We can iterate on the previous definition.
+
+    \[
+        R^{\prime\prime} = R^{\prime} (R^{\prime} E) = \End_{R^{\prime}}(E)
+    \]
+\end{definition}
+
+Therefore,
+
+\[
+    R^{\prime\prime} = \End_{R^{\prime}}(E) = \End_{\End{R}(E)}(E)
+\]
+
+This means, \(f\in R^{\prime\prime} \iff f: E\to E, \forall \phi\in R^{\prime} , f \circ \phi = \phi \circ f\). So, things in \(R^{\prime\prime}\):
+
+\begin{center}
+    \underline{commute} with things which commute with \(r\in R\).
+\end{center}
+
+\begin{example}
+    Suppose \(R = \mathbb{R}\) and \(E = \mathbb{R}^n\). Then,
+
+    \[
+        \mathbb{R} ^{\prime}  = \End_{\mathbb{R}}(\mathbb{R}^n) = M_n(\mathbb{R})
+    \]
+
+    \[
+        \mathbb{R}^{\prime\prime} = \underset{rI}{\End_{M_n(\mathbb{R})}(\mathbb{R}^n)} \underset{\leftarrow}{=} \underset{r}{\mathbb{R}}
+    \]
+
+\end{example}
+
+Suppose \(V\) = vector space.
+
+\(V^{\ast} = \Hom(V,\mathbb{R})\) 
+
+Then we have evaluation map \(ev: V \to V^{\ast} \) given by \(v \mapsto (\phi \mapsto \phi(v))\).
+
+\(ev\) is 1-1.
+
+\(ev\) is onto iff \(\dim V < \infty\).
+
+With inspiration from this, we define,
+
+\begin{definition}
+    [Evaluation map] \(ev: R \to R^{\prime\prime}\) given b \(r \mapsto (e \mapsto re)\) 
+
+    We define \(f_r : E \to E\) given by \(f_r = ev(r)\)
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}[label=\alph*)]
+        \item \(f_r \in R^{\prime\prime} \)
+        \item \(ev\) is a ring homomorphism. 
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label=\alph*)]
+        \item \(f_r(\phi(e))= r\phi(e) = \phi(re) \phi(f_r(e))\)
+        \item \(ev(r + r^{\prime}) = ev(r) + ev(r^{\prime}), ev(1)=1\).
+        
+        \((ev(r))(ev(r^{\prime}))e = ev(r)(r^{\prime} e) = r r^{\prime} e = ev(r r^{\prime})e\) 
+    \end{enumerate} 
+\end{proof}
+
+\begin{lemma}
+    [3.1] Suppose \(E\) is semisimple over \(R\), \(e\in E\) and \(f\in R^{\prime\prime}\) 
+
+    Then \(\exists r\in R\) such that \(re = f(e)\) [i.e. \(f(e) = ev(r)(e)\)]
+\end{lemma}
+
+\begin{proof}
+    \(E\) is semisimple, and \(Re\) is a submodule. Therefore, we can write \(E = R e \oplus F\).
+
+    Define \(\pi : E \to E\) be projection to \(R e\).
+
+    Then \(\pi \in E^{\prime} \implies f\circ\phi = \pi \circ f \implies f(e)=f(\pi(e))=\pi(f(e))= re\) for some \(r\in R\).
+\end{proof}
+
+We will prove a stronger version of this lemma called the \underline{Jacobson Density Theorem}.
+
+\begin{theorem}
+    [3.2, Jacobson Density Theorem]
+
+    Suppose \(E\) is semisimple over \(R\)
+    
+    \(e_1, \cdots e_n \in E\)
+
+    \(f\in R^{\prime\prime} \)
+
+    Then, \(\exists r\in R\) such that \(r e_i = f(e_i) \forall i\).
+
+    Therefoe, if \(E\) is finitely generated over \(R^{\prime}\), then \(R \to R^{\prime\prime} \) is onto. 
+\end{theorem}
+
+\begin{proof}
+    We use a \underline{diagonal trick}.
+
+    \underline{Special Case}: \(E\) is simple.
+
+    Idea: Apply the lemma on \(E\) with \(\underbar{e} = (e_1, \cdots, e_n)\) and \(f^n : E^n \to E^n\) such that \(f(y_1,\cdots, y_n) = (f(y_1),\cdots, f(y_n))\). 
+
+    We need to check that \(f\in R^{\prime} (R^{\prime} (E))\) to apply it.
+    
+    This would imply that \(f^n \in R^{\prime}(M_n R) \underset{E\text{ simple}}{=} R^{\prime} (R^{\prime} (E^n))\)
+    
+    Therefore, \(\exists r\) such that \(r \underbar{e} = f^n(\underbar{e})\). This finishes the proof.
+
+    For \(E\) semisimple, key idea is \(f^n \in R^{\prime} (R^{\prime} (E))\) as above. [Complicated for infinite sums. We avoid.]
+
+\end{proof}
+
+Application:
+
+\begin{theorem}
+    [Burnside's Theorem] Suppose \(k\) is an algebraically closed field.
+
+    Take subring \(R\) such that \(k \subset R \subset M_n(k)\)
+    
+    If \(k^n (=E)\) is a simple \(R\)-module, then prove that:
+
+    \[
+        R = M_n(k)
+    \]
+\end{theorem}
+
+\begin{exercise}
+    Suppose \(D_{2n}\) is the dihedral group of order \(2n\), aka
+
+    \[
+        D_{2n} = \langle r, s \mid r^n = 1, s^2 = 1, s r s ^{-1} = r ^{-1} \rangle 
+    \]
+
+    Let \(\zeta _n = e^{2 \pi i / n} \in \mathbb{C}\)
+
+    Then we can define a homomorphism \(D_{2n} \to GL_2(\mathbb{C})\) given by:
+
+    \[
+        r \mapsto \begin{bmatrix}
+            \zeta _n &  0 \\
+            0 &  \zeta_n ^{-1} \\
+        \end{bmatrix}
+    \]
+
+    \[
+        s \mapsto \begin{bmatrix}
+            0 &  1 \\
+            1 &  0 \\
+        \end{bmatrix}
+    \]
+
+    This gives us a ring map \(\pi:\mathbb{C} D_{2n} \to M_2\mathbb{C}\)
+
+    Prove the following:
+
+    \begin{enumerate}[label=\alph*)]
+        \item Prove that \(\mathbb{C}^2\) is a simple \(\mathbb{C} D_{2n}\) module [can be done without technology]
+        \item Use Burnside's theorem to show that \(\pi\) is onto.
+    \end{enumerate} 
+\end{exercise}
+
+Note that Burnside's theorem doesn't work if \(k\) is not algebraically closed.
+
+We have:
+
+\[
+    \mathbb{R} \subset \mathbb{C} \subset M_2\mathbb{R}
+\]
+
+since we can embed \(\mathbb{C}\) into \(M_2\mathbb{R}\).
+
+\(\mathbb{C}\) is a simple \(R\) module, but \(\mathbb{C} \neq M_2\mathbb{R}\) 
+
+\begin{proof}
+    [Proof of Burnside's Theorem]
+
+    \underline{Step 1}: We show that \(\End_R(E) = k\)
+
+    Note that, \(k \underset{\text{central}}{<}  \underset{\text{skew field}}{\End_R(E)} \subset \underset{\text{finite dim} / k}{\End_k(E)} \) 
+
+    \(\forall \alpha \in \End_R(E), k(\alpha)\) is a field and finite dimensional \(/ k\).
+
+    Therefore, \(k(\alpha) = k\) since \(k\) is algebraically closed.
+
+    Thus, \(\alpha \in k\). This finishes Step 1.
+
+    \underline{Step 2}: We show that \(R = \End_k(E)\).
+
+    \(R \subset \End_k(E)\) by hypothesis.
+
+    Suppose \(A\in \End_k(E)\). Let \(e_1, \cdots , e_n\) be a \(k\)-basis for \(E = k^n\).
+
+    Density theorem implies: \(\exists r\in R\) such that \(A e_i = re_i\) for all \(i\).
+
+    Therefore, \(A = r \in R\).
+
+\end{proof}
+
+\section*{Monday, 9/9/2024}
+
+Today:
+
+Density Theorem
+
+Characters determine representation
+
+Artin-Wedderburn Theorem
+
+Homework due Monday 9/16, Exercises 1-7
+
+Recall Jacobson Density Theorem:
+
+If \(E\) is semisimple over \(R\), \(e_1, \dots, e_n \in E\) and \(f\in R^{\prime\prime}\) then,
+
+\[
+    \exists r\in R \text{ s.t. } f(e_i) = re_i \forall i
+\]
+
+Recall that \(R^{\prime\prime} \) is defined as follows:
+
+\[
+    f\in R^{\prime\prime} \iff f:E \to E \text{ s.t. } \forall \phi\in R^{\prime} =\End_{R} E, f \circ \phi = \phi \circ f
+\]
+
+Also recall Burnside's Theorem:
+
+Suppose \(k\) is an algebraically closed field, and \(k \subset R \subset M_n(k)\) are subrings
+
+If \(k^n\) is a simple \(R\)-module, then
+
+\(R = M_n(k)\)
+
+\subsection*{3.7 Existence of Projection Operators}
+
+\begin{theorem}
+
+    Suppose \(E = V_1 \oplus \cdots \oplus V_m\), simple non-isomorphic \(R\)-modules. Then, for any \(i\), there exists \(r_i\in R\) such that,
+
+    \[
+        r_i v = \begin{dcases}
+            v, &\text{ if } v\in V_i ;\\
+            0, &\text{ if } v\in V_j, i \neq j
+            \end{dcases}
+    \]
+
+    So, each projection map is just multiplication.
+
+\end{theorem}
+    
+\begin{proof}
+    This is a consequence of the density theorem.
+
+    Choose nonzero \(e_k \in V_k\).
+
+    Let \(f = \pi_i : E\to E\) which is a projection on \(V_i\).
+
+    Note that \(f\in R^{\prime\prime} \) since for all \(\phi \in R^{\prime} , \phi(V_k) \subset V_k\) [Schur's Lemma, non-isomorphic].
+
+    Density theorem \(\implies \exists r_i \in R\) such that \(r_i e_k = \pi_i (e_k)\).
+
+    Note that \(V_k = Re_k\) so \(\forall v\in V_k, v = r e_k\). 
+
+    So, \(r_i v = r_i r e_k = r\pi_i(e_k) = \pi_i (r e_k) = \pi_i(v)\) 
+
+    Which is what we wanted.
+
+\end{proof}
+
+\underline{Correction to the Existence of Projection Operators}
+
+Suppose \(k\) is a field, \(R\) is a \(k\)-algebra so that \(R\) is semisimple. Suppose \(R\)-module \(E = V \oplus V^{\prime}, \dim_k E < \infty\).
+
+For all simple \(L \triangleleft V, \forall L^{\prime} \triangleleft V^{\prime}\) then \(L \cong L^{\prime}\) 
+
+Then, \(\exists r\in R\) such that for all \(e \in E\),
+
+\[
+    r e = \begin{dcases}
+        e, &\text{ if } e \in V ;\\
+        0, &\text{ if } e\in V^{\prime}  ;
+    \end{dcases}
+\]
+
+\begin{proof}
+    We apply density theorem. Since we have finite dimension, we have:
+
+    \[
+        \{ e_1, \cdots , e_n \} = (k\text{-basis of } V) \cup (k\text{-basis of } V^{\prime})
+    \]
+
+    Let \(\pi_V : E \to E\) be the projection on \(V\).
+
+    Then, \(\pi_V \in R^{\prime\prime}\) [the second commutant] since \(\forall \phi \in R^{\prime}, \phi (v) \subset V, \phi(v^{\prime}) \subset V^{\prime}\).
+
+    Density theorem implies \(\exists r\) such that \(r e_i = \pi_v(e_i)\).
+
+    Then \(\forall a\in k \subset \) center \(R\),
+
+    \(r (a e_k) = a (r e_k) = a \pi_v (e_k) = \pi_v (a e_k)\) 
+
+    Therefore, \(r e = \pi _v(re)\).
+\end{proof}
+
+\underline{Question}: What is a \(k\)-algebra?
+
+Following Atiyah-McDonald, let \(k\) be a commutative ring [often but not always a field]. Then,
+
+\[
+    R \text{ is a } k \text{-algebra } \overset{\text{def}}{\iff} \text{homomorphism } h: k \to R, h(k) \subset \text{center}(R)
+\]
+
+\begin{example}
+    Any ring is a \(\mathbb{Z}\)-algebra, homomorphism sends \(n\) to \(1+1+\cdots+1\) 
+
+    \(k\) field, \(R \neq 0 \implies k \hookrightarrow R\)
+    
+    \(k\)-algebra \(\iff\) \(k \subset \text{center}(R)\) 
+\end{example}
+
+\begin{corollary}
+    [3.8]
+
+    Suppose \(\Char k = 0\), \(R\) is a \(k\)-algebra, \(E,F\) semisimple over \(R\), finite dimensional over \(k\).
+    
+    For \(r\in R\), let:
+
+    \(f_r^E : E \to E\) be \(f_r^E(e)=re\) 
+
+    \(f_r^F : F \to F\) be \(f_r^F(f)=rf\) 
+
+    If \(\Tr(f_r^E)=\Tr(f_r^F)\) for all \(r\in R\),
+    
+    Then \(E \cong F\) as \(R\)-modules.
+\end{corollary}
+
+\begin{proof}
+    Let \(V\) be a simple \(R\)-module.
+
+    Suppose \(E = V^n \oplus \text{direct sum of simple \(R\)-modules not isomorphic to \(V\)} \)
+
+    \(F = V^m \oplus \text{direct sum of simple \(R\)-modules not isomorphic to \(V\)}\) 
+
+    We want to show \(n = m\) 
+
+    Let \(r_v \in R\) be the projection operation from 3.7.
+
+    Then, \(\Tr(f_{r_v}^E) = \Tr(r_v\cdot: E \to E) = \dim_k V^n = n \dim_k V\) 
+
+    Similarly, \(\Tr(f_{r_v}^F) = m \dim_k V \implies n = m\) 
+
+\end{proof}
+
+\begin{corollary}
+    [Characters determine representations]
+
+    Suppose \(k\) is a field and \(\Char k = 0\). Let \(G\) be a finite group. Suppose:
+
+    \(\rho: G \to GL_n(k)\) 
+
+    \(\rho ^{\prime} : G \to GL_m(k)\) 
+
+    with \(kG\)-modules \(E = k^n\) over \(\rho\) and \(F = k^m\) over \(\rho ^{\prime}\) 
+
+    If \(\Tr (\rho (g))= \Tr(\rho ^{\prime} (g))\) for all \(g\),
+
+    Then \(E \cong F\) as \(kG\)-modules. 
+
+    Note that, substituting \(g = 1\) gives us:
+
+    \(\Tr(\rho(1))=\Tr(\rho^{\prime} (1)) \implies \Tr(I) = \Tr(I) \implies n = m\). 
+
+\end{corollary}
+
+\begin{definition}
+    [(semi)simple rings]
+
+    Note that if \(R\) is a ring, then \(R\) is a left module as well. We write \(_R R\) when we're considering it as a left module, and \(_R R _R\) when we are considering a two sided ideal.
+
+    \(R\) is called a \underline{semisimple ring} if \(_R R\) is a semisimple \(R\)-module.
+
+    \(R\) is called a \underline{simple ring} if \(R\) is a semisimple ring, and for all simple \(L, L^{\prime} \triangleleft_R R \implies L \cong L^{\prime}\) 
+
+    This means, \(_R R = \oplus_{i\in I} L_i\) where \(L_i\) are simple (left) ideals such that \(L_i \cong L_j\) for all \(i,j\).
+
+    Recall that an ideal is simple if it has no proper sub-ideals.
+
+\end{definition}
+
+\begin{example}
+    \(M_2(\mathbb{H})\) is a simple ring. We can write it as direct sum of two ideals
+
+    \[
+        \begin{bmatrix}
+            \ast &  0 \\
+            \ast &  0 \\
+        \end{bmatrix} \oplus \begin{bmatrix}
+            0 &  \ast \\
+            0 &  \ast \\
+        \end{bmatrix}
+    \]
+\end{example}
+
+
+\begin{example}
+    \(M_2(\mathbb{H}) \times \mathbb{R}\) is semisimple.
+
+    \[
+        \begin{bmatrix}
+            \ast &  0 \\
+            \ast &  0 \\
+        \end{bmatrix} \times 0 \oplus \begin{bmatrix}
+            0 &  \ast \\
+            0 &  \ast \\
+        \end{bmatrix} \times 0 \oplus \begin{bmatrix}
+            0 &  0 \\
+            0 &  0 \\
+        \end{bmatrix} \times \mathbb{R}
+    \]
+\end{example}
+
+Artin-Wedderburn generalizes this.
+
+\begin{theorem}
+    [Artin-Wedderburn Theorem]
+
+    \begin{enumerate}[label=\roman*)]
+
+        \item   \(R\) simple \(\iff  R\cong M_n(D)\) where \(D\) is a skew-field.
+
+        \item \(R\) semisimple \(\iff R \cong R_1 \times \cdots \times R_s\) simple rings.
+    \end{enumerate}
+\end{theorem}
+
+
+\section*{Wednesday, 9/11/2024}
+
+Today we discuss the Artin-Wedderburn Theorem.
+
+\underline{Exercise}: \(C_2 = \{ 1, g \}\), prove that \(\mathbb{Q} C_2\) is a semisimple ring.
+
+\(\mathbb{Q} C_2 = B_1 \oplus B_2\) 2-sided ideals
+
+\(\mathbb{Q} C_2 \cong \mathbb{Q} \times \mathbb{Q}\). 
+
+\begin{lemma}
+    Suppose we have a ring \(R\) which is decomposed as a sum of (left) ideals:
+
+    \[
+        _R R = \bigoplus_{i\in I} L_i \quad \text{with \(L_i \neq 0\)} 
+    \]
+
+    Then \(\vert I \vert < \infty\).
+\end{lemma}
+
+\begin{proof}
+    Suppose \(_R R = \bigoplus_{j\in J} L_j\) where \(L_j\) are ideals. We want to prove that only finitely many are non-zero.
+
+    Note that, \(1 = \sum_{j\in J} e_j\). We use only finitely many elements here, so \(1 = \sum_{i\in I} e_i\) where \(e_i \neq 0, I \subset J, \vert I \vert < \infty\).
+
+    For all \(r\in R\) we have \(r = r \cdot 1 = r \sum_{i\in I} e_i = \sum_{i\in I} r e_i \in \sum_{i\in I} L_i\).
+    
+    Therefore, \(_R R = \bigoplus_{i\in I} L_i\) a finite sum!
+\end{proof}
+
+Now we go to the theorem.
+
+\begin{proof}
+    [Proof of Artin-Wedderburn Theorem Part I]
+
+    We want to prove: \(R\) simple ring \(\iff R \cong M_n D\) where \(D\) is a skew field.
+
+    First, note that \(_R R \cong L^n\) where \(L\) is a simple ideal [so no proper sub-ideals]. Therefore,
+
+    \[
+        R^{op} \cong  \End_R (_R R) \cong \End_R (L^n) \cong M_n(\underbrace{\End_R L}_{\text{ division ring} })
+    \]
+
+    Taking transpose,
+
+    \[
+        R \cong M_n(\End_R L)^{op} \cong M_n((\End_R L)^{op}) =M_n(D)
+    \]
+
+    So we are done with one direction!
+
+    The other direction is a exercise. Here are the steps:
+
+    \underline{Step 1}: \(M_n D = \begin{bmatrix}
+        \ast & 0 & \cdots &  0 \\
+        \ast & 0 & \cdots &  0 \\
+        \vdots & \vdots & \ddots &  \vdots \\
+        \ast & 0 & \cdots &  0 \\
+    \end{bmatrix} \oplus \cdots \oplus \begin{bmatrix}
+        0 & 0 & \cdots &  \ast \\
+        0 & 0 & \cdots &  \ast \\
+        \vdots & \vdots & \ddots &  \vdots \\
+        0 & 0 & \cdots &  \ast \\
+    \end{bmatrix}\) 
+
+    \underline{Step 2}: Each summand is isomorphic to \(D^n = \begin{bmatrix}
+         \ast \\
+         \ast \\
+         \vdots \\
+         \ast \\
+    \end{bmatrix}\) 
+
+    \underline{Step 3}: \(D^n\) is a simple module.
+
+\end{proof}
+
+\begin{remark}
+    \(R\) simple \(\iff\) \(R\) artinian, \(R\) has no proper \(2\)-sided ideals. Some definitions forgo the artinian condition, in this case these are called artinian simple rings.
+\end{remark}
+
+\begin{lemma}
+    [4.2] Suppose \(L\) is a simple ideal and \(M\) is a simple module so that \(L \not\cong M\). Then \(LM = 0\).
+\end{lemma}
+
+\begin{proof}
+    This is a direct consequence of Schur's lemma. Consider the map \(\phi_m: L \to M\) given by \(l \mapsto lm\) for \(m\in M\). Since this can't be an isomorphism, it must be the zero map. Thus, \(lm = 0\).
+\end{proof}
+
+\begin{proof}
+    [Proof of Artin-Wedderburn Theorem Part II]
+
+    \underline{Idea}: Decompose \(R\) as direct sum of simple ideals. Partition the set of simple ideals so that members of a partition are isomorphic to each other, members of a partition are not isomorphic to members of  another partition. Direct sum of each partition gives us one \(R_j\). 
+
+    Suppose \(R\) is semisimple.
+    
+    Let \(L_1, \cdots , L_s\) be a set of pairwise non-isomorphic simple ideals [meaning \(L_i \not\cong L_j\)]
+
+    So that, for all simple \(L < _R R, L \cong L_i\) for some \(i\).
+
+    Let \(B_i = \sum_{L \cong L_i} L\).
+
+    \underline{Claim}: \(B_i\) is a \(2\)-sided ideal.
+
+    \underline{Proof of Claim}: 
+
+    \[
+        B_i R \underset{4.2}{=} B_i B_i \subset R B_i \underset{B_i \text{ is a left ideal}}{=} B_i 
+    \]
+
+    Thus the claim is proven.
+
+    \underline{Claim}: We have a `block decomposition of \(R\)', meaning,
+
+    \underline{Proof of Claim}:
+
+    \[
+        _R R _R = B_1 \oplus \cdots \oplus B_s
+    \]
+
+    \underline{Subclaim}: \(B_i \cap \sum_{j \neq i} B_j = 0\)
+    
+    \underline{Proof of Subclaim}: Every \(r\in R\), we have that \(r \in L\) where \(L\) is simple. \(L \subset B_i \implies L \cong L_i\). \(L \subset \sum_{j\neq i} B_j \implies L \cong B_j\) for some \(j \neq i\) which is not possible.
+
+    Now, we go back to the main proof.
+
+    We can write \(1 = e_1 + \cdots + e_s\).
+    
+    Then, \(R_i \coloneqq (B_i, e_i)\) is a ring!
+
+    We have \(R \cong (R_1, e_1) \times \cdots \times (R_s, e_s)\), so we're done.
+
+    The other direction is an exercise.
+
+\end{proof}
+
+
+\section*{Friday, 9/13/2024}
+
+Key idea:
+
+\[
+    _R R = L^n \implies \End_R R \cong M_n(\End_R L)
+\]
+
+Note that \(R^{op} \cong \End_R R\) [function composition is written in the opposite direction].
+
+Suppose \(L_1, \cdots , L_s\) are non-isomorphic simple \(R\)-ideals.
+
+\(L\) simple \(\implies L \cong L_i\). 
+
+Define \(B = \sum_{\text{simple } L \cong L_i} L \triangleleft _R R _R\).
+
+We can prove that it is a two sided ideals. 
+
+Then we can write \(R \cong R_1 \times \cdots R_s\) simple, where 
+
+\(R_i = (B_i, e_i)\) [\(e_i\) is the identity in \(B_i\)]. 
+
+\begin{theorem}
+    [4.4] Suppose \(E\) is a \(R\)-module.
+
+    \[
+        E_i \coloneqq \sum_{\stackrel{\text{simple } M \triangleleft E}{M \cong L_i}} M 
+    \]
+
+    Then, \(E = \bigoplus_{i=1}^s E_i\)
+    
+    \(E_i = e_i E = B_i M\).
+\end{theorem}
+
+\begin{corollary}
+    [4.5] If \(R\) is semisimple, \(M\) a simple \(R\)-module, then \(M \cong L_i\) for some \(i\).
+\end{corollary}
+
+\begin{corollary}
+    [4.6] All simple modules of a simple ring are isomorphic.
+
+    \[
+        M \cong \oplus L
+    \]
+\end{corollary}
+
+\subsection*{External Product vs. Internal Product}
+
+\begin{definition}[External Product]
+    If we have [finite] rings \(R_1, \cdots , R_s\) we can construct the ring:
+
+    \[
+        R_1 \times R_2 \times \cdots \times R_s
+    \]
+\end{definition}
+
+\begin{definition}
+    [Internal Product]
+
+    `Block Decomposition': If we have a ring \(R\) and we can write it as sum of 2 sided ideals:
+
+    \[
+        _R R _R = B_1 \oplus \cdots \oplus B_s
+    \]
+
+    Then we have \(e_j \in B_j\) so that:
+
+    \[
+        1 = e_1 + \cdots + e_s
+    \]
+
+    Then, each \(B_j\) has a ring structure with \(e_j\) as identity. Then,
+
+    \[
+        R \cong (B_1, e_1) \times \cdots \times (B_s, e_s)
+    \]
+\end{definition}
+
+Just for clarity:
+
+\begin{definition}
+    [Direct Sum of Ideals]
+
+    \[
+        _R R _R = B_1 \oplus \cdots \oplus B_s
+    \]
+
+    If and only if for every \(r\in R\),
+
+    \[
+        r = b_1 + \cdots + b_s
+    \]
+
+    where \(b_j \in B_j\) and the expression is unique.
+\end{definition}
+
+\underline{Jim's Rant}: A subring has to have the same identity. So, \((B_j, e_j)\) is \underline{not a subring}. 
+
+Block Decomposition is \underline{not a direct sum of rings}!
+
+This is because in category theory, sum refers to the co-product. 
+
+\begin{lemma}
+    Let \(k\) be a field, and let \(D\) be a skew-field which is a \(k\)-algebra such that \(\dim_k D < \infty\). Then,
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\forall \alpha \in D\) we have \(k[\alpha]\) is a field.
+        \item \(k\) algebraically closed \(\implies D = k\). 
+    \end{enumerate} 
+\end{lemma}
+
+\begin{example}
+    If \(k\in\mathbb{R}, D = \mathbb{H}, \alpha \in \mathbb{H} - \mathbb{R} \) then \(k[\alpha] \cong \mathbb{C}\). 
+\end{example}
+
+It is not completely obvious since \(k[i+j] \cong \mathbb{C}\) as well.
+
+\begin{proof}
+    \begin{enumerate}[label=\alph*)]
+        \item \(D\) is a \(k\)-algebra. Therefore, \(k[\alpha]\) is commutative. We just need to find inverse.
+        
+        Let \(0 \neq \beta \in k[\alpha]\). It is enough to prove that for \(\beta \in k[\alpha]\), multiplication map \(\cdot\beta : k[\alpha] \to k[\alpha]\) is bijective.
+
+        \(\cdot \beta\) is a finite dimensional linear transformation so those are true.
+
+        \item For all \(\alpha \in D\) we have: \(k[\alpha]=k\) since \(k\) is closed. So, \(\alpha \in K\). Thus \(D = k\). 
+    \end{enumerate} 
+\end{proof}
+
+\begin{corollary}
+    Suppose \(G\) is finite. Then,
+
+    \[
+        \mathbb{C} G \cong \prod_{i=1}^s M_{n_i}(\mathbb{C})
+    \]
+\end{corollary}
+
+\begin{proof}
+    Artin-Wedderburn Theorem plus the previous lemma.
+\end{proof}
+
+\begin{example}
+    Suppose \(C_n = \langle g \rangle \) cyclic and \(\zeta_n = e^{2\pi i / n}\). Then,
+
+    \(\mathbb{Q} C_2 \cong \mathbb{Q}_+ \times \mathbb{Q}_-\) where \(g \mapsto (1,-1)\). 
+
+    If \(p\) is prime we can write:
+
+    \(\mathbb{Q} (C_p) \cong \mathbb{Q} \times \mathbb{Q}(\zeta_p)\) where \(g \mapsto (1,\zeta_p)\). 
+    
+    \(\mathbb{C} [C_n] \cong \mathbb{C}^n\) where:
+
+    \(g \mapsto (1, \zeta_n, \cdots , \zeta_n^{n-1})\) 
+
+    \(\mathbb{Q} [C_2 \times C_2] \cong \mathbb{Q}^4\) where:
+
+    \[
+        (1,g) \mapsto (1,1,-1,-1)
+    \]
+
+    \[
+        (g,1) \mapsto (1,-1,1,-1)
+    \]
+
+    \(\mathbb{R}[Q_8] \cong \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{H}\) where \(\mathbb{R} [Q_8] \rightarrowtail \mathbb{R} [C_2 \times C_2]\)
+    
+    Some other examples: \(\mathbb{Q} [C_n], \mathbb{C} [Q_8], \mathbb{Q} [D_{2n}], \mathbb{R} [D_{2n}], \mathbb{C} [D_{2n}]\) 
+\end{example}
+
+\subsection*{Representation Theory}
+
+Here, \(G\) is a finite group and \(k\) is a field.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+        \toprule
+            Representations & Modules over \(k G\) &  Characters \\
+        \midrule
+            \(\rho : G \to GL(V)\) where  &  &   \\
+            \(V\) is a finite dimensional & \(V\) is a \(kG\) module &  \(\chi : G \to k, \chi_{\rho}(g) \Tr \rho (g)\) \\
+            vector space &  &   \\
+             &  &   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Representations, Modules and Characters}
+    \label{tab:reptable}
+\end{table}
+
+
+\section*{Monday, 9/16/2024}
+
+We have:
+
+\begin{center}
+    representation \(\iff\) modules over \(kG \implies\) [\(\impliedby\) only if \(\Char k = 0\)] characters.
+\end{center}
+
+rep \(\to\) \(kG\)-module 
+
+\(\rho \mapsto V_\rho\) by \((\sum_{g} a_g g)v \coloneqq \sum_{g} a_g \rho (g) v\) 
+
+\(\rho_v \leftarrow V\)
+
+\(\rho_V(g)v \coloneqq gv\) 
+
+Recall the definition of character:
+
+We have the trace map:
+
+\[
+    \Tr: M_n k \to k
+\]
+
+Where \(\Tr(a_{ij})=\sum_{j} a_{j j}\) [or the sum of eigenvalues]
+
+We have \(\Tr(AB)=\Tr(BA)\) which implies \(\Tr(P A P ^{-1}) =\Tr(A)\). 
+
+So, \(\Tr\) is basis independent. Thus,
+
+\[
+    \Tr:\End_k V \to k
+\]
+
+\begin{definition}[character]
+    Trace is an endomorphism map. This gives us:
+
+    \begin{center}
+        \begin{tikzcd}
+            G \ar[r,"\rho"] \ar[rr, bend right, "\chi_p",swap] & GL(V) \ar[r,"\Tr"] & k
+        \end{tikzcd}
+    \end{center}
+
+    This is called the \underline{character of \(p\)} 
+\end{definition}
+
+There's a correspondence between \(kG\) modules and Representations concepts:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        \toprule
+            Repesentations &  Modules over \(kG\)  \\
+        \midrule
+            irreducible &  simple \\
+             &  isomorphism \\
+             &  direct sum \\
+             &  Hom \\
+             &  dual \\
+             &  tensor product \\
+        \bottomrule
+    \end{tabular}
+    \caption{Rep and kG-mod}
+    \label{tab:repmod}
+\end{table}
+
+\underline{Irreducible vs Simple} 
+
+We say irreducible representation, when we on the other hand say simple modules. Same concept!
+
+\underline{Isomorphism} 
+
+Suppose we have two representations:
+
+\(\rho : G \to GL(V)\) 
+
+\(\rho ^{\prime} : G \to GL(V^{\prime})\) 
+
+We say two representations are isomorphic when:
+
+\[
+    \rho \cong \rho ^{\prime} \overset{def}{\iff} V_{\rho} \overset{\phi}{\cong} \underset{\phi(gv)=g \phi(v)}{V_{\rho} \overset{\phi}{\cong} V^{\prime} _{\rho ^{\prime}} \iff \exists k \text{ isomorphism s.t.} } 
+\]
+
+\(\phi : V \to V^{\prime}\) s.t. \(\forall g\in G\) we have the following commutative diagram:
+
+\begin{center}
+    \begin{tikzcd}
+        V \ar[r,"\rho(g)"] \ar[d, "\phi"] & V\ar[d,"\phi"] \\ V' \ar[r, "\rho^{\prime}(g)"] & V^{\prime}
+    \end{tikzcd}
+\end{center}
+
+\(\phi\) is called the intertwining map. 
+
+\begin{corollary}
+    \(\rho \cong \rho ^{\prime} \implies \chi_{\rho} =\chi_{\rho^{\prime} }\) 
+\end{corollary}
+
+\underline{Direct Sum}
+
+Suppose \(V \oplus W\) is a \(kG\)-module.
+
+\[
+    \rho_{V \oplus W} : G \to GL(V \oplus W)
+\]
+
+is given by:
+
+\[
+    \rho_{V \oplus W} = \begin{bmatrix}
+        \rho_V &  0 \\
+        0 &  \rho_W \\
+    \end{bmatrix}
+\]
+
+We also have \(\chi_{V \oplus W} = \chi_V + \chi_W\).
+
+\underline{Two Representations}
+
+\begin{definition}
+    [Trivial Representations]
+
+    \[
+        \rho : G \to GL(k)
+    \]
+
+    \[
+        g \mapsto 1
+    \]
+
+    Is the trivial representation. Also, \(\chi_{\rho} \equiv 1\).
+\end{definition}
+
+\begin{definition}
+    [Regular Representation]
+
+    Consider the \(kG\)-module \(_{kG}kG\). We have:
+
+    \[
+        \rho_{kG} : G \to GL(kG)
+    \]
+
+    This is injective.
+\end{definition}
+
+Note that \(G \acts G\) by multiplication, this is a free action. For finite group \(G\) with \(\vert G \vert = n\),
+
+\(G \rightarrowtail \text{ Bijection}(G,G)\) so \(G\) is a subgroup of \(S_n\). So we have:
+
+\begin{center}
+    \begin{tikzcd}
+        G \ar[rr, bend left, dotted, "\text{regular rep.}"] \ar[r] & S_n \ar[r] & GL(k^n)
+    \end{tikzcd}
+\end{center}
+
+With the action of `permuting the standard basis'.
+
+\underline{Exercise}: Compute character of Regular Representation.
+
+We have, in line of the previous theorem:
+
+\begin{theorem}
+    [Maschke's Theorem] If \(V \subset W\) as \(kG\)-modules and \(\Char k \nmid \vert G \vert\) then \(\exists V^{\prime}\) such that \(W = V \oplus V^{\prime}\) 
+\end{theorem}
+
+\begin{proof}
+    First, find a \(k\)-linear map \(\pi : W \to V\) such that \(\pi (v) = v\) for all \(v\in V\).
+
+    We average it to make it \(kG\)-linear:
+
+    \(\pi ^{\prime} : W \to V\) given by:
+
+    \[
+        \pi ^{\prime} (w) \coloneqq \frac{\sum_{g} g \pi (g ^{-1} w)}{\vert G \vert }
+    \]
+
+    We have: \(\pi ^{\prime} \) is \(kG\)-linear and \(\pi ^{\prime} (v)=v\) 
+
+    We can take \(V^{\prime} \coloneqq \ker\pi\) 
+\end{proof}
+
+Thus, for \(w\in W\) we can write \(w = \pi ^{\prime} (w) + (w-\pi^{\prime} (w))\).
+
+Note that Maschke's theorem implies \(kG\) is semisimple. Artin Wedderburn implies semisimple \(kG\) module is a direct sum of irreducible modules.
+
+\[
+    V \cong \bigoplus_{i} n_i V_i
+\]
+
+\[
+    \chi_V = \sum_{i} n_i \chi_i
+\]
+
+\underline{Homomorphisms}:
+
+Suppose \(V,W\) are \(kG\)-modules, "representations". Then,
+
+\(\Hom_{kG}(V,W)\) is a \(k\)-vector space.
+
+\(\Hom_k(V,W)\) is a \(kG\)-module.
+
+we define: \((gf)v \coloneqq g f(g ^{-1} v)\) 
+
+i.e. \(((\sum_{g} a_g g)f)v = \sum_{g} a_g (g f (g ^{-1} v))\) 
+
+The \(g ^{-1} \) inside is needed for associativity: \((g^{\prime} g)f = g^{\prime} (gf)\) 
+
+Officially this is a functor.
+
+\(\Hom_k(-,-):(kG\text{-mod})^{op} \times kG\text{-mod}\to kG\text{-mod}\) 
+
+Special case:
+
+Dual Representation: \(W = k\). Then,
+
+\(V^{\ast} = \Hom_k(V,k)\).
+
+So, \((gf)(v)=gf(g ^{-1} v) = f(g ^{-1} v)\)
+
+\underline{Exercise}: \(\chi_{V^{\ast}}=?\) 
+
+
+\section*{Wednesday, 9/18/2024}
+
+\subsection*{Tensor Products}
+
+\underline{Motivation}:
+
+Product Structure: \(- \otimes -\): \(kG\)-mod \(\times kG\)-mod \(\to kG\)-mod given by \(V \otimes_k W\).
+
+Group action works diagonally, \(g(x \otimes y) = (gx) \otimes (gy)\), extended linearly.
+
+Extension of scalars:
+
+\[
+    \mathbb{R} G \otimes _ \mathbb{R} \mathbb{C} = \mathbb{C} G
+\]
+
+Product of Groups: \(k[G \times H] = kG \otimes _k kH\) 
+
+When for \(k\) a field then modules are vector spaces \(k^m\) and \(k^n\) which are easy:
+
+\[
+    k^n \otimes_k k^m = k^{nm}
+\]
+
+\[
+    \dim(k^n \otimes_k k^m) = mn
+\]
+
+\(\{ e_i \} \) a basis for \(k^n\) 
+
+\(\{ f_j \} \) a basis for \(k^m\) 
+
+Then \(\{ e_i \otimes f_j \} \) is a basis for \(k^n \otimes k^m\).
+
+However, tensor product consists of more than `pure' tensors.
+
+\begin{definition}
+    [Tensor Product] Let \(R\) be a \underline{commutative} ring. Tensor product is a functor:
+
+    \[
+        - \otimes_R - : R-\text{mod} \times R-\text{mod} \to R-\text{mod} 
+    \]
+
+    \[
+        (A,B) \mapsto A \otimes_R B
+    \]
+
+    [Functor meaning if we have homomorphism on the left we will have homomorphisms on the right]
+
+    \underline{Construction}:
+
+    Let \(F(A \times B)\) be the free \(R\)-module with basis \(A \times B\). Then a typical element of the basis is \((a,b)\in A \times B\). 
+
+    Let \(S\) be the sub-module generated by the following:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \((a_1 + a_2, b) - (a_1,b) - (a_2,b)\)
+        \item \((a, b_1 + b_2) - (a,b_1) - (a,b_2)\)
+        \item \(r(a,b)-(ra,b)\) 
+        \item \(r(a,b)-(a,rb)\) 
+    \end{enumerate} 
+
+    Then, we define:
+
+    \[
+        A \otimes _R B \coloneqq \frac{F(A\times B)}{S}
+    \]
+
+    and write \(a \otimes b\) for the image of \((a,b)\). 
+
+    This means, a typical element of \(A \otimes _R B\) is:
+
+    \[
+        \sum_{i=1}^n a_i \otimes b_i \in A \otimes _R B 
+    \]
+
+    We also have the following relations:
+
+    \((a_1 + a_2) \otimes b = a_1 \otimes b + a_2 \times b\) 
+
+    \(a \otimes (b_1 + b_2) = a \otimes b_1 + a \otimes b_2\) 
+
+    \(r(a \otimes b) = (a \otimes rb) = (ra \otimes b)\) 
+\end{definition}
+
+\begin{exercise}
+    \(\mathbb{Z} / 2 \otimes _ \mathbb{Z} \mathbb{Z} / 3 = 0\) 
+\end{exercise}
+
+\begin{proposition}
+    Suppose \(A,B,M\) are \(R\)-modules, and
+
+    \[
+        \phi : A \times B \to M \text{ is \(R\)-billinear} 
+    \]
+
+    Meaning,
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\phi(a_1 + a_2,b) = \phi(a_1,b) + \phi(a_2,b)\)
+        \item \(\phi(a,b_1 + b_2) = \phi(a,b_1)+\phi(a,b_2)\)
+        \item \(r\phi(a,b) = \phi(ra,b) = \phi(a,rb)\)  
+    \end{enumerate}
+    
+    Then, by definition,
+
+    \[
+        \pi: A \times B \to A \otimes _ R B
+    \]
+
+    is \(R\)-bilinear. 
+\end{proposition}
+
+\begin{proposition}
+    [Universal Property of Tensor Product]
+
+    \(\pi\) is initial in the category of bilinear maps with domain \(A \times B\). Meaning, every bilinear map from \(A \times B\) factors through \(\pi\). 
+
+
+    \begin{center}
+
+    \begin{tikzcd}
+        A \times B \ar[r,"\forall\phi\text{ bilinear}"] \ar[d,"\pi"] & M \\ A \otimes_R B \ar[ur, dotted, "\exists!\overline{\phi}", swap]
+    \end{tikzcd}
+
+    This diagram commutes
+
+    \end{center}
+
+\end{proposition}
+
+\begin{proof}
+    For uniqueness, note that, \(\overline{\phi}(a \otimes b) = \overline{\phi}(\pi(a,b))=\phi(a,b)\) 
+
+    For existence, define \(\hat{\phi} (a,b) = \phi (a,b)\) where \(\hat{\phi} : F(A \times B) \to M\). Then \(\overline{\hat{\phi}}(S) = 0\) so \(\overline{\phi}: A \otimes _R B \to M\) exists.  
+\end{proof}
+
+\begin{proposition}
+    [Rephrasing Universal Property in Terms of Adjoint Functors]
+
+    \[
+        \Hom(A \otimes B, C) \cong \Hom(A, \Hom(B,C))
+    \]
+
+\end{proposition}
+
+\begin{proof}
+    \[
+        f \mapsto (a \mapsto (b \mapsto f(a \otimes b)))
+    \] 
+
+    \[
+        (a \otimes b \mapsto g(a)b) \leftarrow g
+    \]
+
+    \begin{center}
+
+        \begin{tikzcd}
+            R\text{-mod} \ar[rr, bend right, "\Hom(A\text{,}\Hom(-\text{,}C))", swap] & & R\text{-mod} \ar[ll, bend right, "\Hom(A\otimes-\text{,}C)", swap]
+        \end{tikzcd}
+
+    \end{center}
+
+\end{proof}
+
+\begin{proposition}
+    \begin{enumerate}[label=\arabic*)]
+        \item Commutative \(A \otimes _ R B \cong B \otimes _ R A\) 
+        \item Identity \(R \otimes _ R B \cong B\) 
+        \item Assocative \((A \otimes B) \otimes C \cong A \otimes (B \otimes C)\) 
+        \item Distributive \(\left( \bigoplus_{\alpha} A_\alpha  \right) \otimes B \cong \bigoplus_{\alpha} (A_\alpha \otimes B)\)  
+        \item Functorial \(\dbinom{f:A \to A^{\prime}}{g:B\to B^{\prime}} \implies  \quad f \otimes g : A \otimes B \to A^{\prime} \otimes B^{\prime} \) 
+        \item Exactness Short Exact Sequence \(0 \to A \overset{f}{\to} B \to C \to 0 \implies\) Short Exact Sequence \(0 \to A \otimes M \overset{f \otimes 1_M}{\to} B \otimes M \to C \otimes M \to 0\) 
+        \item Right Exactness \(M\) \(R\)-mod,\(0 \to A \to B \to C \to 0 \implies\) Exact Sequence \(A \otimes M \to B \otimes M \to C \otimes M \to 0\)  
+    \end{enumerate} 
+\end{proposition}
+
+\section*{Friday, 9/20/2024}
+
+\subsection*{Lang Section 2}
+
+\underline{Tensor Product of Representation} 
+
+Suppose \(V,W\) are \(k\)-vector spaces, then we have \(V \otimes _ k W\) is also a \(k\)-vector space. But they all are \(kG\)-modules as well:
+
+\[
+    g(v \otimes w) = gv \otimes gw
+\]
+
+\begin{proposition}
+    The character is multiplicative:
+
+    \[
+        \chi _{v \otimes w} = \chi _v \chi _w
+    \]
+\end{proposition}
+
+\begin{proof}
+    Let \(\{ e_i \} \) be a basis for \(V\) and \(\{ f_j \} \) a basis for \(w\).
+
+    Suppose \(g e_i = \sum_{k} a_{ki} e_k\) 
+
+    And \(g f_j = \sum_{l} b_{lj} f_l\)
+    
+    Then, \(g(e_i \times f_j) = ge_i \times gf_j = \sum_{k,l} e_{ki}b_{lj} e_k \times f_l\)
+    
+    Take \((k,l) = (i,j)\).
+
+    Then, \(\chi_{v \times w} (g) = \sum_{i,j} a_{i i} b_{j j} = \chi_v(g) \chi_w(g) \) 
+\end{proof}
+
+Consider \(f : G \to k\). We have:
+
+\{1d chars\} \(\subset\) \{simple chars\} \(\subset\) \{chars\} \(\subset\) \{virtual chars\} \(\subset\) \{class functions\}
+
+We explain these later.
+
+\begin{definition}
+    \(f\) is a \underline{character} if \(\exists \rho : G \to GL_k(V)\) such that \(f = \chi_{\rho} = \Tr \circ \rho\) 
+\end{definition}
+
+\begin{definition}
+    \(f\) is a \underline{class function} if \(\forall g, h \in G\) we have \(f(h g h ^{-1}) = f(g)\)
+\end{definition}
+
+\begin{definition}
+    \(f\) is a virtual character if \(\exists \rho , \rho ^{\prime} \) such that \(f = \chi _ \rho - \chi _ {\rho ^{\prime} }\) 
+\end{definition}
+
+\begin{definition}
+    \(f\) is \underline{simple} (=irreducible) character if \(f = \chi _ V\) where \(V\) is a simple \(kG\)-module.
+\end{definition}
+
+\begin{definition}
+    \(f\) is \underline{1-dimensional character} if \(f : G \to k^\times\) is a homomorphism. eg trivial character \(\chi_1 (g) \equiv 1\). 
+\end{definition}
+
+\begin{proposition}
+    Class Functions are \(k\)-algebras. Virtual characters are a commutative ring.
+\end{proposition}
+
+Now, suppose \(\Char k \nmid \vert G \vert\). Then,
+
+\[
+    kG \cong M_{n_1}(D_1) \times \cdots \times M_{n_s}(D_s)
+\]
+
+Assume \(M_{n_1}(D_{n_1})=k\). Then we have the trivial representation: \(ga = a\).
+
+If \(L_i = D_i^{n_i}\) is a simple \(kG\)-module, then
+
+\(\chi_i = \chi_{L_i}\) is a simple characteristics.
+
+We have \(1 = e_1 + \cdots + e_s\) [central non-trivial idempotents].
+
+\(\chi_i(e) = \Tr(\operatorname{Id}_{L_i}) = \dim_k L_i = n_i \dim_k D_i\).
+
+\begin{example}
+    Consider \(Q_8 \hookrightarrow \mathbb{H} ^\times\). Then,
+
+    \[
+        \chi_{\mathbb{H}}(e) = 4
+    \]
+\end{example}
+
+Now, consider \(_{kG}kG \cong \bigoplus_{i} n_i L_i\), the `regular representation'. \(e_j L_i = 0\) for \(i \neq j\). Then,
+
+\[
+    \chi_i(e_i) = \chi_i(1) = \chi_i(e) = \dim_k L_i
+\]
+
+So, char \(\chi: G \to k\) extends to \(\chi : kG \to k\) by \(\sum a_g g \mapsto \sum a_g \chi (g)\).  
+
+If \(V\) is a finitely generated \(kG\)-module, we have
+
+\[
+    V \cong m_1 L_1 \oplus \cdots \oplus m_s L_s
+\]
+
+where \(m_i \geq 0\).
+
+\begin{theorem}
+    [2.2, 2.3] \(\chi _v = \sum_{i} m_i \chi_i : G \to k\) with \(m_i\) uniquely determined if \(\Char k = 0\).
+\end{theorem}
+
+\begin{theorem}
+    [2.3] Characters Determine Representations: suppose \(\Char k = 0\). Then,
+
+    \[
+        V \cong V^{\prime} \iff \chi_V = \chi_{V^{\prime} }
+    \]
+\end{theorem}
+
+\begin{proof}
+    \(\implies\): Trace is independent of basis, so this is easy.
+
+    \(\impliedby\): We already gave a proof using projection operators. Second Proof:
+
+    Assume \(\chi_V = \chi _{V^{\prime}}\). We decompose:
+
+    \[
+        V \cong \oplus m_i L_i, V^{\prime} \cong m_i^{\prime} L_i
+    \]
+
+    Note that we have \(\chi_V(e_i) = m_i \dim_k L_i = m_i^{\prime} \dim_k L_i = \chi_{V^{\prime}}(e_i)\)
+    
+    Thus we must have \(m_i = m_i^{\prime}\).
+\end{proof}
+
+\subsection*{Representation Ring}
+
+\(R_k(G) = (\text{virtual char},+,\times) \cong (\text{virtual rep}, \oplus, \otimes)\).
+
+Example: \(R_{\mathbb{Q}}[C_2] \cong \frac{\mathbb{Z}[X]}{(X^2 - 1)}\) 
+
+
+\section*{Monday, 9/23/2024}
+
+\subsection*{Dual Characters}
+
+
+
+Consider \(\rho : G \to GL_k(V)\) 
+
+Dual \(V^{\ast} = \Hom_k (V,k)\) is also a representation.
+
+\[
+    (g\phi)(v) = \phi(g ^{-1} v)
+\]
+
+Inverse because we want it to be a left module.
+
+\underline{Claim}: \(\rho: G \to GL(V) \to \rho ^{\ast} : G \to GL(V^{\ast})\)
+
+\(\rho ^{\ast} (g) = (\rho (g)^{-1})^T\) 
+
+\begin{proof}
+    \(\rho ^{\ast} (g) = (\rho (g ^{-1}))^{\ast} = \rho (g ^{-1})^T\) 
+\end{proof}
+
+\begin{corollary}
+    \begin{enumerate}[label=\alph*)]
+        \item \(\chi _{V^{\ast} }(g) = \chi _v(g ^{-1})\) 
+        \item \(\chi_{\Hom(V,W)}(g) = \chi _V (g ^{-1}) \chi _W(g)\)  
+    \end{enumerate} 
+\end{corollary}
+
+\begin{proof}
+    a follows from the claim.
+
+    b: Consider the \underline{slant homomorphism}:
+
+    \[
+        V^{\ast} \otimes W \to \Hom(V,W)
+    \]
+
+    \[
+        \sum_{i} \phi_i \otimes w_i \mapsto \left(v \mapsto \sum_{i} \phi _i(v)w_i \right)
+    \]
+
+    It is an isomorphism since \(V,W\) are both finite dimensional.
+
+    \[
+        \chi_{\Hom(V,W)} (g) = \chi_{V^{\ast} \otimes W} (g) = \chi_{V^{\ast}}(g) \chi_W(g) = \chi_V(g ^{-1}) \chi _W(g)
+    \]
+\end{proof}
+
+\subsection*{1 Dimensional Characters}
+
+\begin{definition}
+    \(1\) D representation is a homomorphism \(\rho: G \to k^\times \) 
+\end{definition}
+
+\begin{center}
+    \begin{tikzcd}
+        G \ar[rr] \ar[rd] & & k^\times\\
+        & G^{ab} \ar[ur] &
+    \end{tikzcd}
+\end{center}
+
+\underline{Question}: What are the 1d representations for \(D_6\)?
+
+\(D_6 \cong \mathbb{Z} /3 \rtimes \mathbb{Z}/2\) 
+
+So, \(D_6^{ab} \cong \mathbb{Z} / 2\) 
+
+So, we have \(k_T, k_-\) 
+
+\(r \mapsto 1\) 
+
+\(s \mapsto -1\) 
+
+\underline{Exercise}: Trivial Representation / Idempotent
+
+\[
+    e_T = \frac{\sum_{g\in G} g}{\vert G \vert } \in kG
+\]
+
+\[
+    e_T^2 = e_T
+\]
+
+\[
+    g e_T = e_T = e_T g
+\]
+
+\[
+    e_T \in Z(kG)
+\]
+
+\[
+    kG = (kG)e_T \oplus (kG)(1-e_T)
+\]
+
+\[
+    kG \cong k \times \frac{kG}{\langle e_T \rangle }
+\]
+
+\begin{lemma}
+    [2] Any finite subgroup of \(k^\times\) is cyclic.
+\end{lemma}
+
+\begin{proof}
+    Key Fact: \(x^e - 1 \in k[x]\) has at most \(e\) roots [proof: long division].
+
+    Note: \(x^2 - 1 \in \mathbb{Z} / 8 [x]\) has 4 roots. This implies \(\mathbb{Z} / 8\) is not a field.
+
+    Consider finite abelian \(A < k^\times\) 
+
+    Consider \(e = \text{exponent } A = \inf \{ m \geq 1 \mid \forall a\in A, a^m = e \}\)
+    
+    Then, \(\forall a\in A, a^e - 1 = 0\). From the key fact, \(\vert A \vert \leq e \leq \vert A \vert\)
+    
+    Thus, \(e = \vert A \vert \) 
+\end{proof}
+
+\begin{corollary}
+    \(\forall \hom \quad \rho : G \to k^\times ,\exists\) Cyclic \(C\) such that:
+
+    \begin{center}
+        \begin{tikzcd}
+            G \ar[rr, "\rho"] \ar[rd, two heads] & & k^\times\\
+            & C \ar[ur, tail] &
+        \end{tikzcd}
+    \end{center}
+
+\end{corollary}
+
+Recall only finite subgroup of \(\mathbb{Q}\) is \(\pm 1\).
+
+\(1-d\) \(\mathbb{Q}\) reps of \(G\) \(\leftrightarrow\) trivial representation + index \(2\) subgroups
+
+Now we suppose \(k\) is algebraically closed, eg \(k = \mathbb{C}\). Then,
+
+\[
+    kG \cong \prod_i M_{n_i}(k)
+\]
+
+If \(G\) is abelian, then,
+
+\[
+    kG \cong k \times \cdots \times k
+\]
+
+\begin{corollary}
+    [3] \(k\) is algebraically closed and \(G\) is abelian \(\iff\) all irreducible representations are \(1\)-dimensional. 
+\end{corollary}
+
+\begin{corollary}
+    Let \(\vert G \vert = n, k = \mathbb{C}\). 
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\forall V, \chi_V(G) \subset \mathbb{Q} (\zeta_n)\) 
+        \item \(\forall V, \chi_{V^{\ast}}(g) = \overline{\chi_V(g)} \)
+        \item \(\forall V, W, \chi_{\Hom(V,W)} (g) = \overline{\chi_V(g)} \chi_W(g)\)   
+    \end{enumerate} 
+\end{corollary}
+
+\begin{proof}
+    \begin{enumerate}[label=\alph*)]
+        \item True for \(1\)d representation from the lemma.
+        
+        \(\implies\) True for \(G\) abelian (corollary 3)
+
+        \(\implies\) True for cyclic \(G\)
+
+        \(\implies\) always true: \(g\in G \implies \langle g \rangle \) cyclic.
+
+        \[
+            \chi_{\rho}(g) = \chi_{\rho|_{\langle g \rangle }} (g) 
+        \]
+
+        Then, \(\rho : G \to GL(V)\), consider \(g\in G\).
+        
+        Then \(\rho(g)^n = I \implies \Tr(\rho_V(g)) \in \mathbb{Q}(\zeta_n)\).
+        
+        \item Same as (a). 
+        
+        \(\rho ^{\ast} (g) = (\rho (g)^{-1})^t\) 
+        
+        For 1-dim, \(\rho ^{\ast} = \overline{\rho}\).
+
+        \item \(\chi_{\Hom(V,W)}(g) = \chi_V(g ^{-1}) \chi_W(g) = \overline{\chi_V(g)} \chi_W(g)\) 
+    \end{enumerate} 
+\end{proof}
+
+\subsection*{Two Bases for center \(kG\)}
+
+\begin{definition}
+    \(g\in G\) is conjugate to \(\sigma \in G\) if \(\exists \tau\) such that,
+    
+    \[
+        \tau g \tau ^{-1} = \sigma
+    \]
+
+    Write \(g \sim \sigma\) 
+\end{definition}
+
+\(G = \coprod_{G / \sim}[g]\) 
+
+\([g]= \{ \sigma \in G \mid g \sim \sigma \} \) conjugacy classes 
+
+\begin{proposition}
+    \(\{ \sum_{\sigma \in [G]} \sigma \}_{[g]\in G / \sim} \) is a \(k\)-basis for center of \(kG\). 
+\end{proposition}
+
+\begin{proof}
+    Clearly these are linearly independent.
+
+    \(\alpha = \sum_{\sigma \in G} a_\sigma \sigma \in\) center
+
+    \(\iff \tau \alpha = \alpha \tau \iff \tau \alpha \tau ^{-1} = \alpha\) 
+
+    \(\sigma a_\sigma \tau \sigma \tau ^{-1} = \sum  a_\sigma \sigma \implies (g \sim \sigma \implies a_g = a_\sigma)\) 
+\end{proof}
+
+
+\section*{Wednesday, 9/25/2024}
+
+Lang XVIII, 4
+
+Two bases for \(Z(kG)\)
+
+conjugacy classes
+
+primitive cental idempotents [\(k\) algebraically closed]
+
+\begin{exercise}
+    \(G \rightarrowtail Q\), prove that \(kG \cong kQ \times R\) 
+\end{exercise}
+
+\begin{proposition}
+    [4.1] Suppose \(\{ \sum_{\sigma \in [g]}  \}_{[g] \in G / \sim} \) form a \(\{ \substack{k \\ \mathbb{Z}} \} \)-basis for \(\{ \substack{Z(kG) \\ Z(\mathbb{Z} G)} \} \)  
+\end{proposition}
+
+Consider a ring \(R\).
+
+\begin{definition}
+    \(e\in R\) is a \underline{primitive central idempotent} if:
+    
+    \(e\) is a central idempotent [\(e^2 = e, e\in Z(R)\)]
+
+    \(e = e^{\prime} + e^{\prime\prime}\) with \(e^{\prime} , e^{\prime\prime} \) central idempotent \(\implies \{ e^{\prime} , e^{\prime\prime}  \} = \{ 0, e \} \) 
+\end{definition}
+
+Then, \(kG\ni 1 = e_1 + \cdots + e_s, kG \cong \prod M_{d_i}(D_i)\)
+
+\(e_i \to (0, \cdots , 0, 1, 0, \cdots , 0)\) 
+
+Now suppose \(n = \vert G \vert \) 
+
+We have irreducible representations \(L_1, \cdots , L_s\) and degrees \(d_1, \cdots , d_s\) then \(L_i \cong D_i^{d_i}\). We have irreducible characteristics \(\chi _1, \cdots , \chi _s\) and primitive central idempotents (p.c.i.) \(e_1, \cdots , e_s\) 
+
+\underline{Facts}: \((\ast)\): \(_{kG} kG = \bigoplus_{i} d_i L_i\) 
+
+\((\ast\ast)\): \(\alpha \in kG, i \neq j\) then \(\chi_j(e_i \alpha) = 0\) since \(e_i L_j = 0, \chi_i (e_i \alpha) =\chi_i (1 \alpha) = \chi_i (\alpha )\)  
+
+We have: \(\chi_{\text{reg}} = \sum_{i} d_i \chi_i\) 
+
+\begin{proposition}
+    [4.3] \(\chi_{\text{reg}}(g) = \begin{dcases}
+        n, &\text{ if } g=e ;\\
+        0, &\text{ if } g \neq e
+    \end{dcases}\) 
+\end{proposition}
+
+\begin{proof}
+    \(\chi_{\text{reg}}(g) = \Tr (\cdot g: kG \to kG)\)
+    
+    Thus, \(\chi_{\text{reg}}(e) = \Tr(I) = n\)
+    
+    If \(g \neq e\) note that \(G\) has \(\{ \sigma_1, \cdots , \sigma_n \} \) and \(\rho_{\text{reg}}(g) (\sigma_j) = g \sigma_j \neq \sigma_j\) for all \(j\). So, there is nothing in the diagonal matrix and trace is \(0\).
+\end{proof}
+
+\underline{Motivation for \(k\) algebraically closed}:
+
+Consider \(\mathbb{Q}C_3 \cong \mathbb{Q} \times \mathbb{Q}(\zeta_3)\). We only have primitive central idempotents, \(1 = e_1 + e_2\). But the center has dimension \(3\): \(\dim_{\mathbb{Q}}(Z(\mathbb{Q}C_3)) = 3\).
+
+Assume \(k\) is algebraically closed.
+
+\underline{Claim}: \(k\) algebriacally closed, \(D\) skew field, \(k < Z(D)\), \(\dim_k D < \infty\) implies \(k = D\)
+
+Now, \(kG \neq \prod M_{d_i}(k)\) 
+
+Consider primitimve central idempotents \(e_1, \cdots , e_s\) for a basis.
+
+\(n = \sum_{i=1}^s d_i^2\) 
+
+e.g. \(S_3 = D_6\). \(s=?\) \(d_1, d_2, d_3 = ?\) 
+
+We have represantatives of conjugacy classes: \((1), (12), (123)\).
+
+\(s=3, 6 = 1^2 + 1^2 + 2^2\) 
+
+Char. Table:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        \toprule
+             & (1) & (12) &  (123) \\
+        \midrule
+            \(\chi_1\) & 1 & 1 & 1  \\
+            \(\chi_2\)  & 1 & -1 & 1  \\
+            \(\chi_3\)  & 2 & 0 & -1  \\
+        \bottomrule
+    \end{tabular}
+    \caption{characteristic table}
+    \label{tab:chartable}
+\end{table}
+
+We have \(\mathbb{C} S_3 = \mathbb{C} _+ \times \mathbb{C} _- \times M_2\mathbb{C}\) 
+
+Our representatives are \((1), (12), (123), (1234), (12)(34)\) 
+
+\(d_i = 1, 1, 2, 3, 3\) 
+
+\underline{Goal}: Express the p.c.i basis in terms of conjugacy class basis.
+
+\begin{corollary}[4.2]
+    If \(k\) is algebraically closed,
+    
+    the number of conjugacy classes = \(\dim_k Z(G)\) = number of irreducible representation \(= s\)  
+\end{corollary}
+
+\begin{proposition}
+    [4.4] \(k\) algebraically closed, then
+
+    \[
+        e_i = \frac{d_i}{n} \sum_{\tau \in G} \chi_i (\tau ^{-1} ) \tau  
+    \]
+\end{proposition}
+
+\begin{proof}
+    Let \(e_i = \sum_{\tau \in G} a_\tau \tau \).
+    
+    We compute \(\chi_{\text{reg}}(e_i \tau ^{-1})\) in two ways.
+    
+    1: \(\chi_{\text{reg}}(e_i \tau ^{-1} ) = \chi_{\text{reg}}(\sum a_\sigma \sigma \tau ^{-1}) = \sum a_\sigma \chi_{\text{reg}}(\sigma \tau ^{-1}) = a_{\tau}n\)
+    
+    2: \(\chi_{\text{reg}}(e_i \tau ^{-1}) \overset{(\ast)}{=} \sum_{j} d_j \chi_j (e_i \tau ^{-1}) \overset{(\ast\ast)}{=} d_i \chi_i (e_i \tau ^{-1}) = d_i \chi_i (\tau ^{-1}) \)
+    
+    Thus, \(a_\tau n = d_i \chi_i (\tau ^{-1}) \implies a_\tau = \frac{d_i}{n} \chi_i (\tau ^{-1})\) 
+\end{proof}
+
+\begin{corollary}
+    [4.5] Let \(m = \exp G\). Then, 
+
+    \[
+        e_i \in \frac{1}{n} \left[ \mathbb{Z} [\zeta_m] G \right] \subset \frac{1}{n} \left[ \mathbb{Z} [\zeta_n] G \right]
+    \]
+\end{corollary}
+
+\begin{corollary}
+    [4.6] \(\Char k \nmid d_i\) 
+\end{corollary}
+
+\begin{proof}
+    If not, \(\Char k \mid d_i\) then \(e_i = 0\) which is a contradiction. 
+\end{proof}
+
+\begin{corollary}
+    [4.7] \(\chi_1, \cdots , \chi_s\) are linearly independent over \(k\). In fact they form a basis for the \underline{class functions} \(f: G \to k\). 
+\end{corollary}
+
+\begin{proof}
+    Suppose \(0 = \sum a_i \chi_i\). 
+
+    Then \(0 = \sum a_i \chi_i(e_j) = a_j \chi_j (e_j) = a_j d_j \implies a_j = 0\) 
+\end{proof}
+
+Then \(\dim_k(\text{class functions}) = \) number of conjugacy classes = \(s\). 
+
+
+\section*{Friday, 9/27/2024}
+
+Review:
+
+\[
+    e_i = \frac{d_i}{n} \sum_{\sigma \in G} \chi _ i (\sigma) \sigma ^{-1} \in k G \quad (\ast)
+\]
+
+Is a primitive central idempotent.
+
+\[
+    \chi _{\text{reg}} = \chi _{kG} = \sum_{i} d_i \chi _ i
+\]
+
+\(\sigma = 1, n = \sum_{i} d_i ^ 2\) 
+
+\(d_i \mid n\) 
+
+\[
+    \sum_{\sigma \in G} \chi _i(\sigma) \chi_j(\sigma ^{-1}) = n \delta_{ij}
+\]
+
+\[
+    \sum_{i=1}^s \chi_i(\sigma) \chi_i(\tau^{-1}) = \begin{dcases}
+        \frac{n}{\vert \sigma \vert}, &\text{ if } \tau = \sigma ;\\
+        0, `&\text{ otherwise} .
+    \end{dcases} 
+\]
+
+If \(G = S_3\) then:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c || c}
+        \toprule
+             & (1) & (12) &  (123) & \\
+        \midrule
+            \(\chi_1\) & 1 & 1 &  1 & 6 \\
+            \(\chi_2\) & 1 & -1 &  1 & 6 \\
+            \(\chi_3\) & 2 & 0 &  -1 & 6 \\
+            \midrule
+            & 6 & 2 & 3 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Characeristic Table of \(S_3\)}
+    \label{tab:chartable2}
+\end{table}
+
+\(0 = \chi_{\text{reg}}(123) = 1 \chi_1 (123) +1 \chi_2(123) + 2 \chi_3(123)\)
+
+\(k = \mathbb{C} , \chi(\sigma ^{-1}) = \overline{\chi(\sigma)} \) 
+
+End of review
+
+\(X(G) = \{ \text{class functions } f: G \to k \}\) so that \(f(\tau \sigma \tau ^{-1}) = f(\sigma)\).
+
+\begin{definition}
+    [Perfect Pairing]
+
+    A perfect pairing of \(k\) vector space is a \(k\)-bilinear map \(\beta : V \times W \to k\) such that \(\exists\) basis \(\{ v_i \}, \{ w_j \} \) such that
+
+    \[
+        \beta (v_i, w_j) = \delta_{ij}
+    \]
+
+    \[
+        \iff \operatorname{Ad}_{b}: V \to W^{\ast} 
+    \]
+
+    \[
+        v \mapsto (w \mapsto \beta(v,w))
+    \]
+\end{definition}
+
+
+
+\begin{theorem}
+    [4.9] 
+
+    \[
+        X(G) \times Z(kG) \to k
+    \]
+
+    \[
+        (f,\alpha) \mapsto f(\alpha)
+    \]
+
+    is a perfect pairing.
+\end{theorem}
+
+
+\begin{proof}
+    Dual basis: \(\left\{ \frac{1}{d_i} \chi_i \right\}, \{ e_j \} \) 
+
+    \[
+        \frac{1}{d_i} \chi_i(e_j) = \delta_{ij}
+    \]
+\end{proof}
+
+\begin{corollary}
+    [4.8] Suppose \(k\) is algebraically closed, \(\Char k = 0\). Then \(d_i = \dim_K L_i \mid n\) 
+\end{corollary}
+
+We need integrality theory (M502)
+
+See Lang p 334.
+
+\(A\) subring of \(B\), \(\alpha \in B\).
+
+\(\alpha\) is integral over \(A\) if \(\exists\) monic \(f(x)\in A[x]\) such that \(f(\alpha) = 0\).
+
+\(\alpha \in \mathbb{Q} \implies \alpha \text{ int} / \mathbb{Z} \iff \alpha \in \mathbb{Z} \) 
+
+
+Condition \((\ast\ast)\): \(\alpha\) being integral is equivalent to the existence of a faithful \(A[\alpha]\)-module \(M\) which is finitely generated as \(A\)-module.
+
+Faithful means: \(\forall \beta \in A[\alpha], \beta M = 0 \iff \beta  = 0\).
+
+In other words, \(A[\alpha]\hookrightarrow \operatorname{End}_{A[\alpha]}(M)\).
+
+Condition \((\ast\ast) \iff \alpha \text{ int}/A \). This is proved by a determinant trick.
+
+Applying \((\ast\ast)\) on \(A=\mathbb{Z}, \frac{n}{d_i}\in\mathbb{Q}\),
+
+Multiplying \(e_i = \frac{d_i}{n} \sum_{\sigma \in G} \chi_i (\sigma) \sigma ^{-1} \in kG\) with \(e_i\),
+
+\[
+    e_i = e_i^2 = \frac{d_i}{n} \sum_{\sigma} \chi_i(\sigma) \sigma^{-1} e_i 
+\]
+
+\[
+    \frac{n}{d_i} e_i = \sum_{\sigma} \chi_i(\sigma) \sigma ^{-1} e_i
+\]
+
+\[
+    M = \mathbb{Z} \langle \zeta_n^j \sigma e_i \rangle_{j,\sigma \in G} \text{ is a } \mathbb{Z}\left[ \frac{n}{d_i}\right]\text{-module}  
+\]
+
+We are done by \((\ast\ast)\). \(d_i\mid n\). 
+
+\subsection*{Orthogonality, Lang XVIII, 5, Serre 2.3}
+
+\begin{theorem}
+    Suppose we have \(\langle , \rangle : X(G) \times X(G) \to k\) by:
+
+    \[
+        \langle f,g \rangle = \frac{1}{n}\sum_{\sigma \in G} f(\sigma) g (\sigma ^{-1})
+    \]
+
+    is a nonsingular symmetric form and \(\{ \chi_1, \cdots , \chi_s \}\) forms an orthonormal basis.
+\end{theorem}
+
+\begin{proof}
+    Symmetric form, \(k\)-bilinear \(\langle f,g \rangle = \langle g,f \rangle \) 
+
+    Apply \(\chi_j\) to \((\ast)\)
+    
+    \[
+        d_i \delta_{ij} = \chi_j(e_i) = \frac{d_i}{n} \sum_{\sigma} \chi_i(\sigma) \chi_j(\sigma ^{-1})
+    \]
+\end{proof}
+
+\underline{Remark}: Irreducibility criterion: \(\langle \chi , \chi  \rangle = 1 \iff \chi\) irreducible.
+
+\((\sum_{i} a_i \chi_i, \sum_{i} a_i \chi_i) = \sum_{i} a_i^2\) 
+
+
+\begin{proposition}
+    [I.7, Serre p20]
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\sum_{i=1}^{s} \chi_i (\sigma) \chi_i(\sigma^{-1}) = \frac{n}{\vert [\sigma] \vert } \)
+        \item \([\sigma] \neq [\tau] \implies \sum_{i=1}^s \chi_i(\sigma) \chi_i(\tau ^{-1}) = 0 \)   
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    Consier the characteristic function for \([\sigma]\):
+
+    \(f_\sigma = 1\) on \([\sigma]\) and \(0\) everywhere else. 
+
+    \(f_\sigma = \sum_{i} \lambda_i \chi_i\).
+
+    \(\lambda_j = \langle f_\sigma, \chi_j \rangle = \frac{1}{n} \sum_{\tau \in G} f_\sigma (\tau) \chi_j (\tau ^{-1}) = \frac{\vert [\sigma] \vert}{n} \chi_j (\sigma ^{-1})\) 
+
+    \(f_\sigma (-) = \sum_{i} \frac{\vert [\sigma] \vert }{n} \chi_i(\sigma ^{-1} ) \chi_i(-)\) 
+\end{proof}
+
+\end{document}

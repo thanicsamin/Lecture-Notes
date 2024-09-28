@@ -1,0 +1,2268 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, esint}
+\usepackage{mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\title{Partial Differential Equation 2 MATH 541}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+
+\maketitle
+
+This is dedicated to \underline{Sobolev Spaces}, which we apply to Elliptic (linear) PDE.
+
+Last part of the course is in a different direction. We talk about applying this to Parabolic/Hyperbolic PDE.
+
+Also Schauder Theory
+
+\section*{Monday, 8/26/2024}
+
+There are very explicit formula for certain PDE. For example D'Alembert, Poisson etc.
+
+Weak Solutions to PDE: There is some notion of solution that doesn't have the requisite number of derivatives in the classical calculus sense. So we lower our notion of what a solution is.
+
+ex. Conservation law: Burger's Equation: \(u_t + u u_x = 0, u(x,0)=u_0(x)\). If we try to solve this for \(-\infty < x < \infty , t > 0 \), we have method of characteristics that attempts to give us explicit formula (solution will be constant along lines of slope \(\frac{1}{u_0}\) ), but there is trouble for general \(u_0\). These lines an bump into each other, so in that point our solution has to equal two different numbers. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/PXL_20240826_154416711}
+    \caption{Burger's Equation}
+    \label{fig:burger}
+\end{figure}    
+
+Can also happen that a classical solution does exists, BUT it is easiest to find a weak solution.
+
+- Find a weak solution
+
+- Show it's classical (regularity theory)
+
+For linear elliptic PDE's ex. Laplace's Equation,
+
+\[
+    \Delta u = u_{x_1 x_1} + \dots + u_{x_n x_n} = 0
+\]
+
+in \(\Omega \subset \mathbb{R} ^n\) 
+
+A weak solution satisfies the equation obtained through multiplication by a test function \(C^{\infty} _c\) and integrate by parts
+
+ie take any \(\phi\in C^{\infty} _c(\Omega )\) 
+
+\(\int_{\Omega }^{} \phi \Delta u = 0\) 
+
+\(= - \int_{\Omega }^{} \nabla \phi \cdot \nabla u + \int_{\partial \Omega }^{} \phi \nabla u \cdot \nu \) 
+
+Note that the second term is integrated over the boundary. So it goes to \(0\)
+
+So, if:
+
+\[
+    \int_{\Omega }^{} \nabla \phi \cdot \nabla u = 0 \forall \phi\in C_c^{\infty}
+\]
+
+We say \(u\) weakly solves Laplace's equation because it requires only one derivative (not two).
+
+\begin{definition}
+    [Weak Derivative]
+
+    A locally integrable function \(u\) [notationally \(u\in L^1_{loc} (\Omega)\)] has a weak \(x_i\) derivative \(v\) if \(v\) is locally integrable and 
+
+    \(\int_\Omega u \phi_{x_i} \, \mathrm{d} x = - \int_\Omega v \phi \,\mathrm{d} x \) for all \(\phi\in C_c^{\infty} (\Omega)\)  
+\end{definition}
+
+\(u\) and \(v\) can be terrible near the boundary but \(\phi\) vanishes so we don't care!
+
+Recall: Multi-inde notation
+
+If \(u:\mathbb{R} ^n \to \mathbb{R} \) and \(\alpha = (\alpha _1, \dots , \alpha _n)\) where \(\alpha _j\) is non-negative integer then,
+
+\[
+    D^\alpha u = \frac{\partial ^{\vert \alpha  \vert }}{\partial ^{\alpha _1}_{x_1}\dots \partial ^{\alpha _n}_{x_n}}
+\]
+
+eg in \(\mathbb{R} ^3\) for \(\alpha =(1,2,1)\) then \(D^\alpha u = u_{x_1 x_2 x_2 x_3}\) 
+
+\begin{definition}
+    Given \(u,v\in L_{loc}^1(\Omega), \Omega \subset \mathbb{R} ^n\) and \(\alpha \) a multi-index, we say \(v\) is the weak \(\alpha \)th derivative of \(u\) if integration by parts works:
+
+    if \(\int_{\Omega }^{} u D^\alpha \phi \,\mathrm{d}x = (-1)^{\vert \alpha  \vert} \int_{\Omega }^{} v \phi \,\mathrm{d}x, \forall \phi \in C_c^{\infty} (\Omega)\) 
+\end{definition}
+
+If we are define weak anything, if our weak thing actually happened to be good, we want it to satisfy the strong definition as well! For example if differentiation is allowed, then integration by parts would actually work. So, if \(u\) were smooth, then our derivative would actually satisfy the solution, since
+
+\[
+    \int_{\Omega }^{} (D^\alpha u - v) \phi \,\mathrm{d}x = 0
+\]
+
+So \(D^\alpha u = v\) almost everywhere. 
+
+Recall: \(u\in L^p(\Omega), p > 0\) if \(\int \vert u \vert ^p \,\mathrm{d} x < \infty\) 
+
+\(u\in L^p_{loc}(\Omega)\) if \(\forall \Omega_1 \subset \subset \Omega, \int _{\Omega _1}\vert u \vert ^p \, \mathrm{d} x < \infty \) 
+
+\subsection*{Sobolev Spaces}
+
+\begin{definition}
+    [Sobolev Spaces] Fix \(1 \leq p \leq \infty\) and a non-negative integer \(k\). Let \(\Omega \subset \mathbb{R} ^n\) be open.
+
+    Then the \underline{Sobolev space} \(W^{k,p}(\Omega)\) consists of all functions \(u\in L^1_{loc}(\Omega)\) such that for every multi-index \(\alpha\) with \(\vert \alpha  \vert < k\), \(D^\alpha u\) exists weakly and lies in \(L^p(\Omega)\).
+\end{definition}
+
+Example 1: Consider \(\tilde{u}(x) = \vert x \vert \). Doesn't have a derivative. What about weak derivative?
+
+Claim: \(u\) has weak 1st derivative \(v(x) = \begin{dcases}
+    -1, &\text{ if } x < 0 ;\\
+    1, &\text{ if } x > 0 ;\\
+\end{dcases}\) 
+
+We verify that using test function.
+
+Let \(\phi \in C_c^{\infty} (\mathbb{R})\) 
+
+\[
+    LHS = \int_{-\infty}^{\infty} v(x)\phi(x) \,\mathrm{d}x = - \int_{-\infty}^{0} \phi(x) \,\mathrm{d}x + \int_{0}^{\infty} \phi(x) \,\mathrm{d}x 
+\]
+
+\[
+    RHS = - \int_{-\infty}^{\infty} \tilde{u}(x)\phi^{\prime} (x) \,\mathrm{d}x = \int_{-\infty}^{0} x \phi^{\prime} (x) \,\mathrm{d}x - \int_{0}^{\infty} x \phi^{\prime} (x) \,\mathrm{d}x 
+\]
+
+By applying IBP
+
+\[
+    RHS = - \int_{-\infty}^{0} \phi(x) \,\mathrm{d}x + \int_{0}^{\infty} \phi(x) \,\mathrm{d}x 
+\]
+
+[boundary terms don't matter because either \(x\) or \(\phi \) vanishes]
+
+Since \(\vert x \vert\) is locally integrable for any \(p\), \(\tilde{u}\in W_{loc}^{1,p}(\mathbb{R})\) for all \(p\) 
+
+Example 2: Consider the Heaviside function
+
+\[
+    u(x) = \begin{dcases}
+        1, &\text{ if } x > 0 ;\\
+        0, &\text{ if } x < 0 ;
+    \end{dcases}
+\]
+
+Is NOT going to be weakly differentiable!
+
+
+\section*{Wednesday, 8/28/2024}
+
+\subsection*{Sobolev Space \(W^{k,p}(\Omega)\) }
+
+\(u \in W^{k,p}(\Omega)\) if
+
+
+\(D^\alpha u \in L^p\) weakly for all \(\alpha \) such that \(\vert \alpha  \vert \leq k\) 
+
+This is a normed space.
+
+\[
+    \lVert u \rVert _{W^{k,p}(\Omega)} = \left[ \sum_{\vert \alpha  \vert \leq k} \int_\Omega \vert D^\alpha u \vert ^p \right] ^{\frac{1}{p}}
+\]
+
+If \(p = \infty\) we just take the sup norm.
+
+We have convergence: \(\{ u_j \} \subset W^{k,p}(\Omega)\) converges in \(W^{k,p}\)
+
+to \(u\in W^{k,p}(\Omega)\) if \(\left\vert u_j - u \right\vert _{W^{k,p}(\Omega)} \to 0\) as \(j \to \infty\)  
+
+\begin{definition}
+    \(W^{k,p}_0(\Omega) \coloneqq \) closure in \(W^{k,p}(\Omega)\)-norm of \(C_o^{\infty}(\Omega)\) 
+\end{definition}
+
+\underline{Remark}: \(W^{k,p}(\Omega)\) and \(W^{k,p}_0(\Omega)\) are Banach spaces [normed, complete [since Lp is complete]]
+
+For \(p = 2\) we don't usually use \(W^{k,2}(\Omega)\). We use \(H^k(\Omega)\). \(H\) is for Hilbert. This is a Hilbert space [there exists an inner product].
+
+\[
+    (u,v)_{H^k(\Omega)} \coloneqq \sum_{\vert \alpha  \vert \leq k} \int_{\Omega}^{} D^\alpha u D^\alpha v
+\]
+
+H\"older's inequality implies:
+
+\[
+    \left\vert \int _\Omega D^\alpha u D^\alpha v \right\vert \leq \lVert D^\alpha u \rVert _{L^2} \lVert D^\alpha v \rVert _{L^2}
+\]
+
+Let's go back to the example.
+
+Let \(u(x)\) be the heaviside function, \(0\) for negative, \(1\) for positive. Is it weakly differentiable? Is it in some sobolev space?
+
+Is \(u\in W^{k,p}(\mathbb{R})\) for some \(k\) and \(p\)? Does \(u\) have a weak solution?
+
+Answer: \underline{No}! We use contradiction.
+
+Suppose there is such a \(v\in L^1_{loc}(\mathbb{R})\) such that IBP holds:
+
+\[
+    \int_\mathbb{R} u \phi^{\prime} \, \mathrm{d} x = - \int _\mathbb{R} v \phi \, \mathrm{d} x
+\]
+
+for all \(\phi\in C_c^{\infty} (\mathbb{R})\) 
+
+Then, \(\int_{0}^{\infty} \phi^{\prime} (x) \,\mathrm{d}x = - \int_{-\infty}^{\infty} v \phi \,\mathrm{d}x \) 
+
+Therefore, \(\phi(0) = \int_{-\infty}^{\infty} v(x)\phi(x) \,\mathrm{d}x \) 
+
+We use this for contradiction. Consider a sequence \(\{ \phi_j \} \) of test functions so that \(\phi_j(0)=1\) for all \(j\) and \(0 \leq \phi_j(x) \leq 1\) for all \(x\).
+
+Further suppose that the support for \(\phi_j\) shrinks to the origin. 
+
+\[
+    \phi_j(0) = 1 = -\int_\mathbb{R} v\phi_j \, \mathrm{d} x
+\]
+
+Now, \(v\phi_j \to 0\) pointwise a.e.
+
+\(\vert v \phi_j \vert \leq \vert v \vert \in L^1_{loc}\) 
+
+This gives us the desired contradiction.
+
+\underline{Notice}: \(\phi(0)=\int v(x)\phi(x)\) is true for the `function' dirac delta. This is not really a function, this is a distribution.
+
+Moral of the story: We can't have too big of a discontinuity [here we have a jump discontinuity] and still be in Sobolev spaces.
+
+Example: \(f(x) = \frac{1}{\vert x \vert ^\alpha}\) for \(x\in B(0,1) = \{ x\in\mathbb{R} ^n : \vert x \vert < 1 \} \) and \(\alpha > 0\)
+
+For which \(k,p,n,\alpha\) is \(f\in W^{k,p}(B(0,1))\)? 
+
+Question 1: Is this in any Lp space? If no then game over.
+
+Is \(f\in L^p(B(0,1))\) 
+
+\[
+    \int_{B(0,1)}^{} \frac{1}{\vert x \vert ^{\alpha p}} \,\mathrm{d}x = \int_{0}^{1} \int_{\partial B(0,r)}^{} \frac{1}{\vert x \vert ^{\alpha p}} \,\mathrm{d}S  \,\mathrm{d}r 
+\]
+
+\[
+    = \int_{0}^{1} \frac{1}{r^{\alpha p}} \mu (\partial B(0,r)) \,\mathrm{d}r 
+\]
+
+\[
+    = \omega_n \int_{0}^{1} \frac{1}{r^{\alpha p}}r^{n-1} \,\mathrm{d}r = \omega _n \int_{0}^{1} r^{-\alpha p + n - 1} \,\mathrm{d}r 
+\]
+
+So, \(f\in L^p\) if \(\alpha p \leq n\) 
+
+Note that \(\vert D^\alpha f \vert \leq L^p\) for \(\vert \alpha  \vert = 1\) provided \((\alpha +1)p \leq n\) 
+
+Is \(f\) weakly differentiable for \(\vert \alpha  \vert = 1\)?
+
+Consider \(\epsilon < 1\) 
+
+\[
+    \int_{B(0,1) \setminus B(0,\epsilon)}^{} f \phi_{x_i} \,\mathrm{d}x = \int_{B(0,1)\setminus B(0,\epsilon)}^{} \nabla \cdot (0, 0, f\phi, 0, 0) \,\mathrm{d}x - \int_{B(0,1) \setminus B(0,\epsilon)}^{} \phi f_{x_i} \,\mathrm{d}x 
+\]
+
+\[
+    \int_{B(0,1)\setminus B(0,\epsilon)}^{} f \phi_{x_i} \,\mathrm{d}x = - \int_{B(0,1)\setminus B(0,\epsilon)}^{} \phi f_{x_i} \,\mathrm{d}x + \int_{\partial (B(0,1)\setminus B(0,\epsilon ))} f \phi \nu_i \,\mathrm{d}S 
+\]
+
+Note that the outer normal dissapears, we only have the inner normal.
+
+\[
+    \int_{\partial (B(0,1)\setminus B(0,\epsilon ))}^{} f \phi \nu _i \,\mathrm{d}S = \int_{\partial B(0,\epsilon)}^{} f \phi \nu_i \,\mathrm{d}S
+\]
+
+Setting \(\epsilon \to 0\) we see that the integral converges. Also,
+
+\[
+    \left\vert \int_{\partial (B(0,1)\setminus B(0,\epsilon))}^{} f \phi \nu_i \,\mathrm{d}S  \right\vert \leq \int_{\partial B(0,\epsilon)}^{} \vert f \phi \nu_i \vert \leq c \int_{\partial B(0,\epsilon)}^{} \vert f \vert  \,\mathrm{d}S \leq \frac{c}{\epsilon^\alpha} \omega_n \epsilon^{n-1} \to 0
+\]
+
+provided \(n - 1 \geq \alpha\) 
+
+So,
+
+\[
+    \int_{B(0,1)}^{} f \phi_{x_i} \,\mathrm{d}x = - \int_{B(0,1)}^{} \phi f_{x_i} \,\mathrm{d}x 
+\]
+
+So \(f\) is weakly differentiable for \(\vert \alpha  \vert = 1\) 
+
+(See Appendix 5 in Evans)
+
+Mollification:
+
+There are lot of situation in PDE where you have a function and you don't know how nice is it in terms of derivative. So you convolve it so that it is nice and take some limit.
+
+Let \(\eta\) satisfy \(\eta \in C_c^{\infty} (\mathbb{R}^n)\)
+
+Suppose \(\eta \equiv 0\) for \(\vert x \vert \geq 1\) 
+
+\(\int_{\mathbb{R} ^n}^{} \eta (x) \,\mathrm{d}x = 1\) 
+
+Suppose \(\eta \) is radial, \(\eta = \eta (\vert x \vert)\) just a function of radial distance
+
+Note that there is no such analytic function. But there are infinitely differentiable ones.
+
+Define \(\eta_{\epsilon} \coloneqq \epsilon^{- n} \epsilon(\frac{x}{\epsilon})\) 
+
+So we rescale the function.
+
+Then given \(u \in L^1_{loc}(?)\) we define the mollification
+
+\[
+    u_{\epsilon}(x) = u \ast \eta _\epsilon = \int_{}^{} u(x-y) \eta_{\epsilon } (y) \,\mathrm{d}y = \int_{}^{} u(y) \eta _\epsilon (x-y) \,\mathrm{d}y 
+\]
+
+
+\section*{Friday, 8/30/2024}
+
+Given \(\Omega \subset \mathbb{R} ^n\), open, bounded
+
+\(\forall \epsilon\) define \(\{ x\in \Omega : \text{dist} (x, \partial \Omega ) > \epsilon \} = \Omega_{\epsilon} \) 
+
+Let \(\eta \in C_c^{\infty} (\mathbb{R}^n)\) such that
+
+\(0 \leq \epsilon \leq 1\) and \(\int_{B(0,1)}^{} \eta (x) \,\mathrm{d}x = 1\) and \(\mathop{\mathrm{supp}}(\eta) \subset \overline{B(0,1)} \) 
+
+Define \(\eta_{\epsilon}(x) \coloneqq \epsilon ^{-n} \eta(\frac{x}{\epsilon}) \) 
+
+Then, \(\mathop{\mathrm{supp}}(\eta _\epsilon) \subset \overline{B(0,\epsilon)} \) 
+
+\[
+    \int_{B(0,\epsilon)}^{} \eta _\epsilon (x) \,\mathrm{d}x = \epsilon ^{-n} \int_{B(0,\epsilon)}^{} \eta (\frac{x}{\epsilon }) \,\mathrm{d}x = \int_{B(0,1)}^{} \eta (x) \,\mathrm{d}x = 1
+\]
+
+\begin{theorem}
+    Given \(f\in L^1_{loc}(\Omega)\) define \(f_{\epsilon} \coloneqq \eta_{\epsilon} \ast f \) for \(x\in \Omega_{\epsilon} \) 
+    
+    \[
+       f_{\epsilon}(x)  = \int_\Omega \eta_{\epsilon} (x-y) f(y) \, \mathrm{d} y
+    \]
+
+    Then, i: \(f_{\epsilon}(x)\) is infinitely differentiable.
+
+    ii: \(f_{\epsilon} \to f \) pointwise a.e.
+    
+    iii: If \(f\) is continuous then \(f_{\epsilon} \to f\) uniformly on compact subsets of \(\Omega\) 
+
+    iv: If for \(1 \leq p < \infty, f\in L^p(\Omega)\) then \(f_{\epsilon} \to f\) in \(L^p(\Omega)\). Also true for \(f\in L_{loc}^p\) 
+\end{theorem}
+
+\begin{proof}
+    (i): Convolution is a child, and it inherits the nicest properties of the parent. \(\eta_{\epsilon}\) is nicer.
+
+    Idea: it is legal to bring derivatives inside the integral. 
+
+    \[
+        \frac{f_{\epsilon}(x + he_i) - f_{\epsilon}(x)}{h} = \int_{\Omega }^{} \left[ \frac{\eta_{\epsilon} (x+he_i - y) - \eta_{\epsilon} (x-y)}{h} \right] f(y) \,\mathrm{d}y 
+    \]
+
+    Stuff in brackets converges uniformly in \(y\) to \(\eta_{\epsilon _{x_i}} (x-y)\) using Taylor remainder theorem.
+
+    Then Lebesgue Dominated Convergence finishes the job.
+
+    (iii) Fix \(K \subset \Omega\) where \(K\) compact.
+
+    \(\forall x\in K\) we have \(\vert f_{\epsilon } (x) - f(x) \vert = \left\vert \int_{\Omega} (\eta_{\epsilon} (y) f(x-y)) \,\mathrm{d}y - f(x) \right\vert  \) 
+
+    \[
+        = \left\vert \int_{\Omega} \eta_{\epsilon} (y) \left[ f(x-y) - f(x) \right]  \,\mathrm{d}y  \right\vert 
+    \]
+
+    \[
+        \leq \int_{\Omega} \eta_{\epsilon } (y) \left\vert f(x-y) - f(x) \right\vert  \,\mathrm{d}y 
+    \]
+
+    Since \(K\) is compact, \(f\) is uniformly continuous on \(K\).
+
+    So, \(\forall \beta > 0\) we have \(\epsilon_0\) such that \(\forall \epsilon < \epsilon _0\) such that \(\forall x,y\) such that \(\vert y \vert < \epsilon\) we have \(\vert f(x-y) - f(x) \vert < \beta\) 
+
+    So,
+
+    \[
+        \leq \int_{\Omega} \eta_{\epsilon}(y) \beta  \,\mathrm{d}x = \beta 
+    \]
+
+\end{proof}
+
+What is the relevance to Sobolev spaces?
+
+Often we are going to try to prove some estimates. We want to prove some inequalities.
+
+Then, we mollify and prove it for the mollification. If we mollify a Sobolev function, we get an approximation.
+
+\begin{theorem}
+    [Local Approximation Away from \(\partial \Omega\)]
+
+    Assume \(u \in W^{k,p}(\Omega)\) [aka function has \(k\)'th weak derivatives which are locally integrable in order \(p\)]. Define \(u_{\epsilon} = \eta_{\epsilon } \ast u \) in \(\Omega_{\epsilon } = \{ x\in \Omega : \text{dist} (x,\partial \Omega ) > \epsilon \} \) 
+    
+    THen, \(u_{\epsilon} \in C^{\infty}(\Omega_{\epsilon} )\) 
+
+    And \(u_{\epsilon } \to u\) in \(W_{loc}^{k,p}(\Omega)\) 
+\end{theorem}
+
+\begin{proof}
+
+    Note infinite derivative we already have by property of mollification.
+
+    Fix the multi-index \(\alpha\) suh that \(\vert \alpha \vert \leq k\).
+
+    \underline{Claim 1}: \(D^\alpha u_{\epsilon} = \eta_{\epsilon} \ast D^\alpha u \)
+    
+    In other words, mollification and derivatives commute.
+
+    To see this, consider \(x\in \Omega_{\epsilon} \)
+
+    \[
+        D^\alpha u_{\epsilon} = D^\alpha \int_{\Omega} \eta _\epsilon (x-y) u(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = \int_{\Omega} D^\alpha_x \eta_{\epsilon} (x-y) u(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = (-1)^{\vert \alpha  \vert } \int_{\Omega} D^\alpha_y \eta_{\epsilon} (x-y) u(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = (-1)^{\vert \alpha \vert } (-1)^{\vert \alpha \vert } \int_{\Omega} \eta_{\epsilon} (x-y) D^\alpha u(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = \eta_{\epsilon } \ast D^\alpha u
+    \]
+
+    proving the claim.
+
+    Now, fix \(V \subset \Omega\) with open \(\overline{V} \subset \Omega\) (\(V \subset \subset \Omega\) )
+
+    Apply previous theorem, item iv and the claim
+
+    \(D^\alpha u_{\epsilon} \to D^\alpha u\) in \(L^p(V)\) for all \(\alpha \) such that \(\vert \alpha  \vert \leq k\) 
+
+\end{proof}
+
+\begin{theorem}
+    [Global Approximation]
+
+    Theme:
+
+    Sobolev can be approximated by smooth sobolev
+
+    Let \(\Omega \subset \mathbb{R}^n\) be open, bounded. Assume \(u\in W^{k,p}(\Omega)\) for \(1 \leq p < \infty\) 
+    
+    Then, \(\exists \{ u_m \} \subset C^{\infty}(\Omega) \cap W^{k,p} (\Omega)\) [infinitely smooth AND sobolev] such that \(u_m \to u\) in \(W^{k,p}(\Omega)\). Meaning:
+
+    \[
+        \lim_{m \to \infty} \left\lVert u_m - u \right\rVert _{W^{k,p}(\Omega)} \to 0
+    \]
+
+\end{theorem}
+
+Idea of Proof: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/PXL_20240830_161621740}
+\end{figure}
+
+We have a bunch of \(\Omega _i\) with \(\bigcup_{i=1}^{\infty} \Omega _i = \Omega\) 
+
+Use a partition of unity \(\{ \phi_i \} \) so that \(\sum_{} \phi_i(x) = 1\), mollify.
+
+Proof is on Evans.
+
+\section*{Wednesday, 9/4/2024}
+
+\subsection*{Traces}
+
+We are going to solve PDEs using Sobolev spaces. We typically specify boundary conditions in PDEs. But in first glance, since Sobolev functions are defined upto a set of measure zero, it seems ill suited to dealing with boundary conditions [since boundary \(\partial \Omega\) has measure 0].
+
+How to define boundary values for a Sobolev functions?
+
+We are going to establish an inequality for smooth function.
+
+\begin{theorem}
+    Assume \(\partial \Omega\) is \(C^1\) surface\footnote{meaning \(\partial \Omega\) can be described as the graph of a \(C^1\) function.}. Then \(\exists\) a bounded linear operator \(T : W^{1,p}(\Omega) \to L^p(\partial \Omega)\) for \(1 \leq p < \infty\) such that:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(Tu = u |_{\partial \Omega}\) if \(u \in W^{1,p}(\Omega)\cap C(\overline{\Omega})\) 
+        \item \(\left\lVert T u \right\rVert _{L^p(\partial \Omega)} \leq C \left\lVert u \right\rVert _{W^{1,p}(\Omega)}\) for some \(C= C(p, \Omega)\)   
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+
+    Outline:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Fix \(x_0 \in \partial \Omega\). Suppose \(\partial \Omega\) is `flat' near \(x_0\). In fact, define ball \(B\) centered at \(x_0\) such that inside \(B\), \(\partial \Omega\) is flat.
+        
+        [insert picture]
+
+        Then we can define \(x^{\prime}  = (x_1, \cdots , x_{n-1})\). If the last coordinate is positive, we are inside \(\Omega\).
+
+        Inside \(B\), \(\partial \Omega\) is flat. we can define \(B^{\prime} \subset B\) centered at \(x_0\).
+
+        Let \(\zeta \in C_0^{\infty} (B)\) so that \(\zeta \equiv 1\) on \(B^{\prime}\) and \(\zeta \geq 0\).
+
+        Define \(\Gamma \coloneqq \partial \Omega \cap B^{\prime}\).
+        
+        Assume \(u \in C^1(\overline{\Omega })\).
+
+        \[
+            \int_{\Gamma}^{} \vert u \vert ^ p \,\mathrm{d}x ^{\prime} \leq \int_{\{ x_n = 0 \} \cap B}^{} \zeta\vert u \vert ^p \,\mathrm{d}x^{\prime}  
+        \]
+
+        \[
+            = - \int_{\{ x_n = 0 \} \cap B}^{} (0, \cdots , 0, \zeta \vert u \vert ^ p) \cdot (0, \cdots , 0, -1) \,\mathrm{d}x^{\prime} 
+        \]
+
+        We are almost set up for divergence theorem. Since \(\zeta = 0\) on the boundary of \(B\), we actually have the whole boundary! Applying the divergence theorem, we get:
+
+        \[
+            = - \int_{B \cap \Omega}^{} \frac{\partial}{\partial x_n} \left[ \zeta (x) \vert u(x) \vert ^ p \right]  \,\mathrm{d}x 
+        \]
+
+        \[
+            = - \int_{B \cap \Omega}^{} \left[ \zeta_{x_n} \vert u \vert ^ p + \zeta p \vert u \vert ^{p-1} \frac{u}{\vert u \vert } u_{x_n} \right] \,\mathrm{d}x 
+        \]
+
+        \[
+            = - \int_{B \cap \Omega}^{} \left[ \zeta_{x_n} \vert u \vert ^ p + \zeta p \vert u \vert ^{p-1} \sgn(u) u_{x_n} \right] \,\mathrm{d}x 
+        \]
+
+        Now we use \underline{Young's Inequality}.
+        
+        \begin{theorem}
+            [Young's Inequality]
+
+            For any \(a, b > 0\) and \(p, q\) such that \(\frac{1}{p} + \frac{1}{q} = 1\), we have:
+
+            \[
+                ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+            \]
+        \end{theorem}
+
+        We are estimating abolute value, so we can take absolute value. Using Young's inequality on \(a = \vert u_{x_n} \vert\) and \(b = \vert u \vert ^{p-1}\),
+
+        \[
+            \int_{\Gamma}^{} \vert u \vert ^ p \,\mathrm{d}x^{\prime} 
+        \]
+
+        \[
+            \leq \int_{B }^{\infty} \left[ \vert \zeta_{x_n} \vert \vert u \vert ^ p + p \vert \zeta  \vert \left[ \frac{(\vert u \vert ^{p-1})^{p / (p-1)}}{p / (p-1)} + \frac{\vert u_{x_n} \vert ^{p}}{p} \right]  \right]  \,\mathrm{d}x 
+        \]
+
+        \[
+            \leq C \int_{B \cap \Omega}^{} \left[ \vert u \vert ^ p + \vert \nabla u \vert ^ p \right] \,\mathrm{d}x \leq C \int_{\Omega}^{} \left[ \vert u \vert ^ p + \vert \nabla u \vert ^ p \right]  \,\mathrm{d}x 
+        \]
+
+        Now, \(\partial \Omega \in C^1\) means, centered at any point \(x_0 \in \partial \Omega\) \(\partial \Omega\) can be written as a graph \(x_n = f(x^{\prime})\) where \(\vert f \vert_{C_1}\) is bounded.\footnote{\(\vert f \vert_{C_1}= \sup \vert f \vert + \sup \vert \nabla f \vert \)}
+
+        Therefore, Ball inside of which \(\partial \Omega\) is a graph has radius \(R\) depending on \(C^1\) norm.
+
+        \item For the next step, we flatten the boundary of \(\Omega\) by a change of variables.
+        
+        [insert picture]
+
+        [insert picture 2]
+
+        Change variables: \(y = (y^{\prime} , y_n)\).
+
+        Set \(y^{\prime}  = x^{\prime} \) 
+
+        \(y_n \coloneqq x_n - f(x^{\prime})\) 
+
+        \(y = G(x)\).
+
+        So, \(y_n = 0\) means \(x_n = f(x^{\prime})\), which means \underline{we're on the graph}.
+
+        We can think of this in terms of the \underline{Inverse Function Theorem}. What is the Jacobian of \(G\)?
+
+        \[
+            \operatorname{Jac}(G) = \det \nabla G = \det \begin{pmatrix}
+                I &  &  0 \\
+                 &  &  \vdots \\
+                -f_{x_1} - f_{x_2} - \cdots - f_{x_{n-1}} &  &  1 \\
+            \end{pmatrix} = 1
+        \]
+
+        So, \(G ^{-1}\) is \(C^1\).
+
+        Then, \(\vert \nabla G \vert \leq C (\partial \Omega)\) and \(\vert \nabla(G ^{-1} ) \leq C(\partial \Omega) \vert \).
+
+        \(u\) is a given function. We can define a new function that has a flat boundary which we can use instead of \(u\).
+
+        Define \(\tilde{u}(y) \coloneqq u(G ^{-1} (y))\).
+
+        Then, \(u(x) = \tilde{u}(G(x))\) 
+
+        Suppose \(G(\Gamma) = \tilde{G}\).
+
+        Then, Step 1 implies,
+
+        \[
+            \int_{\tilde{\Gamma}}^{} \vert \tilde{u}^p \vert  \,\mathrm{d}y^{\prime}  \leq C \int_{\text{shaded region}}^{} \left[ \vert \tilde{u} \vert ^ p + \vert \nabla \tilde{u} \vert ^ p \right]  \,\mathrm{d}y
+        \]
+
+        Where the shaded region is \(\{ x \mid x_n > f(x^{\prime}), x\in B_R \} \). Now,
+
+        \[
+            \left\vert \nabla \tilde{u}(y) \right\vert \leq \left\vert D u \cdot \nabla(G ^{-1}) \right\vert \leq C \left\vert \nabla u \right\vert 
+        \]
+
+        Continuing,
+
+        \[
+            \int_{\tilde{\Gamma}}^{} \vert \tilde{u}^p \vert  \,\mathrm{d}y^{\prime}  \leq C \int_{\text{shaded region}}^{} \left[ \vert \tilde{u} \vert ^ p + \vert \nabla \tilde{u} \vert ^ p \right]  \,\mathrm{d}y
+        \]
+
+        \[
+            \implies \int_{\Gamma }^{} \vert u \vert ^ p \,\mathrm{d}x^{\prime} \leq C \int_{\Omega \cap B_R}^{} \left[ \vert u \vert ^ p + \vert \nabla u \vert ^ p \right]  \,\mathrm{d}x \leq C \int_{\Omega}^{} \left[ \vert u \vert ^ p + \vert \nabla u \vert ^ p \right]  \,\mathrm{d}x  
+        \]
+
+        Which finishes Step 2.
+
+        \item Decompose \(\partial \Omega\) into \(N_R\) pieces, and add them up using Step 2.
+        
+        Since \(\partial \Omega\) is compact, \(N_R < N(\partial \Omega)\).
+        
+        [insert picture]
+
+        We have: \(\forall u\in C^1(\overline{\Omega})\),
+
+        \[
+            \int_{\partial \Omega}^{} \vert u \vert ^ p \,\mathrm{d}S \leq C(p,\Omega) \int_{\Omega}^{} \left[ \vert u \vert ^ p + \vert \nabla u \vert ^ p \right]  \,\mathrm{d}x 
+        \]
+
+    \end{enumerate} 
+
+    Now, suppose \(u \in W^{1,p}(\Omega)\). Approximate \(u\) in \(W^{1,p}\) norm by \(\{ u_m \} \subset W^{1,p}(\Omega) \cap C^1(\overline{\Omega} )\). Then,
+
+    \[
+        \underbrace{\left\lVert u_m - u_l \right\rVert _{L^p(\partial \Omega)}}_{\text{cauchy sequence} } \leq C \left\lVert u_m - u_L \right\rVert ^ p _{W^{1,p}}
+    \]
+
+    \(RHS \to 0\), so \(LHS \to 0\) for \(m, l \gg 1\).
+
+    Therefoe, \(\exists T u \in L^p(\partial \Omega)\) which is the limit of this cauchy sequence.
+
+\end{proof}
+
+\section*{Friday, 9/6/2024}
+
+A few comments about traces.
+
+Last time: If \(u \in W^{1,p}(\Omega)\) for \(1 \leq p < \infty\) and \(\partial \Omega \in C^1\) , we can define the trace of \(u\) on \(\partial \Omega\), \(Tu \in L^p(\partial \Omega)\) and \(\exists C = C(p, \Omega)\) such that,
+
+\[
+    \left\lVert T u \right\rVert _{L^p(\partial \Omega)} \leq C \left\lVert u \right\rVert _{W^{1,p}(\Omega)}
+\]
+
+Recall: \(W^{k,p}_0(\Omega) =\) closure of \(C_c^{\infty}(\Omega)\) in the \(W^{k,p}\) norm.
+
+Suppose \(k = 1, u \in W^{1,p}_0(\Omega)\). Then, \(Tu = 0\) on \(\partial \Omega\) 
+
+Also, if \(k > 1\) and \(u \in w_0^{k,p}(\Omega)\), we have \(T u = 0\). 
+
+In fact, \(T(D^\alpha u) = 0 \forall \alpha\) such that \(\vert \alpha  \vert \leq k - 1\). 
+
+\subsection*{Calculus of Variations}
+
+Our objects of interest are \underline{functionals}.
+
+Consider an \underline{integral functional} of the form:
+
+\[
+    E(u) = \int_{\Omega }^{} L(x, u, \nabla u) \,\mathrm{d}x
+\]
+
+We use \(E\) because this often denotes \underline{Energy}. It comes from physics often.
+
+In that case, we call \(L\) an energy density. It is also often called the \underline{energy density}. 
+
+A fundamental problem is:
+
+Determine the \underline{infimum} of \(E\) among all functions \(u\) in an \underline{admissible} set \(\mathscr{A}\).
+
+We define:
+
+\[
+    m \coloneqq \inf_{u\in \mathscr{A}} E(u)
+\]
+
+\underline{``First Variation of \(E\)''}
+
+This is the `calculus of variations' version of a derivative.
+
+If \(\Omega \subset \mathbb{R} ^n\) and \(u:\Omega \to \mathbb{R}\),
+
+\[
+    L = L(x,z,p)
+\]
+
+where: \(x\) is a point in \(\Omega \subset\mathbb{R}^n\) 
+
+\(z\in\mathbb{R} \) [we put \(u\) here]
+
+\(p\in\mathbb{R}^n\) [we put \(\nabla u\) here]
+
+We put \(u\) in \(E\), but we purtrube it a little bit.
+
+Suppose \(u \in \mathscr{A} \), and \(v\) such that \(u + tv \in \mathscr{A}\) for \(\vert t \vert \) small. 
+
+\(E(u + tv)\)
+
+Then, \(t \mapsto E(u+tv)\) is a function \(\mathbb{R} \to \mathbb{R}\). We take derivative and set \(t = 0\) 
+
+\[
+    \frac{\mathrm{d}}{\mathrm{d}t} \bigg\vert_{t=0} E(u + tv) = \delta E(u;v)
+\]
+
+Note: if \(u\) is a minimum of \(E\), i.e. \(E(u) = m\), then the first variation \(\delta E(u;v) = 0\) for all \(v\) such that \(u + tv \in \mathscr{A}\). 
+
+\begin{definition}
+    \(u\) is called a \underline{critical point} of \(E\) in \(\mathscr{A}\) if \(\delta E(u;v) = 0 \forall v\) such that \(u + tv \in \mathscr{A}\). 
+\end{definition}
+
+Question: What is true about a critical point \(u\) of an integral functional of form (\(\ast\))?
+
+\[
+    0 = \frac{\mathrm{d}}{\mathrm{d}t} \bigg\vert_{t=0} E(u+tv)
+\]
+
+\[
+    = \frac{\mathrm{d}}{\mathrm{d}t} \bigg\vert_{t=0} \int_{\Omega }^{} L(x, u+tv, \nabla u + t\nabla v) \,\mathrm{d}x 
+\]
+
+\[
+    = \int_{\Omega}^{} \left[ \frac{\partial L}{\partial z} (x, u, \nabla u) v + \sum_{j=1}^{n} \frac{\partial L}{\partial p_j} (x, u, \nabla u) v_{x_j} \right]  \,\mathrm{d}x 
+\]
+
+\[
+    = \int_{\Omega}^{} \left[ \frac{\partial L}{\partial z} (x, u, \nabla u) v + \nabla_p L \cdot \nabla_x v \right]  \,\mathrm{d}x 
+\]
+
+Applying IBP,
+
+\[
+    = \int_{\Omega}^{} \left[ \frac{\partial L}{\partial z} (x, u, Du) - \sum_{j=1}^n \frac{\partial}{\partial x_j} \left( \frac{\partial }{\partial p_j} L(x,u, \nabla u) \right)  \right] v \,\mathrm{d}x 
+\]
+
+\[
+    + \int_{\partial \Omega}^{} v \nabla_p L(x,u, \nabla u)\cdot \nu \,\mathrm{d}S 
+\]
+
+Now, suppose all allowable \(v\)'s are included in \(C_c^{\infty}(\Omega)\) functions. That would make the boundary term \(0\). Then, since we can choose \(v\) however we want, the big integral is \(0\). 
+
+\[
+    \sum_{j=1}^{n} \frac{\partial }{\partial x_j} \left[ \frac{\partial}{\partial p_j} L(x, u, \nabla u) \right] = \frac{\partial L}{\partial z} (x,u,\nabla u)
+\]
+
+This is a 2nd order PDE. This is called the Euler-Lagrange equation for \(E\).
+
+\underline{Example}: Take \(\displaystyle E(u) = \int_{\Omega }^{} \frac{1}{2} \left\vert \nabla u \right\vert ^2 + W(x,u) \,\mathrm{d}x \)
+
+Here \(L(x,z,p) = \frac{1}{2} \vert p \vert ^2 + W(x,z)\) 
+
+Then, we find the Euler-Lagrangian.
+
+\[
+    \frac{\partial L}{\partial p_j} (x,z,p) = \frac{\partial}{\partial p_j} \left[ \frac{1}{2}\vert p \vert ^2 + W(x,u) \right] = p_j
+\]
+
+\[
+    \frac{\partial L}{\partial p_j} (x, u, \nabla u) = u_{x_j}
+\]
+
+Also,
+
+\[
+    \frac{\partial L}{\partial z} (x,z,p) = \frac{\partial W}{\partial z} (x,z)
+\]
+
+So, the Euler-Lagrangian equation gives us:
+
+\[
+    \sum_{j=1}^{n} \frac{\partial}{\partial x_j} (u_{x_j}) = \frac{\partial W}{\partial z} (x,u)
+\]
+
+\[
+    \Delta u = \frac{\partial W}{\partial z} (x,u)
+\]
+
+This is a \underline{Nonlinear Poisson Equation}.
+
+Question: What should we choose \(\mathscr{A}\) to be to make our life easiest?
+
+We want \underline{integration by parts} to be justified, but we want our topology to be weak enough so that finding minimizers is easy.
+
+In the previous example, we have integral of \(\vert \nabla u \vert ^2\). So, ideally we want it to be \(L^2\).
+
+So, in the example, best choice is \(H^1(\Omega)\).
+
+How does one find a minimzer?
+
+\underline{Direct Method}: Our problem is, we want to find \(u \in \mathscr{A}\) such that:
+
+\[
+    m \coloneqq \inf_{u\in \mathscr{A}} E(u)
+\]
+
+Idea: We find a sequence \(\{ u_j \}\) [called a \underline{minimizing sequence}]: so that \(\{ u_j \} \subset \mathscr{A}\) and \(E(u_j) \to m\).
+
+\underline{Step 1}: Try to get a convergent subsequence of \(u_{j_k} \to u_\ast \in \mathscr{A}\). [Compactness]
+
+In this step, if we choose \(\mathscr{A}\) to be `too strong', we lose. Ideally we want \(\mathscr{A}\) to be sequentally compact.
+
+\underline{Step 2}: \(E\) might not be continuous in this topology, then we don't have \(E(u_\ast)=m\). So, we want \underline{lower semi-continuity}.
+
+\[
+    \liminf_{k \to \infty} E(u_{j_k}) \geq E(u_\ast)
+\]
+
+Then we have \(E(u_\ast) \leq m\).
+
+This tells us that \(u_\ast\) is a minimum.
+
+
+\section*{Monday, 9/9/2024}
+
+\begin{theorem}
+    [Extension of Sobolev Functions]
+
+    Assume \(\Omega \subset \mathbb{R} ^n\), open , bounded with \(\partial \Omega \in C^1\). Then, \(\exists C = C(p, \Omega)\) and an extension \(E: W^{1,p}(\Omega) \to W^{1,p}(\mathbb{R}^n)\) such that:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(E u = u\) in \(\Omega\)
+        \item \(E u\) has compact support
+        \item \(\left\lVert E u \right\rVert _{W^{1,p}(\mathbb{R}^n)} \leq C \left\lVert u \right\rVert _{W^{1,p}(\Omega)}\)  
+    \end{enumerate} 
+
+\end{theorem}
+
+Idea is, we can let a function down to zero `gently' and extend that way.
+
+\begin{theorem}
+    [Gagliardo - Nirenberg - Sobolev Inequality]
+
+    Assume \(1 \leq p < n\). Then, there exists \(C = C(p, n)\) such that for every \(u\in C_0^1(\mathbb{R}^n)\) [compactly supported continuously differentiable function] one has the following inequality:
+
+    \[
+        \left\lVert u \right\rVert _{L^{p ^{\ast} }(\mathbb{R}^n)} \leq C \left\lVert \nabla u \right\rVert _{L^p(\mathbb{R}^n)}
+    \]
+
+    Where \(p ^{\ast} = \frac{np}{n-p}\) is the \underline{critical sobolev exponent}.
+
+    Note that \(\frac{np}{n-p} = \frac{np-p^2 + p^2}{n-p} = p + \frac{p^2}{n-p} > p\). 
+\end{theorem}
+
+\underline{Question}: Where does \(p^{\ast}\) come from?
+
+Given \(u\in C^1_0(\mathbb{R}^n)\), define:
+
+\[
+    u_\lambda (x) \coloneqq u(\lambda x)
+\]
+
+for \(\lambda > 0\).
+
+Suppose \(\left\vert u \right\vert _{L^q(\mathbb{R}^n)} \leq C \left\vert \nabla u \right\vert _{L^p(\mathbb{R}^n)}\) 
+
+For which \(q\) could this be true? Consider the norm of the scaled function:
+
+\[
+    \left\lVert u_\lambda  \right\rVert _{L^q} = \left[ \int_{\mathbb{R} ^n}^{} \vert u(\lambda x) \vert ^ q \,\mathrm{d}x  \right] ^ {\frac{1}{q}} = \frac{1}{\lambda ^{n / q}} \left[ \int_{\mathbb{R}^n}^{} \vert u(y) \vert ^ q \,\mathrm{d}y  \right] ^{\frac{1}{q}}
+\]
+
+\[
+    \left\lVert \nabla u_\lambda \right\rVert _{L^p} = \left[ \int_{\mathbb{R} ^n}^{} \vert \nabla_x u(\lambda x) \vert ^ p \,\mathrm{d}x  \right] ^{\frac{1}{p}} = \underbrace{\frac{1}{\lambda ^{\frac{n}{p}}} (\lambda ^ p)^{\frac{1}{p}}}_{=\lambda^{1-\frac{n}{p}}} \left[ \int_{\mathbb{R} ^n}^{} \left\vert \nabla _y u(y) \right\vert ^p \,\mathrm{d}y  \right] ^{\frac{1}{p}}
+\]
+
+Applying the same inequality,
+
+\[
+    \frac{1}{\lambda^{\frac{n}{q}}} \left[ \int_{\mathbb{R} ^n}^{} \vert u(y) \vert ^q \,\mathrm{d}y  \right]^{\frac{1}{q}} \leq C \lambda^{1 - \frac{n}{p}} \left[ \int_{\mathbb{R} ^n}^{} \vert \nabla u(y) \vert ^p \,\mathrm{d}y  \right] ^{\frac{1}{p}} 
+\]
+
+\[
+    \left\lVert u \right\rVert _{L^q} \leq C \lambda ^{1 - \frac{n}{p} + \frac{n}{q}} \left\lVert \nabla u \right\rVert _{L^p} \quad \forall \lambda > 0
+\]
+
+This means \(1 - \frac{n}{p} + \frac{n}{q}\) must be \(0\).
+
+Therefore, \(q = p^{\ast} \) 
+
+So, if the theorem is true we must have the \(q\).
+
+Now we prove the theorem.
+
+\begin{proof}
+    First take \(n = 3\).
+
+    Take \(p = 1\).
+
+    \[
+        u(x) = \int_{-\infty}^{x_1} u_{x_1} (y_1, x_2, x_3) \,\mathrm{d}y_1 
+    \]
+
+    \[
+        u(x) = \int_{-\infty}^{x_2} u_{x_2}(x_1, y_2, x_3) \,\mathrm{d}y_2 
+    \]
+
+    \[
+        u(x) = \int_{-\infty}^{x_3} u_{x_3}(x_1, x_2, y_3) \,\mathrm{d}y_3 
+    \]
+
+    Therefore,
+
+    \[
+        \vert u(x) \vert \leq \int_{-\infty}^{x_1} \vert \nabla u(y_1, x_2, x_3) \vert  \,\mathrm{d}y_1 
+    \]
+
+    \[
+        \vert u(x) \vert \leq \int_{-\infty}^{x_2} \vert \nabla u(x_1, y_2, x_3) \vert  \,\mathrm{d}y_2 
+    \]
+
+    \[
+        \vert u(x) \vert \leq \int_{-\infty}^{x_3} \vert \nabla u(x_1, x_2, y_3) \vert  \,\mathrm{d}y_3 
+    \]
+
+    Multiplying, \(\vert u(x) \vert ^3\) 
+    
+    \[
+        \leq \left[ \int_{-\infty}^{x_1} \vert \nabla u(y_1, x_2, x_3) \vert  \,\mathrm{d}y_1 \right] \left[ \int_{-\infty}^{x_2} \vert \nabla u(x_1, y_2, x_3) \vert  \,\mathrm{d}y_2 \right] \left[ \int_{-\infty}^{x_3} \vert \nabla u(x_1, x_2, y_3) \vert  \,\mathrm{d}y_3 \right] 
+    \]
+
+    Therefore, \(\vert u(x) \vert ^{\frac{3}{2}} \leq \) 
+
+    \[
+        \underbrace{\left[ \int_{-\infty}^{\infty} \vert \nabla u(y_1, x_2, x_3) \vert  \,\mathrm{d}y_1 \right]^{\frac{1}{2}}}_{=I_1(x_2, x_3)} \underbrace{\left[ \int_{-\infty}^{\infty} \vert \nabla u(x_1, y_2, x_3) \vert  \,\mathrm{d}y_2 \right]^{\frac{1}{2}}}_{=I_2(x_1,x_3)} \underbrace{\left[ \int_{-\infty}^{\infty} \vert \nabla u(x_1, x_2, y_3) \vert  \,\mathrm{d}y_3 \right]^{\frac{1}{2}}}_{=I_3(x_1,x_2)}
+    \]
+
+    Integrating with respect to \(x_1\) and applying H\"older,
+
+    \[
+        \int_{-\infty}^{\infty} \vert u(x) \vert ^{\frac{3}{2}} \,\mathrm{d}x_1 \leq (I_1(x_2, x_3))^{\frac{1}{2}} \left[ \int_{-\infty}^{\infty} I_2(x_1, x_3) \,\mathrm{d}x_1  \right] ^{\frac{1}{2}} \left[ \int_{-\infty}^{\infty} I_3(x_1, x_2) \,\mathrm{d}x_1  \right] ^{\frac{1}{2}}
+    \]
+
+    repeat for \(x_2\) and \(x_3\) and use the fact:
+
+    \[
+        \int \vert f \vert \vert g \vert \leq \left[ \int f^2 \right] ^{\frac{1}{2}} \left[ \int g^2 \right] ^{\frac{1}{2}  }
+    \]
+
+    We see that,
+
+    \[
+        \iiint _{\mathbb{R} ^3} \vert u(x) \vert ^\frac{3}{2} \, \mathrm{d} x \leq \left[ \iiint _{\mathbb{R} ^3} \vert \nabla u(x) \vert \,\mathrm{d} x \right] ^{\frac{3}{2}}
+    \]
+
+    Therefore, \(\left\lVert u \right\rVert _{L^{\frac{3}{2}}} \leq \left\lVert \nabla u \right\rVert _{L^1}\) 
+
+    For \(p = 1, n \geq 3\), same proof, but use `generalized H\"older inequality' given by:
+
+    \[
+        \int \vert u_1 \cdots u_m \vert \leq \lVert u_1 \rVert _{L^{p_1}} \cdots \lVert u_m \rVert _{L^{p_m}}
+    \]
+
+    provided \(\frac{1}{p_1} + \cdots + \frac{1}{p_m} = 1\) 
+
+\end{proof}
+
+Now, for any \(1 < p < n\), let \(v(x) = \vert u(x) \vert ^ \gamma \) for some \(\gamma > 1\) 
+
+\(v\in C_0^1\) since \(u\in C^1_0\). Use previous case \([p=1]\). Note that, in that case, \(p^{\ast} = \frac{n}{n-1}\).
+
+Also note that, \(\nabla v = \gamma \vert u \vert ^{\gamma -1} \sgn (u)\nabla u\) 
+
+Therefore \(\vert \nabla v \vert \leq \gamma \vert u \vert ^{\gamma -1} \vert \nabla u \vert \) 
+
+Then,
+
+\[
+    \left[ \int \vert v(x) \vert ^{\frac{n}{n-1}} \right] \leq \int \vert \nabla v(x) \vert 
+\]
+
+\[
+    \left[ \int \vert u \vert ^{\frac{\gamma n}{n-1}} \right] ^{\frac{n-1}{n}} \leq \gamma \int \vert u \vert ^ {\gamma -1} \vert \nabla u \vert \underset{\text{H\"older}}{\leq} \gamma \left[ \int \vert u \vert ^{(\gamma -1) \frac{p}{p-1}} \right]^{\frac{p-1}{p}} \left[ \int \vert \nabla u \vert ^ p \right] ^{\frac{1}{p}} 
+\]
+
+We pick \(\gamma = \frac{p(n-1)}{n-p} > 1\). This gives us,
+
+\[
+    \frac{\gamma n}{n-1} = \frac{(\gamma -1)p}{p-1} \implies \frac{\gamma n}{n-1} = p^{\ast} 
+\]
+
+So we get:
+
+\[
+    \left[ \int \vert u \vert ^{p^{\ast}} \right] ^ { \frac{n-1}{n} - \frac{p-1}{p} } \leq \gamma  \left\lVert \nabla u \right\rVert _{L^p}
+\]
+
+\[
+    \left[ \int \vert u \vert ^{p^{\ast}} \right] ^ { \frac{n-p}{np}} \leq \gamma  \left\lVert \nabla u \right\rVert _{L^p}
+\]
+
+\[
+    \lVert u \rVert _{L^{p^{\ast}}} \leq \gamma \lVert \nabla u \rVert _{L^p}
+\]
+
+\section*{Wednesday, 9/11/2024}
+
+\begin{theorem}
+    Assume \(u \in W_0^{1,p}(\Omega)\) for \(\Omega \subset \mathbb{R}^n\) open, bounded, \(\partial \Omega \in C^1\). Then, for \(1 \leq p < n\) there exists \(C = C(p,n,\Omega)\) such that,
+    
+    \[
+        \lVert u \rVert _{L^{p^{\ast}}} \leq C \lVert \nabla u \rVert _{L^p (\Omega)}
+    \]
+
+    for \(p^{\ast} = \frac{np}{n-p}\)
+
+    [Note that before we had condition \(u\in C^1_0 (\mathbb{R}^n)\), so this is a stronger theorem]
+\end{theorem}
+
+\begin{proof}
+    Extend \(u\) to be \(\tilde{u} \in W^{1,p} (\mathbb{R}^n)\) so that it is compactly supported
+
+    [insert picture here]
+
+    Then we approximate \(\tilde{u}\) by smooth functions \(\{ u_m \} \subset C_0^{\infty} (\mathbb{R}^n)\).
+
+    Apply previous result to get:
+
+    \[
+        \lVert u_m - u_j \rVert _{L^{p^{\ast}}} \leq C \lVert \nabla u_m - \nabla u_j \rVert _{L^p} \to 0
+    \]
+
+    Therefore, \(\{ u_m \} \) is cauchy in \(L^{p^{\ast}}(\Omega)\).
+
+    So we have \(u_m \overset{L^{p^{\ast}}(\Omega)}{\to} u\) 
+
+    To prove the inequality, we let \(m\to \infty\) in the previous result.
+
+\end{proof}
+
+\underline{Corollary}: For \(1 \leq q \leq p^{\ast}\) and \(1 \leq p < n\), \(\exists C = C(p,n,\Omega)\) such that,
+
+\[
+    \lVert u \rVert _{L^q(\Omega)} \leq C \lVert \nabla u \rVert _{L^p(\Omega)}
+\]
+
+\begin{proof}
+    By H\"older,
+
+    \[
+        \lVert v \rVert _{L^q} \leq C^{\prime} \lVert v \rVert _{L^{p^{\ast}}} \quad \forall q < p^{\ast}
+    \]
+\end{proof}
+
+This is only half the story since we have \(p < n\). What if \(p > n\)? What about \(p = n\)?
+
+\subsection*{\(p=n\) case}
+
+Here \(u \in W_0^{1,n}(\Omega)\) 
+
+Note that \(p^{\ast} = \frac{np}{n - p}\) which is undefined. So we have problem. For that, we do:
+
+Suppose \(\epsilon > 0\). Apply GNS inequality for \(p_{\epsilon} = n - \epsilon\).
+
+Then \(p_{\epsilon}^{\ast} = \frac{n p_{\epsilon}}{n - p_{\epsilon} } = \frac{n(n-\epsilon)}{\epsilon} \). We have:
+
+\[
+    \lVert u \rVert _{L^{p^{\ast} _{\epsilon}}(\Omega)} < C_{\epsilon} \lVert \nabla u \rVert _{L^n(\Omega)} 
+\]
+
+Such an inequality exists for every \(\epsilon \). So, \(u\) is in every \(L_q(\Omega)\) space for \(1 \leq q < \infty\).
+
+Note that \(q = \infty\) not necessary, there are counterexamples.
+
+\underline{Corollary}[Poincar\'e Inequality]: For \(\Omega \subset \mathbb{R}^n\) open, bounded and for \(1 \leq p < \infty\) there exists \(C = C(p,n, \Omega)\) such that
+
+\[
+    \lVert u \rVert _{L^p(\Omega)} \leq C(p,n, \Omega) \lVert \nabla u \rVert _{L^p(\Omega)}
+\]
+
+This is true for all \(u \in W_0^{1,p}(\Omega)\).
+
+This is weaker than previous inequalities, since \(p < p^{\ast}\).
+
+
+\subsection*{What if \(u\in W^{1,p}\) or \(u\in W^{1,p}_0\) and \(\Omega \subset \mathbb{R}^n\) and \(p > n\)?}
+
+These functions are even better!
+
+But first we need to talk about H\"older Continuous Functions.
+
+\begin{definition}
+    [H\"older Quotient] Let \(0 < \alpha < 1\). Define \underline{H\"older quotient}:
+
+    \[
+        [u]_{C^{0,\alpha}(\overline{\Omega})} = \sup_{x,y\in \overline{\Omega}, x\neq y} \frac{\vert u(x) - u(y) \vert }{\vert x-y \vert ^ \alpha}
+    \]
+\end{definition}
+
+\begin{definition}[H\"older Space]
+    \(u\in C^{0,\alpha}(\overline{\Omega})\) if
+
+    \[
+        \lVert u \rVert _{C^{0,\alpha}(\overline{\Omega})} \coloneqq \sup_{x\in \overline{\Omega}} \left[ \vert u(x) \vert + [u]_{C^{0,\alpha}(\overline{\Omega})} \right] < \infty
+    \]
+
+    This is a \underline{Banach Space}.
+\end{definition}
+
+Note: if \(u\in C^{0,\alpha}(\overline{\Omega })\) then \(u\) is uniformly continuous. 
+
+\underline{Example}: Suppose \(\Omega = [0,1]\) and \(u(x) = x^\beta\) for any \(\beta \in (0, \alpha]\).
+
+[graph]
+
+It's derivative goes to \(\infty\) but it is still H\"older continuous.
+
+\begin{theorem}
+    [Morrey's Inequality] Assume \(n < p \leq \infty\). Then \(\exists C = C(p,n)\) such that
+    
+    \[
+        \lVert u \rVert _{C^{0,\gamma}}(\mathbb{R}^n) \leq C \lVert u \rVert _{W^{1,p}}(\mathbb{R}^n)
+    \]
+
+    for all \(u \in C_0^1(\mathbb{R}^n)\) where \(\gamma = 1-\frac{n}{p}\).
+\end{theorem}
+
+We can approximate so this is also true for \(u\in W^{1,p}_0(\Omega)\).
+
+Thus, when \(u\in W^{1,p}_0(\Omega)\) we can say that \(u\) is in fact H\"older continuous.
+
+\begin{proof}
+
+    We have to prove that both \(\sup\) and the H\"older quotient are controlled by the Sobolev norm.
+
+    \underline{Step 1}: \underline{Claim}: There exists \(C = C(n)\) such that \(\forall x\in \mathbb{R} ^n\) such that \(r > 0\),
+
+    \[
+        \fint_{B(x,r)} \vert u(y) - u(x) \vert \, \mathrm{d} y \leq C \int_{B(x,r)} \frac{\vert \nabla u(y) \vert }{\vert y - x \vert ^{n-1}} \, \mathrm{d} y \quad \forall u\in C^1(\mathbb{R}^n)
+    \]
+
+    \underline{Proof of Claim}: Fix \(x\). Fix \(r\). Fix \(w\in \partial B(0,1)\). Then,
+
+    \[
+        \vert u(x+sw) - u(x) \vert = \left\vert \int_{0}^{s} \frac{\mathrm{d}}{\mathrm{d}t} u(x+tw) \,\mathrm{d}t  \right\vert \leq \int_{0}^{s} \vert \nabla_x u(x + tw) \vert \cdot \underbrace{\vert w \vert}_{=1} \,\mathrm{d}t 
+    \]
+
+    Integrating over all \(w \in \partial B(0,1)\) we get
+
+    \[
+        \int_{w\in\partial B(0,1)}^{} \vert u(x+sw) - u(x) \vert  \,\mathrm{d}S_w \leq \int_{w\in\partial B(0,1)}^{} \int_{0}^{s} \vert \nabla_x u(x+tw) \vert  \,\mathrm{d}t  \,\mathrm{d}S_w 
+    \]
+
+    \[
+        = \int_{0}^{s} \int_{w\in\partial B(0,1)}^{} \vert \nabla_x u(x+tw) \vert \underbrace{t^{n-1} \,\mathrm{d}S_w}_{=\mathrm{d} S \text{ on } \partial B(0,t)}  \,\mathrm{d}t 
+    \]
+
+    Let \(y = x+tw \implies t = \vert y - x \vert \) 
+
+    \[
+        = \int_{B(x,s)}^{} \frac{\vert \nabla_y u(y) \vert}{\vert y - x \vert ^{n-1}} \,\mathrm{d}y
+    \]
+
+    \[
+        \leq \int_{B(x,r)}^{} \frac{\vert \nabla_y u(y) \vert}{\vert y - x \vert ^{n-1}} \,\mathrm{d}y
+    \]
+
+    TBC
+
+
+\section*{Friday, 9/13/2024}
+
+Continuing Morrey's Inequality.
+
+We had:
+
+\[
+    \int_{\partial B(0,1)}^{} \vert u(x+sw) - u(x) \vert  \,\mathrm{d}S_w \leq \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert }{\vert y-x \vert^{n-1} } \,\mathrm{d}y 
+\]
+
+Multiplying by \(s^{n-1}\),
+
+\[
+    \int_{\partial B(0,1)}^{} \vert u(x+sw) - u(x) \vert s^{n-1} \,\mathrm{d}S_w \leq \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert s^{n-1}}{\vert y-x \vert ^{n-1}} \,\mathrm{d}y
+\]
+
+Integrating over \(s\) from \(0\) to \(r\),
+
+\[
+    \int_0^r \int_{\partial B(0,1)}^{} \vert u(x+sw) - u(x) \vert s^{n-1} \,\mathrm{d}S_w \, \mathrm{d} s \leq \int_0^r \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert s^{n-1}}{\vert y-x \vert ^{n-1}} \,\mathrm{d}y \, \mathrm{d}s
+\]
+
+\[
+    \int_0^r \int_{\partial B(x,s)}^{} \vert u(y) - u(x) \vert \,\mathrm{d}S_y \, \mathrm{d} s \leq \int_0^r \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert s^{n-1}}{\vert y-x \vert ^{n-1}} \,\mathrm{d}y \, \mathrm{d}s
+\]
+
+\[
+    \int_{B(x,r)}^{} \vert u(y) - y(x) \vert  \,\mathrm{d}y \leq \frac{r^n}{n} \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert }{\vert y - x \vert ^{n-1}} \,\mathrm{d}y 
+\]
+
+\[
+    \frac{1}{\alpha(n)r^n}\int_{B(x,r)}^{} \vert u(y) - y(x) \vert  \,\mathrm{d}y \leq \frac{1}{n \alpha(n)} \int_{B(x,r)}^{} \frac{\vert \nabla u(y) \vert }{\vert y - x \vert ^{n-1}} \,\mathrm{d}y 
+\]
+
+which is the claim.
+
+\underline{Step 2}: (Bounding \(\sup \vert u \vert \))
+
+Fix \(x\in\mathbb{R}^n\).
+
+\[
+    \vert u(x) \vert = \fint_{B(x,1)} \vert u(x) \vert \, \mathrm{d} y
+\]
+
+\[
+    \leq \fint_{B(x,1)} \vert u(x) - u(y) \vert \, \mathrm{d}y + \fint_{B(x,1)} \vert u(y) \vert \, \mathrm{d}y
+\]
+
+First term: apply step 1. Second term: apply Young's inequality
+
+\[
+    \vert u(x) \vert  \leq C \int_{B(x,1)}^{} \frac{\vert \nabla u(y) \vert }{\vert y-x \vert ^{n-1}} \,\mathrm{d}y + C \left( \int 1^{\frac{p}{p-1}} \, \mathrm{d}y\right)^{\frac{p-1}{p}} \left( \int_{B(x,1)} \vert u(y) \vert ^ p \right) ^\frac{1}{p} (\ast)
+\]
+
+Now apply H\"older's inequality on the first part:
+
+\[
+    \int_{B(x,1)}^{} \frac{1}{\vert x - y \vert ^{n-1}} \vert \nabla u (y) \vert  \,\mathrm{d}y \leq \left[ \int_{B(x,1)}^{} \left[ \frac{1}{\vert x - y \vert ^{n-1}} \right] ^{\frac{p}{p-1}} \,\mathrm{d}y  \right] ^{\frac{p-1}{p}} 
+\]
+
+We simplify:
+
+\[
+    \left[ \int_{B(x,R)}^{} \left[ \frac{1}{\vert y - x \vert ^{n-1}} \right] ^{\frac{p}{p-1}} \,\mathrm{d}y \right] ^{\frac{p-1}{p}} = \left[ \int_{0}^{R} \int_{\partial B(0,s)}^{} s^{(n-1)\frac{p}{p-1}} \,\mathrm{d}S  \,\mathrm{d}s \right] ^{\frac{p-1}{p}}
+\]
+
+\[
+    = \left[ \int_{0}^{R} s^{(n-1)\frac{p}{p-1}} \omega (n) s^{n-1} \,\mathrm{d}s \right]^{\frac{p-1}{p}} = C \left[ \int_{0}^{R} s^{n-1 - (n-1)\frac{p}{p-1}} \,\mathrm{d}s  \right] ^{\frac{p-1}{p}}
+\]
+
+\[
+    = C \left[ R^{n - (n-1)\frac{p}{p-1}} \right]^{\frac{p-1}{p}} = C R^{n\frac{p-1}{p} - (n-1)} = C R^{1- \frac{n}{p}} \quad (\ast\ast)
+\]
+
+Applying \(R = 1\) on \((\ast\ast)\) and substituting to \(()\ast)\), 
+
+\(\vert u(x) \vert \leq C \left\lVert \nabla u \right\rVert _{L^p(\mathbb{R}^n)}\) 
+
+
+\underline{Step 3}: Bounding the H\"older quotient \([u]_{C^{0,\gamma}}\):
+
+Fix \(x,y\) in \(\mathbb{R}^n\) and let \(r = \vert x - y \vert\).
+
+Define \(W = B(x,r) \cap B(y,r)\).
+
+[insert picture]
+
+\[
+    \vert u(x) - u(y) \vert = \fint_{z\in W} \vert u(x) - u(y) \vert \, \mathrm{d} z
+\]
+
+\[
+    \leq \fint_W \vert u(x) - u(z) \vert \, \mathrm{d}z + \fint_W \vert u(y) - u(z) \vert \, \mathrm{d}z
+\]
+
+Now,
+
+\[
+    \fint \vert u(x) - u(z) \vert \, \mathrm{d}z \leq \frac{1}{\vert W \vert} \int_{B(x,r)}^{} \vert u(x) - u(z) \vert  \,\mathrm{d}z 
+\]
+
+\[
+    \leq C(n) \fint_{B(x,r)} \vert u(x) - u(z) \vert \, \mathrm{d}z
+\]
+
+Applying the claim,
+
+\[
+    \leq C \int_{B(x,r)}^{} \frac{\vert \nabla u(z) \vert }{\vert x - z \vert ^{n-1}} \,\mathrm{d}z 
+\]
+
+Applying H\"older and \((\ast)\),
+
+\[
+    \leq C \left\lVert \nabla u \right\rVert _{L^p(\mathbb{R}^n)} r^{1-\frac{n}{p}}
+\]
+
+So we're done.
+
+\end{proof}
+
+\begin{theorem}
+    Let \(\Omega \subset \mathbb{R} ^n\) be bounded, open with \(\partial \Omega \in C^1\). Assume \(n < p < \infty\).
+    
+    Then, \(\exists C (n, p, \Omega)\) such that: for every \(u\in W^{1,p}(\Omega)\) one has \(u\in C^{0,\gamma}(\Omega)\) where \(\gamma = 1- \frac{n}{p}\) and:
+
+    \[
+        \left\lVert u \right\rVert _{C^{0, \gamma}(\overline{\Omega})} \leq C \left\lVert u \right\rVert _{W^{1,p}(\Omega)}
+    \]
+
+    So, if our Sobolev \(L^p\) space is better than our dimension, our function must be continuous, or even better, H\"older Continuous!
+
+    Actually, Sobolev Functions are defined upto a set of measure \(0\). So, we actually have a continuous representative.
+\end{theorem}
+
+\begin{proof}
+    Extension Theorem
+\end{proof}
+
+If we have \(W^{k,p}\) we can have better statements.
+
+Morrey and G-N-S inequalities can be concatenated.
+
+[See Evans]
+
+\underline{Example}: Suppose \(u\in W^{2,2}(\Omega)\). Suppose \(\Omega \subset \mathbb{R}^3\) and bounded.
+
+\(u\in H^2 (\Omega)\) therefore \(u_{x_j} \in W^{1,2}(\Omega)\). 
+
+\(p=2, n=3\). Use GNS. \(2^{\ast}  = \frac{3\times 2}{3-2} = 6\).
+
+Thus, \(u_{x_j} \in L^{2^{\ast}} = L^6\).
+
+Since also \(u\in W^{1,2}\), \(u\in L^6\). 
+
+Therefore, \(u\in W^{1,6}\) . We have jumped above the dimension, since \(p = 6, n = 3\).
+
+\(n < p\) so we can use Morrey.
+
+\(\implies u\in C^{0,\gamma}(\Omega)\) where \(\gamma = 1-\frac{n}{p} = 1-\frac{3}{6} = \frac{1}{2}\).
+
+So, \(u\in W^{2,2} \implies u \in C^{0,\frac{1}{2}}(\Omega)\). 
+
+
+\section*{Monday, 9/16/2024}
+
+\begin{definition}[continuously / compactly embedded]
+    Given two Banach spaces \(X,Y\) with \(X \subseteq Y\) we say \(X\) is \underline{continuously embedded} in \(Y\) if \(\exists C > 0\) such that:
+
+    \[
+        \lVert x \rVert _ Y \leq C \lVert x \rVert _ X \forall x\in X
+    \]
+
+    \(X\) is \underline{compactly embedded} in \(Y\) if it is continuously embedded and every bounded sequence in \(X\) is pre-compact in \(Y\).
+
+    In other words, if every bounded sequence in \(X\) has a \(Y\)-convergent subsequence.
+
+    Typically people use \(X \subset \subset Y\) to denote this.
+\end{definition}
+
+\begin{theorem}
+    [Rellich-Kondrachov Compactness]
+
+    Let \(\Omega \subset \mathbb{R} ^n\) open, bounded with \(\partial \Omega \subset C^1\). If \(1 \leq p < n\) then \(W^{1,p}(\Omega) \subset \subset L^q(\Omega)\) for all \(q\in[1,p^{\ast})\) 
+
+    [here \(p^{\ast} = \frac{np}{n-p}\)]
+\end{theorem}
+
+\underline{Remark}: We already have continuous embedding for \(q\in [1,p^{\ast}]\) by GNS inequality.
+
+\begin{theorem}
+    [H\"older Generalization]
+
+    Assume \(1 \leq s < r < t \leq \infty\) and \(1 = \frac{r \theta}{s} + \frac{r(1-\theta)}{t}\) for some \(\theta \in (0,1)\). 
+    
+    Then, if \(u\in L^s(\Omega)\cap L^t(\Omega)\) then \(u\in L^r(\Omega)\) and:
+
+    \[
+        \lVert u \rVert _{L^r} \leq \lVert u \rVert ^\theta _{L^s} \lVert u \rVert ^{1-\theta}_{L^t}
+    \]
+\end{theorem}
+
+\begin{proof}
+    \[
+        \int _ \Omega \vert u \vert ^ r = \int _ \Omega \vert u \vert ^{r \theta} \vert u \vert ^{(1-\theta)r} \leq \left[ \int _\Omega \vert u \vert ^{{r \theta}\frac{s}{r \theta}} \right]^{\frac{r \theta}{s}} \left[ \int _ \Omega \vert u \vert ^{(1-\theta)r \frac{t}{r(1-\theta)}} \right]^{\frac{r(1-\theta)}{t}}
+    \]
+    
+    \[
+        = \left[ \int _ \Omega \vert u \vert ^ s \right]^{\frac{r \theta}{s}} \left[ \int _ \Omega \vert u \vert ^{t} \right] ^{\frac{r(1-\theta)}{t}}
+    \]
+\end{proof}
+
+\begin{proof}[Proof of Rellich-Kondrachov]
+
+    Assume \(\lVert u_m \rVert _{W^{1,p}(\Omega)} < C_0\) 
+
+    \underline{Step 1}: Mollify \(u_m \rightsquigarrow u_m ^ \epsilon\) and argue that \(u_m ^ \epsilon\) approximates \(u_m\) [uniformly in \(m\)] in \(L^q\).
+
+    \underline{Step 2}: Apply Arzela-Ascoli to \(\{ u_m ^ \epsilon \} \) for each \(\epsilon\) fixed.
+
+    \underline{Step 3}: Use diagonalization argument. We control things when \(m\) is fixed, we control things when \(\epsilon\) is fixed so we can vary both.
+    
+    First extend \(u_m\) to be compactly supported in \(V^{\prime} \supset \Omega\). Still have \(\lVert u_m \rVert _{ W^{1,p}(V^{\prime} )} < \tilde{C}_0\). Now Mollify: \(u_m ^\epsilon \coloneqq \eta _ \epsilon  \ast u_m\). \(\eta_{\epsilon}(x) = \epsilon ^ {-n} \eta \left( \frac{x}{\epsilon } \right)  \) with \(\eta \in C_0^{\infty} \) and \(\mathop{\mathrm{supp}}(\eta) \subset B(0,1)\) with \(\int \eta = 1\) 
+    
+    Note \(u_m ^ \epsilon\) is compactly supported. Say \(\mathop{\mathrm{supp}}(u_m ^ \epsilon) \subset V\). \(V^{\prime}  \subset V\).
+
+    \underline{Claim}: \(\{ u_m ^ \epsilon \} \) converges as \(\epsilon  \to 0\) to \(u_m\) in \(L^q (\Omega)\) uniformly in \(m\). That is, we claim: \(\forall \delta > 0\) there exists \(\epsilon_0 > 0\) such that \(\forall \epsilon < \epsilon _ 0\)
+
+    \[
+        \left\lVert u_m ^ \epsilon - u_m     \right\rVert _ {L^q(V)} < \delta
+    \]
+
+    \(\forall m\).
+
+    To see this, first assume \(u_m\) is smooth.
+
+    \[
+        u_m ^ \epsilon (x) - u_m (x) = \int_{B(0,\epsilon)}^{} \eta_{\epsilon}(y) \left( u_m(x-y) - u_m(x) \right)  \,\mathrm{d}y 
+    \]
+
+    Let \(z = \frac{y}{\epsilon }\) 
+
+    \[
+        = \int_{B(0,1)}^{} \eta (z) \left[ u_m(x-\epsilon z) - u_m(x) \right] \,\mathrm{d}z 
+    \]
+
+    \[
+        = \int_{B(0,1)}^{} \eta (z) \int _ 0 ^ 1 \frac{\mathrm{d}}{\mathrm{d}t} u_m (x - \epsilon t z) \,\mathrm{d}t \, \mathrm{d}z
+    \]
+
+    \[
+        = - \epsilon \int_{B(0,1)}^{} \eta (z) \int_{0}^{1} \nabla u_m(x - \epsilon t z) \cdot z \,\mathrm{d}t  \,\mathrm{d}z 
+    \]
+
+    \[
+        \leq \epsilon \int_{V}^{} \int_{B(0,1)}^{} \int_{0}^{1} \eta (z) \vert \nabla u_m (x - \epsilon  t z) \vert  \,\mathrm{d}t  \,\mathrm{d}z  \,\mathrm{d}x 
+    \]
+
+    Let \(y^{\prime} = x - \epsilon t z\) 
+
+    \[
+        = \epsilon \int_{\tilde{V}}^{} \int_{B(0,1)}^{} \int_{0}^{1} \eta (z) \vert u_m(y^{\prime}) \vert  \,\mathrm{d}t  \,\mathrm{d}z  \,\mathrm{d}y^{\prime}  
+    \]
+
+    \[
+        = \epsilon \int_{\tilde{V}}^{} \vert \nabla u_m(y^{\prime}) \vert \,\mathrm{d}y^{\prime}
+    \]
+
+    Apply H\"older:
+
+    \(\leq \epsilon C \lVert \nabla u_m \rVert _{L^p} \leq \epsilon \tilde{\tilde{C}}_0\) 
+
+    If \(u_m\) is not smooth then approximate \(u_m\) by \(\tilde{u}_m\) smooth such that \(\lVert \tilde{u}_m - u_m \rVert _{W^{1,p}} < \delta\) for all \(m\).Then,
+    
+    \[
+        \int_{V}^{} \vert u_m ^ \epsilon (x) - u_m(x) \vert  \,\mathrm{d}x \leq 
+    \]
+
+    \[
+        \int_{V}^{} \vert u_m ^ \epsilon (x) - \tilde{u}_m (x) \vert  \,\mathrm{d}x + \int_{V}^{} \vert \tilde{u}_m(x) - u_m(x) \vert  \,\mathrm{d}x < \delta + \delta
+    \]
+
+    Now apply interpolation:
+
+    \[
+        \lVert u_m^{\epsilon} - u _m  \rVert _{L^q(V)} \leq \lVert u_m ^ \epsilon - \tilde{u}_m \rVert ^ \theta _{L^1} \lVert \tilde{u}_m - u_m \rVert ^{1-\theta}_{L^{p^{\ast}}} 
+    \]
+    
+    Here \(s = 1, t = p^{\ast}\) 
+
+    \(\frac{1}{q} = \frac{\theta}{1} + \frac{1-\theta}{p^{\ast}}\) 
+
+    Recall GNS gave us \(\lVert u_m^{\epsilon} - u_m  \rVert _{L^q(V)} \leq \tilde{C}_0\) 
+
+\section*{Wednesday, 9/18/2024}
+
+\[
+    \vert u_m^{\epsilon} \vert \leq \int_V \epsilon ^{-n} \eta \left( \frac{x-y}{\epsilon} \right) \vert u_m(y) \vert \, \mathrm{d}y
+\]
+
+\[
+    \leq \epsilon^{-n} \int_V \vert u_m(y) \vert \, \mathrm{d}y
+\]
+
+\[
+    \leq \epsilon ^{-n} \lVert u_m \rVert _{W^{1,p}(V)} < \text{constant}
+\]
+
+Note that 
+
+\[
+    \nabla u_m^{\epsilon} (x) = \int_V \epsilon ^{-n}\nabla \eta \left( \frac{x-y}{\epsilon} \right) \frac{1}{\epsilon}u_m(y)\, \mathrm{d}y
+\]
+
+
+\[
+    \left\vert \nabla u_m^{\epsilon} (x) \right\vert \leq \int_V \epsilon^{-n} \left\vert \nabla \eta \left( \frac{x-y}{\epsilon } \right)  \right\vert \frac{1}{\epsilon } \vert u_m(y) \vert \, \mathrm{d}y
+\]
+
+\[
+    \leq \epsilon^{-(n+1)} \sup \vert \nabla \eta \vert \int \vert u_m(y) \vert \, \mathrm{d}y
+\]
+
+\[
+    \leq \epsilon^{n+1} \sup \vert \nabla \eta \vert \lVert u_m \rVert _{W^{1,p}(V)} \leq \text{constant} 
+\]
+
+Therefore, \(u_m^{\epsilon}\) is equi-Lipschitz and thus equicontinuous. 
+
+\underline{Step 3}:
+
+\underline{Claim}: We can find a subsequence \(\{ u_{m_j} \} \) of the \(u_m\) so that:
+
+\[
+    \limsup_{j,k \to \infty} \lVert u_{m_j} - u_{m_k} \rVert _{L^q(V)} < \delta
+\]
+
+Use step 1 to find \(\epsilon\) such that \(\lVert u_m ^ \epsilon - u_m \rVert _{L^q(V)} < \frac{\delta}{2}\) for all \(m\).
+
+Apply Arzela-Ascoli for that \(\epsilon\) to get subsequence \(u_{m_j}\) such that:
+
+\[
+    \limsup_{j,k \to \infty} \lVert u_{m_j} ^ \epsilon - u_{m_k}^{\epsilon} \rVert \to 0 
+\]
+
+\[
+    \implies \lVert u_{m_j}^{\epsilon} - u_{m_k}^{\epsilon } \rVert _ {L^q(V)} = 0
+\]
+
+Therefore,
+
+\[
+    \left\lVert u_{m_j} - u_{m_k} \right\rVert _{L^q(V)} \leq \left\lVert u_{m_j} - u_{m_j}^{\epsilon}  \right\rVert _ {L^q} + \left\lVert u_{m_j}^{\epsilon} - u_{m_k}^{\epsilon}   \right\rVert _ {L^q} + \left\lVert u_{m_k}^{\epsilon} - u_{m_k} \right\rVert _{L^q}
+\]
+
+Take \(\limsup_{j,k \to \infty} \) to see \(< \frac{\delta}{2} + 0 + \frac{\delta}{2} = \delta\) 
+
+Then take \(\delta = 1, \frac{1}{2}, \frac{1}{4} \cdots \) [subsequences of subsequences] to get \(u_{m_{l_k}} \overset{L^q}{\to} \overline{u}\).
+
+\end{proof}
+
+\underline{Remark}: What if \(\left\lVert u_m \right\rVert _{W^{1,p}(\Omega)} < C_0\) with \(n < p\)?
+
+Morrey's inequality gives us:
+
+\[
+    \left\lVert u_m \right\rVert _{C^{0,\alpha}} \leq \text{constant}
+\]
+
+\[
+    \vert u_m(x) - u_m(y) \vert \leq C \vert x-y \vert ^ \alpha
+\]
+
+Thus we also have equicontiunity.
+
+\section*{Elliptic PDE Definition}
+
+Suppose \(u =\) density, amount/volume, \(u = u(x,t), x\in\mathbb{R}^3\). 
+
+Let \(\Omega \subset \mathbb{R}^3\) be any domain where the whole process is taking place.
+
+Suppose we want to know the amount of stuff in \(\Omega\) in time \(t\). It is:
+
+\[
+    \int_ \Omega u(x,t) \, \mathrm{d}x
+\]
+
+Now we ask: how does it change w.r.t.\ time?
+
+\[
+    \frac{\mathrm{d}}{\mathrm{d}t} \int_{\Omega}^{} u(x,t) \,\mathrm{d}x 
+\]
+
+This depends on the stuff enterring or exiting [= flux accross \(\partial \Omega\)] + sources/sinks. 
+
+What is \underline{flux}? It must be a vector \(\vec{Q} (x,t)\) . So, total contribution of flux is:
+
+\[
+    -\int_{\partial \Omega}^{} \vec{Q} (x,t)\cdot\nu \,\mathrm{d}S 
+\]
+
+Plus sources/sinks density.
+
+\[
+    + \int_{\Omega}^{} F(x,t) \,\mathrm{d}x 
+\]
+
+Thus we have,
+
+\[
+    \frac{\mathrm{d}}{\mathrm{d}x} \int_{\Omega}^{} u(x,t) \,\mathrm{d}x = -\int_{\partial \Omega}^{} \vec{Q} (x,t) \cdot \nu \,\mathrm{d}S + \int_{\Omega}^{} F(x,t) \,\mathrm{d}t  
+\]
+
+The choice of flux \(\vec{Q}\) distinguishes different physical settings.
+
+Let's rewite our equation as 1 volume integral.
+
+\[
+    \int_{\Omega}^{} \left[ u_t(x,t) + \operatorname{div} \vec{Q}(x,t) - F(x,t) \right]  \,\mathrm{d}x = 0
+\]
+
+This is true for arbitrary \(\Omega\) so we have:
+
+\[
+    u_t = -\operatorname{div}(\vec{Q}) + F
+\]
+
+Naturally, we pick \(Q\) to model a \underline{diffusion process}. 
+
+If there's a lot of stuff `inside' then stuff will go outside and vice versa. So, we can take,
+
+\[
+    \vec{Q} = - k \nabla u
+\]
+
+Or more generally,
+
+\[
+    \vec{Q} = - A (x) \nabla u
+\]
+
+where \(A\) is positive definite \(3 \times 3\) matrix.
+
+For \(Q = - k \nabla u\) we have:
+
+\[
+    u_t = \operatorname{div}(k\nabla u) + F = k \Delta u + F
+\]
+
+which is the heat equation.
+
+For \(Q = - A(x)\nabla u\),
+
+\[
+    u_t = \operatorname{div} (A(x)\nabla u) + F
+\]
+
+This is a model where stuff `smooths out / settles down'.
+
+As \(t \to \infty\) we expect \(u(x,t) \to \tilde{u}(x)\). 
+
+In that case, \(-\operatorname{div} (A(x)\nabla u) = F\). 
+
+If \(A\) has entries \(a_{ij}(x)\), then,
+
+\[
+    \operatorname{div}(A(x)\nabla u) = \sum_{i,j} \frac{\partial}{\partial x_i} (a_{ij}(x) u_{x_j})
+\]
+
+This is an elliptic operator [if \(a_{ij} = a_{ji}, A\) positive definite].
+
+This is the divergence form. 
+
+
+\section*{Friday, 9/20/2024}
+
+Assume \(A\) is symmetric. We define the linear elliptic operator \(L\) by:
+
+\begin{enumerate}[label=\roman*)]
+    \item \(L u= - \frac{\partial}{\partial x_j} \left( a_{ij} u_{x_i} \right) + b_i (x) u_{x_i} + c(x)u\) [divergence form elliptic operator]
+    \item \(Lu = - a_{ij} (x) u_{x_i x_j} + b_i(x) u_{x_i} + c(x) u\) [non divergence form] where \(b_i : \Omega \to \mathbb{R}, i = 1,\cdots , n, c:\Omega \to \mathbb{R} , \Omega \subset \mathbb{R}^n\). If \(a_{ij}\) are \(C^1\) then \(a_{ij}(x) u_{x_i x_j} = \frac{\partial}{\partial x_j} (a_{ij} (x) u_{x_i}) - \left(\frac{\partial}{\partial x_j} a_{ij}(x)\right) u_{x_i} \) 
+\end{enumerate} 
+
+Why elliptic? \(A = (a_{ij})\) and \(a_{ij}(x) \xi_i \xi_j \geq \theta \vert \xi \vert ^2 \quad \forall \xi \in \mathbb{R}^n\) for some \(\theta > 0\).
+
+\begin{definition}
+    We say \(u \in H^1_0 (\Omega)\) [same as \(W^{1,2}_0\)] is a weak solution to the equation \(L u = f\) for some \(f\in L^2(\Omega)\) and \(u = 0\) on \(\partial \Omega\) [homogeneous Dirichlet condition] if:
+
+    \[
+        \int_{\Omega}^{} A\nabla u \cdot \nabla v \,\mathrm{d}x + \int_{\Omega}^{} b_i(x) u_{x_i} v \,\mathrm{d}x + \int_{\Omega}^{} c(x) uv \,\mathrm{d}x = \int_{\Omega}^{} v f \,\mathrm{d}x \quad (\ast) 
+    \]
+
+    for all \(v\in H_0^1(\Omega)\).
+\end{definition}
+
+\begin{definition}
+    We say \(u\in H^1(\Omega)\) is a weak solution to
+
+    \[
+        \begin{dcases}
+            L u = f, &\text{ in } \Omega ;\\
+            A\nabla u \cdot \nu_{\partial \Omega} = 0, &\text{ on } \partial \Omega
+        \end{dcases}
+    \]
+
+    [Neumann boundary condition]
+
+    if \((\ast)\) holds for all \(v\in H^1(\Omega)\).
+\end{definition}
+
+Suppose
+
+\[
+    \int_{\Omega}^{} a_{ij}(x) u_{x_i}v_j + b_i (x) u_{x_i}v + c u v \,\mathrm{d}x + \int_{\partial \Omega}^{} v A \nabla u \cdot \nu \,\mathrm{d}x = \int_{\Omega}^{} f v \,\mathrm{d}x \quad (\ast\ast) 
+\]
+
+why? Suppose \(u\) was a classical solution. Then integrating by part yields the second equation.
+
+\subsection*{Functional Analysis}
+
+\underline{Background on Hilbert Spaces}
+
+Recall: a Hilbert Space \(H\) is a Banach space [normed and complete] that posses an inner product \((\cdot,\cdot)_H\) such that \(\lVert \cdot \rVert \) is inherited from the inner product.
+
+Basically: complete space with inner product.
+
+Example: \(\mathbb{R}^n\) with dot product, \(L^2(\Omega)\) with \((u,v)_{L^2} = \int_{\Omega}^{} uv \,\mathrm{d}x \)
+
+Or, \(H^1(\Omega)\) with \((u,v)_H = \int_{\Omega}^{} uv \,\mathrm{d}x + \int_{\Omega}^{} \nabla u \cdot \nabla v \,\mathrm{d}x \)
+
+Or, most importantly, in \(H_0^1(\Omega)\) we have \((u,v)_{H_0^1} = \int_{\Omega}^{} \nabla u \cdot \nabla v \,\mathrm{d}x\) 
+
+By Poincare, then \(C_1 \lVert u \rVert ^2_{H^1} \leq \lVert u \rVert _{H_0^1}^2 = \int_{\Omega}^{} \vert \nabla u \vert ^2 \,\mathrm{d}x \leq C_2 \lVert u \rVert ^2\) 
+
+Given \(u,v \in H\) we'll say \(u\) is orthogonal to \(v\) if \((u,v)=0\).
+
+Given a subspace \(M \subset H\), we'll write \(M ^{\perp} \coloneqq \{ v\in H : (u,v) = 0 \forall u\in M \} \) 
+
+\begin{proposition}
+    Let \(M \subset H\) be a closed subspace of \(H\). Then \(\forall x \in H, \exists y\in M,z\in M ^{\perp}\) such that \(x = y + z\).  
+\end{proposition}
+
+\begin{proof}
+    Idea: \(y\) is the point closest to \(x\) in \(M\).
+
+    Consider \(x\notin M\). Define
+
+    \[
+        d = \inf_{x^{\prime} \in M} \left\lVert x - x^{\prime} \right\rVert 
+    \]
+
+    Then there must be a sequence \(\{ y_n \} \subset M\) such that \(\left\lVert x - y_n \right\rVert \to d\).
+
+    Recall:
+
+    \[
+        \lVert X - Y \rVert ^2 + \lVert X + Y \rVert ^2 = 2 \lVert X \rVert ^2 + 2 \lVert Y \rVert^2
+    \]
+
+    Pick \(X = x-y_n, Y = x-y_m\). Then,
+
+    \[
+        \lVert y_m - y_n \rVert ^2 + 4 \left\lVert x - \frac{1}{2}(y_n + y_m) \right\rVert^2 = 2 \lVert x - y_n \rVert ^2+ 2 \lVert x - y_m \rVert ^2
+    \]
+
+    Therefore,
+
+    \[
+        4 d^2 + \lVert y_n - y_m \rVert ^2 \leq 2 \lVert x - y_n \rVert ^2 + 2\lVert x - y_m \rVert ^2
+    \]
+
+    \[
+        \lVert y_n - y_m \rVert ^2 \leq 2 \lVert x - y_n \rVert ^2 + 2 \lVert x - y_m \rVert ^2 - 4d^2
+    \]
+    
+    Taking limsup we see that \(\{ y_n \} \) is cauchy.
+
+    Define \(z = x-y\). It is easy to see that \(z\in M ^{\perp}\).
+
+\end{proof}
+
+
+\section*{Monday, 9/23/2024}
+
+\subsection*{Divergence from Linear Elliptic Operator}
+
+\[
+    L(u) = - \frac{\partial}{\partial x_j} (a_{ij}(x)u_{x_i}) + b_i(x)u_{x_i}+ c(x)u
+\]
+
+Uniform ellipticity:
+
+\(a_{ij} = a_{ji}\) symmetric
+
+\(a_{ij}(x) \xi_i \xi_j \geq \theta \vert \xi \vert ^2 \forall \xi \in \mathbb{R}^n \forall x\in \Omega\) for some \(\theta > 0\).
+
+Meaning minimum eigenvalue is uniformly bigger than some \(\theta\) 
+
+Review: \(u\in H^1_0(\Omega)\) is a weak solution to \(Lu=f\) in \(\Omega\) for \(f\in L^2(\Omega)\) and \(u=0\) on \(\partial \Omega\) if:
+
+\[
+    B(u,v) \coloneqq \int_{\Omega}^{} \left[ a_{ij}(x) u_{x_i}v_{x_j} + b_i(x)u_{x_i}v + c(x)uv \right]  \,\mathrm{d}x = \int_{\Omega}^{} fv \,\mathrm{d}x \, \forall v\in H^1_0 (\Omega)
+\]
+
+\(u\) is a weak solution to \(Lu = f\) in \(\Omega\) and \(A \nabla u \cdot \nu_{\partial \Omega} = 0\) on \(\partial \Omega\) if 
+
+\[
+    B(u,v) = \int_{\Omega}^{} fv \,\mathrm{d}x \, \forall v\in H^1(\Omega)
+\]
+
+Note that \(B\) is a bilinear form.
+
+\begin{definition}
+    A bounded linear operator \(L: X \to Y\) that is \underline{linear} that satisfies:
+
+    \[
+        \lVert L \rVert \coloneqq \sup_{\lVert x \rVert _X \leq 1} \lVert L(x) \rVert _Y < \infty
+    \]
+\end{definition}
+
+For linear operators, boundedness is the same as continuity.
+
+\begin{definition}
+    A bounded linear functional on \(X\) is a bounded linear operator \(L : X \to \mathbb{R}\) 
+\end{definition}
+
+\underline{Notation}: If \(u^{\ast}\) is a bounded linear functional we'll often write \(\langle u^{\ast} , x \rangle \) for the evaluation of \(u^{\ast}\) at \(x\).
+
+\[
+    \lVert u^{\ast} \rVert = \sup _{\lVert x \rVert \leq 1} \langle u^{\ast} , x \rangle 
+\]
+
+\begin{definition}
+    The dual of a Banach Space \(X\) is the set of bounded linear functionals on \(X\). Notation: \(X^{\ast}\) 
+\end{definition}
+
+\begin{theorem}
+    [Riesz Representation Theorem] Assume \(H\) is a Hilbert space with inner product \((\cdot,\cdot)\). 
+
+    For every bounded linear functional \(u^{\ast} : H \to \mathbb{R}\) there exists a unique \(u\in H\) such that \((u^{\ast} , v) = (u,v) \forall v\in H\) and \(\lVert u^{\ast} \rVert = \lVert u \rVert\) 
+\end{theorem}
+
+\begin{proof}
+    Suppose \(u^{\ast} \in H^{\ast}\).
+
+    Let \(N\) be the nullspace of \(u^{\ast}\):
+
+    \[
+        N = \{ v\in H : \langle u^{\ast} , v \rangle = 0 \} 
+    \]
+
+    If \(N = H\) then \(\langle u^{\ast}, - \rangle = 0\) so \(u\) must be \(0\). Assume \(N\) is a proper subspace. \(N\) must be closed since \(u^{\ast}\) is continuous.
+
+    Fix \(z\in N ^{\perp}\), \(\langle u^{\ast} , z \rangle \neq 0\).
+
+    Then \(\forall x\in H\) we have:
+
+    \[
+        \left\langle u^{\ast} , x - \frac{\langle u^{\ast} , x \rangle}{\langle u^{\ast} , z \rangle } z \right\rangle = \langle u^{\ast} , x \rangle - \langle u^{\ast} , x \rangle = 0
+    \]
+
+    Thus, \(x - \frac{\langle u^{\ast} , x \rangle}{\langle u^{\ast} , z \rangle } \in N\).
+    
+    \[
+        \left( x - \frac{\langle u^{\ast} , x \rangle}{\langle u^{\ast} , z \rangle} z, z \right) = 0
+    \]
+
+    \[
+        \implies (x,z) = \frac{\langle u^{\ast} , x \rangle}{\langle u^{\ast} , z \rangle} \lVert z \rVert ^2
+    \]
+
+    \[
+        \implies \langle u^{\ast} , x \rangle = \left( \frac{\langle u^{\ast} ,z \rangle}{\lVert z \rVert ^2}z, x \right) 
+    \]
+
+    We just take \(u \coloneqq \frac{\langle u^{\ast} , z \rangle}{\lVert z \rVert^2}z\)
+    
+    Uniqueness: if \(\langle u^{\ast} , x \rangle = (u_1, x) = (u_2,x)\) then \((u_1 - u_2, x) = 0\), choose \(x = u_1 - u_2\) to deduce that \(u_1 = u_2\).
+
+    \[
+        \lVert u^{\ast} \rVert =\sup_{\lVert x \rVert \leq 1} \langle u^{\ast} , x \rangle = \sup_{\lVert x \rVert \leq 1} (u,x) \leq \sup_{\lVert x \rVert \leq 1} \lVert u \rVert _H \lVert x \rVert _H \leq \lVert u \rVert _H
+    \]
+
+    On the other hand,
+
+    \[
+        \lVert u \rVert = \frac{(u,u)}{\lVert u \rVert } = \left\langle u^{\ast} , \frac{u}{\lVert u \rVert } \right\rangle \leq \lVert u^{\ast} \rVert 
+    \]
+
+    Thus \(\lVert u \rVert = \lVert u^{\ast} \rVert \) 
+
+\end{proof}
+
+\subsection*{Solving a PDE [finally]}
+
+Poisson: Find a weak solution to \(- \Delta u = f\) where \(f\in L^2(\Omega)\) in \(\Omega\) and \(u=0\) on \(\partial \Omega\) 
+
+We seek \(u\in H^1_0(\Omega)\) satisfying
+
+\[
+    B(u,v) = \int_{\Omega}^{} \nabla u \cdot \nabla v \,\mathrm{d}x = \int_{\Omega}^{} fv \,\mathrm{d}x \, \forall v\in H^1_0(\Omega)
+\]
+
+Recall: By Poincar\'e's inequality, an inner product for \(H^1_0\) can be taken as:
+
+\[
+    (u,v)_{H^1_0} = \int_{\Omega}^{} \nabla u \cdot \nabla v \,\mathrm{d}x 
+\]
+
+We seek \(u\) such that:
+
+\[
+    (u,v)_{H^1_0} = \int_{\Omega}^{} fv \,\mathrm{d}x \, \forall v\in H^1_0(\Omega) 
+\]
+
+Existence of unique \(u\) follows from Riesz Representation. We just need to show that \(v \mapsto \int_{\Omega}^{} fv \,\mathrm{d}x \) is a bounded linear functional on \(H^1_0(\Omega)\).
+
+It is obviously linear.
+
+\[
+    \sup_{\lVert v \rVert _{H^1_0}\leq 1} \int_{\Omega}^{} fv \,\mathrm{d}x \leq \sup_{\lVert v \rVert _{H^1_0} \leq 1} \lVert f \rVert _{L^2} \lVert v \rVert _{L^2} \leq c_p \cdot 1 \lVert f \rVert _{L^2}
+\]
+
+Where \(c_p\) is the Poincar\'e constant: \(\int u^2 \leq c_p \int \vert \nabla u \vert ^2 \, \forall u \in H^1_0\) 
+
+
+\section*{Wednesday, 9/25/2024}
+
+
+Last time, we used Riesz Representation Theorem to get existene of a weak solution to \(Lu = f\) in \(\Omega\) and \(u = 0\) on \(\partial \Omega\)
+
+for \(Lu = - \frac{\partial}{\partial x_j} (a_{ij}(x) u_{x_i}) = f\) 
+
+\(a_{ij}\) elliptic.
+
+Weak formulation: seek \(u \in H^1_0(\Omega)\) such that:
+
+\[
+    B[u,v] \coloneqq \int_{\Omega}^{} a_{ij} u_{x_i} v_{x_j} \,\mathrm{d}x = \int_{\Omega}^{} fv \,\mathrm{d}x \quad \forall v\in H^1_0(\Omega)
+\]
+
+For \(- \Delta u = f\) we seek \(u\) such that \(B[u,v] = \int_\Omega \nabla u \cdot \nabla v\) where \(B[u,v] = (u,v)_{H^1_0(\Omega)}\) 
+
+How do we obtain a weak solution for
+
+\[
+    Lu \coloneqq - \frac{\partial}{\partial x_j} \left( a_{ij}(x) u_{x_i} \right) + b_i(x) u_{x_i} + c(x)u = f
+\]
+
+Consider:
+\[
+    B[u,v] = \int_{\Omega}^{} a_{ij} u_{x_i}v_{x_j} + b_i(x) u_{x_i}v + c(x) uv \,\mathrm{d}x 
+\]
+
+Not symmetric so not an inner product but that's not the only problem. Consider 1-dim.
+
+\[
+    - u^{\prime\prime} - u = 1 \quad \Omega = (0,\pi)
+\]
+
+\(u(0)=u(\pi)=0\).
+
+Suppose \(u\) solves this.
+
+Multiply the ODE by \(\sin x\) and integrate.
+
+\[
+    \int_{0}^{\pi} - \sin x \cdot u^{\prime\prime} - \sin x \cdot u \,\mathrm{d}x = \int_{0}^{\pi } \sin x \,\mathrm{d}x = 2
+\]
+
+Note
+
+\[
+    \int_{0}^{\pi} - \sin x \cdot u^{\prime\prime} \,\mathrm{d}x = \left[ - \sin x\cdot u^{\prime} \right]^\pi_0 - \int_{0}^{\pi} \cos x \cdot u^{\prime} \,\mathrm{d}x = \left[ - \cos x \cdot u \right]^\pi_0 + \int_{0}^{\pi} \sin x \cdot u \,\mathrm{d}x 
+\]
+
+Therefore, by plugging it into the original argument,
+
+\[
+    0 = 2
+\]
+
+Thus we don't have solutions!
+
+Today: Lax-Milgram Lemma
+
+\begin{theorem}
+    [Lax-Milgram Lemma] Assume \(B: H \times H \to \mathbb{R}\) is a bilinear form on a hilbert space \(H\). Suppose,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists \alpha > 0\) such that \(B(u,v) \leq \alpha \lVert u \rVert \cdot \lVert v \rVert \forall u,v\in H\) 
+        \item \(\exists \beta > 0\) such that \(B[u,u] \geq \beta \lVert u \rVert ^2\)  
+    \end{enumerate} 
+
+    Then we have the same conclusion as Riesz: \(\forall f\in H^{\ast} \exists ! u\in H\) such that \(B[u,v] = \langle f,v \rangle \forall v\in H\) 
+\end{theorem}
+
+\begin{proof}
+    For any fixed \(u\in H\) consider the map \(v \mapsto B[u,v]\).
+    
+    It is a \underline{bounded linear functional} in \(H\).
+    
+    Apply Riesz Representation: for each fixed \(u\) there exists unique \(w \in H\) such that \(B[u,v] = (w,v) \forall v\).
+
+    We write \(A u = w\) 
+
+    Then \(B[u,v] = (Au, v)\) 
+
+    \underline{Claim}: \(A: H \to H\) is linear, bounded, 1-1
+    
+    Linearity: \(B[c_1 u_1 + c_2 u_2, v] = (A(c_1 u_1 + c_2 u_2),v)\)
+    
+    \(= c_1 B[u_1, v] + c_2 B[u_2, v]= c_1 A(u_1, v) + c_2 A(u_2, v)\).
+    
+    \(A\) is bounded since \(\lVert A u \rVert ^2 = (Au, Au) = B[u, Au] \leq \alpha \lVert u \rVert \lVert Au \rVert \)
+    
+    \(A\) is 1-1 since \(\beta \lVert u \rVert ^2 \leq B[u,u] = (Au, u) \leq \lVert A u \rVert \lVert u \rVert\) 
+    
+    So \(\beta \lVert u \rVert \leq \lVert A u \rVert\)
+
+    So, if \(u \neq 0\) we have \(Au \neq 0\) so \(0\) is the only element in the kernel, so it is 1-1.
+
+    Claim: range of \(A, R(A)\) is closed.
+
+    Consider \(\{ w_j \} \subset R(A)\). Suppose \(w_j \to w\). \(\exists \{ u_j \} \subset H\) so that \(A u_j = w_j\) 
+
+    Since \(w_j\) are cauchy, \(u_j\) are cauchy:
+    
+    \(\lVert w_j - w_k \rVert = \lVert A u_j - A u_k \rVert \geq \beta \lVert u_j - u_k \rVert \) 
+
+    \(\implies u_j\) are cauchy. So \(u_j \to u \in H\) and by continuity \(Au_j \to Au = w\) and thus \(R(A)\) is closed.
+
+    Claim: \(R(A) = H\).
+
+    If not, apply projection lemma. \(\exists w\in R(A)\perp\) so that \(w \neq 0\). 
+
+    \[
+        \beta \lVert u \rVert^2 \leq B[w,w] = (Aw, w) 
+    \]
+
+    Since \(Aw \in R(A)\) we have the inner product is \(0\) and thus \(w=0\).
+
+    Now, let \(f\in H^{\ast}\) be any bounded linear functional. Apply Riesz to show that there exists unique \(w\in H\) such that \(\langle f,v \rangle = (w,v) = (Au,v) = B[u, v]\) for unique \(u\).   
+
+\end{proof}
+
+\begin{theorem}
+    For \(L u = - \frac{\partial}{\partial x_j} (a_{ij}(x) u_{x_i}) + b_i(x) u_{x_i}+c(x)u\) with \(a_{ij}\) elliptic and with \(a_{ij}, b_i, c\in L^{\infty}(\Omega)\).
+
+    Then there exists a number \(\gamma > 0\) such that \(\forall \mu \geq \gamma\) :
+
+    a weak \(H^1_0(\Omega)\) solution exists to:
+
+    \[
+        Lu + \mu u = f \text{ in } \Omega
+    \]
+
+    \[
+        u = 0 \text{ on } \partial \Omega 
+    \]
+
+    \(\forall f\in L^2(\Omega)\) 
+\end{theorem}
+
+\begin{proof}
+    We just apply Lax-Milgrim
+
+    We will prove:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert B[u,v] \vert \leq \alpha \lVert u \rVert _{H^1_0} \lVert v \rVert _{H^1_0}\)
+        \item \(B[u,u] + \gamma \lVert u \rVert ^2_{L^2} \geq \beta \lVert u \rVert _{H^1_0}^2\)   
+    \end{enumerate} 
+
+    First Condition: Need to check \(B[u,v] \leq \alpha \lVert u \rVert _{H^1_0} \lVert v \rVert _{H^1_0}\) for some \(\alpha\) 
+
+    \[
+        B[u,v] = \int_{\Omega}^{} a_{ij}(x) u_{x_i}v_{x_j} b_i(x) u_{x_i} v + c(x) uv \,\mathrm{d}x 
+    \]
+
+    \[
+        \leq B[u,v] \leq \int_{\Omega}^{} n^2M \vert \nabla u \vert \vert \nabla v \vert + nM \vert \nabla u \vert \vert v \vert + M \vert u \vert \vert v \vert  \,\mathrm{d}x 
+    \]
+
+    \[
+        \leq n^2 M \lVert u \rVert _{H^1_0} \lVert v \rVert _{H^1_0} + nM \lVert u \rVert _{H^1_0} \lVert v \rVert _{L^2} + M \lVert u \rVert _{L^2} \lVert v \rVert _{L^2}
+    \]
+
+
+    Apply Poincar\'e
+
+    \[
+        \leq \alpha \lVert u \rVert _{H^1_0} \lVert v \rVert _{H^1_0}
+    \]
+
+    So we have the first condition.
+
+\section*{Friday, 9/27/2024}
+
+    Now we check the second condition. 
+
+    \[
+        B[u,u] = \int_{\Omega}^{} a_{ij} (x) u_{x_i} u_{x_j} + b_i(x) u_{x_i} u + c(x) u^2 \,\mathrm{d}x 
+    \]
+
+    Use the fact that \(a_{ij}\) is elliptic, meaning \(a_{ij}(x)\zeta_i \zeta_j \geq \theta \vert \zeta \vert ^2\) 
+
+    \[
+        \geq  \theta \int_\Omega \vert \nabla u \vert ^ 2 - n M \vert \nabla u \vert \vert u \vert - M \vert u \vert^2 \, \mathrm{d}x
+    \]
+
+    We don't have to worry about the \(-M \vert u \vert ^2\) because we can choose \(\gamma\). We need to deal with \(-nM \vert \nabla u \vert \vert u \vert\).
+
+    Recall that AM-GM implies:
+
+    \[
+        \varepsilon^2 a^2 + \frac{1}{4 \varepsilon^2} b^2 \geq ab
+    \]
+
+    \[
+        \geq \theta \int_{\Omega}^{} \vert \nabla u \vert ^2 - nM \left( \varepsilon \vert \nabla u \vert ^2 + \frac{1}{4 \varepsilon^2} \vert u \vert ^2 \right) -  M\vert u^2 \vert  \,\mathrm{d}x 
+    \]
+
+    \[
+        \geq \theta \int_{\Omega}^{} \left( 1 - nM\varepsilon \right) \vert \nabla u \vert ^2 - \left( M + \frac{nM}{4 \varepsilon^2} \right) \vert u \vert ^2 \,\mathrm{d}x 
+    \]
+
+    We can choose \(\varepsilon\) so that \(n M \varepsilon = \frac{\theta}{2}\) and then choose appropriate \(\gamma\). So we're done.
+
+\end{proof}
+
+\begin{theorem}
+    For \(L\) as defined, \(\forall \mu \geq \gamma \, \forall f\in L^2(\Omega)\) there exists a unique weak solution to \(L_\mu u = f, u = 0\) on \(\partial \Omega\) where \(L_\mu \coloneqq L + \mu\)  
+\end{theorem}
+
+\begin{proof}
+    Lax-Milgrim: \(B_\mu [u,v] \coloneqq  B[u,v] + \mu \int uv\) so \(L_\mu\) has inverse.
+\end{proof}
+
+\subsection*{Functional Analysis}
+
+\begin{definition}
+    [Adjoint]
+
+    Given a bounded linear operator on Hilbert spaces
+
+    \[
+        A: H \to H \quad H \text{ is a Hilbert space} 
+    \]
+
+    The adjoint of \(A\) is the bounded linear operator \(A^{\ast}: H \to H\) defined by:
+
+    \[
+        (x, A^{\ast} y) = (Ax, y) \quad \forall x,y\in H
+    \]
+
+    If \(A = A^{\ast}\) we say \(A\) is \underline{self-adjoint}.
+
+    Example: If \(H = \mathbb{R}^n\) then \(A\) is a matrix and \(A^{\ast}\) is the transpose. 
+\end{definition}
+
+\begin{definition}
+    [Compact bounded linear operator]
+
+    Let \(X,Y\) be Banach spaces. A bounded linear operator \(K: X \to Y\) is \underline{compact} if for every sequence \(\{ x_j \} \subset X\) such that \(\lVert x_j \rVert _X\) is uniformly bounded then there exists a subsequence and \(y\in Y\) such that:
+
+    \[
+        K x_{j_l} \to y
+    \]
+\end{definition}
+
+\underline{Example}: Suppose \(X = C([0,1])\) and \(Y = C^1([0,1])\). \(\forall f\in X\) define \(Kf = u\) provided \(u\) solves \(u^{\prime\prime} = f\) on \((0,1)\) and \(u(0)=0, u^{\prime} (0)=0\). We have a formula:
+
+\[
+    u(x) = \int_{0}^{x} \int_{0}^{y} f(s) \,\mathrm{d}s  \,\mathrm{d}y 
+\]
+
+Suppose \(\lVert f_j \rVert _{C([0,1])} \leq M\). Then,
+
+\[
+    u_j(x) = \int_{0}^{x} \int_{0}^{y} f_j(s) \,\mathrm{d}s  \,\mathrm{d}y 
+\]
+
+\[
+    \vert u_j \vert \leq M
+\]
+
+\[
+    \vert u_j^{\prime}  \vert \leq \left\vert \int_{0}^{x} f_j(s) \,\mathrm{d}s \right\vert \leq M
+\]
+
+\[
+    \lVert u_j^{\prime\prime} \rVert = \lVert f_j \rVert \leq M
+\]
+
+Apply Arzela Ascoli to find:
+
+\[
+    u_{j_k} \overset{C^1}{\to} u_0
+\]
+
+Thus \(K\) must be compact.
+
+\begin{theorem}
+    [Fredhome Alternative]
+
+    Assume \(K: H\to H\) is a compact operator on a Hilbert space. Then either:
+
+    \begin{enumerate}[label=\roman*)]
+        \item The homogeneous equation \(x - K x = 0\) has a non-trivial solution. OR
+        \item \(\forall y\in H, \exists ! x\in H\) such that \(x - K x = y\)  
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    There are 4 steps.
+
+    \underline{Step 1}: Instead of \(x - Kx\) we write \(S\coloneqq I - K\). \(N(S)\) denotes the nullspace of \(S\).
+    
+    \underline{Claim}: \(\exists C\) such that:
+
+    \[
+        \operatorname{dist}(x,N(S)) \leq C \lVert Sx \rVert \, \forall x\in H
+    \]
+
+    \underline{Proof}: Suppose we cannot find such a \(C\). Then we can find a sequence \(\{\tilde{x}_k\} \subset H\) such that:
+    
+    \[
+        \operatorname{dis t}(\tilde{x}_k, N(S)) \geq k \lVert S \tilde{x}_k \rVert  
+    \]
+
+    Replace with \(x_k = \frac{\tilde{x}_k}{\lVert S \tilde{x_k} \rVert }\). Then \(\lVert S x_k \rVert = 1\) and
+    
+    \[
+        d_k \coloneqq \operatorname{dis t}(x_k, N(S)) \to \infty  
+    \]
+
+    Thus, we can find \(\{ y_k \} \subset N(S)\) such that:
+
+    \[
+        d_k \leq \lVert x_k - y_k \rVert \leq 2d_k
+    \]
+
+    define \(z_k \coloneqq \frac{x_k - y_k}{\lVert x_k - y_k \rVert }\) and so \(\lVert z_k \rVert = 1\).
+
+    But \(\lVert Sz_k \rVert = \frac{1}{d_k} \lVert S x_k - S y_k \rVert = \frac{1}{d_k}\lVert S x_k \rVert = \frac{1}{d_k} \to 0\) 
+
+    Therefore \(Sz_k \to 0\)
+
+    \(K\) is compact, so we have subsequence \(Kz_{k_j} \to y_0 \in H\). 
+
+    \(S_{z_{k_j}}\to 0 \implies z_{k_j} - Kz_{k_j} \to 0\) and since  \(K_{z_{k_j}}\to y_0\) we have \(z_{k_j} \to y_0\). 
+
+    Since \(Sz_{k_j} = 0\) we have \(S y_0 = 0\) by continuity. Thus \(y_0 \in N(S)\) 
+    
+    However, \(\operatorname{dis t}(z_{k_j}, N(S)) = \inf_{y\in N(S)} \lVert z_{k_j} - y \rVert = \inf_{y\in N(S)} \left\lVert \frac{x_{k_j}-y_{k_j}}{\lVert x_{k_j}-y_{k_j} \rVert} - y \right\rVert  \) 
+
+    \(= \frac{1}{\lVert x_{k_j} - y_{k_j} \rVert} \inf_{y\in N(S)} \lVert x_{k_j} - (\underbrace{y \lVert x_{k_j} - y_{k_j} \rVert + y_k}_{\in N(S)}) \rVert\)
+    
+    \(\geq \frac{1}{\lVert x_{k_j} - y_{k_j} \rVert} d(x_{k_j},N(S)) \geq \frac{d_{k_j}}{2d_{k_j}} =\frac{1}{2}\) 
+
+    \(z_{k_j}\) converges to something in \(N(S)\) but is a set distance away from \(N(S)\), which is impossible. Thus we have proved the claim.
+
+\end{proof}
+
+\end{document}
