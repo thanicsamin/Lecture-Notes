@@ -1,7 +1,7 @@
-\documentclass{amsbook}
+\documentclass[openany]{amsbook}
 \numberwithin{section}{chapter}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr, stmaryrd}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
 \usepackage{float}
@@ -616,7 +616,7 @@ Note that integral basis is \underline{not guaranteed} to exist.
 \begin{proof}
     Write \(M = \sum_{i=1}^{s} B \alpha_i\) with \(\alpha_i \in L^\times\). By the remark 1 above, we can find \(a \in A \setminus \{ 0 \} \) such that \(a \alpha_i \in B\) for \(1 \leq i \leq s\).
 
-    Therefore, \(a \cdot M \subset B\). Since \(\underset{ax \leftarrow x}{aM \cong M} \) [as \(A\)-module], we may assume \(M \subset B\). 
+    Therefore, \(a \cdot M \subset B\). Since \(\underset{ax \mapsfrom x}{aM \cong M} \) [as \(A\)-module], we may assume \(M \subset B\). 
     
     Therefore, \(\alpha_1 B = \underset{\neq 0}{B \alpha_1} \subset M \subset B\). (1)
 
@@ -2226,7 +2226,7 @@ This gives us a homomorphism \(\mathcal{J}_K \to \mathbb{Q}^\times \).
     Claim implies \(\operatorname{ord}([3,\omega]) = 4\) since \([2,\omega] + 2 [3,\omega] = 0_{\operatorname{Cl}_K}\). Therefore,
 
     \[
-        \underset{a\cdot [3,\omega]}{\operatorname{Cl}_K} \underset{\leftarrow}{\cong} \underset{a + 4\mathbb{Z}}{\mathbb{Z} / 4\mathbb{Z}}  
+        \underset{a\cdot [3,\omega]}{\operatorname{Cl}_K} \underset{\mapsfrom}{\cong} \underset{a + 4\mathbb{Z}}{\mathbb{Z} / 4\mathbb{Z}}  
     \]
 
 \end{example}
