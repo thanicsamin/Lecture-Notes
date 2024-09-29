@@ -3758,23 +3758,23 @@ Now we do a sequence of definitions which we'll use to answer whether the set of
 \begin{definition}
     Integral closure of \(A\) in \(B\) 
 
-    notation: \(I \subset (A \subset B) = \{ x\in B : x \text{ is integral / } A \} \) 
+    notation: \(IC (A \subset B) = \{ x\in B : x \text{ is integral / } A \} \) 
 
 \end{definition}
 
 \begin{definition}
-    \(A\) is integral closed in \(B\) if \(A = I \subset (A \subset B)\). Exxample: \(\mathbb{Z}\) is integral closed in \(\mathbb{Q}\) 
+    \(A\) is integral closed in \(B\) if \(A = IC (A \subset B)\). Exxample: \(\mathbb{Z}\) is integral closed in \(\mathbb{Q}\) 
 \end{definition}
 
 \begin{definition}
     A domain \(A\) is \underline{integrally closed} if it is integrally closed in \(Frac(A)\) eg \(\mathbb{Z}\) is integrally closed.
 \end{definition}
 
-Two obvious question about integrably closed \(I \subset (A \subset B)\):
+Two obvious question about integrably closed \(IC(A \subset B)\):
 
 One: Is this a ring? we are going to say yes, it's a consequence of the theorem.
 
-Two: Is \(I \subset (A \subset B)\) integrally closed in \(B\)?
+Two: Is \(IC(A \subset B)\) integrally closed in \(B\)?
 
 Corollary 5.2: Let \(x_1,\cdots x_n\in B\) be integral / \(A\). Then [this statement is stronger than AM]
 
@@ -3791,7 +3791,7 @@ Corollary 5.2: Let \(x_1,\cdots x_n\in B\) be integral / \(A\). Then [this state
 
 Thus, \(x,y\) integral over \(A\) implies \(x+y,xy\) integral over \(A\).
 
-Also, corollary: \(I \subset (A \subset B)\) is a ring.
+Also, corollary: \(IC (A \subset B)\) is a ring.
 
 corollary: \(\mathbb{A}\) is a ring.
 
@@ -3813,11 +3813,11 @@ eg \(x\in A\) is a root of \(t - x\)
     Integral closure of \(A\) in \(B\) 
 
     \[
-        I \subset (A \subset B) = \{ x\in B\mid x \text{ integral over } A \} 
+        IC (A \subset B) = \{ x\in B\mid x \text{ integral over } A \} 
     \]
 \end{definition}
 
-Corollary 5.3: \(I \subset (A \subset B)\)  is a ring
+Corollary 5.3: \(IC (A \subset B)\)  is a ring
 
 Corollary 5.4: `transitivity'
 
@@ -3842,38 +3842,38 @@ We have
 \[
     \begin{tikzcd}
         & & B \\
-        & I \subset (A \subset B) \ar[ur, no head] & \\
+        & IC (A \subset B) \ar[ur, no head] & \\
         A \ar[ur, no head] & &
     \end{tikzcd}
 \]
 
 \begin{definition}
-    \(A\) is \underline{integrally closed} in \(B\) if \(A = I \subset (A \subset B)\) 
+    \(A\) is \underline{integrally closed} in \(B\) if \(A = IC (A \subset B)\) 
 \end{definition}
 
 eg \(\mathbb{Z} \subset \mathbb{Q}\) is I.C.
 
 eg \(\mathbb{Q} \subset \mathbb{R}\) not I.C.
 
-\(\sqrt{2}\in I \subset (\mathbb{Q} \subset \mathbb{R}) \), \(\sqrt{2} \notin \mathbb{Q}\)
+\(\sqrt{2}\in IC (\mathbb{Q} \subset \mathbb{R}) \), \(\sqrt{2} \notin \mathbb{Q}\)
 
 \(\mathbb{Z} \subset \mathbb{Z} [i]\) not I.C.
 
-Corollary 5.5: \(I \subset (A \subset B)\) is I.C. in \(B\) 
+Corollary 5.5: \(IC (A \subset B)\) is I.C. in \(B\) 
 
 \begin{proof}
-    Let \(x\in B\) be integral over \(I \subset (A \subset B)\). We have:
+    Let \(x\in B\) be integral over \(IC (A \subset B)\). We have:
     
     \[
         \begin{tikzcd}
             & & & B\\
-            & & I \subset (A \subset B)[x] \ar[ur, no head, "int"] & \\
-            & I \subset (A \subset B) \ar[ur, no head, "int\quad 5.2"] & & \\
+            & & IC (A \subset B)[x] \ar[ur, no head, "int"] & \\
+            & IC (A \subset B) \ar[ur, no head, "int\quad 5.2"] & & \\
             A \ar[ur, no head, "int"] & & &
         \end{tikzcd}
     \]
 
-    5.4 implies \(I \subset (A \subset B)[x]\) is integral over \(A\) which means \(x\) is integral over \(A\) 
+    5.4 implies \(IC (A \subset B)[x]\) is integral over \(A\) which means \(x\) is integral over \(A\) 
 \end{proof}
 
 Proposition 5.6: Suppose \(B\) is integral over \(A\). Then,
@@ -4148,13 +4148,13 @@ A corollary of 5.11 tells us, if \(B\) is integral over \(A\) then \(\dim B \geq
 
     Localization respects integral closure.
 
-    Suppose \(B\) is integral over \(A\) and \(S \subset A\) is multiplicatively closed. Then, we have \(C = I \subset (A \subset B)\) the integral closure. Then, \(S ^{-1} C = I \subset (S ^{-1} A \subset S ^{-1} B)\) 
+    Suppose \(B\) is integral over \(A\) and \(S \subset A\) is multiplicatively closed. Then, we have \(C = IC (A \subset B)\) the integral closure. Then, \(S ^{-1} C = IC (S ^{-1} A \subset S ^{-1} B)\) 
 \end{proposition}
 
 \begin{proof}
-    5.6 implies \(S ^{-1} C \subset I \subset (S ^{-1} A \subset S ^{-1} B)\). We have one direction. For the other direction,
+    5.6 implies \(S ^{-1} C \subset IC (S ^{-1} A \subset S ^{-1} B)\). We have one direction. For the other direction,
     
-    Let \(\frac{b}{s} \in I \subset (S ^{-1} A \subset S ^{-1}  B)\). So there is some integral dependense relation:
+    Let \(\frac{b}{s} \in IC (S ^{-1} A \subset S ^{-1}  B)\). So there is some integral dependense relation:
     
     \[
         \left( \frac{b}{s} \right)^n + \left( \frac{a_1}{s_1} \right) \left( \frac{b}{s} \right)^{n - 1} + \cdots + \frac{a_n}{s_n} = 0   
@@ -4236,11 +4236,11 @@ implies \(Q_1 \supseteq Q_2 \supseteq \cdots \supseteq Q_n\)
 \end{proposition}
 
 \begin{proof}
-    Let \(k = Frac(A)\) and let \(C = I \subset (A \subset k)\)
+    Let \(k = Frac(A)\) and let \(C = IC (A \subset k)\)
     
     Inclusion: \(f:A\hookrightarrow C\)
     
-    \(f_P : A_P \hookrightarrow C_p \coloneqq (A-P)^{-1}  \overset{5.12}{-} I \subset (A_P \subset k) \subset k\) 
+    \(f_P : A_P \hookrightarrow C_p \coloneqq (A-P)^{-1}  \overset{5.12}{-} IC (A_P \subset k) \subset k\) 
 
     \(f_M : A_M \hookrightarrow C_M\) 
 
