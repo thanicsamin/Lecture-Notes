@@ -2739,4 +2739,208 @@ We are done by \((\ast\ast)\). \(d_i\mid n\).
 
 This finishes the proof.
 
+
+\section*{Monday, 9/30/2024}
+
+\subsection*{Serre Ch 4}
+
+What about representations of infinite groups?
+
+\begin{tikzcd}
+    & G \ar[dl] \ar [d] \\
+    \text{compact groups } S^1 \subset \mathbb{C}^\times & \text{discrete groups } \mathbb{Z}(\cong C_\infty) \ar[dl] \ar[d]\\
+     C^\ast G \text{ $C^\ast$-algebras} & \mathcal{N}(G) \text{ von Neumann Algebra} 
+\end{tikzcd}
+
+\begin{definition}
+    [Topological Group] \underline{Topological Group} is a group \((G,\cdot)\) such that \(G\) has a topology so that:
+
+    \[
+        G \times G \to G
+    \]
+
+    \[
+        (g,h) \mapsto g h ^{-1} 
+    \]
+
+    is continuous.
+\end{definition}
+
+\begin{definition}
+    [Lie Group] \underline{Lie Group} is a topological lie group \(G\) where \(G\) is a smooth manifold and \((g,h) \mapsto g h ^{-1} \) is smooth.
+\end{definition}
+
+Compact Lie Groups:
+
+Torus \(T^r = S^1 \times \cdots \times S^1\)
+
+\(O(n) = \{ A \in M_n(\mathbb{R}) \mid A A^T = I \} \) 
+
+\(U(n) = \{ A \in M_n(\mathbb{C}) \mid A A^{\ast} = I \}\) 
+
+\underline{Exceptional}: \(G_2, F_4, E_6, E_7, E_8\) 
+
+We also have compact groups are not lie groups>
+
+\((\mathbb{Z} / p)^{\infty} = \prod \mathbb{Z} / p \mathbb{Z}\) 
+
+\(p\)-adic \(\mathbb{Z}_p = \lim \mathbb{Z} / p^n \mathbb{Z}\) 
+
+Serre Ch 4 says that:
+
+\begin{center}
+
+\textbf{Representation of compact groups is almost the same as finite group!}
+
+\end{center}
+
+We need \underline{Haar Measure}.
+
+\begin{proposition}
+
+
+    For locally compact Hausdorff topological group \(G\) there exists a unique Haar Measure:
+
+    \[
+        \begin{array}{rcl}
+            \mathrm{d}t: \{ \text{Borel Subsets of $G$} \} & \to & [0,1] \\
+            B & \mapsto & \int_B \mathrm{d}t = \int_G \chi_B(t) \mathrm{d}t \\
+        \end{array}
+    \]
+
+    So that \(\int_G \mathrm{d}t = 1\) and \(\mathrm{d}t\) is translation invariant:
+
+    \[
+        \int_G f(t) \, \mathrm{d}t = \int_G f(gt) \, \mathrm{d}t = \int_G f(tg) \, \mathrm{d}t
+    \]
+    
+\end{proposition}
+
+\begin{example}
+    If \(G\) is finite:
+
+    \[
+        \int_G f \, \mathrm{d}t = \frac{1}{\vert G \vert} \sum_{g\in G} f(g)
+    \]
+
+    \(G = S^1\) 
+
+    \[
+        \int_{S^1} \, \mathrm{d}t = 1 \quad \int_{\text{quarter circle}} \, \mathrm{d}t = \frac{1}{4}
+    \]
+\end{example}
+
+\begin{theorem}
+    [Maschke's Theorem, Peter-Weyl Theorem] Let \(G\) be a compact group, \(k = \mathbb{C}\). Let \(W \subset V\) be a subrepresentation of \(\rho : G \to GL(V)\). Then \(\exists\) subrepresentation \(W^{\prime}\) such that \(V = W \oplus W^{\prime}\).
+\end{theorem}
+
+\begin{proof}
+    Let \(\langle , \rangle ^{\prime} : V \times V \to \mathbb{C}\) be any inner product.
+
+    We define a new inner product by averaging this inner product.
+
+    \[
+        \langle v,w \rangle = \int_G \langle \rho (t) v, \rho(t) w \rangle^{\prime} \, \mathrm{d}t
+    \]
+
+    This gives us a \(G\)-invariant inner product.
+
+    We take \(W^{\prime}\) to be orthogonal to \(W\) w.r.t.\ this inner product.
+\end{proof}
+
+\begin{corollary}
+    Any representation is the direct sum of irreducible representation (unique upto multiplicity).
+\end{corollary}
+
+Consider the regular representation \(L^2(G) \cong ``\bigoplus_{i}" d_i L_i\). 
+
+We don't have characteristic of regular representation
+
+We don't have a group ring
+
+Suppose \(G = S^1, n\in \mathbb{Z}\) 
+
+\(\chi_n : S^1 \to \mathbb{C} ^\times\) 
+
+\(\chi_n(z) = z^n\) gives us \(\mathbb{C}_n\)
+
+\(L^2(S^1) = ``\oplus" \mathbb{C}_n\) 
+
+\underline{Representation Ring}: \(R(S^1) \ni \rho - \rho ^{\prime} \) 
+
+\(R(S^1) = \mathbb{Z} [\chi_1, \chi_1 ^{-1}], \chi_n = \chi_1 \otimes _G \cdots \otimes _G \chi_1\) 
+
+Then, \(R(S^1 \times \cdots \times S^1) = \mathbb{Z}[\alpha_1, \alpha_1 ^{-1}, \cdots , \alpha_r, \alpha_r ^{-1}]\) where:
+
+
+\begin{center}
+
+    \begin{tikzcd}
+        S^1 \times \cdots \times S^1 \ar[r, "\text{proj}"] \ar[rr, bend right] & S^1 \ar[r, hook] & \mathbb{C}^\times
+    \end{tikzcd}
+
+\end{center}
+
+Consider \(T^n \subset U(n)\)
+
+\(\Sigma_n = U(n) / T^n\) 
+
+\(R(U(n))\hookrightarrow R(T^n)\).
+
+image \(\mathbb{Z} [\sigma_1, \cdots , \sigma_{n-1}, \sigma_n, \sigma_n ^{-1}]\) where
+
+\(\sigma_i\) is the \(i\)-th elementary symmetric function in \(\alpha_1, \cdots , \alpha_n\).
+
+\subsection*{Infinite Discrete Groups}
+
+\(C_\infty = \langle x \rangle \) 
+
+\(\mathbb{Z} C_\infty = \mathbb{Z} [x, x ^{-1}]\) the Laurent Polynomial Ring.
+
+We can think of it like the localization of \(\mathbb{Z} [x]\) at \(x\) [aka \(x ^{-1} \mathbb{Z} [x]\)] or \(\mathbb{Z} [x, x ^{-1}] \subset \mathbb{Q} (x)\) the rational function field.
+
+This is not a super well behaved domain since it has dimension \(2\).
+
+\(\mathbb{Q} [x,x ^{-1}]\) is a Euclidean domain and hence a PID. But not \(\mathbb{Z} [x, x ^{-1}]\).
+
+\subsection*{Some Conjectures about Torsion-Free Groups}
+
+Torsion free: If \(g \in G - \{ e \}, n > 0\) then \(g^n \neq e\).
+
+\begin{proposition}
+    [Farrell-Jones Conjecture] for \(R = \mathbb{Z}\) or a field, all finitely generated projective \(\mathbb{R} G\)-modules are stably-free.
+\end{proposition}
+
+Projective means it's a summand of a free module.
+
+\(P\) is stably free if \(P \oplus \text{free}\) is free.
+
+It has been proved for the torsion-free groups we care about, but not generally.
+
+\begin{proposition}
+    [Kaplansky Idempotent Conjecture]
+
+    Suppose \(R\) is an integral domain. Then the only idempotents in \(RG\) are \(0\) and \(1\).
+\end{proposition}
+
+\begin{proposition}
+    [Zero Divisor Conjecture] Suppose \(R\) is an integral domain. Then \(RG\) has no zero divisor.
+\end{proposition}
+
+\begin{proposition}
+    [Embedding Conjecture] Suppose \(R\) is an integral domain. Then \(RG\) is a subring of a skew field.
+\end{proposition}
+
+We have Embedding Conjecture \(\implies\) Zero Divisor Conjecture \(\implies\) Kaplansky Idempotent Conjecture
+
+\begin{proposition}
+    [Unit Conjecture]
+
+    Suppose \(k\) is a field. Then,
+
+    \[
+        (kG)^\times = \langle k^\times, G \rangle 
+    \]
+\end{proposition}
+
 \end{document}
