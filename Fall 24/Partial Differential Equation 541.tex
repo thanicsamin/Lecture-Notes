@@ -2263,6 +2263,120 @@ Thus \(K\) must be compact.
 
     \(z_{k_j}\) converges to something in \(N(S)\) but is a set distance away from \(N(S)\), which is impossible. Thus we have proved the claim.
 
+\section*{Monday, 9/30/2024}
+
+\underline{Step 2}: Claim: Let \(R(S) = \) range of \(S\). Then, \(R(S)\) is a closed subspae of \(H\).
+
+\underline{Proof}: Consider a sequence \(\{ x_k \}\subset H\) so that \(S x_k \to y\) for some \(y\). We must show that \(y\in R(S)\).
+
+From step 1, define \(d_k \coloneqq \operatorname{dist}(x_k, N(S)) \leq C \lVert S x_k \rVert \to \lVert y \rVert \).
+
+\(d_k\) is uniformly bounded.
+
+By projection theorem, we can find:
+
+\[
+    d_k = \lVert\underbrace{x_k - y_k}_{w_k} \rVert \quad y_k = \text{closest point to $x_k$ in $N(S)$}.
+\]
+
+Then \(\lVert w_k \rVert \leq \) const.
+
+Since \(K\) is compact, \(Kw_{k_j} \to w_0\in H\) 
+
+Thus, \(Sx_{k_j} = x_{k_j} -K x_{k_j} \to y\) 
+
+Thus, \(x_{k_j} \to y + w_0\) 
+
+Since \(S\) is continuous, \(S(y+w_0) = y\) 
+
+So, \(y\in R(S)\). 
+
+\underline{Step 3}: If \(N(S) = \{ 0 \}\) then \(R(S) = H\).
+
+Let \(R_j =\) range of \(S^j [= S(S(\cdots S(H)))]\).
+
+By Step 2, \(\{ R_j \} \) is a sequence of closed subspaces. Furthermore, it is non-increasing. We claim that it eventually stabilizes.
+
+Suppose, for contradiction, the sequence keeps decreasing.
+
+By projection theorem, \(\forall j \exists y_j\in R_j\) such that \(\lVert y_j \rVert = 1\) and \(\operatorname{dis t} (y_j, R_{j+1}) \geq \frac{1}{2}\).
+
+Let \(n > m\). We look at \(Ky_m - Ky_n\).
+
+\[
+    K y_m - K y_n = (I-S)y_m - (I-S)y_n = y_m - (\underset{\in R_{m+1}}{S y_m} - \underset{\in R_{n+1} \subset R_{m+1}}{S y_n} + \underset{\in R_n \subset R_{m+1}}{y_n})
+\]
+
+Thus, \(\lVert K y_m - K y_n \rVert \geq \frac{1}{2}\).
+
+This contradicts the compactness of \(K\). 
+
+Therefore, \(\exists k\) such that \(R_j = R_k \forall j > k\).
+
+So, assume \(N(S) = \{ 0 \}\). Let \(y\in H\).
+
+We have \(S^k y \in R_k = R_{k+1}\).
+
+Therefore, \(S^k y = S^{k+1}x\) for some \(x\).
+
+Therefore, \(S^k (y - S x) = 0\).
+
+Since \(N(S)=\{ 0 \}\) we have \(y = S x\).
+
+\underline{Step 4}. If \(R(S) = H\) then \(N(S) = \{ 0 \} \).
+
+Let \(N_j \coloneqq\) nullspace of \(S^j\). Now, \(N_j\) is a non-decreasing sequence of closed subspaces.
+
+\underline{Claim}: \(\exists k\) such that \(N_j - N_k \forall j > k\). Argue by contradiction as before.
+
+Assume \(R(S)=H\).
+
+\(\forall y\in N_k, S^k y = 0\) and furthermore \(\exists x_1\) such that \(y=S x_1\). Repeating, \(y = S^{k} x\).
+
+So, \(S^{2k} x = 0\). Since null space stabilzes after \(k\) we have \(S^k x = 0\). Therefore \(y = 0\).
+
+Thus \(N_k = \{ 0 \} \implies N(S) = \{ 0 \}\).
+
+In case ii why is \((I - K) ^{-1} \) bounded?
+
+Use Step 1: \(\operatorname{dist}(x, N(S)) \leq C \lVert Sx \rVert = C \lVert (I-K)x \rVert  \) 
+
+For ii we have \(N(S)= \{ 0 \} \) so:
+
+\[
+    \lVert x \rVert \leq C \lVert S x \rVert 
+\]
+
+Writing \(S x = y\),
+
+\[
+    \lVert (I - K)^{-1} y \rVert \leq C \lVert y \rVert 
+\]
+
 \end{proof}
+
+Given a bounded linear operator \(T: H \to H\) [could be a normed linear space as well],
+
+\begin{definition}
+    The \underline{resolvent set} of \(T\) is:
+    
+    \[
+        \rho(T) = \{ \lambda \in \mathbb{R} : T - \lambda I \text{ is bijective} \} 
+    \]
+
+    The \underline{spectrum} of \(T\) is:
+
+    \[
+        \sigma (T) = \mathbb{R} \setminus \rho (T)
+    \]
+
+    We can substitute real for complex.
+\end{definition}
+
+\begin{definition}
+    \(\lambda \in \sigma (T)\) is called an \underline{eigenvalue} of \(T\) if \(\exists x \in H\) such that \(Tx = \lambda x\).
+\end{definition}
+
+\underline{Note}: \((\sigma (T) \setminus \{ \text{eigenvalues} \})\) is called the \underline{continuous spectrum}.
 
 \end{document}
