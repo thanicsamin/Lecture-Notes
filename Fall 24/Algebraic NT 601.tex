@@ -2267,5 +2267,151 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
     \]
 \end{theorem}
 
+\section*{Tuesday, 10/1/2024}
+
+\begin{proof}
+    \(\zeta \in \mu _K, \zeta ^ m = 1 \implies \vert \tau (\zeta) \vert ^ m = 1 \implies \vert \tau (\zeta) \vert = 1 \implies \lambda (\zeta) = 0\).
+
+    Conversely: set \(U = \ker (\lambda \mid_{\mathcal{O}_K^\times})\).
+
+    \(\varepsilon \in U \implies \forall \tau \in \Sigma_K: \vert \tau (\varepsilon) \vert = 1 \to \exists \) compact \(C \subset K_\mathbb{R}\) such that \(j(U) \subset C \cap j(\mathcal{O}_K)\).
+
+    \(j(\mathcal{O})_K\) is a lattice in \(K_\mathbb{R} \implies \vert C \cap j(K_\mathbb{R}) \vert < \infty \implies \vert j(U) \vert < \infty \underset{j \text{ injective} }{\implies} \vert U \vert < \infty \implies U \subset \mu_K\).
+
+\end{proof}
+
+\begin{lemma}
+    For all \(a\in \mathbb{Z} _{\geq 0}\) the set \(\{ \alpha \in \mathcal{O}_K \mid N_{K / \mathbb{Q}}(\alpha) = \pm a \} / \mathcal{O}_K ^ \times \) is finite.
+\end{lemma}
+    
+\begin{proof}
+    If \(a = 0\) then \(\alpha = 0\), if \(a = 1\) then \(\alpha\) is a unit. These cases are trivial.
+
+    \underline{Claim}: \(\forall \beta \in \mathcal{O}_K\): \(\left\vert \{ \alpha \in \beta + a \mathcal{O}_K \mid N(\alpha) = \pm a \} / \sim \right\vert \leq 1\) where \(\alpha \sim \alpha ^{\prime} \iff \alpha \in \alpha ^{\prime} \cdot \mathcal{O}_K^\times\). 
+
+    \underline{Proof}: Suppose \(N(\alpha)=\pm \alpha\) and \(\alpha ^{\prime} = \beta + a \gamma \) is another such element (\(N(\alpha ^{\prime} ) = \pm a\)) for some \(\gamma \in \mathcal{O}_K\). Write \(\alpha = \beta + a \gamma\). Then, 
+    
+    \[
+        \frac{\alpha}{\alpha ^{\prime}} = \frac{\beta + a \gamma}{\alpha ^{\prime} } = \frac{\beta + a \gamma ^{\prime} + a(\gamma -\gamma ^{\prime} )}{\alpha ^{\prime} } = 1 + \frac{a}{\alpha ^{\prime}} (\gamma - \gamma ^{\prime} )
+    \]
+    
+    Since \(K\ni\frac{a}{\alpha ^{\prime} } = \pm \frac{N(\alpha^{\prime})}{\alpha ^{\prime}} = \pm \frac{1}{\alpha ^{\prime} } \prod_\tau \in \Sigma_K \tau(\alpha^{\prime}) = \pm \prod_{\substack{\tau \in \Sigma _K \\ \tau \neq \operatorname{id}}} \tau(\alpha ^{\prime}) \in \mathcal{O}_K\) 
+
+    Thus, \(\frac{\alpha}{\alpha ^{\prime} } \in \mathcal{O}_K\).
+    
+    Similarly, \(\frac{\alpha^{\prime}}{\alpha} \in \mathcal{O}_K\).
+    
+    Therefore, \(\frac{\alpha}{\alpha^{\prime}} \in \mathcal{O}_K^\times\).  This finishes the claim.
+    
+    \underline{Note}:
+
+    \[
+        \begin{array}{rcl}
+            \{ \alpha \in \mathcal{O}_K \mid N(\alpha) = \pm a \} / \mathcal{O} _K ^\times & \longrightarrow &  (\mathcal{O}_K / a \mathcal{O}_K) / \mathcal{O}_K ^\times \\
+            \alpha \cdot \mathcal{O}_K ^\times & \longmapsto  &  (\alpha + a \mathcal{O}_K) \cdot \mathcal{O}_K ^\times  \\
+        \end{array}
+    \]
+
+    \underline{Claim} \(\implies\) the image is finite.
+
+\end{proof}
+
+\begin{theorem}
+    The group \(\Gamma = \lambda(\mathcal{O}_K^\times)\) is a complete lattice in \(H = \ker(\Tr)\) [the trace zero hyperplane].
+\end{theorem}
+
+\begin{proof}
+    \underline{Step 1}: We want to show that \(\Gamma\) is a discrete subgroup of \(H\).
+
+    For \(c > 0\), set \(Q \coloneqq [-c,c]^{r+s} \subset \mathbb{R}^{r+s}\) ``hypercube''. It suffices to show that \(\vert \Gamma \cap Q \vert < \infty \).
+
+    \underline{Note}: \(l ^{-1} (Q) = \left\{ (z_{\tau})_{\tau} \in K_\mathbb{R}^\times \mid \substack{e^{-c} \leq \vert z_{\tau} \vert \leq e^c \text{ for real } \tau \\ e^{-\frac{c}{2}} \leq \vert z_{\tau} \vert \leq e^{-\frac{c}{2}} \text{ for complex } \tau } \right\} \) is a compact subset of \(K_\mathbb{R}\).
+
+    Thus, \(\vert l ^{-1} (Q) \cap j(\mathcal{O}_K) \vert < \infty \) since \(j(\mathcal{O}_K)\) is a lattice in \(K_\mathbb{R}\).
+
+    \(\implies \vert l^{-1} (Q) \cap j(\mathcal{O}_K^\times) \vert < \infty\) 
+
+    \(\implies \vert Q\cap \Gamma \vert = \vert l(l ^{-1} (Q)\cap j(\mathcal{O}_K^\times)) \vert < \infty\) 
+
+    Since \(\gamma (\varepsilon) = (l \circ j)(\varepsilon)\).
+
+    \(\implies \Gamma\) is a discrete subgroup of \(\mathbb{R} ^{r+s}\) and also of \(H\overset{3.1}{\implies} \Gamma\) is a lattice in \(H\).
+
+    \underline{Step 2}: We want to show that \(\Gamma\) is complete.
+
+    Proposition 3.2 \(\implies\) it suffices to show that \(\exists\) bounded subset \(M \subset H : H= \bigcup_{\gamma \in \Gamma}^{} \gamma + M\).
+
+    Put \(S = \{ (z_{\tau})_{\tau} \in K_\mathbb{R}^\times \mid \prod _\tau \vert z_{\tau}  \vert =1 \} = l ^{-1} (H) \) [the norm-1 hypersurface]. 
+
+    We will construct \(T \subset S\) such that \(l(T)\) is bounded in \(H\) and \(\boxed{S = \bigcup_{\varepsilon \in \mathcal{O}_K^\times}^{} j(\varepsilon)T \quad (1)}\) and then take \(M = l(T)\).
+
+    \(\forall \tau \in \Sigma_K\) choose \(c_{\tau} \in \mathbb{R}_{>0}\) such that \(c_{\overline{\tau }} = c_{\tau}\) and  \(C \coloneqq \prod c_{\tau} > \left( \frac{2}{\pi} \right) ^s \sqrt{\vert d_K \vert } \).
+
+    Consider \(X = \{ (z_{\tau})_{\tau} \in K_\mathbb{R} \mid \forall \tau  : \vert z_{\tau}  \vert _\mathbb{C} < c_{\tau}  \} \subset K_\mathbb{R} \).
+    
+    For \(y = (y_{\tau})_{\tau} \in S \implies y X = \{ (z_{\tau})_{\tau} \mid \forall \tau : \vert z_{\tau} \vert < c_{\tau ^{\prime}} \}  \) where \(\boxed{c_{\tau} ^{\prime}  = \vert y_{\tau}  \vert c_{\tau}}\).
+
+    Write \(z_{\tau} = y_{\tau} w_{\tau}\).
+
+    We have \(c^{\prime}_{\overline{\tau }}  c^{\prime}_{\tau}\) and \(\prod_{\tau} c_{\tau} ^{\prime} = \prod_{\tau} \vert y_{\tau} \vert \prod_{\tau} c_{\tau} = C \) as before.
+    
+    Theorem 4.3 \(\implies \exists \alpha \in \mathcal{O}_K \setminus \{ 0 \} : \forall \tau : \vert \tau (\alpha) \vert < c_{\tau}^{\prime} (\iff j(\alpha) \in y X) \quad (2)\).
+    
+    Lemma 6.2 \(\implies \exists \alpha_1, \cdots , \alpha_m \in \mathcal{O}_K \setminus \{ 0 \}\) such that \(\forall \beta \in \mathcal{O}_K : 0 < \vert N(\beta) \vert \leq C \implies \beta\) is associated to one of \(\alpha_1, \cdots , \alpha_m\).
+
+    \underline{Claim}: \(T\coloneqq S \cap  \left( \bigcup_{i=1}^{m} j(\alpha_i)^{-1} X \right) \) satisfies \((1)\).
+
+    \underline{Proof of Claim}: \(X\) is bounded in \(K_\mathbb{R} \implies \bigcup_{i=1}^{m} j(\alpha_i)^{-1} X\) is bonded in \(K_\mathbb{R} \implies \exists \delta > 0\) such that
+
+    \[
+        S \cap \bigcup_{i=1}^{m} j (\alpha_i) ^{-1} X \subset \{ (z_{\tau})_{\tau} \in K_\mathbb{R} \mid \forall \tau : \delta \leq \vert z_{\tau} \vert \leq \delta ^{-1}    \} 
+    \]
+
+    We get the lower bound since \(\prod \vert z_{\tau} \vert = 1\) on \(S\).
+
+    \[
+        \implies l \left( S \cap \bigcup_{i=1}^{m} j (\alpha _i)^{-1} X \right) \text{ is bounded in } H
+    \]
+
+    Let \(y\in S\) be arbitrary. Then, by (2), \(\exists \alpha \in \mathcal{O}_K \setminus \{ 0 \} \) so that \(j(\alpha) \in yX \implies y\in j(\alpha)^{-1} X\).
+    
+    Moreover, \(\vert N(\alpha) \vert = \prod_{\tau} \vert \tau(\alpha) \vert < \prod_{\tau} c_{\tau} ^{\prime} = \underbrace{\prod_{\tau} \vert y_{\tau}  \vert }_{=1} \prod_{\tau} c_\tau = C \) 
+
+    \(\implies 1 \leq i \leq m\) such that \(\alpha = \varepsilon \alpha_i\) for some \(\varepsilon \in \mathcal{O}_K ^ \times\)
+    
+    Hence, \(y\in S \cap j (\alpha^{-1}) X = S \cap j(\varepsilon)^{-1} j(\alpha_i)^{-1} X = j(\varepsilon)^{-1} \left( j(\varepsilon) S \cap j(\alpha_i)^{-1} X \right) = j(\varepsilon ^{-1}) (S \cap J(\alpha_i)^{-1} X) \subset j(\varepsilon ^{-1}) \cdot \left( S \cap \bigcup_{i=1}^{m} j(\alpha_i)^{-1} X \right)  \) 
+
+    If we define \(T \coloneqq S\cap \bigcup_{i=1}^{m} j(\alpha_i)^{-1} X\), then
+    
+    \[
+        S = \bigcup_{\varepsilon \in \mathcal{O}_K^\times}^{} j(\varepsilon) T
+    \]
+
+    This implies (1).
+
+\end{proof}
+
+\begin{theorem}
+    [Dirichlet's Theorem on Units] \(\mathcal{O}_K^\times\) is the direct product of \(\mu_K\) (= group of roots of unity in \(K\)) and a free abelian group of rank \(r + s - 1\).
+
+    In other words, \(\mathcal{O}_K ^\times / \mu_K \cong \mathbb{Z}^{r+s-1}\).
+\end{theorem}
+
+\begin{proof}
+    6.1 \(\implies 1 \to \mu_K \to \mathcal{O}_K^\times \to \Gamma = \lambda(\mathcal{O}_K^\times) \to 0\) is exact.
+
+    6.2 \(\implies \Gamma\) is a complete lattice in \(H \cong \mathbb{R}^{r+s-1} \implies \Gamma \cong \mathbb{Z} ^{r+s-1}\).
+
+    Hence the sequence above splits and \(\mathcal{O}_K^\times \cong \mu_K \times \Gamma\).
+\end{proof}
+
+\underline{Note}: There's no canonical way to express \(\mathcal{O}_K^\times\) as the direct product.
+
+\underline{Remark}: Equip \(\mathbb{R}^{r+s}\) with the standard inner product \(\langle \cdot , \cdot \rangle\) and let \(\langle \cdot,\cdot \rangle_H\) be the restriction of \(\langle \cdot,\cdot \rangle\) to \(H\).
+
+Then, \((H,\langle \cdot,\cdot \rangle_H)\) is an inner product space. Hence, the concept of volume is available!
+
+\underline{Natural Question}: What is the volume \(\operatorname{vol}_{\langle \cdot,\cdot \rangle_H}(\Gamma)\)? Recall that \(\Gamma = \lambda (\mathcal{O}_K)^\times\). 
+
 \end{document}
 
