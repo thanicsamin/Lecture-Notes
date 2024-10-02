@@ -2943,4 +2943,175 @@ We have Embedding Conjecture \(\implies\) Zero Divisor Conjecture \(\implies\) K
     \]
 \end{proposition}
 
+\section*{Wednesday, 10/2/2024}
+
+\underline{Serre Chapter 5}
+
+Examples
+
+\(k = \mathbb{C}\): Use characters.
+
+5.1: \(C_n = \langle r \rangle, \zeta_n = e^{2\pi i / n}\).
+
+\(n = \#\text{conjugacy classes}\implies n=s\) irreducible representations.
+
+\(C_n\) is abelian \(\implies\) all irreducible representation (=char) is one dimensional.
+
+\[
+    \chi: C_n \to \mathbb{C}^\times
+\]
+
+\[
+    \chi(r)^n = \chi(r^n)=\chi(e)=1
+\]
+
+Irreducible representation \(\chi_h(r)=\zeta_n^h\). We have characters \(\chi_0, \chi_1, \cdots, \chi_{n-1}\).
+
+\(\chi_h \chi_{h^{\prime}} = \chi_{h + h^{\prime} \pmod n}\) 
+
+Representation Ring \(\mathbb{Z}[\text{characters}] = \mathbb{Z} [\chi_1] \cong \mathbb{Z}[x] / (x^n - 1)\).
+
+Trivial character is \(1\) in \(R(G)\).
+
+\[
+    \begin{array}{cccc}
+        \phi: & \mathbb{C}[C_n] & \to &  \mathbb{C} \times \cdots \times \mathbb{C}  \\
+         & r & \mapsto &  (\rho^0, \rho^1, \cdots , \rho^{n-1}) \\
+    \end{array}
+\]
+
+\[
+    \Phi: \mathbb{Q}[C_n] \to \prod_{d\mid n} \mathbb{Q}(\zeta_d)
+\]
+
+a
+
+Question: How to justify that \(\phi\) and \(\Phi\) are isomorhisms?
+
+Answer: CRT 
+
+For a non-abelian group \(G\), recall that:
+
+\(\#\) of 1d rep = \(\vert G^{ab} \vert = \vert G / [G,G] \vert \) 
+
+\(\#\) of irreducible rep = \(\#\) of conjugacy classes.
+
+Suppose \(d_i = \dim_\mathbb{C} L_i\) then \(n = d_1^2 + \cdots + d_s^2\) and \(d_i\mid \vert G \vert \).
+
+\underline{5.1 Dihedral Group \(D_{2n}\) (order \(2n\))}
+
+Recal,
+
+\[
+    D_{2n} = \langle r,s \mid r^n = 1, s^2 = 1, s r s = r ^{-1} \rangle 
+\]
+
+isometries of a regular \(n\)-gon.
+
+Here, \((srs ^{-1})^k = s r^k s ^{-1}\) so \(s r^k s ^{-1} = r^{-k}\). Also, \(r^k s r^{-k} = r^{2k} s\).
+
+Conjugacy classes are given by the following:
+
+\[
+    \begin{array}{cc}
+        \{ e \} &  \{ s \} \\
+        \{ r, r ^{-1} \} &  \{ r^2 s \} \\
+        \{ r^2, r^{-2} \}  &  \{ r^4 s \}  \\
+                            & \{ r^6 s \} \\
+    \end{array}
+\]
+
+We have split based on whether \(n\) is even or odd.
+
+\[
+    \begin{array}{cc}
+        n \text{ odd} &  n \text{ even}  \\
+        \{ e \}  &  \{ e \} \\
+        \{ r, r ^{-1} \}  & \{ r, r ^{-1} \} \\
+        \vdots &  \vdots \\
+        \{ r^{\frac{n-1}{2}}, r^{-\frac{n-1}{2}} \}  & \{ r^{\frac{n-2}{2}}, r^{-\frac{n-2}{2}}\}  \\
+        \{ s, rs, r^2 s, \cdots , r^{n-1}s \}  & \{ r^{\frac{n}{2}} \}  \\
+        & \{ r, r^2 s, \cdots , r^{n-1} s \} \\
+        & \{ rs, r^3 s, \cdots , r^{n-2}s \}  
+    \end{array}
+\]
+
+So, for \(n\) odd:
+
+\(\#\) of conjugacy class is \(\frac{n+3}{2}\)
+
+\(D_{2n}^{ab} = \{ 1, \overline{s} \} \cong C_2 \)
+
+\(Z(D_{2n}) = \{ e \} \) 
+
+For \(n\) even,
+
+\(\#\) of conjugacy classes is \(\frac{n+6}{2}\) 
+
+\(D_{2n}^{ab} = \{ 1, \overline{s}, \overline{r}, \overline{r} \overline{s} \} \cong C_2 \times C_2\) 
+
+\(1\)-dim representations:
+
+\(n\) odd implies we have representations \(\mathbb{C}_+,\mathbb{C}_-\)
+
+\(\chi_{\pm}(r) = 1, \chi_{\pm}(s) = \pm 1\) 
+
+\(n\) even implies we have representations \(\mathbb{C}_{++},\mathbb{C}_{+-},\mathbb{C}_{-+},\mathbb{C}_{--}\) 
+
+\(\varepsilon _r = \pm 1, \varepsilon_s = \pm 1\)
+
+\(\chi_{\varepsilon_r \varepsilon_s} (r) = \varepsilon_r\) and \(\chi_{\varepsilon_r \varepsilon_s} = \varepsilon_s\)
+
+\(2\)-dim representations:
+
+\[
+    \rho^h : D_{2n} \to GL_2(\mathbb{C})
+\]
+
+\[
+    \rho^h(r) = \begin{bmatrix}
+        \zeta_n^h &  0 \\
+        0 &  \zeta_n^{-h} \\
+    \end{bmatrix}
+\]
+
+\[
+    \rho^h(s) = \begin{bmatrix}
+        0 &  1 \\
+        1 &  0 \\
+    \end{bmatrix}
+\]
+
+[Induced from \(C_n\)-representation \(\mathbb{C}_h\) later]
+
+For \(0 < h < \frac{n}{2}\) it is irreducible [homework].
+
+\(\chi_h(r^k) = e^{2 \pi i h k/ n} + e^{- 2 \pi i h k / n} = 2 \cos \frac{2\pi hk}{n}\) 
+
+\(\chi_h(r^k s) = 0\) 
+
+Since characters determine representation, we have \(\rho_h \cong \rho_{-h} = \rho_{n-h}\). 
+
+Also, for \(0 < h < \frac{n}{2}\) the repesentations are distinct.
+
+We have all irreducible 2-dim representations.
+
+\underline{Remark}: \(\exists\) real representations \(D_{2n} \to GL_2(\mathbb{R})\) [isometries in \(\mathbb{R}^2\)]. Then,
+
+\[
+    \hat{\rho}^h (r) = \begin{bmatrix}
+        \cos \frac{2\pi h}{n} &  - \sin \frac{2 \pi h}{n} \\
+        \sin \frac{2 \pi h}{n} &  \cos \frac{2\pi h}{n} \\
+    \end{bmatrix}
+\]
+
+\[
+    \hat{\rho}(s) = \begin{bmatrix}
+        0 &  1 \\
+        1 &  0 \\
+    \end{bmatrix}
+\]
+
+We have \(\chi_h = \hat{\chi}_h\) and thus \(\rho_h \cong \hat{\rho}_h\) 
+
 \end{document}
