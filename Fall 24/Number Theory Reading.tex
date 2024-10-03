@@ -661,4 +661,152 @@ Thus, \(\cos \theta = 0, \pm\frac{1}{2}, \pm\frac{1}{\sqrt{2}}, \pm\frac{\sqrt{3
     \(\sigma_{\beta - \alpha}(\beta - \alpha) = (\beta - \alpha) - \langle \beta -\alpha , \beta -\alpha  \rangle (\beta -\alpha ) = \alpha - \beta \in \Phi\) 
 \end{proof}
 
+\section{Thursday, 10/3/2024, Simple Roots by Zoia}
+
+A root system \(\Phi\) of rank \(l\), \(E\)-Euclidean Space, \(\mathcal{W}\) is the Weyl Group.
+
+\begin{definition}
+    A subset \(\Delta\) of \(\Phi\) is called a \underline{base} if:
+
+    \begin{enumerate}[label=B\arabic*)]
+        \item \(\Delta\) is a basis of \(E\) [\(\vert \Delta \vert = l\)];
+        \item \(\forall \beta \in \Phi , \beta = \sum_{\alpha \in \Delta} k_\alpha \cdot \alpha\), the expression is unique with \(k_\alpha\) being integers and \(k_\alpha\) are either all non-negative or all non-positive. 
+    \end{enumerate} 
+\end{definition}
+
+\begin{definition}
+    The roots from \(\Delta\) are \underline{simple roots}.
+\end{definition}
+
+\begin{definition}
+    The \underline{height} of a root \(\beta\) [relative to the base \(\Delta\)] is:
+
+    \[
+        \operatorname{ht} (\beta) = \sum_{\alpha \in \Delta} k_\alpha
+    \]
+\end{definition}
+
+\begin{definition}
+    We have \underline{positive roots} \(\Phi^+\) and negative roots \(\Phi^-\) from the sign of \(k_\alpha\). Furthermore \(\Phi^- = - \Phi^+\).
+
+    Also, we define:
+
+    \[
+        \Phi^+(\gamma) = \{ \alpha \in \Phi \mid (\gamma , \alpha) > 0 \}
+    \]
+\end{definition}
+
+
+\begin{definition}
+    \(\gamma \in E\) is regular if:
+
+    \[
+        \gamma \in E \setminus \bigcup_{\alpha \in \Phi}^{} P_\alpha
+    \]
+
+    Otherwise it is called singular.
+
+    Recall that \(P_\alpha =\{ \beta \in E \mid (\alpha ,\beta) = 0 \}\)
+\end{definition}
+
+\begin{definition}
+    \(\alpha \in \Phi^+(\gamma)\) is \underline{decomposable} if \(\alpha = \beta_1 + \beta_2\) with \(\beta_1, \beta_2 \in \Phi^+(\gamma)\). 
+    
+    \(\alpha\) is \underline{indecomposable} otherwise.
+\end{definition}
+
+\begin{definition}
+    We define \(\Delta (\gamma)\) to be the set of all indecomposable roots in \(\Phi^+(\gamma)\).
+\end{definition}
+
+\begin{theorem}
+    Any root system \(\Phi\) has a base. Let \(\gamma \in E\) be a \underline{regular}.
+
+    Then, the set \(\Delta (\gamma)\) of all the indecomposable roots in \(\Phi^+(\gamma)\) is a base of \(\Phi\). 
+
+    Conversely, every base of \(\Phi\) is of the form \(\Delta(\gamma)\) for some \(\gamma\).
+\end{theorem}
+
+\begin{proof}
+    We follow the following steps.
+    
+    \underline{Step 1}: Each root in \(\Phi^+(\gamma)\) is a non-negative \(\mathbb{Z}\)-linear combination of \(\Delta(\gamma)\). 
+
+    \underline{Step 2}: If \(\alpha , \beta \in \Delta (\gamma)\) then \((\alpha , \beta) \leq 0\) unless \(\alpha = \beta\). 
+
+    \underline{Step 3}: \(\Delta (\gamma)\) is a linearly independent set.
+
+    \underline{Step 4}: \(\Delta (\gamma)\) is a base of \(\Phi\). 
+
+    \underline{Step 5}: Each base \(\Delta\) of \(\Phi\) has the form \(\Delta (\gamma)\) for some regular \(\gamma \in E\). 
+
+    \underline{Proof of Step 1}: Suppose otherwise. Then \(\exists \alpha \in \Phi^+(\gamma)\) that cannot be expessed as a non-negative \(\mathbb{Z}\) linear combination of \(\Delta (\gamma)\).
+
+    We can have multiple such \(\alpha \)'s. We pick the \(\alpha\) with the smallest \((\gamma , \alpha)\).
+
+    Note that \(\alpha \notin \Delta (\gamma)\), since if \(\alpha \in \Delta (\gamma)\) then \(\alpha = 1\cdot \alpha\), which violates the assumption. 
+
+    Thus, \(\alpha\) can be written as sum of two elements in \(\Phi^+(\gamma)\). Suppose \(\alpha = \beta_1 + \beta_2\) so that \(\beta_1, \beta_2 \in \Phi^+(\gamma)\). Then, \((\gamma , \alpha) = (\gamma , \beta_1) + (\gamma, \beta_2)\). Due to the minimality of \((\gamma ,\alpha)\), they are both non-negative \(\mathbb{Z}\)-linear conbination of \(\Delta (\gamma)\) which means so is \(\alpha\), a contradiction.
+
+    \underline{Proof of Step 2}: Suppose otherwise. Then, \((\alpha , \beta) > 0\). \(\beta\) cannot be \(-\alpha\), thus \(\alpha - \beta\) is a root. Then either \(\alpha - \beta\) or \(\beta - \alpha\) is in \(\Phi^+(\gamma)\). WLOG \(\alpha - \beta \in \Phi^+(\gamma)\). Then \(\alpha  = \beta + (\alpha - \beta)\). Then \(\alpha\) is decomposable, which is a contradiction since \(\Delta (\gamma)\) consists of all indecomposable roots.
+
+    \underline{Proof of Step 3}: Suppose \(\sum_{\alpha \in \Delta (\gamma), r_\alpha \in \mathbb{R}} r_\alpha \cdot \alpha = 0\). \(r_\alpha\) can be positive or negative. We redistribute so that both sides have positive coefficient:
+
+    \[
+        \varepsilon := \sum_\alpha s_\alpha \alpha = \sum_\beta t_\beta \beta
+    \]
+
+    Then, 
+
+    \[
+        0 \leq (\varepsilon , \varepsilon) = \sum_{\alpha , \beta} \underbrace{s_\alpha t_\beta}_{\geq 0} \underbrace{(\alpha , \beta)}_{\leq 0} \leq 0 
+    \]
+
+    Thus, \(\varepsilon = 0\). Now,
+
+    \[
+        0 = (\gamma , \varepsilon) = \sum_{\alpha} \underbrace{s_\alpha}_{\geq 0} \underbrace{(\gamma,\alpha)}_{>0} \geq 0 
+    \]
+
+    Thus, \(s_\alpha = 0\) for all \(\alpha\in \Delta(\gamma)\). This implies linear independence.
+    
+    \underline{Proof of Step 4}: Note that \(\Phi = \Phi^+(\gamma) \cup - \Phi^+(\gamma)\). 
+
+    B2 is satisfied because of Step 1.
+
+    Then \(\Delta (\gamma)\) spans \(E\). Step 3 implies \(\Delta (\gamma)\) is a basis of \(E\). Thus we have B1.
+
+    \underline{Proof of Step 5}: Given \(\Delta\), we select \(\gamma \in E : (\alpha , \gamma)> 0 \forall \alpha \in \Delta\). B2 \(\implies \gamma\) is regular and \(\Phi^+ \subseteq \Phi^+(\gamma)\). Also, \(\Phi^- \subseteq - \Phi^+(\gamma)\). 
+
+    Therefore, \(\Phi^+ = \Phi^+(\gamma)\). \(\Delta\) consists of indecomposable elements, that is \(\Delta \subseteq \Delta (\gamma)\).
+
+    Coordinates are equal, therefore \(\Delta = \Delta (\gamma)\).
+
+\end{proof}
+
+\begin{definition}
+    [Weyl Chambers]
+    The connected components of \(E \setminus \bigcup_{\alpha \in \Phi}^{} P_\alpha\) are called the (open) Weyl Chambers of \(E\).
+    
+    The fundamental Weyl chamber associated to \(\gamma\) is the open Weyl chamber containing \(\gamma\). It is denoted by \(\mathcal{C}(\gamma)\).
+    
+    Furthermore, \(C(\gamma) = C(\gamma ^{\prime})\) implies \(\gamma\) and \(\gamma ^{\prime} \) are on the same side of each hyperplane \(P_\alpha\). This also means \(\Delta (\gamma) = \Delta (\gamma ^{\prime} )\), so the Weyl chambers are in 1-1 correspondence with the bases.
+\end{definition}
+
+For example: here is an open Weyl Chamber for \(A_2\):
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/Weyl_chambers_for_A2}
+
+    \(\mathcal{C}(\Delta)\)-fundamental Weyl chamber relative to the base \(\{ \alpha_1, \alpha_2 \}\). 
+\end{center}
+
+The Weyl group acts on the Weyl chambers by \(\sigma (\mathcal{C}(\gamma)) = \mathcal{C}(\sigma(\gamma))\). 
+
+If \(\sigma \in \mathcal{W}\) and \(\gamma\) is regular.
+
+Also, \(\mathcal{W}\) permutes bases. \(\sigma\) sends \(\Delta\) to \(\sigma(\Delta)\) which is another base.
+
+Since \(\sigma(\Delta (\gamma)) = \Delta (\sigma (\gamma))\) because \((\sigma \gamma , \sigma \alpha ) = (\gamma , \alpha)\).
+
 \end{document}
