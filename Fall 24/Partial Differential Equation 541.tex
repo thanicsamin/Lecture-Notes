@@ -2379,4 +2379,173 @@ Given a bounded linear operator \(T: H \to H\) [could be a normed linear space a
 
 \underline{Note}: \((\sigma (T) \setminus \{ \text{eigenvalues} \})\) is called the \underline{continuous spectrum}.
 
+\section*{Wednesday, 10/2/2024}
+
+\[
+    Lu \coloneqq -(a^{ij}u_{x_i})_{x_j} + b^i (x)u_{x_i} + c(x)u
+\]
+
+\[
+    a^{ij} = a^{ji} , a^{ij}(x)\zeta_i \zeta_j \geq \theta \vert \zeta \vert ^ 2, \theta > 0
+\]
+
+\[
+    a^{ij}, b^i, c \in L^{\infty}
+\]
+
+Recall that adjoint is defined by
+
+\[
+    (Ax,y) = (x,A^{\ast}, y)
+\]
+
+Can we find the adjoint of \(L\)?
+
+\underline{Formal Adjoint of \(L: L^{\ast}\)} 
+
+\[
+    (Lu, v)_{L^2} = (u, L^{\ast} v)_{L^2}
+\]
+
+\[
+    (Lu,v)_L^{2} = \int_\Omega - (a^{ij}u_{u_{x_i}})_{x_j}v + b^i u_{x_i} v + c u v \, \mathrm{d}x
+\]
+
+\[
+    = \int_\Omega a^{ij} u_{x_i} u_{x_j} - \operatorname{div}(v \vec{b}) u + c u v \, \mathrm{d}x
+\]
+
+\[
+    = \int_\Omega -(a^{ij} v_{x_i})_{v_{x_{j} }}u - b^i v_{x_i} 
+    cx \, \mathrm{d}x = \int_\Omega- b^i v_{x_i} - b^i_{x_i} - b^i_{x_i} v  + cv \, \mathrm{d} x
+\]
+
+Define that to be \(L^{\ast} v\) 
+
+\underline{Lemma}: \(R(I+K) = N(I + K^{\ast})\) 
+\begin{proof}
+    \(w\in N(I+K^{\ast}) o_{p} \) 
+
+    \(\iff (x, (I+K^{\ast})w = 0)\) \(\forall x\in H\) 
+
+    \(\iff ((I+K)x, w) = 0 \) \(\forall x\in H\)
+    
+    \(\iff w \in R(I+K) \perp\).
+\end{proof}
+
+\begin{theorem}
+    For \(L\) as defined, for \(\Omega \subset \mathbb{R}^n\) bounded, \(\partial \Omega \in C^1\), then either:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists\) weak \(H^1_0(\Omega)\) solution to \(Lu = 0, u = 0\) on \(\partial \Omega\).
+        \item \(\forall f\in L^2(\Omega) \exists !\) weak \(H^1_0(\Omega)\) solution to \(Lu = f, u = 0\) on \(\partial \Omega\)
+    \end{enumerate} 
+
+    Furthermore if \(i\) holds thereen \(Lu = f, u = 0\) on \(\partial \Omega\) has a weak solution \(\iff (f,v)_{L^2}= 0 \forall v\) such that \(L^{\ast} v = 0, v = 0\) in \(\partial \Omega\).
+\end{theorem}
+
+\underline{Example}: \(-u^{\prime\prime} - u = \sin x\) and \(u(0)=u(\pi)=0\).
+
+Here \(L u = - u^{\prime\prime} - u\). We found \(\not\exists\) solution.
+
+Note that \(L\) has non-trivial nullspace. \(\sin x\) is in the nullspace.
+
+\[
+    \int \sin x\cdot \sin x \neq 0
+\]
+
+Theorem not applicable.
+
+\begin{proof}
+    Recall \(\exists \gamma > 0\) such that
+
+    \[
+        B_\gamma [upto,v] = B[u,v] + \gamma \int_\Omega uv
+    \]
+
+    where:
+
+    \[
+        B(u,v) \coloneqq \int_\Omega (a^{ij} u_{x_i} v_{x_j} + b^i u_{x_i} v + c u v) \, \mathrm{d}x
+    \]
+
+    We can apply Lax-Milgrim to obtain a unique weak solution to \(L_\gamma u = f\) where \(L_\gamma u = L u + \gamma u\).
+    ch that:
+    So \(B_\gamma [u,v] = (f,v) \forall v\in H^1_0(\Omega)\) 
+    
+    We say \(L_\gamma ^{-1} = u\) if this holds.
+
+    We seek a function \(u\in H^1_0(\Omega)\) such that:
+
+    \[
+        B_\gamma [u,v] = (f,v)_{L^2} + \gamma (u,v)_{L^2}
+    \]
+
+    We want \(u\) such that:
+
+    \[
+        u = L_\gamma^{-1} (f+\gamma u) = \underbrace{L^{ -1}_{\gamma}
+         (f)}_{=h} + \gamma L_\gamma^{-1} (u) 
+    \]
+
+    Note: \(L_\gamma ^{-1} : L^2 \to H_0^1\) or \(L_\gamma ^{-1}: L^2 \to L^2\) 
+
+    Let \(h \coloneqq L_\gamma ^{-1} (f)\).
+
+    So we're trying to solve \(u - \gamma L_\gamma ^{-1} (u) = h\).
+
+    Define \(K \coloneqq \gamma L_\gamma ^{-1}\) 
+
+    So we want to solve \((I-K)u = h\) 
+
+    \(K: L^2 \to L^2\).
+
+    We want to use Lax Milgrim. Why must \(K\) be bounded?
+
+    Let \(g\in L^2(\Omega), \frac{1}{\gamma}K(g)=L_\gamma ^{-1} (g) \eqqcolon u\) 
+
+    \(\lVert K(g) \rVert _{H_0^1}= \lVert \gamma u \rVert H_0^1\). \(B_\gamma [u,v]=(g,v)\,\forall v\).
+
+    Pick \(v=u\) then,
+
+    \[
+        B_\gamma [u,u] \geq \beta \lVert u \rVert ^2_{H^1_0}
+    \]
+
+    \[
+        \beta \lVert u \rVert ^ 2 \leq B_\gamma [u,u] = (g,u) \leq \lVert g \rVert _{L^2} \lVert u \rVert _{L^2} \leq C_p \lVert g \rVert _{L^2} \lVert u \rVert _{H^1_0}
+    \]
+
+    \[
+        \gamma \beta \lVert u \rVert _{H^1_0} \leq \gamma C_p \lVert g \rVert _{L^2}
+    \]
+
+    \[
+        \lVert K(g) \rVert _{L^2} \leq C \lVert K(g) \rVert _{H^1_0} \leq \frac{\gamma C_p}{p}\lVert g \rVert _{L^2}
+    \]
+
+    \underline{Claim}: \(K : L^2 \to L^2\) is compact.
+
+    Let \(\{ g_k \} \subset L^2 \, \lVert g_k \rVert \leq C\).
+
+    \[
+        \lVert K(g_k) \rVert _{H^1_0} \leq \tilde{C} \lVert g_k \rVert _{L^2} \leq \text{const}  
+    \]
+
+    By Rellich-Kondrachov,
+
+    \[
+        K(g_{k_j}) \overset{L^2}{\to} W
+    \]
+
+    Now, apply Fredholme alternative. Then, \(\forall h\in L^2 \exists !\) solution \(u\) to \((I-K)u = h\) or else the nullspace of \((I-K^{\ast})\) is non-trivial.
+
+    \[
+        (I-K)u = h \iff u \text{ weakly solution to }  Lu = f
+    \]
+
+    Then apply the Lemma.
+
+\end{proof}
+
 \end{document}
