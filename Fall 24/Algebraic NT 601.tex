@@ -2392,7 +2392,7 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
 \end{proof}
 
 \begin{theorem}
-    [Dirichlet's Theorem on Units] \(\mathcal{O}_K^\times\) is the direct product of \(\mu_K\) (= group of roots of unity in \(K\)) and a free abelian group of rank \(r + s - 1\).
+    [Dirichlet's Theorem on Units] \(\mathcal{O}_K^\times\) is the direct product of \(\mu_K\) (= group of roots of unity in \(K\)) and a free abelian group of rank \(r + s - 1\). Meaning, \(\mathcal{O}_K ^\times \cong \mu_K \times \mathbb{Z}^{r+s-1}\). 
 
     In other words, \(\mathcal{O}_K ^\times / \mu_K \cong \mathbb{Z}^{r+s-1}\).
 \end{theorem}
@@ -2412,6 +2412,230 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
 Then, \((H,\langle \cdot,\cdot \rangle_H)\) is an inner product space. Hence, the concept of volume is available!
 
 \underline{Natural Question}: What is the volume \(\operatorname{vol}_{\langle \cdot,\cdot \rangle_H}(\Gamma)\)? Recall that \(\Gamma = \lambda (\mathcal{O}_K)^\times\). 
+
+\section*{Thursday, 10/3/2024}
+
+Recall that \(\mathcal{O}_K^\times \cong \mu_K \times (\text{free abelian group of rank } r+s-1)\).
+
+\begin{center}
+
+
+
+\end{center}
+
+\(t\coloneqq r+s-1\) and \(\lambda_1 = \begin{bmatrix}
+     \lambda_{1,1} \\
+     \vdots \\
+     \lambda_{1,t+1} \\
+\end{bmatrix}, \cdots , \lambda _t = \begin{bmatrix}
+     \lambda_{t,1} \\
+     \vdots \\
+     \lambda_{t,t+1} \\
+\end{bmatrix}\) be a basis of \(H\), so \(\sum_{j=1}^{t+1} \lambda_{i,j} = 0 \)  
+
+Set \(\lambda_0 \coloneqq \frac{1}{\sqrt{t+1}} \begin{bmatrix}
+     1 \\
+     \vdots \\
+     1 \\
+\end{bmatrix} \in \mathbb{R}^{r+s} \implies \mathbb{R}^{r+s} = H \overset{\perp}{\oplus} \mathbb{R} \lambda_0\) and \(\lVert \lambda_0 \rVert = 1\).
+
+Set \(\Phi = \left\{ \sum_{i=1} ^ t x_i \lambda_i \mid x_i \in [0,1) \right\} \) is a fundamental mesh in the lattice \(\sum_{i=1}^t \mathbb{Z} \lambda_i\) \underline{and} \(\Phi_0 = \left\{ \sum_{i=0} ^ t x_i \lambda_i \mid x_i \in [0,1) \right\} \) is a fundamental mesh for \(\sum_{i=0} ^ t \mathbb{Z} \lambda_i\) 
+
+Thus, \(\operatorname{vol}_{\langle , \rangle _H} (\Phi) =\operatorname{vol}_{\langle , \rangle_{st}}(\Phi_0)\) [exercise].
+
+Ch3 \(\implies \operatorname{vol}_{\langle , \rangle_{s t}} = \left\vert \det \begin{bmatrix}
+    \lambda_{0,1} & \cdots &  \lambda_{t,1} \\
+    \vdots &  &  \vdots \\
+    \lambda_{0,t+1} & \cdots &  \lambda_{t,t+1} \\
+\end{bmatrix} \right\vert \) 
+
+\begin{theorem}
+    [Definition] Put \(t = r+s-1\) and let \(\varepsilon_1, \cdots , \varepsilon_t \in \mathcal{O}_K^\times\) be such that \(\mathcal{O}_K^\times = \mu_K \times \langle \varepsilon_1, \cdots , \varepsilon_t \rangle \). Then, every \(\varepsilon \in \mathcal{O}_K^\times \) can be written uniquely as:
+
+    \[
+        \varepsilon = \zeta \varepsilon_1^{a_1} \cdots \varepsilon_{t}^{a_t}
+    \]
+
+    with unique \(\zeta \in \mu_K\) and unique \((a_1, \cdots , a_t)\in \mathbb{Z}^t\).
+
+    Set \(\lambda_i = \lambda(\varepsilon_i) \in H\). Then, \(\operatorname{vol}_{\langle , \rangle _H} (\underset{=\lambda(\mathcal{O}_K^\times)}{H}) = \sqrt{t+1} \cdot R_K\) 
+
+    where \(R_K\) is the abslute value of any \(t \times t\) minor of the matrix: 
+    
+    \[
+        \begin{bmatrix}
+        \lambda_{1,1} & \cdots &  \lambda_{t,1} \\
+        \vdots &  &  \vdots \\
+        \lambda_{1,t+1} & \cdots &  \lambda_{t,t+1} \\
+        \end{bmatrix} = \begin{bmatrix}
+        \vdots &  &  \vdots \\
+        \lambda_1 & \cdots &  \lambda _t \\
+        \vdots &  &  \vdots \\
+        \end{bmatrix} \quad (\ast)
+    \]
+    
+    \(R_K\) is called the \underline{regulator} of \(K\) and \((\varepsilon_1, \cdots , \varepsilon_t)\) is called the \underline{fundamental system of units} of \(\mathcal{O}_K^\times \).
+    
+\end{theorem}
+
+\begin{proof}
+    Put \(\Delta = \begin{bmatrix}
+        \vdots &  &  \vdots \\
+        \lambda_0 & \cdots &  \lambda_t \\
+        \vdots &  &  \vdots \\
+    \end{bmatrix}, \lambda_0 = \frac{1}{\sqrt{t+1}} \begin{bmatrix}
+         1 \\
+         \vdots \\
+         1 \\
+    \end{bmatrix}\). Fix \(1 \leq i \leq t+1\) and add all rows of \(\Delta\) to the \(i\)'th row. We get:
+    
+    \[
+        \begin{bmatrix}
+            \frac{1}{\sqrt{t+1}} & \lambda_{1,1} & \cdots &  \lambda_{t+1} \\
+            \vdots & \vdots &  &  \vdots \\
+            \sqrt{t+1} & 0 & \cdots & 0 \\
+            \vdots & \vdots &  & \vdots \\
+            \frac{1}{\sqrt{t+1}} & \lambda_{1,t+1} & \cdots & \lambda_{t,t+1} \\
+        \end{bmatrix}
+    \]
+
+    \[
+        \implies \vert \det (\Delta) \vert = \sqrt{t+1} \left\vert \begin{matrix}\text{\(t \times t\) -minor obtained by}\\ \text{removing the \(i\)th row from \((\ast)\)}\end{matrix} \right\vert  
+    \]
+
+    \[
+        = \sqrt{t+1} R_K.
+    \]
+
+\end{proof}
+
+\underline{Examples}: \begin{enumerate}[label=\arabic*)]
+    \item  \(R_\mathbb{Q} : r = 1, s=0, t=0, \mathbb{Z}^\times = \{ \pm 1 \} \implies  R_K = 1\).
+    \item \(K = \mathbb{Q} (\sqrt{-D}), D>0\) square free \(\implies r = 0, s = 1 \implies t = 0 \implies R_K = 1\).
+    \item \(K = \mathbb{Q}(\sqrt{D}), D > 1\) square free \(\implies r = 2, s = 0, t = 1, \mu_K = \{ \pm 1 \} \implies \mathcal{O}_K^\times = \{ \pm 1 \} \times \langle \varepsilon \rangle\) with some \(\varepsilon \in \mathcal{O}_K^\times\) of infinite order. We have \(N(\varepsilon) = \varepsilon \sigma(\varepsilon) = \pm 1\).
+    
+    WLOG, we take \(\varepsilon > 1\). This specifies \(\varepsilon\) uniquely!
+
+    \(\implies R_K = \left\vert 1 \times 1 \text{-minor of } \begin{bmatrix}
+         \log \vert \varepsilon \vert  \\
+         \log \vert \sigma (\varepsilon) \vert  \\
+    \end{bmatrix} \right\vert = \log (\varepsilon)\) 
+\end{enumerate} 
+
+The smallest unit \(\varepsilon \in \mathcal{O}_K^\times\) which is \(> 1\) is called the \underline{fundamental unit} of \(K\).
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \toprule
+            \(D\) & \(2\) & \(3\) & \(5\) & \(7\) & \(11\) & \(13\) & \(15\) \\
+        \midrule
+            \(\varepsilon\) & \(1+\sqrt{2}\) & \(2+\sqrt{3}\) & \(\frac{1+\sqrt{5}}{2}\) & \(8+3\sqrt{7}\) & \(10+3\sqrt{11}\) & \(1+\frac{1+\sqrt{3}}{2}\) & \(4+\sqrt{15}\)   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Fundamental Units of Quadratic Fields}
+    \label{tab:funit}
+\end{table}\(\) 
+
+A general result is the following: \underline{if} \(D \not\equiv 1 \pmod 4\) and \(\sqrt{D} = [a_0; \overline{a_1, \cdots , a_l}]\)
+
+\(= a_0 + \cfrac{1}{a_1 + \cfrac{1}{\ddots + \cfrac{1}{a_l+ \cfrac{1}{a_1 + \cfrac{1}{\ddots}}}}}\) and if the reduced fraction \(\frac{p}{q} = a_0 + \cfrac{1}{a_1 + \cfrac{1}{\ddots + \cfrac{1}{a_{l-1}}}}\) 
+
+then the fundamental unit of \(\mathbb{Q}(\sqrt{D})\) is \(p + q \sqrt{D}\). See [Borerich-Shafarevich, Ch2, sec 7, Problem 5].
+
+A general result of Hecke states:
+
+\[
+    \operatorname{res}_{s=1} \zeta_K (s) = \frac{2^r (2\pi)^s}{\vert \mu_K \vert \sqrt{\vert d_K \vert}} h_K R_k \quad (\text{class number formula})
+\]
+
+This formula assembles all \underline{invariants} of \(K\) we have considered so far:
+
+\begin{itemize}
+    \item Number of real embeddings
+    \item Number of complex embeddings
+    \item Number of roots of unity
+    \item The discriminant
+    \item The class number
+    \item The regulator 
+\end{itemize} 
+
+\chapter{Extensions of Dedekind Domains}
+
+The most fundmanetal case is something we have done: \(\mathbb{Z} \subset \mathcal{O}_K\). We generalize the concept.
+
+\begin{theorem}
+    Let \(\mathcal{O}_K\) be a Dedekind domain with \(K = \Frac(\mathcal{O}_K)\). Let \(L / K\) be a finite extension, and deinfe \(\mathcal{O}_L\) to be the integral closure of \(\mathcal{O}_K\) in \(L\).
+
+    Then, \(\mathcal{O}_L\) is a Dedekind domain and \(\Frac(\mathcal{O}_L) = L\).
+\end{theorem}
+
+\begin{proof}
+    We only prove it here under the assumption that \(L / K\) is separable.
+
+    Proposition \(1.4 \implies \mathcal{O}_L\) is integrally closed.
+
+    To see that \(\Frac(\mathcal{O}_L) = L\), since \(L / K\) is a finite extension, we write it as a linear combination. By multiplying by an appropriate integral number \(a\), we can make sure every coefficient is integral.
+
+    \[
+        a \beta^n + a a_1 \beta^{n-1} + \cdots + a a_n = 0
+    \]
+
+    \[
+        \implies (a \beta)^n + a a_1 (a \beta)^{n-1} + \cdots + a^n a_n = 0
+    \]
+
+    \[
+        \implies a \beta \in \mathcal{O}_L \implies \beta = \frac{b}{a}, b\in \mathcal{O}_L, a \in \mathcal{O}_K.
+    \]
+    
+    Let \(0 \neq Q \subset \mathcal{O}_L\) bea prime ideal. Suppose \(\alpha \in Q \setminus \{ 0 \}\) and \(\exists a_1, \cdots , a_n \in \mathcal{O}_K\) such that \(\alpha^n + a_1 \alpha^{n-1} + \cdots a_n = 0\,(1)\).
+
+    WLOG we may assume \(a_n \neq 0 \implies a_n \in Q \cap \mathcal{O}_K \eqqcolon P \setminus \{ 0 \} \) and \(P\) is a prime ideal in \(\mathcal{O}_K\). \(\mathcal{O}_K\) is a Dedekind domain, thus \(P \in \operatorname{Max} (\mathcal{O}_K)\).
+
+    Consider \(\underbrace{\mathcal{O}_K / P}_{\text{field}} \to \underbrace{\mathcal{O}_L / Q}_{\text{integral domain}}\). 
+    
+    Since \(\mathcal{O}_L\) is integral over \(\mathcal{O}_K\), it follows that \(\mathcal{O}_L / Q\) is integral over \(\mathcal{O}_K / P\) by taking modulo on equation \((1)\). 
+
+    \(\implies \forall \beta \in \mathcal{O}_L / Q: (\mathcal{O}_K / P)[\beta]\) is a finite dimensonal vector space over the field \(\mathcal{O}_K / P\).  Since \((\mathcal{O}_K / P)[\beta] \subseteq \mathcal{O}_L / Q\), an integral domain, multiplication is injective and thus bijective. Thus \((\mathcal{O}_K / P)[\beta]\) must be a field. This implies that \(\mathcal{O}_L / Q\) is a field.
+
+    Thus, \(Q\in \operatorname{Max}(L)\). 
+
+    It shows that all nonzero prime ideals are maximal. Now we need to show that \(\mathcal{O}_L\) is noetherian. We use the seperable condition here.
+
+    \(L / K\) seperable \(\overset{1.9}{\implies}  d(\alpha_1, \cdots , \alpha_n) \neq 0\) for any basis \((\alpha_1, \cdots , \alpha_n)\) of \(L / K\). 
+
+    Let \((\alpha_1, \cdots , \alpha_n)\) be such a basis with elements \(\alpha_i \in \mathcal{O}_L\). 
+
+    Lemma \(1.10 \implies \underbrace{d(\alpha_1, \cdots , \alpha_n) }_{\neq 0} \cdot \mathcal{O}_L \subset \mathcal{O}_K \alpha_1 + \cdots + \mathcal{O}_K \alpha_n\) 
+
+    \(\implies \mathcal{O}_L \subset (\text{f.g. } \mathcal{O}_K \text{-module})\). Since \(\mathcal{O}_K\) is noetherian, \(\mathcal{O}_L\) is finitely generated as \(\mathcal{O}_K\)-module.
+
+    \(\implies \mathcal{O}_L\) is finitely generated as \(\mathcal{O}_K\)-algebra. Thus, \(\mathcal{O}_L\) is noetherian.
+\end{proof}
+
+\begin{lemma}
+    \(\forall P \in \operatorname{Max}(\mathcal{O}_K)\) we have:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(P \cdot \mathcal{O}_L \subsetneq \mathcal{O}_L\).
+        \item \(P \cdot \mathcal{O}_L \cap \mathcal{O}_K = P\).   
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Theorem 2.4 \(\implies P \neq P^2 \implies \exists \pi \in P \setminus P^2\). We write \(\pi \cdot \mathcal{O}_K = P \cdot I \implies I \subsetneq P \implies P + I = \mathcal{O}_K\) with \(b+s = 1\) with \(b \in P, s \in I\).
+        
+        Then, \(s\notin P\) and \(sP \subset IP = \pi \mathcal{O}_K\). 
+        
+        \(\implies s \mathcal{O}_L = s (P \mathcal{O}_L) = (sP)\mathcal{O}_L \subset \pi\mathcal{O}_L\).
+
+        \(\implies \exists x\in \mathcal{O}_L \cap K = \mathcal{O}_K; s = \pi x \implies s \in \pi \mathcal{O}_K \subset P\). 
+
+        This is a contradiction. So, \(P \mathcal{O}_L = \mathcal{O}_L\) condition cannot be true. Hence, \(P\mathcal{O}_L \subsetneq \mathcal{O}_L\).
+    \end{enumerate} 
+\end{proof}
 
 \end{document}
 
