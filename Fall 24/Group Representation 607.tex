@@ -3114,4 +3114,183 @@ We have all irreducible 2-dim representations.
 
 We have \(\chi_h = \hat{\chi}_h\) and thus \(\rho_h \cong \hat{\rho}_h\) 
 
+\section*{Friday, 10/4/2024}
+
+\underline{Serre 5.4}
+
+Suppose \(G = D_{2n} \times C_2\).
+
+Then, \(\mathbb{C} G = \mathbb{C} D_{2n} \otimes _\mathbb{C} \mathbb{C} C_2 = (\mathbb{C} D_{2n})_+ \times (\mathbb{C} D_{2n})_{-}\).
+
+Twice as many irreducible representation as \(D_{2n}\).
+\underline{5.7 and 5.8}
+
+We have the following exact sequence:
+
+\[
+    1 \to A_4 \to S_4 \overset{\text{sign}}{\to} \{ \pm 1 \} \to 1
+\]
+
+We have \(\vert S_4 \vert = 24 = 4!, \vert A_4 \vert = 12\).
+
+\(\left\{ \begin{matrix}
+     S_4 \\
+     A_4 \\
+\end{matrix} \right\} = \left\{ \begin{matrix}
+      \\
+     \text{o.p}  \\
+\end{matrix} \right\}  \) isometries of a tetrahedron.
+
+Conjugacy classes (c.c.) in \(\left\{ \begin{matrix}
+    S_4 \\
+    A_4 \\
+\end{matrix} \right\}\) are \(\begin{matrix}(1),(12),(12)(34),(123),(1234) & s=5\\ (1),(12)(34),(123),(213) & s=4\end{matrix}\) 
+
+Interestingly, not all \(3\)-cycles are conjugates in \(A_4\). For example, \((123) \not\sim (124)\). Intuition: we need to swap \(3\) and \(4\), but in \(A_4\) we need something else because swapping \(3\) and \(4\) is odd.
+
+Also: \(A_4\) is not simple [even though \(A_5,A_6\) etc are].
+
+\(S_4 = C_2 \times C_2 \rtimes S_3\) 
+
+\(A_4 = C_2 \times C_2 \rtimes C_3\).
+
+Also: \(S_4^{ab} = C_2\) 
+
+\(A_4^{ab} = C_3\)
+
+Then, \(24 = 1^2 + 1^2 + 2^2 + 3^2 + 3^2\) 
+
+\(12 = 1^2 + 1^2 + 1^2 + 3^2\)
+
+\(\mathbb{C} [A_4] = \underbrace{\mathbb{C} \times \mathbb{C} \times \mathbb{C}}_{C_3 \text{-quotient}} \times \underbrace{M_3(\mathbb{C})}_{\text{geometry}}\) 
+
+\(\mathbb{C} [S_4] = \overbrace{\underbrace{\mathbb{C} \times \mathbb{C}}_{C_2 \text{-quotient}}\times M_2\mathbb{C}}^{D_6 \text{-quotient}} \times \underbrace{M_3\mathbb{C}}_{\text{geometry}} \times \underbrace{M_3 \mathbb{C}}_{\text{geom}\otimes_\mathbb{C}\mathbb{C}_{\text{sign}}}  \) 
+
+\underline{Chapter 6} 
+
+Suppose we have a finite group \(G\) and \((\Char k, \vert G \vert)=1\). Then \(kG\) is semisimple.
+
+\begin{proposition}
+    [10] Let \(A\) be semisimple ring. Suppose \(L_1, \cdots , L_s\) are simple, non-isomorphic \(kG\)-modules such that \(\forall\) simple \(L\) we have \(L\cong L_i\) for some \(i\). Then,
+
+    \[
+        A\underset{\text{mul}}{\longrightarrow}  \prod \operatorname{End}_A L_i
+    \]
+
+\end{proposition}
+
+\underline{Corollary}: \(t < s\) implies:
+
+\[
+    A \to \prod_{i=1}^t \operatorname{End}_A L_i
+\]
+
+is onto.
+
+\underline{6.5}: 
+
+\underline{Review}: \underline{Corollary 2}: if \(k\) is algebraically closed and \(\Char k = 0\) and \(d = \dim_k L\) where \(L\) is a simple \(kG\) module, then
+
+\[
+    d \mid \vert G \vert 
+\]
+
+We strengthen this.
+
+\begin{proposition}
+    [17] Let \(Z = Z(G)\) be the center of \(G\). Then,
+
+    \[
+        d \mid \frac{\vert G \vert}{\vert Z \vert}
+    \]
+\end{proposition}
+
+\begin{proof}
+    Let \(\rho : G \to GL(L)\) be an irreducible representation and \(d = \dim\). Define homomorphism \(\lambda : Z \to k^\times\) such that:
+
+    \[
+        \rho (s) = \lambda (s) \operatorname{id}
+    \]
+
+    \(\forall m \geq 1\) let \(\rho^m : G \times \cdots \times G \to GL(L \otimes \cdots \otimes L)\) which is irreducible.
+
+    Then we have \(\lambda^m : Z \times \cdots \times Z \to k^\times\) with:
+
+    \[
+        (s_1, \cdots , s_m) \mapsto \lambda (s_1 \cdots s_m)
+    \]
+
+    Let \(H = \{ (s_i) \in Z^m \mid s_1 \cdots s_m = 1 \} < Z^m < G^m\).
+
+    \(H \cong Z^{m-1}\) and \(H \subset \ker \rho^m\).
+
+    Then \(\overline{\rho^m} : G^m / H \to GL(L \otimes \cdots \otimes L)\) irreducible.
+
+    Therefore, \(\forall m, d^m \mid \vert \frac{G^m}{H} \vert = \frac{\vert G \vert^m}{\vert Z \vert^{m-1}}\) which implies by taking \(m\) big enough that \(d \mid \frac{\vert G \vert}{\vert Z \vert}\).  
+
+\end{proof}
+
+\subsection*{Tensor Product for Non-Commutative Rings}
+
+Suppose \(R\) is a non-commutative ring. Then, tensor product is a functor 
+
+\[
+    - \otimes_R - : \underset{\text{right mod}}{\operatorname{mod} R} \times \underset{\text{left mod}}{R\,\operatorname{mod}} \to \operatorname{Ab}  
+\]
+
+\[
+    \begin{array}{ccc}
+        A_R \otimes _R \,_R B & \ni &  a_1 \otimes b_1 + \cdots + a_k \otimes b_k \\
+         &  &  (a + a^{\prime}) \otimes b = a \otimes b + a^{\prime} \otimes b \\
+         &  &  a \otimes (b + b^{\prime}) = a \otimes b + a \otimes b^{\prime} \\
+         &  &  ar \otimes b = a \otimes rb \\
+    \end{array}
+\]
+
+\begin{exercise}
+    Formulate adjoint proposition:
+
+    \[
+        \Hom_? (\overset{?}{A} \otimes \overset{?}{B} , \overset{?}{C}) \cong \Hom_? (A, \Hom_?(B,C))
+    \]
+\end{exercise}
+
+\begin{definition}
+    [Induced module]: Suppose \(k\) is a field and \(H < G\). Then,
+
+    \[
+        \operatorname{Ind}_H^G : kH\operatorname{-mod} \to kG \operatorname{-mod}
+    \]
+
+    \[
+        \operatorname{Ind}_H^G W = kG \otimes_{kH} W
+    \]
+\end{definition}
+
+eg. Suppose \(H = C_n = \langle r |r^n = 1 \rangle \) and \(G = D_{2n} = \langle r,s \mid r^n = 1 = s^2; srs = r ^{-1} \rangle \). 
+
+If \(W = \mathbb{C}\) we have \(H \to \mathbb{C} ^\times \) by \(r \mapsto \zeta_n\).
+
+\[
+    V = \mathbb{C} D_{2n} \otimes_{\mathbb{C} [C_n]} \mathbb{C}_1 = (\mathbb{C} [C_n] \oplus s \mathbb{C} [C_n]) \otimes_{\mathbb{C}[C_n]} \mathbb{C} _1
+\]
+
+\(\mathbb{C}\)-basis of \(V\) is \(1 \otimes 1, s \otimes 1\).
+
+Recall \(r \mapsto \begin{bmatrix}
+    \zeta_n &  0 \\
+    0 &  \zeta_n ^{-1} \\
+\end{bmatrix}, s \mapsto \begin{bmatrix}
+    0 &  1 \\
+    1 &  0 \\
+\end{bmatrix}\).
+
+\(s(1 \otimes 1) = s \otimes 1\)
+
+\(s(s \otimes 1) = s^2 \otimes 1 = 1 \otimes 1\) 
+
+\(r(1 \otimes 1) = r1 \otimes 1 = \zeta_n \otimes 1 = \zeta_n(1 \otimes 1)\) 
+
+\(r(s \otimes 1) = rs \otimes 1 = s r ^{-1} \otimes 1 = s \otimes \zeta_n ^{-1} 1 = \zeta_n ^{-1} (s \otimes 1)\) 
+
 \end{document}
