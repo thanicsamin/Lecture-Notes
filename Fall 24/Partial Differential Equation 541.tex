@@ -2460,7 +2460,7 @@ Theorem not applicable.
     Recall \(\exists \gamma > 0\) such that
 
     \[
-        B_\gamma [upto,v] = B[u,v] + \gamma \int_\Omega uv
+        B_\gamma [u,v] = B[u,v] + \gamma \int_\Omega uv
     \]
 
     where:
@@ -2547,5 +2547,112 @@ Theorem not applicable.
     Then apply the Lemma.
 
 \end{proof}
+
+\section*{Friday, 10/4/2024}
+
+Recall: Given a bounded linear operator \(T: H \to H\), the \underline{resolvent set}:
+
+\[
+    \rho (T) \coloneqq \{ \lambda \in \mathbb{R} : T - \lambda I \text{ is bijective} \} 
+\]
+
+Then the \underline{spectrum} of \(T\) is:
+
+\[
+    \sigma (T) = \mathbb{R} \setminus \rho (T)
+\]
+
+\(\lambda \in \sigma (T)\) is an \underline{eigenvalue} if \(\exists x\in H\) such that \((T-\lambda I)x = 0\). 
+
+\(\{ \lambda \in \sigma (T) : \lambda \text{ is not an eigenvalue} \} \) is called the \underline{continuous spectrum}.
+
+Now, what if \(T = K\) compact, linear operator?
+
+We have seen that \(I - K\) has a nontrivial nullspace or else it is invertible, and \((I - K)^{-1}\) is bounded. 
+
+Further, we have seen that for \(\lambda \neq 0\) either \(I - \frac{1}{\lambda}K\) has a nontrivial nullspace or it is invertible.
+
+Then, \((I - \frac{1}{\lambda}K) ^{-1}\) is bounded.
+
+Nontrivial nullspace implies \(\lambda\) is an eigenvalue of \(K\).
+
+Thus, \(K\) compat \(\implies\) no continuous spectrum [except perhaps \(0\)].
+
+\begin{theorem}
+    A compact operator \(K: H \to H\) possesses at most a countable set of eigenvalues having no limit pointsexcept possibly \(0\).
+    
+    Furthermore, Each eigenvalue has a finite multiplicity [\(\dim N(K-\lambda I)\) is finite].
+\end{theorem}
+
+\begin{proof}
+    Suppose not. Then we have an accumulation point \(\exists \{ \lambda_n \}\) of eigenvalues such that \(\lambda_n \to \lambda \in (\mathbb{R} \cup \{ \pm \infty \}) \setminus \{ 0 \} \) and a sequence of linearly independent eigenvectors \(x_n\).
+    
+    Let \(M_n = \operatorname{span} \{ x_1, \cdots , x_n \}\). 
+
+    \(M_n\) is a closed subspace.
+
+    Projection Lemma \(\implies \exists \{ y_n \} \subset M_n \setminus M_{n-1}\) so that \(\lVert y_n \rVert = 1, \operatorname{dist} (y_n, M_{n-1})\geq \frac{1}{2}\).
+    
+    Let \(S_\lambda \coloneqq \lambda I - K\).
+
+    For \(n > m\): we have:
+
+    \[
+        \lambda_n ^{-1} K y _n - \lambda_m ^{-1} K y_m = y_n - \lambda_n ^{-1} S _{\lambda_n} y_n - y_m + \lambda_m ^{-1} S_{\lambda_m} y_m = y_n + z
+    \]
+
+    Claim: \(z \in M_{n-1}\). To prove this, note that \(z\) is sum of elements of \(M_{n-1}\).
+    
+    \(y_m \in M_m \subseteq M_{n-1}\).
+
+    Write \(y_n = \sum_{j=1}^n c_j x_j\) 
+
+    \(S_{\lambda_n} y_n = (\lambda_n I - K) \left( \sum_{j=1}^n c_j x_j \right) = \sum_{j=1}^n (\lambda_n c_j x_j - c_j \lambda_j x_j) = \sum_{j=1}^{n-1} (\lambda_n c_j x_j - c_j \lambda_j x_j) \)
+
+    Thus \(S_{\lambda_n}y_n \in M_{n-1}\)
+
+    Also \(S_{\lambda_m}y_m \in M_{m-1} \subseteq M_{n-1}\).
+
+    Now, \(y_n = \lambda_n ^{-1} K y _n\). 
+
+    Therefore, \(\lVert \lambda_n ^{-1} K y_n - \lambda_m ^{-1} K y_m \rVert \geq \frac{1}{2} \).
+    
+    \(\lambda_n ^{-1} \lVert K y_n - \frac{\lambda_n}{\lambda_m} K y_m \rVert \geq \frac{1}{2}\).
+
+    If \(\lambda_m\) approaches finite value, by taking \(m,n\) large enough we get \(\lVert K y_n - K y_m \rVert \geq \frac{\lambda}{4}\). Contradiction.
+
+    If we have an infinite limit then LHS approaches \(0\) which is also not possible.
+
+\end{proof}
+
+\begin{theorem}
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists \) an at most countable set \(\Sigma \subset \mathbb{R} \) such that \(Lu = \lambda  u + f\) in \(\Omega\) and \(u = 0\) on \(\partial \Omega\) has a solutio \(\forall f\in L^2\) provided \(\lambda \neq \Sigma\).
+        \item If \(\Sigma\) is infinite then writing \(\Sigma = \{ \lambda_n \}, \lambda_1 \leq \lambda_2 \leq \cdots \) then \(\lambda_n \to \infty \).
+        \item If \(\lambda \in \Sigma\) then \(L u = \lambda u + f\) for \(f\in L^2\) with \(u=0\) on \(\partial \Omega\) is \underline{solvable} \(\iff\) \((f,v)_{L^2} = 0 \forall v\in N(L^{\ast} -\lambda I)\).  
+    \end{enumerate} 
+\end{theorem}
+
+Recall: \(u\) is a weak solution to \(Lu = \lambda u\) in \(\Omega, u=0\) on \(\partial \Omega\) \(\iff\) \(B[u,v] = \lambda (u,v) \forall v\in H^1_0(\Omega)\).
+
+Where \(B[u,v] = \int_\Omega a_{ij}(x) u_{x_i}v_{x_j} + b_i(x) u_{x_i}v + c(x)uv \, \mathrm{d}x\).
+
+Now, \(B[u,v]=\lambda (u,v) \iff B_\gamma [u,v] \coloneqq B[u,v]+ \gamma \int uv = (\gamma + \lambda) (u,v)\). 
+
+Where \(\gamma\) is sufficiently large to make \(B_\gamma [u,v] \geq \beta \lVert u \rVert ^2 _{H^1_0}\) 
+
+So \(u\) solves \((P) \iff\)
+
+\[
+    u = L_\gamma ^{-1} \left( (\lambda + \gamma)u \right) 
+\]
+
+\[
+    \iff u = \gamma L_\gamma ^{-1} \left( \frac{\lambda+\gamma}{\gamma} u \right) = \frac{\lambda + \gamma}{\gamma} K u \text{ where } K = \gamma L_\gamma ^{-1}
+\]
+
+Thus, \(u\) solves \(P \iff \left( K - \frac{\gamma}{\gamma + \lambda} I \right) u = 0\). 
+
+Then the only posssible limit point of eigenvalues of \(K\) is \(0 \iff \) only possible limit point of eigenvalues of \(L = \infty\).
 
 \end{document}
