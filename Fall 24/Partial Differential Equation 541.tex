@@ -2655,4 +2655,188 @@ Thus, \(u\) solves \(P \iff \left( K - \frac{\gamma}{\gamma + \lambda} I \right)
 
 Then the only posssible limit point of eigenvalues of \(K\) is \(0 \iff \) only possible limit point of eigenvalues of \(L = \infty\).
 
+\section*{Monday, 10/7/2024}
+
+\subsection*{Weak Convergence}
+
+Given a banach space \(X\) let \(X^{\ast}\) be the space of bounded linear functionals.
+
+Given \(x^{\ast} \in X^{\ast}\):
+
+\[
+    \lVert x^{\ast} \rVert _{X^{\ast}} \coloneqq \sup_{\lVert x \rVert _X \leq 1} \langle x^{\ast} , x \rangle 
+\]
+
+\begin{definition}
+    We say \(\{ x_n \} \subset X\) converges weakly to \(x\in X\) if:
+
+    \[
+        \forall x^{\ast} \in X^{\ast} ,\,  \langle x^{\ast} , x_n \rangle \to \langle x^{\ast} , x \rangle 
+    \]
+
+    Notation: \(x_n \overset{X}{\rightharpoonup} x\)  
+\end{definition}
+
+\underline{Example}: for \(1 < p < \infty\)  If \(X = L^p(\Omega)\) then when \(\frac{1}{p} + \frac{1}{q}=1\) we have \(X^{\ast} \cong L^q(x)\).
+
+\(u_n \overset{L^p}{\rightharpoonup} u\) means:
+
+\[
+    \forall v\in L^q, \,\int_{\Omega} u_n v \,\mathrm{d}x \to \int_{\Omega} uv \,\mathrm{d}x 
+\]
+
+\underline{Facts}:
+
+\begin{itemize}
+    \item \(x_n \to x \implies x_n \rightharpoonup x\)
+    \item \(x_n \rightharpoonup x\) and \(\lVert x_n \rVert \to \lVert x \rVert \implies x_n \to x\) 
+    \item \(x_n \rightharpoonup x \implies \lVert x_n \rVert \leq M\) for some \(M\).  
+\end{itemize} 
+
+\begin{definition}
+    A reflexive Banach space \(X\) is one such that:
+
+    \[
+        (X^{\ast})^{\ast} = X
+    \]
+
+    Example: \(L^p(\Omega)\) for \(1 < p < \infty\) 
+\end{definition}
+
+If \(X\) is reflexive and \(\lVert x_n \rVert \leq M\) then \(\exists \{ x_{n_j} \} , x \in X\) such that \(x_{n_j}\rightharpoonup x\).
+
+If \(x_n \rightharpoonup x\) then \(\liminf_{n \to \infty} \lVert x_n \rVert \geq \lVert x \rVert \).
+
+\begin{proof}
+    If \(x^{\ast} \in X^{\ast}, \lVert x^{\ast} \rVert \leq 1\) then,
+
+    \[
+        \liminf_{n \to \infty} \lVert x_n \rVert \geq \liminf_{n \to \infty} \langle x^{\ast} , x_n \rangle = \langle x^{\ast} , x \rangle  
+    \]
+
+    We see our aswer by taking sup over all \(\lVert x^{\ast}  \rVert \leq 1\).
+\end{proof}
+
+\underline{Basic Question}:
+
+Suppose \(u \in H^1(\Omega)\) is a weak solution to \(Lu = f\) in \(\Omega\) where \(L\) is an elliptic operator and \(f\in L^2\) [eg \(-\Delta u = f\)]. Can one argue that \(u\) is better than \(H^1(\Omega)\)?
+
+A (formal) calculation suggesting that this isn't a ridiculous question:
+
+Suppose \(u:\mathbb{R}^n \to \mathbb{R}\) is smooth and compactly supported and solving \(-\Delta u = f\) for \(f\in L^2\).
+
+\[
+    \infty > \int_{{\mathbb{R^n}}} f^2 \,\mathrm{d}x = \int_{{\mathbb{R}^{n}}} (\Delta u)^2 \,\mathrm{d}x = \int_{{\mathbb{R}^{n}}} \nabla \cdot (\nabla u) \Delta u \,\mathrm{d}x 
+\]
+
+\[
+    = - \int_{{\mathbb{R}^{n}}} \nabla u \cdot \nabla(\Delta u) \,\mathrm{d}x = -\int_{{\mathbb{R}^{n}}} u_{x_j} \frac{\partial}{\partial x_j} (u_{x_i x_i}) \,\mathrm{d}x 
+\]
+
+\[
+    = \int_{{\mathbb{R}^{n}}} u_{x_i x_j} u_{x_i x_j} \,\mathrm{d}x = \int_{{\mathbb{R}^{n}}} \vert D^2 u \vert ^ 2 \,\mathrm{d}x 
+\]
+
+So we have control over all second derivatives of \(u\).
+
+\subsection*{Difference Quotients}
+
+\begin{definition}
+    Given \(u: \underset{\subset \mathbb{R} ^n}{\Omega} \to \mathbb{R} \) given \(h\in \mathbb{R} \) given \(k\in 1, \cdots , n\), define:
+
+    \[
+        D_k^h \coloneqq \frac{u(x+he_k)-u(x)}{h}
+    \]
+\end{definition}
+
+We want to bound the difference quotient of the derivative to control the second derivaive.
+
+\underline{Lemma 1}: For \(1 < p < \infty\), let \(u \in W^{1,p}(\Omega)\) for \(\Omega \subset \mathbb{R} ^n\). Then \(\forall \Omega^{\prime} \subset \subset \Omega\) and for \(h\) such that \(0 < \vert h \vert < \operatorname{dis t} (\Omega ^{\prime} , \partial \Omega)\) we have:
+
+\[
+    \lVert D^h_k u \rVert _{L^p(\Omega^{\prime})} \leq \lVert u_{x_k} \rVert _{L^p(\Omega)}
+\]
+
+\begin{proof}
+    First assume \(u\in C^1(\Omega) \cap W^{1,p}(\Omega)\).
+
+    \[
+        D^h_k u(x) = \frac{1}{h} \int_{0}^{h} u_{x_k} u(x_1, \cdots , x_k + s, \cdots , x_n) \,\mathrm{d}s 
+    \]
+
+    \[
+        \vert D^h_k (x) \vert ^ p \underset{\text{H\"older}}{\leq} \frac{1}{h^p} \left( \int_{0}^{h} 1^{\frac{p}{p-1}} \,\mathrm{d}x  \right)^{p-1} \left( \int_{0}^{h} \vert u_{x_k}(\cdots,x_{k}+s, \cdots ) \vert ^ p \,\mathrm{d}x  \right)
+    \]
+
+    \[
+        \int_{\Omega^{\prime}} \vert D_k^h u(x) \vert ^ p \,\mathrm{d}x \leq \frac{1}{h} \int_{\{\operatorname{dis t} (x, \partial \Omega) > h \} } \int_{0}^{h} \vert u_{x_k}(\cdots x_k + s \cdots) \vert ^p \,\mathrm{d}s \,\mathrm{d}x 
+    \]
+
+    \[
+        \underset{\text{Fubini}}{\leq} \frac{1}{h} \int_{0}^{h} \int_{\Omega} \vert u_{x_k}(x) \vert ^ p \,\mathrm{d}x  \,\mathrm{d}s = \lVert u_{x_k} \rVert _{L^p(\Omega)}^p
+    \]
+
+    Now we approximabe by \(C^1\) functions.
+
+\end{proof}
+
+\underline{Lemma 2}: Let \(u\in L^p(\Omega)\) for \(1 < p < \infty\) and suppose for some \(k\in \{ 1, \cdots , n \} \), \(\exists M\) such that
+
+\[
+    \lVert D^h_k u \rVert _{L^p(\Omega^{\prime})} \leq M
+\]
+
+\(\forall \Omega ^{\prime} \subset \subset \Omega , \forall h\) such that \(\operatorname{dis t} (\Omega ^{\prime} , \partial \Omega) > h\). Then,
+
+\[
+    \lVert u_{x_k} \rVert _{L^p(\Omega)} \leq M
+\]
+
+\begin{proof}
+    \(\exists \{ h_j \} \to 0, \exists v\in L^p(\Omega)\) such that:
+    
+    \[
+        D_k^{h_j} u \overset{L^p(\Omega)}{\rightharpoonup} v
+    \]
+
+    [We are using diagonalization. We cannot directly go near \(\partial \Omega\) but by making \(h_j \to 0\) and taking subsequences, we get the convergence for whole \(\Omega\)].
+
+    Furthermore, by lower semicontinuity of \(\lVert \cdot \rVert _{L^p}\) under weak convergence: \(\lVert v \rVert _{L^p(\Omega)}\leq M\). 
+
+    Must still sho \(v\) is the weak \(k\)'th derivative of \(u\).
+
+    Fix \(\phi \in C_0^1(\Omega)\).
+    
+    We have:
+
+    \[
+        \lim_{h_j \to 0} \int_{\Omega} \phi D_k^{h_j} u \,\mathrm{d}x = \int_{\Omega} \phi v \,\mathrm{d}x 
+    \]
+
+    Now we do integration by parts on difference quotient. We also have:
+
+    \[
+        \int_{\Omega} \phi D_k^{h_j} u \,\mathrm{d}x = \int_{\Omega} \phi (x) \left(\frac{u(x+h_j e_k)-u(x)}{h_j}\right)  \,\mathrm{d}x 
+    \]
+
+    For first term, let \(y = x + h_j e_k\). 
+
+    \[
+        = \int_{\mathop{\mathrm{supp}}(\phi + h_j e_k)} \frac{\phi(y-h_j e_k)u(y)}{h_j} \,\mathrm{d}y - \int_{\mathop{\mathrm{supp}}(\phi) } \frac{\phi(x)u(x)}{h_j} \,\mathrm{d}x 
+    \]
+
+    \[
+        = - \int_{\Omega} \frac{\phi(y-h_j e_k)-\phi(y)}{-h_j} u(y) \,\mathrm{d}y = - \int_{\Omega} D_k^{-h_j} \phi (y) u(y) \,\mathrm{d}y 
+    \]
+
+    Now let \(h_j \to 0\)
+    
+    \[
+        \implies \lim_{h_j \to 0} \int_{\Omega} \phi D_k^{h_j} u \,\mathrm{d}x = - \int_{\Omega} \phi _{x_k} u \,\mathrm{d}x 
+    \]
+
+    Thus \(v\) is the weak \(x_k\) derivative of \(u\).
+
+\end{proof}
+
 \end{document}
