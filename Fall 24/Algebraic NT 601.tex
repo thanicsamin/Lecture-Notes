@@ -342,14 +342,14 @@ In the following \(L / K\) will be a finite extension of fields.
 
 \(L / K\) is called \underline{simple} if \(\exists \theta \in L\) such that \(L = K(\theta)\) 
 
-\(L / K\) is called \underline{seperable} if every \(\alpha \in L\) has a seperable minimal polynomial over \(K\) [seperable polynomial meaning no double roots in any extension field.]
+\(L / K\) is called \underline{separable} if every \(\alpha \in L\) has a separable minimal polynomial over \(K\) [separable polynomial meaning no double roots in any extension field.]
 
-For example, in \(K = \mathbb{F}_p(t)\) and \(L   = K(\sqrt[p]{t})\). Then \(p_{\sqrt[p]{t}}(x) = x^p - t = (x - \sqrt[p]{t})^p\) so not seperable
+For example, in \(K = \mathbb{F}_p(t)\) and \(L   = K(\sqrt[p]{t})\). Then \(p_{\sqrt[p]{t}}(x) = x^p - t = (x - \sqrt[p]{t})^p\) so not separable
 
 \begin{theorem}
     [Theorem of the Primitive Element]
     
-    If \(L / K\) is a finite seperable extension, it is simple. 
+    If \(L / K\) is a finite separable extension, it is simple. 
 \end{theorem}
 
 \begin{definition}
@@ -386,7 +386,7 @@ Suppose \(L / K\) is simple and \(L = K(\theta)\). Let \(p_\theta (t)\in K[t]\) 
 
 Then, the map from \(\Sigma (L / K)\) to the set of roots of the minimal polynomial \(\alpha \in \overline{L} \mid p_\theta (\alpha) = 0\) given by \(\sigma \mapsto \sigma(\theta)\) is a bijection.
 
-In particular if \(L / K\) seperable, then: \(\vert \Sigma (L / K) \vert = \deg(p_{\theta})=[L : K]\).
+In particular if \(L / K\) separable, then: \(\vert \Sigma (L / K) \vert = \deg(p_{\theta})=[L : K]\).
 
 \begin{lemma}
 Let \(L \) be finite and \(K \subset M \subset L\) an intermediate field. Then the restriction map \(\operatorname{res} : \Sigma (L / K) \to \Sigma (M / K)\) given by \(\operatorname{res}(\sigma) = \sigma \mid_M\)  is surjective.
@@ -399,7 +399,7 @@ Now suppose that \(\Sigma (M / K) \to \Sigma (L / K)\), given by \(\tau \mapsto 
 \end{proof}
 
 \begin{proposition}
-    Let \(L / K\) be finite seperable and \(x\in L\). Then,
+    Let \(L / K\) be finite separable and \(x\in L\). Then,
     
     \begin{enumerate}[label=\roman*)]
         \item  \(f_x(t) = \det (t \id_L - T_x) = \prod_{\sigma \in \Sigma (L / K)}^{}(t - \sigma(x)) \)
@@ -419,7 +419,7 @@ Now suppose that \(\Sigma (M / K) \to \Sigma (L / K)\), given by \(\tau \mapsto 
 \end{proof}
 
 \begin{definition}
-    Let \(L /K\) be finite seperable extension and \(\alpha_1, \dots , \alpha_n\) be basis of \(L\) as a \(K\) vector space.
+    Let \(L /K\) be finite separable extension and \(\alpha_1, \dots , \alpha_n\) be basis of \(L\) as a \(K\) vector space.
 
     Then the discriminant of \(\alpha_1, \dots ,\alpha_n\) is defined by:
 
@@ -988,7 +988,7 @@ From now on, \(\mathcal{O}\) denotes a Dedekind domain.
     
     The non-zero ideals of \(\mathcal{O}\) are called \underline{integral ideals}.
 
-    We denote by \(J_K\) the set of fractional ideals of \(K\), and by \(P_K\) the set of principal fractional ideals.
+    We denote by \(\mathcal{J}_K\) the set of fractional ideals of \(K\), and by \(\mathcal{P}_K\) the set of principal fractional ideals.
 
 \end{definition}
 
@@ -1020,32 +1020,32 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 \begin{proof}
     First we prove that the product of two fractional ideals are fractional ideals.
 
-    \(I, J \subset J_k \implies cI \subset \mathcal{O}, dJ \subset \mathcal{O}\). Therefore, \((cd)IJ = (cI)(dJ) \subset \mathcal{O}\). Therefore, \(IJ \subset J_K\).
+    \(I, J \subset \mathcal{J}_K \implies cI \subset \mathcal{O}, dJ \subset \mathcal{O}\). Therefore, \((cd)IJ = (cI)(dJ) \subset \mathcal{O}\). Therefore, \(IJ \subset \mathcal{J}_K\).
 
     Commutatitivty and associativity follows from \(\mathcal{O}\) itself being a commutative ring.
 
     We need to prove the existence of inverses. Idea: \((P_1 \cdots P_r) ^{-1} = P_1 ^{-1} \cdots P_r ^{-1}\) 
 
-    Given \(I \subset J_K, \exists c \in \mathcal{O} \setminus \{ 0 \} \) such that \(cI \subseteq \mathcal{O} \).
+    Given \(I \subset \mathcal{J}_K, \exists c \in \mathcal{O} \setminus \{ 0 \} \) such that \(cI \subseteq \mathcal{O} \).
 
     We can factor \(cI\) into primes. Thus, \(cI = P_1 \cdots P_r\).
 
-    For any \(J \in J_K\), we define \(\overline{J} = \{ x \in K \mid xJ \subseteq \mathcal{O} \} \).
+    For any \(J \in \mathcal{J}_K\), we define \(\overline{J} = \{ x \in K \mid xJ \subseteq \mathcal{O} \} \).
 
     Note that, if \(d\in J \setminus \{ 0 \}\), we have \(d \overline{J} \subseteq \mathcal{O}\).
 
     Furthermore, \(d \overline{J} \) is finitely generatd implies \(\overline{J} = \frac{1}{d} = \frac{1}{d}(d \overline{J})\) is finitely generated as a \(\mathcal{O}\)-module. 
     
-    Thus, \(\overline{J} \in J_K\).
+    Thus, \(\overline{J} \in \mathcal{J}_K\).
 
     Going back to \(I\), we see that \((c) \overline{P_1} \cdots \overline{P_r} I = \overline{P_1} \cdots \overline{P_r} (cI) = (\overline{P}_1 P_1) \cdots (\overline{P_r} P_r) = \mathcal{O} \cdots \mathcal{O} = \mathcal{O}\).  
 
-    Thus, \(\forall J \in J_K, \exists J ^{-1} \in J_K\) such that \(J ^{-1} \cdot J = J \cdot J ^{-1} = \mathcal{O}\).
+    Thus, \(\forall J \in \mathcal{J}_K, \exists J ^{-1} \in \mathcal{J}_K\) such that \(J ^{-1} \cdot J = J \cdot J ^{-1} = \mathcal{O}\).
 
 \end{proof}
 
 \begin{corollary}
-    Every \(I \in J_K\) has a factorization:
+    Every \(I \in \mathcal{J}_K\) has a factorization:
 
     \[
         I = P_1 ^ {e_1} \cdots P_r^{e_r}
@@ -1053,7 +1053,7 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 
     where \(P_1, \cdots , P_r\) are pairwise distinct prime/maximal ideals and \(e_1, \cdots , e_r\) are uniquely determiend integers.
 
-    As usual, if \(e < 0\) then \(J^e \coloneqq (J ^{-1} )^{-e}\) for any \(J \in J_K\).
+    As usual, if \(e < 0\) then \(J^e \coloneqq (J ^{-1} )^{-e}\) for any \(J \in \mathcal{J}_K\).
 
 \end{corollary}
 
@@ -1073,25 +1073,25 @@ Then \(I\) is fractional of \(K \iff \exists c\in \mathcal{O} \setminus \{ 0 \}\
 Note that, in the group of (fractional) ideals, the principal ideals form a subgroup.
 
 \begin{definition}
-    The \underline{ideal class group} of \(K\) is defined as \(J_K / P_K\) and denoted by \(\Cl_K\). We call \(h_K = \vert \Cl_K \vert \) the \underline{class number} of \(K\).
+    The \underline{ideal class group} of \(K\) is defined as \(\mathcal{J}_K / \mathcal{P}_K\) and denoted by \(\Cl_K\). We call \(h_K = \vert \Cl_K \vert \) the \underline{class number} of \(K\).
 \end{definition}
 
 We have the exact sequences:
 
 \[
-    1 \to P_K \to J_K \to \Cl_K \to 1
+    1 \to \mathcal{P}_K \to \mathcal{J}_K \to \Cl_K \to 1
 \]
 
 \[
-    1 \to \mathcal{O} ^\times \to \underset{c}{K^\times} \underset{\mapsto}{\to} \underset{c \mathcal{O}}{P_K} \to 1
+    1 \to \mathcal{O} ^\times \to \underset{c}{K^\times} \underset{\mapsto}{\to} \underset{c \mathcal{O}}{\mathcal{P}_K} \to 1
 \]
 
 \underline{Remark}: \(\mathcal{O}\) is a PID \(\iff \Cl_K = \{ 1 \}\)
 
 \begin{proof}
-    Suppose \(I\) is a fractional ideal. Then, \(cI\) is an ideal for some \(c\). Since \(\mathcal{O}\) is a PID, we see that \(cI\) is a principal ideal, so \(cI = (d)\). Therefore, \(I = \frac{d}{c} \mathcal{O}\). Thus, \(J_K = P_K \implies \Cl_K = \{ 1 \}\).
+    Suppose \(I\) is a fractional ideal. Then, \(cI\) is an ideal for some \(c\). Since \(\mathcal{O}\) is a PID, we see that \(cI\) is a principal ideal, so \(cI = (d)\). Therefore, \(I = \frac{d}{c} \mathcal{O}\). Thus, \(\mathcal{J}_K = \mathcal{P}_K \implies \Cl_K = \{ 1 \}\).
 
-    For the other direction, suppose \(\Cl_K = \{ 1 \}\). Then, \(J_K = P_K\). Given \(I \in \operatorname{Id^\times }(\mathcal{O})\) there exists \(c\in K^\times\) such that \(I = c \mathcal{O}\). Since \(c\in I\) we see that \(I\) is a principal ideal. 
+    For the other direction, suppose \(\Cl_K = \{ 1 \}\). Then, \(\mathcal{J}_K = \mathcal{P}_K\). Given \(I \in \operatorname{Id^\times }(\mathcal{O})\) there exists \(c\in K^\times\) such that \(I = c \mathcal{O}\). Since \(c\in I\) we see that \(I\) is a principal ideal. 
 \end{proof}
 
 Note that \(\Cl_K\) being trivial is also equivalent to \(\mathcal{O}\) being a UFD.
@@ -1404,7 +1404,7 @@ If \(D \equiv 2, 3 \pmod 4\) then there s a similar description of \(\operatorna
 
     \(\iff\) \(\operatorname{disc} (\mu_\theta)\) is divisible by \(p\). [since discriminant of \(\mu_\theta\) is a polynomial in coefficients]
 
-    Since \(\mu_\theta\) is seperable, \(\operatorname{disc} (\mu_\theta) \neq 0\) and so only finitely many primes \(p\) divide \(\operatorname{disc} (\mu_\theta)\). 
+    Since \(\mu_\theta\) is separable, \(\operatorname{disc} (\mu_\theta) \neq 0\) and so only finitely many primes \(p\) divide \(\operatorname{disc} (\mu_\theta)\). 
 \end{proof}
 
 \underline{Consequences of proof of 2.10}: If \(\mathcal{O}_K = \mathbb{Z} [\theta]\) then the primes that ramify in \(K\) are exactly those that divide \(\operatorname{disc}(\mu_\theta) = d(1,\theta , \cdots , \theta^{n-1}) = d_K\).
@@ -2244,7 +2244,7 @@ It is a multiplicative group w.r.t.\ componentwise multiplication.
 Define \(l:K_{\mathbb{R}}^\times \to \mathbb{R}^{r+s}\) so that:
 
 \[
-    l((x_1, \cdots , x_r, z_1, \cdots , z_s, \overline{z}_1, \cdots , \overline{z}_s)) = (\log \vert x_1 \vert , \cdots , \log \vert x_r \vert, 2 \log \vert z_1 \vert, \cdots , 2 \log \vert z_s \vert)
+    \ell((x_1, \cdots , x_r, z_1, \cdots , z_s, \overline{z}_1, \cdots , \overline{z}_s)) = (\log \vert x_1 \vert , \cdots , \log \vert x_r \vert, 2 \log \vert z_1 \vert, \cdots , 2 \log \vert z_s \vert)
 \]
 
 Suppose \(\Tr:\mathbb{R}^{r+s}\to \mathbb{R}\) given by \(\Tr(x_1, \cdots , x_r, y_1, \cdots , y_s) = \sum_{i=1}^r x_i + \sum_{j=1}^s y_j\).
@@ -2253,7 +2253,7 @@ Set \(\lambda \coloneqq l \circ j|_{K^\times} : K^\times \underset{j}{\hookright
 
 \(\varepsilon \in \mathcal{O}_K^\times \implies \vert N_{K / \mathbb{Q}}(\varepsilon) \vert = 1 \iff \prod_{\tau \text{ real}} \vert \tau(\varepsilon) \vert \prod_{\{ \tau \text{ complex}  \} / (\text{conjugation}) } \vert \tau (\varepsilon) \vert ^2 = 1 \)
 
-\(\underset{\text{apply log}}{\implies} \Tr (\lambda (\varepsilon)) = \Tr(l(j(\varepsilon))) = 0\).
+\(\underset{\text{apply log}}{\implies} \Tr (\lambda (\varepsilon)) = \Tr(\ell(j(\varepsilon))) = 0\).
 
 Thus, \(\lambda (\varepsilon) \in \ker (\Tr) \eqqcolon  H\) which is the trace zero hyperplane. \(\dim_{\mathbb{R}}(H) = r+s-1\).
 
@@ -2331,7 +2331,7 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
 
     \(\implies \vert l^{-1} (Q) \cap j(\mathcal{O}_K^\times) \vert < \infty\) 
 
-    \(\implies \vert Q\cap \Gamma \vert = \vert l(l ^{-1} (Q)\cap j(\mathcal{O}_K^\times)) \vert < \infty\) 
+    \(\implies \vert Q\cap \Gamma \vert = \vert \ell(\ell ^{-1} (Q)\cap j(\mathcal{O}_K^\times)) \vert < \infty\) 
 
     Since \(\gamma (\varepsilon) = (l \circ j)(\varepsilon)\).
 
@@ -2343,7 +2343,7 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
 
     Put \(S = \{ (z_{\tau})_{\tau} \in K_\mathbb{R}^\times \mid \prod _\tau \vert z_{\tau}  \vert =1 \} = l ^{-1} (H) \) [the norm-1 hypersurface]. 
 
-    We will construct \(T \subset S\) such that \(l(T)\) is bounded in \(H\) and \(\boxed{S = \bigcup_{\varepsilon \in \mathcal{O}_K^\times}^{} j(\varepsilon)T \quad (1)}\) and then take \(M = l(T)\).
+    We will construct \(T \subset S\) such that \(\ell(T)\) is bounded in \(H\) and \(\boxed{S = \bigcup_{\varepsilon \in \mathcal{O}_K^\times}^{} j(\varepsilon)T \quad (1)}\) and then take \(M = \ell(T)\).
 
     \(\forall \tau \in \Sigma_K\) choose \(c_{\tau} \in \mathbb{R}_{>0}\) such that \(c_{\overline{\tau }} = c_{\tau}\) and  \(C \coloneqq \prod c_{\tau} > \left( \frac{2}{\pi} \right) ^s \sqrt{\vert d_K \vert } \).
 
@@ -2370,7 +2370,7 @@ Denote by \(\mu_K\) the group of roots of unity in \(K\). \(\mu_K\) is finite.
     We get the lower bound since \(\prod \vert z_{\tau} \vert = 1\) on \(S\).
 
     \[
-        \implies l \left( S \cap \bigcup_{i=1}^{m} j (\alpha _i)^{-1} X \right) \text{ is bounded in } H
+        \implies \ell \left( S \cap \bigcup_{i=1}^{m} j (\alpha _i)^{-1} X \right) \text{ is bounded in } H
     \]
 
     Let \(y\in S\) be arbitrary. Then, by (2), \(\exists \alpha \in \mathcal{O}_K \setminus \{ 0 \} \) so that \(j(\alpha) \in yX \implies y\in j(\alpha)^{-1} X\).
@@ -2417,14 +2417,10 @@ Then, \((H,\langle \cdot,\cdot \rangle_H)\) is an inner product space. Hence, th
 
 Recall that \(\mathcal{O}_K^\times \cong \mu_K \times (\text{free abelian group of rank } r+s-1)\).
 
-\begin{center}
-
-
-
-\end{center}
+% Commutative Diagram
 
 \(t\coloneqq r+s-1\) and \(\lambda_1 = \begin{bmatrix}
-     \lambda_{1,1} \\
+     \lambda_{1,1}
      \vdots \\
      \lambda_{1,t+1} \\
 \end{bmatrix}, \cdots , \lambda _t = \begin{bmatrix}
@@ -2567,7 +2563,7 @@ The most fundmanetal case is something we have done: \(\mathbb{Z} \subset \mathc
 \begin{theorem}
     Let \(\mathcal{O}_K\) be a Dedekind domain with \(K = \Frac(\mathcal{O}_K)\). Let \(L / K\) be a finite extension, and deinfe \(\mathcal{O}_L\) to be the integral closure of \(\mathcal{O}_K\) in \(L\).
 
-    Then, \(\mathcal{O}_L\) is a Dedekind domain and \(\Frac(\mathcal{O}_L) = L\).
+    Then, \(\mathcal{O}_L\) is a Dedekind domain and \(\Frac(\mathcal{O}_L) = L\). Moreover, \(\mathcal{O}_L\) is finitely generated as \(\mathcal{O}_K\)-module.
 \end{theorem}
 
 \begin{proof}
@@ -2601,9 +2597,9 @@ The most fundmanetal case is something we have done: \(\mathbb{Z} \subset \mathc
 
     Thus, \(Q\in \operatorname{Max}(L)\). 
 
-    It shows that all nonzero prime ideals are maximal. Now we need to show that \(\mathcal{O}_L\) is noetherian. We use the seperable condition here.
+    It shows that all nonzero prime ideals are maximal. Now we need to show that \(\mathcal{O}_L\) is noetherian. We use the separable condition here.
 
-    \(L / K\) seperable \(\overset{1.9}{\implies}  d(\alpha_1, \cdots , \alpha_n) \neq 0\) for any basis \((\alpha_1, \cdots , \alpha_n)\) of \(L / K\). 
+    \(L / K\) separable \(\overset{1.9}{\implies}  d(\alpha_1, \cdots , \alpha_n) \neq 0\) for any basis \((\alpha_1, \cdots , \alpha_n)\) of \(L / K\). 
 
     Let \((\alpha_1, \cdots , \alpha_n)\) be such a basis with elements \(\alpha_i \in \mathcal{O}_L\). 
 
@@ -2634,8 +2630,200 @@ The most fundmanetal case is something we have done: \(\mathbb{Z} \subset \mathc
         \(\implies \exists x\in \mathcal{O}_L \cap K = \mathcal{O}_K; s = \pi x \implies s \in \pi \mathcal{O}_K \subset P\). 
 
         This is a contradiction. So, \(P \mathcal{O}_L = \mathcal{O}_L\) condition cannot be true. Hence, \(P\mathcal{O}_L \subsetneq \mathcal{O}_L\).
-    \end{enumerate} 
+\section*{Tuesday, 10/8/2024}
+
+        \item We have \(P \subseteq P\cdot \mathcal{O}_L \cap \mathcal{O}_K\).
+        
+        If \(P \subsetneq P\cdot \mathcal{O}_K \cap \mathcal{O}_K\) then \(P\mathcal{O}_L \cap \mathcal{O}_K = (1) \implies 1\in P \mathcal{O}_L\) which contradicts i.
+
+    \end{enumerate}
+
 \end{proof}
+
+In the following, consider \(P\in \operatorname{Max} (\mathcal{O}_K)\) and write \(P\mathcal{O}_L = Q_1^{e_1}\cdots Q_r^{e_r}\) with pairwise distinct \(Q_i\in \operatorname{Max}(\mathcal{O}_L)\) and \(e_i > 0\). Define:
+
+\[
+    e_i \eqqcolon \text{\underline{ramification index} of \(Q_i\) over \(P\)} 
+\]
+
+\[
+    f_i \coloneqq [\mathcal{O}_L / Q_i : \mathcal{O}_K / P] (< \infty \text{by 7.1}) \eqqcolon \text{\underline{residue class degree}}
+\]
+
+\begin{theorem}
+    If \(L / K\) is separable then the \underline{fundamental equation} holds:
+
+    \[
+        \sum_{i=1}^r e_i f_i = n = [L:K]
+    \]
+\end{theorem}
+
+\begin{proof}
+    Chinese Remainder Theorem implies \(\mathcal{O}_L / P \mathcal{O}_L \cong \prod_{i=1}^r \mathcal{O}_L / Q_i^{e_i}\). Consider the field \(k\coloneqq \mathcal{O}_K / P\).
+
+    It suffices to show that \(\dim_K (\mathcal{O}_L / P\mathcal{O}_L) = n\) and \(\forall 1 \leq i \leq r: \dim_k(\mathcal{O}_L / Q_i^{e_i}) = e_i f_i\). 
+
+    Consider \(\omega_1 , \cdots , \omega_n \in \mathcal{O}_L\) such that \(\overline{\omega}_1 \coloneqq P\mathcal{O}_L, \cdots , \overline{\omega}_m \coloneqq \omega_m + P\mathcal{O}_L \in \mathcal{O}_L / P \mathcal{O}_L\) are a \(k\)-basis of \(\mathcal{O}_L / P \mathcal{O}_L\). 
+
+    Suppose \((\omega_1, \cdots , \omega_m)\) was \(K\)-linearly dependent. Then, \(\exists a_1, \cdots , a_m \in K\) not all zero such that
+    
+    \[\sum_{i=1}^m a_i \omega_i=0 \quad (1)\]
+    
+    Consider the nonzero fractional ideal \(I \coloneqq \sum_{i=1}^m \mathcal{O}_K \cdot a_i \subset K\).
+
+    \(2.7 \implies \exists a\in I ^{-1} \setminus I ^{-1} \cdot P \implies aI \not\subset P \implies \exists i : aa_i \notin P\,(2)\). 
+
+    Since \(a\in I ^{-1} , a_i \in I, a a_i \in \mathcal{O}_K\). 
+
+    \[
+        (1) \implies \sum_{i=1}^m \underbrace{(a a_i)}_{\in \mathcal{O}_K} \underbrace{\omega_i}_{\in \mathcal{O}_L} = 0 
+    \] 
+
+    Thus, in \(\mathcal{O}_L / P \mathcal{O}_K\): 
+
+    \[
+        \sum_{i=1}^m \overline{a a_i} \, \underbrace{\overline{\omega}_i}_{\text{basis}} = 0_{\mathcal{O}_L / P \mathcal{O}_L}
+    \]
+
+    Therefore, \(\overline{a a_i} = 0_k \implies a a_i \in P\) which is a contradiction to (2).
+
+    Now consider \(M\coloneqq \mathcal{O}_K \omega_1 + \cdots + \mathcal{O} _K \omega_m \subseteq \mathcal{O}_L\) and set \(N \coloneqq \mathcal{O}_L / M\).
+
+    \(\overline{\omega}_1, \cdots \overline{\omega}_m\) generate \(\mathcal{O}_L / P \mathcal{O}_L\) as a \(k\)-vector space. Consider arbitrary \(\beta \in \mathcal{O}_L\), then there is \(\overline{\beta} \coloneqq \beta + P \mathcal{O}_L = \sum_{i=1}^m \overline{a}_i \overline{\omega}_i\) where \(a_i\in \mathcal{O}_K, \overline{a}_i = a_i + P\). Then \(\beta - \underbrace{\sum_{i=1}^m a_i \omega_i}_{\in M} + P \mathcal{O}_L = 0_{\mathcal{O}_L / P \mathcal{O}_L}\). Thus, 
+
+    \[
+        \mathcal{O}_L = M + P \mathcal{O}_L
+    \]
+    
+    Apply Nakayama's Lemma:
+
+    \[
+        \implies PN = (P \mathcal{O}_L + M) / M = \mathcal{O}_L / M = N
+    \]
+
+    Also, \(M = \sum_{i=1}^m \mathcal{O}_K \omega_i\) therefore \(m \leq \dim_K(KM) \leq m\).
+
+    Let \(\alpha_1, \cdots , \alpha_s\) be generators of \(N\) as \(\mathcal{O}_K\)-module. 
+
+    \[
+        PN = N \implies a_i = \sum_{j=1}^s a_{ij} a_j \quad(3)
+    \]
+
+    Set \(A = I_s - (a_{ij})_{1\leq i,j\leq s}\). Then,
+    
+    \[
+        A \begin{bmatrix}
+             \alpha_1 \\
+             \vdots \\
+             \alpha_n \\
+        \end{bmatrix} = \begin{bmatrix}
+             0 \\
+             \vdots \\
+             0 \\
+        \end{bmatrix} \quad (4)
+    \]
+
+    Let \(B=A^{\operatorname{adj}}\) be the adjugate matrix of \(A\). Multiplying on both sides, we see: 
+
+    \[
+        \det (A) \begin{bmatrix}
+             \alpha_1 \\
+             \vdots \\
+             \alpha_s \\
+        \end{bmatrix} = BA \begin{bmatrix}
+             \alpha_1 \\
+             \vdots \\
+             \alpha_s \\
+        \end{bmatrix} = \begin{bmatrix}
+             0 \\
+             \vdots \\
+             0 \\
+        \end{bmatrix}
+    \]
+
+    Thus, \(\det (A) \mathcal{O}_L \subset M\). 
+
+    However, \(A = I_s - (\underbrace{a_{ij}}_{\in P})\) so \(A \equiv I \pmod P\).
+
+    Therefore, \(\det(A) \pmod P = \det(A\pmod P) = 1\).
+
+    Thus \(\det (A) \neq 0\) in \(K\).
+
+    Thus, \(KM = K \cdot \mathcal{O}_K = L \implies m = n = [L:K]\). 
+
+    Therefore, \(m=n=[L:K]\). Then, 
+    
+    \[
+        [L:K]=n=m=\dim_k(\mathcal{O}_K / P \mathcal{O}_L) \underset{CRT}{=} \sum_{i=1}^r (\mathcal{O}_L / Q_i^{e_i}) \underset{HW4}{=} \sum_{i=1}^r [\mathcal{O}_L / Q_i : k]\cdot e_i = \sum_{i=1}^r e_i f_i
+    \]
+    
+
+\end{proof}
+
+\begin{theorem}
+    [Dedekind] Let \(L / K\) be a finite separable extension and \(\theta \in \mathcal{O}_L\) be such that \(L = K(\theta)\) and let \(C = \{ \alpha \in \mathcal{O}_L \mid \alpha \cdot \mathcal{O}_L \subset \mathcal{O}_K [\theta] \} \) be the conductor of \(\mathcal{O}_K[\theta]\). Let \(\mu(x)=\mu_{\theta ,K}(x) \in \mathcal{O}_K[x]\) be the minimal polynomial of \(\theta\) over \(K\). Choose \(P \in \operatorname{Max}(\mathcal{O}_K)\) such that \(P \cdot \mathcal{O}_L + C = \mathcal{O}_L\). Then, if 
+
+    \[
+        \mu (x) \mod P = \overline{\mu}_1(x)^{e_1} \cdots \overline{\mu}_r(x)^{e_r}
+    \]
+
+    with pairwise distinct monic irreducible polynomials \(\overline{\mu }_i (x) \in (\mathcal{O}_K / P) [x]\) then: 
+    
+    \[
+        P\cdot \mathcal{O}_L = Q_1^{e_1} \cdots Q_r^{e_r}
+    \]
+    
+    with pairwise distinct maximal ideals and:
+
+    \[
+        Q_i = P\cdot \mathcal{O}_L + \mu_i(\theta)\cdot \mathcal{O}_L
+    \]
+
+    where \(\mu_i(x) \in \mathcal{O}_K(x)\) is any lift of \(\overline{\mu}_i\).
+\end{theorem}
+
+\begin{proof}
+    Same as the proof of theorem 2.9.
+\end{proof}
+
+Again suppose \(P\cdot \mathcal{O}_L = Q_1^{e_1} \cdots Q_r^{e_r}\) be the prime factorization of \(P\cdot \mathcal{O}_L\) for \(P\in \operatorname{Max}(\mathcal{O}_K)\). 
+
+\(Q_i\) is called:
+
+\begin{itemize}
+    \item \underline{unramified} over \(K\) if \(e_i = 1\) and if residue field extension \(\mathcal{O}_L / Q_i\) of \(\mathcal{O}_K / P\) is separable.
+    \item \underline{ramified} otherwise.
+    \item \underline{purely ramified} if \(e_i > 1\) and \([\mathcal{O}_L / Q_i : \mathcal{O}_K / P]=f_i = 1\). 
+\end{itemize} 
+
+\(P\) is called \underline{unramified} in \(L\) if all \(Q_i\) are unramified. \(L / K\) is called \underline{unramified} if all \(P \in \operatorname{Max}(\mathcal{O}_K)\) are unramified in \(L\).
+
+\begin{theorem}
+    Let \(L / K\) be finite separable. Then there are only at most finitely many \(P\in \operatorname{Max}(\mathcal{O}_K)\) which ramify in \(L\).
+\end{theorem}
+
+\begin{proof}
+    [Sketch] Suppose \(\theta \in \mathcal{O}_L\) is a primitive element, then \(C =\) conductor of \(\mathcal{O}_K[\theta]\). The discriminant argument implies this is a non-zero ideal, thus it can be written as a product of prime ideals. Therefore, it is contained in only finitely many maximal ideals \(Q \in \operatorname{Max}(\mathcal{O}_L)\).
+    
+    There are only finitely many maximal ideals in \(\mathcal{O}_K\) that is contained in some \(Q\). Eliminating these, we reduce to the ideals \(P\in \operatorname{Max} (\mathcal{O}_K)\) such that \(P\cdot \mathcal{O}_L + C = \mathcal{O}_L\).
+
+    Whether they ramify or not is then determined by theorem 7.4. That is dependant on the discriminant of the minimal polynomial vanishing. So we eliminate \(P\in \operatorname{Max}(\mathcal{O}_K)\) such that \(\operatorname{disc}(\mu_{\theta , K}(x))\in P\).
+\end{proof}
+
+\chapter{Ramification Theory}
+
+In this chapter, \(\mathcal{O}_K\) is a dedekind domain, \(K = \Frac(\mathcal{O}_K)\) and \(L / K\) is a finite Galois (thus separable) extension and \(\mathcal{O}_K =\) integral closure of \(\mathcal{O}_K\) in \(L\).
+
+Let \(G = \operatorname{Gal}(L|K)\). Then,
+
+\begin{enumerate}[label=\arabic*)]
+    \item \(G\) acts on \(\mathcal{O}_L\). If \(\beta \in \mathcal{O}_L\) then \(\beta\) is a root of some monic polynomial, and \(\sigma(\beta)\)must be a root of the same polynomial!
+    \item If \(Q\in \operatorname{Max}(\mathcal{O}_L)\) then \(\forall \sigma \in G: \sigma (Q) \in \operatorname{Max}(\mathcal{O}_L)\). It is an ideal by checking the definition, and it is maximal since \(\underset{\overline{a}}{\mathcal{O}_L / Q} \underset{\mapsto}{\overset{\cong}{\to}} \underset{\overline{\sigma(a)}}{\mathcal{O}_L / \sigma(Q)}\). 
+    
+    If \(P = Q\cap \mathcal{O}_K \implies \sigma(Q) \cap \mathcal{O}_K = \sigma (Q\cap \mathcal{O}_K) = \sigma (P) = P\). 
+
+    Thus, \(G\) acts on the sets of \(Q\in \operatorname{Max}(\mathcal{O}_L)\) which lie over \(P\in \operatorname{Max}(\mathcal{O}_K)\). These are exactly the maximal ideals in the prime factorization of \(P\cdot \mathcal{O}_L\). 
+\end{enumerate} 
 
 \end{document}
 
