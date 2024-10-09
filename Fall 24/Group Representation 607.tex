@@ -3469,4 +3469,309 @@ Example: \(\mathbb{C} D_{2n} \otimes_{\mathbb{C} C_n} \mathbb{C}_1 = 1 \mathbb{C
     \langle \operatorname{Ind} \psi , \phi \rangle _G = \langle \psi , \operatorname{Res} \phi \rangle _ H
 \]
 
+\section*{Wednesday, 10/9/2024}
+
+Recall: If 
+
+\[
+    V =\operatorname{Ind}_H^G W
+\]
+
+Then \(V\) as a \(k\)-vector space can be written as direct sum of \(k\)-vector spaces:
+
+\[
+    V = \bigoplus_{g\in G / H} g W
+\]
+
+And action of \(H\) \underline{permutes the summands}.
+
+\[
+    \operatorname{Stab} (W) \coloneqq \{ g\in W \mid gW = W \} = H 
+\]
+
+Also recall \underline{Class Functions}:
+
+\[
+    \operatorname{Cl}(G) = \{ f : G \to k \mid f(g \sigma g ^{-1}) = f(\sigma) \} 
+\]
+
+The charcters \(\chi_V\) are a basis of the vector space of class functions.
+
+For \(H < G\) we have restriction:
+
+\[
+    \begin{array}{cccc}
+        \operatorname{R es}: & \operatorname{Cl}(G) & \to &  \operatorname{Cl}(H) \\
+         & f & \mapsto &  f | _ H \\
+    \end{array}
+\]
+
+We also have induction:
+
+\[
+    \operatorname{Ind} : \operatorname{Cl}(H) \to \operatorname{Cl}(G)
+\]
+
+\[
+    (\operatorname{Ind} f)(\sigma) \coloneqq \frac{1}{\vert H \vert} \sum_{\substack{g\in G \\ g ^{-1} \sigma g \in H}} f(g ^{-1} \sigma g)
+\]
+
+Last time we did:
+
+\[
+    \chi_{\operatorname{Ind} W} = \operatorname{Ind} \chi_W
+\]
+
+Also we had the following:
+
+\[
+    \operatorname{Hom}_{kG} (\operatorname{Ind} W, V) \cong \operatorname{Hom}_{kH}(W, \operatorname{R es} V)
+\]
+
+Today we give a character version of this.
+
+\subsection*{Frobenius Reciprocity}
+
+\begin{theorem}
+    [Frobenius Reciprocity]
+
+    Suppose \(k\) is algebraically closed. Then:
+
+    \[
+        \langle \operatorname{Ind} \psi , \phi \rangle _ G = \langle \psi , \operatorname{R es} \phi \rangle _H 
+    \]
+
+    where \(\psi \in \operatorname{Cl} (H)\) and \(\phi \in \operatorname{Cl}(G)\) with \(H < G\).
+
+    Also, for review: if \(\alpha ,\beta \in \operatorname{Cl}(G)\) then,
+
+    \[
+        \langle \alpha , \beta \rangle _G = \sum_{g\in G} \alpha(g) \beta(g ^{-1}) \in k
+    \]
+
+    And irreducible characters are an orthonormal basis w.r.t.\ this inner product.
+    
+    \[
+        \langle \chi_i, \chi_j \rangle _ G = \delta _{ij}
+    \]
+\end{theorem}
+
+\begin{proof}
+    Suppose 
+
+    \[
+        V \cong \bigoplus_{i} m_i V_i
+    \]
+
+    where \(V_1, \cdots , V_s\) are irreducible. We define \underline{multiplicity}: \(m^V_{V_i} \coloneqq m_i\). Then,
+
+    \[
+        \langle \chi_V, \chi_{V^{\prime}} \rangle = \sum_{i=1}^s m^V_{V_i} m^{V^{\prime}}_{V_i} \underset{\text{Schur}}{=} \dim_k \operatorname{Hom}_{kG}(V,V^{\prime}) 
+    \]
+
+    We finally start the proof.
+
+    \[
+        \operatorname{Cl}(G) = \operatorname{span} \{ \chi_i \}
+    \]
+
+    WLOG assume \(\psi , \phi\) ae characters of \(W\) and \(V\).
+
+    \[
+        \dim_k \operatorname{Hom}_{kG} (\operatorname{Ind} W, V)=\dim_k (\operatorname{Hom}_{kH}(W, \operatorname{R es} V))
+    \]
+
+    \[
+        \implies \langle \operatorname{Ind}(\chi_W), \chi_V  \rangle _G = \langle \chi_W. \operatorname{R es} \chi_V  \rangle _H
+    \]
+
+    Since this is true for basis, it is true for general character.
+
+\end{proof}
+
+\subsection*{Mackey's Double Coset Formula}
+
+Suppose \(G\) is a group with subgroups \(H,K\). aka \(H,K < G\). Let \(W\) be a \(kH\)-module.
+
+\underline{Question}: What is \(\operatorname{R es}_K^G \operatorname{Ind}_H^G W\) as a \(kK\)-module? 
+
+Let \(s = [K \backslash G / H]\) be the \underline{double coset representation}. Meaning:
+
+\[
+    G = \coprod_{s\in S} KsH
+\]
+
+i.e.
+
+\begin{center}
+    \begin{tikzcd}
+        G \ar[r, "\pi", swap] & K \backslash G / H \ar[l, bend right, dotted]
+    \end{tikzcd}
+\end{center}
+
+The above dotted map is \([\,]\). Then,
+
+\[
+    \pi \circ [\,] = \operatorname{Id} 
+\]
+
+We have:
+
+\[
+    H_s \coloneqq s H s ^{-1} \cap K < K
+\]
+
+\[
+    \rho : H \to \operatorname{GL} (W)
+\]
+
+We thus have the \underline{twisted representation}:
+
+\[
+    \rho^s : H_s \to \operatorname{GL} (W)
+\]
+
+\[
+    \rho^s(x) = \rho_W(s ^{-1} x s)
+\]
+
+\(W_s = W_{\rho^s}\) is a \(kHs\)-module.
+
+\begin{proposition}
+    [Mackey's Double Coset Formula, MDCF]
+
+    \[
+        \operatorname{R es}^G_K \operatorname{Ind}_H^G W \cong \bigoplus_{s\in [K \backslash G / H]} \operatorname{Ind}^K_{H_s} W_s 
+    \]
+\end{proposition}
+
+\begin{proof}
+    Suppose \(V \coloneqq \operatorname{Ind}_H^G W\). Then, from the definition of \(\operatorname{Ind} W\),
+
+    \[
+        V = \bigoplus_{x\in G / H} xW
+    \]
+
+    Where \(\operatorname{Stab} (W) = H\).
+
+    \[
+        V = \bigoplus_{x\in G / H} xW
+    \]
+
+    Then, as \(hK\)-module,
+
+    \[
+        V = \bigoplus_{s \in [K\backslash G / H]} KsW 
+    \]
+
+    Note that, since \(\operatorname{Stab}^K (sW) = H_s\),
+
+    \[
+        KsW = \bigoplus_{x\in K / H_s} xsW 
+    \]
+
+    \[
+        = \operatorname{Ind}^K_{H_s} sW
+    \]
+
+    \[
+        = \operatorname{Ind}_{H_s} ^K W_s
+    \]
+
+    Since 
+    \[
+        \begin{matrix}
+            W_s \cong sW \\ w \mapsto sw
+        \end{matrix}
+    \]
+        
+    So we're done.
+
+\end{proof}
+
+\subsection*{Mackey's Irreducibility Criterion, MIC} Suppowe \(W = W_{\rho}\) is \(kH\)-module. TFAE:
+
+\begin{enumerate}[label=\arabic*)]
+    \item \(V = \operatorname{Ind} ^G _H W\) is irreducible 
+    \item 
+        \begin{enumerate}[label=\alph*)]
+            \item \(W\) irreducible
+            \item \(\forall s \in G \setminus H\), \(\rho^s\) and \(\operatorname{R es}_{H_s}\rho \) are disjoint. 
+        \end{enumerate} 
+\end{enumerate} 
+
+Recall: \(V, V^{\prime}\) are \underline{disjoint} if \(\operatorname{Hom}_{kG}(V,V^{\prime}) = 0\).
+
+\begin{proof}
+    We asssume \(k\) is algebraically closed.
+
+    \[
+        V \text{ irreducible} \iff \langle \chi_V, \chi_V \rangle _ G = 1
+    \]
+
+    \[
+        \langle \chi_V, \chi_V \rangle _G = \langle \operatorname{Ind} \chi_W, \operatorname{Ind} \chi_W \rangle _ G
+    \]
+
+    \[
+        = \langle \chi_W, \operatorname{R es} \operatorname{Ind} \chi_W \rangle _H \, [FR]
+    \]
+
+    \[
+        = \langle W, \bigoplus_{s\in [K \backslash G / H]} \operatorname{Ind} ^H _{H_s} (\rho_s)  \rangle_H \, [MDCF] 
+    \]
+
+    \[
+        = \sum_{s} \langle \operatorname{R es}_{H_s} \rho, \rho^s  \rangle _{H_s} \, [FR] 
+    \]
+
+    \[
+        = \sum_{s} d_s
+    \]
+
+    \[
+        d_s = \langle \operatorname{R es} \rho , \rho^s  \rangle _{H_s}
+    \]
+
+    \[
+        d_1 = \langle \rho_W, \rho_W \rangle \geq 1
+    \]
+
+    Thus,
+
+    \[
+        1 = \langle V, V \rangle _G \iff \begin{matrix}
+             d_1 = 1 \\
+             d_s = 0 
+        \end{matrix}
+    \]
+
+    So we're done.
+
+\end{proof}
+
+\underline{Example}: Suppose \(G = H \times K\) where \(H = C_3, G = D_6 = S_3, K = C_2\).
+
+Then,
+
+\[
+    \mathbb{C} [C_3] = \mathbb{C}_0 \times \mathbb{C}_1 \times \mathbb{C}_2
+\]
+
+\[
+    \mathbb{C}[D_6] = \mathbb{C}_+ \times \mathbb{C}_- \times M_2 \mathbb{C}
+\]
+
+\[
+    \operatorname{R es} \mathbb{C}_+ = \mathbb{C}_0 
+\]
+
+\[
+    \operatorname{R es} \mathbb{C}_- = \mathbb{C}_0 
+\]
+
+\[
+    \operatorname{R es} \mathbb{C}^2 \overset{?}{=} \mathbb{C}_1 \times \mathbb{C}_2 
+\]
+
 \end{document}
