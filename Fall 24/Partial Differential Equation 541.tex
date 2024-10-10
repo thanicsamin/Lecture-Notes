@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, esint, stmaryrd}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, esint, stmaryrd, physics}
 \usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
@@ -2836,6 +2836,154 @@ We want to bound the difference quotient of the derivative to control the second
     \]
 
     Thus \(v\) is the weak \(x_k\) derivative of \(u\).
+
+\end{proof}
+
+\section*{Wednesday, 10/9/2024}
+
+Recall:
+
+\[
+    D^h_k u(x) \coloneqq \frac{u(x+he_k)-u(x)}{h}
+\]
+
+\[
+    \int D_k^h u_1(x) u_2(x) \, \mathrm{d}x = - \int D_k^{-h} u_2(x) u_1(x) \, \mathrm{d}x 
+\]
+
+\underline{Lemma 1}: Suppose \(1<p<\infty\). Let \(u\in W^{1,p}(\Omega)\). Then, \(\forall \Omega^{\prime} \subset \subset \Omega\) such that \(\operatorname{dist} (\Omega ^{\prime} , \partial \Omega) > \vert h \vert \) we have:
+
+\[
+    \lVert D_k^h u \rVert _{L^p(\Omega)} \leq \lVert u_{x_k} \rVert _{L^p(\Omega)}
+\]
+
+\underline{Lemma 2}: Let \(u \in L^p(\Omega), 1 < p < \infty\). Assume \(\exists M > 0\) such that \(D_k^h u \in L^p(\Omega^{\prime} )\) and \(\lVert D^h_k u \rVert _{L^p(\Omega ^{\prime} )} \leq M\)  \(\forall k, \forall \Omega ^{\prime} \subset \subset \Omega\) such that \(\operatorname{dist} (\Omega ^{\prime} , \partial \Omega ) \geq \vert h \vert \).
+
+Then \(u_{x_k}\) exists \(\forall k\) and \(\lVert u_{x_k} \rVert _{L^p(\Omega^{\prime} )}\leq M\).
+
+Suppose \(Lu \coloneqq - \frac{\partial}{\partial x_j} (a_{ij}(x) u_{x_i}) + b_i(x)u_{x_i} + c(x)u\) 
+
+Assume \(a_{ij}(x)\zeta_i \zeta_j \geq \theta \vert \zeta \vert ^2, a_{ij} = a_{ji}\) 
+
+Assume \(a_{ij}\in C^1(\Omega), b_{i}, c \in L^{\infty} (\Omega)\) 
+
+\begin{theorem}
+    Assume \(u\in H^{1} (\Omega)\) weak solution to \(Lu = f\) in \(\Omega\) for \(f\in L^2(\Omega)\). Then \(u\in H^2_{loc} (\Omega) \) with:
+
+    \[
+        \lVert u \rVert _{H^2(\Omega^{\prime})}\leq C(\Omega ^{\prime} , \Omega , \theta , \cdots) \left( \left\lVert f \right\rVert _{L^2(\Omega)} + \left\lVert u \right\rVert _{L^2(\Omega)} \right) 
+    \]
+
+    \(\forall \Omega ^{\prime} \subset \subset \Omega\).
+\end{theorem}
+
+\begin{proof}
+
+    Consider \(\Omega ^{\prime}  \subset \subset \Omega ^{\prime\prime} \subset \subset \Omega\) 
+
+    \begin{center}
+        \begin{tikzpicture}
+            \draw (0,0) circle(1 and 0.3);
+            \draw (0,0) circle(2 and 0.5);
+            \draw (0,0) circle(3 and 0.7);
+
+            \node at(0,0) {\(\Omega^{\prime} \)};
+            \node at(1.5,0) {\(\Omega ^{\prime\prime} \) };
+            \node at(2.5,0) {\(\Omega\) };
+
+            
+        \end{tikzpicture}
+    \end{center}
+
+    Let \(\zeta\) be a smooth cutoff function:
+
+    \(\zeta \equiv 1\) in \(\Omega ^{\prime} \) 
+
+    \(\zeta \equiv 0\) on \(\Omega \setminus \Omega ^{\prime\prime} \)
+    
+    \(0 \leq \zeta \leq 1\) 
+
+    We have:
+
+    \[
+        \int_{\Omega} a_{ij}(x) u_{x_i} v_{x_j} + b_i(x) u_{x_i} v + c(x) uv \,\mathrm{d}x = \int_{\Omega} fv \,\mathrm{d}x 
+    \]
+
+    \(\forall v\in H^1_0(\Omega)\) 
+
+    Note that,
+
+    \[
+        \int_{\Omega} a_{ij}(x) u_{x_i} v_{x_j} + \boxed{b_i u_{x_i}} v + \boxed{c u} v \,\mathrm{d}x = \int_{\Omega} fv \,\mathrm{d}x 
+    \]
+
+    Choose \(v = - D_k^{-h} (\zeta^2 D_k^h u)\) 
+
+    in \(\Omega ^{\prime} \) where \(\zeta \equiv 1\) we have:
+
+    \[
+        v = - \left( D_k^{-h} \left( \frac{u(x+he_k)-u(x)}{h} \right)  \right) 
+    \]
+
+    \[
+        = - \left( \frac{u(x-h e_k + h e_k) - u(x - he_k) - u(x + h e_k) + u(x)}{-h^2} \right) 
+    \]
+
+    \[
+        = - \left( \frac{u(x+he_k)+ u(x-he_k) - 2u(x)}{h^2} \right) 
+    \]
+    
+    Using this \(v\), we get:
+
+    \[
+        I = \int_{\Omega} - a_{ij} u_{x_i} D_k^{-h} (\zeta^2 D_k^h u)_{x_i} - b_i u_{x_i} D_k^{-h} (\zeta^2) - cu D_k^{-h} (\zeta^2 D_k^h u) \,\mathrm{d}x 
+    \]
+
+    \[
+        = - \int_{\Omega} f D_k^{-h} (\zeta^2 D_k^h u) \,\mathrm{d}x 
+    \]
+
+    \[
+        I = \int_{\Omega} D_k^h (a_{ij}u_{x_i}) \left( \zeta^2 D_k^h u_{x_i} + 2 \zeta \varphi_{x_j} D_k^h u \right)  \,\mathrm{d}x 
+    \]
+
+    \[
+        = \int_{\Omega} \left( a_{ij}(x+he_k) D_k^h(u_{x_i}) + D_k^h (a_{ij})u_{x_i} \right) \left( \zeta^2 D_k^h u_{x_j} + 2 \zeta \varphi_{x_j}D_k^h u \right)  \,\mathrm{d}x 
+    \]
+
+    \[
+        = \int_{\Omega} \zeta^2 a_{ij}(x+he_k) D_k^h (u_{x_i}) D_k^h (u_{x_j}) + \text{others } \,\mathrm{d}x 
+    \]
+
+    \[
+        \geq \theta \int_{\Omega} \zeta^2 \vert D_k^h (\nabla u) \vert ^ 2 + \text{ others }  \,\mathrm{d}x 
+    \]
+
+    Write \(\tilde{f} \coloneqq f - b_i u_{x_i} - cu \in L^2\).
+
+    Weak form becomes:
+
+    \[
+        \int_{\Omega} a_{ij}(x) u_{x_i} v_{x_j} \,\mathrm{d}x = \int_{\Omega} \tilde{f}v \,\mathrm{d}x 
+    \]
+
+    We have:
+
+    \[
+        \theta \int_{\Omega} \zeta ^2 \vert D_k^h (\nabla u) \vert ^2 \,\mathrm{d}x \leq \int_{\Omega} \tilde{f} D_k^{-h} (\zeta^2 D_k^h u) - a_{ij}(x+he_k) 2 \zeta \zeta _{x_j} D_k^h(u_{x_i})D_k^h u  
+    \]
+    
+    \[
+        - D_k^h (a_{ij})u_{x_i}\zeta^2 D_k^h u_{x_j} - D_k^h (a_{ij}) u_{x_i} 2 \zeta \zeta_{x_j} D_k^h u \,\mathrm{d}x 
+    \]
+
+    Use \(ab \leq \varepsilon^2 a^2 + \frac{1}{4 \varepsilon^2} b^2\) to estimate terms 2,3,4.
+
+    \[
+        \leq C \int_{\Omega^{\prime\prime} } \left( \vert D_k^h (\nabla u) \vert \vert D_k^h u \vert + \vert D^h_k (\nabla u) \vert \vert \nabla u \vert + \vert \nabla u \vert \vert D_k^h u \vert \right) \zeta \,\mathrm{d}x 
+    \]
+
+    Note: \(C \to \infty \) as \(\Omega ^{\prime\prime} \to \Omega\) since it involves the derivative of the cutoff function.
 
 \end{proof}
 
