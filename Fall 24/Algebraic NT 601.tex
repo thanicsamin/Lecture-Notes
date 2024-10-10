@@ -2563,8 +2563,12 @@ The most fundmanetal case is something we have done: \(\mathbb{Z} \subset \mathc
 \begin{theorem}
     Let \(\mathcal{O}_K\) be a Dedekind domain with \(K = \Frac(\mathcal{O}_K)\). Let \(L / K\) be a finite extension, and deinfe \(\mathcal{O}_L\) to be the integral closure of \(\mathcal{O}_K\) in \(L\).
 
-    Then, \(\mathcal{O}_L\) is a Dedekind domain and \(\Frac(\mathcal{O}_L) = L\). Moreover, \(\mathcal{O}_L\) is finitely generated as \(\mathcal{O}_K\)-module.
+    Then, \(\mathcal{O}_L\) is a Dedekind domain and \(\Frac(\mathcal{O}_L) = L\).
+    
+    Moreover, If \(L / K\) is separable, \(\mathcal{O}_L\) is finitely generated as \(\mathcal{O}_K\)-module.
 \end{theorem}
+
+\underline{Note}: If \(L/K\) is not separable, \(\mathcal{O}_L\) might \underline{not} be a finitely generated \(\mathcal{O}_K\)-modle. An example of this kind has been given by Emil Artin in ``Questions de base minimale dans la theorie des nombres algebriques'', Colloque internationale du CNRS (Paris, 1950), 19-20. Independently, Oscar Zariski has also found such examples. 
 
 \begin{proof}
     We only prove it here under the assumption that \(L / K\) is separable.
@@ -2822,8 +2826,199 @@ Let \(G = \operatorname{Gal}(L|K)\). Then,
     
     If \(P = Q\cap \mathcal{O}_K \implies \sigma(Q) \cap \mathcal{O}_K = \sigma (Q\cap \mathcal{O}_K) = \sigma (P) = P\). 
 
-    Thus, \(G\) acts on the sets of \(Q\in \operatorname{Max}(\mathcal{O}_L)\) which lie over \(P\in \operatorname{Max}(\mathcal{O}_K)\). These are exactly the maximal ideals in the prime factorization of \(P\cdot \mathcal{O}_L\). 
 \end{enumerate} 
+
+Thus, \(G\) acts on the sets of \(Q\in \operatorname{Max}(\mathcal{O}_L)\) which lie over \(P\in \operatorname{Max}(\mathcal{O}_K)\). These are exactly the maximal ideals in the prime factorization of \(P\cdot \mathcal{O}_L\). 
+
+
+\section*{Thursday, 10/10/2024}
+
+If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set 
+
+\[
+    \operatorname{Max} (\mathcal{O} _L \mid P) = \{ Q \in \operatorname{Max} (\mathcal{O} _L) \mid Q\cap \mathcal{O} _K = P \} 
+\]
+
+\(Q\in \operatorname{Max} (\mathcal{O}_L | P)\) is said to ``lie over'' (or divide) \(P\): \(Q \mid P\).
+
+\(G\) acts on \(\operatorname{Max}(\mathcal{O}_L \mid P): Q \in \operatorname{Max}(\mathcal{O}_L \mid P) \implies \sigma (Q) \cap \mathcal{O} _K = Q\cap \mathcal{O} _K = P\).
+
+\begin{theorem}
+    \(G\) acts transitively on \(\operatorname{Max} (\mathcal{O}_L \mid P)\). 
+\end{theorem}
+
+\begin{proof}
+    Suppose \(Q^{\prime} \in \operatorname{Max} (\mathcal{O} _L \mid P) \setminus G\cdot Q\) for some \(Q\in \operatorname{Max} (\mathcal{O}_L \mid P)\).
+    
+    Chinese Remainder Theorem \(\implies \exists x\in \mathcal{O} _L : \left( x \equiv 0 \pmod{Q^{\prime}} \text{ and } \forall \sigma \in G: x \equiv 1\pmod{\sigma (Q)} \right) \).
+
+    \[
+        \implies N_{L\mid K} (x) = \prod_{\sigma \in G} \sigma (x) = x \prod_{\substack{\sigma\in G \\ \sigma \neq \operatorname{id}}} \sigma (x) \in Q^{\prime} \cap (K\cap \mathcal{O}_L) = Q^{\prime} \cap \mathcal{O}_K = P \, \, (1)
+    \]
+
+    Thus, \(\forall \sigma \in G: x \notin \sigma ^{-1} (Q) \implies \sigma (x)\notin Q \implies N_{L\mid K}(x) \notin Q\). This contradicts (1) since \(P \subset Q\). 
+
+\end{proof}
+
+\begin{definition}
+    Given \(Q\in \operatorname{Max} (\mathcal{O}_L) \) we call
+
+    \[
+        G_Q = \{ \sigma \in G \mid \sigma (Q) = Q \} 
+    \]
+
+    the \underline{decomposition group of \(Q\)}. The fixed field
+    
+    \[
+        Z_Q \coloneqq L^{G_Q} = \{ x \in L \mid G_Q \cdot x = x \} 
+    \]
+
+    is called the \underline{decomposition field} of \(Q\).
+
+    \(Z\) comes from the German word `Zerlegung' roughly meaning decomposition.
+\end{definition}
+
+\underline{Note}: \(\operatorname{Gal}(L / Z_Q) = G_Q\).
+
+\underline{Remark}:
+
+\begin{enumerate}[label=\arabic*)]
+    \item The groups \(G_Q\) for \(Q\in \operatorname{Max}(\mathcal{O}_L \mid P)\) are all conjugate in \(G\).
+    \item \(\forall Q\in \operatorname{Max}(\mathcal{O}_L \mid P) = r\) if \(P = Q_1^{e_1}\cdots Q_r^{e_r}\) with pairwise distinct \(Q_i\in \operatorname{Max} (\mathcal{O}_L)\).
+    \item \(G_Q = \{ 1 \} \iff \underset{=[L:K]}{\vert G \vert} = \vert \operatorname{Max} (\mathcal{O} _L \mid P) \vert \underset{\text{fundamental eqn} }{\implies } e_1 = \cdots = e_r = 1 = f_1 = \cdots = f_r \iff P\) is totally split.
+    \item \(G_Q = G \iff \vert \operatorname{Max} (\mathcal{O} _L \mid P) \vert = 1\).   
+\end{enumerate} 
+
+\begin{proposition}
+    If \(P\in \operatorname{Max} (\mathcal{O} _K)\) and \(P \mathcal{O} _L = Q_1^{e_1}\cdots Q_r^{e_r}\) with pairwise distinct \(Q_i \in \operatorname{Max} (\mathcal{O} _L)\), then \(e_1 = \cdots = e_r\) and \(f_1 = \cdots = f_r\).
+\end{proposition}
+
+\begin{proof}
+    \[
+        \implies P \mathcal{O} _L = Q_1^{e_1}\cdots Q_r^{e_r} = \sigma (P\mathcal{O}_L) = Q_i^{e_1} \sigma (Q_2)^{e_2} \cdots \sigma (Q_r)^{e_r}
+    \]
+
+    This happens since \(\sigma (Q^e)=\sigma (Q)^e\).
+
+    This implies that \(e_1 = e_i\).
+
+    Moreover, \(\mathcal{O}_L / Q_1 \overset{\cong}{\to} \mathcal{O}_L / \sigma (Q_1) = \mathcal{O}_L / Q_i\) is an isomorphism of \(\mathcal{O} _K / P\) vector spaces.
+
+    \[
+        \implies f_1 = [\mathcal{O}_L / Q_1 : \mathcal{O}_K / P] = [\mathcal{O}_L / Q_i : \mathcal{O}_K / P] = f_i
+    \]
+\end{proof}
+
+\underline{Notation}: Let \(Q \in \operatorname{Max}(\mathcal{O}_L)\) and \(Z = Z_Q = L^{G_Q}\). Set \(Q_Z \coloneqq Q\cap \mathcal{O}_Z\) where \(\mathcal{O}_Z\) is the integral closure of \(\mathcal{O}_K\) in \(Z\) and \(P = Q \cap \mathcal{O}_K\). Then,
+
+\begin{enumerate}[label=\roman*)]
+    \item \(Q\) is the only prime ideal lying over \(Q_Z\).
+    \item \(Q_Z \mathcal{O}_L = Q^e\) where \(e = e_{Q,K} =\) ramification index of \(Q\) over \(K\) and \(f_{Q,Z} = [\mathcal{O}_L / Q : \mathcal{O}_Z / Q_Z] = f_{Q,K} (=[\mathcal{O}_L / Q : \mathcal{O}_K / P])\)
+    \item \(f_{Q_Z , K} = 1 = e_{Q_Z , K}\).  
+\end{enumerate} 
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Galois theory: \(\operatorname{Gal} (L / Z) = G_Q\). 
+        
+        Theorem 8.1 \(\implies G_Q\) acts transitively on \(\operatorname{Max} (\mathcal{O} _L \mid Q_Z) (\ni Q) \implies \operatorname{Max}(\mathcal{O}_L \mid Q_Z) = G_Q \cdot Q = \{ Q \}\), hence (i).
+        
+        \item By the fundamental equation 7.3: \([L:K] e_{Q,K}\cdot f_{Q,K} \, [G\cdot G_Q]\) 
+        
+        \(\implies [L:K] = \vert G \vert = [G : G_Q] \vert G_Q \vert = [G : G_Q] [L:Z]\).
+
+        \(\implies [L:Z] = e_{Q,K}f_{Q,K}\).
+
+        \underline{Further}: \(P\cdot \mathcal{O}_Z = Q_Z^{e_{Q_Z , K}}\cdot (\cdots)\)
+
+        \[
+            \implies P \mathcal{O}_L = (P \mathcal{O}_Z) \cdot \mathcal{O}_L = (Q_Z \cdot \mathcal{O}_L)^{e_{Q_Z , K}} (\cdots) \underset{\text{(i)}}{=} (Q^{e_{Q,Z}})^{e_{Q_Z, K}} (\underbrace{\cdots}_{\substack{\text{\(Q\) does not}\\ \text{appear here}}})
+        \]
+
+        \[
+            \implies e_{Q,K} = e_{Q,Z} e_{Q_Z , K}\, \, (2)
+        \]
+
+        \underline{Also}:
+
+        \[
+            f_{Q,K} = [\mathcal{O}_L / Q : \mathcal{O}_K / P] = [\mathcal{O}_L / Q : \mathcal{O}_Z / Q_Z] [\mathcal{O}_Z / Q_Z : \mathcal{O}_K / P] = f_{Q,Z} f_{Q_Z, K} \, \, (3) 
+        \]
+
+        \underline{Now}:
+
+        \[
+            e_{Q,Z} f_{Q,Z} \substack{\text{(i)} \\ = \\ 7.3 } [L:Z] \underset{(1)}{=} e_{Q,K} f_{Q,K} \substack{(2) \\ = \\ (3)} e_{Q,Z} e_{Q_Z , K} f_{Q,Z} f_{Q_Z, K}
+        \]
+
+        \[
+            \implies 1 = e_{Q_Z, K} f_{Q_Z, K}
+        \]
+
+        \[
+            Q_Z \mathcal{O}_L =Q^e \implies e_{Q_Z, K} = 1 = f_{Q_Z, K}
+        \]
+
+        Thus proving (ii) and (iii).
+    \end{enumerate} 
+\end{proof}
+
+\begin{theorem}
+    \begin{enumerate}[label=\arabic*)]
+        \item The residue field extension \(\mathcal{O}_L / Q \big/ \mathcal{O}_K / P\) is normal. 
+        \item The homomorphism:
+        \[
+            \begin{array}{rcl}
+                G_Q & \to &  \operatorname{Aut}(\mathcal{O}_L / Q \mid \mathcal{O}_K / P)  \\
+                \sigma  & \mapsto & \overline{\sigma }  
+            \end{array}
+        \]
+
+        with \(\overline{\sigma} (a+Q) = \sigma (a) + Q\) is \underline{surjective}.
+
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\arabic*)]
+        \item Proposition 8.3 \(\implies k \coloneqq k(P) = \mathcal{O}_K / P \overset{\cong}{\to} \mathcal{O}_Z / Q_Z \, (f_{Q_Z,K}=1)\). WLOG we may assume that \(K = Z\) and \(G = G_Q\)
+        
+        Let \(\overline{\theta} = \theta + Q \in k(Q) = \mathcal{O}_L / Q\) be any element, let \(\mu(x) = \mu_{\theta , K}(x)\) be the minimal polynomial of \(\theta\) over \(K\). Set \(\overline{\mu } (x) = \mu (x) \mod P\).
+
+        Let \(\mu_{\overline{\theta }}(x) \in k[x]  \) be the minimal polynomial of \(\overline{\theta } \) over \(k\) 
+        
+        \[
+            \overline{\mu} (\overline{\theta } ) = 0 \implies \mu _{\overline{\theta } } \mid \overline{\mu} 
+        \]
+
+        \(L / K\) is Galois, so \(\mu = \mu_\theta\) decomposes into linear polynomials in \(\mathcal{O}_L [x]\). 
+
+        \(\implies \overline{\mu} \) decomposes into monic linear polynomials in \(k(Q)[x]\) 
+        
+        \(\implies \mu_{\overline{\theta} }\) decomposes into monic linear polynomials in \(k(Q)[x]\)
+
+        \(\implies\) all roots of \(\mu_{\overline{\theta} }\) are in \(k(Q) \implies k(Q)\) is normal over \(k\).
+
+        \item Now let \(\overline{\theta}\) be a \underline{primitive} element for the maximal seperable subextension \(k(Q)_{\text{sep}}\) over \(k\). Thus, \(k(Q)_{\text{sep}} = k(\overline{\theta} )\)
+        
+        Given \(\tau \in \operatorname{Aut}(k(Q) \mid k) = \operatorname{Gal} (k(\overline{\theta})\mid k) \implies \tau (\overline{\theta})\) is a root of \(\mu_{\overline{\theta}}(x) \in k[x]\).
+        
+        \(\mu_{\overline{\theta } } \mid \overline{\mu_\theta} \implies \exists \alpha \in \mathcal{O} _L : (\mu_\theta (\alpha) = 0 \text{ and } \overline{\alpha} = \alpha + Q = \tau (\overline{\theta } ) )\).
+        
+        \(\mu_\theta\) is irreducible, thus \(\exists \sigma \in G : \sigma (\theta) = \alpha \). 
+
+        Then, \(\overline{\sigma } (\overline{\theta } ) = \tau (\overline{\theta } ) \implies \overline{\sigma } = \tau\) 
+    \end{enumerate} 
+
+\end{proof}
+
+\begin{definition}
+    \(I_Q = \ker (G_Q \to \operatorname{Aut} (k(\theta ) \mid k(P)))\) is called the \underline{intertia group of} (or at) \(Q\) and \(T_Q \coloneqq L^{I_Q}\) is called the \underline{intertia field} of (or at) \(Q\)   
+\end{definition}
+
+We have a wer of fields:
+
+
 
 \end{document}
 
