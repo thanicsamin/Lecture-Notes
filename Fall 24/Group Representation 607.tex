@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics}
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
 \usepackage{graphicx}
@@ -35,11 +35,11 @@
 \newcommand{\Frac}{\operatorname{Frac}}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\acts}{\curvearrowright}
-\newcommand{\rank}{\operatorname{rank}}
+%\renewcommand{\rank}{\operatorname{rank}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\Char}{\operatorname{char}}
-\newcommand{\Tr}{\operatorname{Tr}}
+%\renewcommand{\Tr}{\operatorname{Tr}}
 
 \title{Group Representations MATH 607}
 \author{Thanic Nur Samin}
@@ -3772,6 +3772,135 @@ Then,
 
 \[
     \operatorname{R es} \mathbb{C}^2 \overset{?}{=} \mathbb{C}_1 \times \mathbb{C}_2 
+\]
+
+\section*{Monday, 10/14/2024}
+
+Exercises 8-13 due Friday
+
+Wed, Chapter 9
+
+Suppose \(K, H < G\) and \(\rho : H \to GL(W)\).
+
+For \(s\in G\) consider \(H_s = s H s ^{-1} \cap K < K\)
+
+Then \(\rho^s : H_s \to GL(W)\) 
+
+\(\rho^s (x) \coloneqq \rho(s ^{-1} x s)\) 
+
+MDCT:
+
+\[
+    \operatorname{R es}_K^G \operatorname{Ind}_H^G \rho \cong \sum_{s\in [K \backslash G / H]} \operatorname{Ind}_{H_s}^K \rho^s  
+\]
+
+Take \(K = H\).
+
+MIC:
+
+\[
+    \operatorname{Ind}_H^G \rho \text{ is irreducible} 
+\]
+
+\(\iff\) \begin{enumerate}[label=\alph*)]
+    \item \(\rho\) irredicuble
+    \item \(\forall s\in G - H, \rho^s\) and \(\eval{\rho}_{H_s} \)  are disjoint.
+\end{enumerate} 
+
+Now take \(H = K \triangleleft G\) normal.
+
+\underline{Corollary}: \(\operatorname{Ind} \rho\) is irreducible \(\iff\) \(\rho\) irredcible and \(\forall s\notin H\) \(\rho\) is not isomorpic to conjugate \(\rho^s\).
+
+e.g. \(H = C_3 = \langle r \rangle \) 
+
+\(G = D_6 = S_3 = \langle r, s \rangle \) 
+
+\(\mathbb{C} H \cong \mathbb{C} _0 \times \mathbb{C} _1 \times \mathbb{C}_2\) 
+
+\(r \mapsto (1, \zeta_3, \zeta_3^2)\) 
+
+\(\mathbb{C} G \cong \mathbb{C}_+ \times \mathbb{C}_- \times M_2\mathbb{C}\) 
+
+Only two dimensional irredicuble reps are \(\mathbb{C} _+ \times \mathbb{C}_-\) and \(\mathbb{C}^2\) 
+
+\(\operatorname{Ind}_H^G \mathbb{C}_0 \cong \mathbb{C}_+ \times \mathbb{C}_-\) 
+
+\(\operatorname{Ind}_H^G \mathbb{C}_1 \cong \mathbb{C}^2\) 
+
+\underline{Corollary?}: \(\operatorname{Ind} \mathbb{C}_0\) is real since \(\rho  \cong \rho^s, \rho^s = \rho (s ^{-1} x s)\) 
+
+\(\operatorname{Ind} \mathbb{C}_1\) is [], (\(\rho: H \to \mathbb{C}\)), \(\underset{\mathbb{C}_1}{\rho} \not\cong \underset{\mathbb{C}_2}{\rho^s} \).
+
+More on MCDF ``Mackey Functors''
+
+\underline{Review}
+
+Ring \(f: R \to S\)
+
+\begin{center}
+    \begin{tikzcd}
+        S\text{-mod} \ar[rr,"f^\ast", bend right] & & R\text{-mod} \ar[ll,"f_\ast", bend right]
+    \end{tikzcd}
+\end{center}
+
+``Res'' \(f^{\ast} N = N\) 
+
+``Ind'' \(f_{\ast} M = S \otimes_R M\) 
+
+\underline{MDCF}: \(H, K < G\) 
+
+\(K^s = s ^{-1} K s\) 
+
+\(^s H = s H s ^{-1}\) 
+
+\(c_s : \underset{g}{K^s} \underset{\mapsto}{\to} \underset{s g s ^{-1}}{K}\)
+
+\((\operatorname{Ind} c_s) M = kK \otimes_{kK^s} M\) 
+
+\[
+    \boxed{\operatorname{R es}_K^G \operatorname{Ind}_H^G = \sum_{s\in [K \backslash G / H]} \operatorname{Ind}^K_{K \cap ^s H} \operatorname{Ind} c_s \operatorname{R es}^H_{K^s\cap H}} 
+\]
+
+\begin{definition}
+    A \underline{Mackey Functor} \(M\) is:
+
+    \[
+        M : \{ \text{subgroups of } G \} \to \operatorname{Ab}
+    \]
+
+    \(\forall H \leq K \leq G\), we have: 
+    
+    Induction map \(I_H^K : M(H) \to M(K)\)
+    
+    Restriction map \(R^H_K M(K) \to M(H)\) 
+
+    Conjugation map \(\forall g\in K, c_g : M(K^s) \to M(K)\)
+
+    Satisfies \(6\) axioms. Key one is MDCF.
+
+    \[
+        H, K \leq J \leq G
+    \]
+
+    \[
+        R_K^J I_H^J =\sum_{K \backslash J / H} \cdots 
+    \]
+\end{definition}
+
+\underline{Examples of Mackey Functors} 
+
+\(M(H)=R_K(H)\) representations.
+
+Homology groups \(M(H)  H_n(H;-)\) 
+
+Cohomology groups \(M(H)=H^n(H;-)\) 
+
+Stable Homotopy theory: \(M(H)\) equals \(X\) based \(G\)-space \(\Pi^H_n X\)
+
+Number theory: if we have \(K /_{\text{finite galois}} L /_{\text{finite}} \mathbb{Q}\),
+
+\[
+    M(H) = \operatorname{Cl}(\mathcal{O}(K^H))
 \]
 
 \end{document}
