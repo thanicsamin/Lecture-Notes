@@ -1,7 +1,7 @@
 \documentclass[openany]{amsbook}
 \numberwithin{section}{chapter}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr, stmaryrd}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr, stmaryrd, physics}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
 \usepackage{float}
@@ -39,11 +39,9 @@
 
 \newcommand{\Frac}{\operatorname{Frac}}
 \newcommand{\im}{\operatorname{im}}
-\newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\N}{\operatorname{N}}
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\End}{\operatorname{End}}
-\newcommand{\rank}{\operatorname{rank}}
 \newcommand{\Cl}{\operatorname{Cl}}
 
 \title{M601 - Algebraic Number Theory - Fall 2024}
@@ -2419,6 +2417,14 @@ Recall that \(\mathcal{O}_K^\times \cong \mu_K \times (\text{free abelian group 
 
 % Commutative Diagram
 
+\begin{center}
+    \begin{tikzcd}
+        \eval{\lambda}_{\mathcal{O}_K^\times}: \mathcal{O}_K^\times \ar[r, hook] \ar[rrdd] & K_\mathbb{R}^\times \ar[r, "l"] & \mathbb{R}^{r+s} & \langle , \rangle_{st} \\
+        & & \bigcup \\
+        & & H & \langle,\rangle_H, \dim = r+s-1
+    \end{tikzcd}
+\end{center}
+
 \(t\coloneqq r+s-1\) and \(\lambda_1 = \begin{bmatrix}
      \lambda_{1,1}
      \vdots \\
@@ -2963,6 +2969,30 @@ If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set
     \end{enumerate} 
 \end{proof}
 
+\begin{center}
+    \begin{tikzcd}
+            & & \,\ar[d, no head, color=white, "\color{black}f"] \ar[d, color=white, "\color{black}e", swap] \\
+        Q   & & L \ar[d, no head, "e_{Q,K}", swap] \ar[d, no head, "1"] \\
+        Q_T & & T \ar[d, no head, "1", swap] \ar[d, no head, "f_{Q,K}"] \\
+        Q_Z & & Z \ar[d, no head, "1"], \ar[d, no head, "1", swap] \\
+        P   & & K
+    \end{tikzcd}
+\end{center}
+
+\[
+    P \mathcal{O}_Z = Q_Z(\cdots)
+\]
+
+\[
+    \begin{matrix}
+        \tilde{k} &   \\
+        \cup &   \\
+        \tilde{k}_{\text{sep}} & \circlearrowleft \tau  \\
+        \cup &   \\
+        k &   \\
+    \end{matrix}
+\]
+
 \begin{theorem}
     \begin{enumerate}[label=\arabic*)]
         \item The residue field extension \(\mathcal{O}_L / Q \big/ \mathcal{O}_K / P\) is normal. 
@@ -3013,12 +3043,28 @@ If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set
 \end{proof}
 
 \begin{definition}
-    \(I_Q = \ker (G_Q \to \operatorname{Aut} (k(\theta ) \mid k(P)))\) is called the \underline{intertia group of} (or at) \(Q\) and \(T_Q \coloneqq L^{I_Q}\) is called the \underline{intertia field} of (or at) \(Q\)   
+    \(I_Q = \ker (G_Q \to \operatorname{Aut} (k(\theta ) \mid k(P)))\) is called the \underline{intertia group of} (or at) \(Q\) and \(T_Q \coloneqq L^{I_Q}\) is called the \underline{intertia field} of (or at) \(Q\).
+
+    In other words: \(I_Q = \{ \sigma \in G_Q \mid \forall \alpha \in \mathcal{O}_L, \sigma (\alpha) \equiv \alpha \pmod Q \} \).
 \end{definition}
 
 We have a tower of fields:
 
+\begin{center}
+    \begin{tikzcd}
+        L \ar[d, no head] \ar[d, bend right, no head, "I_Q", swap] \ar[dd, bend left, no head, "G_Q"] \ar[ddd, bend right=100, no head, "G", swap] & & Q\\
+        T \ar[d, no head] \ar[d, bend right, no head, "G_Q / I_Q", swap] & & Q_T \\
+        Z \ar[d, no head] & & Q_Z\\
+        K & & P
+    \end{tikzcd}
 
+    \ \
+
+    \[
+        G_Q / I_Q \cong \operatorname{Aut}(k(Q) / k(P))
+    \] 
+
+\end{center}
 
 \end{document}
 
