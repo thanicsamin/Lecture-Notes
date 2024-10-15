@@ -907,6 +907,11 @@ snippet `->|(?<!\\)to` "to" A
 \to $0
 endsnippet
 
+context math(context)
+snippet `\\to >` "surjection" A
+\twoheadrightarrow $0
+endsnippet
+
 priority 100
 context math(context)
 snippet `<->` "to" A

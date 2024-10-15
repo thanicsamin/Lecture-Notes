@@ -2890,7 +2890,7 @@ If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set
 
 \begin{enumerate}[label=\arabic*)]
     \item The groups \(G_Q\) for \(Q\in \operatorname{Max}(\mathcal{O}_L \mid P)\) are all conjugate in \(G\).
-    \item \(\forall Q\in \operatorname{Max}(\mathcal{O}_L \mid P) = r\) if \(P = Q_1^{e_1}\cdots Q_r^{e_r}\) with pairwise distinct \(Q_i\in \operatorname{Max} (\mathcal{O}_L)\).
+    \item \(\forall Q\in \operatorname{Max}(\mathcal{O}_L \mid P), [G:G_Q] = \vert\operatorname{Max}(\mathcal{O}_L \mid P)\vert = r\) if \(P = Q_1^{e_1}\cdots Q_r^{e_r}\) with pairwise distinct \(Q_i\in \operatorname{Max} (\mathcal{O}_L)\).
     \item \(G_Q = \{ 1 \} \iff \underset{=[L:K]}{\vert G \vert} = \vert \operatorname{Max} (\mathcal{O} _L \mid P) \vert \underset{\text{fundamental eqn} }{\implies } e_1 = \cdots = e_r = 1 = f_1 = \cdots = f_r \iff P\) is totally split.
     \item \(G_Q = G \iff \vert \operatorname{Max} (\mathcal{O} _L \mid P) \vert = 1\).   
 \end{enumerate} 
@@ -2915,13 +2915,26 @@ If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set
     \]
 \end{proof}
 
-\underline{Notation}: Let \(Q \in \operatorname{Max}(\mathcal{O}_L)\) and \(Z = Z_Q = L^{G_Q}\). Set \(Q_Z \coloneqq Q\cap \mathcal{O}_Z\) where \(\mathcal{O}_Z\) is the integral closure of \(\mathcal{O}_K\) in \(Z\) and \(P = Q \cap \mathcal{O}_K\). Then,
+\begin{proposition}
+    
+Let \(Q \in \operatorname{Max}(\mathcal{O}_L)\) and \(Z = Z_Q = L^{G_Q}\). Set \(Q_Z \coloneqq Q\cap \mathcal{O}_Z\) where \(\mathcal{O}_Z\) is the integral closure of \(\mathcal{O}_K\) in \(Z\) and \(P = Q \cap \mathcal{O}_K\). Then,
 
-\begin{enumerate}[label=\roman*)]
-    \item \(Q\) is the only prime ideal lying over \(Q_Z\).
-    \item \(Q_Z \mathcal{O}_L = Q^e\) where \(e = e_{Q,K} =\) ramification index of \(Q\) over \(K\) and \(f_{Q,Z} = [\mathcal{O}_L / Q : \mathcal{O}_Z / Q_Z] = f_{Q,K} (=[\mathcal{O}_L / Q : \mathcal{O}_K / P])\)
-    \item \(f_{Q_Z , K} = 1 = e_{Q_Z , K}\).  
-\end{enumerate} 
+    \begin{enumerate}[label=\roman*)]
+        \item \(Q\) is the only prime ideal lying over \(Q_Z\).
+        \item \(Q_Z \mathcal{O}_L = Q^e\) where \(e = e_{Q,K} =\) ramification index of \(Q\) over \(K\) and \(f_{Q,Z} = [\mathcal{O}_L / Q : \mathcal{O}_Z / Q_Z] = f_{Q,K} (=[\mathcal{O}_L / Q : \mathcal{O}_K / P])\)
+        \item \(f_{Q_Z , K} = 1 = e_{Q_Z , K}\).  
+    \end{enumerate} 
+
+\end{proposition}
+
+\begin{center}
+    \begin{tikzcd}
+        Q   & & L \ar[d, no head, "e_{Q,K}", swap] \ar[d, no head, "1"] \ar[ddd, no head, "e", swap, bend right = 80] \ar[ddd, no head, "f", bend left = 80] \\
+        Q_T & & T \ar[d, no head, "1", swap] \ar[d, no head, "f_{Q,K}"] \\
+        Q_Z & & Z \ar[d, no head, "1"], \ar[d, no head, "1", swap] \\
+        P   & & K
+    \end{tikzcd}
+\end{center}
 
 \begin{proof}
     \begin{enumerate}[label=\roman*)]
@@ -2968,16 +2981,6 @@ If \(P\in \operatorname{Max(\mathcal{O} _K)}\), then we set
         Thus proving (ii) and (iii).
     \end{enumerate} 
 \end{proof}
-
-\begin{center}
-    \begin{tikzcd}
-            & & \,\ar[d, no head, color=white, "\color{black}f"] \ar[d, color=white, "\color{black}e", swap] \\
-        Q   & & L \ar[d, no head, "e_{Q,K}", swap] \ar[d, no head, "1"] \\
-        Q_T & & T \ar[d, no head, "1", swap] \ar[d, no head, "f_{Q,K}"] \\
-        Q_Z & & Z \ar[d, no head, "1"], \ar[d, no head, "1", swap] \\
-        P   & & K
-    \end{tikzcd}
-\end{center}
 
 \[
     P \mathcal{O}_Z = Q_Z(\cdots)
@@ -3065,6 +3068,218 @@ We have a tower of fields:
     \] 
 
 \end{center}
+
+\section*{Tuesday, 10/15/2024}
+
+Suppose \(Q\mid P\).
+
+\(G_Q = \text{decomposition group} =\{ \sigma \in G \mid \sigma (Q) = Q \} = \operatorname{Stab}(Q)\).
+
+\(G_Q \overset{8.4}{\twoheadrightarrow} \operatorname{Aut} (k(Q) / k(P))\)
+
+\(I_Q = \ker (G_Q \to \operatorname{Aut} (k(Q) / k(P))), T_Q = L^{I_Q} \supset L^{G_Q} = Z_Q\) 
+
+\(I_Q = \text{inertial subgroup at } Q\) 
+
+\(T_Q = \text{inertia field}\) 
+
+\(Z_Q = \text{decomposotion field} \) 
+
+\[
+    1 \to I_Q \to G_Q \to \operatorname{Aut} (k(Q) / k(P)) \to 1
+\]
+
+\(\operatorname{Gal} (L / Z_Q) = G_Q\) 
+
+\(\operatorname{Gal} (L / T_Q) = I_Q\) 
+
+\(\operatorname{Gal} (T_Q / Z_Q) \cong G_Q / I_Q\) 
+
+\begin{theorem}
+    % actually 8.5
+
+    \begin{enumerate}[label=\roman*)]
+        \item The extention \(T_Q / Z_Q\) is Galois.
+        
+        \(\operatorname{Gal}(T_Q / Z_Q) \cong G_Q / I_Q \cong \operatorname{Aut} (k(Q) / k(P))\).
+        \item If the extention \(k(Q) / k(P)\) is separable, then:
+        \begin{enumerate}[label=\alph*)]
+            \item \(f_{Q,K} = [G_Q : I_Q] = [T_Q : Z_q]\) 
+            \item \(e_{Q,K} = \vert I_Q \vert = [L:T_Q]\)  
+            
+            We have for the prime ideal \(Q_T \coloneqq \mathcal{O}_T \cap Q\):
+
+            \item \(e_{Q,T} = e_{Q,K}\) and \(f_{Q, T_Q} = 1\) 
+            \item \(e_{Q_T, K} = 1\) and \(f_{Q_T, K} = f_{Q,K} (=f_{Q_T, Z})\)
+        \end{enumerate} 
+    \end{enumerate} 
+\end{theorem}
+
+Note; \(f_{Q,K} = f_{Q,T} \cdot f_{Q_T, Z} \cdot f_{Q_Z, K}\).
+
+Since \([k(Q):k[P]] = [k(Q) : k(Q_T)] [k(Q_T):k(Q_Z)][k(Q_Z):k(P)]\).
+
+\(f_{Q_T,K} = f_{Q_T,Z} f_{Q_Z,K}\), \(Q_K = P\).
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item we already have this. 
+        \item Set \(k = k(P), T = T_Q, Z = Z_Q\). Then \(f_{Q,K} = [k(Q):k] = \vert \operatorname{Gal} (k(Q)\mid k) \vert = [G_Q : I_Q] = [T:Z]\) which proves part a.
+        
+        Moreover, \(e_{Q,K} f_{Q,K} \overset{8.3}{=} e_{Q,Z}f_{Q,Z} \overset{7.3}{=} [L:Z] =[L:T][T:Z] \overset{(a)}{=} [L:T]f_{Q,K} \quad (1)\) 
+
+        \(\implies e_{Q,K} = [L:T] = \vert I_Q \vert\), hence (b) is proved.
+
+        Consider \(L / T\) and note: \(Q_Z \subset Q_T \subset Q \implies \operatorname{Max} (\mathcal{O}_L \mid Q_T) = \{ Q \}\).
+        
+        Again, \(\overset{7.3}{\implies} [L:T] = e_{Q,T} f_{Q,T} \quad (2)\).
+
+        \(I_Q = \operatorname{Gal} (L \mid T) = \operatorname{Gal} (L \mid T)_Q \overset{8.4}{\twoheadrightarrow} \operatorname{Aut} (k(Q)\mid k(Q_T)) \underset{=}{\text{assumption}}  \operatorname{Gal} (k(Q) \mid k(Q_T))\) acts trivially on \(k(Q)\) over \(k(Q_T)\).
+
+    \end{enumerate} 
+
+        % insert picture here
+
+        \begin{center}
+            \begin{tikzcd}[column sep = tiny]
+                I_Q \ar[r, equal] & \operatorname{Gal}(L\mid T) \ar[r,equal] \ar[d, hook] & \operatorname{Gal}(L\mid T)_Q \ar[rr, two heads, "8.4"] & & \operatorname{Aut}(k(Q)\mid k(Q_T)) \ar[r, equal] \ar[d, hook] & \operatorname{Gal}(k(Q)\mid k(Q_T)) \\
+
+                & \operatorname{Gal}(L\mid Z) & = & \underset{\subset \operatorname{Gal}(L\mid K)}{G_Q} \ar[r, two heads] &  \operatorname{Aut}(k(Q)\mid K)
+            \end{tikzcd}
+        \end{center}
+
+        Then, \(k(Q) = k(Q_T)\).
+
+        \(\implies f_{Q,T} = 1 \overset{(2)}{\implies} e_{Q,T} = [L:T] = e_{Q,K}\). hence c is proved. 
+
+        Proof of 8.3 \(\implies e_{Q,K} = e_{Q,T}e_{Q_T,K}\) and \(f_{Q,K} = f_{Q,T} f_{Q_T,K}\). Since \(f_{Q,T}=1\) we have \(f_{Q,K} = f_{Q_T,K}\), and since \(e_{Q,K} = e_{Q,T}\) we have \(e_{Q_T,K}=1\). 
+
+\end{proof}
+
+\chapter{Absolute Values on Fields}
+
+\underline{Reference}: Lorenz, Algebra II, sec. 23 [IUCAT].
+
+\underline{Notation}: In this chapter, \(K,L,M\) will always denote fields.
+
+\begin{definition}
+    A map \(\vert \cdot \vert : K \to \mathbb{R} _{\geq 0}\) is called an \underline{absolute value} if:
+    
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\vert x \vert = 0 \iff x = 0\) 
+        \item \(\forall x,y\in K : \vert xy \vert = \vert x \vert \cdot \vert y \vert \) 
+        \item \(\forall x,y\in K: \vert x+y \vert \leq \vert x \vert + \vert y \vert \) [triangle inequality]. 
+    \end{enumerate} 
+
+    The set \(\vert K^\times \vert = \{ n\vert x \vert \mid x\in K^\times \} \) is called the \underline{value group} of \(\vert \cdot \vert \). 
+\end{definition}
+
+\underline{Remark}: \(\vert 1_K \vert = 1\) and \(\vert x ^{-1} \vert = \vert x \vert ^{-1}\) 
+
+\underline{Example}:
+
+\begin{enumerate}[label=\arabic*)]
+    \item  Let \(K = \mathbb{Q}\), then \(\vert a + ib \vert _\infty = \vert a + ib \vert _\mathbb{C} = \sqrt{a^2 + b^2} \) is an absolute value.
+
+We also write \(\vert \cdot \vert = \eval{\vert \cdot \vert_\infty}_\mathbb{R}\) and \(\vert \cdot \vert _\infty = \eval{\vert \cdot \vert _\infty}_\mathbb{Q}\).
+
+    \item Let \(K\) be any field, then:
+    
+    \[
+        \vert x \vert = \begin{dcases}
+            0, &\text{ if } x=0 ;\\
+            1, &\text{ if } x\neq 0.
+        \end{dcases}
+    \]
+
+    is an absolute value on \(K\) called the \underline{trivial absolute value}.
+
+    \item if \(\vert \cdot \vert\) is an absolute value and \(\rho \in (0,1]\) there we have for \(s,r\in \mathbb{R}_{>0}\):
+    
+    \[
+        \frac{s^{\rho} + r^{\rho}}{(s+r)^{\rho }} = \left( \frac{s}{s+r} \right) ^ \rho + \left( \frac{r}{s+r} \right) ^ \rho \geq \frac{s}{s+r} + \frac{r}{s+r} \geq 1
+    \]
+
+    \[
+        \implies s^{\rho} + r^{\rho} \geq (s+r)^{\rho} \quad \text{also true if \(r=0\) or \(s=0\)} 
+    \]
+
+    \[
+        \implies \vert x+y \vert ^ \rho \leq (\vert x \vert + \vert y \vert)^{\rho} \leq  \vert x \vert ^ \rho + \vert y \vert ^ \rho
+    \]
+
+    It follows that \(\vert \cdot \vert ^ \rho\) is again an absolute value.
+
+    \item Let \(D>1\) be square-free integer. On \(K = \mathbb{Q} (\sqrt{D})\) the maps \(\vert a + b \sqrt{D} \vert_1 \coloneqq \vert a + b \sqrt{D} \vert _\infty, \vert a + b \sqrt{D} \vert_2 \coloneqq \vert a-b \sqrt{D} \vert _\infty \) are absolute values.
+    
+    \item Let \(p\) be a prime. Write \(x\in\mathbb{Q}^\times\) as \(x = p^m \frac{a}{b}\) with \(\gcd(p,a)=\gcd(p,b)=1\) and set \(v_p(x) = m\) and \(v_p(0) = \infty\).
+    
+    Exercise (HW9): \(\forall x,y\in \mathbb{Q}:\) we have:
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(v_p(xy) = v_p(x) + v_p(y)\) 
+        \item \(v_p(x,y) \geq \min (v_p(x),v_p(y))\)  
+    \end{enumerate} 
+
+    \(v_p\) is called the \underline{\(p\)-adic valuation}. 
+
+    Then one obtains from the \(p\)-adic valuation an absolute value on \(\mathbb{Q}:\)
+    
+    \(\vert x \vert _ p = \begin{dcases}
+        p^{-v_p(x)}, &\text{ if } x \neq 0 ;\\
+        0, &\text{ if } x = 0.
+    \end{dcases}\) called \underline{the \(p\)-adic absolute value}.
+
+    Property (b) implies the strong triangle inequality: \(\vert x+y \vert _ p \leq \max \{ \vert x \vert _ p, \vert y \vert _p \} \leq \vert x \vert _p + \vert y \vert _ p\) 
+
+\end{enumerate}
+
+\section{Topology}
+
+Let \(\vert \cdot \vert \) be an absolute value on \(K\). Then, \(d(x,y)\coloneqq \vert x-y \vert\) is a metric on \(K\) and \((K,d)\) is a metric space.
+
+The associated \underline{metric topology} on \(K\) is the one which has the discs:
+
+\[
+    B^-(a,\varepsilon)\coloneqq \{ x \in K \mid \vert x - a \vert < \varepsilon \} 
+\]
+
+as a basis of the topology, where \(a\) runs through \(K\) and \(\varepsilon \in \mathbb{R}_{>0}\).
+
+The maps \(K \times K \overset{+}{\to} K, K \times K \overset{\cdot}{\to} K\) and \(K^\times \overset{x \mapsto x ^{-1}}{\longrightarrow} K^\times\) are the \underline{continuous maps} under this topology.
+
+A sequence \((x_n)_{n \geq 0}\) in \(K\) \underline{converges to \(a\in K\)} if \(\lim_{n \to \infty} \vert x_n - a \vert = 0\).
+
+A \underline{null sequence} is a sequence which converges to \(0_K\).
+
+\begin{definition}
+    Two absolute values \(\vert \cdot \vert _1, \vert \cdot \vert _2\) are said to be \underline{equivalent} if every null sequence for \(\vert \cdot \vert_1\) is a null sequence for \(\vert \cdot \vert_2\) and vice versa.
+\end{definition}
+
+\underline{Remark}: \(\vert \cdot \vert_1\) and \(\vert \cdot \vert_2\) are equivalent \(\iff\) the topologies on \(K\) associated to \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are the same (HW9).
+
+\underline{Example}: We give example of absolute values that are not equivalent.
+
+Suppose \(p\) is a prime. Then, \((p^n)_{n \geq 1}\) is a null sequence for \(\vert \cdot \vert_p\), but unbounded for \(\vert \cdot \vert _ \infty \) and thus not a null sequene. It is not a null sequence for any other \(l\)-adic absolute value \(\vert \cdot \vert _l\) with a prime \(l \neq p\).
+
+\(\implies\) the set of \(\{ \vert \cdot \vert_p \mid p \text{ is a prime} \} \cup \{ \vert \cdot \vert _\infty  \} \) containsonly inequivalent absolute values.
+
+\begin{lemma}
+    Suppose \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are two non-trivial absolute values on \(K\). Then TFAE:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent.
+        
+        \item \(\exists \rho \in \mathbb{R}_{>0}\) such that \(\vert \cdot \vert _2 = \vert \cdot \vert _1^{\rho} \) 
+        \item \(\forall a\in K: \vert a \vert_1 < 1 \iff \vert a \vert _2 < 1\).
+    \end{enumerate} 
+\end{lemma}
+
+\begin{proof}
+    \(\text{ii} \implies \text{i}\) is clear from the zero sequence condition.
+
+    \(\text{i} \implies \text{iii}\): if \(\vert a \vert _1 < 1 \implies (a^n)_{n\geq 1}\) is a null sequence for \(\vert \cdot \vert _1 \implies (a^n)_{n\geq 1}\) is a null sequence for \(\vert \cdot \vert _2 \implies \vert a^n \vert_2 \to 0 \implies \vert a \vert _2 < 1\) and vice versa.  
+\end{proof}
 
 \end{document}
 
