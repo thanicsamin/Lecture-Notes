@@ -17,6 +17,8 @@ Random Stuff.pdf
 .*.lb
 *.code-workspace
 
+*.hsnips
+
 ## Intermediate documents:
 *.dvi
 *.xdv
