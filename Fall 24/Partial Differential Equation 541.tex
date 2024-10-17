@@ -3100,4 +3100,145 @@ so we're done!
 
 \end{proof}
 
+\section*{Wednesday, 10/16/2024}
+
+\subsection*{Higher Interior Regularity}
+
+Suppose \(Lu \coloneqq -(a_{ij} u_{x_i})_{x_j} + b_i(x) u_{x_i} + c(x) u\) 
+
+So far: Assume \(a_{ij} \) elliptic, \(a_{ij} \in C^1\), \(b_i, c \in C^{\infty}\) \(f\in L^2(\Omega)\).
+
+Then if \(u\in H^1(\Omega)\) is a weak solution to \(L u = f\) then \(u\in H^2_{\operatorname{loc}} (\Omega)\) and \(\forall \Omega ^{\prime} \subset \subset \Omega \exists C(\Omega ^{\prime} )\) such that:
+
+\[
+    \lVert u \rVert _{H^2(\Omega^{\prime})} \leq C(\Omega ^{\prime} ) ( \lVert f \rVert _{L^2} + \lVert u \rVert _{L^2})
+\]
+
+What if \(a_{ij}, b_i, c\) are \underline{nicer}, as is \(f\)? Then \(u\) should be \underline{nicer}.
+
+Idea: Consider the PDE satisfied (weakly) by \(u_{x_k}\) for some \(k\in \{ 1, \cdots , n \}\).
+
+\[
+    \frac{\partial}{\partial x_k} L(u) = \frac{\partial}{\partial x_k} f
+\]
+
+\[
+    - (a_{ij}(x) (u_{x_k})_{x_i})_{x_j} - (a_{ij} (x))_{x_k} (u_{x_k})_{x_i} + (b_i(x))_{x_k} u_{x_i} + b_i(x)(u_{x_k})_{x_i} 
+\]
+\[
+    + (c(x))_{x_k} u + c(x) u_{x_k} = f_{x_k} 
+\]
+
+This is not exactly allowed. So we express it weakly.
+
+Then \(u_{x_k} \) weakly solves a \underline{new} elliptic PDE.
+
+\begin{theorem}
+    Let \(m\) = non-neg integer. Assume \(a_{ij} , b_i, c \in C^{m+1} (\Omega)\). Assume \(f\in H^m(\Omega)\) 
+    
+    Ten if \(u\in H^1(\Omega)\) is a weak solution to \(Lu = f\) we have:
+
+    \[
+        u \in H^{m+2}_{\operatorname{loc}} (\Omega)
+    \]
+
+    and \(\forall \Omega ^{\prime} \subset \subset \Omega\) 
+    
+    \[
+        \lVert u \rVert _{H^{m+2}(\Omega^{\prime})} \leq C (\lVert f \rVert _{H^m} + \lVert u \rVert _{L^2})
+    \]
+\end{theorem}
+
+\begin{proof}
+    By induction.
+\end{proof}
+
+\subsection*{Boundary Regularity}
+
+\begin{theorem}
+    Take \(\Omega \subset \mathbb{R}^n\), open, bounded, \(\partial \Omega \in C^2\). Take \(a_{ij}\) elliptic, \(a_{ij} \in C^1, b_i, c \in L^{\infty}\).
+
+    Take \(f\in L^2\).
+
+    Then if \(u\in H^1_0(\Omega)\) is a weak solution to \(Lu = f\) in \(\Omega\) and \(u=0\) on \(\partial \Omega\) then,
+
+    \[
+        u\in H^2(\Omega)
+    \]
+
+    \[
+        \lVert u \rVert _{H^2(\Omega)} \leq C (\lVert f \rVert _{L^2} + \lVert u \rVert _{L^2})
+    \]
+\end{theorem}
+
+\begin{proof}
+
+    First we assume the boundary is flat. If not we flatten the boundary
+
+    Suppose first that \(B(0,1) \cap \Omega = B(0,1) \cap \mathbb{R}^n_+ = \{ x\in \mathbb{R}^n \mid x_n > 0 \}\). 
+
+    % insert picture figure
+
+    Let \(\zeta\) be a cutoff function.
+
+    \(\zeta \in C^{\infty}, \zeta \equiv 1\) in \(B(0,\frac{1}{2})\)
+
+    \(\zeta \equiv 0\) in \(\mathbb{R}^n \setminus B(0,1)\)
+
+    \[
+        B[u,v] = \int fv \, \forall v \in H^1_0(\Omega)
+    \]
+
+    Rewrite:
+
+    \[
+        \int_{\Omega} a_{ij} u_{x_i} v_{x_j} \,\mathrm{d}x = \int_{\Omega} \widetilde{f} v \,\mathrm{d}x 
+    \]
+
+    For \(\vert h \vert \) small take:
+
+    \[
+        v = - D_k^{-h} (\zeta^2 D_k^h u)
+    \]
+
+    for any \(k\in \{ 1, \cdots , n-1 \} \) 
+
+    To be a legal \(v\) for this, we need \(v\in H^1_0(\Omega)\) in light of the cut-off function and \(\eval{\Tr}_{\partial B(0,1)^+} u = 0 \) 
+
+    So we can use this \(v\) in \(\ast\).
+
+    The rest of the proof is the same for interior regularity. We obtain:
+
+    \[
+        \lVert D_k^h (\nabla u) \rVert _{L^2(B(0,1)^+)} \leq C \left( \lVert f \rVert _{L^2} + \lVert u \rVert _{L^2} \right) 
+    \]
+
+    Since difference quotients are uniformly bounded we must have weak derivatives.
+
+    \(\implies\) by lemma 2,
+
+    \[
+        \lVert u_{x_i x_j} \rVert \leq C \left( \lVert f \rVert _{L^2} + \lVert u \rVert _{L^2} \right)
+    \]
+
+    for all \(i,j\) except \(i=j=n\).
+
+    How to control \(u_{x_n x_n}\)?
+
+    By interior regularity, \(L u = f\) at a.e. \(x\in \Omega\).
+
+    We rewrite the PDE:
+
+    \[
+        - a_{n n} u_{x_n x_n} = \underbrace{\sum_{(i,j) \neq (n,n)} (a_{ij} (x) u_{x_i})_{x_j}  - b_i(x) u_{x_i} - c(x)u + f}_{\coloneqq \tilde{\tilde{f}}}
+    \]
+
+    We have \(\lVert \tilde{\tilde{f}} \rVert < \operatorname{const}(\lVert f \rVert _{L^2} + \lVert u \rVert _{L^2})\) 
+
+    \[
+        \implies \lVert u_{x_n x_n}  \rVert \leq \frac{\operatorname{const}}{\theta} \left( \lVert f \rVert _{L^2} + \lVert u \rVert _{L^2} \right) 
+    \]
+
+\end{proof}
+
 \end{document}
