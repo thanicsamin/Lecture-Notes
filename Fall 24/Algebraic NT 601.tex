@@ -3279,7 +3279,229 @@ Suppose \(p\) is a prime. Then, \((p^n)_{n \geq 1}\) is a null sequence for \(\v
     \(\text{ii} \implies \text{i}\) is clear from the zero sequence condition.
 
     \(\text{i} \implies \text{iii}\): if \(\vert a \vert _1 < 1 \implies (a^n)_{n\geq 1}\) is a null sequence for \(\vert \cdot \vert _1 \implies (a^n)_{n\geq 1}\) is a null sequence for \(\vert \cdot \vert _2 \implies \vert a^n \vert_2 \to 0 \implies \vert a \vert _2 < 1\) and vice versa.  
+
+\section*{Thursday, 10/17/2024}
+
+    \(\text{iii} \implies \text{ii}\): \(\vert \cdot \vert\), non-trivial \(\implies \exists c\in K^\times : \vert c \vert _1 > 1 \implies \vert c ^{-1}  \vert _1 < 1 \underset{\text{iii}}{\implies} \vert c ^{-1} \vert _ 2 < 1 \implies \exists \rho > 0 : \vert c \vert _2 = \vert c \vert _1 ^ \rho\) 
+
+    Given \(a \in K^\times\) and write \(\vert a \vert _1 = \vert c \vert _1 ^ \alpha\) for some \(\alpha \in \mathbb{R}\). For \(m,n \in \mathbb{Z}, n \neq 0\) and \(\frac{m}{n} > \alpha \) we have:
+    
+    \[
+        \vert a \vert _ 1 = \vert c \vert _1^\alpha < \vert c \vert _1 ^{\frac{m}{n}} \implies \left\vert \frac{a^n}{c^m} \right\vert _ 1< 1 \underset{\text{iii}}{\implies} \left\vert \frac{a^n}{c^m} \right\vert _ 2< 1 \implies \vert a \vert _2 < \vert c \vert _2 ^{\frac{m}{n}}
+    \]
+
+    Similarly, if \(\frac{m}{n} < \alpha\) we find:
+
+    \[
+        \vert a \vert _2 > \vert c \vert _2 ^{\frac{m}{n}}
+    \]
+
+    Choose a sequence of rational numbers \(\frac{m}{n}\) converging to \(\alpha \). Then,
+
+    \[
+        \vert a \vert _2 = \vert c \vert _2 ^ \alpha = \vert c \vert ^{\rho \alpha}_{\rho} = \vert a \vert _1 ^ \rho 
+    \]
+
 \end{proof}
+
+\underline{Remark}: \(9.1 \implies \) equivalent absolute values induce the same topology on \(K\). The converse is also true: if the topology defined on \(K\) by two absolute values is the same, then they're equivalent.
+
+\begin{definition}
+    An absolute value \(\vert \cdot \vert \) on \(K\) is called \underline{archimedean} if \(\{ \vert n \cdot 1_K \vert \mid n\in \mathbb{Z}_{\geq 0}\}\) is \underline{unbounded}. It is called \underline{non-archimedean} otherwise.
+\end{definition}
+
+\underline{Remark}: ``Archimedean'' means \(\forall x\in\mathbb{R} \exists n\in\mathbb{Z} :n \geq x\). We could also say \(\vert x \vert \leq \vert n \vert\) instead, and this is where the concept comes from.
+
+\begin{lemma}
+    Let \(\vert \cdot \vert \) be an absolute value on \(K\). Then TFAE:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert \cdot \vert \) is non-archimedean. 
+        \item \(\forall n\in \mathbb{Z} _{\geq 1}: \vert n \vert \leq 1\).
+        \item \(\forall a,b\in K: \vert a+b \vert \leq \max (\vert a \vert , \vert b \vert )\) 
+        \item \(\forall \rho \in \mathbb{R}_{> 0}: \vert \cdot \vert ^ \rho\) is an absolute value.
+    \end{enumerate} 
+\end{lemma}
+
+\begin{proof}
+    Ommitted. Key idea: for \(\text{i} \implies \text{ii}\), in non-archimedean fields, we have:
+
+    \[
+        \left\vert \binom{n}{k} \right\vert \leq C
+    \]
+
+    for some constant \(C\).
+\end{proof}
+
+\begin{theorem}
+    Every non-trivial absolute value on the field of rational numbers is equivalent to \(\vert \cdot \vert _p\) for a unique prime \(p\), or it is equivalent to \(\vert \cdot \vert _ \infty \) 
+\end{theorem}
+
+\begin{proof}
+    \underline{Case 1}: Suppose \(\vert \cdot \vert \) is non-archimedean. \(9.2 \implies \forall m\in \mathbb{Z}_{\geq 1}, \vert m \vert \leq 1\). In fact, \(\forall m\in \mathbb{Z}_{\neq 0}, \vert m \vert \leq 1\).
+    
+    Since \(\vert \cdot \vert\) is non-trivial, there must exist some \(m\in\mathbb{Z}_{>0}\) so that \(\vert m \vert < 1\).
+
+    \(\implies I = \{ m\in \mathbb{Z} \mid \vert m \vert < 1 \} \) is a non-zero ideal in \(\mathbb{Z}\) by using 9.2.
+
+    Furthermore, \(I\) is a prime ideal: \(\vert ab \vert < 1 \implies \vert a \vert \vert b \vert < 1 \implies \vert a \vert < 1 \text{ or } \vert b \vert < 1\).
+    
+    Thus, \(\exists\) prime \(p\) such that \(I = (p)\).
+
+    Consider \(a\in\mathbb{Z} \setminus \{ 0 \} \) and write \(a = p^m b\) where \(p\nmid b\). Then \(b\notin I\) and thus \(\vert b \vert = 1\).
+
+    Therefore, \(\vert a \vert = \vert p \vert ^ m = \vert p \vert_p^{m \rho}\) for some \(\rho > 0 [\vert p \vert _p = \frac{1}{p}]\).
+
+    Thus \(\vert a \vert = \vert a \vert _ p ^ \rho\).
+
+    Therefore, \(\vert x \vert = \vert x \vert _p^{\rho}\) for all \(x\in\mathbb{Q}\).
+
+    \underline{Case 2}: \(\vert \cdot \vert \) is archimedean. Suppose \(\vert \cdot \vert \) is \underline{not} equivalent to \(\vert \cdot \vert _\infty\).
+
+    Lemma \(9.1 \implies \exists x\in\mathbb{Q} : \vert x \vert < 1, \vert x \vert _\infty \geq 1\).
+    
+    WLOG assume \(x > 0\). So \(x > 1\) but \(\vert x \vert < 1\).
+
+    Write \(x = \frac{a}{s}\) with \(a,s\in\mathbb{Z}_{>0}\) with \(\gcd(a,s)=1, a > s\).
+
+    \underline{Claim}: Every \(n \in \mathbb{Z}_{\geq 0}\) can be written as:
+
+    \[
+        n = c_0 + c_1 x + \cdots + c_r x^r \, \text{with } c_i \in \mathbb{Z} \cap [0,a-1]
+    \]
+
+    Proof of the claim is HW.
+
+    Using this, we have:
+
+    \[
+        \vert n \vert \leq \sum_{i=0}^r \vert c_i \vert \vert x \vert^i \leq a \cdot \sum_{i=0}^r \vert x^i \vert \leq a \sum_{i=0}^ \infty \vert x \vert^i = \frac{a}{1-\vert x \vert}
+    \]
+
+    This contradicts the fact that \(\vert \cdot \vert\) is archimedean.
+
+\end{proof}
+
+\underline{Exercise}: If \(\vert \cdot \vert \) is non-archimedean and \(\vert a \vert \neq \vert b \vert \) then \(\vert a+b \vert = \max (\vert a \vert , \vert b \vert )\).
+
+\begin{proposition}
+    [Valuation Ring and Valuation ideal] Let \(\vert \cdot \vert \) be a non-archimedean absolute value on \(K\). Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(R = \{ a\in K \mid \vert a \vert \leq 1 \}\) is a subring of \(K\) called the \underline{valuation ring} of \(\vert \cdot \vert\).
+        \item \(K = \Frac(R)\).
+        \item \(P = \{ a\in K \mid \vert a \vert < 1 \} \) is the unique maximal ideal of \(R\) called the \underline{valuation ideal}.
+        \item \(R^\times = R \setminus P\).
+        \item \(R / P\) is a field called the \underline{residue field} of \(\vert \cdot \vert\) (or of \(K\), or of \(R\)).
+        \item \(\forall a,b\in R : \underset{\iff \exists c\in R : b = ac}{a\mid b} \iff \vert b \vert \leq \vert a \vert\)
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item \(a,b \in R \implies \vert a + b \vert \underset{9.2}{\leq} \max \{ \vert a \vert , \vert b \vert  \} \leq  1\) and \(\vert ab \vert = \vert a \vert \vert b \vert \leq 1\).
+        \item \(x\in K \setminus R \implies \vert x \vert > 1 \underset{x\neq 0}{\implies} \vert x ^{-1} \vert < 1 \implies x ^{-1} \in R\)  
+        \item See next
+        \item Note: \(P \subsetneq R\). Same argument as in the proof by 9.3: \(P\) is a prime ideal. Given \(x\in R \setminus P \implies \vert x \vert = 1 \implies \vert x ^{-1}  \vert = 1 \implies x ^{-1} \in R \implies x \in R^\times \implies R^\times = R \setminus P\) so \(P\) is maximal.
+        \item Immediate
+        \item \(a\mid b \implies \exists c\in R : b = ac \implies \vert b \vert = \vert a \vert \underset{\leq 1}{\vert c \vert } \leq \vert a \vert\).
+        
+        \[
+            \vert b \vert \leq \vert a \vert \neq 0 \implies \left\vert \frac{b}{a} \right\vert \leq 1 \implies \frac{b}{a}\in R, b = \left( \frac{b}{a} \right) \cdot a \implies a\mid b
+        \]
+    \end{enumerate} 
+\end{proof}
+
+\underline{Example}: For \(\vert \cdot \vert _ p\) on \(\mathbb{Q}\) we have:
+
+\begin{enumerate}[label=\roman*)]
+    \item 
+    \[
+        R = \left\{ x = \frac{a}{b} \in \mathbb{Q} \mid \vert x \vert _ p \leq 1 \right\} = \left\{ \frac{a}{b} \in \mathbb{Q} \mid a,b\in\mathbb{Z} ,\gcd(a,b)=1, b\notin p\mathbb{Z} \right\} = \mathbb{Z}_{(p)}
+    \]
+
+    The localization of \(\mathbb{Z}\) at \((p)\), \((\mathbb{Z} \setminus (p))^{-1} \mathbb{Z}\).
+
+    \item \(P = p \mathbb{Z}_{(p)}\) 
+    \item Residue field \(\mathbb{Z}_{(p)} / p \mathbb{Z}_{(p)} \overset{\cong}{\to} \mathbb{Z} / p\mathbb{Z} = \mathbb{F}_p\) where \(\frac{a}{b}\mod{p \mathbb{Z}_{(p)}} \mapsto (a \mod p)(b\mod p)^{-1}\).
+
+\end{enumerate}
+
+\begin{definition}
+    A function \(w: K \to \mathbb{R} \cup \{ \infty \}\) is called a \underline{valuation} if it has the following properties:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(w(x) = \infty \iff x = 0\) 
+        \item \(w(x+y) \geq \min \{ w(x), w(y) \} \) 
+        \item \(w(xy) = w(x) + w(y)\)
+        
+        \(w(K^\times)\) is called the \underline{value group} of \(w\).
+
+        Valuations \(w\) and \(v\) are called \underline{equivalent} if \(\forall x\in K: (w(x) > 0 \iff v(x) > 0)\).
+
+        Given a valuation \(w\) we define an absolute value \(\vert \cdot \vert_w\) as follows
+
+        \[
+            \vert x \vert _ w \coloneqq \begin{dcases}
+                e^{-w(x)}, &\text{ if } x\neq 0 ;\\
+                0, &\text{ if } x = 0 ;
+            \end{dcases}
+        \]
+
+        Then \(\vert \cdot \vert _w\) is a non-archimedean absolute value on \(K\).
+    \end{enumerate} 
+\end{definition}
+
+This gives rise to a commutative diagram:
+
+\begin{center}
+    \begin{tikzcd}
+        \begin{Bmatrix} \text{valuations} \\ \text{on } K\end{Bmatrix} \ar[r, "w \mapsto \vert \cdot \vert _w"] \ar[d, two heads] & \begin{Bmatrix} \text{non-archimedean} \\ \text{abs. values on } K \end{Bmatrix} \ar[d, two heads] \\
+        \begin{Bmatrix}
+            \text{equivalence classes} \\ \text{of valuations on } K
+        \end{Bmatrix} \ar[r]  & \begin{Bmatrix}
+            \text{equivalence classes} \\ \text{of non-arch. abs. values on } K
+        \end{Bmatrix} \\
+        \text{\([w]\)} \ar[r, mapsto] & \text{\([\vert \cdot \vert _w]\) }
+    \end{tikzcd}
+\end{center}
+
+\section{Completions}
+
+Fix an absolute value on \(K\).
+
+\begin{definition}
+    A sequence \((a_n)_{n\geq 0}\) in \(K\) is called a \underline{Cauchy sequence w.r.t.\ \(\vert \cdot \vert\)} if \(\forall \varepsilon > 0 \exists n_0 \forall n, m \geq n_0 : \vert a_n - a_m \vert < \varepsilon\).
+
+    We call \(K\) \underline{complete} if every Cauchy sequence converges (in \(K\)) in which case we also call \(\vert \cdot \vert \) a \underline{complete} absolute value on \(K\).
+\end{definition}
+
+\underline{Remark}:
+
+\begin{enumerate}[label=\roman*)]
+    \item Every convergent sequence is a Cauchy sequence.
+    \item If \((a_n)_n\) is Cauchy in \(K\), then \((\vert a_n \vert)_n\) is a Cauchy sequence in \(\mathbb{R}\).
+    \item If \((a_n)_n\) is Cauchy then it is bounded: \(\exists C > 0 \forall n \geq 0: \vert a_n \vert \leq C\).
+    \item If \((a_n)_n\) is Cauchy and if a subsequence \((a_{n_k})_{k\geq 0}\) is a null sequence, then \((a_n)_n\) is a null sequence.
+    \item The set of all Cauchy sequences:
+    \[
+        \mathcal{C} = \left\{ (a_n)_{n\geq 0} \mid (a_n)_{n\geq 0} \text{ is Cauchy in \(K\) w.r.t.\ \(\vert \cdot \vert\)}  \right\} 
+    \]
+
+    is a unital ring w.r.t.\ componentwise addition and multiplication.
+
+    \item The set \(\mathcal{N} \subset \mathcal{C}\) of null sequences is an ideal in \(\mathcal{C}\).
+\end{enumerate} 
+
+\begin{definition}
+    A \underline{completion} of \(K\) w.r.t.\ \(\vert \cdot \vert \) is a pair \(K^\wedge, \vert \cdot \vert ^ \wedge\) consisting of a field extension \(\underset{x}{K} \underset{\mapsto}{\to}  \underset{x}{K^\wedge} \) and an absolute value \(\vert \cdot \vert ^\wedge\) such that:
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(\forall x\in K: \vert x \vert ^\wedge = \vert x \vert \)  
+        \item \(K\) is dense in \(K^\wedge\).
+        \item \(K^\wedge\) is complete w.r.t.\ \(\vert \cdot \vert ^\wedge\) 
+    \end{enumerate} 
+\end{definition}
 
 \end{document}
 
