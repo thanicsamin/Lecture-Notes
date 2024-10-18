@@ -3239,6 +3239,150 @@ Then \(u_{x_k} \) weakly solves a \underline{new} elliptic PDE.
         \implies \lVert u_{x_n x_n}  \rVert \leq \frac{\operatorname{const}}{\theta} \left( \lVert f \rVert _{L^2} + \lVert u \rVert _{L^2} \right) 
     \]
 
+    \section*{Friday, 10/18/2024}
+    
+
+    We have proved the theorem for flat portion of \(\partial \Omega\). For proving the general case, we flatten the boundary.
+
+    Locally write \(\partial \Omega\) as a graph:
+
+    \[
+        x_n = f(x_1, \cdots , x_{n-1}) \, f \in C^2
+    \]
+
+    We change variables.
+
+    \[
+        y_j = x_j \, j = 1, \cdots , n-1
+    \]
+
+    \[
+        y_n = x_n - f(x_1, \cdots , x_{n-1})
+    \]
+
+    \[
+        y = \Phi(x)
+    \]
+
+    [insert picture figure]
+
+    Then,
+
+    \[
+        D \Phi (x) = \begin{bmatrix}
+            1 & 0 & \cdots &  0 \\
+            0 & 1 & \cdots &  0 \\
+            \vdots & \vdots & \ddots  &  \vdots \\
+            - f_{x_1} & -f_{x_2} & \cdots & 1
+        \end{bmatrix}
+    \]
+
+    \(\det D \Phi = J \Phi = 1\).
+
+    By inverse function theorem, \(\Phi\) is invertible. Let \(\Psi = \Phi ^{-1}\). Define:
+
+    \[
+        \widetilde{u} (y) \coloneqq u(\Psi(y))
+    \]
+
+    \[
+        u(x) = \widetilde{u}(\Phi(x))
+    \]
+
+    By chain rule,
+
+    \[
+        u_{x_i} = \widetilde{u}_{y_k} \Phi_{x_i} ^{(k)}
+    \]
+
+    Weak form:
+
+    \[
+        \int_{\Phi(B(x_0,R)\cap \Omega)} \left(\underbrace{a_{ij} (\Psi(y))\widetilde{u}_{u_k} \Phi_{x_k} ^{(k)} \widetilde{v}_{y_l} \Phi_{x_j}^{(l)}}_{\widetilde{a}_{kl} \widetilde{u}_{y_k} \widetilde{v}_{y_l} } + b_i (\Psi(y))\widetilde{u}_{x_k} \Phi^{(k)}_{x_i} + c(\Psi(y)) \widetilde{u}  \right) \cdot 1  \,\mathrm{d}y 
+    \]
+
+    \[
+        = \int_{\Phi(B(x_0,R)\cap \Omega)} f(\psi(y))\widetilde{v}(y) \,\mathrm{d}y 
+    \]
+
+    \underline{Claim}: \(\widetilde{u}\) solves an elliptic PDE weakly on a \underline{flat} domain.
+
+    Define \(\widetilde{a}_{kl}(y) \coloneqq a_{ij} \Phi^{(k)}_{x_i} \Phi^{(l)}_{x_j}\).
+    
+    We're done one we check that:
+
+    \[
+        \widetilde{a}_{kl} = \widetilde{a}_{lk}, \widetilde{a_{kl}} \eta _k \eta_l \geq \widetilde{\theta} \vert \eta \vert ^ 2 \, \forall \eta \in\mathbb{R}^n
+    \]
+
+    Firstly,
+
+    \[
+        \widetilde{a}_{lk} = a_{ij} \Phi^{(l)}_{x_i} \Phi^{(k)}_{x_j} = a_{ji} \Phi^{(l)}_{x_i}\Phi^{(k)}_{x_j} = \widetilde{a}_{kl}
+    \]
+
+    Then let \(\eta\in\mathbb{R}^n\).
+
+    \[
+        \widetilde{a}_{kl} \eta_k \eta_l = a_{ij} \Phi^{(k)}_{x_i} \Phi^{(l)}_{x_j} \eta_k \eta_l = a_{ij} \underbrace{\Phi_{x_i}^{(k)}\eta_k}_{=\xi_i} \underbrace{\Phi^{(l)}_{x_j}\eta_l}_{=\xi_j} \geq \theta \vert \xi \vert ^ 2
+    \]
+
+    Let \(\xi_i = \Phi^{(k)}_{x_i} \eta_k\) and \(\xi_j = \Phi^{(l)}_{x_j} \eta_l\).
+    
+    Then, \(\xi = D \Phi \eta \implies (D \Phi)^{-1} \xi = \eta \implies D \Psi \xi = \eta\).
+    
+    \[
+        \vert \eta \vert \leq \vert D \Psi \vert \vert \xi \vert \leq C_{d \Omega} \vert \xi \vert 
+    \]
+
+    Therefore,
+
+    \[
+        \widetilde{a}_{kl} \eta_k \eta_l \geq \theta \vert \xi \vert ^ 2 \geq \frac{\theta}{C_{\partial \Omega}} \vert \eta \vert ^ 2
+    \]
+
+    So, this reduces to the case of flat boundary, which we have already proven.
+
 \end{proof}
+
+\subsection*{Maximum Principles}
+
+Consider \(L\) in non-divergence form:
+
+\[
+    Lu \coloneqq -a_{ij}(x) u_{x_i x_j} + b_i(x) u_{x_i} + c(x)u 
+\]
+
+\begin{theorem}
+    [Weak Maximum Principle] Assume \(u\) is a `nice classical solution', meaning \(u\in C^2(\Omega)\cap C(\overline{\Omega})\) for some bounded open \(\Omega \subset \mathbb{R}^n\).
+    
+    Further assume \(c(x)\equiv 0\) in the definition of \(L\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item If \(Lu \leq 0\) in \(\Omega\) then,
+        \[
+            \max_{\overline{\Omega}} u = \max_{\partial \Omega} u
+        \]
+        \item If \(Lu \geq 0\) in \(\Omega\) then,
+        \[
+            \min_{\overline{\Omega}} u = \min_{\partial \Omega} u
+        \]
+    \end{enumerate} 
+\end{theorem}
+
+\underline{Remarks}:
+
+\begin{enumerate}[label=\arabic*)]
+    \item  If \(L u \leq 0\) we call \(u\) a subsolution. If \(Lu \geq 0\) we call \(u\) a supersolution.
+
+    \item If \(Lu = 0\) then both maximum and minimum are achieved on the boundary.
+
+    \item A weak maximum principle does not preclude the max also being achieved inside \(\Omega\).
+    
+    \item If \(c\not\equiv 0\), the maximum principle may \underline{fail}.
+    
+    \underline{Example}: If \(\Omega = (0,\pi)\) and \(Lu = -u^{\prime\prime} - u = 0\) then \(a_{11} = 1, b_1 = 0, c(x)=-1\). For Dirichlet boundary condition \(u(0)=u(\pi)=0\). Our answer can be \(\sin x\). Then the maximum happens at \(\frac{\pi}{2}\) not in boundary for \(A > 0\). 
+
+\end{enumerate}
 
 \end{document}
