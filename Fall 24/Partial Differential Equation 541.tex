@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, esint, stmaryrd, physics}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, esint, stmaryrd, physics, cancel}
 \usepackage{mathrsfs}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
@@ -23,6 +23,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
 
 
 \newcommand{\Frac}{\operatorname{Frac}}
@@ -3384,5 +3385,297 @@ Consider \(L\) in non-divergence form:
     \underline{Example}: If \(\Omega = (0,\pi)\) and \(Lu = -u^{\prime\prime} - u = 0\) then \(a_{11} = 1, b_1 = 0, c(x)=-1\). For Dirichlet boundary condition \(u(0)=u(\pi)=0\). Our answer can be \(\sin x\). Then the maximum happens at \(\frac{\pi}{2}\) not in boundary for \(A > 0\). 
 
 \end{enumerate}
+
+\section*{Monday, 10/21/2024}
+
+\underline{Recap}:
+
+\[
+    Lu \coloneqq -a_{ij} (x) u_{x_i x_j} + b_{i} () u_{x_i} + c(x) u_{i}  
+\]
+
+\(a_{ij}\) uniformly elliptic \(a_{ij} (x) \xi_i \xi_j \geq \theta \vert \xi \vert ^ 2, \theta > 0, a_{ij} = a_{ji}. a_{ij}, b_i, c\) are continuous on \(\overline{\Omega}, \Omega \subset \mathbb{R}^n\) is open bounded.
+
+Then we have the weak maximum principle as shown above. 
+
+\begin{proof}
+    Case 1: Suppose \(Lu < 0\) [strictly less than \(0\)]. We proceed by contradiction to show a \underline{strong maximum principle}.
+
+    Suppose \(\exists x_0 \in \Omega\) such that \(u(x_0)=\max_{\overline{\Omega}} u(x)\).
+
+    Consider \(Lu(x_0)\). Note that \(\eval{u_{x_i}}_{x_0} = 0\) since \(\nabla u(x_0)=0\). Thus,
+
+    \[
+        Lu(x_0) = -a_{ij}(x_0) u_{x_i x_j}(x_0)  
+    \]
+
+    \underline{Linear Algebra Fact}: If a matrix \(A\) is symmetric positive definite then \(A\) can be diagonalizable by an orthogonal matrix \(\mathcal{O}\) so that \(\mathcal{O} \mathcal{O}^T = I\). Then,
+    
+    \[
+        \mathcal{O} A \mathcal{O}^T = \begin{bmatrix}
+            \lambda_1 & \cdots &  0 \\
+            \vdots & \ddots & \vdots  \\
+            0 & \cdots &  \lambda_n \\
+        \end{bmatrix}
+    \]
+
+    \[
+        \lambda_1, \cdots , \lambda_n > 0
+    \]
+
+    Assume \(u\in C^2\) and has a min at \(x_0\).
+
+    Change variables: \(y = x_0 + \mathcal{O} (x - x_0)\). Then,
+
+    \[
+        u_{x_i} = u_{y_k} \mathcal{O}_{ki}
+    \]
+
+    \[
+        u_{x_i x_j} = u_{y_k y_l} \mathcal{O}_{ki} \mathcal{O}_{lj}
+    \]
+
+    \[
+        a_{ij} (x_0) u_{x_i x_j}(x_0) = \sum_{i,j} \left[ \sum_{k,l} a_{ij} (x_0) u_{y_k y_l} \mathcal{O}_{ki} \mathcal{O}_{lj}  \right] 
+    \]
+
+    \[
+        = \sum_{k,l} u_{y_k y_l} \left[ \sum_{i,j} a_{ij} (x_0) \mathcal{O}_{ki} \mathcal{O}_{lj} \right]
+    \]
+
+    \[
+        = \sum_{k,l} u_{y_k y_l} (\mathcal{O} A) \mathcal{O}_{jl}^T u_{y_k y_l} (x_0) = \lambda_1 u_{y_1 y_1} + \cdots + \lambda_n u_{y_n y_n} 
+    \]
+
+    At a max, \(u_{y_j y_j} \leq 0\) for all \(j\). Then \(Lu(x_0) \geq 0\) which gives us the contradiction.
+
+    \underline{Case 2}: Suppose \(Lu \leq 0\). We pertrub \(L\) to get back to the first case. For example:
+
+    \[
+        u^{\epsilon} (x) \coloneqq u(x) + \epsilon e^{\lambda x_1}
+    \]
+
+    \[
+        L u^{\epsilon} = \underbrace{Lu}_{\leq 0} + L(\epsilon e^{\lambda x_1}) \leq - \epsilon \lambda^2 a_{11} (x) e^{\lambda x_1}+\epsilon b_1(x)\lambda e^{\lambda x_1}
+    \]
+
+    \[
+        = \epsilon \lambda e^{\lambda x_1} (-\lambda a_{11} (x) + b_1(x)) \leq \epsilon e^{\lambda x_1}(-\theta \lambda + \lVert b \rVert _{L^{\infty}})
+    \]
+
+    Pick \(\lambda\) big enough so that \(L u^{\epsilon} < 0\). By case 1,
+    
+    \[
+        \max_{\overline{\Omega}} u \leq  \max_{\overline{\Omega}}u^{\epsilon} (x) = \max_{\partial \Omega} u^{\epsilon} (x) \leq \max_{\partial \Omega} u + \epsilon \max_{\partial \Omega} e^{\lambda x_1} \leq \max_{\partial \Omega} u + \epsilon e^{\lambda R}
+    \]
+
+    where \(\Omega \subset B(0,R)\). Let \(\epsilon \to 0\) to finish the proof.
+
+\end{proof}
+
+Now we try to make sense of the case \(c(x) \geq 0\).
+
+\begin{theorem}
+    [Weak max princ. for \(c(x)\geq 0\)]
+
+    Assume \(u\in C^2(\Omega)\cap C(\overline{\Omega})\).
+
+    Assume \(c(x) \geq 0 \forall x\in \Omega\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item If \(Lu \leq 0\) in \(\Omega\) then \(\max_{\overline{\Omega}} u \leq \max_{\partial \Omega} u^+\)
+        \item If \(Lu \geq 0\) in \(\Omega\) then \(\min_{\overline{\Omega}}u \geq - \max_{\partial \Omega}u^-\)   
+    \end{enumerate} 
+
+    Where \(u^+(x) \coloneqq \max (u(x),0), u^-(x) = -\min (u(x),0)\).
+\end{theorem}
+
+\underline{Note}: If \(Lu = 0\) had a solution, then \(\max_{\overline{\Omega}} \vert u \vert = \max_{\partial \Omega} \vert u \vert \) 
+
+\underline{Example}: Let \(Lu = - u^{\prime\prime} + (4x^2 + 1)u\).
+
+\(b_i \equiv 0, c(x) = 4x^2 + 1 > 0\) 
+
+\(\Omega = (-1,1)\).
+
+Consider \(u(x) = e^{-x^2} - 4\)
+
+\(u^{\prime} = -2x e^{-x^2}\)
+
+\(u^{\prime\prime} = -2 e^{-x^2} + 4x^2 e^{-x^2}\) 
+
+\(L u =(2-4x^2)e^{-x^2} + (4x^2 + 1)(e^{-x^2} - 4) = 3 e^{-x^2} - 16x^2 - 4 < 0 \) on \((-1,1)\) 
+
+Max of \(u\) comes in the origin, which is \(-3\). But it is not at the boundary! We need to be careful about the sign and positive part and negative parts.
+
+\begin{proof}
+    Let \(\Omega ^{\prime} = \{ x\in \Omega : u(x) > 0 \}\).
+
+    \(\Omega ^{\prime} = \varnothing \implies u(x) \leq 0\) in \(\overline{\Omega}\) so we're done.
+
+    If \(\Omega ^{\prime} \neq \varnothing\) then we have:
+
+    [picture figure]
+
+    Let \(Ku \coloneqq L u - c(x)u\), and \(K\) doesn't have the \(c\) term. So we can apply theorem 1 to \(\Omega ^{\prime} \). 
+
+    \[
+        Ku \leq - c(x) u \leq 0 \, \text{in } \Omega ^{\prime} 
+    \]
+
+    \[
+        \max_{\overline{\Omega}} u \leq \max_{\overline{\Omega^{\prime}}} u \leq \max_{\partial \Omega ^{\prime}} u = \max_{\partial \Omega} u^+ 
+    \]
+
+    In \(\partial \Omega\) for the negative part \(u^+ \equiv 0\) so we can ignore that boundary, we're done!
+
+\end{proof}
+
+\section*{Wednesday, 10/23/2024}
+
+\begin{lemma}
+    [Hopf Lemma]
+
+    Assume \(u\in C^2(\Omega)\cap C^1(\Omega)\) and assume \(c(x) \equiv 0\) Suppose \(L u \leq 0\) in \(\Omega\) and \(\exists x_0\in \partial \Omega\) such that:
+
+    \(u(x_0) > u(x) \forall x\in \Omega\)and
+
+    \(\Omega\) satisfies an interior ball condition at \(x_0\), namely \(\exists y_0 \in \Omega, \exists r > 0\) such that \(B(y_0, r) \subset \Omega\) with \(x_0 \in \partial B(y_0, r)\).
+
+    Then \(\frac{\partial u}{\partial \nu} (x_0) > 0\) where \(\nu = \frac{x_0 - y_0}{\vert x_0 - y_0 \vert }\) [outer normal].
+
+    If \(c(x) \geq 0\) then the same conclusion holds provided \(u(x_0) \geq 0\).
+
+    [pictures / fig bad example]
+
+    A \underline{sufficient} condition for this to hold: if the boundary is given by a \(C^2\) function [so the curvature never gets too extreme] it is enough for the boundary to be \(C_2\).
+
+\end{lemma}
+
+\underline{Note}: \(\frac{\partial u}{\partial \nu} (x_0) \geq 0\) is immediate since \(u(x_0) > u(x) \forall x\in \Omega\).
+
+So the significance is the \underline{strict inequality}.
+
+\begin{proof}
+    Define \(v(x) = e^{-\lambda \vert x \vert ^2} - e^{-\lambda r^2}\), \(\lambda > 0\) to be specified later.
+
+    \[
+        v_{x_i} = - 2 \lambda x_i e^{-\lambda \vert x \vert ^ 2} 
+    \]
+
+    \[
+        v_{x_i x_j} = (4 \lambda^2 x_i x_j - 2 \lambda \delta_{ij})e^{-\lambda \vert x \vert^2}
+    \]
+
+    \[
+        Lv = - a_{ij}(x) ( 4\lambda ^2 x_i x_j - 2 \lambda \delta_{ij}) e^{-\lambda \vert x \vert ^ 2} - 2 \lambda b_i (x) x_i e^{-\lambda \vert x \vert^2} + c(x) e^{-\lambda \vert x \vert^2} - c(x) e^{-\lambda r^2}  
+    \]
+
+    \[
+        \implies Lv \leq \left( - 4 \lambda^2 \theta \vert x \vert ^ 2 + 2 \lambda \Tr A + 2 \lambda \vert b \vert _{L^{\infty}} \vert x \vert + \vert c \vert _{L^{\infty}}\right) e^{-\lambda \vert x^2 \vert} - \cancel{c(x) e^{-\lambda r^2}}
+    \]
+
+    This is \(< 0\) for some choice of \(\lambda  = \lambda(\theta , \Omega, \Tr A, \vert b \vert_{L^{\infty}}, \vert c \vert_{L^{\infty}})\) 
+
+    WLOG \(y_0 = 0\). Consider the annulus:
+
+    \[
+        \left\{ x : \frac{r}{2} < \vert x \vert < r \right\} = \mathcal{A}
+    \]
+
+    [insert picture figure]
+
+    \(\exists \varepsilon > 0\) such that:
+
+    \[
+        u(x_0) \geq u(x) + \varepsilon v(x) \, \forall x\in \partial B\left(0, \frac{r}{2}\right)
+    \]
+
+    since \(u(x_0) > \max_{\partial B(0, \frac{r}{2})} u\) 
+
+    On \(\partial B(0,r)\):
+
+    \[
+        u(x_0) \geq u(x) + \varepsilon v(x) = u(x)
+    \]
+
+    Note \(L(u+\varepsilon v - u(x_0))\):
+
+    \[
+        = \underset{\leq 0}{Lu} + \underset{< 0}{\varepsilon L v} - \underset{\leq 0}{c(x) u(x_0)}  < 0
+    \]
+
+    And we've shown that \(u(x) + \varepsilon v(x) - u(x_0) \leq 0\) on \(\partial \mathcal{A}\).
+
+    By weak maximum principle, 
+
+    \[
+        u(x) + \varepsilon v(x) - u(x_0) \leq 0 \, \text{in } \mathcal{A}
+    \]
+
+    Also note:
+
+    \[
+        u(x_0) + \varepsilon v(x_0) - u(x_0) = 0
+    \]
+
+    Therefore,
+
+    \[
+        \frac{\partial}{\partial \nu} (u(x) + \varepsilon v(x) - u(x_0)) \geq 0
+    \]
+
+    \[
+        \implies \frac{\partial}{\partial \nu} u(x_{0}) \geq - \varepsilon \frac{\partial}{\partial \nu } v(x_0)
+    \]
+
+    Note that \(v\) is a radial function so \((-\varepsilon)\frac{\partial}{\partial \nu} v(x_0) = 2 \varepsilon \lambda (x_0) e^{-\lambda r^2} > 0\). 
+
+\end{proof}
+
+\begin{theorem}
+    [Strong Maximum Principle]
+
+    Assume \(\Omega \subset \mathbb{R}^n\) is open, bounded and connected. Assume \(u\in C^2(\Omega) \cap C^1(\overline{\Omega})\). 
+
+    Suppose \(c\equiv 0\). 
+
+    \begin{enumerate}[label=\roman*)]
+        \item If \(L u \leq 0\) in \(\Omega\) and if \(u\) attains its maximum over \(\overline{\Omega}\) at an interior point, then \(u\equiv \text{const}\).
+        \item If \(L u \geq 0\) in \(\Omega\) and if \(u\) attains its minimum over \(\overline{\Omega} \) at an interior point then \(u\equiv \text{const}\). 
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    Let \(M \coloneqq \max_{\overline{\Omega}} u\). Let \(S \coloneqq \{ x\in \Omega : u(x) = M \}\).
+    
+    If \(S = \Omega\) we're done.
+
+    If \(S = \varnothing\) then we're done.
+
+    So suppose, by contradiction, \(S \neq \Omega , \varnothing\).
+
+    [insert picture]
+
+    Choose \(y \in \Omega \setminus S\) so that:
+
+    \[
+        \operatorname{dist}(y,S) < \operatorname{dist}(y, \partial \Omega)
+    \]
+
+    Draw the largest open ball \(B\)  centered at \(y\) that doesn't intersect \(S\).
+
+    Necessarily, \(\exists x_0 \in \partial B \cap S\).
+
+    Thus \(\Omega \setminus S\) satisfies an interior ball condition at \(x_0\).
+
+    \(u(x_0) > u(x) \forall x\in \Omega \setminus S\).
+
+    We apply Hopf lemma.
+
+    The outer normal derivative \(\frac{\partial u}{\partial \nu} (x_0) > 0\).
+
+    This cannot be true, since \(\frac{\partial u}{\partial \nu} (x_0) = \nabla u(x_0) \cdot \nu = 0\) since \(\nabla u(x_0) = 0\) at an internal max.
+\end{proof}
 
 \end{document}

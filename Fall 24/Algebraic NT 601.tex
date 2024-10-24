@@ -1,7 +1,7 @@
 \documentclass[openany]{amsbook}
 \numberwithin{section}{chapter}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr, stmaryrd, physics}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, fancyhdr, stmaryrd, physics, bbm}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
 \usepackage{float}
@@ -32,6 +32,8 @@
 \newtheorem{solution}{Solution}
 \newtheorem*{example}{Example}
 \newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{remark}{Remark}
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -3502,6 +3504,236 @@ Fix an absolute value on \(K\).
         \item \(K^\wedge\) is complete w.r.t.\ \(\vert \cdot \vert ^\wedge\) 
     \end{enumerate} 
 \end{definition}
+
+\section*{Tuesday, 10/22/2024}
+
+\begin{theorem}
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists\) a completion \(K^\wedge, \vert \cdot \vert ^\wedge\) of \((K, \vert \cdot \vert)\)
+        \item If \((K_1, \vert \cdot \vert _1)\) and \(K_2, \vert \cdot \vert_2\) are completions of \((K,\vert \cdot \vert )\) then there is a unique isomorphism \(\sigma : K_1 \to K_2\) over \(K\) such that \(\forall x\in K_1 : \vert \sigma (x) \vert _2 = \vert x \vert _1\).  
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    LEt \(\mathcal{C}\) be the set of cauchy equences in \(K\), \(\mathcal{N} =\) set of null sequences in \(K\). Set \(K^\wedge\coloneqq \mathcal{C} / \mathcal{N}\).
+
+    \underline{Claim}: \(K^\wedge\) is a field.
+
+    \underline{Proof of Claim}: 
+    
+    \(\mathbbm{1} = (1, 1,\cdots ) \in \mathcal{C} / \mathcal{N} \implies \mathcal{N} \subsetneq \mathcal{C}\). Let \((a_n)_n \in \mathcal{C} / \mathcal{N} \implies \exists \delta > 0 \exists n_0 \forall n \geq n_0: \vert a_n \vert \geq \delta\).
+    
+    Set \(b_n = \begin{dcases}
+        1, &\text{ if } n < n_0 ;\\
+        \frac{1}{a_n}, &\text{ if } n \geq n_0.
+    \end{dcases} \implies \forall n, m \geq n_0: \vert b_n - b_m \vert = \frac{\vert a_m - a_n \vert}{\vert a_n \vert \vert a_m \vert} \leq \frac{\vert a_n - a_m \vert}{\delta^2}\to 0\) as \(m, n \to \infty\) 
+
+    \(\implies (b_n) \in \mathcal{C}\) and \((b_n)_n (a_n)_n - \mathbbm{1}\ \in \mathcal{N} \)
+    
+    \(\implies ((a_n)_n + \mathcal{N})((b_n)_n + \mathcal{N}) = \mathbbm{1} + \mathcal{N}\).
+    
+    Therefore, \((a_n)_n +\mathcal{N} \in (\mathcal{C} / \mathcal{N})^\times \implies \mathcal{C} / \mathcal{N}\) is a field. 
+
+    \underline{Define}: \(\iota : K \to K^{\wedge}\) by \(\iota (a) = (a, \cdots , a) + \mathcal{N}\). This is a homomorphism of fields. Given \([(a_n)_n]\coloneqq (a_n)_n + \mathcal{N} \in K^\wedge\) we set:
+
+    \[
+        \vert [(a_n)_n] \vert ^\wedge \coloneqq \lim_{n \to \infty} \underbrace{\vert a_n \vert _n}_{\text{Cauchy in }\mathbb{R}} \quad \text{(converges)} 
+    \]
+
+    This extends the absolute value \(\vert \cdot \vert\) in \(K\).
+
+    \underline{Density of \(K\) in \(K^\wedge\)}:
+    
+    Let \(\underbrace{[(a_n)_n]}_{\alpha}\in K^\wedge\) then the sequence \((\iota(a_n))_n\) converges to:
+    
+    \[
+        \vert \alpha - \iota (a_n) \vert ^\wedge = \lim_{n \to \infty} \vert a_n - a_m \vert _K \to 0
+    \]
+
+    as \(m\to \infty\).
+
+    \underline{\(K^\wedge\) is complete}: Let \((\alpha_n)_n\) be a Cauchy sequence in \(K^\wedge\). By density of \(K\) in \(K^\wedge\) there is for any \(n \geq 0 \exists a_n \in K : \vert \alpha_n - \iota(a_n) \vert ^\wedge < \frac{1}{n}\).
+    
+    \[
+        \implies \vert a_n - a_m \vert_K = \vert \iota(a_n) - \iota(a_m) \vert ^\wedge \leq \underbrace{\vert \iota (a_n) - \alpha_n \vert^\wedge}_{< 1 / n} + \underbrace{\vert \alpha_n = \alpha_m \vert ^\wedge}_{\to 0} + \underbrace{\vert \alpha_m - \iota(a_m) \vert^\wedge}_{< 1 / m} \to 0
+    \]
+
+    as \(\min\{ m,n \} \to \infty\).
+
+    \(\implies \alpha = [(a_n)_n]\in K^\wedge\)
+
+
+    \underline{Check}: \((\alpha_n)_n\) converges to \(\alpha\). This shows (i). (ii) follows from the next statement.
+
+\end{proof}
+
+\begin{proposition}
+    Let \((K_1, \vert \cdot \vert_1)\) be a completion of \(K = (K, \vert \cdot \vert)\) and let \((K_2, \vert \cdot \vert_2)\) be another completely valued field.
+
+    Every homomorphism of fields \(\tau : K \to K_2\) such that \(\forall a\in K: \vert \tau (a) \vert _2 = \vert a \vert (= \vert \iota (a) \vert _1)\) extends uniquely to a homomorphism \(\sigma : K_1 \to K_2\) such that \(\forall a\in K_1: \vert \sigma (a) \vert _2 = \vert a \vert _1\).
+\end{proposition}
+
+\begin{proof}
+    Given \(a\in K_1\) choose a sequence \((a_n)_n\) in \(K\) converging to \(a\).
+
+    \(\implies (\tau(a_n))_n\) is a Cauchy sequence in \(K_2\). Since \(K_2\) is complete, \(\lim_{n \to \infty} \tau(a_n) \eqqcolon \sigma(a)\) exists in \(K_2\).
+    
+    \underline{Check}: \(\sigma(a)\) is independent of the chosen sequence \((a_n)_n\) and \(\sigma\) is a ring homomoprhism satisfying:
+
+    \[
+        \forall a\in K_1: \vert \sigma(a) \vert _2 = \vert a \vert_1
+    \]
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}[label=\arabic*)]
+        \item \((\mathbb{Q} , \vert \cdot \vert_p) \eqqcolon \mathbb{Q}_p\) called the \underline{field of \(p\)-adic numbers}. We also have an evaluation ring: \(\mathbb{Z}_p = \{ x\in \mathbb{Q}_p \mid \vert x \vert ^\wedge_p \leq 1 \} \) is the ring of \underline{\(p\)-adic integers}.
+        
+        \begin{exercise}
+            \(\mathbb{Z}_p / p \mathbb{Z}_p \cong \mathbb{F}_p\)
+        \end{exercise}
+
+        \item Let \(k\) be any field. Define an evaluation \(w_t: k(t) \to \mathbb{Z} \cup \{ \infty \} \) given by \(w_t(f)=\) vanishing order at \(t=0\) of \(f(t)\in k[t] = \min\{ n \geq 0 \mid f\in t^n k[t] \}, w_t(0) = \infty, w_t \left( \frac{f}{g} \right) = w_t(f) - w_t(g)\). Let \(\vert \cdot \vert_t\) be the \(t\)-adic absolute value on \(k(t)\) associated to \(w_t\).
+        
+        The completion of \((k(t), \vert \cdot \vert _t)^\wedge\) is the field of formal Laurent series \(k((t)) \coloneqq k[[t]]\left[ \frac{1}{t} \right] \).
+        
+        \item \(\mathbb{Q}_\infty = (\mathbb{Q}, \vert \cdot \vert_\infty)^\wedge \cong \mathbb{R}\).
+    \end{enumerate} 
+\end{example}
+
+\begin{lemma}
+    Let \(K^\wedge\) be a completion of \(K\). Then if \(\vert \cdot \vert\) is non-archimedean, \(K\) and \(K^\wedge\) have the same value group.
+\end{lemma}
+
+\begin{proof}
+    Clearly: \(\vert K^\times \vert = \vert K^\times \vert ^\wedge \subset \vert (K^{\wedge})^\times \vert^\wedge \).
+    
+    Given \(a\in K^{\wedge, \times}\) choose \((a_n)_n\) in \(K\) converging to \(a \implies \exists n_0\,\forall n \geq n_0 : \vert a - a_n \vert < \underbrace{\vert a_n \vert}_{\not\to 0}\).
+    
+    \(\implies \vert a \vert = \vert \underbrace{a - a_n}_{\text{small}} + \underbrace{a_n}_{\text{not so small}} \vert \overset{\text{HW 9}}{=} \max\{ \vert a - a_n \vert , \vert a_n \vert  \} = \vert a_n \vert \in \vert K^\times \vert\) 
+\end{proof}
+
+\begin{proposition}
+    Suppose \(\vert \cdot \vert\) is a non-archimedean absolute value on \(K\). Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item A series \(\sum_{n=0}^{\infty} a_n\) converges \(\iff (a_n)_n\) is a null sequence
+        \item A power series \(\sum_{n=0}^{\infty} a_n x^n \in R[[x]]\) [the valuation ring] has the property that \(\forall a\in P_\infty(=\text{valuation ideal}): \sum_{n=0}^{\infty} a_n a^n\) converges in \(R\).  
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    (ii) follows from (i).
+
+    (i): If \((a_n)_n\) is a null sequence then,
+    
+    \[
+        \left\vert \sum_{n=0}^{m_1} a_n - \sum_{n=0}^{m_2} a_n \right\vert = \left\vert \sum_{n=m_2 + 1}^{m_1} a_n \right\vert \overset{\text{non-arch}}{\leq} \max \{ \vert a_n \vert \mid m_2 < n \leq m_1 \} 
+    \]
+
+    for \(m_1 \geq m_2 \geq 0\). RHS \(\to 0\) as \(m_2 \to \infty\) so partial sums \(\sum_{n=0}^{m} a_n\) form a Cauchy sequnce, which converges since \(K\) is complete w.r.t.\ \(\vert \cdot \vert\).
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}[label=\roman*)]
+        \item For every \(a\in \mathbb{Q}_p\) there exists a unique ``power series expansion''
+        \[
+            a = \sum_{n=m}^{\infty} a_n p^n
+        \]
+
+        with \(a_n \in \{ 0, \cdots , p-1 \}\) and \(a_m \neq 0\). This is called the \underline{\(p\)-adic expansion of \(a\)}.
+
+        \item \(a\in \mathbb{Q} \iff\) this expansion is eventually periodic.
+        
+        We have the following unintuive fact:
+        
+        \[
+            1 + p + p^2 + \cdots = \frac{1}{1-p}
+        \]
+
+        This makes complete sense because \(\vert p \vert_p < 1\).
+
+        We also have:
+
+        \[
+            \frac{p^n}{1 + p^n} \to \begin{dcases}
+                0, &\text{ w.r.t. } \vert \cdot \vert_p ;\\
+                1, &\text{ w.r.t. } \vert \cdot \vert_\infty .
+            \end{dcases}
+        \]
+    \end{enumerate} 
+\end{remark}
+
+\section{Extension of Absolute Values}
+
+Let \((K, \vert \cdot \vert)\) be a (not necessarily completely) valued field.
+
+\begin{definition}
+    Let \(V\) be a \(K\)-vector space. Then a map \(\lVert \cdot \rVert : V \to \mathbb{R}_{\geq 0}\) is called a \underline{\(\vert \cdot \vert\)-norm} if:
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(\lVert v \rVert = 0 \iff v = 0\) 
+        \item \(\forall v\in V \forall a\in K: \lVert av \rVert = \vert a \vert \lVert v \rVert \) 
+        \item \(\forall v,w \in V: \lVert v+w \rVert \leq \lVert v \rVert + \lVert w \rVert\)  
+    \end{enumerate} 
+
+    Given \(V\) with a norm \(\lVert \cdot \rVert \) we get a \underline{metric} \(d(v,w) = \lVert v-w \rVert \) which gives us a topological space with open balls given by this norm.
+\end{definition}
+
+One has concepts of Cauchy sequence, null sequence, convergence and completeness.
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(\dim_K(V) = n (< \infty)\) and \((e_1, \cdots , e_n)\) is a \(K\)-basis of \(V\), then
+        
+        \[
+            \left\lVert \sum_{i=1}^n a_i e_i \right\rVert \coloneqq \max_{1 \leq i \leq n} \{ \vert a_i \vert  \} \quad \text{is a \( \vert \cdot \vert \)-norm on \(V\).} 
+        \]
+
+        \item If \(E / K\) is a field extension and \(\vert \cdot \vert _E\) extends the absolute value \(\vert \cdot \vert\) on \(K\) then \(\vert \cdot \vert _E\) is a \(\vert \cdot \vert\)-norm on \(K\).
+        \item On \(K[x]\) we get a \(\vert \cdot \vert\)-norm by:
+        
+        \[
+            \left\lVert \sum_{i=0}^{n} a_i x^i \right\rVert = \max \{ \vert a_i \vert  \} 
+        \]
+
+        Suppose \(\vert \cdot \vert\) is non-archimedean. Then this norm is \underline{multiplicative}: \(\lVert fg \rVert = \lVert f \rVert \lVert g \rVert\). It also satisfies the strong triangle inequality: \(\lVert f + g \rVert \leq \max \{ \lVert f \rVert , \lVert g \rVert  \}\) and one can extend to \(K(x) = \Frac(x)\) by
+
+        \[
+            \left\lVert \frac{f}{g} \right\rVert = \frac{\lVert f \rVert }{\lVert g \rVert}.
+        \]
+
+        This is called the \underline{Gauss norm} on \(K[x]\) associated to \(\vert \cdot \vert\).
+
+    \end{enumerate} 
+\end{remark}
+
+\begin{theorem}
+    Let \(\lVert \cdot \rVert _0\) be a \(\vert \cdot \vert \)-norm on \(V\) and suppose that \(\dim_K(V) < \infty\) and \(K\) is complete w.r.t.\ \(\vert \cdot \vert\). Then, if \(\lVert \cdot \rVert _1\) is another \(\vert \cdot \vert\)-norm on \(V\) then \(\exists 0 < c_1 \leq c_2\) such that \(\forall v\in V\):
+
+    \[
+        c_1 \lVert v \rVert _0 \leq \lVert v \rVert _1 \leq c_2 \lVert v \rVert _0.
+    \]
+
+    Furthermore, \(V\) is complete w.r.t.\ \(\lVert \cdot \rVert _0\) and \(\lVert \cdot \rVert _1\).
+
+\end{theorem}
+
+\begin{proof}
+    Idea: use induction on \(\dim_K(V)\). If \(\dim_K(V)=1\) it is straightforward. Induction step: HW.
+
+    Warning: do not assume that \(K\) is locally compact.
+\end{proof}
+
+\begin{proposition}
+    Let \(E\) be a field extension of \(K\), and let \(\vert \cdot \vert_1\) and \(\vert \cdot \vert_2\) be absolute values on \(E\) extending \(\vert \cdot \vert = \vert \cdot \vert _K\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item If \(\vert \cdot \vert \) is non-trivial then (\(\vert \cdot \vert _1 = \vert \cdot \vert _2\) if \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent).
+        
+        \item If \(E / K\) is finite and \(K\) is complete w.r.t.\ \(\vert \cdot \vert \), then \(\vert \cdot \vert _1 = \vert \cdot \vert _2\) and \(E\) is complete w.r.t.\ \(\vert \cdot \vert _1\).
+    \end{enumerate} 
+\end{proposition}
 
 \end{document}
 
