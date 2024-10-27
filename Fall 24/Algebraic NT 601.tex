@@ -3729,11 +3729,155 @@ One has concepts of Cauchy sequence, null sequence, convergence and completeness
     Let \(E\) be a field extension of \(K\), and let \(\vert \cdot \vert_1\) and \(\vert \cdot \vert_2\) be absolute values on \(E\) extending \(\vert \cdot \vert = \vert \cdot \vert _K\).
 
     \begin{enumerate}[label=\roman*)]
-        \item If \(\vert \cdot \vert \) is non-trivial then (\(\vert \cdot \vert _1 = \vert \cdot \vert _2\) if \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent).
+        \item If \(\vert \cdot \vert \) is non-trivial then \(\vert \cdot \vert _1 = \vert \cdot \vert _2\) if \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent.
         
         \item If \(E / K\) is finite and \(K\) is complete w.r.t.\ \(\vert \cdot \vert \), then \(\vert \cdot \vert _1 = \vert \cdot \vert _2\) and \(E\) is complete w.r.t.\ \(\vert \cdot \vert _1\).
     \end{enumerate} 
 \end{proposition}
+
+\section*{Thursday, 10/24/2024}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item If \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent then \(\overset{9.1}{\implies} \exists \rho > 0 : \vert \cdot \vert _2 = \vert \cdot \vert _1 ^ \rho\).
+        
+        Assumption \(\implies \exists a\in K^\times : \vert a \vert \neq 1 \implies \vert a \vert = \vert a \vert _2 = \vert a \vert _1^{\rho} = \vert a \vert ^ \rho \implies \rho =1 \implies \vert \cdot \vert _1 = \vert \cdot \vert _2\).
+        
+        \item We consider \(E\) as a finite dimensional \(K\) vector space. Then we can \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) as \(\vert \cdot \vert\)-norm on \(E\).
+        
+        Theorem 9.9 implies \(\exists 0 < c_1 \leq c_2 \forall \alpha \in E:\)
+
+        \[
+            c_1 \vert \alpha \vert _1 \leq \vert \alpha  \vert_2 \leq c_2 \vert \alpha \vert _1
+        \]
+
+        Therefore, null sequence for \(\vert \cdot \vert _1\) are null seqeunces for \(\vert \cdot \vert _2\) and vice-versa.
+
+        Therefore, \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are equivalent as absolute values.
+
+        If \(\vert \cdot \vert\) is nontrivial then \(\overset{\text{i}}{\implies} \vert \cdot \vert _1 = \vert \cdot \vert _2\).
+
+        Now assume \(\vert \cdot \vert\) is trivial. Choose a basis \((\alpha_1)_{i=1}^n\) of \(E / K\) and define a vector space norm \(\lVert \sum_{i} a_i \alpha_i \rVert \coloneqq \max \{ \vert a_i \vert \} \).
+        
+        \(\overset{9.9}{\implies} \lVert \cdot \rVert\) is equivalent as norm to \(\vert \cdot \vert _1\) and \(\vert \cdot \vert _2\).
+
+        Theorem 9.9 \(\implies \vert \cdot \vert _1\) and \(\vert \cdot \vert _2\) are both bounded above [\(\vert \cdot \vert_i \leq c\lVert \cdot \rVert \leq c\)].
+
+        Therefore, they are both trivial and hence equal.
+    \end{enumerate} 
+\end{proof}
+
+\begin{theorem}
+    [Ostrowski, 1918] A field \(K\) that is complete w.r.t.\ an archemdean absolute value \(\vert \cdot \vert\) is either isomorphic to \(\mathbb{R}\) or \(\mathbb{C}\) by an isomorphism which makes \(\vert \cdot \vert\) equivalent to (the pull-back) of \(\vert \cdot \vert _\infty\).
+\end{theorem}
+
+\begin{proof}
+    See Lorenz, appendix 23.9, 23.10, 23.11.
+\end{proof}
+
+\underline{Notation}: For the following lemma, let \(\vert \cdot \vert \) be a non-archimedean absolute value on \(K\), let \(R \subset K\) be the valuation ring (elements of absolute value \(\leq 1\)), let \(P \subset R\) the valuation ideal (element of absolute value \(<1\)) and \(\overline{R} = R / P\) the residue field. Define \(\vert \overline{\cdot} : R \to \overline{R} \vert \) by \(\overline{a} \coloneqq a+P\). Extend this map to the polynomial rings \(R[x] \to \overline{R} [x], f = \sum_{i} a_i x^i \mapsto \overline{f} = \sum_{i} \overline{a_i} x^i\). We also write for \(f,g\in R[x]\) and \(c\in R: f \equiv g \,(c) \iff f-g \in c\cdot R[x]\). 
+
+\begin{theorem}
+    [Hensel's Lemma] Let \(K\) be complete w.r.t.\ \(\vert \cdot \vert \). Given \(f\in R[x]\) and a factorization \(\overline{f} = \phi \psi\) with coprime polynomials \(\phi , \psi \in \overline{R}[x] \setminus \{ 0 \} \):
+
+    We can `lift' this factorization back to \(R\): there exists \(g,h\in R[x]\) such that \(f=gh\) and \(\overline{g} = \phi , \overline{h} = \psi\) and \(\deg(g)=\deg(\phi)\).
+
+\end{theorem}
+
+\begin{remark}
+    We don't necessarily add the condition \(\deg(h)=\deg(\psi)\) since we allow \(\overline{f}\) to have degree smaller than \(f\). If they do have the same degree, then we have \(\deg(h)=\deg(\psi)\).
+\end{remark}
+
+\begin{proof}
+    Set \(m=\deg(f),r=\deg(\phi)\).
+
+    \(\exists g_0, h_0\in R[x]: \overline{g_0}= \phi, \overline{h_0} = \psi , \deg(g_0)=r, \deg(h_0) \leq m-r\) and \(f \equiv g_0 h_0 \mod P [\iff \overline{f} = \overline{g_0} \overline{h_0}]\).
+    
+    Since \(\phi , \psi\) are coprime, \(\exists\) polynomials \(a,b\in R[x]: ah_0 + bg_0 \equiv 1 \mod P [\iff \overline{a} \psi + \overline{b} \phi = \overline{1}].\)
+    
+    \(f - g_0 h_0\) and \(a h_0 + b g_0 - 1\) have all coefficients in \(P\).
+
+    Let \(\pi \in P\) be such that \(\overline{\pi } \geq \max \{ \lVert f - g_0 h_0 \rVert, \lVert a h_0 + b g_0 - 1 \rVert\}\) where \(\lVert \sum_{i} a_i x^i \rVert = \max \{ \vert a_i \vert \}\).
+
+    \(\implies f \equiv g_0 h_0 \pmod \pi\) and \(a h_0 + b g_0 \equiv 1\pmod \pi\).
+
+    \underline{Induction Hypothesis}: \(\exists a_1, \cdots , a_n, b_1, \cdots , b_n \in R[x]\) such that \(\deg(a_i)\leq r, \deg(b_i) \leq m-r\) and \(f \equiv g_n h_n \mod \pi^{n+1}\), where \(g_n = g_0 \sum_{i=1}^n a_i \pi^i, h_n = h_0 + \sum_{i=1}^n b_i \pi^i\).
+
+    Case \(n=0\) we have just completed.
+
+    For \(n-1 \rightsquigarrow n\): Assume the induction hypothesis is true for \(n-1\) Then, \(f\equiv g_{n-1} h_{n-1} \mod \pi^n\).
+    
+    Then, \(\exists d_n \in R[x]\) such that \(f=g_{n-1} h_{n-1} + d_n \pi^n, \deg(d_n) \leq m = \deg(f)\).
+
+    Set \(g_n = g_{n-1} + a_n \pi^n\) and \(h_n = h_{n-1} + b_n \pi^n\) with polynomials \(a_n, b_n\) which we need to find.
+
+    \(\implies g_n h_n \equiv g_{n-1} h_{n-1} + a_n h_0 \pi^n + b_n g_0 \pi^n \mod \pi^{n+1}\)
+    
+    \(\equiv f + \left( - d_n + a_n h_0 + b_n g_0 \right) \pi^n \mod \pi^{n+1}\)
+    
+    Hence we need to show \(\exists a_n, b_n\in R[x]\) so that \(\deg(a_n) \leq r, \deg(b_n)\leq m-r\) and \(a_n h_0 + b_n g_0 \equiv d_n \mod \pi\).
+
+    The existence of \(a_n\) and \(b_n\) follows from the fact that \(ah_0 + bg_0 \equiv 1\mod\pi\).
+
+    It follows after some work that it also satisfies the degree condition.
+\end{proof}
+
+\begin{example}
+    Let \(K = \mathbb{Q}_p\) hence \(R = \mathbb{Z}_p = \{ a\in\mathbb{Q}_p \mid \vert a \vert _p \leq 1 \}\).
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Set \(f(x) = x^{p-1} - 1 \implies \overline{f}(x) = f(x) \mod p \mathbb{Z}_p = \prod_{a = 1}^{p-1} (x-\overline{a}) = \underbrace{x-\overline{a_0}}_{\phi(x)}\psi (x)\).
+        
+        \(\implies \exists g(x), h(x) \in \mathbb{Z}_p[x] : g(x)h(x)=x^{p-1} - 1, \deg(g(x))=\deg(\phi)=1 \implies\) WLOG: \(g(x) = x-\zeta\) for some \(\zeta \in \mathbb{Z}_p \subset \mathbb{Q}_p \implies \zeta^{p-1} = 1\).
+
+        We can keep doing this with \(h\). Again, \(\overline{h}(x) = \prod_{1 \leq a \leq p-1, a \neq a_0} (x-\overline{a})\) and we can split another factor. Therefore,
+
+        \[
+            x^{p-1} - 1 = \prod_{a=1}^{p-1} (x-\zeta_a)
+        \]
+
+        with \(\zeta_a \equiv a \mod p\mathbb{Z}_p\).
+
+        Therefore, \(\mathbb{Q}_p\) contains all roots of unity of order dividing \(p-1\).
+
+        \item \(f(x) = x^n + (1+pm), p\nmid n, m\in \mathbb{Z}\) (or \(m\in\mathbb{Z}_p\)).
+        
+        \(p = 2, n = 5, m = 3 \implies f(x) = x^5 - 7\).
+
+        \(\implies \overline{f} = f \mod p \mathbb{Z}_p = x^n - 1 = (x-1) \psi(x)\) with \(\psi(1)\neq 0\) over the residue field \(\mathbb{F}_p[x]\) since \(p\nmid n\).
+        
+        Then there is some lift \(g(x)\in \mathbb{Z}_p[x]\) of degree \(1\) such that \(\overline{g}(x) = x-1\) and \(f(x)=g(x)h(x)\) for some \(\overline{h}(x) = \psi(x)\).
+
+        WLOG \(g(x) = x - \lambda, \overline{\lambda} = 1\) for some \(\lambda \in \mathbb{Z}_p\).
+        
+        \(\implies \lambda^n = 1 + pm\).
+
+        Therefore, \(1+pm\) has \(n\)'th root in \(\mathbb{Z}_p\).
+
+        \(\lambda \overset{!}{=} \sqrt[n]{1+pm} \) 
+
+        For example, \(\sqrt[5]{7} \in \mathbb{Q}_2\). 
+    
+    \end{enumerate} 
+\end{example}
+
+\begin{remark}
+    The proof of Hensel's lemma is not purely algebraic.
+
+    \[
+        g = g_\infty = g_0 + \sum_{n=1}^{\infty} a_n \pi^n
+    \]
+
+    so there is some non-archimedean analysis going on.
+
+    We can use this fact to `calculate' roots in \(\mathbb{Z}_p\):
+
+    \[
+        \sqrt[n]{1+pm} = (1+pm)^{1 / n} = \sum_{j=0}^{\infty} \binom{\frac{1}{n}}{j}(pm)^j
+    \]
+
+    If \(p\nmid n\) then \(\frac{1}{n} \in \mathbb{Z}_p^\times\) since \(\left\vert \frac{1}{n} \right\vert = 1\). The binomial coefficients are in fact \(p\)-adic integer. \((pm)^j\) has small \(p\)-adic absolute value so the sum converges in \(\mathbb{Q}_p\).
+\end{remark}
 
 \end{document}
 

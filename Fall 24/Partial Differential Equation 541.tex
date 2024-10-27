@@ -3678,4 +3678,147 @@ So the significance is the \underline{strict inequality}.
     This cannot be true, since \(\frac{\partial u}{\partial \nu} (x_0) = \nabla u(x_0) \cdot \nu = 0\) since \(\nabla u(x_0) = 0\) at an internal max.
 \end{proof}
 
+\section*{Friday, 10/25/2024}
+
+\begin{theorem}
+    [Strong Maximum Principle with \(c(x) \geq 0\)]
+
+    Assume \(\Omega \subset \mathbb{R} ^ n\), bounded open with \(\partial \Omega \subset C^2\). Assume \(u\in C^2(\Omega)\cap C^1(\overline{\Omega})\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item If \(Lu \leq 0\) in \(\Omega, u\) achieves a non-negative max inside \(\Omega\) then \(u\equiv \text{const}\).
+        \item If \(Lu \geq 0\) in \(\Omega, u\) achieves a non-positive min inside \(\Omega\) then \(u\equiv \text{const}\).
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    Identical to \(c\equiv 0\) case.
+\end{proof}
+
+\subsection*{Uniqueness}
+
+For \(Lu = f, c(x) \geq 0, u=0\) on \(\partial \Omega\) we have seen a uniqueness result.
+
+\begin{theorem}
+    \(\Omega \subset \mathbb{R}^n\) open bounded an \(\partial \Omega \in C^2\).Suppose \(u_1\) and \(u_2\) both solve \(Lu = f\) in \(\Omega\) with \(c(x)\equiv 0\) and \(\nabla u \cdot \nu = g\) on \(\partial \Omega\) where \(\nu =\) outer unit normal.
+
+    Then \(u_1 - u_2 \equiv \text{const}\).
+\end{theorem}
+
+\begin{proof}
+    Let \(v \coloneqq u_1 - u_2\).
+
+    Then \(Lv = Lu_1 - Lu_2 = f-f = 0\) in \(\Omega\).
+
+    \[
+        \nabla v \cdot \nu = \nabla u_1\cdot \nu - \nabla u_2\cdot \nu = g-g = 0 \, \text{on } \partial \Omega
+    \]
+
+    By the max principle either \(v\equiv \text{const}\) or \(v\) attains its max at a point \(x_0 \in \partial \Omega\).
+
+    Then, \(v(x_0) > v(x) \forall x\in \Omega\).
+
+    We can use Hopf Lemma:
+
+    \[
+        \nabla v(x_0) \cdot \nu > 0
+    \]
+
+    this is a contradiction, so we're done.
+\end{proof}
+
+\begin{theorem}
+    Assume \(Lu \leq f\) in a open connected bounded domain \(\Omega \subset \mathbb{R}^n\) and assume \(c(x) \geq 0\).
+
+    Assume \(u\in C^2(\Omega) \cap C(\overline{\Omega})\). Then,
+
+    \[
+        \max_{\overline{\Omega}} u \leq \max_{\partial \Omega} u^+ + C_1 \max_{\overline{\Omega}} f^+
+    \]
+
+    where \(C_1\) depends on the coefficients of \(L\) and \(\Omega\).
+
+    If \(Lu = f\) then we can say
+
+    \[
+        \max_{\overline{\Omega}} \vert u \vert \leq \max_{\partial \Omega} \vert u \vert + C_1 \max_{\overline{\Omega}} \vert f \vert
+    \]
+\end{theorem}
+
+\begin{proof}
+    We use a Barrier construction.
+
+    Without loss of generality let's assume
+
+    \[
+        \Omega \subset \{ x\in \mathbb{R}^n : 0 < x_1 < d \}
+    \]
+
+    for some \(d\).
+
+    Let \(Ku \coloneqq Lu - cu = - a_{ij}(x) u_{x_i x_j} + b_i(x)u_{x_i}\).
+    
+    For \(\lambda > 0\) to be chosen let's compute
+
+    \[
+        K(e^{\lambda x_1}) = (- a_{11} (x) \lambda^2 + b_1 \lambda )e^{\lambda x_1} 
+    \]
+
+    \[
+        \leq (-\theta \lambda^2 + \vert b \vert _{L^{\infty}}\lambda)e^{\lambda x_1}
+    \]
+
+    \[
+        = - \theta \left( \lambda^2 - \frac{\lambda \vert b \vert _{L^{\infty}}}{\theta} \right) e^{\lambda x_1}
+    \]
+
+    \[
+        \leq -\theta \, \text{for } \lambda \text{ large enough} 
+    \]
+
+    Goal: Pick a \(v\) such that \(L(u-v) \leq 0, u-v \leq 0\) on \(\partial \Omega\).
+
+    Pick \(v(x) = \max_{\partial \Omega} u^+ + \left( \frac{e^{\lambda d} - e^{\lambda x_1}}{\theta} \right) \max_{\overline{\Omega}}f^+  \)
+    
+    \(Lv = Kv + cv \geq Kv\)
+    
+    \[
+        = \frac{\max_{\overline{\Omega}}f^+}{\theta} K(e^{\lambda x_1}) \geq \max f^+
+    \]
+
+    Note: \(cv \geq 0\) since \(c \geq 0, v \geq 0\).
+
+    Then, \(L(u-v) \leq f - \max f^+ \leq 0\).
+
+    On \(\partial \Omega\),
+
+    \[
+        u - v = u - \max_{\partial \Omega} u^+ - \text{positive} \leq 0 
+    \]
+
+    By maximum principle,
+
+    \[
+        \max_{\overline{\Omega}} (u-v) \leq \max_{\partial \Omega} (u-v)^+ \leq 0
+    \]
+
+    Thus, \(u -v \leq 0 \implies u \leq v \leq \max_{\partial \Omega} u^+ + \frac{e^{\lambda d}}{\theta} \max_{\overline{\Omega}} f^+\).
+
+    Choosing \(C_1 = \frac{e^{\lambda d}}{\theta}\) solves our problem.
+\end{proof}
+
+Recall that we had
+
+\[
+    \lVert u \rVert _{H^2(\Omega^{\prime})} \leq C \left( \lVert f \rVert _{L^2(\Omega)} + \lVert u \rVert _{L^2(\Omega)} \right) 
+\]
+
+\(\forall \Omega ^{\prime} \subset \subset ^{\prime} \Omega, C = C(\Omega ^{\prime} , \Omega)\).
+
+If, for example \(L u = f\) in \(\Omega\) and \(u = h\) on \(\partial \Omega\) then,
+
+\[
+    \vert u \vert \leq \text{const}(f,h)
+\]
+
 \end{document}
