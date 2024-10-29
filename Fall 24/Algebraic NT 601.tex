@@ -3879,5 +3879,184 @@ One has concepts of Cauchy sequence, null sequence, convergence and completeness
     If \(p\nmid n\) then \(\frac{1}{n} \in \mathbb{Z}_p^\times\) since \(\left\vert \frac{1}{n} \right\vert = 1\). The binomial coefficients are in fact \(p\)-adic integer. \((pm)^j\) has small \(p\)-adic absolute value so the sum converges in \(\mathbb{Q}_p\).
 \end{remark}
 
-\end{document}
+\section*{Tuesday, 10/29/2024}
 
+\begin{corollary}
+    Let \((K, \vert \cdot \vert )\) be a complete non-archemedean field. If
+
+    \[
+        f = a_0 x^n + a_1 x^{n-1} + \cdots + a_n \in K[x] 
+    \]
+
+    with \(n > 0, a_0 \neq 0\) and \(a_0 < \lVert f \rVert = \max \{ \vert a_i \vert \mid 0 \leq i \leq n \} \), where maximum is achieved not only for the constant term. then \(f\) is reducible.
+\end{corollary}
+
+\begin{proof}
+    WLOG assume \(\lVert f \rVert = 1 \implies f\in R[x]\). Let \(P\) be the valuation ideal. Then,
+
+    \(\overline{f} = f \mod P\) has degree \(< n\) and is not constant.
+
+    Write \(\overline{f} = \overline{f} \cdot 1\). Set \(\phi = \overline{f}\) and \(\psi = 1 \in \overline{R}[x]\) where \(\overline{R} = R / P\).
+    
+    Trivially, \(\phi, \psi\) are coprime.
+
+    Since \(K\) is complete, Hensel's Lemma implies that \(\exists g, h \in R[x]\) so that \(f = gh\), \(\overline{g} = \phi , \overline{h} = \psi\) and \(\deg g=\deg \phi \implies \deg(h) = \deg(f) - \deg(g) > 0\).
+
+    Thus we have found a nontrivial decomposition.
+\end{proof}
+
+\begin{example}
+    In \(\mathbb{Q}_p\) the polynomial \(p x^n + x + 1\) has a root in \(\mathbb{Z}_p\).
+\end{example}
+
+\begin{theorem}
+    Let \((K,\vert \cdot \vert)\) bea completely valued field [we allow \(\vert \cdot \vert_\infty\)]. If \(E / K\) is a finite extension then \(\vert \cdot \vert \) extends uniquely to an absolute value \(\vert \cdot \vert _E\) which is given by:
+
+    \[
+        \forall \alpha \in E: \vert \alpha \vert _E \coloneqq \left\vert N_{E / K} (\alpha) \right\vert _K ^{\frac{1}{n}}, \, \text{where } n = [E:K] \quad (\ast)
+    \]
+
+    Moreover, \(E\) is complete w.r.t.\ \(\vert \cdot \vert _E\).
+\end{theorem}
+
+\begin{proof}
+    9.10 implies uniqueness and completeness.
+
+    If \(\vert \cdot \vert\) is archimedean then Ostrowski's Theorem (9.11) says that \((K, \vert \cdot \vert = (\mathbb{R}, \vert \cdot \vert_\infty))\) or \((K,\vert \cdot \vert)=(\mathbb{C}, \vert \cdot \vert _\infty)\) upto equivalent absolute values. This takes care of the archimedean case. We are interested about the non-archimedean case.
+
+    Suppose \(\vert \cdot \vert\) is non-archimedean. \((\ast)\) defines a function satisfying \(\begin{dcases}
+        \vert \alpha  \vert _E = 0 \iff \alpha = 0\\
+        \vert \alpha \beta \vert _E = \vert \alpha \vert _E \vert \beta \vert _E
+    \end{dcases}\) 
+
+    Thus it suffices to show that it satisfies the strong triangle inequality.
+
+    It suffices to show, given \(\vert y \vert \geq \vert x \vert\) that:
+
+    \[
+        \left\vert \frac{x}{y} + 1 \right\vert \leq 1
+    \]
+
+    Since WLOG assuming \(\vert x \vert \leq \vert y \vert\),
+
+    \(\vert x+y \vert \leq \max \{ \vert x \vert, \vert y \vert  \} \iff \vert x+y \vert \leq \vert y \vert \iff \left\vert \frac{x}{y} + 1 \right\vert \leq 1\) when \(\vert y \vert \neq 0\). The \(0\) case is trivial.
+
+    This is equivalent to:
+
+    \[
+        \forall \alpha \in E : \vert \alpha \vert _E \leq 1 \implies \vert \alpha + 1 \vert _E \leq 1
+    \]
+
+    \[
+        N_{E \mid K}(\alpha) \overset{1.8}{=} N_{K(\alpha) \mid K}(N_{E \mid K(\alpha)}(\alpha))
+    \]
+
+    \[
+        = N_{K(\alpha) \mid K}(\alpha^{[E:K(\alpha)]}) = N_{K(\alpha)\mid K}(\alpha)^{[E:K(\alpha)]}
+    \]
+
+    Thus, WLOG we may assume \(E = K(\alpha)\). Let \(\alpha \in E\) be such that \(\vert \alpha \vert _E \leq 1\) and let \(\mu(x) = x^n + a_1 x^{n-1} + \cdots + a_n \in K[x]\) be the minimal polynomial of \(\alpha / K\).
+    
+    \(a_n = \pm N_{K(\alpha)\mid K}(\alpha) \implies \vert a_n \vert _K \leq 1\) by assumption.
+
+    If \(\exists 0 < i < n : \vert a_i \vert > 1 \underset{9.13}{\implies} \mu_{\alpha}(x)\) is reducible. 
+
+    Thus, \(\lVert \mu_\alpha(x) \rVert \leq 1\). Note that \(p(x) = \mu_\alpha(x-1)\) is the minimal polynomial of \(\alpha+ 1\) with constant coefficient \(p(0)=\mu_\alpha(-1) \in R\) and thus it is \(\pm N_{K(\alpha) / K}(\alpha + 1)\).
+
+    \[
+        \implies \left\vert N_{K(\alpha)\mid K}(\alpha+1) \right\vert _K \leq 1
+    \]
+
+\end{proof}
+
+\begin{corollary}
+    Let \((K,\vert \cdot \vert)\) be complete and \(\vert \cdot \vert\) be non-archimedean. Let \(C\) be an algebraic closure of \(K\). Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert \cdot \vert\) has a unique extension \(\vert \cdot \vert _C\) to \(C\) given by \(\vert \alpha \vert _C = \vert N_{K(\alpha)\mid K}(\alpha) \vert_K^{1 / [K(\alpha):K]}\).
+        \item Let \(R\) be the valuation ring of \(\vert \cdot \vert\). For \(\alpha \in C\) TFAE:
+        \begin{enumerate}[label=\alph*)]
+            \item \(\vert \alpha  \vert _C \leq 1\).
+            \item \(\mu_{\alpha, K}(x) \in R[x]\).
+            \item \(\alpha\) is integral \(/ R\). 
+        \end{enumerate} 
+    \end{enumerate} 
+\end{corollary}
+
+\begin{proof}
+    9.14 \(\implies\) i since \(C = \bigcup_{K \subset E \subset C, [E:K] < \infty} E \).
+    
+    For ii:
+
+    (a) \(\implies\) (b): \(\vert \mu_{\alpha , K}(0) \vert _K = \left\vert N_{K(\alpha)\mid K}(\alpha)(\alpha) \right\vert _K = \vert \alpha \vert _C^{[K(\alpha):K]} \leq 1\) [by assumption].
+
+    \(\mu_{\alpha ,K}(x)\) is irreducible and leading term has absolute value \(= 1 \underset{9.13}{\implies}\) all coeffiients of \(\mu_\alpha (x)\) are in \(R\).
+
+    (b) \(\implies\) (c) by definition.
+
+    (c) \(\implies\) (a): \(\exists a_i \in R : \alpha^n + a_i \alpha^{n-1} + \cdots + a_n = 0\).
+
+    If \(\vert \alpha \vert _C > 1\) then \(\vert \alpha^n \vert _C = \left\vert - a_1 \alpha^{n-1} - \cdots - a_n \right\vert _C \leq \max \{ \vert a_i \alpha^{n-i}\vert \mid i = 1 \cdots n \} \leq \vert \alpha \vert _C ^{n-1} \).
+    
+    which is a contradiction.
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item Consider the unique extension of \(\vert \cdot \vert_p\) to \(\overline{\mathbb{Q}_p}\), then \((\overline{\mathbb{Q}_p}, \vert \cdot \vert _p )\) is \underline{not} complete [HW11]. \underline{However}:
+        
+        \[
+            (\mathbb{C}_p, \vert \cdot \vert _p) \coloneqq (\overline{\mathbb{Q}_p}, \vert \cdot \vert _p )^\wedge \text{ is complete and algebraically closed} 
+        \]
+
+        \item A \underline{valuation ring} is an integral domain \(R\) such that \(\forall x\in \operatorname{Frac} (R) \setminus R: x ^{-1} \in R\).
+    \end{enumerate} 
+\end{remark}
+
+A valuation ring \(R\) is called \underline{Henselian} if Hensel's Lemma holds for \(R\).
+
+Hensel's Lemma, as we have proved it, says: the valuation ring of a complete non-archimedean field is Henselian.
+
+\begin{example}
+    [Henselian Valuation Ring, not complete]
+
+    \[
+        \mathbb{Z}_{(p)}^h = \{ \alpha \in \mathbb{Q}_p \mid \alpha \text{ is inegral over } \mathbb{Z}_{(p)} \} 
+    \]
+
+    We have \(\mathbb{Z} \subseteq \mathbb{Z}_{(p)}^h \subseteq \mathbb{Z}_p\).
+
+\end{example}
+
+The following follows from Proposition 9.10 and Theorem 9.14 given a non-archimedean absolute value \(\vert \cdot \vert\) on \(K\) (\(K\) not necessarily complete w.r.t.\ \(\vert \cdot \vert\)). Then,
+
+\[
+    \vert \cdot \vert \text{ has a unique extension to any finite extension } E / K \iff R = R(\vert \cdot \vert) \text{ is Henselian}
+\]
+
+\begin{theorem}
+    Let \(E / K\) be a finite extension of degree \(n\) and let \(\vert \cdot \vert\) be an absolute value on \(K\). Then:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert \cdot \vert\) can be extended to an absolute value on \(E\).
+        \item There are at most \(n\) extensions of \(\vert \cdot \vert\) to distinct absolute values on \(E\). 
+        \item Let \(\vert \cdot \vert _1, \cdots , \vert \cdot \vert_r\) be the set of all distinct extensions of \(\vert \cdot \vert \) to \(E\). For each \(1 \leq j \leq r\) let \(E_j^\wedge  \coloneqq (E, \vert \cdot \vert _j)^\wedge\) and \(K^\wedge = (K, \vert \cdot \vert)^\wedge\), which embeds canonically into \(E_j^\wedge\). This canonical homomorphism of \(K^\wedge\)-algebras:
+        \[
+            E \otimes_K K^\wedge \to \prod_{j=1}^r E_j^\wedge \, (\ast)
+        \]
+
+        \[
+            \alpha \otimes a \mapsto (\iota_j(\alpha)a)_{j=1}^r
+        \]
+
+        where \(\iota_j : E \to E_j^\wedge\) is the canonical map, is surjective and hence
+        
+        \[
+            \sum_{j=1}^r [E_j^\wedge : K^\wedge] \leq n \left( = \dim_{K^\wedge} (E \otimes_K K^\wedge) \right) 
+        \]
+
+        If \(E / K\) is separable, then \((\ast)\) is an isomorphism and \(\sum_{j} [E_j^\wedge : K^\wedge] = n\).
+    \end{enumerate} 
+\end{theorem}
+
+\end{document}

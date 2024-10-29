@@ -4565,7 +4565,163 @@ Let \(\chi_1, \cdots , \chi_n\) be distinct irreducible character of \(KG\).
 \]
 
 \begin{theorem}
-    [12.3] Every \(\mathbb{C}\)-rep of \(G\) is realizable over \(\mathbb{Q}(\zeta_{\vert G \vert})\)
+    [12.3] Every \(\mathbb{C}\)-rep of \(G\) is realizable over \(\mathbb{Q}(\zeta_{\vert G \vert})\).
+
+    In fact let \(m = \text{l.c.m}\{ \text{order}(g) \mid g \in G \} \mid \#G\).
+
+    Every \(\mathbb{C}\) representation of \(G\) is realizable over \(\mathbb{Q}(\zeta_m)\).
 \end{theorem}
+
+
+\section*{Monday, 10/28/2024}
+
+\begin{proof}
+    Special case: \(G\) abelian.
+
+    Follows since irreducible rep \(G \to \mathbb{C}^\times\).
+
+    General case: Let \(\chi\in R(G)\).
+
+    Monomial representations generate \(R(G)\).
+
+    \[
+        \chi = \sum_{i} n_i \operatorname{Ind}_{H_{i}}^G(\phi_i) \quad \phi_i \text{ 1-dim}.
+    \]
+
+    Then \(\phi_i : H \to \mathbb{C}^\times\)
+
+    \(\phi_i(H) \subset \mathbb{Q}(\zeta_m)\) 
+
+    Thus \(\operatorname{Ind}_{H_i}^G(\phi_i) \subset \mathbb{Q}(\zeta_m)\).
+
+    Therefore \(\chi\in R_{\mathbb{Q}(\zeta_m)}G\).
+\end{proof}
+
+\subsection*{12.2 Brauer Groups}
+
+\begin{definition}
+    A \underline{central simple algebra} over \(K\) is:
+
+    A simple ring \(A\).
+
+    \(K = Z(A)\).
+
+    \((A : K) < \infty\).
+\end{definition}
+
+\begin{example}
+    \(\mathbb{H}\) is a CSA over \(\mathbb{R}\).
+\end{example}
+
+Recall that a simple ring is simply a matrix ring over a division algebra.
+
+Artin Wedderbern \(\implies A \cong M_n(D)\) where \(D\) is a  central simple \underline{division} algebra over \(K\).
+
+Facts:
+
+\begin{enumerate}[label=\arabic*)]
+    \item \(A,B\) csa \(/ K \implies A \otimes_K B\) is csa \(/ K\).
+    \item \(K\) subfield of \(L\) and \(A\) case \(/ K \implies  L \otimes_K A\) is csa \(/ L\).
+    \item \(K\) alg. closed and \(A\) csa \(/ K \implies A \cong M_n(K)\). 
+\end{enumerate} 
+
+\begin{definition}
+    \(L\) is a splitting field for csa \(A\) if
+
+    \[
+        L \otimes_K A \cong M_n L
+    \]
+\end{definition}
+
+
+Facts \(\implies\) Algebraically closed is splitting field for \(A\).
+
+3 \(\implies (A:K) = m^2\) since \((A:K) = (A_L : L)\) where \(L\) is splitting field which has dimension \(m^2\) since it is isomorphic to \(M_m L\). \(m = \sqrt{A:K} \) is the \underline{Schur Index} 
+
+\underline{Harder Fact}: maximal subfield of \(A\) is splitting field for \(A\).
+
+e.g. \(\mathbb{C} \otimes _\mathbb{R} \mathbb{H} \cong M_2\mathbb{C}\).
+
+If \(D\) is a skew field CSA \(/ K\) then \((D:K) = m^2\) where \(m =\) Schur index of \(D\).
+
+\(A\) case \(/ K\) so schur index of \(A\) is divisible by schur index of \(D\).
+
+\begin{definition}
+    [Brauer Group] Let \(K\) be a field.
+
+    \[
+        \operatorname{Br}(K) = \left( \frac{\text{csa} / K}{M_n(D) \sim D} \right) , \otimes_K
+    \]
+\end{definition}
+
+eg \(\operatorname{Br} \mathbb{C} = 1\) 
+
+\(\operatorname{Br}\mathbb{R} = C_2 = \langle \mathbb{H} \rangle \). \(\mathbb{H} \otimes_\mathbb{R} \mathbb{H} \cong M_4(\mathbb{R})\)
+
+\(\operatorname{Br}(K) = H^2 (\operatorname{Gal}(\overline{K} / K); \mathbb{Z} / 2)\) 
+
+\subsection*{12.2 Schur Indices}
+
+\[
+    \mathbb{R} Q_8 \cong \mathbb{R}^4 \times \mathbb{H} 
+\]
+
+\[
+    \mathbb{C} Q_8 \cong \mathbb{C}^4 \times M_2\mathbb{C}
+\]
+
+\[
+    i \mapsto \begin{bmatrix}
+        0 &  -1 \\
+        1 &  0 \\
+    \end{bmatrix}
+\]
+
+\[
+    j \mapsto \begin{bmatrix}
+        i &  0 \\
+        0 &  -i \\
+    \end{bmatrix}
+\]
+
+Consider \(\mathbb{R} Q_8\) module \(V = \mathbb{H}\) and \(\mathbb{C}Q_8\) module \(W = \mathbb{C}^2\) not realizable over \(\mathbb{R}\).
+
+\(\chi_V(\pm 1) = \pm 4\)
+
+\(\chi_V(\pm i, \pm j,\pm k)=0\) 
+
+\(\chi_W(\pm 1) = \pm 2, \chi_W(\pm i, \pm j, \pm k)=0\)
+
+We have:
+
+\[
+    kG \cong \prod M_{n_i} (D_i)
+\]
+
+\[
+    K_i = \text{center} D_i
+\]
+
+\[
+    \text{schur index} m_i = \sqrt{(D_i : K_i)} 
+\]
+
+eg \(G = Q_8, K = \mathbb{R} , m_5 = 2\).
+
+\begin{definition}
+    \(R_K(G) \subset \overline{R}_K G = \{ f\in R(G) \mid f(G) \subset K \} \subset R(G)\) 
+\end{definition}
+
+eg \(\chi_W = \chi_{\mathbb{C}^2} \in \overline{R}_{\mathbb{R}}(Q_8) - R_\mathbb{R} (Q_8)\) 
+
+\begin{proposition}
+    [35] \(\chi_1, \cdots , \chi_h\) are the irreducible characters of \(KG\). Then they are \(\mathbb{Z}\) basis for \(R_K G\). Then,
+
+    \(\frac{\chi_1}{m_1}, \cdots , \frac{\chi_h}{m_h}\) are a \(\mathbb{Z}\)-basis for \(\overline{R}_K G\). 
+\end{proposition}
+
+\begin{corollary}
+    \(R_K (G) \subset \overline{R} _K (G)\) finite index with equality iff all \(D_i\) are fields.
+\end{corollary}
 
 \end{document}
