@@ -2520,6 +2520,8 @@ Our representatives are \((1), (12), (123), (1234), (12)(34)\)
     Thus, \(a_\tau n = d_i \chi_i (\tau ^{-1}) \implies a_\tau = \frac{d_i}{n} \chi_i (\tau ^{-1})\) 
 \end{proof}
 
+Recall that \(\exp G\) is the smallest positive integer \(m\) such that \(g^m = \operatorname{id}\) for all \(g\).
+
 \begin{corollary}
     [4.5] Let \(m = \exp G\). Then, 
 
@@ -4723,5 +4725,181 @@ eg \(\chi_W = \chi_{\mathbb{C}^2} \in \overline{R}_{\mathbb{R}}(Q_8) - R_\mathbb
 \begin{corollary}
     \(R_K (G) \subset \overline{R} _K (G)\) finite index with equality iff all \(D_i\) are fields.
 \end{corollary}
+
+\section*{Wednesday, 10/30/2024}
+
+\subsection*{12.4 Rank \(R_K G\)}
+
+\(\mathbb{C} C_p \cong \mathbb{C}^p\) 
+
+\(\mathbb{Q} C_p \cong \mathbb{Q} \times \mathbb{Q}(\zeta_p)\)
+
+\(\zeta = \zeta_m = e^{2\pi i / m}\) where \(m\) is multiple of \(lcm(\operatorname{ord}(g))\) e.g. \(m = \vert G \vert\).
+
+\begin{center}
+    \begin{tikzcd}
+        & & \mathbb{C} \\
+        & L = K(\zeta) \ar[ru, no head] & \\
+        K \ar[ru, no head] & &
+    \end{tikzcd}
+\end{center}
+
+\(LG \cong \prod M_{n_i} (L)\)
+
+\[
+    \begin{array}{rcl}
+        \rank RG & = & \# \text{ of irreducible } \mathbb{C} G \text{-modules}  \\
+         & = &  \# \text{ of irreducible } LG \text{-modules} \\
+         & = & \# \text{ of conjugacy classes of } G   \\
+    \end{array}
+\]
+
+What about \(\#\) of irreducible \(KG\)-reps?
+
+\[
+    \Gamma = \Gamma_K \coloneqq \{ t\in (\mathbb{Z} / m)^\times \mid \exists \sigma \in \operatorname{Gal}(L / K) \text{s.t. } \sigma(\zeta) = \zeta^t\} < (\mathbb{Z} / m)^\times
+\]
+
+\[
+    \Gamma = \operatorname{image} (\underset{\sigma_t}{\operatorname{Gal}(L / K)} \underset{\mapsto}{\rightarrowtail} \underset{t}{(\mathbb{Z} / m)^\times}) 
+\]
+
+where \(\sigma_t(\zeta) = \zeta^t\).
+
+eg \(\Gamma_\mathbb{Q} = \operatorname{Gal}(\mathbb{Q}(\zeta_m) / \mathbb{Q}) \cong (\mathbb{Z} / m)^\times\)
+
+\(\Gamma_\mathbb{C} = 1\)
+
+\(\Gamma_\mathbb{R} = \begin{dcases}
+    1, &\text{ if } m \text{ odd}  ;\\
+    \pm 1, &\text{ if } m \text{ even}.
+\end{dcases}\) 
+
+\begin{definition}
+    \(s, s^{\prime} \in G\) are \(\Gamma_K\)-conjugate if \(\exists \tau \in G, t \in \Gamma_K\) such that:
+
+    \[
+        \tau s^{\prime} \tau ^{-1} = s^t
+    \]
+
+    we write \(s^{\prime} \underset{K}{\sim} s\) 
+\end{definition}
+
+\begin{corollary}
+    [page 96]
+
+    \(\rank R_K G = \#\) of \(\Gamma_K\) conjugacy classes. 
+\end{corollary}
+
+If \(G = C_p\) then \(\Gamma_Q\) conjugacy classes are \(\{ 1 \}, \{ r^t \}_{t\not\equiv o(p)}\)
+
+Recall that \(\mathbb{R} C_p \cong \mathbb{R} \times \mathbb{C}^{\frac{p-1}{2}}\)
+
+\(G = C_p\) then \(\Gamma_\mathbb{R}\) conjugacy classes are \(\{ 1 \}, \{ r, r ^{-1} \}, \{ r^2, r^{-2} \}, \cdots ,\{ r^{\frac{p-1}{2}}, r^{ \frac{p-1}{2} } \} \) 
+
+We have:
+
+\[
+    R G \to \operatorname{Cl}_L G = \{ f: G \to L \mid f(\tau s \tau ^{-1}) = f(s) \}
+\]
+
+We can take \(K\) linear combinations of this.
+
+\[
+    K \otimes_\mathbb{Z} R G \hookrightarrow \operatorname{Cl}_L G = \{ f: G \to L \mid f(\tau s \tau ^{-1}) = f(s) \}
+\]
+
+\begin{theorem}
+    [25] Let \(f\in \operatorname{Cl}_L G\). TFAE:
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(f\in K \otimes_\mathbb{Z} RG\) 
+        \item \(\forall t \in \Gamma, \forall s\in G\) we have \(\sigma_t (f(s)) = f(s^t)\)  
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    a \(\implies\) b: It is enough to show it for characters. We want to show for \(\chi_{\rho}\) where \(\rho: G \to GL(\mathbb{C}^n)\). Let \(\lambda_1, \cdots , \lambda_n\) be eigenvalues of \(\rho(s)\). They must all be roots of unity. Then \(\chi_{\rho} (s) = \sum_{i} \lambda_i\).
+
+    \[
+        \sigma_t (\chi_{\rho} (s)) = \sigma_t \left(\sum_{i} \lambda_{i}\right) = \sum_{i} \lambda_i ^ t = \chi_{\rho} (s^t)
+    \]
+
+    b \(\implies\) a: Let \(f\in \operatorname{Cl}_L\).
+
+    Irreducible characters form an orthonormal basis.
+
+    \[
+        f = \sum_{\chi \text{ irr}} \langle f, \chi \rangle \chi
+    \]
+
+    \(\forall t \in \Gamma_K\) we have:
+
+    \[
+        \langle f, \chi \rangle = \frac{1}{\vert G \vert}\sum_{s\in G} f(s) \chi(s ^{-1}) \underset{\text{reindex}}{=}  \frac{1}{\vert G \vert}\sum_{s\in G} f(s^t) \chi(s^{-t})
+    \]
+    
+    \[
+        = \frac{1}{\vert G \vert}\sum_{s\in G} \sigma_t(f(s)) \sigma_t (\chi (s ^{-1})) = \sigma_t(\langle f, \chi \rangle)
+    \]
+
+    Thus, \(\langle f, \chi \rangle\) are invariant under Galois therefore \(\langle f, \chi \rangle \in K\) which is what we wanted to prove.
+\end{proof}
+
+\begin{corollary}
+    [1] Let \(f\in \operatorname{Cl}_K\).
+
+    \(f \in K \otimes R_K G \iff f\) is constant on \(\Gamma_K\) conjugacy classes.
+\end{corollary}
+
+\begin{proof}
+    \(\implies\): WLOG \(f = \chi_{\rho}\) where \(\rho: G \to GL(K^n)\).
+
+    \(\tau s^{\prime} \tau ^{-1} = s^t\)
+
+    \(\implies \chi_{\rho} (s^{\prime}) = \chi_{\rho} (s^t) \underset{25b}{=} \sigma_t \chi_{\rho} (s) \underset{\chi_{\rho}(s) \in K}{=} \chi_{\rho} (s)\).
+    
+    \(\impliedby:\) \(f: G \to K\) is constant on \(\Gamma_K\) conjugacy classes.
+
+    Thus, 25b holds for \(f\).
+
+    Thus, 25a holds for \(f\).
+
+    Thus, \(f\in K \otimes_\mathbb{Z} RG\).
+
+    \[
+        f = \sum_{\text{irr } \chi \in R_L(G)} \langle f, \chi \rangle \chi
+    \]
+
+    We need to take \(L\) representations to \(K\) representations.
+
+    \[
+        f = \frac{1}{\vert \Gamma_K \vert} \sum_{\text{irr } \chi \in R_L(G), t \in \Gamma_K} \langle f, \sigma_t \circ \chi \rangle (\sigma_t \circ \chi) 
+    \]
+
+    \[
+        f = \frac{1}{\vert \Gamma_K \vert} \sum_{\text{irr } \chi \in R_L(G), t \in \Gamma_K} \langle \sigma_{t ^{-1}} \circ f, \chi \rangle (\sigma_t \circ \chi) 
+    \]
+
+    \[
+        f = \frac{1}{\vert \Gamma_K \vert} \sum_{\text{irr } \chi \in R_L(G), t \in \Gamma_K} \underbrace{\langle f, \chi \rangle}_{\in K} (\sigma_t \circ \chi) 
+    \]
+
+    \[
+        f = \frac{1}{\vert \Gamma_K \vert} \sum_{\text{irr } \chi \in R_L(G)} \langle f, \chi \rangle \sum_{t}  (\sigma_t \circ \chi) 
+    \]
+
+    \[
+        f = \frac{1}{\vert \Gamma_K \vert} \sum_{\text{irr } \chi \in R_L(G)} \langle f, \chi \rangle (\Tr \chi)
+    \]
+
+    Last equality is due to the fact:
+
+    \(G \overset{\rho}{\to} GL_L (L^n) \overset{\Tr}{\to} GL_K(L^n)\)
+
+    \(\chi_{\Tr \circ \rho} = \sum \sigma_t \circ \chi_{\rho}\)
+\end{proof}
+
+
 
 \end{document}
