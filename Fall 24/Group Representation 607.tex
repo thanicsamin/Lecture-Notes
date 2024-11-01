@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel}
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
 \usepackage{graphicx}
@@ -4900,6 +4900,194 @@ We can take \(K\) linear combinations of this.
     \(\chi_{\Tr \circ \rho} = \sum \sigma_t \circ \chi_{\rho}\)
 \end{proof}
 
+\section*{Friday, 11/1/2024}
 
+Recap:
+
+\begin{center}
+    \begin{tikzcd}
+        & & \mathbb{C} \ar[dl, no head] \\
+        & L = K(\zeta_m) \ar[dl, no head] & m = \exp G \\
+        K & &
+    \end{tikzcd}
+\end{center}
+
+\[
+    R_L G \overset{\cong}{\to} RG \coloneqq R_\mathbb{C} G
+\]
+
+\[
+    \Gamma_K = \operatorname{image} \left( \operatorname{Gal}(L / K) \to (\mathbb{Z} / m)^\times \right) 
+\]
+
+\[
+    \sigma_t \mapsto t
+\]
+
+\[
+    \sigma_t(\zeta_m) = \zeta_m^t
+\]
+
+\[
+    s^{\prime} \underset{K}{\sim} s \, (s^{\prime} \text{ is } K \text{-conjugate to } s)
+\]
+
+If \(\exists \tau \in G, t \in \Gamma_K\) such that:
+
+\[
+    \tau s^{\prime} \tau ^{-1} = s^t
+\]
+
+Corollary 2, page 96: \(\rank R_K G = \#\) of \(K\)-conj classes.
+
+13.1: \(K = \mathbb{Q}\). Then,
+
+\[
+    \operatorname{Gal}(\mathbb{Q}(\zeta_m) / \mathbb{Q}) \overset{\cong}{\to} (\mathbb{Z} / m)^\times
+\]
+
+Thus,
+
+\[
+    s^{\prime} \underset{\mathbb{Q}}{\sim} s \iff \exists \tau \in G \text{ s.t. } \tau \langle s^{\prime} \rangle \tau ^{-1} = \langle s \rangle 
+\]
+
+Corollary 1: \# of \(\mathbb{Q} G\)-reps = \# of conjugacy classes of cyclic subgroups.
+
+Corollary 2: \(G\) finite, following TFAE:
+
+\begin{enumerate}[label=\roman*)]
+    \item \(\langle s \rangle = \langle s^{\prime} \rangle \implies s\) is conjugate to \(s^{\prime}\).
+    \item \# of conjugacy classes = \# of conjugacy classes of cyclic subgroups.
+    \item \# of p.c.i in \(\mathbb{Q} G\) = \# of p.c.i in \(\mathbb{C} G\)
+    \item \(\forall \rho: G \to GL(\mathbb{C}^n), \forall s\in G, \chi_{\rho} (s) \in \mathbb{Q}\) [characters are rational valued].
+    \item \(\forall \rho : G \to GL(\mathbb{C}^n), \forall s\in G, \chi_{\rho}(s) \in \mathbb{Z}\).
+\end{enumerate} 
+
+\begin{proof}
+    ``Think about it''
+\end{proof}
+
+eg Symmetric grouo \(S_n\) satisfies (i).
+
+Fact [stronger than this] \(\mathbb{Q} S_n \cong \prod M_{n_i} (\mathbb{Q})\) 
+
+eg \(\mathbb{Q} S_3 = \mathbb{Q} D_6 \cong \mathbb{Q} \times \mathbb{Q} \times M_2(\mathbb{Q}[\lambda_3]) = \mathbb{Q} \times \mathbb{Q} \times M_2(\mathbb{Q})\).
+
+All \(\mathbb{C}\)-rep of \(S_n\) are realizable over \(\mathbb{Q}\).
+
+``Young diagrams''.
+
+\(G = Q_8\) also satisfies (i).
+
+\(\mathbb{Q} Q_8 \cong \mathbb{Q}^4 \times \mathbb{H}_\mathbb{Q}\) 
+
+\(\mathbb{C} Q_8 \cong \mathbb{C}^4 \times M_2(\mathbb{C})\)
+
+But irreducible representation \(\mathbb{C}^2\) not realizable over \(\mathbb{Q}\).
+
+\subsection*{12.5}
+
+\(\begin{matrix}
+     &  &  \mathbb{C} \\
+     & / &   \\
+    K &  &   \\
+\end{matrix}\) 
+
+\begin{theorem}
+    [Artin's Theorem]
+
+    \[
+        \bigoplus_{\text{cyclic } C < G} R_K C \otimes \mathbb{Q} \twoheadrightarrow R_K G \otimes \mathbb{Q}
+    \]
+
+    Same proof as for \(K = \mathbb{C}\).
+
+    Characters are determined by cyclics.
+\end{theorem}
+
+\begin{theorem}
+    [Brauer's Theorem]
+
+    \[
+        \bigoplus_{\text{elem } E < G} RE \twoheadrightarrow RG
+    \]
+\end{theorem}
+
+\begin{definition}
+    \(E\) is \underline{elementary} if \(E = P \times C\) where \(P\) is \(p\)-group, \(C\) is cyclic, \((\vert P \vert, \vert C \vert) = 1\) 
+\end{definition}
+
+\begin{theorem}
+    [Brauer's Theorem]
+
+    \[
+        \bigoplus_{\Gamma_{K}\text{-elem } E < G} R_K E \twoheadrightarrow R_K G 
+    \]
+\end{theorem}
+
+\begin{definition}
+    \(E\) is \(\Gamma_K\)-elementary if \(E = C \rtimes_{\phi} P, P\) \(p\)-group, \(C\) cyclic, \((\vert P \vert, \vert C \vert)=1\)
+
+    If \(\phi\) factos as
+
+    \begin{center}
+        \begin{tikzcd}
+            P \ar[r] \ar[rrr, bend right, "\phi"] & \Gamma_K \ar[r, hook] & (\mathbb{Z}/m)^\times \ar[r, two heads] & \operatorname{Aut}(C)
+        \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\subsection*{13.2 \(K = \mathbb{R}\)}
+
+Fact: Only finite dimensional division algebras \(/\mathbb{R}\) are \(\mathbb{R}, \mathbb{C}\) and \(\mathbb{H}\).
+
+``Proof'': \(\operatorname{Br} \mathbb{R} = H^2(\operatorname{Gal}(\mathbb{C} / \mathbb{R}); \mathbb{Z} / 2) = \{ \mathbb{R} , \mathbb{H} \}\).
+
+\(\begin{matrix}
+     &  & \mathbb{C} &  \text{alg closed} \\
+     & / & \deg 2 &   \\
+    \mathbb{R} &  &  &   \\
+\end{matrix}\)
+
+\(\operatorname{Br} \mathbb{C} = 1\).
+
+Thus only \(\mathbb{R} ,\mathbb{C} ,\mathbb{H}\) are possible.
+
+We achieve all:
+
+\(\mathbb{R} C_2 \cong \mathbb{R} \times \mathbb{R}\).
+
+\(\mathbb{R} C_3 \cong \mathbb{R} \times \mathbb{C}\)
+
+\(\mathbb{R}Q_8\cong \mathbb{R}^4 \times \mathbb{H}\)
+
+3 types of finite dimensional simple reps over \(\mathbb{R}\).
+
+3 types of irreducible \(\mathbb{R}G\) reps
+
+3 types of irreducible \(\mathbb{Q} G\) reps
+
+Let \(\chi_0\) be char of irreducible \(\mathbb{R}G\) module.
+
+\(\chi =\) char of irreduible \(\mathbb{C} G\) module
+
+such that \(\chi\) is a component of \(\mathbb{C} \otimes_\mathbb{R} V_0 \iff \chi_0\) is a component of \(\operatorname{res} \chi\).
+
+\underline{Type O}: \(\chi = \chi_0\). Complexification gives you the same representation.
+
+\(\mathbb{R} = \operatorname{Hom}_{\mathbb{R} G}(V_0, V_0)\) by Schur.
+
+\underline{Type U}: \(\chi \neq \overline{\chi}\). Then \(\chi_0 = \chi + \overline{\chi}\).
+
+\(\mathbb{C} = \operatorname{Hom}_{\mathbb{R} G}(V_0, V_0)\)
+
+\underline{Type \(S_P\)}: \(\chi = \overline{\chi}, \chi = 2 \chi_0\).
+
+\(\mathbb{H} = \operatorname{Hom}_{\mathbb{R} G}(V_0, V_0)\) 
+
+\begin{exercise}
+    \(G\) odd order \(\implies\) all nontrivial irreducible representation have type \(U\).
+\end{exercise}
 
 \end{document}

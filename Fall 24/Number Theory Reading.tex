@@ -1153,4 +1153,211 @@ We cannot recover \(\langle \alpha_i, \alpha_j \rangle\) when \(\langle  \rangle
     Let \(\Phi\) be an irreducible root system. Then, \(\Phi\) can only have \(A-G\) type Dynkin diagrams.
 \end{theorem}
 
+\section{Thursday, 10/31/2024, Irr. rootot System by Hyeonmin}
+
+\begin{theorem}
+    [11.4]
+
+    If \(\Phi\) is an irreducible root system, its Dynkin diagram is one of the following:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/dynkin}
+        \caption{Dynkin Diagrams}
+        \label{fig:dynkin}
+    \end{figure}
+\end{theorem}
+
+\begin{proof}
+    \underline{Suffices to Show}: Coxeter graph is one of the following:
+
+    \[
+        A_l, B_l (= C_l), D_l, E_{6,7,8}, F_4, G_2
+    \]
+
+    So we can ignore the length of the roots. We work with unit vectors.
+
+    \begin{definition}
+        Let \(E\) be euclidean space of dimension \(m\) and let \(\mathfrak{A} = \{ \varepsilon_1, \cdots , \varepsilon_n \} \subseteq E\) be \underline{admissible} if:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item Vectors are linearly independent.
+            \item Vectors are unit vectors.
+            \item \((\varepsilon_i, \varepsilon_j)\leq 0\) if \(i \neq j\).
+            \item \(4(\varepsilon_i, \varepsilon_j)^2 = 0,1,2\) or \(3\). 
+        \end{enumerate} 
+
+    \end{definition}
+
+    Then, \underline{The graph \(\Gamma\) of \(\mathfrak{A}\)[coxeter graph]} has \(n\) vertices and \(4(\varepsilon_i, \varepsilon_j)^2\) as edges.
+
+    \underline{Existence}:
+
+    \[
+        \Delta \supseteq \{ \alpha_1, \cdots , \alpha_n \} \implies \left\{ \frac{\alpha_1}{\sqrt{(\alpha_1, \alpha_1)}}, \cdots , \frac{\alpha_n}{\sqrt{(\alpha_n, \alpha_n)} } \right\} \coloneqq \{ \varepsilon_1, \cdots , \varepsilon_n \} \, \text{admissible}. 
+        \]
+
+    \[
+        4 (\varepsilon_i, \varepsilon_j)^2 = \frac{4(\alpha_i, \alpha_j)^2}{(\alpha_i, \alpha_j)(\alpha_j, \alpha_i)} = \langle \alpha_i, \alpha_j \rangle \langle \alpha_j, \alpha_i \rangle
+    \]
+
+    \begin{enumerate}[label=\arabic*)]
+        \item A subset \(\mathfrak{A} ^{\prime} \subseteq \mathfrak{A}\) is still admissible.
+        \item \#\{pairs of vertices in \(\Gamma\) connected by each other\} \(< n\).
+        
+        Since set \(\varepsilon \coloneqq \sum_{i=1}^n \varepsilon_i \neq 0\). Thus \(0 < (\varepsilon, \varepsilon) = \underbrace{n}_{=\sum_{i} (\varepsilon_i, \varepsilon_i)} + \sum_{i<j} 2 (\varepsilon_i, \varepsilon_j)\).
+        
+        Suppose \((\varepsilon_i, \varepsilon_j) < 0\).
+
+        \(4(\varepsilon_i, \varepsilon_j)^2 = 1,2,3 \implies 2 (\varepsilon_i, \varepsilon_j) \leq -1\).
+
+        \item \(\Gamma\) contains no cycles.
+        
+        Let \(\Gamma^{\prime} \subseteq \Gamma\) be a vertix on \(k\) vertices.
+
+        Then \#\{such pairs from (2) in \(\Gamma^{\prime}\)\} \(\geq k\). Contradiction by 2.
+        
+        \item \#\{edges originated at a vertex (\(\varepsilon\)) of \(\Gamma\)\} \(\leq 3\)
+        
+        Let \(\varepsilon, \eta_1, \cdots , \eta_k \in \mathfrak{A}\) be distinct such that \((\varepsilon, \eta_i)\neq 0\).
+
+        (3) \(\implies (\eta_i, \eta_j) = 0 \forall i \neq j\).
+        
+        Set \(\eta_0^{\prime} \coloneqq \epsilon - \sum_{i=1}^k (\varepsilon, \eta_i)\eta_i\) and \(\eta_0 \coloneqq \frac{\eta_0^{\prime}}{(\eta_0^{\prime}, \eta_0^{\prime} )}\). Then,
+
+        \begin{itemize}
+            \item \((\eta_0^{\prime} , \eta_i) = (\varepsilon, \eta_i) - (\varepsilon, \eta_i)(\eta_i, \eta_i) = 0 \implies (\eta_0, \eta_i) = 0\).
+            \item \(\eta_0 \in \operatorname{span}\{ \varepsilon , \eta_1, \cdots , \eta_k \} \implies (\eta_0, \varepsilon) \neq 0\).
+            \item \((\eta_0^{\prime} , \eta_0^{\prime}) = (\varepsilon, \eta_0^{\prime}) \implies \sum_{i=0}^k (\varepsilon, \eta_i) \eta_i = (\varepsilon , \eta_0) \eta_0 + \sum_{i=1}^k (\varepsilon , \eta_i)\eta_i\)
+            
+            \(= \frac{(\varepsilon, \eta_0^{\prime})}{(\eta_0^{\prime} , \eta_0^{\prime})}\eta_0^{\prime} + \sum_{i=1}^k (\varepsilon , \eta_i) \varepsilon_i = \varepsilon\).
+
+            \(\implies 1 = (\varepsilon, \varepsilon) =\sum_{i=0}^k (\varepsilon, \eta_i)^2 > \sum_{i=1}^k (\varepsilon, \eta_i)^2 \implies 4 > \sum_{i=1}^k 4 (\varepsilon, \eta_i)^2\).
+        \end{itemize}
+        
+        \item The only graph \(\Gamma\) containing a triple edges is \(G_2\).
+        
+        \item Let \(\{ \varepsilon_1, \cdots , \varepsilon_k \} \subseteq \mathfrak{A}\) have a subgraph
+            
+        [insert pic like A1 with veps 1, ..., veps k]
+
+        \(\mathfrak{A}'= (\mathfrak{A} \setminus \{ \varepsilon_1, \cdots , \varepsilon_k \}) \cup \{ \varepsilon \}\) is admissible where \(\varepsilon = \sum_{i=1}^k \varepsilon_i\). 
+            
+        Condition 1 is satisfied automatically.
+
+        Condition 2: \(\varepsilon\) is a unit: \(2 (\varepsilon_i, \varepsilon_{i+1}) = -1 \implies (\varepsilon , \varepsilon) = k + \sum_{i=1}^{k-1} (\varepsilon_i, \varepsilon_{i+1}) = 1\) so it holds.
+            
+        Condition 3: \(\eta \in \mathfrak{U} \setminus \{ \varepsilon_1, \cdots , \varepsilon_k \} \) can be connected to at most one of \(\varepsilon_1, \cdots , \varepsilon_k\). 3 \(\implies (\eta, \varepsilon) = 0\) or \((\eta, \varepsilon) = (\eta, \varepsilon_j) \leq 0 \implies (\eta, \varepsilon) \leq 0\).
+
+        Condition 4: \(4(\eta,\varepsilon)^2 = 0\) or \(4(\eta, \varepsilon_i)^2 = 0,1,2\) or \(3\)
+            
+        
+    \item \(\Gamma\) contains no subgraph of the form:
+        
+    [insert figure]
+
+    \item Any connected \(\Gamma\) of an admissible set has one of the following forms:
+        
+    [insert figure]
+
+    \item The second type in 8: \(B_l(= C_l), F_4\).
+    
+    Set \(\varepsilon \coloneqq \sum_{i=1}^p i \varepsilon_i, \eta \coloneqq \sum_{i=1}^q i \eta_i\).
+
+    Then \(2 (\varepsilon_i, \varepsilon_{i+1}) = -1 = 2(\eta_j, \eta_{j+1})\).
+    
+    Then, \((\varepsilon , \varepsilon) = \sum_{i=1}^p i^2 - \sum_{i=1}^{p-1} i(i+1) = \frac{p(p+1)}{2}\), and \((\eta, \eta) = \frac{q(q+1)}{2}\). (A)
+
+    \(4(\varepsilon_p, \eta_q)^2 = 2 \implies (\varepsilon, \eta)^2 = (p \varepsilon_p, q \eta_q)^2 = \frac{p^2 q^2}{2}\) (B).
+
+    The Schwarz inequality of linear independent \(\varepsilon \cdot \eta : (\varepsilon , \eta)^2 < (\varepsilon, \varepsilon)(\eta, \eta)\).
+
+    A and B \(\implies \frac{2 p^2 q^2}{2} < \frac{pq(p+1)(q+1)}{4} \implies pq - p - q - 1 < 0 \implies (p-1)(q-1) < 2\)
+    
+    \(\implies \underbrace{p=q=2}_{F_4}\) or \(\underbrace{p=1 \text{ or } q=1}_{B_l}\).
+    
+    \item The 3rd type in 8: \(D_l, E_6, E_7, E_8\).
+
+    Set up \(\eta^i \coloneqq \sum_{j} \eta_j^i \implies (\eta^i, \eta^j) = 0, (\varepsilon , \eta^i) \neq 0\).
+    
+    Applying the method in the proof of (4),
+
+    \(\eta^{0\prime} \coloneqq \varepsilon - \sum_{i=1}^3 \frac{(\varepsilon, \eta^i)}{(\eta^i, \eta^i)}\eta^i\) and \(\eta^0 \coloneqq \frac{\eta^{0\prime}}{\sqrt{(\eta_0^{\prime}, \eta_0^{\prime})} }\)  
+    
+    It is easy to show that:
+
+    \begin{itemize}
+        \item \((\eta^0, \eta^i) = 0\)
+        \item \((\varepsilon, \eta^0) \neq 0\)
+        \item \(\varepsilon = (\varepsilon, \eta^0)\eta^0 +\sum_{i=1}^3 \frac{(\varepsilon, \eta^i)}{(\eta^i, \eta^i)}\eta^i\)  
+    \end{itemize} 
+
+    Then \(1 = (\varepsilon , \varepsilon) > \sum_{i=1}^3 \frac{(\varepsilon, \eta^i)^2}{(\eta^i, \eta^i)}\) by the same reason in (4).
+
+    \((\eta^{\prime} , \eta^{\prime}) = \frac{p(p-1)}{2}\implies \frac{(\varepsilon , \eta^{\prime})^2}{(\eta^{\prime} , \eta^{\prime})} = \frac{p-1}{2p} = \frac{1}{2}\left( 1 - \frac{1}{p} \right)\). Apply \(\eta^2, \eta^3\).
+    
+    \(\implies 1 > \sum \frac{(\varepsilon, \eta_i)^2}{(\eta^i, \eta^i)} = \frac{1}{2}\left( 3 - \frac{1}{p} - \frac{1}{q}- \frac{1}{r} \right) \implies \frac{1}{p} + \frac{1}{q} + \frac{1}{r} > 1\) (C).
+    
+    WLOG assume \(\frac{1}{p} \leq \frac{1}{q} \leq \frac{1}{r} \leq \frac{1}{2}\) (D) [if one of them is \(1\) graph is \(A_l\)].
+
+    C, D \(\implies \frac{1}{3} < \frac{1}{r} \leq \frac{1}{2} \implies r = 2 \implies \frac{1}{p} + \frac{1}{q} > \frac{1}{2}\) (E).
+
+    D, E \(\implies \frac{1}{4} < \frac{1}{q} \leq \frac{1}{2} \implies q = 2, 2 \leq p \implies D_l\) or \(q=3, p = 3,4,5 \implies E_6, E_7, E_8\).
+
+    \end{enumerate} 
+    
+    \underline{Construction}:
+
+    [matrices for \(A_l, B_l, C_l, D_l\)]
+
+    Let \(E = \mathbb{R}^n\) with the usual inner product and standard basis \(\{ \varepsilon_1, \cdots , \varepsilon_n \}\). Let \(I =\) \{\(\mathbb{Z}\)-linear combination of \(\{ \varepsilon_1, \cdots ,\varepsilon_n \}\)\}.
+    
+    \(A_l (l \geq 1) E:\) a \(l\)-subspace of \(\mathbb{R}^{l+1}\) orthogonal to \(\varepsilon_1 + \cdots + \varepsilon_{l+1}\).
+    
+    \(I^{\prime} = I \cap E\).
+
+    \(\Phi = \{ \alpha \in I^{\prime} \mid (\alpha, \alpha) = 2 \} = \{ (\varepsilon_i - \varepsilon_j), i \neq j\}\).
+
+    Root system: \(\Delta = \{ \varepsilon_1 - \varepsilon_2, \cdots , \varepsilon_l - \varepsilon_{l+1} \} \) 
+
+    Weyl Group: \(\sigma_{\varepsilon_i - \varepsilon_{i+1}}: \begin{matrix}
+        \varepsilon_i \mapsto \varepsilon_{i+1}  \\
+        \varepsilon_{i+1} \mapsto \varepsilon_i   \\
+    \end{matrix} \leftrightarrow (i, i+1) \).
+    
+    Thus, \(\mathcal{W} \cong S_{l+1}\).
+
+    \(B_l(l \geq 2) E = \mathbb{R}^l\)
+
+    \(\Phi_B = \{ \alpha \in I \mid (\alpha , \alpha) = 1 \text{ or } 2 \} = \{ \pm \varepsilon_i, \pm (\varepsilon_i \pm \varepsilon_j), i \neq j \}\).
+
+    \(\Delta = \{ \varepsilon_1 - \varepsilon_2 , \cdots , \varepsilon_{l-1} - \varepsilon_l, \varepsilon_l \} \) a base.
+
+    Weyl Group \(\mathcal{W}\):
+
+    \(\sigma_{\varepsilon_i - \varepsilon_{i+1}} \leftrightarrow (i, i+1)\)
+    
+    \(\sigma_{\varepsilon_l} \varepsilon_l \mapsto - \varepsilon_l \)
+    
+    \(\mathcal{W} \cong (\mathbb{Z} / 2\mathbb{Z})^l \rtimes S_l\).
+
+    \(D_l (l \geq 4) E = \mathbb{R}^l, \Phi = \{ \alpha \in I \mid (\alpha , \alpha) = 2 \} = \{\pm (\varepsilon_i \pm \varepsilon_j)\}\).
+
+    \(\Delta = \{ \varepsilon_1 - \varepsilon_2 , \cdots , \varepsilon_{l-1} - \varepsilon_l, \varepsilon_{l-1} + \varepsilon_l \} \)
+    
+    \(\sigma_{\varepsilon_{i} - \varepsilon_{i+1} }: (i, i+1)\)
+    
+    \(\sigma_{\varepsilon_{l-1} + \varepsilon_l} \): \(\varepsilon_{l-1} \mapsto - \varepsilon_l, \varepsilon_l \mapsto - \varepsilon_{l-1}\).
+
+    \(\mathcal{W} \cong (\mathbb{Z} / 2\mathbb{Z})^{l-1} \rtimes S_l\).
+    
+
+\end{proof}
+
+\subsection{12.2 Automorphism}
+
+Claim 1: \(\operatorname{Aut} \Phi \cong \Gamma \rtimes \mathcal{W}\) where \(\Gamma = \{ \tau \in \operatorname{Aut} \Phi \mid \tau(\Delta)  \Delta \} \).
+
+Claim 2: \(\Gamma\) may be identified with automorphims of its dynkin diagram of \(\Phi\).
+
 \end{document}

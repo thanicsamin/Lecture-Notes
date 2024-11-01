@@ -3821,4 +3821,146 @@ If, for example \(L u = f\) in \(\Omega\) and \(u = h\) on \(\partial \Omega\) t
     \vert u \vert \leq \text{const}(f,h)
 \]
 
+\section*{Wednesday, 10/28/2024}
+
+[to be entered]
+
+\section*{Wednesday, 10/30/2024}
+
+Last time:
+
+We found first eigenfunction \(u_1\) solving
+
+\[
+    \inf_{\substack{u \in H^1_0(\Omega) \\ u \not\equiv 0}} \mathcal{R}(u) = \lambda_1
+\]
+
+Where \(\mathcal{R}(u) = \frac{\int \vert \nabla u \vert ^2}{\int u ^ 2}\) is the Rayleigh Quotient.
+
+\(- \Delta u_1 = \lambda_1 u_1\) in \(\Omega\) 
+
+\(u_1 = 0\) on \(\partial \Omega\) 
+
+Today: Higher eigenvalues and eigenfunctions.
+
+\[
+    \lambda_2 \coloneqq \inf_{\substack{u \in H^1_0(\Omega) \\ \int u^2 = 1 \\ \int_\Omega u u_1 = 0}} \mathcal{R}(u)
+\]
+
+In general, let \(\mathscr{A}_m \coloneqq \left\{ u \in H^1_0(\Omega) : \int_\Omega u^2 = 1, \int_\Omega u u_j = 0 \text{ for } j = 1, \cdots , n-1 \right\}\)
+
+Where \(u_j\) minimizes \(\inf_{u \in \mathscr{A}_j} R(u) \eqqcolon \lambda_j\).
+
+\(\mathscr{A}_j\) are also sobolev spaces. We can use the exact same proof via the Direct Method to produce a minimizer.
+
+Let \(\{ v_j \}\) be a miniizing sequence, meaning \(R(v_j) \to \lambda_2, \{ v_j \} \subset \mathscr{A}_2\), \(\lVert v_j \rVert _{H^1_0} < \lambda_2  + 1\).
+
+Take \(v_{j_k} \overset{H^1}{\rightharpoonup} u_2\)
+
+Then \(v_{j_k} \overset{L_2}{\to} u_2 \)
+
+By lower semicontinuity, since \(\liminf_{k \to \infty} \lVert v_{j_k} \rVert _{H^1_0} \geq \lVert u_2 \rVert _{H^1_0}\) 
+
+Thus \(\mathcal{R}(u_2) = \lambda_2\) 
+
+\(u_2\) minimizes \(\mathcal{R}(u)\) in \(\mathscr{A}_2\) 
+
+Take first variation:
+
+\[
+    0 = \eval{\frac{\mathrm{d}}{\mathrm{d}t} (u_2 + tv)}_{t=0} \implies \int_\Omega \nabla u_2 \cdot \nabla v \, \mathrm{d}x = \lambda_2 \int_{\Omega} u_2 v \,\mathrm{d}x 
+\]
+
+\(\forall v\in \mathscr{A}_2\).
+
+Let \(\widetilde{v}\) be any element of \(H^1_0(\Omega)\) not necessarily \(\mathscr{A}_2\). Consider:
+
+\[
+    \int_{\Omega} \nabla u_2 \cdot \nabla \widetilde{v} \,\mathrm{d}x 
+\]
+
+Write \(\widetilde{v} = c_1 u_1 + \hat{v}\) where \(c_1 = \int \widetilde{v} u_1 \, \mathrm{d}x, \hat{v} \in \mathscr{A}_2\).
+
+
+\[
+    \int_{\Omega} \nabla u_2 \cdot \nabla \widetilde{v}  \,\mathrm{d}x = c_1 \int_{\Omega} \nabla u_2 \cdot \nabla u_1 \,\mathrm{d}x + \int_{\Omega} \nabla u_2 \cdot \nabla \hat{v} \,\mathrm{d}x 
+\]
+
+\[
+    = - c_1 \int_{\Omega} u_2 \Delta u_1 \,\mathrm{d}x + \int_{\Omega} \nabla u_2 \cdot \nabla \hat{v} \,\mathrm{d}x 
+\]
+
+\[
+    = c_1 \lambda_1 \cancel{\int_{\Omega} u_2 u_1 \,\mathrm{d}x} + \int_{\Omega} \nabla u_2 \cdot \nabla \hat{v} \,\mathrm{d}x 
+\]
+
+\[
+    = \lambda_2 \int_{\Omega} u_2 \hat{v} \,\mathrm{d}x 
+\]
+
+\[
+    = \lambda_2 \int_{\Omega} u_2 \hat{v} \,\mathrm{d}x + \cancel{\lambda_2 \int_{\Omega} u_2 (c_1 u_1) \,\mathrm{d}x }
+\]
+
+\[
+    = \lambda_2 \int_{\Omega} u_2 \widetilde{v} \,\mathrm{d}x \, \forall \widetilde{v} \in H^1_0
+\]
+
+So the identity holds outside the subspace. Not only for \(\mathscr{A}_2\), but for \(\mathscr{A}_j\) by induction. So we can find \(\lambda_j\) for \(j = 1, 2, 3, \cdots\).
+
+By compact operator approach we know either finitely many \(\lambda_j\)s or else \(\lambda_j \to \infty\).
+
+We claim that eigenvalues cannot have infinite multiplicity.
+
+Note: we can have multiplicity \(> 1\). But it must be always finite. Why?
+
+\begin{theorem}
+    Multiplicity is finite.
+\end{theorem}
+
+\begin{proof}
+    Suppose false. Then we have \(\{ u_j \} \) so that \(\mathcal{R} (u_j) = \overline{\lambda}\), \(\int u_j^2 = 1, \int u_j u_k = 0, \int \vert \nabla u_j \vert ^ 2 = \overline{\lambda}\).
+
+    By Kondrachov-Rellich,
+
+    \[
+        u_{j_l} \overset{L^2}{\to} \overline{u}  
+    \]
+
+    for some \(\overline{u}\).
+
+    It cannot happen, since:
+
+    \[
+        \int \vert u_{j_l} - u_{j_{l^{\prime}}} \vert ^2 = \int u_{j_l} ^2 + u_{j_{l^{\prime}}} ^2 - 2 u_{j_l} u_{j_{l^{\prime}}} = 2
+    \]
+
+    so we have \(2 = 0\). Contradiction.
+
+\end{proof}
+
+\begin{theorem}
+    \(\{ u_j \}\) form an orthonormal basis for \(L^2(\Omega)\).
+\end{theorem}
+
+That is, \(\forall v \in L^2\), we have:
+
+\[
+    v - \sum_{j=1}^m c_j u_j \overset{L^2}{\to} 0
+\]
+
+as \(m \to \infty\) where \(c_j \coloneqq \int u_j v\)  
+
+In 1D, \(L(u) = -u^{\prime\prime}, u(0) = u(b) = 0\).
+
+We are looking at \(u^{\prime\prime} + \lambda u = 0\). So our functions are:
+
+\(u(x) = c_1 \cos (\sqrt{\lambda} x) + c_2 \sin (\sqrt{\lambda} x) = 0\).
+
+\(u(0) = 0 \implies c_1 = 0\).
+
+\(u(b) = 0 \implies \sin(\sqrt{\lambda} b) = 0\)
+
+So \(\sqrt{\lambda_j} b = \pi j \implies \lambda_j = \frac{\pi^2 j^2}{b^2}\) 
+
 \end{document}
