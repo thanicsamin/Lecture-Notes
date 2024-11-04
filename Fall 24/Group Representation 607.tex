@@ -5090,4 +5090,181 @@ such that \(\chi\) is a component of \(\mathbb{C} \otimes_\mathbb{R} V_0 \iff \c
     \(G\) odd order \(\implies\) all nontrivial irreducible representation have type \(U\).
 \end{exercise}
 
+\section*{Monday, 11/4/2024}
+
+\subsection*{\(K = \mathbb{R}\)}
+
+\(\mathbb{R} C_3 = \mathbb{R} \times \mathbb{C}\) 
+
+\(\mathbb{R} Q_8 = \mathbb{R}^4 \times \mathbb{H}\)
+
+\(\mathbb{C} C_3 = \underset{O}{\mathbb{C}_0} \times \underset{U}{\mathbb{C}_1} \times \underset{U}{\mathbb{C}_2} \) 
+
+\(\mathbb{C} Q_8 = \underset{O}{\mathbb{C}^4}  \times \underset{S_P}{M_2(\mathbb{C})}\)
+
+\(\chi\) type \(O\) if \(\chi\) is realizeable over \(\mathbb{R}\).
+
+\(\chi\) is type \(U\) if \(\chi \neq \overline{\chi}\) 
+
+\(\chi\) is type \(S_P\) if \(\chi =\overline{\chi} \) and \(\chi\) is not realizable \(/\mathbb{R}\).
+
+Let \(i = \mathbb{R} G \hookrightarrow \mathbb{C} G\).
+
+Let \(\chi_0\) be irreducible component of \(i^{\ast} x [=x \circ i]\).
+
+\(\chi\) type \(O \iff \chi = \chi_0\) 
+
+\(\chi\) type \(U \iff \chi_0 = \chi + \overline{\chi}\) 
+
+\(\chi\) type \(S_P \iff \chi_0 = 2 \chi\) 
+
+Goal: Propoistion 39:
+
+\[
+    \sum_{g\in G} \chi(g^2) = \begin{dcases}
+        \vert G \vert , &\text{ if $\chi$ has type } O ;\\
+        0, &\text{ if $\chi$ has type } U ;\\
+        - \vert G \vert, &\text{ if $\chi$ has type } S_P.
+    \end{dcases}
+\]
+
+Let \(V\) be finite dimensional vecto space over \(F\).
+
+A bilinear \(B: U \times V \to F\) is nonsingular if:
+
+\[
+    \operatorname{Ad} B : V \overset{\cong}{\to} V^{\ast}
+\]
+
+given by
+
+\[
+    x \mapsto (y \mapsto B(x,y))
+\]
+
+\(\iff \forall\) basis \(\{ e_i \} \) for \(V,\) 
+
+\[
+    \det (B(e_i, e_j)) \neq 0
+\]
+
+\(V\) is a \(FG\)-module, so is \(V^{\ast} = \operatorname{Hom}_F (V,F)\). Action is like:
+
+\[
+    (g \phi)(v) = \phi (g ^{-1} v)
+\]
+
+\(F =\mathbb{C}\) then,
+
+\[
+    \chi^{\ast} (g) = \overline{\chi(g)} = \chi(g ^{-1})
+\]
+
+\begin{theorem}
+    [31, FS]
+
+    \(\rho: G \to GL_\mathbb{C} V, \chi = \chi_{\rho } : G \to \mathbb{C}\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\chi = \overline{\chi} \iff \exists\) nonsingular \(G\)-invariant form \(B: V \times V \to \mathbb{C}\).
+        \item \(\chi\) realizable over \(\mathbb{R} \iff \exists\) nonsingular symmetric \(G\)-invariant \(B: V \times V \to \mathbb{C}\). 
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item \(\chi = \overline{\chi} (=\chi^{\ast}) \iff V \cong V^{\ast} \iff \exists G\)-invariant nonsingular bilinear \(V \times V \to \mathbb{C}\) 
+        \item \(\implies\): Let \(V\) real / \(\mathbb{R}\).
+        \(V = \mathbb{C} \otimes_\mathbb{R} V_0\) where \(V_0\) is \(\mathbb{R} G\) module.
+
+        \(\exists\) symmetric, positive definite \(B: V_0 \times V_0 \to \mathbb{R}\).
+        
+        \(\implies\) symmetric, positive definite, \(G\)-invariant \(B_1: V_0 \to V_0\):
+
+        \[
+            B_1(x,y) = \frac{1}{\vert G \vert} \sum_{g\in G} B(gx, gy) 
+        \]
+
+        Extension of scalars: Define \(B_\mathbb{C}: V \times V \to \mathbb{C}\) by:
+
+        \[
+            B_\mathbb{C} (z \otimes v, z^{\prime}, z^{\prime} \otimes v^{\prime}) = z z^{\prime} B_\mathbb{C} (v, v^{\prime})
+        \]
+
+        \(\impliedby:\) (outline)
+
+        Suppose we have nonsingular symmetric \(G\)-invariant \(B: V \times V \to \mathbb{C}\).
+
+        Step 1: Choose \(G\)-invariant inner product:
+
+        \[
+            \langle-,-\rangle : V \times V \to \mathbb{C}
+        \]
+
+        [average any inner product]
+
+        Step 2: Definea bijection \(\varphi: V \to V\):
+
+        \[
+            B(x,y) = \overline{\langle \varphi(x), y \rangle } 
+        \]
+
+        \(\varphi\) is conjugate linear. 
+
+        Step 3: \(\varphi^2: V \to V\) is \(\mathbb{C}\)-linear, hermitian w.r.t.\ \(\langle -,- \rangle \) and has positive eigenvales.
+        
+        \[
+            \langle \varphi^2 x, y \rangle = \langle x, \varphi^2 y \rangle
+        \]
+
+        Then \(\varphi^2\) has positive eigenvalues.
+
+        Step 4: Spectral theorem \(\implies \exists !\) square root \(v: V \to V\) of \(\varphi^2\).
+
+        \(v: V \to V\) of \(\varphi^2\).
+
+        \(v\) is \(\mathbb{C}\)-linear, and \(v^2 = \varphi^2\) where \(v\) is hermitian, positive eigenvalues.
+
+        Step 5: Let \(\sigma = \varphi \circ v ^{-1}\).
+
+        \(\sigma: V \to V\) is the conjugate linear with \(\sigma^2 = \operatorname{Id}\).
+
+        Step 6: \(\sigma\) eigenvalues are \(1\) and \(-1\). So we split into two eigenspaces: \(V = V_+ \oplus V_-\).
+
+        \(i V_+ = V_- \implies V = \mathbb{C} \otimes_\mathbb{R} V_+\) (since \(V_+ = V_-\)).
+
+    \end{enumerate} 
+\end{proof}
+
+\begin{corollary}
+    Let \(V\) be an irreducible \(\mathbb{C} G\)-module.
+
+    \begin{enumerate}[label=\alph*)]
+        \item If \(\nexists\) non-zero \(G\)-invariant bilinear form \(V \times V \to \mathbb{C}\) then \(V\) has type \(U\).
+        \item A non-zero \(G\)-invariant bilinear form \(V \times V \to G\) is unique up to a multiple.
+        
+        \(B\) symmetric \(\iff V\) has type \(O\).
+        
+        \(B\) alternating [\(B(x,y)=-B(y,x)\) ] \(\iff V\) has type \(S_P\).
+    \end{enumerate} 
+
+\end{corollary}
+
+\begin{proof}
+
+    Note that in irreducible, by Schur, nonsingular iff nonzero. This also gives us the uniqueness upto a multiple in ii.
+
+    a \(\iff\) i: Contrapositive.
+
+    ii: \(B(x,y) = \frac{B(x,y)+B(y,x)}{2} + \frac{B(x,y)-B(y,x)}{2} = B_+ + B_-\).
+
+    Uniqueness \(\implies B_+ = 0\) or \(B_- = 0\).
+
+    \(B\) symmetric \(\iff V\) type \(O\).
+
+    \(V\) type \(S_P \iff\) not type \(O\) on \(V \iff B\) alternates.
+
+
+\end{proof}
+
 \end{document}
