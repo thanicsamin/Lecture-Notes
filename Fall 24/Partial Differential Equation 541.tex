@@ -24,6 +24,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
 
 
 \newcommand{\Frac}{\operatorname{Frac}}
@@ -3962,5 +3963,178 @@ We are looking at \(u^{\prime\prime} + \lambda u = 0\). So our functions are:
 \(u(b) = 0 \implies \sin(\sqrt{\lambda} b) = 0\)
 
 So \(\sqrt{\lambda_j} b = \pi j \implies \lambda_j = \frac{\pi^2 j^2}{b^2}\) 
+
+\section*{Friday, 11/1/2024}
+
+\begin{proof}
+    First assume \(v\in H^1_0(\Omega)\) [this is dense in \(L^2(\Omega)\) so proving in here is enough].
+
+    Define for \(m \in \mathbb{Z}^+\),
+
+    \[
+        v_m = \sum_{j=1}^m c_j u_j
+    \]
+
+    Where \(c_j = \int_{\Omega} v u_j \,\mathrm{d}x \).
+
+    Let \(w_m \coloneqq v - v_m\).
+    
+    We want to show \(w_m \to 0\) in \(L^2\) as \(m\to \infty\).
+
+    For any \(k \leq m\):
+
+    \[
+        \langle w_m, u_k \rangle_{L^2} = \int_{\Omega} w_m u_k \,\mathrm{d}x = \underbrace{\int_{\Omega} v u_k \,\mathrm{d}x}_{=c_k} - \underbrace{\int_{\Omega} v_m u_k \,\mathrm{d}x}_{=c_k} = 0 
+    \]
+
+    Thus, \(w_m\) is admissible for
+
+    \[
+        \lambda_{m+1} = \inf_{\substack{\int u u_j = 0 \\ j = 1, \cdots , m \\ u  \not\equiv 0}} \frac{\int \vert \nabla u \vert ^2}{\int u^2}
+    \]
+
+    Thus,
+
+    \[
+        \lambda_{m+1} \leq \frac{\int_{\Omega} \vert \nabla w_m \vert ^2 \,\mathrm{d}x }{\int_{\Omega} w_m^2 \,\mathrm{d}x }
+    \]
+
+    Also for \(k\in \{ 1, \cdots , m \} \)
+
+    \[
+        \int_{\Omega} \nabla w_m \cdot\nabla u_k \,\mathrm{d}x \overset{IBP}{=} - \int_{\Omega} w_m \Delta u_k \,\mathrm{d}x = \lambda_k \int_{\Omega} w_m u_k \,\mathrm{d}x = 0
+    \]
+
+    \[
+        \implies \int_{\Omega} \nabla w_m \cdot \nabla u_k \,\mathrm{d}x = 0
+    \]
+
+    \[
+        \implies \int_{\Omega} \nabla w_m \cdot \nabla v_m \,\mathrm{d}x = 0
+    \]
+
+    Since \(\nabla v_m = \sum_{j=1}^m c_j \nabla u_j\).
+
+    \[
+        \int_{\Omega} \vert \nabla v \vert ^2 \,\mathrm{d}x = \int_{\Omega} \vert \nabla v_m + \nabla w_m \vert ^2 \,\mathrm{d}x =
+    \]
+    
+    \[
+        \int_{\Omega} \vert \nabla v_m \vert ^2 \,\mathrm{d}x + 2 \int_{\Omega} \nabla v_m \cdot \nabla w_m \,\mathrm{d}x + \int_{\Omega} \vert \nabla w_m \vert ^2 \,\mathrm{d}x 
+    \]
+
+    \[
+        \implies \int_{\Omega} \vert \nabla w_m \vert ^2 \,\mathrm{d}x \leq \int_{\Omega} \vert \nabla v \vert ^2 \,\mathrm{d}x 
+    \]
+
+    \[
+        \int_{\Omega} w_m^2 \,\mathrm{d}x \leq \frac{1}{\lambda_{m+1}} \int_{\Omega} \vert \nabla w_m \vert ^2 \,\mathrm{d}x \leq \frac{1}{\lambda_{m+1}} \int_{\Omega} \vert \nabla v \vert ^2 \,\mathrm{d}x 
+    \]
+
+    \(m_2 \to \infty \implies \lVert w_m \rVert _{L^2} \to 0\). 
+\end{proof}
+
+\begin{remark}
+    Can do the same procedure to the Neumann eigenvalues and eigenfunctions. Only difference:
+
+    \[
+        \lambda_1 = \inf_{\substack{u \in H^1(\Omega) \\ u \not \equiv 0}} \frac{\int_{\Omega} \vert \nabla u \vert ^ 2 \,\mathrm{d}x }{\int_{\Omega} u^2 \,\mathrm{d}x }
+    \]
+
+    \(\lambda_1 = 0, u_1 = 1\).
+
+    \(- \Delta u = \lambda_1 u\) in \(\Omega\).
+
+    \(\nabla u \cdot \nu = 0\) on \(\partial \Omega\).
+
+    \[
+        \lambda_2 = \inf_{\substack{u \in H^1(\Omega) \\ \int_{\Omega} u \cdot 1 \,\mathrm{d}x = 0}} \mathcal{R}(u)
+    \]
+
+
+\end{remark}
+
+\begin{proposition}
+    Let \(\lambda_1(\Omega) \coloneqq \inf_{\substack{u \in H^1_0(\Omega) \\ u \not\equiv 0}} \mathcal{R}(u)\).
+
+    Then if \(\Omega_1 \subset \Omega_2\) both open one has \(\lambda_1(\Omega_2) \leq \lambda_2(\Omega_1)\).
+\end{proposition}
+
+\begin{proof}
+    Let \(u\) be any admissible function for \(\lambda_1(\Omega_1)\). \(u\in H^1_0(\Omega)\) \(u\not\equiv 0\) Define completion for \(\lambda_1(\Omega_2)\) via:
+
+    \[
+        \widetilde{u} (x) = \begin{dcases}
+            u, &\text{ if } x\in \Omega_1 ;\\
+            0, &\text{ if } x\in \Omega_2 \setminus \Omega_1.
+        \end{dcases}
+    \]
+
+    Then \(\widetilde{u} \in H^1_0\). But \(\mathcal{R}_{\Omega_2}(\widetilde{u}) = \mathcal{R}_{\Omega_1}(u)\).
+    
+    \(\implies \lambda_1(\Omega_1) \geq \lambda_1(\Omega_2)\).
+
+\end{proof}
+
+\subsection*{Example of 2D eigenfunction}
+
+Take \(\Omega = (0,1) \times (0,1)\).
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) -- (1,0);
+        \draw (0,0) -- (0,1);
+        \draw (1,0) -- (1,1);
+        \draw (0,1) -- (1,1);
+    \end{tikzpicture}
+\end{center}
+
+\(- \Delta u = \lambda u \) in \(\Omega\).
+
+\(u = 0\) on \(\partial \Omega\) 
+
+We use separation of variables.
+
+Seek \(u(x,y) = F(x)G(y)\). Substitute into the PDE.
+
+\[
+    - F^{\prime\prime} (x) G(y) - F(x) G^{\prime\prime}(y) = \lambda F(x) G(y)
+\]
+
+\[
+    -\frac{F^{\prime\prime}(x)}{F(x)} = \frac{G^{\prime\prime}(y)}{G(y)} + \lambda \equiv \mu
+\]
+
+\[
+    F^{\prime\prime} (x) + \mu F(x) = 0
+\]
+
+\[
+    G^{\prime\prime}(y) + (\lambda - \mu)G(y) = 0
+\]
+
+Then \(F(0)=0=F(1)\) so \(F(x) = \sin(\sqrt{\mu} x)\).
+
+\(F(1) = 0 \implies \sqrt{\mu} = k \pi \implies \mu = k^2 \pi ^2\) 
+
+For the second case, if \(\lambda - \mu\) is negative we have exponential but we also need \(G(0)=G(1)=0\) which is not possible. So it is not negative.
+
+\[
+    G(y) = \sin(\sqrt{\lambda - \mu}y)
+\]
+
+\(G(1) = 0\implies \sqrt{\lambda - \mu} = l \pi\)
+
+\(\implies \lambda = \mu + l^2 \pi^2\).
+
+\[
+    \implies \lambda_{k,l} = (k^2 + l^2) \pi^2
+\]
+
+where \(k,l = 1,2,3,\cdots\).
+
+Smallest eigenvalue is \(\lambda_{1,1} = 2\pi^2\). Multiplicity is \(1\).
+
+But for higher ones, we can have multiplicity \(>1\). \(\lambda_{1,2} = \lambda_{2,1}\) with different eigenfunctions.
 
 \end{document}
