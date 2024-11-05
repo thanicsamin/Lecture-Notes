@@ -24,6 +24,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
 \newtheorem*{remark}{Remark}
 
 
@@ -4136,5 +4137,156 @@ where \(k,l = 1,2,3,\cdots\).
 Smallest eigenvalue is \(\lambda_{1,1} = 2\pi^2\). Multiplicity is \(1\).
 
 But for higher ones, we can have multiplicity \(>1\). \(\lambda_{1,2} = \lambda_{2,1}\) with different eigenfunctions.
+
+\section*{Monday, 11/4/2024}
+
+Recall that \(\lambda_1 \coloneqq \inf_{u \in H^1_0(\Omega), u\not\equiv 0} \mathcal{R} (u)\) for Dirichlet Boundary Condition.
+
+For Neumann, we minimize just over \(H^1\).
+
+Recall from example of \(\Omega = (0,1) \times (0,1)\):
+
+\[
+    \lambda_{k,l} = \pi^2(k^2 + l^2)
+\]
+
+eigenfunctions were \(u_{k,l}(x,y) = \sin(\pi k x) \sin(\pi l y)\) 
+
+Then \(\lambda_{1,2} = \lambda_{2,1}\) multiplicity \(2\) eigenvalue.
+
+\begin{proposition}
+    Any first Dirichlet eigenfunction does not vanish in \(\Omega\).
+\end{proposition}
+
+\begin{proof}
+    Let \(u_1\) be any first eigenfunction. Then, \(\lambda_1 = \mathcal{R} (u_1)\).
+
+    \(\vert u_1 \vert \in H^1_0\).
+
+    \(R(\vert u_1 \vert) = \frac{\int_{\Omega} \vert \nabla \vert u_1 \vert ^2 \vert  \,\mathrm{d}x }{\int_{\Omega} \vert u_1 \vert ^2 \,\mathrm{d}x } = \mathcal{R}(u_1) = \lambda_1\).
+    
+    Thus, \(\vert u_1 \vert \) is also a first eigenfunction.
+
+    Apply  sobolev elliptic regularity: \(\vert u_1 \vert \) is smooth.
+
+    Then, \(- \Delta (\vert u_1 \vert) = \lambda_1 \vert u_1 \vert\), \(\vert u_1 \vert = 0\) on \(\partial \Omega\).
+    
+    Then \(\Delta (\vert u_1 \vert) \leq 0\).
+    
+    This is a \underline{superharmonic} function.
+
+    Strong Minimum Principle \(\implies\) \(\vert u_1 \vert\) cannot achieve minimum inside \(\Omega\).
+
+    Thus, \(u_1\) has no interior zeroes.
+\end{proof}
+
+\begin{corollary}
+    Every eigenfunction for \(\lambda_k\) with \(k > 1\) must vanish somewhere
+\end{corollary}
+
+\begin{proposition}
+    \(\lambda_1\) is always simple (multiplicity 1).
+\end{proposition}
+
+\begin{proof}
+    Suppose \(u_1\) and \(\widetilde{u}_1\) are linearly independent first eigenfunctions. WLOG, \(u_1 > 0, \widetilde{u}_1 > 0\) in \(\Omega\) and normalized so that \(\int_{\Omega} u_1 \,\mathrm{d}x = \int_{\Omega} \widetilde{u}_1 \,\mathrm{d}x = 1\).
+
+    Let \(w = u_1 - \widetilde{u}_1\). Then \(\int_{\Omega} w \,\mathrm{d}x = 0\).
+
+    \(- \Delta w = \lambda_1 w\) in \(\Omega\) and \(w = 0\) in \(\partial \Omega\).
+
+    But \(\nexists\) non-zero first eigenfunction that vanishes inside \(\Omega\). Contradiction.  
+
+\end{proof}
+
+\subsection*{Schauder Theory}
+
+Ref: Gilberg-Trudinger, J.Jost
+
+H\"older spaces:
+
+\begin{definition}
+    [H\"older Quotient] for \(\alpha \in (0,1)\):
+
+    \[
+        [u]_{C^\alpha (\Omega)} \coloneqq \sup_{\substack{x,y\in \Omega \\ x\neq y}} \frac{\vert u(x) - u(y) \vert}{\vert x-y \vert ^\alpha}
+    \]
+\end{definition}
+
+This is not a norm. We define a norm by:
+
+\[
+    \vert u \vert _{C^{0,\alpha}} \coloneqq \sup_\Omega \vert u(x) \vert + [u]_{C^\alpha(x)}
+\]
+
+\[
+    \vert u \vert _{C^{k,\alpha}(\Omega)} \coloneqq \sum_{\vert \beta \vert \leq k} \sup_{\Omega} \vert D^\beta u(x) \vert + \sum_{\vert \beta \vert = k} [D^\beta u]_{C^{\alpha}}
+\]
+
+There are 2 sets of estimates in Schauder theory:
+
+\begin{enumerate}[label=\arabic*)]
+    \item Very precise H\"older estimates for \(\Delta u = f\) when \(f\in C^\alpha\).
+    \item Use these to obtain similar estimates for \(L u = f\) where \(L =\) general elliptic operator.
+\end{enumerate} 
+
+Recall:
+
+Fundamental solution to Laplace's equation in \(n\) dim:
+
+\[
+    K(x) \coloneqq \begin{dcases}
+        \frac{1}{n(2-n) \alpha_n} \vert x \vert ^{2-n}, &\text{ if } n > 2 ;\\
+        \frac{1}{2\pi}\ln \vert x \vert , &\text{ if } n = 2 .
+    \end{dcases}
+\]
+
+\(\alpha_n =\) volume of unit ball in \(\mathbb{R}^n\).
+
+[Evans had negative]
+
+\(K(x)\) is just a radial solution to \(\Delta u = 0\).
+
+\(K\) is \underline{singular} at \(x=0\).
+
+\underline{Newtonian Potential} of a function \(f: \Omega \to \mathbb{R}\) given by:
+
+\[
+    w(x) \coloneqq \int_{\Omega} K(x-y) f(y) \,\mathrm{d}y 
+\]
+
+For nice enough \(f\) we can `differentiate under the integral sign'.
+
+Ignoring constants, \(\vert K(x) \vert \leq \vert x \vert ^{2-n}\) or \(\vert K(x) \vert \leq \ln \vert x \vert \) 
+
+\[
+    \left\vert \frac{\partial K}{\partial x_i}  \right\vert = \left\vert \vert x \vert ^{1-n} \frac{x_i}{\vert x \vert } \right\vert \leq \vert x \vert ^{1-n}
+\]
+
+\[
+    \left\vert \frac{\partial ^2 K}{\partial x_i \partial x_j} \right\vert = \left\vert \vert x \vert ^{-n}\delta_{ij} + x_i(-n) \vert x \vert ^{-n-1} \frac{x_i}{\vert x \vert } \right\vert = \left\vert \frac{\delta_{ij}}{\vert x \vert ^ n} - \frac{n x_i x_j}{\vert x \vert ^{n+2}} \right\vert \leq \vert x \vert ^{-n}
+\]
+
+For all \(n\) \(K(x)\) is locally integrable.
+
+\[
+    \int_{B(0,1)} \vert x \vert^{2-n}\, \mathrm{d}x = \int_{0}^{1} \int_{\partial B(0,r)} r^{2-n} \,\mathrm{d}S  \,\mathrm{d}r = \int_{0}^{1} r^{2-n} \int_{\partial B(0,r)} 1 \,\mathrm{d}S  \,\mathrm{d}r 
+\]
+
+\[
+    = \int_{0}^{1} r^{2-n} n \alpha_n r^{n-1}  \,\mathrm{d}r = \int_{0}^{1} n \alpha_n r \,\mathrm{d}r < \infty
+\]
+
+Also, \(\frac{\partial K}{\partial x_i} \) is locally integrable.
+
+\[
+    \int_{B(0,1)} \left\vert \frac{\partial K}{\partial x_i}  \right\vert \,\mathrm{d}x \sim n \alpha_n \int_{0}^{1} r^{1-n} r^{n-1} \,\mathrm{d}r < \infty 
+\]
+
+However,
+
+\[
+    \int_{B(0,1)} \left\vert \frac{\partial ^2 K}{\partial x_i \partial x_j} \right\vert  \,\mathrm{d}x \sim \int_{0}^{1} r^{-n} r^{n-1} \,\mathrm{d}r \sim \text{ logarithmic singularity} 
+\]
 
 \end{document}
