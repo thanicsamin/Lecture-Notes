@@ -4227,4 +4227,177 @@ The following follows from Proposition 9.10 and Theorem 9.14 given a non-archime
     \]
 \end{example}
 
+\chapter{Residue Class Degree and Ramification Index}
+
+\section*{Tuesday, 11/5/2024}
+
+In this chapter: \(E / K\) will be a field extension, and \(\vert \cdot \vert \) a non-archimedean absolute value on \(E\).
+
+\(\mathcal{O}_K =\) valuation of \(K\) w.r.t.\ \(\vert \cdot \vert \supset P_K =\) valuation ideal.
+
+\(\mathcal{O}_E =\) valuation of \(E\) w.r.t.\ \(\vert \cdot \vert \supset P_E =\) valuation ideal.
+
+\(\overline{K} =\) residue field of \(K = \mathcal{O}_K / P_K, \overline{E} = \mathcal{O}_E / P_E\).
+
+The canonical injection \(\overline{K} \to \overline{E}\) is called the \underline{residue field extension}.
+
+\begin{definition}
+    \(f = f(E \mid K) \coloneqq [\overline{E} : \overline{K} ]\), called the \underline{residue class degree}.
+
+    \(e = e(E \mid K) \coloneqq [\vert E^\times  \vert : \vert K^\times \vert]\), called the \underline{ramification index}.
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item For \(K \subset F \subset E\) we have \(\overline{K} \subset \overline{F} \subset \overline{E} \implies f(E \mid K) = f(E \mid F) f(F \mid K)\).
+        
+        \(\vert K^\times \vert \subset \vert F^\times \vert \subset \vert E^\times \vert \implies e(E \mid K) = e(E \mid F) e(F \mid K)\).
+
+        \item \(E^\wedge = (E, \vert \cdot \vert)^\wedge \overset{\text{exercise}}{\implies} \overline{E} \overset{\cong}{\to} \overline{E^\wedge}\) and \(\vert E^\times \vert \overset{9.7}{=} \vert (E^\wedge)^\times \vert \).  
+        
+        \(\implies f(E \mid K) = f(E^\wedge \mid K^\wedge)\) and \(e(E \mid K) = e(E^\wedge \mid K^\wedge)\).
+
+        \item \(E / K\) finite \(\overset{9.16}{\implies} [E^\wedge : K^\wedge] \leq [E:K]\).
+        
+        \([E^\wedge : K^\wedge] \eqqcolon\) local degree of \(E / K\) w.r.t.\ \(\vert \cdot \vert\).
+    \end{enumerate} 
+\end{remark}
+
+\begin{lemma}
+    If \([E:K] = n < \infty\) then \(e(E \mid K) f(E \mid K) \leq n\). 
+\end{lemma}
+
+\begin{proof}
+    Let \(\alpha_1, \cdots , \alpha_r \in \mathcal{O}_E\) be such that \(\overline{\alpha}_1, \cdots , \overline{\alpha} _r (\overline{\alpha}_i \coloneqq \alpha_i + P_E \in \overline{E})\) are linearly independent over \(\overline{K}\).
+
+    \underline{Claim}: For all \(a_1, \cdots , a_r \in K : \vert a_1 \alpha_1 + \cdots + a_r \alpha_r \vert = \max \{ \vert a_i \vert \}\)
+    
+    \underline{Proof}: WLOG we may assume \(\max \{ \vert a_i \vert  \} = 1\).
+
+    Strong Triangle inequality \(\implies \left\vert \sum_{i} a_i \alpha_i \right\vert \leq \max \{ \vert a_i \alpha_i \vert \} \leq 1 = \max \{ \vert a_i \vert \} \).
+
+    Assume by contradiction that \(\left\vert \sum_{i} a_i \alpha_i \right\vert < 1\). Then, \(\overline{0} = 0_{\overline{E}} = \overline{\sum_{i} a_i \alpha_i} = \sum_{i} \overline{a_i} \overline{\alpha_i}\), linear independence \(\implies \vert a_i \vert = 0 \iff a_i \in P_K\,\forall i\). Contradition!
+
+    Now choose \(\pi_1, \cdots , \pi_s \in E^\times\) s.t. \(\forall i\neq j: \vert \pi_i \vert \vert K^\times \vert \neq \vert \pi_j \vert \vert K^\times \vert \) (different elements in \(\vert E^\times \vert / \vert K^\times \vert \)).
+
+    Suppose \(0 = \sum_{\substack{1 \leq i \leq r \\ 1 \leq j \leq s}} a_{ij} \alpha_i \pi_j\) with \(a_{ij} \in K\). Set \(b_j = \sum_{i=1}^r a_{ij} \alpha_i \implies 0 \overset{(1)}{=} \sum_{j=1}^s b_j \pi_j\).
+    
+    WLOG: \(\vert b_1 \pi_1 \vert = \max \{ \vert b_j \pi_j \vert \mid 1 \leq j \leq s \} > 0\).
+
+    \((1) \implies \vert b_1 \pi_1 \vert = \left\vert \sum_{j=2}^s b_j \pi_j \right\vert \).
+
+    \(\implies \exists 2 \leq j \leq s\) such that \(\vert b_1 \pi_1 \vert = \vert b_j \pi_j \vert\).
+
+    \(\implies \vert \pi_1 \vert \overset{(2)}{=} \left\vert \frac{b_j}{b_1} \right\vert \vert \pi_j \vert \) 
+
+    As we've seen before: \(\vert b_j \vert = \max \{ \vert a_{ij} \vert \mid 1 \leq i \leq r \} \in \vert K^\times \vert \).
+
+    (2) contradicts the previous assumption on the \(\vert \pi_j \vert \).
+
+    \(\implies r \cdot s \leq n \implies e\cdot f \leq n\).
+
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item If \([E:K] = n <\infty\) and \(\vert \cdot \vert_1, \cdots , \vert \cdot \vert_r\) are pairwise distinct extensions of a given absolute value \(\vert \cdot \vert\) on \(K\). Then,
+        
+        \[
+            \sum_{i=1}^r e(E \mid K, \vert \cdot \vert_i) f(E \mid K, \vert \cdot \vert_i) \overset{\text{Previous Remark}}{\leq} \sum_{i=1}^r e((E,\vert \cdot \vert)^\wedge / K^\wedge) f((E,\vert \cdot \vert_i)^\wedge / K^\wedge).
+        \]
+
+        \[
+            \overset{10.1}{\leq} \sum_{i=1}^r [(E,\vert \cdot \vert_i)^\wedge : K^\wedge] \overset{9.16}{\leq} [E:K] = n.
+        \]
+
+        \item Even if \(K\) is complete and \(E / K\) is finite, it can happen that \(e(E \mid K) f(E \mid K) < [E:K]\).
+        
+        However, this cannot happen if \(\vert \cdot \vert\) is a discrete absolute value.
+
+    \end{enumerate} 
+\end{remark}
+
+\begin{definition}
+    An absolute value \(\vert \cdot \vert\) on a field \(K\) is called \underline{discrete}, if \(\vert K^\times \vert\) is a non-trivial discrete subgroup of \(\mathbb{R}_{>0}\).
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(\vert \cdot \vert\) is discrete then \(\vert \cdot \vert \) is non-archimedean (otherwise \(\mathbb{Q} \hookrightarrow K\) and \(\eval{\vert \cdot \vert }_{\mathbb{Q}}\) is non-trivial and archimedean \(\implies \eval{\vert \cdot \vert}_{\mathbb{Q}}\) is equivalent to \(\vert \cdot \vert_\infty\) whose value group is dense.)
+        \item Some authors allow the trivial absolute value to be discrete.
+        \item \(\vert \cdot \vert\) is discrete \(\implies \exists c \in \mathbb{R}_{>1}\) such that \(\vert K^\times \vert = c^\mathbb{Z}\).
+        
+        Set \(w(x) = - \log_c(\vert x \vert) \implies \vert x \vert = c^{-w(x)}\) and \(w\) is a \underline{normalized valuation} \(K \twoheadrightarrow \mathbb{Z} \cup \{ \infty \} \).
+
+        Any \(\pi \in K\) with w\((\pi) = 1 = C ^{-1}\) is called a \underline{prime element} or f\underline{uniformizer} of \(K\) w.r.t.\ \(\vert \cdot \vert\).
+
+        Then, \(\forall x\in K^\times \exists ! n\in \mathbb{Z} \exists !v \in K^x : (\vert u \vert = 1 \text{ and } n=w(x) )\).
+
+        \((\vert u \vert = 1)\) and \(x = \pi^n \cdot v\).
+
+        \item If \(E / K\) is an extension and \(\vert \cdot \vert\) is an absolute value on \(E\) with \(e(E / K) < \infty\),
+        \[
+            \vert \cdot \vert \text{ is discrete} \iff \eval{\vert \cdot \vert}_K \text{ is discrete}. 
+        \]
+
+\end{enumerate} 
+\end{remark}
+
+\begin{theorem}
+    Suppose that \(K\) is complete w.r.t.\ a discrete absolute value \(\vert \cdot \vert\), and let \(w\) be the associated normalized variation. Let \(S \subset \mathcal{O}_K\) be any fixed set of representatives of \(\overline{K} = \mathcal{O}_K / P_K\). Asume \(\mathcal{O} \in S\).
+
+    Let \(\pi\) be a uniformizer of \(K\). Then every \(x\in K^\times\) can be written as \(x = \sum_{i=w(x)}^{\infty} a_i\pi^i\) with uniquely determined \(a_i = \mathcal{S}\) and \(w(x) \coloneqq \min \{ i\in \mathbb{Z} \mid a_i \neq 0 \ \} \).  
+\end{theorem}
+
+\begin{lemma}
+    Let \(E / K\) and \(\vert \cdot \vert\) be as above. Let \(\pi \in K\) be such that \(0 < \vert \pi \vert < 1\), and assume \(K\) is complete w.r.t.\ \(\vert \cdot \vert\). If \(\beta_1, \cdots , \beta_r \in \mathcal{O}_E\) are represantatives of a generating set of \(\mathcal{O}_E / \pi\mathcal{O} _E\) as a \(\mathcal{O}_K / \pi \mathcal{O}_K\)-module. Then \(\beta_1, \cdots, \beta_r\) generate \(\\mathcal{O}_E\) over \(\mathcal{O}_K\).
+\end{lemma}
+
+\begin{proof}
+    Let \(M = \sum_{i=1}^r \mathcal{O}_K \beta_i \subset \mathcal{O}_E\). By assumption, \(\mathcal{O}_E \overset{(1)}{=} M + \pi \mathcal{O}_E\).
+
+    For any \(x\in \mathcal{O}_E\) we get from (1) sequences \((x_i^{(n)})^r_{i=1}\) in \(\mathcal{O}_K\) such that:
+
+    \[
+        \forall n \geq 1 : \sum_{i=1}^r x_i^{(n)} \beta_i \equiv x \mod{\pi^n}
+    \]
+
+    \[
+        x_i^{(n+1)} \equiv x_i^{(n)} \mod{\pi^{n+1}\mathcal{O}_K}
+    \]
+
+    \(\implies x_i = \lim_{n \to \infty} x_i^{(n)}\) exists in \(K\) [and is an element of \(\mathcal{O}_K\)], and \(\sum_{i=1}^r x_i \beta_i = x\) 
+\end{proof}
+
+\begin{theorem}
+    Let \(E / K\) and \(\vert \cdot \vert\) be as before, and \([E:K] < \infty\), and \(\vert \cdot \vert\) is discrete, and \(K\) is complete w.r.t.\ \(\vert \cdot \vert\). Then,
+
+    \[
+        e(E \mid K) f(E \mid K) = [E:K]
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let \(\pi\) be a uniformizer of \(K\) and \(\omega\) a uniformizer of \(E\). Then \(\exists m \geq 1: \vert \pi \vert = \vert \omega \vert ^m \implies \vert E^\times  \vert = \vert \omega \vert ^{\mathbb{Z}}\).
+
+    \(\implies \vert K^\times \vert = \vert \pi \vert ^ \mathbb{Z} = \vert \omega \vert^{m\mathbb{Z}} \subset \vert \omega \vert ^ \mathbb{Z}  = \vert E^\times \vert \).
+
+    \(\implies m = e(E \mid K) = e \implies \pi =u\cdot \omega^m\) for some \(u \in E, \vert u \vert = 1\).
+
+    Let \(\alpha_i, \cdots , \alpha_f \in \mathcal{O}_E\) be representatives of a basis of \(\overline{E}\) over \(\overline{K}\).
+
+    \underline{Claim}:
+
+    \[
+        M = \sum_{\substack{1 \leq i \leq f \\ 0 \leq j < e}} \mathcal{O}_K \alpha_i \omega^j = \mathcal{O}_E 
+    \]
+
+    \underline{Proof of Claim}: Let \(N  \sum_{i=1}^f \mathcal{O}_K \alpha_i\).
+    
+    The composition \(N \hookrightarrow \mathcal{O}_E \twoheadrightarrow \overline{E} = \mathcal{O}_E / \omega \mathcal{O}_E\) is \underline{surjective}.
+
+    \(\implies \mathcal{O}_E = N + \omega \mathcal{O}_E = N + \omega(N + \omega \mathcal{O}_E) \overset{\text{repeat}}{=} N + \omega N + \cdots + \omega^{e-1} N + \omega^e \mathcal{O}_E\) 
+\end{proof}
+
+
 \end{document}
