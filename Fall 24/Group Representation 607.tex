@@ -5267,4 +5267,175 @@ given by
 
 \end{proof}
 
+\section*{Wednesday, 11/6/2024}
+
+\begin{proposition}
+    [39] Let \(\chi = \chi_V\) be irreducible \(/ \mathbb{C} G\).
+
+    \[
+        \sum_{g\in G} \chi(g^2) = \begin{dcases}
+            \vert G \vert & \text{ if \(\chi\) has type } O\\
+            0 & \text{ if \(\chi\) has type } U\\
+            - \vert G \vert & \text{ if \(\chi\) has type } S_P
+        \end{dcases}
+    \]
+\end{proposition}
+
+\begin{proof}
+    Use sym and alt squares 1.6, 2.1, 13.2.
+
+    \[
+        sw: V \otimes_\mathbb{C} V \to V \otimes_\mathbb{C} V
+    \]
+
+    \[
+        a \otimes b \mapsto b \otimes a
+    \]
+
+    \[
+        sw^2 = \operatorname{id}
+    \]
+
+    We know that \(V \otimes_\mathbb{C} V = S(V) \oplus \Lambda(V) = V_\sigma \oplus V_a\) 
+
+    \(S(V)\) is symmetric, \(+1\) eigenspace containing \(a \otimes a\) and \(a \otimes b + b \otimes a\).
+
+    \(\Lambda(V)\) is altrnating, \(-1\) eigenspae containing \(a \otimes b - b \otimes a\).
+
+    Then \((V_\sigma)^{\ast} = G\)-invariant symmetric \(V \times V \to \mathbb{C}\).
+
+    \((V_a)^{\ast} = G\)-invariant alternating \(V \times V \to \mathbb{C}\).
+
+
+    \[
+        \begin{array}{cccc}
+            \text{type} &  & \dim_\mathbb{C} \operatorname{Hom}_{\mathbb{C} G}(\mathbb{C} , V_\sigma ^{\ast}) &  \dim_\mathbb{C} \operatorname{Hom}_{\mathbb{C} G}(\mathbb{C} , V_a^{\ast}) \\
+            O & \overset{Thm 35}{\iff} & 1 &  0 \\
+            U &  & 0 &  0 \\
+            S_P & & 0 & 1
+        \end{array} \,(\ast)
+    \]
+
+    \[
+        \dim_\mathbb{C} \operatorname{Hom}_{\mathbb{C} G} (\mathbb{C}, V_\sigma^{\ast}) = \langle 1, \overline{\chi}_\sigma  \rangle = \frac{1}{\vert G \vert} \sum_{g\in G} \overline{\chi}_\sigma (g ^{-1}) = \frac{1}{\vert G \vert} \sum_{g\in G} \chi_\sigma (g)  
+    \]
+
+    \[
+        \dim_\mathbb{C} \operatorname{Hom}_{\mathbb{C} G}(\mathbb{C}, V_a^{\ast}) = \frac{1}{\vert G \vert} \sum_{g\in G} \chi_a(g)
+    \]
+
+\end{proof}
+
+\begin{proposition}
+    [3] \(\chi_\sigma (g) = \frac{\chi(g)^2 + \chi(g^2)}{2}, \chi_a(g) = \frac{\chi(g)^2 - \chi(g^2)}{2}\). 
+\end{proposition}
+
+\begin{proof}
+    \(\rho_v(g)\) is diagonalizable with eigenvalue \(\lambda_i \implies \chi_v(g) = \sum_{i} \lambda_i\) with eigenvector \(e_i\).
+
+    \(V_\sigma\) has eigenvectors \(e_i \otimes e_j + e_j \otimes e_i \, i \leq j\).
+
+    \(V_a\) has eigenvectors \(e_i \otimes e_j - e_j \otimes e_i\, i < j\).
+
+    \[
+        \chi_\sigma (g) = \sum_{i \leq j} \lambda_i \lambda_j = \frac{\left( \sum_{i} \lambda_i \right)^2 + \sum_{i} \lambda_i^{2}}{2} = \frac{\chi(g)^2 + \chi(g^2)}{2}
+    \]
+
+    \[
+        \chi_a(g) = \frac{\chi(g)^2 - \chi(g^2)}{2}
+    \]
+
+    Proposition 3 + Table \((\ast)\) + \((\ast \ast)\) implies Proposition 39.
+
+    \[
+        \chi_{V \otimes V}(g) = \chi^2(g) = \chi_\sigma (g) + \chi_a(g)
+    \]
+
+\end{proof}
+
+\subsection*{Research Project?}
+
+Consider ring \(R\) and nonzero divisor \(\Delta = \Delta_R = \left\{ r \in R \mid \forall r^{\prime} \in R - 0, \substack{r r^{\prime} \neq 0 \\ r^{\prime} r \neq 0} \right\} \).
+
+\begin{definition}
+    [Ore] A left classical ring of quotient (q.r. = quotient ring) of \(R\) is a ring homomorphism \(i:R \to A\):
+
+    \(\forall a\in A, \exists r\in R, \exists \delta \in \Delta\) such that \(a = i(\delta)^{-1} i(r)\).
+
+    We write:
+
+    \[
+        A = \Delta ^{-1} R
+    \]
+\end{definition}
+
+eg if \(R\) is a commutative domain then \(\Delta ^{-1} R = \operatorname{Frac}(R)\).
+
+Question: What rings have q.r.?
+
+Question: For what group \(G\) does \(\mathbb{Z} G\) have a q.r.?
+
+\(R\) commutative ring \(\implies \exists\) q.r. by localization.
+
+\(G\) finite \(\implies \mathbb{Z} G\) has quotient ring, \(\Delta ^{-1} \mathbb{Z} G = \mathbb{Q} G\).
+
+We don't know a lot about infinite groups.
+
+\(\mathbb{F}_2\langle x,y \rangle\) non-commutative polynmials and \(\mathbb{Z} [F(2)]\) have no q.r.s.
+
+\begin{proposition}
+    \[
+        R \text{ has q.r.} \iff \text{``Ore Conditions hold''}:
+    \]
+
+    \(\forall r\in R, \forall \delta \in \Delta,\)
+    
+    \[
+        \Delta r \cap R \delta \neq \varnothing
+    \]
+\end{proposition}
+
+\begin{definition}
+    \(G\) is \underline{virtually abelian} if \(\exists \):
+
+    \[
+        1 \to \underset{abel}{A} \to G \to \underset{finite}{F} \to 1 
+    \]
+
+    \(G\) virtually abelian \(\implies \) q.r. for \(G\).
+
+    \[
+        \Delta_{\mathbb{Z} G}^{-1} G = \left( \Delta_{\mathbb{Z} A}^{-1} \mathbb{Z} A \right) \otimes_{\mathbb{Z} A} \mathbb{Z} F
+    \]
+\end{definition}
+
+Now assume \(A = \mathbb{Z}^n\).
+
+\[
+    1 \to \mathbb{Z}^n \to G \to \underset{finite}{F} \to 1
+\]
+
+\begin{remark}
+    \(G\) is classified by \(2\) invariants.
+
+    \(F \to GL_n(\mathbb{Z})\)
+
+    and an extension class \(\in H^2(F;\mathbb{Z}^n)\).
+\end{remark}
+
+\begin{theorem}
+    \(\Delta ^{-1} \mathbb{Z} G\) is \underline{semisimple}.
+\end{theorem}
+
+\[
+    \Delta ^{-1} \mathbb{Z} G \cong M_{d_i}(D_i)
+\]
+
+Research project: Redo Parts I and II of Serre. \(h = ?\) divisibility for \(d_i\)? types? Splitting fields? \(\mathbb{Q}(\zeta_{\vert F \vert}) \otimes_\mathbb{Z} \Delta ^{-1} \mathbb{Z} G \overset{?}{=} \prod M_j\) (fields)? induction theorem?
+
+Warm up: \(G = \mathbb{Z}^n \rtimes S_n\).
+
+Q: \(\Delta ^{-1} \mathbb{Z} G = ??\) 
+
+
 \end{document}
