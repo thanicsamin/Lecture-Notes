@@ -4289,4 +4289,231 @@ However,
     \int_{B(0,1)} \left\vert \frac{\partial ^2 K}{\partial x_i \partial x_j} \right\vert  \,\mathrm{d}x \sim \int_{0}^{1} r^{-n} r^{n-1} \,\mathrm{d}r \sim \text{ logarithmic singularity} 
 \]
 
+\section*{Wednesday, 11/6/2024}
+
+We have the following basic estimates:
+
+\[
+    \vert K(x) \vert \leq C \vert x \vert ^{2-n} \, (n > 2)
+\]
+
+\[
+    \vert K_{x_i}(x) \vert \leq C \vert x \vert ^{1-n}
+\]
+
+\[
+    \vert K_{x_i x_j} \vert \leq C \vert x \vert ^{-n}
+\]
+
+\underline{Newtonioan Potential} of function \(f: \Omega \to \mathbb{R}\) is given by:
+
+\[
+    w(x) \coloneqq \int_{\Omega} K(x-y)f(y) \,\mathrm{d}x 
+\]
+
+\begin{theorem}
+    [A] Assume \(f\) integrable and bounded.
+
+    Then \(w\) is \(C^1\) on \(\Omega\) and:
+
+    \[
+        w_{x_i} (x) = \int_{\Omega} K_{x_i} (x-y) f(y) \,\mathrm{d}y 
+    \]
+\end{theorem}
+
+\begin{proof}
+    Let \(\eta\) be \(C^1\) so that \(\eta(x) = 0\) for \(0 \leq x \leq 1\), \(\eta(x) = 1\) for \(x\geq 2\) and \(0 \leq \eta ^{\prime}  \leq 2\) for all \(x\).
+
+    For \(\epsilon > 0\) let \(\eta _\epsilon (x) \coloneqq \eta \left( \frac{\vert x \vert }{\epsilon} \right)\).
+    
+    Define
+
+    \[
+        w_{\epsilon} (x) \coloneqq \int_{\Omega} K(x-y) \eta_{\epsilon} (x-y) f(y) \,\mathrm{d}y 
+    \]
+
+    Easy to justify:
+
+    \[
+        w_{\epsilon_{x_i}} (x) = \int_{\Omega} \frac{\partial}{\partial x_i} \left( K(x-y) \eta_{\epsilon} (x-y) \right) f(y) \,\mathrm{d}y 
+    \]
+
+    Also easiy: \(w_{\epsilon} \to w\) uniformly in \(\Omega\).
+
+    \[
+        w - w_{\epsilon} = \int_{\Omega} K(x-y) (1 - \eta_{\epsilon}(x-y))f(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = \int_{\{ y: \vert x - y \vert < 2 \epsilon \} } K(x-y)(1-\eta_{\epsilon } (x-y) )f(y) \,\mathrm{d}y 
+    \]
+
+    Now consider:
+
+    \[
+        w_{\epsilon_{x_i}} - \int_{\Omega} K_{x_i} (x-y) f(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = \int_{\Omega} \left( \frac{\partial}{\partial x_i} \left( K(x-y) \eta_{\epsilon} (x-y) \right) - K_{x_i} \right) f(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        = \underbrace{\int_{\Omega} K_{x_i} (x-y) (\eta_{\epsilon}(x-y) - 1)f(y) \,\mathrm{d}y}_{=\text{I}}
+    \]
+
+    \[
+        + \underbrace{ \int_{\Omega} K(x-y) \eta_{\epsilon_{x_i} } (x-y) f(y) \,\mathrm{d}y }_{=\text{II}}
+    \]
+
+    \[
+        \text{I} \leq C \int_{\{ y : \vert y - x \vert < 2 \epsilon \} } \frac{1}{\vert x-y \vert^{n-1} } \vert f(y) \vert  \,\mathrm{d}y  \sim c \int_0^{2 \epsilon} \frac{1}{r^{n-1}} r^{n-1} \, \mathrm{d}r  = \mathcal{O}(\epsilon) 
+    \]
+
+    \[
+        \text{II} \leq \frac{2}{\epsilon}C \int_{\{ y : \epsilon < \vert x-y \vert < 2\epsilon \} } \frac{1}{\vert x - y \vert ^{n-2}} \vert f(y) \vert \,\mathrm{d}y = \mathcal{O}(\epsilon)
+    \]
+
+    \[
+        w(x + h e_i) - w(x) = \lim_{\epsilon  \to 0} w_{\epsilon} (x + h e_i) - w_{\epsilon} (x) = \lim_{\epsilon \to 0} \int_0^h w_{\epsilon_{x_i}}(x+te_i)\, \mathrm{d}t
+    \]
+
+    \[
+        = \int_0^h \int_{\Omega} K_{x_i} (x + t e_i - y) f(y) \,\mathrm{d}y  
+    \]
+
+    Divide by \(h\):
+
+    \[
+        \frac{w(x+he_i) - w(x)}{h} = \frac{1}{h} \int_0^h \int_{\Omega} K_{x_i} (x + t e_i - y) f(y) \,\mathrm{d}y 
+    \]
+
+    Let \(h \to 0\) to see \(w_{x_i} (x) = \int_{\Omega} K_{x_i} (x-y)f(y) \,\mathrm{d}y\).
+
+\end{proof}
+
+\begin{theorem}
+    [B] Let \(\Omega \subset \mathbb{R}^n\) be open bounded. Let \(f\in C^{0,\alpha}(\Omega)\).
+
+    Then \(w \in C^2(\Omega), \Delta w = f\) and \(\forall x\in \Omega\) one has:
+
+    \[
+        w_{x_i x_j} = \int_{\Omega_0} K_{x_i x_j} (x-y) (f(y) - f(x)) \,\mathrm{d}y - f(x) \int_{\partial \Omega_0} K_{x_i} (x-y) \nu_j (y) \,\mathrm{d}S \, (\ast) 
+    \]
+
+    where \(\Omega_0\) is any smooth bounded open set such that \(\Omega \subset \subset \Omega_0\) and \(\nu\) is the outer unit normal to \(\Omega_0\) and \(f\equiv 0\) outside \(\Omega\).
+\end{theorem}
+
+\begin{proof}
+
+    Let \(u(x)\) be RHS of \((\ast)\).
+
+    \underline{Claim}: \(u(x)\) is well defined.
+    
+    True since:
+
+    \[
+        \int_{\Omega_0} \vert K_{x_i x_j} (x-y) \vert \vert f(y) - f(x) \vert \,\mathrm{d}y 
+    \]
+
+    for \(y\in \Omega\),
+
+    \[
+        \leq [f]_{C^\alpha} \int \frac{C}{\vert x-y \vert^n} \vert x-y \vert ^\alpha \,\mathrm{d}y
+    \]
+
+    \[
+        \sim \int_{0}^{\delta} \frac{1}{r^n}r^{n-1} r^\alpha \,\mathrm{d}r \sim \delta^\alpha
+    \]
+
+    For \(y\notin \Omega\) we have \(\vert x-y \vert > 0\).
+
+    This proves the claim.
+
+    Fix \(i\). Let \(v_{\epsilon} (x) \coloneqq \int_{\Omega} K_{x_i} (x-y) \eta_{\epsilon} (x-y) f(y) \,\mathrm{d}y \).
+
+    Theorem A \(\implies v_{\epsilon} \to w_{x_i}\) uniformly as \(\epsilon \to 0\).
+
+    For any \(j\):
+
+    \[
+        v_{\epsilon_{x_j}} (x) = \int_{\Omega} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta _\epsilon (x-y) \right) f(y) \,\mathrm{d}y  
+    \]
+
+    \[
+        = \int_{\Omega_0} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta _\epsilon (x-y) \right) f(y) \,\mathrm{d}y 
+    \]
+
+    \[
+        =\int_{\Omega_0} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta_{\epsilon} (x-y) \right) (f(y) - f(x)) \,\mathrm{d}y 
+    \]
+
+    \[
+        + f(x) \int_{\Omega_0} \frac{\partial}{\partial x_j} (K_{x_i}(x-y) \eta_{\epsilon} (x-y)) \,\mathrm{d}y
+    \]
+
+    \[
+        =\int_{\Omega_0} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta_{\epsilon} (x-y) \right) (f(y) - f(x)) \,\mathrm{d}y 
+    \]
+
+    \[
+        - f(x) \int_{\Omega_0} \frac{\partial}{\partial y_j} (K_{x_i}(x-y) \eta_{\epsilon} (x-y)) \,\mathrm{d}y
+    \]
+
+    \[
+        =\int_{\Omega_0} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta_{\epsilon} (x-y) \right) (f(y) - f(x)) \,\mathrm{d}y 
+    \]
+
+    \[
+        - f(x) \int_{\partial \Omega_0} (K_{x_i}(x-y) \underbrace{ \eta_{\epsilon} (x-y) }_{=1}) \nu_j \,\mathrm{d}y
+    \]
+
+    \[
+        =\int_{\Omega_0} \frac{\partial}{\partial x_j} \left( K_{x_i} (x-y) \eta_{\epsilon} (x-y) \right) (f(y) - f(x)) \,\mathrm{d}y 
+    \]
+
+    \[
+        - f(x) \int_{\partial \Omega_0} K_{x_i}(x-y)\nu_j \,\mathrm{d}y
+    \]
+
+    Then,
+
+    \[
+        \left\vert u(x) - v_{\epsilon_{x_j}} (x) \right\vert = \int_{\{ \vert y - x \vert < 2 \epsilon \} } \left\vert K_{x_i x_j} (x-y) \right\vert \left\vert f(y) - f(x) \right\vert  \,\mathrm{d}y 
+    \]
+
+    \[
+        + \int_{\{ \epsilon < \vert y - x \vert < 2 \epsilon \} } \underbrace{\vert \eta_{\epsilon} ^{\prime} \vert}_{\leq \frac{2}{\epsilon}} \vert K_{x_i} (x-y) \vert \vert f(y) - f(x) \vert \,\mathrm{d}y 
+    \]
+
+    \[
+        \sim [f]_{C^\alpha} \int_{0}^{2\epsilon} \frac{1}{r^n} r^\alpha r^{n-1} \,\mathrm{d}r + \frac{2}{\epsilon} \int_{\epsilon}^{2\epsilon} \frac{1}{r^{n-1}} r^\alpha r^{n-1}  \,\mathrm{d}r = \mathcal{O} (\epsilon^\alpha)
+    \]
+
+    Thus \(v_{\epsilon_{x_j}} \to u(x) \) uniformly as \(\epsilon \to 0\).
+    
+    As in theorem A, \(w_{x_i} (x+ he_j) - w_{x_i} (x) = \cdots\) and we're done.
+
+    Now we prove \(\Delta w = f\).
+
+    Fixing \(x\), take \(\Omega_0 = B(x,R)\) for large \(R\) [so that \(\Omega \subset B(x,R)\)]. Use \((\ast)\) with \(i = j\), summing on \(i\). This gives us the laplacian.
+
+    \[
+        \Delta w = \sum_{i} w_{x_i x_i} = \underbrace{\int_{B(x,R)} \Delta K(x-y) (f(y) - f(x)) \,\mathrm{d}y}_{0 \text{ since \(K\) is harmonic}}  
+    \]
+
+    \[
+        + f(x) \int_{\partial B(x,R)} \nabla K(x-y) \cdot \nu \,\mathrm{d}S 
+    \]
+
+    Also,
+
+    \[
+        \int_{\partial B(x,R)} \nabla K \cdot \nu \,\mathrm{d}S = \int_{\partial B(x,R)} \frac{\partial K}{\partial r} \,\mathrm{d}S = \int_{\partial B(x,R)} \frac{1}{n \alpha (n) R^{n-1}} \,\mathrm{d}S = 1
+    \]
+
+    So we're done.
+
+\end{proof}
+
 \end{document}
