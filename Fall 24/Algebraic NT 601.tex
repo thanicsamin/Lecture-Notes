@@ -4392,12 +4392,147 @@ The canonical injection \(\overline{K} \to \overline{E}\) is called the \underli
         M = \sum_{\substack{1 \leq i \leq f \\ 0 \leq j < e}} \mathcal{O}_K \alpha_i \omega^j = \mathcal{O}_E 
     \]
 
-    \underline{Proof of Claim}: Let \(N  \sum_{i=1}^f \mathcal{O}_K \alpha_i\).
+    \underline{Proof of Claim}: Let \(N =  \sum_{i=1}^f \mathcal{O}_K \alpha_i\).
     
     The composition \(N \hookrightarrow \mathcal{O}_E \twoheadrightarrow \overline{E} = \mathcal{O}_E / \omega \mathcal{O}_E\) is \underline{surjective}.
 
-    \(\implies \mathcal{O}_E = N + \omega \mathcal{O}_E = N + \omega(N + \omega \mathcal{O}_E) \overset{\text{repeat}}{=} N + \omega N + \cdots + \omega^{e-1} N + \omega^e \mathcal{O}_E\) 
+    Therefore, \(\mathcal{O}_E = N + \omega \mathcal{O}_E \, (1)\).
+
+\section*{Thursday, 11/7/2024}
+
+    \underline{Claim}: \(M \coloneqq \sum_{j=0}^{e-1} \omega^j N = \sum_{\substack{1 \leq i \leq f \\ 0 \leq j \leq e-1}} \mathcal{O}_K \alpha_j \omega^j = \mathcal{O}_E\).
+
+    \underline{Proof of Claim}:
+
+    \[
+        \mathcal{O}_E \overset{(1)}{=} N + \omega \mathcal{O}_E \overset{(1)}{=} N + \omega (N + \omega \mathcal{O}_E) = N + \omega N + \omega^2 \mathcal{O}_E
+    \]
+
+    \[
+        = \cdots = N + \omega N + \cdots + \omega ^{e-1} N + \underbrace{\omega^e \mathcal{O}_E}_{\pi \mathcal{O}_E} = M + \pi \mathcal{O}_E
+    \]
+
+    Lemma 10.3 \(\implies M = \mathcal{O}_E\).
+
+    Therefore, \(E = \mathcal{O}_E \left[ \frac{1}{\pi} \right] = \sum_{\substack{1 \leq i \leq f \\ 0 \leq j < e}} \underbrace{K}_{\mathcal{O}_K \left[ \frac{1}{\pi} \right]}\cdot \alpha_i \omega^j \implies e \cdot f \geq [E:K]\).
+    
+    10.1 \(\implies e \cdot f \leq [E:K]\).
+
 \end{proof}
 
+\begin{remark}
+    The elements \(\alpha_i \omega_j, 1 \leq i \leq f, 0 \leq j < e\) form a basis of \(E\) over \(K\).
+\end{remark}
+
+\begin{theorem}
+    Let \(E / K\) be a finite separable extension, let \(\vert \cdot \vert_1 ,\cdots , \vert \cdot \vert_r\) be pairwise distinct extensions of the given absolute value \(\vert \cdot \vert\) on \(K\).
+
+    Let \(e_i =\) ramification inde of \(E / K\) w.r.t.\ \(\vert \cdot  \vert _i\).
+    
+    \(f_i =\) residue class degree of \(E / K\) w.r.t.\ \(\vert \cdot \vert _i\).
+
+    Then,
+
+    \[
+        \sum_{i=1}^r e_i f_i = [E:K]
+    \]
+\end{theorem}
+
+\begin{proof}
+    Recall that \(E \otimes_K K^\wedge \cong \prod_{i=1}^r E_i^\wedge\).
+
+    \[
+        [E:K] = \dim_{K^\wedge} (E \otimes_K K^\wedge) \overset{9.16}{=} \sum_{i=1}^r [E_i^\wedge : K^\wedge] \overset{10.4}{=} \sum_{i=1}^r e(E_i^\wedge / K^\wedge) f(E_i^\wedge / K^\wedge)
+    \]
+
+    9.7 and Residue field doesn't change upon completition implies:
+
+    \[
+        = \sum_{i=1}^r e_i f_i 
+    \]
+\end{proof}
+
+\begin{definition}
+    Assume \(E / K\) is finite. Then \(E / K\) is unramified w.r.t.\ the non archimedean absolute value \(\vert \cdot \vert \) on \(E\), if:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\overline{E} / \overline{K}\) is separable.
+        \item \([E^\wedge : K^\wedge] = [\overline{E} : \overline{K}]\). 
+    \end{enumerate} 
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}[label=\arabic*)]
+        \item Since \(e(E / K, \vert \cdot \vert) f(E / K, \vert \cdot \vert) \overset{10.1}{\leq} [E^\wedge : K^\wedge]\). If \(E / K\) is unramified then \(e(E / K, \vert \cdot \vert) = 1\).
+        \item If \(\vert \cdot \vert\) is discrete and separable, then \(E / K\) is unramified \(\overset{10.4}{\iff} e(E / K, \vert \cdot \vert = 1 \iff P_K \mathcal{O}_E = P_E)\). 
+    \end{enumerate} 
+\end{remark}
+
+\begin{theorem}
+    Let \(\vert \cdot \vert \) be non-arch and \(K\) complete w.r.t.\ \(\vert \cdot \vert \) . Extend \(\vert \cdot  \vert \) uniquely to the algebraic closure \(C\) of \(K\). Then,
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(\overline{C} \) (=residue field) is an algebraic closure of \(\overline{K}\).
+        \item For every finite subextension \(F / \overline{K} \subseteq \overline{C} / \overline{K}\, \exists\) subextension \(L / K \subseteq C / K\) such that \(\overline{L} = F\) and \([L:K] = [F:\overline{K}]\).
+        \item The map from finite subextension of \(C / K\) to finite subetensions of \(\overline{C} / \overline{K}\) induces an inclusion preserving bijection between the unramified subextensions \(L / K \subseteq C / K\) and the finite separale subextensions \(L / K \subseteq C / K\) and the finite separable subextensions \(F / \overline{K} \subseteq \overline{C} / \overline{K}\). Every unramified extension of \(K\) is separable.
+        \item Every finite subextensions \(E / K \subseteq C / K\) has a largest unramified subextension \(L / K\). If \(\overline{E} / \overline{K}\) is separable, then this maximal unramified subextension \(L\) satisfies \(\overline{L} = \overline{E}\) and \([L:K] = [\overline{L}:\overline{K}]\).
+
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Corollary 9.15 \(\implies \overline{C} \) is algebraic over \(\overline{K}\).
+        
+        \(f(x) \in \overline{K}[x]\) monic \(\implies \exists\) monic \(g(x) \in \mathcal{O}_K[x]\) with \(\overline{g} = f\) [reduction modulo \(P_K\)].
+        
+        \(C\) is algebraically closed, so \(g(x) = \prod_i (x-\alpha_i)\in C[x] \overset{9.15}{\implies} \vert \alpha_i \vert \leq 1 \implies \alpha_i \in \mathcal{O}_C\).
+
+        \(\implies f(x) = \overline{g}(x) = \prod_i (x-\overline{\alpha}_i) \in \overline{C}[x] \implies \overline{C}\) is an algebraic closure of \(\overline{K}\).
+        
+        \item Given \(\beta \in \overline{C}\) and \(F = \overline{K}(\beta)\) and minimal polynomial \(\mu_{\beta, \overline{K}} \in \overline{K}[x] =\) min. poly of \(\beta / \overline{K}\).
+        \(\exists\) monic \(g(x) \in \mathcal{O}_K [x] : \overline{g}(x) = \mu_{\beta, \overline{K}}(x)\).
+        
+        9.15 (same as before) \(\implies g(x) = \prod_i (x-\alpha_i)\) with \(\alpha_i \in \mathcal{O}_C \implies \exists i : \overline{\alpha_i} = \beta\).
+        
+        Set \(L = K(\alpha_i) \implies [\overline{L} : \overline{K}]\overset{10.1}{\leq} [L:K] \overset{g \text{ irr.}}{=} \deg g = \deg(\mu_{\beta, \overline{K}}) \leq [\overline{L} : \overline{K}]\).
+        
+        The general case of a finitely generated field extension \(\overline{F} / \overline{K} \subseteq \overline{C} / \overline{K}\) is reduced to the case of a monogenic extension by replacing \(\overline{K}\) by \(\overline{K}(\beta)\).
+
+        \item \(L / K\) finite unramified \(\implies \overline{L} / \overline{K}\) is finite (by 10.1) and separable (by definition of ``unramified'').
+        
+        Conversely, suppose \(F / \overline{K}\) is finite separable and \(L / K \subseteq C / K\) is a finite extension such that \(\overline{L} = F\) and \([L:K] = [\overline{L} : \overline{K}] = [F : \overline{K}]\) [exists by ii]. Then, \(L / K\) is unramified.
+
+        It suffices to show that this map is injective on the set of finite unramified extensions.
+
+        Suppose \(E_1\) and \(E_2\) are unramified subextensions of \(C / K\) and \(\overline{E_1} = \overline{E_2} = \overline{K}(\beta)\) for some \(\beta \in \overline{C}\).
+
+        Thus, \(\beta\) is separable over \(\overline{K} \implies \mu_{\beta, K}\) is separable. Let \(g(x) = \mathcal{O}_K [x]\) be monic and \(\overline{g} = \mu_{\beta , \overline{K} }(x) \, (\ast)\) 
+
+        Theorem 9.1 (Hensel) \(\implies \exists\) factorization \(g(x) = (x-\alpha_1)h_1(x)\) in \(\mathcal{O}_{E_1}, (x-a_2)h_2(x)\) is in \(\mathcal{O}_{E_2}\) with \(\overline{\alpha}_1 = \overline{\alpha}_2= \beta\).
+
+        Roots of \(g\) in \(C\) lie on \(\mathcal{O}_C\) and they reduce to pairwise distinct elements in \(\overline{C}\) since \(\mu_{\beta , \overline{K}}\) is separable \(g(\alpha_1, \alpha_2) = 0 \implies \alpha_1 = \alpha_2  \).
+        
+        \(K(\alpha) \subset E, \overline{K}(\beta) \subset E2\)
+        
+        \(\implies [E_1 : K] \overset{\text{unramifieid}}{=} [\overline{E}_i : \overline{K}] = [\overline{K}(\beta): \overline{K} ] = \deg(\mu_{\beta , \overline{K}}) = \deg(g) = [K(\alpha_1):K] \leq [E_i:K] \implies K(\alpha_1) = E_1\). Similarly, \(K(\alpha_2) = E_2\) 
+        
+        Since \(\alpha_1 = \alpha_2\) we have  \(E_1 = E_2\).
+
+        \item Let \(E / K \subseteq C / K\) be any finite subextension, and \(\overline{E}_s \subset \overline{E}\) be the maximal separable over \(\overline{K}\) subextension of \(\overline{E} / \overline{K} \implies \exists \beta \in \overline{E}_s : \overline{E}_s = \overline{K}(\beta)\).
+        
+        Choose \(\alpha \in \mathcal{O}_E\) as in (ii) [\(\overline{\alpha} = \beta\) and \(g(\alpha)=0\) for a monic lift of \(\mu_{\beta , \overline{K}}\) to \(\mathcal{O}_K[x]\)].
+
+        ii \(\implies L\coloneqq K(\alpha) \subset E\) is unramified \(/ K\) and \(\overline{L} = \overline{E}_s\).
+
+        If \(L \subseteq \widetilde{L} \subset E\) and \(\widetilde{L} / K\) unramified,
+
+        \(\implies \overline{L} \subseteq \overline{\widetilde{L}} \subseteq \overline{E}_s \implies \overline{L} = \overline{\widetilde{L}}\) and since \([\widetilde{L} : K] = [\overline{\widetilde{L}} : \overline{K}] = [\overline{L} : \overline{K}] = [L:K] \implies \widetilde{L} = L\).
+
+        eg \(K = \mathbb{Q}_p \implies \overline{K} = \mathbb{F}_p, \overline{C} \cong \overline{\mathbb{F}_p}\).
+
+        \item If \(L / K\) is unramified, then it is Galois \(\iff \overline{L} / \overline{K}\) is Galois, and in this case there is a canonical isomorphism \(\operatorname{Gal}(L / K) \to \operatorname{Gal}(\overline{L}/\overline{K})\).
+    \end{enumerate} 
+\end{proof}
 
 \end{document}
