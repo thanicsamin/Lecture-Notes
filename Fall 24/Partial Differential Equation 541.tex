@@ -4516,4 +4516,174 @@ We have the following basic estimates:
 
 \end{proof}
 
+\section*{Friday, 11/8/2024}
+
+Recap:
+
+\[
+    K(x) = \begin{dcases}
+        \frac{1}{\alpha_n n (2-n)}\vert x \vert ^{2 - n}, &\text{ if } n > 2 ;\\
+        \frac{1}{2\pi} \log \vert x \vert, &\text{ if } n = 2.
+    \end{dcases}
+\]
+
+Newtonian potential of \(f\) in \(\Omega\):
+
+\[
+    w(x) = \int_{\Omega} K(x-y) f(y) \,\mathrm{d}y 
+\]
+
+So far: if \(f\in C^{0,\alpha}(\Omega), 0 < \alpha < 1\) then \(w \in C^2, \Delta w = f\) in \(\Omega\). We have estimate of derivative:
+
+\[
+    w_{x_i x_j} (x) = \int_{\Omega_0} K_{x_i x_j}(x-y) (f(y) - f(x)) \,\mathrm{d}y - f(x) \int_{\partial \Omega_0} K_{x_i} (x-y) \nu_j (y) \,\mathrm{d}S 
+\]
+
+Where \(\Omega_0 \supset \supset \Omega, \partial \Omega_0\) smooth, \(f\) is extended to be \(0\) on \(\Omega_0 \setminus \Omega\) 
+
+Note that if \(f\) is just continuous then \(w \in C^2\).
+
+This result, among other things, shows existence to \(\Delta u = f\) in \(\Omega, u = g\) on \(\partial \Omega\) for \(f\in C^{0,\alpha}, g\in C^0\). To show existence, it suffices to be able to solve \(\Delta v = 0\) on \(\Omega\) and \(v = h\) on \(\partial \Omega\) for all \(h\) continuous \((\ast)\).
+
+Why?
+
+Let \(w = \int_{\Omega} K(x-y) f(y) \,\mathrm{d}y\)
+
+We seek \(u\) of the form:
+
+\[
+    u = w + \widetilde{u}
+\]
+
+\[
+    \Delta \widetilde{u} = 0 \, \text{ in } \Omega 
+\]
+
+\[
+    \widetilde{u} = g - w \, \text{ on } \partial \Omega
+\]
+
+How to solve \((\ast)\)?
+
+When \(\Omega = B\) [a ball],
+
+\[
+    v = \frac{1}{\omega_{n-1}}\int_{\partial B_R} \frac{R - \vert x \vert ^2}{\vert x-y \vert ^n} h(y) \,\mathrm{d}S
+\]
+
+So we have explicit Poisson Integral formula.
+
+What if \(\Omega\) is not a ball? Many methods:
+
+Calculus of variations: minimize \(\int_{\Omega} \vert \nabla v \vert ^2 \,\mathrm{d}x \) 
+
+Perron's method.
+
+\begin{theorem}
+    Let \(B_R = B(x_0, R), B_{2R} = B(x_0, 2R)\) be \(2\) concentric balls in \(\mathbb{R}^n\). Fix \(R>0\). Then for \(f\in C^{0,\alpha}(B_{2R})\) we have
+
+    \[
+        \vert w \vert _{C^{2,\alpha}(B_{2R})} \leq C(\alpha, R) \vert f \vert _{C^{0,\alpha}(B_{2R})}
+    \]
+\end{theorem}
+
+\begin{proof}
+    To control \(\sup \vert w_{x_i x_j} \vert\) in \(B_R\):
+
+    \[
+        \vert w_{x_i x_j} (x) \vert \leq \int_{B_{2R}} \vert K_{x_i x_j} \vert \frac{\vert f(y) - f(x) \vert}{\vert y - x \vert ^ \alpha} \vert y - x \vert ^ \alpha \,\mathrm{d}y + \left\vert f(x) \int_{\partial B_{2R}}  K_{x_i} (x-y) \nu_j (y) \,\mathrm{d}S \right\vert 
+    \]
+
+    \[
+        \leq \int_{B_{2R}} \vert K_{x_i x_j} \vert \frac{\vert f(y) - f(x) \vert}{\vert y - x \vert ^ \alpha} \vert y - x \vert ^ \alpha \,\mathrm{d}y + \sup_{B_{2R}} \vert f \vert \frac{C}{R^{n-1}} n \alpha (n) R^{n-1}
+    \]
+
+    \[
+        \leq C[f]_{C^\alpha} \int_{0}^{2R} \frac{1}{r^n} r^\alpha r^{n-1} \,\mathrm{d}r < C(R) [f]_{C^\alpha} + C \sup \vert f \vert
+    \]
+
+    Then we bound \([w_{x_i x_j}]_{C^\alpha (B_R)}\).
+    
+    Fix \(x\) and \(\overline{x}\) in \(B_R\).
+
+    \[
+        w_{x_i x_j} (\overline{x}) - w_{x_i x_j} (x)
+    \]
+        
+    \[
+        = \int_{B_{2R}} \left( K_{x_i x_j} (\overline{x} - y) (f(y) - f(\overline{x})) - K_{x_i x_j} (x-y) (f(y) - f(x)) \right)  \,\mathrm{d}y 
+    \]
+
+    \[
+        \underbrace{- f(\overline{x}) \int_{\partial B_{2R}} K_{x_i} (\overline{x} - y) \nu_j \,\mathrm{d}S_y + f(x) \int_{\partial B_{2R}} K_{x_i} (x-y) \nu_j \,\mathrm{d}S_y}_{=I_1 + I_2 + I_3 + I_4} 
+    \]
+
+    \[
+        I_1 = f(x) \int_{\partial B_{2R}} \left( K_{x_i} (x-y) - K_{x_i} (\overline{x} - y) \right) \nu_j \,\mathrm{d}S_y
+    \]
+        
+    \[
+        + (f(x) - f(\overline{x})) \int_{\partial B_{2R}} K_{x_i} (\overline{x} - y) \nu_j \,\mathrm{d}S
+    \]
+
+    \[
+        \implies \vert I_1 \vert \leq \sup_{B_{2R}} \vert f \vert \int_{\partial B_{2R}} \left\vert D_{\tau} K_{x_i} (\widetilde{x} - y) \right\vert \vert x - \overline{x} \vert \,\mathrm{d}S_y 
+    \]
+
+    \[
+        + [f]_{C^\alpha} \vert x - \overline{x} \vert ^ \alpha \cdot C(R)
+    \]
+
+    for some \(\widetilde{x}\) between \(x\) and \(\overline{x}\). \(D_{\tau}\) is the \underline{directional derivative}, we have used Mean Value Theorem.
+
+    \[
+        \leq c \sup \vert f \vert \cdot \frac{1}{R^n} n \alpha (n) (2R)^{n-1} \vert x - \overline{x} \vert + C(R) [f]_{C^\alpha} \vert x - \overline{x} \vert ^ \alpha
+    \]
+
+    \[
+        \leq C(R) \vert f \vert_{C^0,\alpha} \vert x - \overline{x} \vert ^ \alpha
+    \]
+
+    Let \(\delta = \vert x - \overline{x} \vert\) and \(\xi = \frac{1}{2}(x + \overline{x})\).
+    
+    \[
+        I_2 = \int_{B(\xi, \delta) \cap B_{2R}} K_{x_i x_j} (x-y) (f(x) - f(y))  \,\mathrm{d}y 
+    \]
+
+    \[
+        + \int_{B(\xi, \delta) \cap B_{2R}} K_{x_i x_j} (\overline{x} - y) (f(y) -f(x)) \,\mathrm{d}y 
+    \]
+
+    Estimate first integral:
+
+    \[
+        \leq C[f]_{C^\alpha} \int_{B(\xi, \delta) \cap B_{2R}} \frac{1}{\vert x-y \vert ^ n}\vert x-y \vert ^ \alpha \,\mathrm{d}y 
+    \]
+
+    Notice that \(B(x,\frac{3}{2}\delta) \supset B(\xi , \delta)\). 
+
+    \[
+        \leq C[f]_{C^\alpha} \int_{B(x, \frac{3}{2}\delta)} \frac{1}{\vert x-y \vert ^ n}\vert x-y \vert ^ \alpha \,\mathrm{d}y 
+    \]
+
+    \[
+        \leq C[f]_{C^\alpha} \int_{0}^{\frac{3}{2}\delta} \frac{1}{r^n} r^\alpha r^{n-1} \,\mathrm{d}r \leq C[f]_{C^\alpha} \left( \frac{3}{2} \right) ^\alpha  \left( \underbrace{\delta}_{\vert x- \overline{x} \vert } \right) ^\alpha  
+    \]
+
+    \[
+        I_3 = (f(x)-f(\overline{x})) \int_{B_{2R} \setminus B(\xi, \delta)} K_{x_i x_j} (x-y) \,\mathrm{d}y 
+    \]
+
+    \[
+        I_4 = \int_{B_{2R} \setminus B(\xi, \delta)} \left( K_{x_i x_j} (x-y) - K_{x_i x_j} (\overline{x} - y) \right) (f(\overline{x})-f(y)) \,\mathrm{d}y 
+    \]
+
+    In \(I_3\), we are `outside' of the ball \(B(\zeta , \delta)\) so \(x-y\) doesn't get very small \(\vert x-y \vert \geq \frac{\delta}{2}\). So, when we integrate we have enough control to win.
+
+    In \(I_4\) we apply mean value theorem with the third derivative: \(\vert D^3 K \vert \leq C \vert x \vert ^{-n-1}\).
+
+    Dividing by \(\vert x - \overline{x} ^ \alpha \vert \) we finish the proof.
+
+\end{proof}
+
 \end{document}
