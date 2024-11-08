@@ -5437,5 +5437,190 @@ Warm up: \(G = \mathbb{Z}^n \rtimes S_n\).
 
 Q: \(\Delta ^{-1} \mathbb{Z} G = ??\) 
 
+\section*{Friday, 11/8/2024}
+
+\subsection*{Modular Representation Theory}
+
+Recall Maschke's theorem:
+
+\(kG\) semisimple \(\iff (\operatorname{char} k, \vert G \vert)=1\).
+
+We ask the question: what happens if \(\operatorname{char} k \mid \vert G \vert\)?
+
+eg \(\mathbb{F}_p G\) where \(p\mid \vert G \vert\).
+
+It is not semisimple, but it is not BAD. For example, they're Artinian.
+
+Motivation:
+
+1. (Jim) study \(\mathbb{Z} G\) modules.
+
+\(G \acts \widetilde{X}\to X\), \(\pi_1 X = G\).
+
+\(H_n \overline{X}, \pi_n \widetilde{X}\) are \(\mathbb{Z} G\) modules.
+
+We can consider:
+
+\begin{center}
+    \begin{tikzcd}
+        \mathcal{O}_K \ar[r, no head] \ar[d, no head] & K \ar[d, no head, "\text{Galois}"] \\ \mathbb{Z} \ar[r, no head] & \mathbb{Q}
+    \end{tikzcd}
+\end{center}
+
+\(\mathcal{O}_K\) is \(\mathbb{Z}[\operatorname{Gal}(K / \mathbb{Q})]\).
+
+2. Classification of (simple) groups.
+
+3. Algebraic \(K\)-theory: \(K_{\ast} (\mathbb{F}_p)\). eg \(G = GL_2(\mathbb{F}_p)\).
+
+4. Non-abelian class field theory: \(\operatorname{Gal} \to GL_n(\mathbb{Z}_p)\). Here we want to deal with \(\mathbb{Z}_p G\)-modules.
+
+Technique: Use \(p\)-adic integers \(\mathbb{Z}_p\) to interpolate between \(\mathbb{Q}\) and \(\mathbb{F}_p\).
+
+Now we start studying \(\mathbb{F}_p G\).
+
+\begin{example}
+    \underline{Exercise}: Let \(p,q\) be distinct primes. Then,
+
+    \[
+        \mathbb{F}_p C_q = \prod_{i=1}^h \mathbb{F}_{p^{f_i}}
+    \]
+
+    What is \(h\) and \(f_i\)?
+
+    eg \(\mathbb{F}_p C_2 \cong\) trivial rep and sign rep \(\cong \mathbb{F}_p \times \mathbb{F}_p\)
+
+    \(\mathbb{F}_2 C_q = ?\)
+
+    Hint: Multiplicative group of a finite field \((\mathbb{F}_p^\times)\) is cyclic.
+    \(\mathbb{F}_2 \times C_3 \cong \mathbb{F}_2 \times \mathbb{F}_4\) since \(\mathbb{F}_4^\times \cong \mathbb{Z} / (4-1) = \mathbb{Z} / 3\).
+
+    It is given by \(r \mapsto (1, \zeta_3)\).
+
+    \(\mathbb{F}_2 C_5 = ?\)
+
+    We have \(\zeta_5 \in \mathbb{F}_{16}^\times \cong \mathbb{Z} / 15\) so:
+
+    \(\mathbb{F}_2 C_5 \cong \mathbb{F}_2 \times \mathbb{F}_{16}\).
+
+    Actually we can say \(\mathbb{F}_2 C_5 = \mathbb{F}_2 \oplus \mathbb{F}_{16}\).
+
+    \(\mathbb{F}_2 C_7 \cong \mathbb{F}_2 \times \mathbb{F}_8 \times \mathbb{F}_8\).
+    
+    \(r \mapsto (1 , \zeta_7, \zeta_7^3)\) or \(r \mapsto (1, \zeta_7, \zeta ^{-1})\) 
+    
+    Minimal polynomial: \(\Phi_7(x) = x^6 + x^5 + x^4 + x^3 + x^2 + x + 1\) 
+
+    \(\Phi_7(x) = f(x) g(x) \in \in \mathbb{F}_2[x]\).
+
+    \(\mathbb{F}_2 C_7 = \frac{\mathbb{F}_2[x]}{(x^7 - 1)} = \frac{\mathbb{F}_2[x]}{(x-1)f(x) g(x)} \cong \frac{\mathbb{F}_2(x)}{x-1} \times \frac{\mathbb{F}_2[x]}{f(x)} \times \frac{\mathbb{F}_2[x]}{g(x)} \cong \mathbb{F}_2 \times \mathbb{F}_8 \times \mathbb{F}_8\).
+
+    Now, we deal with \(p\neq 3\) and \(\mathbb{F}_p C_3\).
+
+    \[
+        \mathbb{F}_p C_3 = \begin{dcases}
+            \mathbb{F}_p \times \mathbb{F}_p \times \mathbb{F}_p, &\text{ if } p \equiv 1 (3) ;\\
+            \mathbb{F}_p \times \mathbb{F}_{p^2}, &\text{ if } p \not\equiv 1 (3).
+        \end{dcases}
+    \]
+
+    How do we know \(\mathbb{F}_2 C_7 \cong \mathbb{F}_2 \times \mathbb{F}_8 \times \mathbb{F}_8\) and not \(\mathbb{F}_2 \times \mathbb{F}_{64}\)?
+
+    The image of \(r\) lies in \(\mathbb{F}_8\) so it is actually in \(\mathbb{F}_2 \times \mathbb{F}_8\)!
+
+    We look for the minimal field where the cyclotimic polynomial splits.
+
+\end{example}
+
+\subsection*{Modular Case}
+
+Complete list of ideals in \(\mathbb{F}_2 C_2\).
+
+\(O \subset \langle 1 - r \rangle \subset \mathbb{F}_2 C_2\).
+
+\(\langle 1-r \rangle\) is isomorphic to \(\mathbb{F}_2\), simple, not projective [not summand of free modules].
+
+Why is it not projective?
+
+Consider the \underline{augmentation map}:
+
+\[
+    \varepsilon : \underset{\sum_{i} r_i g_i}{RG} \underset{\mapsto}{\to} \underset{\sum_{i} r_i}{R}
+\]
+
+It is a ring map.
+
+\underline{Augmentation ideal} \(I = \ker(\varepsilon) \subset RG\).
+
+We have Norm element \(N = \sum_{g\in G} g \in RG\).
+
+If \(G\) is a \(p\)-group then \(N \in \ker (\varepsilon : \mathbb{F}_p G \to \mathbb{F}_p)\).
+
+Aug map \(\varepsilon : \mathbb{F}_2 C_2 \to \mathbb{F}_2\) as \(\mathbb{F}_2 C_2\) module.
+
+Therefore \(\mathbb{F}_2\) is not projective over \(\mathbb{F}_2 C_2\).
+
+Complete list of finitely generated \(\mathbb{F}_2 C_2\)-modules (up to isomorphism):
+
+\[
+    (\mathbb{F}_2)^a \oplus (\mathbb{F}_2 C_2)^b
+\]
+
+Complete list of \(\mathbb{F}_p C_p\)-ideals:
+
+\[
+    0 \subset \underset{\langle N \rangle}{\langle 1-r \rangle^{p-1}} \subset \cdots \subset \underset{\ker \varepsilon}{\langle 1-r \rangle} \subset \mathbb{F}_p C_p
+\]
+
+Thus \(\mathbb{F}_p C_p\) is local.
+
+It is simple, not projective.
+
+Complete list of finitely generated \(\mathbb{F}_p C_p\)-modules up to isomorphism: direct sum of ideals.
+
+\begin{definition}
+    Ring \(R\) is \underline{semilocal} if \(R / J(R)\) is semisimple.
+\end{definition}
+
+eg \(kG\) is always semilocal.
+
+Serre p 163
+
+\begin{definition}
+    [Artinian Ring] \(R\) is \underline{artinian} if:
+
+    \begin{enumerate}[label=\roman*)]
+        \item Every decreasing sequence of ideals is stationary.
+        \item \(\iff\) every f.g. \(R\)-module has finite length.
+    \end{enumerate} 
+\end{definition}
+
+eg \(\mathbb{Z}\) is not artinian, but \(kG\) is artinian.
+
+This is because f.d. \(k\)-algebra is artinian.
+
+\begin{remark}
+    If \(R\) is artinian then every finitely generated module has a minimal submodule and hence simple.
+\end{remark}
+
+\begin{theorem}
+    If \(R\) is artinian then \(\exists\) unique minimal 2-sided ideal \(J(R)\) so that \(R / J(R)\) is semisimple.
+\end{theorem}
+
+Here, \(R / J(R)\) is the maximal semisimple quotient. \(J(\mathbb{F}_p C_p) = \langle 1 - r \rangle\) since the quotient is \(\mathbb{F}_p\).
+
+For a general ring \(R\) we have:
+
+\[
+    J(R) = \bigcup_{\substack{\text{max left} \\ \text{ideals}}} M
+\]
+
+Despite having a one-sided definition it is a two sided ideal.
+
+Then, \(J(R)S = 0\) when \(S\) is a simple module.
+
+\(R\) artinian:
+
+Simple modules over \(R\) \(\leftrightarrow\) simple modules over \(R / J(R)\).
 
 \end{document}
