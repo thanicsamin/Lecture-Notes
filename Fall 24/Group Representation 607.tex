@@ -5623,4 +5623,205 @@ Then, \(J(R)S = 0\) when \(S\) is a simple module.
 
 Simple modules over \(R\) \(\leftrightarrow\) simple modules over \(R / J(R)\).
 
+\section*{Monday, 11/11/2024}
+
+\subsection*{Simple vs Indecomposable}
+
+Simple and Indecomposable are not the same thing.
+
+We have \underline{Jordan-H\"older Theorem} and \underline{Krull-Schmidt Theorem}.
+
+Let \(R\) be a ring and \(M\) be a module. Then,
+
+\(l(M) = n\) if chain \(0 = M_0 \subsetneq M_1 \subsetneq \cdot \subsetneq M_n = M\) and \(n\) is maximal.
+
+\begin{definition}
+    Composition series for \(M\) is maximal chain \(\iff\) all the quotient modules \(M_i / M_{i-1}\) are simple.
+\end{definition}
+
+\begin{definition}
+    Module \(M\) is \underline{indecomposable} if \(M = A \oplus B\implies A = 0\) or \(B = 0\).
+\end{definition}
+
+Let \(M\) be of finite length. 
+
+\begin{theorem}
+    [Jordan-H\"older Theorem] If \(M\) has finite length, then \(M\) has a composition series. Any two composition series have the same simple quotients.
+\end{theorem}
+
+\begin{theorem}
+    [Krull-Schmidt Theorem] If \(M\) has finite length then \(M = I_1 \oplus \cdots \oplus I_k\) with \(I_j\) indecomposable and if \(M = I_1^{\prime} \oplus \cdots \oplus I_{k^{\prime}}^{\prime} \) with \(I_j^{\prime}\) independent then \(k = k^{\prime}\) and \(I_j = I^{\prime}_{\sigma(j)}\) for \(\sigma \in S_k\).
+\end{theorem}
+
+Works for abelian categories, works for groups.
+
+Group Ring where the ring is a field has finite length.
+
+Consider \(S_3 \cong D_6 = \langle r, s \mid r^3 = 1, s^2 = 1, s r s = r ^{-1} \rangle = C_3 \rtimes C_2\).
+
+\(\mathbb{Q}D_6 = \mathbb{Q} \oplus \mathbb{Q} \oplus M_2(\mathbb{Q})\)
+
+\[
+    r \mapsto \left( 1, 1, \begin{bmatrix}
+        0 &  1 \\
+        -1 &  -1 \\
+    \end{bmatrix} \right) 
+\]
+
+\[
+    s \mapsto \left( 1, -1, \begin{bmatrix}
+        0 &  1 \\
+        1 &  0 \\
+    \end{bmatrix} \right) 
+\]
+
+\(\mathbb{F}_2 D_6 = ?\) 
+
+We have: \(\frac{1}{3}(1 + r + r^2)\) a central idempotent.
+
+\[
+    \mathbb{F}_2 D_6 = \mathbb{F}_2 C_2 \oplus M_2 \mathbb{F}_2
+\]
+
+\(\mathbb{F}_2 C_2\) is projective, not simple.
+
+\[
+    \mathbb{F}_2 D_6 = \mathbb{F}_2 C_2 \oplus \begin{bmatrix}
+        \ast &  0 \\
+        \ast &  0 \\
+    \end{bmatrix} \oplus \begin{bmatrix}
+        0 &  \ast \\
+        0 &  \ast \\
+    \end{bmatrix}
+\]
+
+\(JH \implies \mathbb{F}_2, \mathbb{F}_2, (\mathbb{F}_2)^2, (\mathbb{F}_2)^2\).
+
+Maximal semisimple quotient \(\mathbb{F}_3 D_6 / J = \mathbb{F}_3 C_2 = \mathbb{F}_3 \times \mathbb{F}_3\).
+
+Jacobson Radical \(J = \langle 1-r \rangle\).
+
+We have a (not central) idempotent: \(e = \frac{1 + s}{2}\). So we don't have block decomposition.
+
+\(\mathbb{F}_3 D_6 = \frac{\mathbb{F}_3 D_6}{1-e} \oplus \frac{\mathbb{F}_3 D_6}{e}\) not block decomposition.
+
+Now we go back to Serre.
+
+Let \(R\) be semisimple. Then Projective \(\iff\) \(\oplus\) simple.
+
+If \(R\) is Artinian, \underline{which is better}? Both
+
+\subsection*{Serre 14.1 Simple}
+
+The abelian group \(R_k G\) is \(\mathbb{Z}[T] / R\) with generator set \(T\) where:
+
+\(T =\) isomorphism classes of finitely generated \(kG\)-modules \([M]\).
+
+We have following relations \(R\):
+
+\([M] = [M^{\prime}] + [M^{\prime\prime}]\) if there exists a short exact sequence:
+
+\[
+    0 \to M^{\prime} \to M \to M^{\prime\prime} \to 0
+\]
+
+In the Maschke case the short exact sequence splits and so \(M = M^{\prime} \oplus M^{\prime\prime}\). 
+
+
+Ring with \(- \otimes_k -\).
+
+
+\(S_k = S_k G =\) isomorphism classes of simple \(kG\)-modules.
+
+\((R_{\mathbb{F}_2} D_6, +) \cong \mathbb{Z}^2, [\mathbb{F}_2 D_6] = [S_1] + [S_1] + [S_2] + [S_2]\).
+
+\(S_1 = \mathbb{F}_2, S_2 = \begin{bmatrix}
+    \ast \\ \ast 
+\end{bmatrix}\) 
+
+\((R_{\mathbb{F}_3}D_6, +) \cong \mathbb{Z}^2\).
+
+\([\mathbb{F}_3 D_6] = S_1^{\prime} + S_1^{\prime} +S_1^{\prime} + S_2^{\prime} + S_2^{\prime} + S_2^{\prime}\)
+
+We want to prove proposition 40:
+
+\begin{proposition}
+    [Serre 40] \(S_k\) is \(\mathbb{Z}\)-basis for the representation ring \(R_k(G)\) additively. \([s] \mapsto [s]\).
+\end{proposition}
+
+\begin{proof}
+    \[
+        \mathbb{Z}[S_k] \leftrightarrow R_k G
+    \]
+
+    \[
+        \sum [M_i / M_{i-1}] \mapsfrom M
+    \]
+\end{proof}
+
+\subsection*{Projective Module Review}
+
+Let \(R\) be a ring.
+
+\begin{lemma}
+    \(R\)-module \(P\). TFAE:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists Q\) such that \(P+Q =\) free [has a basis].
+        \item We have the following:
+        \begin{center}
+            \begin{tikzcd}
+                & P \ar[dl, dotted, "\exists"] \ar[d] \\ M \ar[r, two heads] & N
+            \end{tikzcd}
+        \end{center}
+
+        \item A surjection to \(P\) splits.
+        
+        \begin{center}
+            \begin{tikzcd}
+                M \ar[r, two heads] & P \ar[l, bend right, dotted]
+            \end{tikzcd}
+        \end{center}
+
+        \item SES
+        
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar[r] & M \ar[r] & N \ar[r] & P \ar[l, dotted, bend right] \ar[r] & 0
+            \end{tikzcd}
+        \end{center}
+
+        splits.
+
+        \item \(P\) isimage of projection.
+        
+        \[
+            \exists \pi \circ \pi = \pi : R^s \to R^s \, \text{s.t.} P \cong \pi (R^s)
+        \]
+
+        eg \(R = \mathbb{R} \times  M_2\mathbb{R}, \begin{pmatrix}
+            \ast \\ \ast
+        \end{pmatrix} \cong \begin{pmatrix}
+            \ast  &  0 \\
+            \ast &  0
+        \end{pmatrix}\) is projective, not free. 
+
+    \end{enumerate} 
+
+\end{lemma}
+
+Let \(R\) be a ring.
+
+\(K_0 R = \operatorname{Gr} (\text{iso chlass of f.g. projective \(R\)-modules,} \oplus)\).
+
+Serre writes \(P_A(G) = K_0(AG)\) for ring \(A\).
+
+\(K_0(kG)\) is module over \(R_k G\). [Not ring since we don't have identity].
+
+Key point: \(M \otimes_k kG \cong i^{\ast} M \otimes_k kG\) where \(i : k \hookrightarrow kG\) is free.
+
+\(m \otimes g \mapsto g ^{-1} m \otimes g\).
+
+Note that \(M \otimes_k \text{proj}\) is proj.
+
 \end{document}
