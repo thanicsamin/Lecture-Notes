@@ -4686,4 +4686,111 @@ Perron's method.
 
 \end{proof}
 
+\section*{Monday, 11/11/2024}
+
+Last estimates on \(\Delta u = f\):
+
+Last time:
+
+If \(f \in C^{0, \alpha}(B_{2R})\) and \(\omega =\) Newtonian potential
+
+\[
+    \omega(x) = \int_{B_{2R}} K(x-y) f(y) \,\mathrm{d}y 
+\]
+
+then
+
+\[
+    \vert w \vert_{C^{2,\alpha}} \leq C(\alpha, R) \vert f \vert_{C^{0,\alpha}(B_{2R})}
+\]
+
+Then suppose \(u\) is a \(C^{2,\alpha}\) solution to \(\Delta u = f\) in \(B_{2R}\).
+
+Then \(u = w + v\)
+
+\[
+    \Delta v = 0 \text{ in } B_{2R}
+\]
+
+\[
+    \vert u \vert_{C^{2,\alpha}(B_{R})}\leq \vert w \vert_{C^{2,\alpha}(B_{R})} + \vert v \vert_{C^{2,\alpha}(B_R)}
+\]
+
+\[
+    \implies \vert u \vert _{C^{2,\alpha}(B_R)} \leq C \vert f \vert _{C^{0,\alpha}(B_{2R})} + \vert v \vert _{C^{2,\alpha}(B_{2R})}
+\]
+
+Recall derivtive estimates of harmonic functions:
+
+\[
+    \vert D^\beta v \vert _{B_R} \leq C(\beta,R) \sup_{B_{2R}} \vert v \vert
+\]
+
+\(\beta =\) any multi-index.
+
+\[
+    \implies \vert u \vert_{C^{2,\alpha}(B_R)} \leq C \vert f \vert _{C^{0,\alpha}(B_{2R})} + \sup_{B_{2R}} \vert u \vert
+\]
+
+Interim Schauder estimate \(\forall \Omega_0 \subset \subset \Omega\) bounded, open
+
+\[
+    \implies \vert u \vert_{C^{2,\alpha}(\Omega_0)} \leq C(\Omega_0, \alpha) \left( \vert f \vert _{C^{0,\alpha}(\Omega)} + \sup_{\Omega} \vert u \vert  \right) 
+\]
+
+Cover \(\Omega_0\) with balls.
+
+
+\begin{theorem}
+
+    [Boundary H\"older Estimates] Assume \(u\in C^{2,\alpha}\) soluton to \(\Delta u = f\) in \(\Omega, u=g\) on \(\partial \Omega\) where \(f\in C^{0,\alpha}(\overline{\Omega}), g \in C^{2,\alpha}(\overline{\Omega})\) and \(\partial \Omega \in C^{2,\alpha}\). Then,
+
+    \[
+        \vert u \vert _{C^{2,\alpha}(\overline{\Omega})} \leq C \left( \vert f \vert _{C^{0,\alpha}(\overline{\Omega})} + \vert g \vert _{C^{2,\alpha}(\overline{\Omega} )} + \sup_{\overline{\Omega}} \vert u \vert \right) 
+    \]
+
+\end{theorem}
+
+Philosophy: Flatten the boundary [we can do this since \(\partial \Omega\) is \(C^{2,\alpha}\)].
+
+Subtract off \(g\) to get zero dirichlet condition.
+
+Then we work on \(\frac{1}{2}\) balls.
+
+\subsection*{General Schauder Estimates}
+
+\begin{theorem}
+    
+    Let \(Lu \coloneqq a_{ij} u_{x_i x_j} + b_i(x) u_{x_i} + c(x) u, a_{ij} = a_{ji}, a_{ij}(x) \zeta_i \zeta_j \geq \lambda \vert \zeta \vert ^2 \forall \zeta \in \mathbb{R}^n (\lambda > 0)\).
+
+    \[
+        \sum_{i,j} \vert a_{ij} \vert _{C^{0,\alpha}} + \sum_{i} \vert b_i \vert _{C^{0,\alpha}} + \vert c \vert _{C^{0,\alpha}} \leq \Lambda  
+    \]
+\end{theorem}
+
+\begin{proof}
+    First step: Suppose \(a_{ij}\) is constant.
+
+    Idea: Change variables to convert \(a_{ij} u_{x_i x_j}\) to \(\Delta u\).
+
+    \(L u = a_{ij} u_{x_i x_j}\). \(a_{ij}\) is positive definite symmetric so there exists \(S\) orthogonal [\(S^T = S ^{-1}\)] so that \(S ^{-1} A S = \widetilde{D} = \begin{bmatrix}
+        \lambda_1 &  &   \\
+         & \ddots &   \\
+         &  &  \lambda_n \\
+    \end{bmatrix}\) where \((A_{ij})=a_{ij}\).
+    
+    Let \(y = xS\) where \(x = (x_1, \cdots , x_n)\).
+
+    Let \(v(y) = u(y S ^{-1})\).
+
+    \(u(x) = v(xS) \implies u_{x_i} = v_{y_k} S_{ik}\implies u_{x_i x_j} = v_{y_k y_l} S_{ik} S_{jl} \implies a_{ij} u_{x_i x_j} = v_{y_k y_l} S_{ik} a_{ij} S_{jl} = v_{y_k y_l} S_{ki}^T a_{ij} S_{jl} \implies a_{ij} u_{x_i x_j} = \widetilde{D}_{kl} v_{y_k y_l} = \widetilde{D} D^2 v = \lambda_1 v_{y_1 y_1} + \cdots \lambda_n v_{y_n y_n}\)
+    
+    Change variables again: let \(z_i = \sqrt{\lambda_i} y_i\) then \(\frac{\partial^2}{\partial z_i^2} = \frac{1}{\lambda_i} \frac{\partial^2}{\partial y_i^2} \implies w(z) = v(y) \implies \Delta_z w\).
+
+    If \(u\) solves \(a_{ij} u_{x_i x_j} = f\) then \(w\) solves \(\Delta_z = \widetilde{f}\).
+    
+    Then we use old estimates for Poisson.
+    
+\end{proof}
+
 \end{document}
