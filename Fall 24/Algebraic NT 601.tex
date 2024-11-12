@@ -4476,6 +4476,8 @@ The canonical injection \(\overline{K} \to \overline{E}\) is called the \underli
         \item For every finite subextension \(F / \overline{K} \subseteq \overline{C} / \overline{K}\, \exists\) subextension \(L / K \subseteq C / K\) such that \(\overline{L} = F\) and \([L:K] = [F:\overline{K}]\).
         \item The map from finite subextension of \(C / K\) to finite subetensions of \(\overline{C} / \overline{K}\) induces an inclusion preserving bijection between the unramified subextensions \(L / K \subseteq C / K\) and the finite separale subextensions \(L / K \subseteq C / K\) and the finite separable subextensions \(F / \overline{K} \subseteq \overline{C} / \overline{K}\). Every unramified extension of \(K\) is separable.
         \item Every finite subextensions \(E / K \subseteq C / K\) has a largest unramified subextension \(L / K\). If \(\overline{E} / \overline{K}\) is separable, then this maximal unramified subextension \(L\) satisfies \(\overline{L} = \overline{E}\) and \([L:K] = [\overline{L}:\overline{K}]\).
+        
+        \item If \(L / K\) is unramified, then it is Galois \(\iff \overline{L} / \overline{K}\) is Galois, and in this case there is a canonical isomorphism \(\operatorname{Gal}(L / K) \to \operatorname{Gal}(\overline{L}/\overline{K})\).
 
     \end{enumerate} 
 \end{theorem}
@@ -4531,7 +4533,151 @@ The canonical injection \(\overline{K} \to \overline{E}\) is called the \underli
 
         eg \(K = \mathbb{Q}_p \implies \overline{K} = \mathbb{F}_p, \overline{C} \cong \overline{\mathbb{F}_p}\).
 
-        \item If \(L / K\) is unramified, then it is Galois \(\iff \overline{L} / \overline{K}\) is Galois, and in this case there is a canonical isomorphism \(\operatorname{Gal}(L / K) \to \operatorname{Gal}(\overline{L}/\overline{K})\).
+\section*{Tuesday, 11/12/2024}
+
+\[
+    \begin{Bmatrix} \text{subextensions } E / K \subset C / K  \\ [E:K] < \infty \end{Bmatrix} \underset{E \mapsto \overline{E}}{\longrightarrow} \begin{Bmatrix} \text{subextensions } F / \overline{K} \subset \overline{C} / \overline{K}  \\ [E:K] < \infty \end{Bmatrix}
+\]
+
+\[
+    \cup \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \cup
+\]
+
+\[
+    \{ \text{unramified } E / K \} \quad \quad \underset{b_{ij}}{\longrightarrow} \quad \quad  \{ \text{separable } F / \overline{K} \}  
+\]
+
+\(E \mapsto \overline{E}, [E:K] = [\overline{E} : \overline{K}]\).
+
+    \item Let \(L / K\) be unframified, \(\sigma \in \operatorname{Aut} (L / K)\).
+
+    9.14 (uniqueness of extending absolute values) \(\implies \forall a \in L, \vert \sigma (a) \vert = \vert a \vert\).
+
+    \(\implies \sigma(\mathcal{O}_L) \subset \mathcal{O}_L, \sigma(P_L) \subset P_L \implies \sigma\) induces \(\overline{\sigma} : \overline{L} \to \overline{L}\) over \(\overline{K}\).
+
+    This gives us a group hoomorphism \(\phi: \operatorname{Aut} (L / K) \to \operatorname{Aut} (\overline{L} / \overline{K})\). 
+
+    Write \(\overline{L} = \overline{K} (\beta)\). Let \(g(x) \in \mathcal{O}_K[x]\) be a monic lift of \(\mu_{\beta , \overline{K}}(x) \in \overline{K}[x]\).
+    
+    9.12 (Hensel's Lemma) \(\implies \exists \alpha \in \mathcal{O}_L\) such that \(g(x) = (x-\alpha)h(x)\) in \(\mathcal{O}_L[x]\) with \(\overline{\alpha} = \beta\). 
+    
+    By part iii: \(K(\alpha) = L\) (consider residue fields).
+
+    \underline{Claim}: \(\phi\) is injective.
+
+    \underline{Proof of Claim}: Suppose \(\overline{\sigma} = \operatorname{id}_{\overline{L}} \implies \beta = \overline{\sigma} (\beta) = \overline{\sigma} (\overline{\alpha}) = \overline{\sigma(\alpha)}\).
+    
+    \(g(\alpha)=0 \implies g(\sigma(\alpha))= 0\) and \(\sigma(\alpha)\) has the same reduction mod \(P_L\) as \(\alpha\) [namely \(\beta \)].
+
+    \(\mu_{\beta, \overline{K}}\) separable \(\implies \sigma (\alpha) = \alpha  \implies \sigma = \operatorname{id}_L\). This proves the claim.
+
+    Now suppose \(L / K\) is Galois. Then \([\overline{L}: \overline{K}] \geq \vert \operatorname{Aut} (\overline{L}/\overline{K}) \vert \overset{\text{Claim}}{\geq} \vert \operatorname{Aut} (L / K) \vert \overset{\text{Galois}}{=} [L:K]\).
+    
+    \(\implies [\overline{L}:\overline{K}] = \vert \operatorname{Aut} (\overline{L} / \overline{K}) \vert \implies \overline{L} / \overline{K}\) is Galois. 
+
+    Conversely, if \(\overline{L} / \overline{K}\) is Galois \(\implies \mu_{\beta, \overline{K}}\) splits into distinct linear monic factors in \(\overline{L}[x]\).
+
+    9.12 (Hensel's Lemma) \(\implies g(x)\) splits into distinct linear factors in \(L[x] \implies L\) is obtained by adjoining all roots of \(g(x)\) to \(K\).
+
+    \(\implies L / K\) is normal and since \(g(x)\) is separable (\(\impliedby \mu_{\beta, \overline{K}}(x)\) is separable) we have \(L / K\) is Galois.
+    \end{enumerate} 
+\end{proof}
+
+\begin{theorem}
+    Suppose \(K\) is complete w.r.t.\ a non-archimedean absolute value \(\vert \cdot \vert\) and the residue field \(\overline{K}\) is finite with \(q\) elements. Let the notation be as in the previous theorem. Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\forall n\in \mathbb{Z}_{\geq 1} \exists !\) unramified subextension of \(C / K\) which is of degree \(n\) over \(K\). This subextension is generated by a primitive root of unity \(\zeta_{q^n - 1}\) of order \(q^n - 1\).
+        
+        \item Suppose \(m\in \mathbb{Z}_{\geq 1}\) is not divisible by \(p \coloneqq \operatorname{char}(\overline{K})\).  Let \(\zeta_m \in C\) be a primitive \(m\)'th root of unity. Then \(K(\zeta_m) / K\) is unramified and \([K(\zeta_m):K]\) is equal to the order of \(q\) modulo \(m\) in \((\mathbb{Z} / m\mathbb{Z})^\times\). In particular, 
+        
+        \[
+            \mu^p(K) = \{ \zeta \in J \mid \zeta \text{ is root of unity of order prime to } p \} 
+        \]
+
+        is cyclic of order \(q-1\) and is a set of representatives of \(\overline{K}^\times\).
+
+        \item Every unramified extension of \(L / K\) is Galois and \(\operatorname{Gal}(L / K)\) is cyclic and is generated by a unique element \(\varphi_{L / K}\) which induces the map \(x \mapsto x^q\) on \(\overline{L}\). \(\varphi_{L / K}\) is called the \underline{Frobenius} of \(L / K\).
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+
+    \(\mathbb{F}_{q^n} = \) splitting field of \(x^{q^n} - x\) over \(\mathbb{F}_q = \prod_{\alpha \in \mathbb{F}_{q^n}}(x-\alpha)\). \(\vert \mathbb{F}_{q^n}^\times \vert = q^n - 1\). \(\mathbb{F}_{q^n}^\times = \langle \zeta_{q^n - 1} \rangle\).   
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\vert \overline{K} \vert = q \implies \forall n\in\mathbb{Z}_{\geq 1}, \exists ! \overline{K}_n / \overline{K} \subset \overline{C} / \overline{K}\) such that \([\overline{K}_n : \overline{K}] = n\) and \(\overline{K}_n = \overline{K}(\overline{\zeta}_{q^n - 1})\) where \(\overline{\zeta}_{q^n - 1}\) is a primitive root of unity of orer q\(^n - 1\).
+        
+        \(g(x) = x^{q^n - 1} - 1\) splits into distinct linear factors over \(\overline{K}_n\).
+
+        9.12 (Hensel's Lemma) \(f(x) \coloneqq x^{q^n - 1} - 1 \in \mathcal{O}_{L_n}[x]\) splits into distinct linear factors where \(L_n \subset C / K\) is the unique unramified extension with \(\overline{L}_n = \overline{K}_n\).
+
+        Let \(\zeta \in \mathcal{O}_{L_n}   \) be a root of \(f(x)\) with \(\overline{\zeta} = \overline{\zeta_{q^n - 1}}\).
+        
+        \(f(\zeta) = 0 \implies\zeta^{q^n - 1} = 1 \implies \operatorname{ord}(\zeta) \mid q^n - 1\) but \(q^n - 1 = \operatorname{ord}(\overline{\zeta}) \mid \operatorname{ord}(\zeta)\).
+
+        Therefore, \(\zeta\) is a primitive root of unity of order \(q^n - 1\).
+
+        \(\implies K(\zeta) = L_n \,(\overline{\zeta}_{q^n - 1} \in \overline{K(\zeta)} \subset \overline{L}_n = \overline{K}_n = \overline{K}(\overline{\zeta}_{q^n - 1}))\).
+
+        \(\implies L_n\) is the unique unramified extension with residue field \(\overline{K}_n\) and it is generated by a root of unity of order \(q^n - 1\). 
+
+        \item Suppose \(p\nmid m\) and let \(\zeta_m \in C\) be a primitive \(m\)'th root of \(1\). Set \(n \coloneqq \min \{ l \in \mathbb{Z}_{> 0} \mid q^k\equiv 1 \,(m) \}\).
+        
+        \(\implies \zeta_m \in \langle \zeta_{q^n - 1} \rangle\).
+        
+        \(\implies K(\zeta_m) \subset K(\zeta_{p^n - 1})\).
+
+        and \(\zeta_m = \zeta_{q^n - 1}^{ra}\) where \(r = \frac{q^n - 1}{m}\) and \(\gcd(a,m) = 1\).
+
+        Therefore, \(\overline{\zeta_m} = \overline{\zeta}_{q^n - 1}^{ra} \implies \operatorname{ord}(\overline{\zeta}_m) = m\).
+
+        If \(\overline{\zeta}_m^{q^k} = \overline{\zeta}_m\) for \(k \leq n\) then \(\overline{\zeta}^{q^k - 1} = 1 \implies m \mid q^k - 1 \implies q^k \equiv 1\pmod m\) for some \(k \geq 1\).
+        
+        \(\implies k \geq n \implies \overline{K}(\overline{\zeta}_m) = \overline{K}_n\).
+        
+        \(\implies [K(\zeta_m) : K] = [\overline{K}[\overline{\zeta}_m]:\overline{K}] = n \).
+        
+        \item \(\impliedby\) Theorem 10.6 v and i.
+    \end{enumerate} 
+\end{proof}
+
+\begin{proposition}
+    Let \(\vert \cdot \vert\) be discrete absolute value on \(K\) with normalized valuation \(w:K \to \mathbb{Z} \cup \{ \infty \} \) (we do not assume \(K\) is complete).
+
+    \begin{enumerate}[label=\roman*)]
+        \item Let \(f(x) = x^n + a_1 x^{n-1} + \cdots +a_n \in \mathcal{O}_K [x]\) be an Eisenstein polynomial (\(w(a_i) \geq 1, w(a_n) = 1\)) and let \(\pi\) be a root of \(f\). Then  \(\vert \cdot \vert\) has unique extension \(\vert \cdot \vert_1\) to \(E \coloneqq K(\pi)\) and \(E / K\) is \underline{purely ramified} (\(\underset{\text{dfn}}{\iff} e(E / K, \vert \cdot \vert_1) = [E:K]\)), and fmf\(\) is ireudcible, and \(\pi\) is a prime element of \(E\) w.r.t.\ \(\vert \cdot \vert_1\).
+        \item Conversely any purely ramified extension \(E / K\) w.r.t.\ an extension \(\vert \cdot \vert_1\) of \(\vert \cdot \vert\) to \(E\) is of the form \(E = K(\pi)\), where \(\pi\) is a prime element of \(E\) w.r.t.\ \(\vert \cdot \vert_1\).
+        
+        The minimal polynomial of \(\pi\) is an Eisenstein polynomial.
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Let \(\vert \cdot \vert_1\) be some extension of \(\vert \cdot \vert\) to \(E\). We have \(\pi^n = - a_1 \pi^{n-1} - \cdots - a_n \, (1)\).
+
+        If \(\vert \pi \vert_1 \geq 1\) then \(\vert \pi \vert_1^n \geq \vert \pi \vert_1^{n-i} > \vert a_i \pi^{n-i} \vert_1\) b y strong triangle inequality. This is a contradiction to (1).
+        
+        Thus, \(\vert \pi \vert_1 < 1\) and \(\vert \pi \vert_1^n = \vert a_n \vert \implies \vert K^\times \vert \subseteq \vert a_n \vert^\mathbb{Z} = \vert \pi \vert ^{n\mathbb{Z} }_1 \subset \vert E^\times \vert _1\).
+
+        Therefore, \(e(E / K, \vert \cdot \vert_1) \geq n = \deg(f) \geq [E:K] \overset{9.16}{\underset{10.1}{\implies }} \sum_{i=1}^r e_i f_i \geq e_1 = e(E / K, \vert \cdot \vert_1) \,(2)\) [same notation as in 9.16].
+
+        Then, \(e(E / K, \vert \cdot \vert_1) = [E:K] \implies f\) is the minimal polynomial of \(\pi, r = 1 \implies \vert \cdot \vert_1\) is the \underline{only} extension of \(\vert \cdot \vert\) to \(E\).
+        
+        \item By assumption \([E:K] = e(E / K, \vert \cdot \vert_1)\).
+        
+        \((2) \implies \vert \cdot \vert_1\) is the unique extension of \(\vert \cdot \vert\) to \(E\). Recall that \(\vert E^\times \vert = \vert \pi \vert_1^\mathbb{Z}\).
+
+        Let \(\pi\) be a prime element of \(E\). Then \([K(\pi):K] \underset{10.1}{\geq} e(K(\pi) / K, \vert \cdot \vert_1) = e(E / K, \vert \cdot \vert_1) = [E:K] \implies E = K(\pi)\).
+        
+        Let \(f(x) = a_0 x^n + a_1 x^{n-1} + \cdots + a_n \in K[x]\) be the minimal polynomial of \(\pi / K\) with \(a_0 = 1\).
+        
+        \(a_0 \pi^n + \cdots + a_{n-1} \pi + a_n = 0 \implies \exists 0 \leq i < j \leq n : \vert a_i \pi^{n-i} \vert_1 = \vert a_j \pi^{n-j} \vert_1 = \max\{ \left\vert a_k \pi^{n-k} \right\vert _1 \mid 0 \leq k \leq n \} \neq 0 \implies \vert \pi \vert ^{j - i} = \left\vert \frac{a_j}{a_i} \right\vert \in \vert K^\times \vert \implies j - i = n \implies j = n, i = 0\).
+
+        \(\implies \vert \pi \vert ^ n = \vert a_n \vert \implies \vert a_n \vert ^\mathbb{Z} = \vert K^\times \vert = \vert \pi \vert ^{n\mathbb{Z}}\).
+
+        Thus, \(a_n\) is a uniformizer of \(K\) and \(\vert a_i \vert \leq \vert a_n \vert\) for \(1 \leq i \leq n\).
     \end{enumerate} 
 \end{proof}
 
