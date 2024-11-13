@@ -5824,4 +5824,200 @@ Key point: \(M \otimes_k kG \cong i^{\ast} M \otimes_k kG\) where \(i : k \hookr
 
 Note that \(M \otimes_k \text{proj}\) is proj.
 
+\section*{Wednesday, 11/13/2024}
+
+\subsection*{Serre 14.3}
+
+We are looking at \(kG\), character possibly dividing \(\#G\).
+
+\[
+    \begin{array}{ccc}
+        \text{indecomposable} &  &  \text{simple} \\
+        K_0(kG) &  &  R_k G \\
+        P & \mapsto &  P / J(R)P \\
+        P_S & \mapsfrom & S \\
+        \text{projective cover} & &
+    \end{array}
+\]
+
+\begin{definition}
+    \(f: M \to M^{\prime}\) is \underline{essential} if:
+    
+    \begin{itemize}
+        \item \(f\) onto.
+        \item \(\forall M^{\prime\prime} \subsetneq M^{\prime}, \eval{f}_{M^{\prime\prime}}\) not onto.  
+    \end{itemize} 
+
+    The idea is \(f\) is essential if it is `barely onto'.
+\end{definition}
+
+\begin{definition}
+    \(f: P \to M\) where \(P\) is projective and \(f\) is essential is a \underline{projective cover}.  
+
+    Note: \(P\) is the projective cover of \(M\).
+\end{definition}
+
+\begin{proposition}
+    [4.1] If \(l(M) < \infty\) there exists projective cover, unique upto isomorphism.
+
+    If \(P\) is projective and \(E\) is maximal semisimple quotient, then \(P \to E\) is a projective cover.
+
+    eg if \(R\) is \underline{artinian}, then \(l(M) < \infty \iff M\) finitely generated.
+
+    \(P\) projective implies \(P \to P / JP\) is projective cover. \(P / JP\) is semisimple.
+
+    eg \(\mathbb{F}_2 C_2 \to \mathbb{F}_2\) is a projective cover.
+
+    \(e = \frac{1+s}{2}\), \(\mathbb{F}_3 D_6 e \to \mathbb{F}_3\) is a projective cover.
+
+    \(\overset{\text{proj}}{\mathbb{F}_3 D_6} \underset{\text{essential}}{\twoheadrightarrow} \overset{\text{s.s.}}{\mathbb{F}_3 C_2}\).
+
+\end{proposition}
+
+\begin{proof}
+    Existence:
+
+    \begin{itemize}
+        \item Choose SES (choice in blue):
+        
+        \[
+            0 \to R \to {\color{blue}\overset{\text{proj}}{L}} \to M \to 0
+        \]
+
+        \item Choose \(N \subset R\) minimal such that:
+        
+        \[
+            {\color{blue} L / N \overset{\text{ess}}{\to} M}
+        \]
+
+        Let \(P \coloneqq L / N\).
+
+        \item Let \(Q \subset L\) minimal such that:
+        
+        \begin{center}
+            \begin{tikzcd}
+                & L \ar[d, two heads] \\ {\color{blue} Q} \ar[ur, hook, blue] \ar[r, two heads, "\text{onto}"] & P
+            \end{tikzcd}
+        \end{center}
+
+        \item Choose lift
+        
+        \begin{center}
+            \begin{tikzcd}
+                & L \ar[dl, dotted, "q", blue, swap] \ar[d, two heads] \\ Q \ar[r] & P
+            \end{tikzcd}
+        \end{center}
+
+    \end{itemize} 
+
+    2nd choice and 3rd choice implies:
+
+    \[
+        0 \to N \to L\overset{q}{\to} Q \to 0
+    \]
+
+    SES \(\implies P \cong Q\).
+
+    3rd choice and 4th choice \(\implies\)\begin{tikzcd}  L \ar[r, "q", swap]  & Q \ar[l, bend right, dashed, "i", swap]   \end{tikzcd} split.
+
+    \(L \cong N \oplus Q \cong N \oplus P\), P projective. 
+
+    Uniqueness:
+
+    \begin{center}
+        \begin{tikzcd}
+            & P \ar[dl, "\text{lift } q \, \cong", red, swap] \ar[d] \\ P^\prime \ar[r, two heads] & M
+        \end{tikzcd}
+    \end{center}
+
+    \(P^{\prime} \to M\) essential so \(q\) onto.
+
+    \(P \to M\) essential so \(q\) is 1-1.
+    
+\end{proof}
+
+Suppose \(R\) is artinian eg \(R = kG\).
+
+\begin{corollary}
+    [1]
+
+    \[
+        \text{proj. indecomposable } R\text{-mod} \leftrightarrow \text{simple} R\text{-mod}
+    \]
+
+    \[
+        P \mapsto P / JP
+    \]
+
+    \[
+        P_E \mapsfrom E
+    \]
+\end{corollary}
+
+\begin{corollary}
+    Let \(\$\) be isomorphism classes of simple \(R\)-modules.
+
+    \(\{ P_E \}_{E \in \$}\) form a basis of \(K_0 R\).
+\end{corollary}
+
+\begin{corollary}
+    f.g. projective \(R\)-modules \(P\) and \(P^{\prime}\), \([P]=[P^{\prime}] \in K_0 R \iff P \cong P^{\prime}\).
+
+    No stabilization required!
+\end{corollary}
+
+\begin{proof}
+    ?: Suppose \([P] = [P^{\prime}] \in K_0(kG)\).
+
+    \(\iff [s]=[s^{\prime}] \in R_k G\) [\(s = P / JP\)]
+
+    \(\iff s \cong s^{\prime}\) 
+
+    \(\iff P \cong P^{\prime}\).
+\end{proof}
+
+\subsection*{Setting of Chapter 14, p-adics}
+
+Consider \(((K,\nu),A, \mathfrak{m}, k)\).
+
+Example: \((\mathbb{Q}_p, \nu_p),\mathbb{Z}_p, p \mathbb{Z}_p, \mathbb{F}_p\).
+
+\begin{definition}
+    [p164] A discrete valuation \((K,v)\) is a field \(K\) and a homomorphism \(\nu: K^\times \twoheadrightarrow \mathbb{Z}\) such that \(\nu(x + y) \geq \min(\nu(x), \nu(y))\).
+\end{definition}
+
+Basic example: \(K = \mathbb{Q}\) then \(\nu_p\) is the power of \(p\) in the factorization.
+
+Generalize: If \(A\) is a PID and we have prime \(P \triangleleft A\) we have a discrete valuation \((\operatorname{Frac}(A), \nu_P)\).
+
+Let \((K,\nu)\) bea discrete valuation.
+
+\begin{definition}
+    Valuation ring of \((K,\nu)\) is:
+
+    \[
+        A = \nu ^{-1} \mathbb{Z}_{\geq 0}
+    \]
+
+    This is a DVR (discrete valuation ring) (\(=\) PID with unique maximal ideal).
+
+    Maximal ideal is
+
+    \(\mathfrak{m} = \nu ^{-1} \mathbb{Z}_{> 0}\)
+
+    eg for \((\mathbb{Q}, \nu_P)\) we have \(A = \mathbb{Z}_{(P)}\).
+
+    For \((K, \nu)\) we have an absolute value on \(K\) which gives us a metric on \(K\).
+
+    \(\vert x \vert = e^{-\nu(x)}\).
+
+    metric: \(d(x,y) = \vert x - y \vert\).
+\end{definition}
+
+Fact: Completion of \(K\) (use Cauchy sequences) \(\widehat{K}_\nu\) is also a field with discrete valuation \(\nu\).
+
+\(K\) is \underline{complete} if \(K = \widehat{K}_\nu\).
+
+
+
 \end{document}
