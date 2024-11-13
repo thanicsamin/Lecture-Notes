@@ -4790,7 +4790,161 @@ Then we work on \(\frac{1}{2}\) balls.
     If \(u\) solves \(a_{ij} u_{x_i x_j} = f\) then \(w\) solves \(\Delta_z = \widetilde{f}\).
     
     Then we use old estimates for Poisson.
-    
+ 
 \end{proof}
+
+\section*{Wednesday, 11/13/2024}
+
+We finish Schauder today.
+
+\(Lu \coloneqq a_{ij} (x) u_{x_i x_j} + b_i(x)u_{x_i} + c(x) u\).
+
+We assume uniform ellipticity: \(a_{ij} = a_{ji}, a_{ij} (x) \zeta_i \zeta_j \geq \theta \vert \zeta \vert ^2\) forsome \(\theta > 0,\forall x\in \Omega\).
+
+Also H\"older continuous coefficients.
+
+\[
+   \sum_{i,j} \vert a_{ij} \vert_{C^{0,\alpha}} + \sum_{i} \vert b_i \vert_{C^{0,\alpha}} + \vert c \vert_{C^{0,\alpha}}
+\]
+
+So far, for \(L = a_{ij} u_{x_i x_j}\) with \(a_{ij}\) constants, we showed that interior H\"older estimates work via change of variables. 
+
+\(Lu = f, f \in C^{0,\alpha}(\Omega)\).
+
+Then,
+
+\[
+    \vert u \vert_{C^{2,\alpha}(\Omega^{\prime})} \leq C(\Omega , \Omega ^{\prime} , \Lambda , \theta) (\vert f \vert_{C^{0,\alpha}(\Omega)} + \sup_\Omega \vert u \vert ) \quad (\ast)
+\]
+
+\(\forall \Omega ^{\prime} \subset \subset \Omega\).
+
+\begin{theorem}
+    If \(Lu = f\) in \(\Omega , f\in C^{0,\alpha}(\Omega)\) then \(\forall \Omega ^{\prime} \subset \subset \Omega, (\ast)\) holds.
+\end{theorem}
+
+\begin{proof}
+    Let \(x_0 \in \Omega ^{\prime} \). Rewrite \(Lu = f\).
+
+    \[
+        a_{ij} (x_0) u_{x_i x_j} = f - b_i(x) u_{x_i} - c(x) u + (a_{ij}(x_0) -a_{ij}(x))u_{x_i x_j}
+    \]
+
+    \[
+        \eqqcolon F(x)
+    \]
+
+    Now estimate \(\vert F \vert_{C^{0,\alpha}}\) to use the previous lemma.
+
+    Take \(B_R \coloneqq B(x_0,R) \subset \subset \Omega\).
+
+    \(\vert f \vert_{C^{0,\alpha}}\) is bounded from assumption.
+
+    We use the following fact: \([gh]_{C^\alpha} = \sup \frac{\vert g(x_2)(x_2) - g(x_1)h(x_1) \vert}{\vert x_2 - x_1 \vert^\alpha} \) 
+
+    Same way as the product rule, we can write:
+
+    \[
+        \leq \sup \frac{\vert g(x_2) \vert \vert h(x_2) - h(x_1) \vert}{\vert x_2 - x_1 \vert ^ \alpha}+\frac{\vert h(x_1) \vert \vert g(x_2)-g(x_1) \vert}{\vert x_2 - x_1 \vert ^\alpha} \leq \sup \vert g \vert [h]_{C^\alpha} + \sup \vert h \vert [g]_{C^\alpha}
+    \]
+
+    Then we can write:
+
+    \([b_i u_{x_i}]_{C^\alpha} \leq \sup \vert b_i \vert [u_{x_i}]_{C^\alpha} + \sup \vert u_{x_i} \vert [b_i]_{C^\alpha}\) 
+
+    \(\vert b_i u_{x_i} \vert_{C^{0,\alpha}} \leq \Lambda \vert u \vert_{C^{1,\alpha}}\).
+
+    Similarly, \(\vert cu \vert_{C^{0,\alpha}} \leq \Lambda \vert u \vert_{C^{0,\alpha}}\).
+
+    Finally,
+
+    \([(a_{ij}(x_0) - a_{ij}(x))u_{x_i x_j} ]_{C^\alpha} \leq \sup \vert a_{ij}(x_0) -a_{ij} (x) \vert [D^2 u]_{C^\alpha} + \Lambda \sup \vert D^2 u \vert\)
+    
+    \(\leq [a_{ij}]_{C^\alpha} R^\alpha [D^2 u]_{C^\alpha} + \Lambda \sup \vert D^2 u \vert\) 
+
+    This idea is called \underline{idea of freezing coefficient}. We have variable coefficient, but we can take a ball in which the coefficients don't vary that much.
+
+    We have the following proposition:
+
+    \begin{proposition}
+        \(\forall \epsilon \exists C_{\epsilon} > 0\) such that if \(u\in C^{2,\alpha}(\Omega)\) then,
+
+        \[
+            \vert u \vert_{C^2} \leq \epsilon \vert u \vert _{C^{2,\alpha}} + C_{\epsilon} \sup \vert u \vert.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Suppose not. Then we can find \(\epsilon\) and \(\{ u_j \}\) such that
+
+        \[
+            \vert u_j \vert_{C^2} > \epsilon \vert u_j \vert_{C^{2,\alpha}} + j \sup \vert u_j \vert
+        \]
+
+        Setting \(v_j \coloneqq \frac{u_j}{\vert u_j \vert_{C^2}}\) we have same ineqaulity with \(\vert v_j \vert_{C^2} = 1\).
+
+        We have \(\vert v_j \vert_{C^{2,\alpha}} \leq \frac{1}{\epsilon}\).
+
+        Arzela-Ascoli \(\implies v_{j_l} \overset{C^2}{\to} v\).
+
+        Then \(\vert v \vert_{C^2} = 1\).
+
+        But \(\sup \vert v_j \vert < \frac{1}{j}\) so \(\sup \vert v \vert = 0\) so \(v \equiv 0\).
+
+
+    \end{proof}
+
+    We use this estimate to finish the proof.
+
+    Applying this,
+
+    \[
+        \vert F \vert_{C^{0,\alpha}} \leq \vert f \vert _{C^{0,\alpha}} + \epsilon \vert u \vert_{C^{2,\alpha}} + \Lambda R^\alpha \vert u \vert _{C^{2,\alpha}} + C_{\epsilon } \sup \vert u \vert
+    \]
+
+    From previous lemma about constant coefficients,
+    
+    \[
+        \vert u \vert_{C^{2,\alpha}} \leq C \left( \vert f \vert_{C^{0,\alpha}} + \epsilon \vert u \vert_{C^{2,\alpha}} + \Lambda R^\alpha \vert u \vert_{C^{2,\alpha}} + C_{\epsilon} \sup \vert u \vert \right)
+    \] 
+
+    We pick \(R\) small enough so that \(C;LR^\alpha \leq \frac{1}{2}\).
+
+    This choice just depends on \(\Lambda, \theta, \Omega, \Omega^{\prime}\). So we can cover \(\Omega^{\prime}\) with finitely many balls.
+
+\end{proof}
+
+\subsection*{Boundary Schauder Estimate}
+
+\begin{theorem}
+    Let \(\partial\Omega \in C^{2,\alpha}\) bounded, open. Assume \(f\in C^{0,\alpha}(\overline{\Omega}),g\in C^{2,\alpha}(\overline{\Omega }),L\) as before. Assume \(u\) is a \(C^{2,\alpha}\) solution to:
+
+    \[
+        Lu = f \text{ in } \Omega 
+    \]
+
+    \[
+        u = g \text{ on } \partial \Omega
+    \]
+
+    Then \(\exists C = C(\Omega, \Lambda, \theta)\) such that:
+
+    \[
+        \vert u \vert_{C^{2,\alpha}(\overline{\Omega})} \leq C \left( \vert f \vert_{C^{0,\alpha}} + \vert g \vert_{C^{2,\alpha}} + \sup_{\overline{\Omega}} \vert u \vert  \right) 
+    \]
+\end{theorem}
+
+
+\begin{proof}
+    (Sketch) Subtract of \(g\), so \(u = g+v\) and \(v\) is \(0\) on \(\partial \Omega\).
+
+    Then \(Lv = f - Lg\).
+
+    Without any assumption on the sign of \(c\), we need some norm of \(u\) on the RHS, since we can have eigenfunctions so \(\vert u \vert\) can blow up as much as we want.
+
+    Proof works by flattening the boundary, working with half balls etc.
+
+\end{proof}
+
 
 \end{document}
