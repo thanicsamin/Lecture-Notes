@@ -6018,6 +6018,177 @@ Fact: Completion of \(K\) (use Cauchy sequences) \(\widehat{K}_\nu\) is also a f
 
 \(K\) is \underline{complete} if \(K = \widehat{K}_\nu\).
 
+\section*{Friday, 11/15/2024}
 
+Basic plan for learning \(p\)-adic: Suppose we want to study \(\mathbb{F}_p G\). If \(p\mid \vert G \vert\) then Maschke doesn't work. So we mod out the Jacobson RadicaL \(\mathbb{F}_p G /\).
+
+Our setting:
+
+\[
+    (\underset{\text{complete D.V}}{(K,\nu)}, \underset{\text{valuation ring}}{A}, \underset{\text{maximal}}{\mathfrak{m}}, \underset{\text{residue field} }{k} )
+\]
+
+eg \(((\mathbb{Q}_p, \nu_p),\mathbb{Z}_p, p \mathbb{Z}_p, \mathbb{F}_p)\) 
+
+In \(\mathbb{Q}, \nu_p\), \(\nu_p(p^n \frac{a}{b}) = n\).
+
+Renormalize: \(\lVert x \rVert = p^{-\nu(x)}\)
+
+\[
+    \lim_{n \to \infty} p^n = 0
+\]
+
+\(\mathbb{Q}_p\) is completion of \(\mathbb{Q}\) under \(\lVert x-y \rVert _p\)
+
+\[
+    \mathbb{Q}_p= \left\{\sum_{i=-k}^{\infty} a_i p^i \mid 0 \leq a_i \leq p-1 \right\}
+\]
+
+\[
+    \mathbb{Z}_p= \left\{\sum_{i=0}^{\infty} a_i p^i \mid 0 \leq a_i \leq p-1 \right\}
+\]
+
+\[
+    \mathfrak{m} = \left\{\sum_{i=1}^{\infty} a_i p^i \mid 0 \leq a_i \leq p-1 \right\}
+\]
+
+\subsection*{Better Approach}
+
+We use the inverse liit to define it.
+
+\[
+    \mathbb{Z}_p \coloneqq \lim_{\leftarrow} \mathbb{Z} / p^n = \left\{ (b_n) \in \prod \mathbb{Z} / p^n \mid b_{n+1} \equiv b_n \pmod{p^n}\right\}  
+\]
+
+Compact by Tychonoff.
+
+\(\mathbb{Q}_p = \operatorname{Frac}(\mathbb{Z}_p)\).
+
+\subsection*{The case \(p=2\)}
+
+\(p=2\) consider binary expansion.
+
+In \(\mathbb{Z}\), \(11011\) is finite.
+
+In \(\mathbb{R}\) we can have \(\underbrace{11011}_{\text{finite}}.\underbrace{101110110\cdots}_{\text{infinite}}\) 
+
+In \(\mathbb{Q}_2\) we ca have \(\underbrace{\cdots 1011011}_{\text{infinite}}.\underbrace{01101}_{\text{finite}}\) 
+
+Thus we can have algorithms for adding and other stuff.
+
+\subsection*{Serre 14.4}
+
+\begin{lemma}
+    [Lemma 20] Let \(\Lambda\) be a commutative ring and \(P\) be a \(\Lambda G\)-module.
+
+    \(P\) projective \(/ \Lambda G\implies P\) projective \(/ \Lambda\) and \(\exists \Lambda\)-map \(u: P \to P\) so that:
+    
+    \[
+        \sum_{s\in G} s u (s ^{-1} x) = x \, \forall x\in P
+    \]
+
+    Serre writes it as:
+
+    \[
+        \sum_{s\in S} s u s ^{-1} = 1
+    \]
+\end{lemma}
+
+\begin{proof}
+    Ommitted. Just computation
+\end{proof}
+
+\begin{lemma}
+    [Lemma 21] Let \(\Lambda\) be local ring, \(k = \Lambda / \mathfrak{m}\).
+
+    \begin{enumerate}[label=\alph*)]
+        \item Let \(P\) be a \(\Lambda G\)-module free \(/ \Lambda\)
+        \[
+            P \text{ proj.} / \Lambda G \iff \overline{P} = P \otimes_\Gamma k \text{ proj}/kG 
+        \]
+        \item Projectives \(P, P^{\prime}\) implies \(P \cong P^{\prime} \iff \overline{P} \cong \overline{P^{\prime}}^k \) 
+    \end{enumerate} 
+\end{lemma}
+
+\begin{proof}
+
+    Idea: the maps are matrices, we show their determinants are invertible. Local means we need to show dets are not in max ideal.
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\implies\) part is clear. We do \(\impliedby:\)
+        
+        \(\overline{P}\) projective. Lemma 20 implies \(\exists \overline{u}: \overline{P} \to \overline{P}\) \(k\)-map so that:
+        
+        \[
+            \sum s \overline{u} s ^{-1} = 1 
+        \]
+
+        We ``lift \(\overline{u}\)''.
+
+        \begin{center}
+            \begin{tikzcd}
+                & P \ar[ddl, dashed, "u"] \ar[d] \\ & \overline{P} \ar[d, "\overline{u}"] \\ P \ar[r, two heads] & \overline{P} 
+            \end{tikzcd}
+        \end{center}
+
+        Then \(u^{\prime} = \sum s u s ^{-1} \equiv 1 \mod \mathfrak{m}\).
+        
+        Thus \(u^{\prime}\) is \(\Lambda G\)-map, \(\det u^{\prime} \notin \mathfrak{m} \implies \det u^{\prime} \in \Gamma ^\times \implies u^{\prime}\) invertible.
+
+        \[
+            \sum s u (u^{\prime})^{-1} s ^{-1} = u^{\prime} (u^{\prime})^{-1} = 1 \overset{L20}{\implies} P \text{ proj}
+        \]
+
+        \item Let \(\overline{w}: \overline{P} \overset{\cong}{\to} \overline{P}^{\prime}\). Lif \(w: P \to P^{\prime}\). Then \(\det w\notin \mathfrak{m} \implies w\) is invertible and thus is isomorphism. 
+
+    \end{enumerate} 
+\end{proof}
+
+\begin{proposition}
+    [42] Let \(A\) be a complete local ring.
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(E\) is \(AG\)-module. Then \(E\) proj / \(AG \iff E\) free \(/A\) and \(\overline{E}\) projective \(/ kG\).
+        \item If \(F\) is projective \(kG\)-module, \(\exists !\) projective \(P / A G\) such that \(\overline{P} \cong F\).
+    \end{enumerate} 
+\end{proposition}
+
+\begin{corollary}
+    There exists bijection:
+
+    \[
+        \begin{matrix}
+             \text{proj indecom} & & \text{proj. indecom} & & \text{simple} \\
+             AG\text{-mod} & \to & kG\text{-mod} & \to & kG/J\text{-mod} \\
+             \text{iso} & & \text{iso} & & \text{iso}
+        \end{matrix}
+    \]
+\end{corollary}
+
+Now we go back to proposition 42.
+
+\begin{proof}
+    [Proof of Lemma 21] Lemma 21 \(\implies\) a and uniqueness.Question: existence?
+
+    \(F\) projective \(kG\)-module.
+
+    \[
+        A = \lim A / \mathfrak{m}^n
+    \]
+
+    \((A / \mathfrak{m}^n)G\) is Artinian.
+    
+    \(\exists \) projective cover \(P_n \to F\) of \((A / \mathfrak{m}^n)G\)-modules.
+    
+    \begin{center}
+        \begin{tikzcd}
+            & P_{n+1} \ar[dl, dashed] \ar[d] \\ P_n \ar[r] & F
+        \end{tikzcd}
+    \end{center}
+
+    We have \(\cdots \to P_3 \to P_2 \to P_1 \to P_0\)
+    
+    Let \(P = \lim_{\leftarrow} P_n\), detailed ommitted. \(P\) projective \(AG\)-module, \(\overline{P} = P \otimes_A k\).  
+\end{proof}
 
 \end{document}
