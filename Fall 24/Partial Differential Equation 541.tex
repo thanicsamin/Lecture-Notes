@@ -4946,5 +4946,141 @@ Then,
 
 \end{proof}
 
+\section*{Friday, 11/15/2024}
+
+Last time:
+
+\(Lu = a_{ij} (x) u_{x_i x_j} + b_i (x) u_{x_i} + c(x)u\).
+
+\(a_{ij} = a_{ji}, a_{ij} (x) \zeta_i \zeta_j \geq \theta \vert \zeta \vert ^ 2\)
+
+\[
+    \vert a_{ij} \vert_{C^{0,\alpha}(\overline{\Omega})} + \vert b_i \vert_{C^{0,\alpha}} + \vert c(x) \vert_{C^{0,\alpha}} < \Lambda
+\]
+
+If \(u \in C^{2,\alpha}(\overline{\Omega} )\) solves
+
+\[
+    Lu = f \text{ in } \Omega, u = g \text{ on } \partial \Omega
+\]
+
+\((\partial \Omega\in C^{2,\alpha}, f\in C^{0,\alpha}, g \in C^{2,\alpha}(\overline{\Omega}))\).
+
+Then, \(\exists K(\Omega , \Lambda, \theta)\) 
+
+\[
+    \vert u \vert_{C^{2,\alpha}(\overline{\Omega})} \leq K \left( \vert f \vert_{C^{0,\alpha}} + \vert g \vert_{C^{2,\alpha}} + \sup_{\overline{\Omega}} \vert u \vert \right) 
+\]
+
+Note: there might not always be a solution.
+
+\begin{theorem}
+    Assume \(c(x) \leq 0\) in \(\Omega\). Then we have \(K(\Omega, \Lambda, \theta)\) such that
+
+    \[
+        \vert u \vert_{C^{2,\alpha}(\overline{\Omega})} \leq K \left( \vert f \vert_{C^{0,\alpha}}(\overline{\Omega}) + \vert g \vert_{C^{2,\alpha}}(\overline{\Omega}) \right) \,\,(\ast)
+    \]
+\end{theorem}
+
+\begin{proof}
+    Recall if \(c(x) \leq 0\) we saw that:
+
+    \[
+        \sup_{\overline{\Omega}} u \leq \operatorname{const} \left( \sup \vert f \vert + \sup_{\partial \Omega} \vert u \vert \right) 
+    \]
+
+    This allows us to eliminate \(\sup_{\overline{\Omega}} u\) from the given inequality. 
+\end{proof}
+
+\subsection*{Method of Continuity}
+
+\begin{theorem}
+    Under the previous assumptions (in particular \(c(x) \leq 0\)), \(\exists\) a unique solution \(u \in C^{2,\alpha}\) solving \(Lu = f\) in \(\Omega, u=g\) on \(\partial \Omega\).
+\end{theorem}
+
+\begin{proof}
+    By subtracting off \(g\) [\(u = v + g\)], WLOG we can assume \(0\) boundary condition. Then \(u\) solves \(L u = f\) on \(\Omega, u = 0\) on \(\partial \Omega\).
+
+    Then our inequality becomes:
+
+    \[
+        \vert u \vert_{C^{2,\alpha}(\overline{\Omega})} \leq K \vert f \vert_{C^{0,\alpha}(\overline{\Omega})}
+    \]
+
+    For each \(t\in [0,1]\) we define:
+
+    \[
+        L_t u \coloneqq t Lu + (1-t)\Delta u
+    \]
+
+    Since \(L\) is elliptic, \(\Delta\) is elliptic, \(L_t\) must also be elliptic. Directly, \((t a_{ij}(x) + (1-t) \delta_{ij})\zeta_i \zeta_j \geq (t \theta + (1-t)) \vert \zeta \vert^2 \geq \min\{1,\theta\} \vert \zeta \vert^2\) \(\forall \zeta \in \mathbb{R}\).
+
+    Also,
+
+    \[
+        \vert a_{ij}^t, b_i, c \vert \leq \Lambda + 1
+    \]
+
+    Thus means, since \(K\) depends on \(\Omega , \Lambda, \theta\) and we can choose same \(\Lambda , \theta\) for all \(L_t\), we have the same \(K\) for all \(L_t\).
+
+    Goal: we want to show that \(L_t u = f\) is solvable for \(t=1\).
+
+    We already have \(L_0 u = f\) [simply \(\Delta u = f\)] is uniquely solvable with \((\ast) \iff \vert u \vert_{C^{2,\alpha}} \leq K \vert f \vert_{C^{0,\alpha}}\).
+    
+    Let \(B_1 \coloneqq \{ u \in C^{2,\alpha}(\overline{\Omega}): u = 0 \text{ on } \partial \Omega\}\).
+    
+    \(B_2 \coloneqq C^{0,\alpha}(\overline{\Omega})\).
+    
+    Then, for any \(t\), \(L_t:B_1 \to B_2\).
+
+    And also, \(\lVert L_t u \rVert _{B_2} \leq C_1 \lVert u \rVert _{B_1}\). Crucially, \(C_1\) does not depend on \(t\).
+
+    By \((\ast)\) we know that \(\lVert u \rVert _{B_1} \leq K \lVert L_t u \rVert _{B_2}\).
+
+    Again, \(K\) independent of \(t\).
+
+    Note that \((\ast) \implies \forall t, L_t\) is one-to-one since \(L_t u_1 = L_t u_2 = f, u_1=u_2=0\) on \(\partial \Omega\) implies \(\lVert u_1 - u_2 \rVert \leq 0\).
+
+    Suppose for some \(\tau \in [0,1]\) we know \(L_{\tau} \) was onto. Then we can talk about the inverse:
+
+    \[
+        L_{\tau} ^{-1} : B_2 \to B_1
+    \]
+
+    is well defined.
+
+    Then \(\forall t \in [0,1], \forall f\in B_2\), \(L_t u = f \iff L_{\tau} u = f + (L_{\tau} - L_t)u \) 
+
+    \(= f + (\tau-t)Lu + [(1-\tau)-(1-t)]\Delta u = f + (t-\tau)(\Delta u - Lu)\)
+    
+    \(\iff u = L \tau ^{-1} f + (t-\tau) L_{\tau}^{-1} (\Delta - L) u \eqqcolon Tu\).
+
+    Here \(T: B_1 \to B_1\) and we seek a fixed point.
+    
+    We want to apply \underline{contraction mapping theorem}.
+    
+    Let \(u,v\in B_1\).
+
+    \[
+        \left\vert Tu - Tv \right\vert _{B^1} =\vert t - \tau \vert \left\vert L_{\tau} ^{-1} (\Delta  - L)(u-v) \right\vert _{B^1}
+    \]
+
+    \[
+        \leq \vert t-\tau \vert K \left( \vert \Delta \vert_{B_1} + \vert L \vert_{B_1} \right) \vert u-v \vert_{B_1} 
+    \]
+
+    \[
+        \leq \vert t - \tau \vert K \cdot 2 C_1 \vert u-v \vert_{B^1}
+    \]
+
+    We can pick \(t\) close enough to \(\tau \) so that \(\vert t-\tau \vert K \cdot 2C_1 \leq \frac{1}{2}\) [just pick \(\vert t-\tau \vert = \frac{1}{4KC_1}\)]
+
+    Then \(T\) is a contraction mapping. 
+
+    For \(\tau = 0\) the laplacian is indeed 1-1, onto. Thus, there exists unique solution for \(t \leq \frac{1}{4KC_1}\).
+    
+    We can keep going like this until we reach \(1\) since \(K\) and \(C_1\) doesn't depend on \(t\) or \(\tau\).
+
+\end{proof}
 
 \end{document}
