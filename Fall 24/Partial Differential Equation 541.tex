@@ -5083,4 +5083,119 @@ Note: there might not always be a solution.
 
 \end{proof}
 
+\section*{Monday, 11/18/2024}
+
+\subsection*{Calculus of Variations}
+
+Basic problem:
+
+\[
+    \inf_{u\in \mathcal{A}} \underbrace{\int_{\Omega} L(x, u, \delta u) \,\mathrm{d}x}_{\eqqcolon E(u)}
+\]
+
+A \underline{minimizer} will solve a PDE [typically nonlinear].
+
+Roughly: a minimzer of \(E\) will have ``derivative'' \(0\). This property leads to a minimizer solving (weakly) a PDE known as the \underline{Euler-Lagrange Equation} associated with \(E\).
+
+There are 2 notions of ``derivative'':
+
+1. Gateaux derivative (generalization of a \underline{directional} derivative).
+
+\begin{definition}
+    [Gateaux Derivative] Let \(E: X \to \mathbb{R}\) where \(X\) is a Banach space.
+
+    The Gateaux derivative of \(E\) at \(u\in X\) denoted by \(E^{\prime} (u) \in X^{\ast}\) is defined through the property:
+
+    \[
+        \forall h\in X: \lim_{t \to 0} \frac{1}{t} \left[ E(u+th) - E(u) - \langle E^{\prime} (u), th \rangle \right] = 0
+    \]
+\end{definition}
+
+To compute a Gateaux derivative, we have:
+
+\[
+    \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} E(u+th) 
+\]
+
+2. Frech\'et Derivative (generalization of \underline{differentiable})
+
+\begin{definition}
+    [Frech\'et derivative] \(E\) is Frech\'et differentiable at \(u\) if \(\exists E^{\prime} (u)\in X^{\ast}\) such that:
+
+    \[
+        \lim_{\substack{\lVert h \rVert \to 0 \\ h\in X}} \frac{E(u+h) - E(u) - \langle E^{\prime}(u),h \rangle}{\lVert h \rVert _X} = 0
+    \]
+\end{definition}
+
+Examples:
+
+\begin{enumerate}[label=\roman*)]
+    \item \(E(u) = \frac{1}{2}\int_{\Omega} \vert \nabla u \vert ^2 \,\mathrm{d}x \implies \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} E(u+th) = \frac{1}{2}\eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \vert\nabla u + t \nabla h\vert^2 = \frac{1}{2}\eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} (\vert \nabla u \vert^2 + 2 t \nabla u \cdot \nabla h + t^2 \vert \nabla h \vert^2) = \nabla u \cdot \nabla h\).
+    \item \(E(u) = \frac{1}{p} \int_{\Omega} \vert \nabla u \vert^p \,\mathrm{d}x\)
+    
+    \[
+        \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \frac{1}{p} \int_{\Omega} \vert \nabla u + t \nabla h \vert ^p \,\mathrm{d}x = \eval{\int_{\Omega} \vert \nabla u + t\nabla h \vert ^{p-1} \frac{(\nabla u + t\nabla h)}{\vert \nabla u + t\nabla h \vert} \cdot\nabla h \,\mathrm{d}x }_{t=0}
+    \]
+
+    \[
+        = \int_{\Omega} \vert \nabla u \vert ^{p-2} \nabla u \cdot \nabla h \,\mathrm{d}x 
+    \]
+
+    Then \(u\) weakly solves:
+
+    \[
+        - \nabla \cdot \left( \vert \nabla u \vert ^{p-2} \nabla u \right) = 0
+    \]
+
+    \item Plateau Problem / Soap Film Problem: \(E(u) = \int_{\Omega} \sqrt{1 + \vert \nabla u \vert ^2} \,\mathrm{d}x, \eval{u}_{\partial \Omega} = g\).
+    
+    [insert picture here]
+
+    \[
+        \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} E(u+th)
+    \]
+
+    \[
+        = \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \int_{\Omega} \sqrt{1 + \vert \nabla u \vert^2  2 t \nabla u \cdot \nabla h + t^2 \vert \nabla h \vert^2} \,\mathrm{d}x = \int_{\Omega} \frac{\nabla u \cdot \nabla h}{\sqrt{1+\vert \nabla u \vert^2}} \,\mathrm{d}x 
+    \]
+
+    Thus a critical point \(u\) weakly solves:
+
+    \[
+        \nabla \cdot \left( \frac{\nabla u}{\sqrt{1 + \vert \nabla u \vert^2} } \right) = 0
+    \]
+
+    This is called the \underline{minimal surface equation}.
+    
+    The LHS is called the \underline{mean curvature of the graph of \(u\)}.
+
+    \item Cahn-Hilliard Problem: \(E(u) = \int_{\Omega} \frac{1}{2} \vert \nabla u \vert ^ 2 + \frac{1}{4} (u^2 - 1)^2 \,\mathrm{d}x \). Model for phase transition. Also called Modica-Mortola problem.
+    
+    \[
+        \left( \inf_{\int_{\Omega} u \,\mathrm{d}x = 0} E(u) \right) 
+    \]
+
+    forces a ``phase transition''.
+
+    \[
+        \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} E(u+th) = \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \int_{\Omega} \frac{1}{2} \vert \nabla u + t \nabla h \vert^2 + \frac{1}{4} ((u+th)^2 - 1)^2 \,\mathrm{d}x 
+    \]
+
+    \[
+        = \int_{\Omega} \nabla u \cdot \nabla h + \frac{1}{2}((u+th)^2 - 1)(2(u+th))h \,\mathrm{d}x 
+    \]
+
+    \[
+        = \int_{\Omega} \nabla u \cdot \nabla h + (u^2 - 1)uh \,\mathrm{d}x 
+    \]
+
+    Weak form of \(\Delta u = u^3 - u\), called the Allen-Cahn equation.
+
+    In general, \(\Delta u = f(x,u)\) is called a semilinear Poisson equation.
+
+\end{enumerate} 
+
+
+
+
 \end{document}
