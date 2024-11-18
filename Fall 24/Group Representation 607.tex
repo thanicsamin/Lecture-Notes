@@ -6054,7 +6054,7 @@ Renormalize: \(\lVert x \rVert = p^{-\nu(x)}\)
 
 \subsection*{Better Approach}
 
-We use the inverse liit to define it.
+We use the inverse limit to define it.
 
 \[
     \mathbb{Z}_p \coloneqq \lim_{\leftarrow} \mathbb{Z} / p^n = \left\{ (b_n) \in \prod \mathbb{Z} / p^n \mid b_{n+1} \equiv b_n \pmod{p^n}\right\}  
@@ -6159,7 +6159,7 @@ Thus we can have algorithms for adding and other stuff.
     \[
         \begin{matrix}
              \text{proj indecom} & & \text{proj. indecom} & & \text{simple} \\
-             AG\text{-mod} & \to & kG\text{-mod} & \to & kG/J\text{-mod} \\
+             AG\text{-mod} & \to & kG\text{-mod} & \to & kG/J\text{-mod} \\ - - - - - - & & - - - - - - & & - - - - - - \\
              \text{iso} & & \text{iso} & & \text{iso}
         \end{matrix}
     \]
@@ -6190,5 +6190,183 @@ Now we go back to proposition 42.
     
     Let \(P = \lim_{\leftarrow} P_n\), detailed ommitted. \(P\) projective \(AG\)-module, \(\overline{P} = P \otimes_A k\).  
 \end{proof}
+
+\section*{Monday, 11/18/2024}
+
+\subsection*{14.3 and 14.4 Review}
+
+In \((A,k)\) [eg \(\mathbb{Z}_p, \mathbb{F}_p\)] we say \(A\) is a \underline{complete local ring} where valuation ring is complete \((K,\nu)\). \(k = A / \mathfrak{m}\) is the residue field.
+
+Suppose we have our finite group \(G\). We have the `reduction mod \(\mathfrak{m}\)' homomorphism:
+
+\[
+    A G \overset{\pi}{\to} \mathbb{F}_p G
+\]
+
+Then we have:
+
+\[
+    AG \overset{\pi}{\to} \mathbb{F}_p G \overset{p}{\to} \mathbb{F}_p G / J(\mathbb{F}_p G)
+\]
+
+\(J\) indicates the Jacobson Radical.
+
+We have bijections.
+
+\[
+    \begin{matrix}
+
+        \text{basis } K_0(AG) & & \text{basis } K_0(\mathbb{F}_p G) & & \text{basis } R_k G \\ \\
+        \text{proj indecom} & & \text{proj. indecom} & & \text{simple} \\
+        AG\text{-mod} & \to & kG\text{-mod} & \to & kG/J\text{-mod} \\ - - - - - - & \pi_{\ast} & - - - - - - & p_{\ast} & - - - - - - \\
+        \text{iso} & & \text{iso} & & \text{iso}
+    \end{matrix}
+\]
+
+If \(M\) is an \(AG\)-module then \(\pi_{\ast} M =\mathbb{F}_p G \otimes_{AG} M\).
+
+We have \(\underset{\text{essential}}{P_E \to E} \mapsfrom E\)
+
+Recall that essential maps are maps that are `barely surjective'.
+
+We have \(P = \lim_{\leftarrow} P_n \mapsfrom \overline{P}\) 
+
+\(P_n \to \overline{P}\) projective cover of \((A / \mathfrak{m}^n)G\)-modules. 
+
+Now we deal with the case \(\operatorname{char} K =0, \operatorname{char} k = p\). Recall that \(K\) has a valuation ring \(A\) with unique maximal ideal \(\mathfrak{m}\) and \(k = A / \mathfrak{m}\).
+
+\begin{definition}
+    \(\begin{Bmatrix}
+        K \\ k
+    \end{Bmatrix}\) is a \underline{splitting field} for \(G\) if:
+
+    \[
+        KG \cong \prod M_{n_i} K
+    \]
+
+    \[
+        kG / J \cong \prod M_{l_i} (k)
+    \]
+\end{definition}
+
+\begin{definition}
+    \(\begin{Bmatrix} K \\ k \end{Bmatrix}\) is \underline{sufficiently large} if \(\begin{Bmatrix} K \\ k \end{Bmatrix}\) contains all \(\begin{Bmatrix} m \\ m^{\prime} \end{Bmatrix}\).
+    
+    Where \(m = \operatorname{lcm}\{ \operatorname{ord}(G) \mid g\in G \} = \exp G\) where \(m^{\prime} = m / p^a\) where \((p, m^{\prime})=1\). 
+\end{definition}
+
+Fact: sufficiently large \(\implies\) splitting fields.
+
+\(K\) due to Brauer, \(k\) see remark in 14.5.
+
+\begin{example}
+    \(\mathbb{F}_5 [C_3] \cong \mathbb{F}_5 \times \mathbb{F}_{25}\). So \(\mathbb{F}_5\) is not splitting field.
+
+    \(\mathbb{F}_{25} [C_3] \cong \mathbb{F}_{25}^3\) so \(\mathbb{F}_{25}\) is splitting field for \(C_3\).
+\end{example}
+
+\begin{definition}
+    \(E\) is absolutely simple if \(\dim_{\begin{Bmatrix} K \\ k \end{Bmatrix}} \operatorname{Hom}_{\begin{Bmatrix} KG \\ kG \end{Bmatrix}}(E,E) = 1\). 
+\end{definition}
+
+\subsection*{14.5 Dualities}
+
+Suppose \(\operatorname{char} K = 0\).
+
+If \(E,F\) are \(KG\)-modules, we can define:
+
+\[
+    \langle E, F \rangle = \dim_K \operatorname{Hom}_{KG} (E,F) = \langle E,F \rangle = \langle \chi_E, \chi_F \rangle 
+\]
+
+We thus have bilinear \(\langle , \rangle : R_k G \times R_k G \to \mathbb{Z}\).
+
+Simples \([E]\) are orthogonal basis.
+
+Orthonormal iff \(K\) is a splitting field for \(G\).
+
+Now suppose \(\operatorname{char} k = p \mid \#G\).
+
+\(\langle , \rangle : R_k G \times R_k G \to \mathbb{Z}\) is \underline{not bilinear}! This is because SES don't split.
+
+Take \(0 \to \mathbb{F}_2 \to \mathbb{F}_2 C_2 \to \mathbb{F}_2 \to 0\) . But if we take \(\operatorname{Hom}_{\mathbb{F}_2 C_2}(\mathbb{F}_2 C_2, \mathbb{F}_2)\) but \(\langle \mathbb{F}_2 C_2, \mathbb{F}_2 \rangle \neq \langle \mathbb{F}_2, \mathbb{F}_2 \rangle + \langle \mathbb{F}_2, \mathbb{F}_2 \rangle\).
+
+But the following is bilinear:
+
+\[
+    \langle , \rangle : K_0(kG) \times R_k G \to \mathbb{Z}
+\]
+
+If \(k\) is a splitting field then \(\{ P_E \}\) and \(\{ E \}\) are dual bases.
+
+\(\operatorname{Hom}_{kG}(P_E, E^{\prime}) \cong \operatorname{Hom}_{kG}(E,E^{\prime})\) for \(E,E^{\prime}\) simple.
+
+\subsection*{14.6}
+
+Consider \(K^{\prime} / K\). Then we have \(R_K G \hookrightarrow R_{K^{\prime}}G\).
+
+This is an injection.
+
+This is infact a \underline{split injection} [so there's a map backwards] iff \(\forall\) simple \(E, \langle E, E \rangle = 1\) [so the schur index \(=1\)].
+
+Isomorphism \(\iff K\) is a splitting field.
+
+All follow from \(KG\) semisimple:
+
+\[
+    M_n(D) \otimes_K K^{\prime} = M_n(D \otimes_K K^{\prime})
+\]
+
+\begin{example}
+    \(R_\mathbb{R} (Q_8) \to R_\mathbb{C}(Q_8)\):
+
+    We have the matrix:
+
+    \[
+        \begin{bmatrix}
+            1 &  &  &  &   \\
+             & 1 &  &  &   \\
+             &  & 1 &  &   \\
+             &  &  & 1 &   \\
+             &  &  &  & 2  \\
+        \end{bmatrix}
+    \]
+
+    Since \(\mathbb{H} \otimes_\mathbb{R} \mathbb{C} \cong M_2(\mathbb{C})\) as rings and \(\cong \mathbb{C}^2 \oplus \mathbb{C}^2\) as module and also \(\langle \mathbb{H} , \mathbb{H}  \rangle_{\mathbb{R} Q_8} = 4\).
+
+    So not split injection.
+\end{example}
+
+\begin{theorem}
+    [Wedderburn] Finite \(\begin{Bmatrix} \text{integral domain} \\ \text{skew field} \end{Bmatrix}\) is a field.
+\end{theorem}
+
+Consider \(k^{\prime} / k, R_k(G) \to R_{k^{\prime}}G, K_0(kG) \to K_0(k^{\prime} G)\).
+
+These are split injection.
+
+Isomorphism iff \(k^{\prime}\) is spliting field for \(G\).
+
+``Setting'':
+
+\begin{center}
+    \begin{tikzcd}
+        k^\prime \ar[d] & A^\prime \ar[l] \ar[d, no head] \ar[r] & K^\prime \ar[d, no head, "\text{finite}"] \\ k & A \ar[l] \ar[r] & K
+    \end{tikzcd}
+\end{center}
+
+Here \(A^{\prime} =\) integral closure of \(A\) in \(K^{\prime}\) 
+
+We have:
+
+\begin{center}
+    \begin{tikzcd}
+        K_0(AG) \ar[r] \ar[d,"\pi_\ast\, \cong"] & K_0(A^\prime G) \ar[d, "\cong"] \\ K_0(kG) \ar[r] & K_0(k^\prime G)
+    \end{tikzcd}
+\end{center}
+
+\(K_0 AG \to K_0 A^{\prime} G\) is splitting.
+
+Isomorphism if \(K\) is sufficiently large.
 
 \end{document}
