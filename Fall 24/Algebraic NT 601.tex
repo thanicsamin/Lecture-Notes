@@ -4858,7 +4858,7 @@ It also follows that \(p\cdot \underbrace{\mathcal{O}_{\mathbb{Q}(\zeta_{p^n})}}
 
     \begin{enumerate}[label=\roman*)]
         \item The finite extensions of \(\mathbb{Q}\) (ie number fields)
-        \item The finite extensions of \(\mathbb{F}_p(x) = \operatorname{Frac}(\mathbb{F}_p[x])\) 
+        \item The finite extensions of \(\mathbb{F}_p(t) = \operatorname{Frac}(\mathbb{F}_p[t])\) 
     \end{enumerate} 
 \end{definition}
 
@@ -4879,5 +4879,138 @@ It also follows that \(p\cdot \underbrace{\mathcal{O}_{\mathbb{Q}(\zeta_{p^n})}}
 \end{proof}
 
 Note: we can have fields that are abstractly isomorphic but still extensions: \(\mathbb{F}_q((t^{\frac{1}{n}}))\) and \(\mathbb{F}_q((t))\) are isomorphic but \(\mathbb{F}_q((t))[x] / (x^n - t) = \mathbb{F}_q((t^{\frac{1}{n}}))\)  
+
+\section*{Tuesday, 11/19/2024}
+
+\begin{theorem}
+    [Krasner's Lemma]
+
+    Let \(K\) be complete w.r.t.\ a non-archimedean absolute value \(\vert \cdot \vert\), and let \(C\) be an algeraic closure of \(K\). Suppose \(\alpha \in C\) has a separable min. poly. \(\mu_{\alpha ,K}(x) = \prod_{j=1}^n (x - \alpha_j)\) with \(\alpha_1 = \alpha\).
+    
+    Then, whenever \(\beta \in C\) satisfies \(\vert \beta - \alpha \vert < \vert \alpha_j - \alpha \vert\), for all \(2 \leq j \leq n\).
+
+    Then, \(K(\alpha) \subset K(\beta)\).
+\end{theorem}
+
+\begin{proof}
+    Suppose \(K(\alpha) \not \subset K(\beta)\). Then \(\alpha \notin K(\beta) \implies L \coloneqq K(\beta)(\alpha)\) is a proper extension of \(K(\beta)\). 
+
+    \(\mu_{\alpha ,K(\beta)} \mid \mu_{\alpha, K} \implies \alpha\) is separable over \(K(\beta)\). Thus, \(L / K(\beta)\) is separable and non-trivial.
+
+    Thus, \(\exists \sigma : L \underset{K(\beta)}{\hookrightarrow} C \exists j > 1 : \sigma(\alpha) = \alpha_j\) extend \(\sigma\) to \(\widetilde{\sigma} \in \operatorname{Aut}(C / K(\beta))\), since \(K\)  is complete, \(\vert \cdot \vert\) extends uniquely to \(C\).
+    
+    Thus, \(\widetilde{\sigma}\) preserves the absolute value on \(C\) since \(\vert \gamma \vert_{\text{new}} \coloneqq \vert \widetilde{\sigma} (\gamma) \vert \implies \vert \gamma \vert_{\text{new}} = \vert \gamma \vert\).
+    
+    Therefore, \(\vert \beta  - \alpha \vert = \vert \widetilde{\sigma} (\beta - \alpha) \vert = \vert \beta - \widetilde{\sigma} (\alpha) \vert =\vert \beta - \alpha_j \vert = \vert \beta - \alpha + \alpha - \alpha_j \vert = \max \{ \vert \beta - \alpha \vert , \vert \alpha - \alpha_j \vert  \} = \vert \alpha - \alpha_j \vert \).
+    
+    This is a contradiction to our assumption. Thus, \(K(\alpha) \subset K(\beta)\).
+\end{proof}
+
+\begin{theorem}
+    Let \(K\) be complete w.r.t.\ a non-archimedean absolute value \(\vert \cdot \vert \) and let \(f(x) = \sum_{\nu =0} ^ n a_\nu x^{\nu} \) be a \underline{monic separable} polynomial over \(K\) of degree \(n\). Then \(\exists \delta = \delta(f) > 0\) such that if \(g = \sum_{\nu = 0}^n b_\nu x^{\nu}\) is another monic irreducible polynomial of degree \(n\) for which
+    
+    \[
+        \vert f - g \vert = \max \{ \vert a_\nu - b_\nu \vert \mid 0 \leq \nu \leq n \} < \delta
+    \]
+
+    Then \(g\) is irreducible and separable, and then for any root \(\alpha\) of \(f, \exists\) unique root \(\beta\) of \(g\) such that:
+    
+    \[
+        \vert \beta - \alpha \vert < \max \{ \vert \alpha ^{\prime} - \alpha \vert \mid f(\alpha ^{\prime} )  = 0, \alpha ^{\prime} \in C\} 
+    \]
+
+    Where \(C\) is algebraic closure of \(K\). Moreover, \(K(\alpha)=K(\beta)\).
+    
+\end{theorem}
+
+\begin{proof}
+    Write \(f(x) = \prod_{j=1}^n (x-\alpha_j)\) in \(C[x]\) with \(\alpha_i \neq \alpha_j\) for \(i\neq j\).
+
+    Let \(\alpha \coloneqq \alpha_i\) be any root of \(f\).
+
+    Claim: \(\vert f \vert = \max \{ \vert \alpha_\nu \vert \} \geq \vert \alpha \vert\).
+
+    
+    \underline{Proof of Claim}: Suppose \(\vert \alpha \vert > \vert f \vert. f\) monic \(\implies \vert f \vert \geq 1 \implies \vert \alpha \vert > 1\).
+
+    \(\implies \forall 0 \leq j \leq n-1: \vert \alpha \vert ^ n = \vert \alpha \vert \vert \alpha \vert ^{n-1}> \vert f \vert \vert \alpha \vert^{n-1} \geq \vert \alpha_j \vert \vert \alpha \vert ^{n-1} \underset{\vert \alpha \vert > 1}{>} \vert a_j \alpha^j \vert\) 
+
+    \(\implies 0 = \vert f(\alpha) \vert = \left\vert \alpha^n + \sum_{\nu=0}^{n-1} a_\nu \alpha^{\nu}  \right\vert = \vert \alpha \vert ^ n > 1\) which is a contradiction.
+        
+    Choose \(\delta\) small eough so that \(\sqrt[n]{\delta} \vert f \vert \leq \min\{ \vert \alpha_i - \alpha_j \vert \mid i \neq j \} \eqqcolon M\).
+        
+    Now assume \(\vert f-g \vert < \delta\). Write \(g(x) = \prod_{j=1}^n (x-\beta_j)\).
+
+    Fix \(1 \leq i \leq n\). Then, \(\left\vert \prod_{j=1}^{n} (\alpha_i - \beta_j) \right\vert = \vert g(\alpha_i) \vert = \vert g(\alpha_i) - f(\alpha_i) \vert = \left\vert \sum_{\nu=0}^{n-1} (b_\nu - a_\nu) \alpha_i^{\nu}   \right\vert \leq \vert f-g \vert \max \{ \vert\alpha_i \vert ^\nu \} < \delta \vert f \vert^n \leq M^n\).
+        
+    Then, \(\exists\) at least one \(j = j(i)\) so that \(\vert \alpha_i - \beta_j \vert < M\).
+
+    Theorem 11.5 (Krasner's Lemma) with \(\beta \coloneqq \beta_j\implies K(\alpha_i) \subset K(\beta_j)\). But we know \([K(\alpha_i):K] = \deg(f) = \deg(g) \geq [K(\beta_j) : K] \implies K(\alpha_i) = K(\beta_j)\).
+
+    We show that the map \(\alpha_i \mapsto \beta_j = \beta_{j(i)} = \beta(\alpha_i)\) is injective, since for \(i \neq k\) we have:
+        
+    \[
+        \vert \beta(\alpha_i) - \beta(\alpha_k) \vert = \vert \underbrace{\beta(\alpha_i)-\alpha_i}_{<M} + \underbrace{\alpha_i - \alpha_K}_{\geq M} + \underbrace{\alpha_k - \beta(\alpha_k)}_{<M} \vert = \vert \alpha_i - \alpha_k \vert \neq 0
+    \]
+
+    \(\implies \beta(\alpha_i) \neq \beta(\alpha_k)\) so the map is injective. We also have \(g\) is separable.
+        
+\end{proof}
+
+\begin{corollary}
+    \(\forall \) finite extension \(K / \mathbb{Q}_p \exists\) subfield \(F \subset K\) such that:
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(F / \mathbb{Q}\) is finite (hence \(F\) is a number field) and \([F:\mathbb{Q}] = [K : \mathbb{Q}_p]\).
+        \item \(F\) is closure of \(K\) w.r.t.\ the unique extension of the \(p\)-adic absolute value on \(\mathbb{Q}_p\) to \(K\), hence \((F, \eval{\vert \cdot \vert}_F)^\wedge = K\).  
+    \end{enumerate} 
+\end{corollary}
+
+\begin{proof}
+    It is a finite extension over characteristic \(0\), so this is a separable extenson. We write \(K = \mathbb{Q}_p(\alpha)\) for some \(\alpha \in K\) and we have minimal polynomial \(\mu_{\alpha, \mathbb{Q}_p}(x) \in \mathbb{Q}_p[x]\) is irreducible and separable. Choose \(\delta\) from previous theorem. Choose \(g(x) \in \mathbb{Q}[x]\) monic of degree \(n\) such that \(\vert f-g \vert < \delta\).
+
+    Theorem 11.6 \(\implies \exists \beta \in \overline{\mathbb{Q}}_p \implies g(\beta) = 0\) and \(\mathbb{Q}_p(\beta) = \mathbb{Q}_p(\alpha) = K\). Also, \(g\) is irreducible over \(\mathbb{Q}_p\) and thus \(\mathbb{Q}\).
+    
+    Set \(F = \mathbb{Q}(\beta) \subset K\). Then \([F:\mathbb{Q}] = \deg(g) = n = [K:\mathbb{Q}_p] \).
+    
+    \(F\) contains \(\mathbb{Q}\) and since \(\mathbb{Q}\) is dense in \(\mathbb{Q}_p\) we can deduce that closure of \(F\) in \(K\) contains \(\mathbb{Q}_p\) and \(\beta\). Therefore, \(\beta\) is dense in \(K\).
+\end{proof}
+
+We have the following diagram:
+
+\begin{center}
+    \begin{tikzcd}
+        & (F, \eval{\vert\cdot\vert}_{F})^\wedge \ar[dd, hook] \\ F \ar[ur] \ar[rd] & \\ & K 
+    \end{tikzcd}
+\end{center}
+
+\begin{corollary}
+    \begin{enumerate}[label=\roman*)]
+        \item The algebraic closure of \(\mathbb{Q}_p\) is not complete w.r.t.\ \(\vert \cdot \vert_p\) [HW11/5].
+        \item The completion \(\mathbb{C}_p = (\mathbb{Q}_p^{\operatorname{alg}}, \vert \cdot \vert_p)^\wedge\) is algebraically closed [HW13].  
+    \end{enumerate} 
+\end{corollary}
+
+\begin{proposition}
+    In a fixed algebraic closure of a local field \(K\) of characteristic \(0\), there are only finitely many finite extensions of a fixed degree.
+\end{proposition}
+
+\begin{proof}
+    Application of Krasner's Lemma [Theorem 11.6]. HW13.
+\end{proof}
+
+\begin{definition}
+    Let \(E / K\) be a finite extension and \(\vert \cdot \vert \) a discrete nontrivial absolute value on \(E\). \(E / K\) is \underline{tamely ramified} if \(\operatorname{char}(\overline{E}) \nmid e(E / K, \vert \cdot \vert)\) We consider unramified extensions to be also tamely ramified. Otherwise it is called \underline{wildly ramified}. 
+\end{definition}
+
+\begin{example}
+    \(K = \mathbb{Q}_p, E = \mathbb{Q}_p(\zeta_{p^n})\) where \(\zeta_{p^n}=\) primitive \(p^n\) th root of \(1\).
+    
+    Then \([E_n:\mathbb{Q}_p] = \phi(p^n)=\deg(\Phi_{p^n})=(p-1)p^{n-1} = e(E_n / \mathbb{Q}_p, \vert \cdot \vert_p)\).
+    
+    \(E_n / \mathbb{Q}_p\) is \underline{purely ramified}, and totally ramified \(\iff n = 1\).
+
+    \(\underbrace{E_n / E_1}_{p^{n-1}}\) is wildly ramified. 
+\end{example}
 
 \end{document}
