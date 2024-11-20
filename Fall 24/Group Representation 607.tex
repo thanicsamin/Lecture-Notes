@@ -6369,4 +6369,188 @@ We have:
 
 Isomorphism if \(K\) is sufficiently large.
 
+\section*{Wednesday, 11/20/2024}
+
+\subsection*{CDE Triangle}
+
+Recall:
+
+\(A =\) completely local ring
+
+\(K =\) field of fractions
+
+\(k =\) residue field.
+
+\begin{center}
+    \begin{tikzcd}
+        A \ar[r, hook] \ar[d, two heads] & K \\ k
+    \end{tikzcd}
+\end{center}
+
+The CDE triangle is the following:
+
+\begin{center}
+    \begin{tikzcd}
+        K_0(kG) \ar[rr,"c","\text{forgetful}"'] \ar[rd,"e","\text{lift}"'] && R_k G \\ & R_KG \ar[ur,"d","\text{lattice}"'] &
+    \end{tikzcd}
+\end{center}
+
+Each group has a canonical basis.
+
+Therefore, we have matrice \(C,D,E\).
+
+\begin{exercise}
+    Compute \(C,D,E\) for \(k = \mathbb{F}_2, G = C_6, D_6\). 
+\end{exercise}
+
+15.1: \(c[P]=[P]\)
+
+\(S =\) isomorphism classes of simple \(kG\) modules.
+
+\begin{center}
+    \begin{tikzcd}
+        K_0(kG) \ar[r,"c"] & R_k G \\ \{ P_E \}_{E\in S} & \{ E \}_{E\in S} \\ C \text{ is square} & C = (C_{FE})
+    \end{tikzcd}
+\end{center}
+
+\(c[P_E] = \sum_{F\in S} C_{FE} [F] \) 
+
+\(C_{FE} = \#\) of \(F\) factor in composition series for \(P_E\). 
+
+\(d: R_K G \to R_k G\)
+
+Let \(E\) be finitely generated \(KG\)-module.
+
+\begin{definition}
+    A \underline{\(G\)-lattice} in \(E\) is a finitely generated \(AG\)-submodule of \(E\).
+\end{definition}
+
+\begin{remark}
+    Existence: If \(\{ e_1, \cdots , e_n \}\) generates \(E\), then \(E_1 = \sum_{i=1}^n AG e_i \subset E\) is \(G\)-lattice.  
+\end{remark}
+
+\(E_1\) is \(G\)-lattice in \(E\).
+
+\[
+    \overline{E_1} \coloneqq E_1 / \mathfrak{m} E_1 (= k \otimes_A E_1)
+\]
+
+Define \(d[E] = [\overline{E_1}]\) 
+
+Is \(d\) well defined? Proof later!
+
+\(e: K_0(kG) \to R_K G\):
+
+\begin{center}
+    \begin{tikzcd}
+        K_0(kG) \ar[rr, "e", bend left] & K_0(AG) \ar[l, "\cong"] \ar[r] & K_0(KG) \\ \overline{p} \ar[r,mapsto] & p & KG \otimes_{AG} P \\ & & \vert\vert \\ & & K \otimes_A P
+    \end{tikzcd}
+\end{center}
+
+\begin{remark}
+    \begin{enumerate}[label=\roman*)]
+        \item \(c\) is defined for any field \(k\).
+        \item \(d\) is defined when \(A\) is a local ring 
+        \item \(e\) is defined wen \(A\) is a complete local ring
+    \end{enumerate} 
+\end{remark}
+
+\begin{remark}
+    The triangle commutes: \(c = d \circ e\).
+\end{remark}
+
+\begin{lemma}
+    \(d\) and \(e\) are adjoints.
+
+    \[
+        \langle x, d(y) \rangle_k = \langle e(x), y \rangle_K
+    \]
+
+    for all \(x \in K_0(kG)\) and \(y\in R_K G\)
+\end{lemma}
+
+\begin{proof}
+    \(x = [\overline{X}]\) where \(X\) is a projective \(AG\)-module.
+
+    \(y = [K \otimes_A Y]\) where \(Y\) is \(AG\)-module which is \(A\)-free.
+    
+    \(\operatorname{Hom}_{AG}(X,Y)\) is projective \(A\)-module. Thus it is a free \(A\)-module.
+    
+    Let \(r\) be the rank.
+
+    \(\langle -,- \rangle_k : K_0(kG) \times R_k G \to \mathbb{Z}\)
+
+    \(\langle A, B \rangle = \dim_k \operatorname{Hom}_{kG} (A,B)\)
+    
+    \(\langle x, d(y) \rangle_k = \dim_k \operatorname{Hom}_{kG} (\overline{X},\overline{Y}) = \dim_k (k \otimes_{A} \operatorname{Hom}_{AG} (X,Y)) = r\) 
+
+    \(\langle e(x),y \rangle_K = \dim_K \operatorname{Hom}_{KG}(K \otimes_{A} X, K \otimes_{A} Y) = \dim_K K \otimes_{A} \operatorname{Hom}_{AG}(X,Y) = r\) 
+
+\end{proof}
+
+\begin{remark}
+    For \(K\) sufficiently large [\(\zeta_m \in K, m = \exp(G)\)] implies \(K, k\) are both splitting fields.
+
+    Thus, bases of \(K_0(kG)\) and \(R_k G\) are duals. Basis of \(R_K G\) is orthonormal. So, \(\langle -,- \rangle_k\) are perfect parings.
+    
+    Therefore, \(E = D^T\).
+
+    Then \(C = DE = D D^T \implies C\) is symmetric.
+    
+\end{remark}
+
+We now prove that \(d\) is well-defined.
+
+\begin{proof}
+    Recall: \(d[E] = [\overline{E_1}]\) where \(E_1 \subset E\) is finitely generated \(AG\)-submodule and \(\overline{E_1} = E_1 / \mathfrak{m} E_1\).
+
+    Special Case: \(\mathfrak{m} E_1 \subset E_2 \subset E_1\) 
+
+    Consider:
+
+    \[
+        0 \to E_2 \to E_1 \to E_1 / E_2 \to 0
+    \]
+
+    Third isomorphism theorem:
+
+    \[
+        \implies 0 \to E_2 / \mathfrak{m} E_1 \to E_1 / \mathfrak{m} E_1 \to E_1 / E_2 \to 0
+    \]
+
+    Thus,
+
+    \[
+        (\ast) 0 \to E_2 / \mathfrak{m} E_1 \to \overline{E_1} \to E_1 / E_2 \to 0
+    \]
+
+    We also have:
+
+    \[
+        0 \to \mathfrak{m} E_1 \to E_2 \to E_2 / \mathfrak{m} E_1 \to 0
+    \]
+
+    Then,
+
+    \[
+        0 \to \frac{\mathfrak{m} E_1}{\mathfrak{m} E_2} \to \frac{E_2}{\mathfrak{m} E_2} \to E_2 / \mathfrak{m} E_1 \to 0
+    \]
+
+    \[
+        \implies (\ast \ast) 0 \to E_1 / E_2 \to \overline{E_2} \to E_2 / \mathfrak{m} E_1 \to 0
+    \]
+
+
+    Splicing \((\ast)\) and \((\ast \ast)\) we get:
+
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar[r] & E_2 / \mathfrak{m}E_1 \ar[r] & \overline{E_1} \ar[rd, two heads] \ar[rr] && \overline{E_2} \ar[r] & E_2 / \mathfrak{m}E_1 \ar[r] & 0 \\ & & & E_1 \chi E_2 \ar[ru,tail]
+        \end{tikzcd}
+    \end{center}
+
+    \(\implies [\overline{E_1}] = [\overline{E_2}]\) 
+
+\end{proof}
+
 \end{document}
