@@ -5195,7 +5195,193 @@ Examples:
 
 \end{enumerate} 
 
+\section*{Wednesday, 11/20/2024}
+
+Notation:
+
+\(X =\) Banach Space
+
+\(E^{\prime} (u) \in X^{\ast}\) 
+
+Alternative notation: for \(u,v\in X\) we have \(\delta E(u;v)\) for \(u,v\in X\) [alternative to \(\langle E^{\prime} (u), v \rangle\)]
+
+2nd variation: (Gateaux):
+
+\[
+    \eval{\frac{\mathrm{d}^2}{\mathrm{d}t^2}}_{t=0}E(u+tv)
+\]
+
+Notation: \(\delta^2 E(u;v)\) for \(u,v\in X\).
+
+Proceding formally:
+
+By `Taylor's Theorem':
+
+\[
+    E(u+tv) \text{ `=' } E(u) + \delta E(u;v) + \frac{1}{2} \delta^2 E(u;v)t^2 + \cdots 
+\]
+
+If \(u\) is a minimum, \(u\) is a critical point. Thus \(\delta E(u;v) = 0 \forall t\).
+
+Then, since \(E(u) \leq E(u+tv)\) it follows that \(\delta^2 E(u;v) \geq 0 \forall v\).
+
+We have done this calculation `formally'. Now we make it concrete.
+
+\begin{definition}
+    If \(u\) is a critical point and \(\delta^2 E(u;v) \geq 0 \forall v\) we say \(u\) is a stable critical point.
+
+    \(u\) is strictly stable if for some \(v > 0\) we have:
+
+    \[
+        \delta^2 E(u;v) \geq c \vert v \vert_X^2
+    \]
+
+    \(\forall v\in X\).
+\end{definition}
+
+\begin{proposition}
+    A minimizer is stable.
+\end{proposition}
+
+\begin{definition}
+    We say \(u\) is a local minimizer of \(E\) if \(\exists \delta > 0\) such that \(E(u) \leq E(v)\) provided \(\vert u-v \vert_X < \delta\).
+\end{definition}
+
+\begin{proposition}
+    A local minimizer is stable.
+\end{proposition}
+
+\begin{example}
+    \(E(u) = \int_{\Omega} \frac{1}{2}\vert \nabla u \vert ^2 + f(x,u) \,\mathrm{d}x \).
+
+    \[
+        E(u+tv) = \int_{\Omega} \frac{1}{2} \vert \nabla u \vert ^2 + t \nabla u \cdot \nabla v + \frac{t^2}{2}\vert \nabla v \vert ^2 + f(x,u+tv) \,\mathrm{d}x 
+    \]
+
+    \[
+        \delta E(u;v) = \int_{\Omega} \nabla u \cdot \nabla v +f_z(x,u)v \,\mathrm{d}x
+    \] 
+
+    Whee \(f = f(x,z)\) with \(z\in \mathbb{R}\).
+
+    \[
+        \delta^2 E(u;v) = \int_{\Omega} \vert \nabla v \vert ^2 + f_{z z} (x,u) v^2 \,\mathrm{d}x 
+    \]
+
+    Suppose \(u\) is a critical point.
+
+    \[
+        \delta E(u;v) = 0
+    \]
+
+    \[
+        \int_{\Omega} \nabla u \cdot \nabla v +f_z(x,u)v \,\mathrm{d}x = 0
+    \]
+
+    \[
+        \implies \int_{\Omega} \left( - \Delta u + f_z(x,u) \right) v \,\mathrm{d}x = 0
+    \]
+
+    This is true for all \(v\) so we need \(\Delta u = f_z(x,u)\)weakly.
+
+    Note that \(f_{z z} \geq 0\, \forall z\) is enough to gurantee that \(\delta^2 E(u;v) \geq 0\).
+    
+    Thus, if \(z \mapsto f(x,z)\) convex for all \(x\) then \(u\) is stable.
+
+\end{example}
+
+\subsection*{Direct Method}
+
+Suppose we want to find:
+
+\[
+    m \coloneqq \inf_{u\in \mathcal{A}} E(u)
+\]
+
+Where:
+
+\[
+    E(u) = \int_{\Omega} L(x,u,\nabla u) \,\mathrm{d}x 
+\]
+
+Step 0: We want \(m > - \infty\).
+
+Consider a minimizing sequence \(\{ u_j \} \subset \mathcal{A}\) so that \(E(u_j) \to m\).
+
+Step 1: \underline{Compactness}: Arguethat \(u\in \mathcal{A}\) emerges as a limit of a subsequence of \(\{ u_j \}\).
+
+Step 2: Lower Semi-Continuity (LSC):
+
+\[
+    \liminf_{j \to \infty} E(u_j) \geq E(u)
+\]
+
+Then we have \(E(u) \leq m \implies E(u) = m\).
+
+Here, compactness generally comes from energy bound: \(E(u_j) < m+1 \forall j\).
+
+We also perhaps have the fact that \(u \in \mathcal{A}\).
+
+\begin{example}
+    Suppose \(E(u) = \int_{\Omega} \vert \nabla u \vert ^2 + p(x)u^2\,\mathrm{d}x\) where \(p \geq 1\).
+    
+    Then,
+
+    \[
+        \int_{\Omega} \vert \nabla u_j \vert ^2+ u_j^2 \,\mathrm{d}x < m+1
+    \]
+
+    So, \(\vert u_j \vert_{H^1} < \sqrt[]{m+1} \)
+    
+    Kondrachov-Rellich implies:
+
+    \[
+        u_{j_k} \overset{L^p}{\to} u \, \forall p < p^{\ast} = \frac{2n}{n-2}, n \geq 3
+    \]
+
+    No info about \(\nabla u_j\).
+
+    \[
+        u_{j_k} \overset{H^1}{\rightharpoonup} u \implies \int_{\Omega} \nabla u_{j_k} \cdot \nabla v \,\mathrm{d}x \to \int_{\Omega} \nabla u \cdot \nabla v \,\mathrm{d}x 
+    \]
 
 
+    Bounded sequence in a reflexive Banach space (here a Hilbert Space) are weakly compact.
+
+    The sobolev norm is weakly lower semi-continuous. Thus,
+
+    \[
+        \liminf_{k \to \infty} \int_{\Omega} \vert \nabla u_{j_k} \vert ^ 2 \,\mathrm{d}x \geq \int_{\Omega} \vert \nabla u \vert ^ 2 \,\mathrm{d}x 
+    \]
+
+    under weak \(H^1\) convergence.
+
+    So ten we can solve:
+
+    \[
+        \inf_{u\in H^1(\Omega)} \int_{\Omega} \vert \nabla u \vert ^ 2 + p(x)u^2 \,\mathrm{d}x 
+    \]
+
+    with \(p\) smooth, \(p(x) \geq 1\).
+
+    \(m \geq 0 \, \checkmark\)
+
+    \(\vert u_j \vert_{H^1} < m+1\) 
+
+    \(u_{j_k} \overset{H^1}{\rightharpoonup} u\) 
+
+    \(u_{j_k} \overset{L^p}{\to} u\) for \(p < \frac{2n}{n-2}\) 
+
+    \[
+        \liminf_{k \to \infty} \int_{\Omega} \left( \vert \nabla u_{j_k}  \vert ^2 + p(x) u_{j_k} ^2 \right)  \,\mathrm{d}x 
+    \]
+
+    \[
+        \geq \int_{\Omega} \vert \nabla u \vert ^2 + p(x) u^2 \,\mathrm{d}x 
+    \]
+
+    Therefore \(u\) must be a minimum!
+
+\end{example}
 
 \end{document}
