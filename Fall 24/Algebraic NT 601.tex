@@ -5013,4 +5013,141 @@ We have the following diagram:
     \(\underbrace{E_n / E_1}_{p^{n-1}}\) is wildly ramified. 
 \end{example}
 
+\section*{Thursday, 11/21/2024}
+
+Recall:
+
+\begin{enumerate}[label=\roman*)]
+    \item \(E / K\) \underline{purely ramified}: \(e(E / K, \vert \cdot \vert ) = [E:K]\).
+    \item \(E / K\) \underline{tamely ramified}: \(\operatorname{char}(\overline{K}) \nmid e(E / K, \vert \cdot \vert)\)   
+\end{enumerate} 
+
+\begin{proposition}
+    Let \(K\) be complete w.r.t.\ non-archimedean discrete absolute value \(\vert \cdot \vert \) and let E\( / K\) be a finite, purely and tamely ramified extension.
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(\exists\) uniformizer \(\pi_K\) of \(K\) such that \(E = K(\sqrt[e]{\pi _K} )\) where \(e = [E:K]\).
+        \item \(E / K\) is Galois \(\iff K\) contains a primitive \(e\)th root of unity, in which case \(\operatorname{Gal}(E / K)\) is isomorphic to \(\mu_e =\) group of \(e\)th roots of unity \((\cong \mathbb{Z} / e \mathbb{Z})\).  
+    \end{enumerate} 
+\end{proposition}
+
+\begin{example}
+    Only roots of unity contained in \(\mathbb{Q}_p\) ae the \((p-1)\) th roots of unity, if \(p > 2\); then the only roots of unity in \(\mathbb{Q}_2\) are \(\pm 1\) 
+    
+    Only tamely ramified and purely ramified \underline{Galois} extensions of \(\mathbb{Q}_p\) are \(\mathbb{Q}_p(\sqrt[e]{up})\) where \(u \in \mathbb{Z}_p^\times , e \mid p-1\).
+    
+    If \(\mathbb{Q}_{p, nr} = \widehat{\mathbb{Q}_p^{nr}}\) [\(\mathbb{Q}_p^{nr}=\) maximal unramified extension] then \(\mathbb{Q}_{p,nr}(\sqrt[e]{up} \mid \vert u \vert = 1, e \in \mathbb{Z}_{\geq 1}, p\nmid e) \eqqcolon \mathbb{Q}_{p,\text{tame}}\).
+    
+    \[
+        \operatorname{Gal}(\mathbb{Q}_{p,\text{tame}} / \mathbb{Q}_{p,nr}) \cong \lim_{\substack{\leftarrow \\ e \geq 1 \\ p\nmid e}} \mu_e \underset{\text{non. canonical}}{\cong} \prod_{\substack{\ell\,\text{prime} \\ \ell\neq p}} \mathbb{Z}_\ell
+    \]
+\end{example}
+
+\begin{center}
+    \begin{tikzcd}
+        1 \ar[r] & \operatorname{Gal}(\mathbb{Q}_{p,\text{tame}} / \mathbb{Q}_{p,nr}) \ar[r] \ar[d,phantom,sloped,"\cong"] & \operatorname{Aut}(\mathbb{Q}_{p,\text{tame}}/\mathbb{Q}_p) \ar[r] & \operatorname{Aut}(\mathbb{Q}_{p,nr} / \mathbb{Q}_p) \ar[r] \ar[d,phantom,sloped,"\cong"] & 1 \\ &  \lim_{\substack{\leftarrow \\ p\nmid e}} \mu_e & &  \lim_{\substack{\leftarrow \\ n}} \operatorname{Gal}(\mathbb{F}_{p^n}/\mathbb{F}_p) \ar[d,phantom,sloped,"\cong"] \\ & & &  \widehat{\mathbb{Z}}
+    \end{tikzcd}
+\end{center}
+
+\chapter{Lubin-Tate Theory}
+
+Lubin, Tate (1965) Formal complex multiplication in local fields.
+
+Serre: Local Class Field Theory in Cassels-Fr\"ohlich.
+
+Neukirch: ch V, section 4-5.
+
+\underline{Goal}: Generalize the tower of fields \((\mathbb{Q}_p(\zeta_{p^n}))_n\) and \(\operatorname{Gal}(\mathbb{Q}_{p}(\zeta_{p^n}) / \mathbb{Q}_p) \underset{\text{canonical}}{\cong} \operatorname{Aut}(\mu_{p^n})\underset{\text{canonical}}{\cong}(\mathbb{Z} / p^n)^\times  \) 
+
+\section*{Formal Groups}
+
+\begin{definition}
+    A \(1\)-dimensional commutative \underline{formal group} (law) over a commutative ring \(\mathcal{O}\) is a formal power sries \(F(x,y) \in \mathcal{O} [[x,y]]\) satisfying:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(F(x,y) \equiv x+y\) mod deg \(2\)
+        \item \(F(x,y) = F(y,x)\)
+        \item \(F(x,F(y,z))=F(F(x,y),z)\) 
+    \end{enumerate} 
+\end{definition}
+
+Intuitively, \(x \underset{F}{+} y \coloneqq F(x,y)\) 
+
+\begin{remark}
+    It can be shown that \(\exists\) unique power series \(\iota \in \mathcal{O} [[x]], \iota(x) \equiv -x \) mod deg \(2\) and \(F(\iota(x),x) = F(x,\iota(x))=0\).
+\end{remark}
+
+\underline{Convention}: From now on, ``formal group'' means ``\(1\)-dimensional commutative formal group''.
+
+\begin{example}
+    \begin{enumerate}[label=\arabic*)]
+        \item Additive Formal Group: \(\widehat{\mathbb{G}}_a(x,y) = x+y\).
+        \item Multiplicative Formal Group: \(\widehat{\mathbb{G}_m}(x,y) = x + y + xy = (1+x)(1+y)-1\).
+        \item \(E = \) elliptic curve over a field \(k \rightsquigarrow\) we can express addition on \(E\) as a power series in \(x\) and \(_y\).
+        \item If \(f(x) = a_1 x + a_2 x^2 + \cdots \in \mathcal{O} [x]\) with \(a_1\in \mathcal{O}^\times\) then \(\exists ! f ^{-1} (x) = b_1 x + b_2 x^2 + \cdots \in \mathcal{O} [[x]]\) such that \(b_1 = a_1 ^{-1}\) and \(f(f ^{-1} (x)) = f ^{-1} (f(x)) = x\).
+        
+        Then, \(F_f(x,y) \coloneqq f ^{-1} (\underbrace{f(x) + f(y)}_{\text{const. term} = 0 }) \in \mathcal{O}[x,y]\) and \(F_f(x,y)\) is a formal group over \(\mathcal{O}\).
+
+        For existence of \(f ^{-1} \) compute \(\sum_{i=1}^{\infty} a_i \left( \sum_{j=1}^{\infty} b_j x^j \right) ^ i \) and set this \(= x\).
+        
+        \(a_1 b_1 = 1 \implies b_1 = a_1 ^{-1}\).
+
+        We work modulo some \(x^{m}\) inductively \( \rightsquigarrow b_n \times (\text{unit}) =\) polynomial involving \(a_i\) and \(b_1, \cdots b_{n-1}\), we can solve for \(b_n\). 
+    \end{enumerate} 
+\end{example}
+
+\begin{definition}
+    Let \(F,G\) e formal groups over \(G\). A \underline{homomorphism} from \(F\) to \(G\) is a powerseries \(f(x) \in x \mathcal{O} [[x]]\) such that \(f(F(x,y)) = G(f(x),f(y))\).
+    
+    A homomorphism \(f: F \to G\) is an isomorphism if \(\exists\) a homomorphism \(g : G \to F\) such that \(f(g(x)) = g(f(x)) = x\).
+\end{definition}
+
+\begin{exercise}
+    \(f(x) = \sum_{i=1}^{\infty} a_i x^i \) is an isomorphism iff \(a_1 \in \mathcal{O} ^\times \).
+\end{exercise}
+
+If \(\mathcal{O} ^{\prime} / \mathcal{O}\) is a ring extension and \(f(x) = x \mathcal{O} ^{\prime} [[x]]\) and \(f(F(x,y)) = G(f(x),f(y))\) then we say \(f\) is a homomorphism from \(F\) to \(G\) \underline{defined over \(\mathcal{O} ^{\prime} \)}
+
+\begin{proposition}
+    Let \(F / \mathcal{O}\) be  formal group. Then, the set:
+
+    \[
+        \operatorname{End}_{\mathcal{O}}(F,F) = \{ f: F \to F \mid f \text{ is a homomorphism defined over } \mathcal{O} \}
+    \]
+
+    equipped with the addition \((f+g)(x) = F(f(x),g(x))\) and multiplication \((f \cdot g)(x) = f(g(x))\) [not necessarily equal to \(g(f(x))\)] is an associative ring with unit \(1 (= 1(x) = x)\) 
+\end{proposition}
+
+\begin{example}
+    Let \(f(x) = a_1 x + a_2 x^2 + \cdots\) with \(a_1 \in \mathcal{O}^\times\) and \(f ^{-1}\) defined as before, and \(F_f(x,y) = f ^{-1} (\underbrace{f(x)+f(y)}_{\widehat{\mathbb{G}}_a(f(x),f(y))})\).
+
+    Then, \(f: F_f \to \widehat{\mathbb{G}}_a\) is an isomorphism, called a logarithm of \(F_f\).
+
+    We also have \(f ^{-1} : \widehat{\mathbb{G}}_a \to F_f\) an isomorphism (exponential).
+\end{example}
+
+\begin{exercise}
+    If \(\mathcal{O}\) is a field of characteristic \(0\) then every formal group has a logarithm, i.e. is isomorphic to \(\widehat{\mathbb{G}}_a\) 
+\end{exercise}
+
+\begin{example}
+    If \(\mathcal{O} = \mathbb{F}_{p^2}\) and \(F = \widehat{\mathbb{G}}_a\) over \(\mathbb{F}_{p^2} \implies \forall \lambda \in \mathcal{O} : [\lambda](x) = \lambda x\) is an endomorphism of \(\widehat{\mathbb{G}}_a\):
+
+    \[
+        \widehat{\mathbb{G}}_a(\lambda x, \lambda y) = \lambda x + \lambda y = \lambda \widehat{\mathbb{G}}_a(x,y)
+    \]
+
+    and \([\pi](x) \coloneqq x^p\) is an endomorphism of \(\widehat{\mathbb{G}}_a: \widehat{\mathbb{G}}_a(x^p,y^p)=x^p + y^p = (x+y)^p = \widehat{\mathbb{G}}(x,y)^p\).
+    
+    Thus, if \(\lambda \notin \mathbb{F}_p\) then \(\underbrace{[\pi] \cdot [\lambda]}_{[\lambda^p]\cdot [\pi]} \neq [\lambda]\cdot [\pi]\).
+
+    Therefore, \(\operatorname{End}_{\mathbb{F}_{p^2}}(\widehat{\mathbb{G}}_a)\) is \underline{not} commutative.
+\end{example}
+
+Let \(K\) be a non-archimedean local field with ring of integers \(\mathcal{O} = \mathcal{O} _K\) with maximal ideal \(P_K\) and residue field \(k = \mathcal{O} / P_K\) of \(\operatorname{char} p\) and \(\vert k \vert = q\).
+
+\begin{definition}
+    A formal \underline{\(\mathcal{O}\)-module} is a formal group \(F\) over \(\mathcal{O}\) together with a ring homomorphism \([\cdot]_F : \mathcal{O} \to \operatorname{End}_{\mathcal{O}}(F)\) such that \(\forall a \in \mathcal{O}: [a]_F (x) \equiv ax\) mod deg \(2\).
+\end{definition}
+
 \end{document}
