@@ -5384,4 +5384,148 @@ We also perhaps have the fact that \(u \in \mathcal{A}\).
 
 \end{example}
 
+\section*{Friday, 11/22/2024}
+
+Some facts about weak convergence in a reflexive banach space \(X\):
+
+\begin{itemize}
+    \item \(\lVert u_j \rVert _X < C \implies u_{j_k} \overset{X}{\rightharpoonup} u\) 
+
+    \(\ell \in X^{\ast}, \langle \ell , u_{j_k}  \rangle \to \langle \ell , u \rangle\) 
+
+    \item If \(u_j \overset{X}{\rightharpoonup} u\) then \(\liminf_{j \to \infty} \lVert u_j \rVert _X \geq \lVert u \rVert _X\) 
+    
+    \item Mazur's Lemma: If \(K \subset X\) with \(K\) convex and closed under strong convergence then \(K\) is weakly closed.
+    
+    That is, if \(K\) convex and if \(\forall \{ u_j \} \subset K:u_j \overset{X}{\to} u \implies u\in K\),
+    
+    then \(u_j \overset{X}{\rightharpoonup} u \implies u\in K\).
+
+\end{itemize}
+
+An example of weak convergence in \(L^2:\) 
+
+Let \(\rho (x) = \begin{dcases}
+    1, &\text{ if } 0 \leq x \leq \frac{1}{2} ;\\
+    2, &\text{ if } \frac{1}{2} < x \leq 1.
+\end{dcases}\) 
+
+
+Extend periodically: \(\rho(x+1) = \rho(x) \forall x \in \mathbb{R}\):
+
+Define: \(\rho_k(x) \coloneqq \rho(kx), k = 1,2,3\) for \(0 \leq x \leq 1\).
+
+For \(\phi\) smooth: we see:
+
+\[
+    \lim_{k \to \infty} \int_{0}^{1} \rho_k (x) \phi(x) \,\mathrm{d}x = \frac{3}{2} \int_{0}^{1} \phi(x) \,\mathrm{d}x 
+\]
+
+Then \(\rho_k \overset{L^2}{\rightharpoonup} \frac{3}{2}\).
+
+\begin{example}
+    Let \(f(x,z)\) be continuous for \(x\in \Omega, z\in \mathbb{R}\) where \(\Omega \subset \mathbb{R}^n\) open, bounded and \(0 \leq f(x,z) \forall x\in \Omega , \forall z\in\mathbb{R}\).
+    
+    Let \(E(u) = \int_{\Omega} \frac{1}{2} \vert \nabla u \vert ^ 2 + f(x,u) \,\mathrm{d}x\)
+    
+    Define \(m\coloneqq \inf_{u\in \mathcal{A}} E(u)\)
+    
+    Where \(\mathcal{A} = \{ u\in H^1(\Omega), u=g \text{ on } \partial \Omega \}\).
+
+    Assume \(\exists G:\Omega \to \mathbb{R}\) such that \(G\in H^1(\Omega)\) and \(E(G) < \infty \) and \(\operatorname{tr} G = g\) on \(\partial \Omega\).
+
+    \(E(G) < \infty\) condition implies \(m < \infty\).
+
+    In direct method, we want to make sure our admissible set isn't empty!
+
+    Since \(f \geq 0\) we also have \(m \neq -\infty \) since \(m \geq 0\).
+
+    Compactness:
+
+    \(\{ u_j \} \subset \mathcal{A}, E(u_j) \to m\).
+
+    \[
+        \int_{\Omega} \frac{1}{2}\vert \nabla u_j \vert ^2 + f(x,u_j) \,\mathrm{d}x < m+1 \implies \int_{\Omega} \vert \nabla u_j \vert ^2 \,\mathrm{d}x < 2m
+    \]
+
+    Now consider \(\{u_j - G\} \subset H^1_0(\Omega)\).
+
+    Poincar\'e \(\implies\)
+    
+    \[
+        \int_{\Omega} \vert u_j - G \vert ^2 \,\mathrm{d}x \leq C_p \int_{\Omega} \vert \nabla u_j - \nabla G \vert ^2 \,\mathrm{d}x \leq \text{const independent of } j
+    \]
+
+    Thus, \(\int_{\Omega} u_j^2 \,\mathrm{d}x \leq \text{const}\).
+
+    Thus, \(\lVert u_j \rVert _{H^1} < \text{const}\) 
+
+    \(\implies u_{j_k} \overset{H^1}{\rightharpoonup} u_{\ast}\)
+
+    Also, \(u_{j_k} \overset{L^2}{\to} u_{\ast} \implies u_{j_{k_l}} \overset{\text{pointwise a.e.}}{\to} u_{\ast}  \) 
+
+    for some \(u_{\ast} \in H^1\) 
+    
+    Lower semicontinuity:
+
+    \[
+        \liminf_{k \to \infty} E(u_{j_{k_l} }) = \liminf_{k \to \infty} \int_{\Omega} \frac{1}{2}\vert \nabla u_{j_{k_l}} \vert ^2 + f(x,u_{j_{k_l} } ) \,\mathrm{d}x 
+    \]
+
+    \[
+        \geq \int_{\Omega} \frac{1}{2} \vert \nabla u_{\ast} \vert^2  \,\mathrm{d}x + \liminf_{k \to \infty} \int_{\Omega} f(x,u_{j_{k_l} }) \,\mathrm{d}x 
+    \]
+
+    \[
+        \overset{\text{Fatou's Lemma}}{\implies} f(x,u_{j_{k_l} }) \overset{\text{pointwise}}{\to} f(x,u_{\ast})
+    \]
+
+    \(f\) is continuous, so,
+
+    \[
+        \geq \int_{\Omega} \frac{1}{2} \vert \nabla u_{\ast} \vert ^2 + f(x,u_{\ast}) \,\mathrm{d}x = E(u_{\ast})
+    \]
+
+    pointwise a.e. means there's no gurantee of having desired result on the boundary (which is a measure \(0\) set).
+
+    \underline{Claim}: \(\mathcal{A}\) is strongly closed under strong \(H^1\) convergence.
+
+    Also, \(\mathcal{A}\) is convex.
+
+    Why closed? If \(\{ v_j \} \subset \mathcal{A}, v_j \overset{H^1}{\to} v \implies v_j - G \overset{H^1}{\to} v - G\).
+
+    What about the trace?
+
+    \[
+        \int_{\partial \Omega} \vert v - G \vert ^2 \,\mathrm{d}x \leq \int_{\partial \Omega} \vert v - v_j \vert ^2  \,\mathrm{d}x + \underbrace{\int_{\partial\Omega} \vert v_j - G \vert ^2 \,\mathrm{d}x}_{\to 0}
+    \]
+
+    \[
+        \leq C \int_{\Omega} \vert v - v_j \vert ^ 2 + \vert \nabla v - \nabla v_j \vert ^2 \,\mathrm{d}x \to 0
+    \]
+
+    Why convex?
+
+    Let \(v_1, v_2 \in \mathcal{A}\) 
+    
+    \[
+        \lambda v_1 + (1-\lambda)v_2 - G \in H^1_0(\Omega)
+    \]
+
+    \(\lambda(v_1 - G) + (1-\lambda)(v_2 - G) \in H^1_0(\Omega)\) 
+
+    By Mazur, \(\mathcal{A}\) is weakly closued.
+
+    \(u_{\ast} \in \mathcal{A}\).
+
+\end{example}
+
+Formally, \(u_{\ast}\) is a weak solution of
+
+\[
+    \Delta u_{\ast} = f_z (x, u_{\ast}), u_{\ast} = g \text{ on } \partial \Omega
+\]
+
+So \(f(x,z)\) being continuous is not enough.
+
 \end{document}
