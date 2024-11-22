@@ -6443,7 +6443,7 @@ Is \(d\) well defined? Proof later!
 
 \begin{center}
     \begin{tikzcd}
-        K_0(kG) \ar[rr, "e", bend left] & K_0(AG) \ar[l, "\cong"] \ar[r] & K_0(KG) \\ \overline{p} \ar[r,mapsto] & p & KG \otimes_{AG} P \\ & & \vert\vert \\ & & K \otimes_A P
+        K_0(kG) \ar[rr, "e", bend left] & K_0(AG) \ar[l, "\cong"] \ar[r] & K_0(KG) = R_K G \\ \overline{p} \ar[r,mapsto] & p & KG \otimes_{AG} P \ar[d,phantom, sloped, "="] \\ & & K \otimes_A P
     \end{tikzcd}
 \end{center}
 
@@ -6501,10 +6501,28 @@ Is \(d\) well defined? Proof later!
 
 We now prove that \(d\) is well-defined.
 
+\section*{Friday, 11/22/2024}
+
+\underline{\(G\)-lattice} in f.g. \(KG\)-module \(E\) is f.g. \(AG\)-submodule \(E_1\) such that \(E = K E_1\).
+
+\[
+    \overline{E}_1 = E_1 / \mathfrak{m} E_1
+\]
+
+\[
+    d[E] = [\overline{E}_1]
+\]
+
+We want to show this is well defined.
+
+\begin{lemma}
+    If \(E_1\) and \(E_2\) are \(G\)-lattices in \(E\), then \([\overline{E}_1] = [\overline{E}_2]\). 
+\end{lemma}
+
 \begin{proof}
     Recall: \(d[E] = [\overline{E_1}]\) where \(E_1 \subset E\) is finitely generated \(AG\)-submodule and \(\overline{E_1} = E_1 / \mathfrak{m} E_1\).
 
-    Special Case: \(\mathfrak{m} E_1 \subset E_2 \subset E_1\) 
+    Case A: \(\mathfrak{m} E_1 \subset E_2 \subset E_1\) 
 
     Consider:
 
@@ -6551,6 +6569,163 @@ We now prove that \(d\) is well-defined.
 
     \(\implies [\overline{E_1}] = [\overline{E_2}]\) 
 
+    Case B: \(E_2 \subset E_1\) \(\exists n\) such that \(\mathfrak{m}^n E_1 \subset E_2 \subset E_1\).
+
+    We show that \([\overline{E}_1] = [\overline{E}_2]\) by induction on \(n\). Case A was our base case.
+    
+    Let \(E_3 = \mathfrak{m}^{n-1} E_1 + E_2\).
+
+    \(\mathfrak{m}^{n-1} E_1 \subset E_3 \subset E_1\) and \(\mathfrak{m} E_3 \subset E_2 \subset E_3\).
+
+    Induction hypothesis \(\implies [\overline{E}_1] = [\overline{E}_3] = [\overline{E}_2]\).
+    
+    \underline{General Case}: \(G\)-lattices \(E_1, E_2\) then \(\exists l\in A \setminus \{ 0 \} \) such that \(l E_2 \subset E_1\). 
+
+\end{proof}
+
+\subsection*{15.5 \(p^{\prime}\) group}
+
+i.e. \(p\nmid  \#G\)
+
+\(\mathbb{F}_p G\) semisimple.
+
+central idempotents of \(\mathbb{Q} G \subset \frac{1}{\vert G \vert} \mathbb{Z} G \subset \mathbb{Z}_{(p)} G\subset \mathbb{Z}_p G\) 
+
+\begin{proposition}
+    [43] Premise is as before. Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item All \(kG\)-modules are projective.
+        
+        All \(A\)-free \(AG\)-modules are projective.
+
+        \item \(\begin{matrix}
+            S_K & \to &  S_k \\
+            E & \mapsto &  \overline{E}_1 \\
+        \end{matrix}\) is bijective.
+
+        \item \(C = D = E = I\).
+    \end{enumerate} 
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item \(kG\) semisimple from Maschke.
+        
+        Let \(P\) be an \(A\)-free \(AG\)-module.
+
+        We will prove that any epomorphism to \(P\) splits.
+
+        Consider \(M \overset{\pi}{\twoheadrightarrow} P\) 
+
+        \(P\) is \(A\)-free, \(\exists A\)-splitting \(M \overset{s}{\leftarrow} P\).
+        
+        Then we `average':
+
+        \[
+            \widehat{s}(p) = \frac{1}{\vert G \vert} \sum_{g\in G} g s (g ^{-1} p)
+        \]
+
+        \(\implies \widehat{s}\) is \(AG\)-map.
+
+        \(\implies \widehat{s}\) is splitting. So we are done.
+    \end{enumerate} 
+
+    ii and iii:
+
+    \begin{center}
+        \begin{tikzcd}
+            \dfrac{\text{f.g. }KG\text{-module}}{\cong} \ar[r,bend left, "G\text{-lattice}"] & \dfrac{A\text{-free f.g. }AG\text{-mod}}{\cong} \ar[l,"K\otimes_A","\cong"'] \ar[d, phantom, sloped, "="] & \dfrac{\text{f.g. }kG\text{-mod}}{\cong} \ar[l, dotted, "\text{proj. cover}"] \\
+
+            & \text{f.g. proj }AG\text{-mod} \ar[ur,"\cong"', "k \otimes_A",swap] \\
+            
+            S_K & S_A \ar[r,"\cong"] \ar[l,"\cong",swap] & S_k \\
+
+            \text{simple }KG\text{-mod} & \text{proj }AG\text{-mod} & C=D=E=I
+        \end{tikzcd}
+    \end{center}
+
+
+\end{proof}
+
+\subsection*{Jacobson Radical}
+
+Suppose \(\operatorname{char} k = p\)
+
+\begin{theorem}
+    [Davis Thesis] Suppose we have a \(p\)-group \(P \triangleleft G\). \(\forall p\in P, p-1 \in J(kG)\)
+\end{theorem}
+
+\begin{corollary}
+    [1]
+
+    \[
+        1 \to P \to G \to Q \to 1 \implies G = P \rtimes Q.
+    \]
+
+    Here \(Q\) is a \(p^{\prime}\)-group.
+
+    \(kG / J(kG) \cong kQ\) is ``largest semisimple quotient''.
+\end{corollary}
+
+\begin{corollary}
+    \(1 \to P \to G \to Q \to 1\) 
+
+    \(kG / J(kP) \cong kQ / J(kQ)\).
+\end{corollary}
+
+We redefine Jacobson Radical:
+
+\underline{Old def}: \(J(R) = \bigcap_{M \text{ max left} }^{} M\) 
+
+\underline{New Def}: \(J(R) = \bigcap_{\text{simple } E}^{} \operatorname{Ann} (E)\).
+
+Recall:
+
+\[
+    \operatorname{Ann} E = \{ r\in R \mid rE = 0 \} 
+\]
+
+\(\operatorname{Ann} E\) is 2 sided ideal.
+
+\(JE = 0\).
+
+\subsection*{P64 Serre}
+
+\begin{theorem}
+    [L1] Suppose a \(p\)-group \(P \acts X\) finite set.
+
+    \[
+        \vert X^G \vert \equiv \vert X \vert \pmod{p}
+    \]
+\end{theorem}
+
+\begin{proof}
+    \(X - X^G = \sqcup \text{orbits} = \sqcup G x \cong \sqcup G / G_x \) 
+\end{proof}
+
+\begin{theorem}
+    [L2] If \(M\) is f.g. \(kP\)-module, then \(M^P \neq 0\)
+\end{theorem}
+
+\begin{proof}
+    Can assume \(k\) finite \(\implies \# M\) finite.
+
+    \[
+        0 \equiv \vert M \vert \equiv \vert M^p \vert \pmod{p}
+    \]
+\end{proof}
+
+Now we prove that \(p-1\in J(kG)\).
+
+\begin{proof}
+    Let \(E\) be a simple \(kG\)-module.
+
+    \(E^p \subset E\) is a \(kG\)-submodule (use \(P \triangleleft G\)).
+
+    \(L2 \implies 0 \neq E^p \implies E^p = \) 
+    
+    Thus, \(\forall p\in P, p-1 \in \operatorname{Ann} E \implies p-1\in J(kG)\) 
 \end{proof}
 
 \end{document}
