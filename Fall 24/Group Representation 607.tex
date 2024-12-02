@@ -6728,4 +6728,105 @@ Now we prove that \(p-1\in J(kG)\).
     Thus, \(\forall p\in P, p-1 \in \operatorname{Ann} E \implies p-1\in J(kG)\) 
 \end{proof}
 
+\section*{Monday, 12/2/2024}
+
+Recall that we are working on group with characteristic \(p\). Maschke's theorem does not work.
+
+Also recall the CDE triangle:
+
+\begin{center}
+    \begin{tikzcd}
+        K_0(kG) \ar[rr,"c","\text{forgetful}"'] \ar[rd,"e","\text{lift}"'] && R_k G \\ & R_KG \ar[ur,"d","\text{lattice}"'] &
+    \end{tikzcd}
+\end{center}
+
+The setting of part 3 of Serre is that we have a valuation ring \(A\), fraction field \(K\) and residue field \(k\), eg \(\mathbb{Z}_p, \mathbb{Q}_p\) and \(\mathbb{F}_p\).
+
+Recall 15.7:
+
+Serre: \(G = P \times Q\) where \(P\) is a \(p\) group and \(Q\) is a \(p^{\prime}\) group.
+
+Davis: \(G = P \rtimes Q\).
+
+\(\iff \exists\) Split SES:
+
+\[
+    1 \to P \to G \underset{\pi}{\overset{\overset{s}{\leftarrow}}{\to}}  Q \to 1
+\]
+
+\(\pi \circ s = \operatorname{id}_{Q}\).
+
+Recall that \(\pi: G\to Q\) gives us \(\pi: kG \to kQ\) and thus we have \(\pi^{\ast}\) and \(\pi_{\ast}\) 
+
+Recall: if we have \(f:R\to S\) we have exactness preserving \(f^{\ast}:S\text{-mod} \to R\text{-mod}\).
+
+Also, if we have \(f_{\ast}:R\to S\) we have projectiveness preserving \(f_{\ast}:R\text{-mod} \to S\text{-mod}\).
+
+\begin{theorem}
+    \(\exists\) bijections:
+
+    \begin{enumerate}[label=\alph*)]
+        \item isomorphism classes of simple \(kG\)-modules \(\stackrel{\overset{s^{\ast}}{\rightarrow}}{\underset{\pi^{\ast}}{\leftarrow} }\)  isomorphism classes of simple \(kQ\)-modules.
+        \item isomorphism classes of projective indecomposable \(kG\) modules \(\stackrel{\overset{\pi_{\ast}}{\rightarrow}}{\underset{s_{\ast}}{\leftarrow} }\) isomorphism classes of projective indecomposable \(kQ\)-modules.
+        \item isomorphism classes of projective indecomposable \(AG\)-modules \(\stackrel{\overset{\pi_{\ast}}{\rightarrow}}{\underset{s_{\ast}}{\leftarrow} }\) isomorphism classes of projective indecomposable \(AQ\)-modules. 
+    \end{enumerate} 
+\end{theorem}
+
+\begin{remark}
+    \(E \cong \pi ^{\ast} F \iff P\) acts trivially on \(E\).
+
+    Will prove: \(\pi^{\ast}, \pi_{\ast} , \pi_{\ast}\) are bijections, \(s^{\ast},s_{\ast} , s_{\ast}\) are \(1\)-sided inverses \(\iff\) 2-sided inverses.
+
+    \(kG / J(kG) \cong kQ\).
+\end{remark}
+
+\begin{proof}
+    a and b are general facts:
+
+    \(R\) artinian means \(R / J\) is the maximal semisimple quotient. We have \(R \overset{\pi}{\to} R / J\).
+
+    Then we have simple \(R\)-mod \(\overset{\pi^{\ast}}{\underset{\cong}{\leftarrow}}\) simple \(R / J\)-mod.
+    
+    Recall \(J = \bigcap_{\text{simple \(R\)-mod } E} \operatorname{Ann}(E)\).
+    
+    p.i \(R\)-mod \(\overset{\pi^{\ast}}{\underset{\cong}{\to}}\) simple \(R / J\)-mod by projective cover.
+    
+    Thus we are done with a and b.
+
+    c: 
+
+    \begin{center}
+        \begin{tikzcd}
+            \text{p.i } AG\text{-mod} \ar[r,"\pi_\ast","\pi\text{ split}"'] \ar[d,tail,"p_\ast","14.4"'] & \text{p.i }AQ\text{-mod}\ar[d,"p_\ast\,15.5\text{ Maschke}","\cong"'] \\ \text{p.i } kG\text{-mod} \ar[r,"\pi_\ast","\cong\,(b)"'] & \text{p.i }kQ\text{-mod}
+        \end{tikzcd}
+    \end{center}
+\end{proof}
+
+\begin{corollary}
+    If \(G = P \times Q\) matrix \(C = \vert P \vert \cdot\) identity.
+\end{corollary}
+
+\begin{proof}
+    Uses a and b.
+
+    \begin{center}
+        \begin{tikzcd}
+            K_0 kG & R_k Q \ar[l, "s_\ast"', "\cong"] \ar[r, "\pi^\ast","\cong"'] & R_k G \ar[l, bend right, "s^\ast"'] \\ \text{basis}  & \text{basis} & \text{basis} \\ s_\ast F_1, \cdots, s_\ast F_t & F_1, \cdots, F_t & \pi^\ast F_1, \cdots, \pi^\ast F_t
+        \end{tikzcd}
+    \end{center}
+
+    \(s^{\ast} C s_{\ast} F_i = s^{\ast} (kG \otimes_{kQ} F_i) = s^{\ast} (kP \otimes_{k} F_i) = k^{\vert P \vert} \otimes_{k} F_i = F_i^{\vert P \vert}\) 
+
+\end{proof}
+
+Question: what is \(C\) for \(P \rtimes Q\) ?
+
+Next time: First theorem of chapter 16 [theorem 33]: \(d\) in the CDE triangle is surjective.
+
+\begin{remark}
+    \(d\) is split, since \(R_k G\) is free abelian.
+
+    \(d\) is onto since every \(k\)-representation can be lifted to \(K\) virtually.
+\end{remark}
+
 \end{document}
