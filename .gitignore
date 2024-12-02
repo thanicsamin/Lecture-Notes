@@ -16,7 +16,7 @@ Random Stuff.pdf
 *.cb2
 .*.lb
 *.code-workspace
-
+*.svg
 *.hsnips
 
 ## Intermediate documents:

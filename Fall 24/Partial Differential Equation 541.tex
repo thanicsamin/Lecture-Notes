@@ -5528,6 +5528,107 @@ Formally, \(u_{\ast}\) is a weak solution of
 
 So \(f(x,z)\) being continuous is not enough.
 
-test edit
+\section*{Monday, 12/2/2024}
+
+What can go wrong with the direct method?
+
+\begin{enumerate}[label=\arabic*)]
+    \item \(m \coloneqq \inf_{u\in \mathcal{A}} \int_{\Omega} \left( \frac{1}{2} \vert \nabla u \vert ^2 - u^p \right) \,\mathrm{d}x \) with \(p > 2, \mathcal{A} = H^1_0(\Omega)\). Here \(m = - \infty\). To see this, consider \(u_0 \in H^1_0(\Omega), u \not \equiv 0\). Calling the functional \(E(u)\), we see that \(E(u_0) = \int_{\Omega} \frac{1}{2} \vert \nabla u_0 \vert ^ 2 - u_0^p \,\mathrm{d}x \). Also, \(E(\lambda u_0) = \int_{\Omega} \frac{\lambda}{2} \vert \nabla u_0 \vert ^2 - \lambda^p u_0^p \,\mathrm{d}x = \lambda^2 \int_{\Omega} \frac{1}{2} \vert \nabla u_0 \vert ^2 - \lambda^{p-2} u_0^p \,\mathrm{d}x \).
+    
+    \(\lambda u_0 \in \mathcal{A}\) for all \(\lambda\) so we can send \(\lambda\to \infty\) of \(-\infty\) and \(m = - \infty\).
+
+    It is not all over. We might find local minimizers, we might find saddle points. But no global minimizer, so direct method might work.
+
+    \item \(m \coloneqq \inf_{u\in \mathcal{A}} \frac{1}{2} \int_{\Omega} \vert \nabla u \vert ^ 2 \,\mathrm{d}x \) where \(\mathcal{A} = \left\{ u \in H^1_0(\Omega) : \int_{\Omega} \vert u \vert ^ p \,\mathrm{d}x = 1 \right\} \)  
+    
+    We definitely have \(m \geq 0\).
+
+    What about compactness? If we take \(\{ u_j \} \subset \mathcal{A}\) to be a minimizing sequence then we can have \(\frac{1}{2} \int_{\Omega} \vert \nabla u_j \vert ^2 \,\mathrm{d}x < m + 1\) so we can have \(\lVert u_j \rVert _{H^1_0} < \text{const}\).
+
+    Compactness implies \(u_{j_k} \overset{H^1}{\rightharpoonup} u_0\)  so by Rellich-Kondrachov we have \(u_{j_k} \overset{L^q}{\to} u_0\) \(\forall q < 2^{\ast} = \frac{2n}{n-2}\).
+    
+    What if \(p \geq 2^{\ast}\)?
+
+    \(\int_{\Omega} \vert u_j \vert ^ p \,\mathrm{d}x = 1 \, \forall j\).
+
+    Lower semicontinuity implies \(\liminf_{j \to \infty} \int_{\Omega} \vert \nabla u_j \vert ^2 \,\mathrm{d}x \geq \int_{\Omega} \vert \nabla u_0 \vert ^ 2 \,\mathrm{d}x \).
+
+    However, no gurantee that \(\lim_{j \to \infty} \int_{\Omega} \vert u_j \vert ^ p \,\mathrm{d}x = \int_{\Omega} \vert u_0 \vert ^ p \,\mathrm{d}x \).
+
+    \item \(m\coloneqq \inf_{u\in W^{1,4}(0,1)} \underbrace{\int_{0}^{1} ((u^{\prime})^2 - 1)^2 + u^2 \,\mathrm{d}x}_{=E(u)}\).
+    
+    We have \(m \geq 0\).
+
+    Let \(u_j\) be a minimizing sequence. Then \(E(u_j) \to m\).
+
+    Compactness \(\implies E(u_j) \leq m+1\).
+
+    Then \(\lVert u_j \rVert _{W^{1,4}} \leq \text{const}\).
+
+    \(u_{j_k} \overset{W^{1,4}}{\rightharpoonup} u_0 \implies u_{j_k} \overset{L^q}{\to} u_0\) for \(q < 4^{\ast}\).
+    
+    But we don't necessarily have lower semicontinuity.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/sawtooth}
+        \caption{}
+        \label{fig:sawtooth}
+    \end{figure}
+
+    here \(u^{\prime} = \pm 1\) so we don't have problem. Minimizing: we make it as small as ppossible.
+
+    \(0 = \liminf_{j \to \infty} E(u_j) < E(0)\)
+
+    \(u_j \rightharpoonup u_0 = 0\) 
+
+    Let \(\rho(x) = \begin{dcases}
+        x, &\text{ if } 0 \leq x \leq 1 ;\\
+        2-x, &\text{ if } 1 <x < 2.
+    \end{dcases}\) 
+
+    And periodic so \(\rho(x+2) = \rho(x)\).
+
+    Define \(\rho_{\epsilon} (x) = \epsilon \rho(\frac{x}{\epsilon})\) 
+
+    Then \(\rho_{\epsilon} \overset{H^1}{\rightharpoonup} 0\).
+
+    Note: \(\rho_{\epsilon} \overset{L^2}{\to} 0, \rho_{\epsilon} ^{\prime} \overset{L^2}{\to} 0\) 
+
+\end{enumerate} 
+
+\section{Notions of Convexity}
+
+\begin{enumerate}[label=\arabic*)]
+    \item A set \(D\) is \underline{convex} if \(p,q\in D \implies \lambda p + (1-\lambda)q \in D \forall \lambda \in (0,1)\).
+    \item Convex functions: let \(D\) be a convex set. Then \(f: D \to R\) is convex if \(f(\lambda p + (1-\lambda)q) \leq \lambda f(p) + (1-\lambda)f(q)\, \forall p,q\in D \forall \lambda \in (0,1)\)  
+\end{enumerate} 
+
+Characterizations of convex functions:
+
+\begin{proposition}
+    if \(f\) is twice differentiable on \(D \subset \mathbb{R}^n\) where \(D\) is convex, then \(f\) convex if \(D^2 f\) is positive definite, eg
+
+    \[
+        \xi ^T D^2 f(x) \xi > 0 \, \forall \xi \in \mathbb{R}^n \setminus \{ 0 \}  \forall x\in D
+    \]
+\end{proposition}
+
+\begin{proposition}
+    If \(f: D \to R\) is convex and differentiable then \(\forall p,q\in D\) 
+    
+    \[
+        f(q) \geq f(p) + D f(p) \cdot (q-p)
+    \]
+
+    Graph of \(f\) lies above every tangent plane!
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/tangent}
+        \caption{}
+        \label{fig:tangent}
+    \end{figure}
+\end{proposition}
 
 \end{document}
