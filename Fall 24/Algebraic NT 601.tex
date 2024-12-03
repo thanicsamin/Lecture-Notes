@@ -5149,4 +5149,112 @@ Let \(K\) be a non-archimedean local field with ring of integers \(\mathcal{O} =
     A formal \underline{\(\mathcal{O}\)-module} is a formal group \(F\) over \(\mathcal{O}\) together with a ring homomorphism \([\cdot]_F : \mathcal{O} \to \operatorname{End}_{\mathcal{O}}(F)\) such that \(\forall a \in \mathcal{O}: [a]_F (x) \equiv ax\) mod deg \(2\).
 \end{definition}
 
+\section*{Tuesday, 12/3/2024}
+
+\begin{definition}
+    A \underline{Lubin-Tate module} over \(\mathcal{O}\) for the fixed uniformizer \(\pi\) of \(K\). is a \(1\)-dimensional commutative formal \(\mathcal{O}\)-module over \(\mathcal{O}\) such that:
+
+    \[
+        [\pi]_F (x) \equiv x^q \mod \pi
+    \]
+
+    where \(q = \vert \overline{K} \vert, \overline{K} =\) residue field of \(K\) 
+    
+    Any power series \(e(x) \in \mathcal{O} [[x]]\) such that \(e(x) \equiv \pi x \mod \deg 2\) and \(e(x) \equiv x^q \mod \pi\) is called a \underline{Lubin-Tate series for \(\pi \)}.
+\end{definition}
+
+\begin{example}
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(K = \mathbb{Q}_p, \pi = p, F(x,y) = \widehat{\mathbb{G}}_m(x,y) = x + y + xy, [p](x) = (1+x)^p - 1\).
+
+        \([\cdot]: \mathbb{Z}_p \to \operatorname{End}_{\mathbb{Z}_p}(\widehat{\mathbb{G}}_m), a \mapsto [a](x) = (1+x)^a - 1 = \sum_{d=1}^{\infty} \binom{a}{d}x^d, \binom{a}{d}\in\mathbb{Z}_p\) for all \(z\in\mathbb{Z}_p\) and \(d \in \mathbb{Z}_{\geq 0}\). 
+
+        \item \(K=\mathbb{Q}_p, \pi =p, e(x)=px+x^p\) is a LT series for \(p\). But for \(p > 2\) it is \underline{not} an endomorphism of \(\widehat{\mathbb{G}}_m\)!
+
+        Fact: There is a Lubin-Tate module \(F_e\) over \(\mathbb{Z}_p\) such that \(e(x) = [p]_{F_e}(x)\).
+
+        \item If \(K\) is a proper extension of \(\mathbb{Q}_p\), then \(\widehat{\mathbb{G}}_m\) does not admit a homomorphism \(\mathcal{O}_K \to \operatorname{End}_{\mathcal{O}_K}(\widehat{\mathbb{G}}_m)\). So: is there a LT module for \(K\) (and some uniformizer)?
+        
+    \end{enumerate}
+    
+\end{example}
+
+Let \(K^{\text{nr}} \subset K^{\text{alg}} \) (= algebraic closure of \(K\)) be the maximal unramified extension of \(K\) (\(K^{\text{nr}} = \bigcup_{\operatorname{char}(\overline{K}) \nmid n} K(\mu_n)\)).
+
+Set \(K_{\text{nr}} \coloneqq \widehat{K^{\text{nr}}}\) the completion of \(K^{\text{nr}}\) (w.r.t.\ the unique absolute value on \(K^{\text{alg}}\) which extends the absolute value on \(K\)).
+
+Let \(\varphi \in \operatorname{Gal}(K^{\text{nr}} / K)\) be the unique Galois automorphism which induces \(\alpha \mapsto \alpha^q\) on \(\overline{K^{\text{nr}}}\) = residue field of \(K^{\text{nr} } \).
+
+\(\varphi\) extends by continuity uniquely to \(K_{\text{nr}} = \widehat{K^{\text{nr}}}\).
+
+For any power series \(F(x_1, \cdots , x_n) \in K_{\text{nr}}[[x_1, \cdots , x_n]]\) we set \(F^{\varphi} = \sum_{i} \varphi(a_i) \underline{x}^i\) where \(\underline{x}^i = x_1^{i_1} \cdots x_n^{i_n}\).
+
+\begin{theorem}
+    Let \(\pi, \pi ^{\prime} \) be uniformizers of \(K\) and \(e(x), e^{\prime} (x)\) LT series for \(\pi\) and \(\pi^{\prime}\) respectively.
+
+    Let \(L(x_1, \cdots , x_n) = \sum_{i=1}^n a_i x_i \in \mathcal{O}_{K_{\text{nr}}} [x_1, \cdots , x_n]\) be such that \(\pi L(\underline{x}) = \pi ^{\prime} L^{\varphi}(\underline{x}) \).
+
+    Then there is a unique \(F(\underline{x}) \in \mathcal{O}_{K_{\text{nr}}}[[x]]\) such that:
+    
+    \begin{enumerate}[label=\roman*)]
+        \item \(F(\underline{x}) \equiv L(\underline{x}) \mod \deg 2\).
+        
+        \item \(e(F(\underline{x})) = F^{\varphi}(e^{\prime}(\underline{x})) \coloneqq F^{\varphi}(e^{\prime}(x_1), \cdots , e^{\prime}(x_n))\). 
+    \end{enumerate} 
+
+    If the coefficients for \(L, e, e^{\prime}\) are in a subring \(\mathcal{O}^{\prime} \subset \mathcal{O}_{K_{\text{nr}}}\) which is a complete PID with uniformizer \(\pi\) then \(F\) has coefficients in \(\mathcal{O}^{\prime}\).
+
+\end{theorem}
+
+\begin{proof}
+    Set \(\underline{x} = (x_1, \cdots , x_n), e(\underline{x}) = (e(x_1), \cdots , e(x_n))\).
+
+    Set \(F(\underline{x}) = \sum_{\nu=1}^{\infty} F_\nu(\underline{x})\) where \(F_\nu(\underline{x})\) is a homogeneous polynomial of degree \(\nu\).
+    
+    Set \(F_{\leq r} = \sum_{\nu\leq r} F_\nu\). We need to determine the \(F_\nu\) such that (i) and (ii) hold.
+
+    If (i) holds, then \(F_1(\underline{x}) = L(\underline{x})\).
+    
+    So, (ii) \(\iff \forall r\geq 1, e(F_{\leq r}(\underline{x})) \equiv F^{\varphi}_{\leq r}(e^{\prime}(\underline{x}))\mod\deg{r+1}\) (1).
+    
+    We finish by inducting on \(r\).
+
+    For \(r=1\) we have (1) since \(e(F_{\leq 1}(\underline{x})) = \pi F_1 (x) + \cdots \equiv \pi F_1(x) \equiv \pi L(x) \equiv \pi^{\prime} L^{\varphi} (x) \equiv L^{\varphi}(\pi^{\prime} \underline{x}) \equiv L^{\varphi} (e^{\prime} (x)) \mod \deg 2 = 1 + 1\).
+    
+    Now suppose \(r \geq 1\) and statement (1) is true for \(r\) and \(F_{\leq r}\) is unique with this property.
+
+    Since \(F_{\leq r+1} = F_{\leq r} + F_{r+1}\) and \(e(x) = \sum_{i=1}^{\infty} a_i x^i (a_1 = \pi)\),
+
+    LHS: \(\implies e(F_{\leq r+1}(\underline{x})) = \pi F_{\leq r}(\underline{x}) + \pi F_{r+1}(\underline{x}) + \sum_{i\geq 2} a_i(F_{\leq r} + F_{r+1})^i \)
+    
+    \(\equiv \pi F_{\leq r}(\underline{x}) + \pi F_{r+1}(\underline{x}) + \sum_{i\geq 2} a_i (F_{\leq r})^i \mod \deg r+2\)
+
+    \(\equiv e(F_{\leq r}(\underline{x}))+\pi F_{r+1}(\underline{x})\). 
+
+    RHS: \(F^{\varphi}_{\leq r+1}(e^{\prime} (x)) \equiv F^{\varphi}_{\leq r}(e^{\prime} (\underline{x})) + rF^{\varphi}_{r+1}(e^{\prime}(x)) \equiv F^{\varphi}_{\leq r} (e^{\prime} (x))+F_{r+1}^{\varphi}(\pi^{\prime} x_1, \cdots , \pi^{\prime} x_n) \mod\deg r+2 \).
+
+    Hence, (1) \(\iff \pi E_{r+1}(\underline{x}_x) - (\pi^{\prime})^{r+1}(\underline{x}) \equiv \underbrace{F^{\varphi}_{\leq r}(e^{\prime}(x))- e(F_{\leq r}(\underline{x}))}_{G(\underline{x})} \mod \deg r+2 \) (2).
+    
+    By induction hypothesis, \(G(\underline{x}) \equiv 0 \mod\deg r+1\) and \(G(\underline{x}) \equiv F^{\varphi}_{\leq r}(x^q) - F_{\leq r}(\underline{x})^q \mod \pi \equiv 0\mod \pi\),  
+    
+    
+    Thus we have: \(F_{r+1}(\underline{x}) = (\pi ^{-1})(\pi ^{\prime})^{r+1} F^{\varphi}_{\leq r+1}(\underline{x}) + \frac{1}{\pi}G(x) \).
+    
+    Let \(\underline{x}^i = x_1^{i_1} \cdots x_n^{i_n}\) be a monomial of degree w.r.t.\ coefficient of \(\underline{x}^i\ in G(\underline{x})\) is of the form \(\pi \beta, \beta\in \mathcal{O} ^{\prime} \). Let \(\alpha =\) coefficient of \(\underline{x}^i\) in \(F_{r+1}(x)\).
+
+    LHS \(\implies\) RHS: we compare. \(\pi \alpha - (\pi ^{\prime}) \varphi(\alpha) = \pi \beta  \iff \alpha -\underbrace{(\pi ^{-1} )(\pi^{\prime})^{r+1}}_{\eqqcolon \gamma}\).
+    
+    \(\iff \alpha \underset{(3)}{=} \beta + \gamma \varphi(\alpha) = \gamma \varphi (\beta + \gamma \varphi(\alpha)) = \beta + \gamma \varphi(\beta)+ \gamma \varphi(\gamma)\varphi^2(\alpha)\).
+
+    Check: \(\sum_{j=0}^{\infty} \gamma \phi(\gamma) \cdots \phi^{j-1}(\gamma) \varphi^{j}(\beta) \) is a convergent series in \(\mathcal{O} ^{\prime} \) 
+    
+    \(=\beta + \gamma \varphi(\beta) + \gamma \varphi(\gamma) \varphi^2(\beta)+\cdots\) and is a solution to (3).
+
+    Suppose \(\varepsilon\) is another solution to (3).
+    
+    Then \(\varepsilon = \beta + \gamma \varphi (\varepsilon), \alpha = \beta + \gamma \varphi(\alpha)\) therefore \(\varepsilon - \alpha = \gamma (\varphi(\varepsilon)-\varphi(\alpha))=\gamma \varphi (\varepsilon -\alpha) \implies \vert \varepsilon -\alpha \vert = \underbrace{\vert \gamma \vert }_{< 1} \vert \varepsilon - \alpha \vert \implies \varepsilon - \alpha = 0\) 
+
+\end{proof}
+
 \end{document}
