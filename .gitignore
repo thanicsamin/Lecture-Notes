@@ -18,6 +18,7 @@ Random Stuff.pdf
 *.code-workspace
 *.svg
 *.hsnips
+*.json
 
 ## Intermediate documents:
 *.dvi

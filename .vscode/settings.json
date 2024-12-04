@@ -21,6 +21,7 @@
     "explorerExclude.backup": {},
     "super-figure.filesToWatch": [
         "/home/thanic/Latex/Lecture-Notes/sawtooth.svg",
-        "/home/thanic/Latex/Lecture-Notes/tangent.svg"
+        "/home/thanic/Latex/Lecture-Notes/tangent.svg",
+        "/home/thanic/Latex/Lecture-Notes/something.svg"
     ]
 }

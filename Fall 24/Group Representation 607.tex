@@ -6829,4 +6829,166 @@ Next time: First theorem of chapter 16 [theorem 33]: \(d\) in the CDE triangle i
     \(d\) is onto since every \(k\)-representation can be lifted to \(K\) virtually.
 \end{remark}
 
+\section*{Wednesday, 12/4/2024}
+
+\subsection*{Brauer Induction Theorem (BIT)}
+
+\begin{definition}
+    \(E\) is \underline{\(p\)-elementary} if \(E \cong P \times C\) where \(P\) is a \(p\)-group and \(C\) is a cyclic \(p^{\prime}\) group.
+
+    \(E\) is \underline{elementary} if it is \(p\)-elementary for some \(p\).
+\end{definition}
+
+\begin{theorem}
+    [BIT] \(\operatorname{Ind}: \bigoplus_{\text{elem } E < G} RE \twoheadrightarrow RG\).
+\end{theorem}
+
+17.1, 17.2: BIT in modular, sufficiently large case:
+
+Suppose \(\operatorname{char} K = 0, \zeta_m \in K, m = \operatorname{lcm} \{\operatorname{ord}(g) \mid g\in G\}\).
+
+Then \underline{BIT}: \(\operatorname{Ind}\colon  \bigoplus_{E < G} R_K E \twoheadrightarrow R_K G\).
+
+\begin{proof}
+
+    Consider the following isomorphisms:
+
+    \begin{center}
+        \begin{tikzcd}
+            R_{\mathbb{Q}(\zeta_m)}(G) \ar[r, "\cong"] \ar[d,"\cong"] & R_{\mathbb{C}} G \\ R_K G
+        \end{tikzcd}
+    \end{center}
+\end{proof}
+
+BIT \(\implies\) the trivial representation is induced by subgroups:
+
+\((\ast) \, [K] = 1_K = \sum \operatorname{Ind}_E^G (x_E)\).
+
+Setting: \(((K,\nu),A,k)\).
+
+BIT: If \(K\) is sufficiently large (i.e. \(\zeta_m \in K\)) then,
+
+\[
+    \operatorname{Ind}: \bigoplus_{E < G} R_k E \twoheadrightarrow R_k G
+\]
+
+\[
+    \operatorname{Ind}: \bigoplus_{E < G} K_0 k E \to K_0 k G
+\]
+
+\begin{proof}
+    Apply \(d\) [of CDE triangle] to \((\ast)\):
+
+    \[
+        (\ast \ast): 1_k = \sum \operatorname{Ind}_E^G (d(x_E))
+    \]
+
+    \[
+        \implies \forall y, y = y \cdot 1_k = \sum \operatorname{Ind}_E^G (d(x_E)\operatorname{Res}_E^G (y))
+    \]
+
+    So we're done. See 17.1 for details (!)
+\end{proof}
+
+If \(K\) is not sufficiently large, we need \(\Gamma_K\) elementary.
+
+\subsection*{Some more CDE triangle}
+
+Recall:
+
+\(K_0 kG\) consists of projective modules, \(R_k G\) consists of all. Since projective covers are unique, \(c\) must be injective.
+
+Our CDE triangle ends up looking like this:
+
+\begin{center}
+    \begin{tikzcd}
+        K_0 k G \ar[rr, tail, "c"] \ar[rd, tail, "e"] & & R_k G \\ & R_K G \ar[ur, two heads, "d"]
+    \end{tikzcd}
+\end{center}
+
+We prove this using Brauer induction theorem.
+
+\begin{theorem}
+    [33] \(d\) is surjective.
+\end{theorem}
+
+\begin{proof}
+    It is true in general. We only prove the case where \(K\) is sufficiently large.
+
+    Special case: \(G =\) elementary, aka \(G = P \times C\). We go to the general case using Brauer induction theorem.
+
+    Let \(\pi: G \to C\) be the projection map.
+
+    \(y\in R_k G \implies y = \pi^{\ast} y^{\prime}\) where \(y^{\prime} \in R_k C\) by 15.7.
+    
+    \(d_c: R_K C \overset{\cong}{\to} R_k C\) [15.5].
+    
+    Thus, \(\exists y^{\prime\prime} \in R_K C\) such that \(d(y^{\prime\prime}) = y^{\prime}\) 
+    
+    Since \(d(\pi^{\ast} y^{\prime\prime}) =  \pi^{\ast} (d(y^{\prime\prime})) = \pi^{\ast} (y^{\prime}) = y\), we're done in the special case.
+
+    For general \(G\): consider \(y\in R_k G\) then,
+    
+    BIT \(\implies y = \sum_{E < G} \operatorname{Ind}_E^G (y_E) = \sum_{E < G} \operatorname{Ind}(d(y_E^{\prime})) = d \left( \sum_{E < G} \operatorname{Ind} (y_E^{\prime}) \right)\) so we are done. 
+
+\end{proof}
+
+\(d\) is a surjection. Since everything in the CDE triangle is free, it is in fact a split surjection.
+
+\begin{theorem}
+    [34] \(e\) is a split injection.
+\end{theorem}
+
+\begin{proof}
+    Again suppose \(K\) sufficiently large. Then \(D = E^t\) where \(d\) is a split surjection. Therefore, \(E\) is a split injection.
+\end{proof}
+
+For general \(K\), we have:
+
+\begin{center}
+    \begin{tikzcd}
+        & K^\prime & & k^\prime \\ K \ar[ur, no head] & & k \ar[ur, no head]
+    \end{tikzcd}
+\end{center}
+
+Where \(K^{\prime}\) is sufficiently large. Then we have:
+
+\begin{center}
+    \begin{tikzcd}
+        kG \ar[rr, tail] \ar[rd,"e"] & & K_0 k^\prime G \ar[ll, bend right, dotted, "14.6"] \ar[rd, tail] \\ & R_K G \ar[rr] & & R_{K^\prime} G \ar[ul, bend right, dotted]
+    \end{tikzcd}
+\end{center}
+
+\(\implies\) Corollary 1 \(K_0 k G \to R_{K^{\prime}} G\) is split injection \(\implies K_0 k G \to R_K G\) is split injection. 
+
+\begin{corollary}
+    [7] Let \(P, P^{\prime}\) be f.g. projective \(AG\)-modules.
+
+    If \(K \otimes_A P \cong K \otimes_{A} P^{\prime}\) then \(P \cong P^{\prime}\).
+\end{corollary}
+
+\begin{proof}
+    \(K \otimes_{A} P \cong K \otimes_{A} P^{\prime} \implies e[\overline{P}] = e[\overline{P^{\prime}}] \implies [\overline{P}] = [\overline{P^{\prime}}] \implies \overline{P} \cong \overline{P^{\prime}} \implies P \cong P^{\prime}\). 
+\end{proof}
+
+\begin{theorem}
+    Let \(p^n \mid \mid \vert G \vert\). Then \(p^n \operatorname{coker} c = 0\).
+
+    i.e. \(\forall y\in R_k G, \exists x\in K_0 k G\) such that \(c(x) = p^n y\).
+\end{theorem}
+
+\begin{proof}
+    Again assume \(G\) is sufficiently large.
+
+    Special case: \(G = P \times C\) 
+    
+    15.7 \(\implies\) matrix \(C = p^n \cdot \operatorname{id}\).
+
+    For general \(G\) we use BIT:
+
+    \(y\in R_k G \implies y = \sum_{E < G} \operatorname{Ind} (y_E) \implies p^n y = \sum_{E < G} \operatorname{Ind} (p^n y_E) = \sum_{E} \operatorname{Ind} (c(x_E))\)
+    
+    \(= c \left( \sum_{E} \operatorname{Ind} (x_E) \right)  \) 
+\end{proof}
+
 \end{document}
