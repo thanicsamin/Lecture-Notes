@@ -5257,4 +5257,133 @@ For any power series \(F(x_1, \cdots , x_n) \in K_{\text{nr}}[[x_1, \cdots , x_n
 
 \end{proof}
 
+\section*{Thursday, 12/5/2024}
+
+\begin{theorem}
+    \begin{enumerate}[label=\roman*)]
+        \item For every uniformizer \(\pi\) of \(K\) and every LT series \(e(x)\) for \(\pi\) there is a unique LT formal \(\mathcal{O}\)-module \(F_e(x,y)\) over \(\mathcal{O}\) such that \([\pi]_{F_e}(x) = e(x)\).
+        \item If \(e\) and \(e^{\prime}\) are both LT series for the same uniformizer, then there is a unique isomorphism over \(\mathcal{O}\) given by \(f_{e^{\prime},e}: F_e \overset{\cong}{\to} F_{e^{\prime}}\) of formal \(\mathcal{O}\)-modules.
+        \item If \(e\) and \(e^{\prime}\) are LT series for uniformizers \(\pi\) and \(\pi^{\prime}\) then \(\exists\) an isomorphism \(F_e \to F_{e^{\prime}}\) of formal \(\mathcal{O}\)-modules over \(\mathcal{O}_{K_{nr}}\).
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item In theorem 12.2 take \(n=2\) and \(L(x,y) = x+y\) and \(\pi^{\prime} = \pi\) Then, \(\mathcal{O} ^{\prime} = \mathcal{O}\).
+        
+        \(12.2 \implies \exists ! F_e(x,y) \in \mathcal{O} [[x,y]]\) such that \(F_e(x,y) \equiv x+y \mod\deg 2\).
+
+        \(e(F_e(x,y))=F_e(e(x),e(y))\) [Note: \(F_e^{\varphi} = F_e\) since \(F_e\) has coefficients in \(\mathcal{O}\).]
+
+        For \(a\in \mathcal{O}\) let \(L_a(x) = ax \overset{12.2}{\implies} \exists ! [a]_e(x) \in \mathcal{O}[[x]]\) such that \([a]_e(x) \equiv ax \mod\deg 2\) and \(e([a]_e(x))=[a]_e(e(x))\).
+
+        \underline{Now we need to show}:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(F_e(x,y)=F_e(y,x)\) 
+            \item \(F_e(x,F_e(y,z))=F_e(F_e(x,y),z)\) 
+            \item \(\forall a\in \mathcal{O} : [a]_e(F_e(x,y))=F_e([a]_e(x),[a]_e(y))\) 
+            \item \(\forall a,b\in \mathcal{O}: [a+b]_e(x) = F_e([a]_e(x),[b]_e(x)),[a\cdot b]_e(x) = [a]_e([b]_e(x)),[1]_e(x)=x,[0]_e(x)=0\). 
+        \end{enumerate} 
+
+        These properties follow from applying 12.2 in a suitable way.
+
+        \begin{enumerate}[label=\arabic*)]
+            \item Set \(G(x,y)=F(y,x)=F_e(y,x)\) Set \(L(x,y) = x+y \implies G(x,y)\equiv L(x,y)\mod\deg 2\) and \(e(G(x,y))=e(F(y,x))=F(e(y),e(x))=G(e(x),e(y))\). Uniqueness (12.2) \(\implies F=G\).
+            \item We apply 12.2 with \(n=3\) and \(L(x,y,z) = x+y+z\). We set \(G(x,y,z)=F(x,F(y,z)),H(x,y,z)=F(F(x,y),z)\) and have \(G(x,y,z) \equiv x+y+z \equiv H(x,y,z)\mod\deg 2\).
+            
+            \(e(G(x,y,z))= e(F(x,F(y,z))) = F(e(x),e(F(y,z)))=F(e(x),F(e(y),e(z)))=G(e(x),e(y),e(z))\).
+
+            Similarly, \(e(H(x,y,z))=H(e(x),e(y),e(z))\). By uniqueness (12.2) we deduce that \(F=G\).
+
+            \item Similar. We apply 12.2.
+            
+            \item Similar. We apply 12.2 to the functions on the LHS and RHS of the identity in question.
+
+        \end{enumerate} 
+
+        Multiplication by \(\pi\) satisfies \(e([\pi]_e(x))=[\pi]_e(e(x))\) and \([\pi]_e(x) \equiv \pi x \mod\deg 2\).
+
+        \(e(x)\) itself has both of these properties: \(e(e(x))=e(e(x))\) and \(e(x) \equiv \pi x \mod\deg 2\) 
+        
+        Therefore, Uniqueness (12.2) \(\impliedby [\pi]_e(x) = e(x)\).
+
+        \begin{remark}
+            If \(K = \mathbb{Q}_p, \pi = p\) then \(e(x) = (1+x)^p - 1\) is a Lubin-Tate series and in this case \(F_e = \widehat{G}_m\) is the formal multiplicative group by uniqueness with multiplication \([a]_{\widehat{G}_m (x) = (1+x)^a - 1}\).
+
+            But we can also take \(e^{\prime} (x) px + x^p \implies\) there is a formal \(\mathbb{Z}_p\)-module \(F_e (x,y)\) such that \([p]_{F_e}(x) = px + x^p\).
+        \end{remark}
+
+        \item Let \(e,e^{\prime}\) be LT series for the same uniformizer \(\pi\). In 12.2, take \(n=1, L(x) = x, \mathcal{O} ^{\prime} = \mathcal{O}\). 12.2 \(\implies \exists ! f(x) \in \mathcal{O} [[x]]: f(x) \equiv x \mod\deg 2, e(f(x))=f(e^{\prime} (x))\).
+        
+        We want to show: \(f(F_{e^{\prime}}(x,y))=F_{e} (f(x),f(y))\).
+        
+        Set \(G(x,y)\coloneqq f(F_{e^{\prime}}(x,y))\) and \(H(x,y)\coloneqq F_{e}(f(x),f(y)), L(x,y) = x+y, \mathcal{O} ^{\prime}  = \mathcal{O}\) 
+        
+        \(G(x,y)\equiv x+y \equiv H(x,y) \mod\deg 2\).
+        
+        \(e(G(x,y))=e(f(F_{e^{\prime}}(x,y)))=f(e^{\prime}(F_{e^{\prime}}(x,y)))=f(F_{e^{\prime}}(e^{\prime}(x),e^{\prime}(y)))=G(e^{\prime}(x),e^{\prime}(y))\)
+
+        \(e(H(x,y))=e(F_e(f(x),f(y)))=F_e(e(f(x)),e(f(y)))=F_e(f(e^{\prime} (x)),f(e^{\prime} (y)))=H(e^{\prime}(x),e^{\prime}(y))\)
+
+        12.2 \(\implies G = H\).
+
+        \(f \equiv x \mod\deg 2 \implies f\) is invertible. Thus, it is an isomorphism of formal groups.
+
+        We also need to show that \(\forall a\in \mathcal{O}, f([a]_{e^{\prime}}(x))=[a]_e(f(x))\). This is done similarly.
+
+        \item First we need a definition.
+        
+        \begin{definition}
+            [Deformation Space] \(\operatorname{Def} \left( F_{\overline{K}^{\operatorname{alg}}} \right)\) 
+        \end{definition}
+
+        \begin{remark}
+            \(\operatorname{Def}(F_{\overline{K}^{\operatorname{alg}}})= \{\ast\} \iff\) over \(\mathcal{O}_{K_{nr}}\) all LT formal \(\mathcal{O}\) modules are isomorphic. \(\underset{\pi}{F_e} \cong \underset{\pi^{\prime}}{F_{e^{\prime}}}\).
+        \end{remark}
+
+        Now we start the proof.
+
+        Set \(v = (\pi^{\prime})^{-1} \pi \in \mathcal{O}_K^\times\) hence \(\boxed{\pi = v \pi ^{\prime}} \, (1)\).
+
+        \underline{Fact}: The map \(\mathcal{O}_{K_{nr}}^\times \to \mathcal{O}_{K_{nr}}^\times , \varepsilon \mapsto \varphi (\varepsilon) \varepsilon ^{-1} \) is surjective (exercise).
+        
+        Choose \(\varepsilon \in \mathcal{O}_{K_{nr}}^\times\) such that \(\boxed{\varepsilon u = \varphi (\varepsilon)} \, (2)\). Set \(L_{\varepsilon} (x) = \varepsilon x \implies \pi L_{\varepsilon}(x) = \pi \varepsilon x = \underbrace{\pi v ^{-1}}_{= \pi ^{\prime} } \varepsilon u \overset{1,2}{=} \pi ^{\prime} \varphi (\varepsilon) x = \pi ^{\prime} L^{\varphi }(x)  \).
+        
+        12.2 \(\implies \exists ! \theta (x) \in \mathcal{O}_{K_{nr}}(x)\) such that \(\theta (x) \equiv \varepsilon x \mod\deg 2, e(\theta (x))= \theta ^\varphi (e^{\prime} (x))\). 
+
+        \underline{Claim}: \(\theta^{\varphi} = \theta \circ [u]_{e^{\prime}}  \, (3)\).
+        
+        \underline{Proof of Claim}: Set \(\theta_1 = \theta^{\varphi ^{-1}} \circ [u]_{e^{\prime}} \implies \theta_1(x) = \varphi ^{-1} (\varepsilon) u x = \varphi ^{-1} (\varepsilon u) x \overset{2}{=} \varepsilon x\).
+
+        \(e \circ \theta _1 = e \theta ^{\varphi ^{-1} }[u]_{e^{\prime}} = (e \theta [u]_{e^{\prime}})^{\varphi ^{-1}}\).
+
+        \(e \circ \theta_1 = \underbrace{\theta e^{\prime} [u]_{e^{\prime}}}_{= [\pi^{\prime}]_{e^{\prime}}} = (\theta ^{\varphi ^{-1}}[u]_{e^{\prime}})^{\varphi} e^{\prime} = \theta_1^{\varphi} \circ e^{\prime}  \) 
+
+        12.2 uniqueness \(\implies \theta_1 = \theta \underset{\text{apply } \varphi}{\implies} \boxed{\theta \circ [u]_{e^{\prime}} = \theta ^ \varphi} \).
+        
+        Thus we haave proven the claim.
+
+        Back to the main proof, set \(\widetilde{e} \coloneqq \theta ^ \varphi e^{\prime} \theta ^{-1} \underset{(3)}{=} \theta \circ [u]_{e^{\prime}} \circ \underbrace{e^{\prime}}_{=[\pi ^{\prime} ]_e} \circ \theta ^{-1} = \theta [u \pi ^{\prime} ]_{e^{\prime} } \theta ^{-1} = \theta [\pi]_{e^{\prime}} \theta ^{-1} \,(4)\).
+
+        Therefore, \(\widetilde{e} ^ \varphi = \theta ^ \varphi  [\pi]_{e^{\prime}} (\theta ^{-1} )^ \varphi \underset{(3)}{=} \theta [u]_{e^{\prime}}[\pi]_{e^{\prime}}(\theta ^ \varphi) ^{-1} = \theta [u]_{e^{\prime}} [\pi]_{e^{\prime}} (\theta [u]_{e^{\prime}})^{-1}\)
+        
+        \(= \theta [u]_{e^{\prime}}[\pi]_{e^{\prime}}\underbrace{[u]_{e^{\prime}}^{-1}}_{[u^{-1}]_{e^{\prime}}} \theta ^{-1} = [\theta] [\pi]_{e^{\prime}} \theta ^{-1} \underset{(4)}{=} \widetilde{e} \) 
+
+        \(\implies \widetilde{e}(x) \in \mathcal{O}_K[[x]]\) and \(\widetilde{e}(x) \underset{(4)}{\equiv} \varepsilon \pi \varepsilon ^{-1} x = \pi x \mod\deg 2\)
+
+        and \(\widetilde{e}(x) \mod \pi ^{\prime} = \theta ^ \varphi \circ \underbrace{[\pi ^{\prime} ]_{e^{\prime}}}_{\equiv x^q} \circ \theta ^{-1} \mod \pi ^{\prime} \equiv \theta ^ \varphi (\theta ^{-1})^q \equiv \theta ^ \varphi ((\theta ^\varphi)^{-1} (x^q)) \equiv x^q \mod \pi^{\prime} \).
+        
+        Therefore, \(\widetilde{e}\) is a LT series for the uniformizer.
+
+        Let \(f: F_{\widetilde{e}}\overset{\cong}{\to} F_e\) be the isomorphism over \(\mathcal{O}_K\) from (ii).
+        
+        Set \(\widetilde{\theta} \coloneqq f \circ \theta\) as a power series.
+
+        \underline{Check}: \(\widetilde{\theta}: F_{e^{\prime}} \to F_e\) is an isomorphism of LT formal \(\mathcal{O}\)-modules over \(\mathcal{O}_{K_{nr}}\).
+
+    \end{enumerate}
+
+\end{proof}
+
 \end{document}

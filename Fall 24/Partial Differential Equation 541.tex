@@ -5631,4 +5631,119 @@ Characterizations of convex functions:
     \end{figure}
 \end{proposition}
 
+\section*{Wednesday, 12/4/2024}
+
+One more troubling example where direct method seems to fail.
+
+This is one of the most famous problems in calculus of variations!
+
+\[
+    m \coloneqq \inf_{u\in \mathcal{A}} \int_{\Omega} \sqrt[]{1 + \vert \nabla u \vert ^ 2} \,\mathrm{d}x 
+\]
+
+Where \(\mathcal{A} = \left\{ u : u - G \in W_0^{1,1}(\Omega) :  \right\}\) where \(G \in W^{1,1}(\Omega)\) given [just way of phrasing the boundary conditions].
+
+Let \(\{ u_j \}\) be a minimizing sequence. We know \(- \infty < m \leq E(G) < \infty\). Then \(E(u_j) \to m\).
+
+Question: Do we have compactness?
+
+\[
+    \int_{\Omega} \sqrt[]{1 + \vert \nabla u_j \vert^2}  \,\mathrm{d}x < m + 1
+\]
+
+\[
+    \implies \lVert \nabla u_j \rVert _{L^1} < m+1
+\]
+
+What about \(\lVert u_j \rVert _{L^1}\)? We can say \(u_j - G \in W^{1,1}_0\) so Poincar\'e \(\implies \lVert u_j - G \rVert _{L^1} < \lVert \nabla u_j - \nabla G \rVert _{L^1} < \text{const} \implies \lVert u_j \rVert _{W^{1,1}} < \text{const}\).
+
+\(L^1\) is not reflexive. So we don't have any \(W^{1,1}\) weakly convergent subsequence!
+
+What aboout \(W^{1,2}\)? We don't have \(L^2\) bound, so we can't control \(\lVert u_j \rVert _{H^1}\) by \(E(u_j)\)!
+
+\subsection*{Sufficient Conditions for Success of the Direct Method}
+
+\begin{theorem}
+    Let \(\Omega \subset \mathbb{R}^n\), open, bounded. Consider the lagrangian \(L = L(x,z,p)\) for \(x \in \Omega, z \in \mathbb{R} , p \in \mathbb{R}^n\) be \(C^2\) and convex in \(p\), meaning for every \(x\in \Omega , z\in \mathbb{R}\), the map \(p \mapsto L(x,z,p)\) is convex. Also assume \(L\) is bounded below.
+
+    Then if \(w_j \overset{W^{1,q}}{\rightharpoonup} u\) for some \(1 < q < \infty\) one has lower semicontinuity:
+    
+    \[
+        \liminf_{j \to \infty} \int_{\Omega} L(x, u_j, \nabla u_j) \,\mathrm{d}x \geq \int_{\Omega} L(x,u,\nabla u) \,\mathrm{d}x 
+    \]
+
+\end{theorem}
+
+\begin{example}
+    \[
+        E(u) = \int_{\Omega} a_{ij} (x,u) u_{x_i} u_{x_j} \,\mathrm{d}x 
+    \]
+
+    Here assume matrhix \(A(x,z)\) with entries \(a_{ij}\) is positive definite \(\forall x\in \Omega , z\in \mathbb{R}^n\).
+
+    \(L(x,z,p) = a_{ij} (x,z) p_i p_j \quad (\ast)\).
+
+\end{example}
+
+\begin{proof}
+    Special Case:
+
+    Assume \(L = L(p)\) and \(L(p) \geq 0\) . Fix \(\epsilon > 0\) and define \(\Omega_{\epsilon} \coloneqq \left\{ x\in \Omega : \vert \nabla u \vert \leq 1 / \epsilon \right\} \) 
+
+    Convexity \(\implies \int_{\Omega_{\epsilon}} L(\nabla u_j) \,\mathrm{d}x \geq \int_{\Omega_{\epsilon}} L(\nabla u) + \nabla_p L(\nabla u) \cdot (\nabla u_j - \nabla u) \,\mathrm{d}x \).
+    
+    On \(\Omega_{\epsilon}\) ,
+
+    \[
+        \left\vert \nabla_p L(\nabla u) \right\vert _{L^{\infty}} \leq \sup_{\vert p \vert \leq 1 / \epsilon} \vert \nabla_p L(p) \vert \leq C_{\epsilon}  
+    \]
+
+    Also,
+
+    \[
+        \infty > \int_{\Omega \setminus \Omega_{\epsilon} } \vert \nabla u \vert ^q \,\mathrm{d}x \geq \frac{1}{\epsilon^q} \vert \Omega \setminus \Omega_{\epsilon} \vert
+    \]
+
+    \[
+        \implies \vert \Omega \setminus \Omega_{\epsilon} \vert \to 0 \text{ as } \epsilon \to 0
+    \]
+
+    Note:
+
+    \[
+        \lim_{j \to \infty} \int_{\Omega_{\epsilon}} \nabla_p L(\nabla u) \cdot \nabla u_j \,\mathrm{d}x = \int_{\Omega_{\epsilon}} \nabla_p L(\nabla u) \cdot \nabla u \,\mathrm{d}x 
+    \]
+
+    \(\nabla_p L(\nabla u)\) lives in \(L^{\infty}\) so in particular it lives in \(L^{q^{\prime}}\) where \(\frac{1}{q} + \frac{1}{q^{\prime}} = 1\). 
+
+    By \((\ast)\) we have:
+
+    \[
+        \underbrace{\liminf_{j \to \infty} E((u))}_{= \int_{\Omega} L(\nabla u) \,\mathrm{d}x } \geq \liminf_{j \to \infty} \int_{\Omega_{\epsilon}} L(\nabla u_j) \,\mathrm{d}x \geq \int_{\Omega_{\epsilon}} L(\nabla u) \,\mathrm{d}x = \int_{\Omega} \chi_{\Omega_{\epsilon}} L(\nabla u(x)) \,\mathrm{d}x 
+    \] 
+
+    Up to now, \(\epsilon\) was fixed.
+
+    \[
+        \chi_{\epsilon} (x) L(\nabla u(x)) \overset{\text{pointwise a.e.}}{\to} L(\nabla u(x))
+    \]
+
+    Also monotonically. By monotone convergence theorem, setting \(\epsilon \to 0\) we reach the result.
+
+\end{proof}
+
+In fact, convexity is necessary as well. Suppose \(\exists p_1, p_2 \in \mathbb{R}^n\) such that:
+
+\[
+    L(\lambda p_1 + (1-\lambda)p_2) > \lambda L(p_1) + (1-\lambda) L(p_2)
+\]
+
+Same idea as oscillating between \(\pm 1\) we build \(u_j\) such that \(\nabla u_j\) oscilates between \(p_1\) and \(p_2\).
+
+Then, \(\nabla u_j \overset{L^q}{\rightharpoonup} \overline{\lambda} p_1 + (1-\overline{\lambda})p_2 \equiv u_0\) for some \(\overline{\lambda} \in (0,1)\). Then,
+
+\[
+    \liminf_{j \to \infty} \int_{\Omega} L(\nabla u_j) \,\mathrm{d}x < \int_{\Omega} L(\nabla u_0) \,\mathrm{d}x 
+\]
+
 \end{document}
