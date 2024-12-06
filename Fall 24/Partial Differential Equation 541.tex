@@ -5746,4 +5746,148 @@ Then, \(\nabla u_j \overset{L^q}{\rightharpoonup} \overline{\lambda} p_1 + (1-\o
     \liminf_{j \to \infty} \int_{\Omega} L(\nabla u_j) \,\mathrm{d}x < \int_{\Omega} L(\nabla u_0) \,\mathrm{d}x 
 \]
 
+\section*{Friday, 12/6/2024}
+
+Last time: For \(1 < q < \infty\):  \(\forall (x,z)\in \Omega \times \mathbb{R}\, p \mapsto L(x,z,p)\) is convex
+
+Iff \(\forall u_j \overset{W^{1,q}}{\rightharpoonup} u\),
+
+\[
+    \liminf_{j \to \infty} \int_{\Omega} L(x,u_j, \nabla u_j) \,\mathrm{d}x \geq \int_{\Omega} L(x,u,\nabla u) \,\mathrm{d}x 
+\]
+
+We also had the theorem: Assuming the convexity condition, the following are necessary and sufficient for direct method to work:
+
+Suppose \(G \in W^{1,q}(\Omega)\) satisfies the Dirichlet condition.
+
+Also, \(E(G) = \int_{\Omega} L(x,G,\nabla G) \,\mathrm{d}x < \infty\). 
+
+Coercivity condition: \(L((x,z,p)) \geq c_1 \vert p \vert ^ q - c_2\).
+
+Then \(\exists\) minimizer for:
+
+\[
+    m = \inf_{u - G \in W_0^{1,q}(\Omega)} E(u)
+\]
+
+\begin{proof}
+    [Direct Method]
+
+    Let \(\{ u_j \}\) be minimizing sequence, \(E(u_j) \to m\).
+
+    \[
+        - c_2 \leq c_1 \int_{\Omega} \vert \nabla u_j \vert ^ q - c_2 \,\mathrm{d}x \leq E(u_j) m\leq +1
+    \]
+
+    \[
+        \lVert \nabla u_j \rVert _{L^q} < \frac{c_2 + m + 1}{c_1}
+    \]
+
+    \(\lVert u_j - G \rVert _{L^q} \overset{\text{Poincar\"e}}{\leq} C_p \lVert \nabla u_j - \nabla G \rVert _{L^q} \leq \text{const}\).
+    
+    \(\implies \lVert u_j \rVert _{W^{1,q}} < \text{const} \) 
+
+    \(\implies u_{j_k} \overset{W^{1,q}}{\rightharpoonup} u\).
+    
+    Convexity \(\implies\) weak lowersemicontinuity therefore \(E(u) \leq \liminf_{j \to \infty} E(u_j) = m\) 
+
+\end{proof}
+
+\(\delta E(u;v) = 0 \, \forall v\in W_0^{1,q}\) with some extra assumptions.
+
+Assuming we have these assumptions, we have (in the Gateaux sense):
+
+\[
+    \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \int_{\Omega} L(x,u + tv, \nabla u + t \nabla v) \,\mathrm{d}x = 0
+\] 
+
+\[
+    \implies \cdots \implies 
+\]
+
+\[
+    - \underbrace{L_{p_i p_j}(x,u, \nabla u)}_{\coloneqq a_{ij} (x,u(x),\nabla u(x))} u_{x_i x_j} = L_z (x,u, \nabla u) + L_{p_i x_i} L(x,u, \nabla u) + L_{p_i z}(x,u,\nabla u) u_{x_i}  
+\]
+
+\(a_{ij}\) is positive definite from strict convexity. So this is elliptic! But it is nonlinear.
+
+\begin{theorem}
+    Assume \(L = L(x,p)\) [so not on \(\nabla u\)] for \(x\in \Omega, p \in \mathbb{R}^n\). Assume \(L\) is smooth. Assume \(\theta > 0\) such that \(L_{p_i p_j} (x,p) \xi _i \xi _j \geq \theta \vert \xi \vert ^2 \, \forall \xi \in \mathbb{R}^n\) for all \(x\in \Omega , \forall p\in \mathbb{R}^n \) [it is uniformly convex].
+
+    Then there exists at most one minimizer to
+
+    \[
+        m \coloneqq \inf_{u - G \in W^{1,q}_0(\Omega)} E(u)\text{ where } E(u) = \int_{\Omega} L(x,u,\nabla u) \,\mathrm{d}x 
+    \]
+\end{theorem}
+
+\begin{proof}
+    Suppose \(u_1, u_2\) are both minimizers.
+
+    Then \(E(u_1) = m = E(u_2)\).
+
+    Let \(v \coloneqq \frac{u_1 + u_2}{2}\). Note: \(v\) must be admissible since \(v-G \in W^{1,q}_0\).
+
+    Taylor's theorem \(\implies \forall p_1,p_2 \in \mathbb{R}^n, L(x,p_2) = L(x,p_1) + \nabla_p L(x,p_1) \cdot (p_2 - p_1) + \frac{1}{2} (p_2 - p_1)^T D^2 L(x,\widetilde{p})(p_2 - p_1)\).
+    
+    Choose \(p_1 = \nu v = \frac{\nabla u_1 + \nabla u_2}{2}\) and \(p_2 = \nabla u_1\).
+
+    \(E(u_1) = \int_{\Omega} L(x,\nabla u_1) \,\mathrm{d}x \geq \int_{\Omega} L(x, \nabla v) + \nabla_p L(x,\nabla v) \cdot \frac{\nabla u_1 - \nabla u_2}{2} \,\mathrm{d}x \)
+    
+    \(+ \frac{1}{2}\theta \int_{\Omega} \frac{\vert \nabla u_1 - \nabla u_2 \vert^2 }{4} \,\mathrm{d}x  \) 
+
+    Similarly, \(E(u_2) \geq E(v) + \int_{\Omega} \nabla _p L(x,\nabla v) \cdot \frac{\nabla u_2 - \nabla u_1}{2} \,\mathrm{d}x + \frac{\theta }{8} \int_{\Omega} \vert \nabla u_2 - \nabla u_1 \vert ^2 \,\mathrm{d}x \) 
+
+    Adding,
+
+    \(2m \geq 2 E(v) + \frac{\theta }{4} \int_{\Omega} \vert \nabla u_2 - \nabla u_1 \vert ^2 \,\mathrm{d}x \implies E(v) < m\) which is a contradiction.
+
+\end{proof}
+
+An example of non-uniqueness:
+
+\[
+    E(u) = \int_{\Omega} \frac{1}{2} \vert \nabla u \vert ^ 2 + \frac{1}{4} (u^2 - 1)^2 \,\mathrm{d}x 
+\]
+
+\(m = \inf_{u \in H^1_0(\Omega)} E(u)\).
+
+Euler-Lagrangian Equation: \(\Delta u = u^3 - u\) in \(\Omega\) and \(u = 0\) on \(\partial \Omega\).
+
+Note: \(u \equiv 0\) is a \underline{critical point}!
+
+Is it a minimizer? Sometimes it is, sometimes it isn't.
+
+Let's compute the 2nd variation of \(E\) at \(u \equiv 0\).
+
+\[
+    \delta^2 E(u;v) = \eval{\frac{\mathrm{d}^2}{\mathrm{d}t^2}}_{t=0} \int_{\Omega} \frac{1}{2} \vert \nabla u + t \nabla v \vert ^ 2 + ((u+tv)^2 - 1)^2 \,\mathrm{d}x 
+\]
+
+\[
+    = \int_{\Omega} \vert \nabla v \vert ^ 2 + \eval{\frac{\mathrm{d}^2}{\mathrm{d}t^2}}_{t=0} \cdots \,\mathrm{d}x 
+\]
+
+When \(u \equiv 0\) we have:
+
+\[
+    \eval{\frac{\mathrm{d}^2}{\mathrm{d}t^2}}_{t=0} \frac{1}{4} \left( (0+tv)^2 - 1 \right) ^ 2 = \eval{\frac{\mathrm{d}^2}{\mathrm{d}t^2}}_{t=0} \frac{1}{4} \left( t^4 v^4 - 2 t^2 v^2 + 1 \right)  = - v^2 
+\]
+
+Therefore, \(\delta^2 E(0;v) = \int_{\Omega} \vert \nabla v \vert ^2 - v^2 \,\mathrm{d}x \geq \int_{\Omega} \lambda_1 v^2 - v^2 \,\mathrm{d}x\)
+
+Since \(\lambda_1 \coloneqq \inf_{v\in H^1_0} \frac{\int_{\Omega} \vert \nabla v \vert ^ 2 \,\mathrm{d}x }{\int_{\Omega} v^2 \,\mathrm{d}x}\) and exists due to Poincar\'e.
+
+If we pick \(v\coloneqq\) first eigenfunction of \(-\Delta v_1 = \lambda_1 v_1, v_1 = 0\) on \(\partial \Omega\).
+
+Then, \(\delta^2 E(0;v_1) = \int_{\Omega} (\lambda_1 - 1) v_1^2 \,\mathrm{d}x \) 
+
+Then \(0\) will be unstable provided \(\lambda_1 < 1\).
+
+Therefore, \(0\) is definitely not the minimizer.
+
+However, there definiely exists a minimizer \(u^{\ast}\) by the direct method.
+
+Since \(E(-u^{\ast}) = E(u^{\ast})\), \(-u^{\ast}\) must also be a minimizer! Thus there exsits at least 2 minimizers. So we have non-uniqueness of minimizers.
+
 \end{document}
