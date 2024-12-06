@@ -6972,6 +6972,7 @@ Where \(K^{\prime}\) is sufficiently large. Then we have:
 \end{proof}
 
 \begin{theorem}
+    [35]
     Let \(p^n \mid \mid \vert G \vert\). Then \(p^n \operatorname{coker} c = 0\).
 
     i.e. \(\forall y\in R_k G, \exists x\in K_0 k G\) such that \(c(x) = p^n y\).
@@ -6989,6 +6990,124 @@ Where \(K^{\prime}\) is sufficiently large. Then we have:
     \(y\in R_k G \implies y = \sum_{E < G} \operatorname{Ind} (y_E) \implies p^n y = \sum_{E < G} \operatorname{Ind} (p^n y_E) = \sum_{E} \operatorname{Ind} (c(x_E))\)
     
     \(= c \left( \sum_{E} \operatorname{Ind} (x_E) \right)  \) 
+\end{proof}
+
+\section*{Friday, 12/6/2024}
+
+Theorem 35 and \(K_0 k G \cong \mathbb{Z}^s \cong R_k G\)
+
+Corollary 1: \(\implies \exists\) SES:
+
+\[
+    0 \to K_0 k G \overset{c}{\to} R_k G \to \text{finite } p \text{-group} \to 0
+\]
+
+Corollary 2: If \(P, P^{\prime}\) are projective \(kG\)-modules with the same composition factors, then \(P \cong P^{\prime}\).
+
+\begin{proof}
+    \(c[P]=c[P^{\prime}] \implies [P]=[P^{\prime}]\implies P \cong P^{\prime}\)
+\end{proof}
+
+Corollary 3: If \(K\) is \(SL_y\) then the Cartan matrix \(C\) is symmetric, positive definite and \(\det C = p^k\) for some \(k\).
+
+\begin{proof}
+    Theorem 35 \(\implies \vert \det C \vert = p^k\).
+
+    \(C\) symmetric (15.4), \(C = D E, D = E^t\) 
+    
+    \(\forall x \in \mathbb{Z}^s - 0, x^t C x > 0 \iff C\) positive definite?
+
+\end{proof}
+
+Let \(\{ e_i \}, \{ f_i \}, \{ g_i \} \) be canonical bases for \(K_0 k G, R_k G, R_K G\).
+
+Recall 14.5: we have \(R_K G \times R_K G \to \mathbb{Z}\) given by:
+
+\[
+    \langle V, W \rangle = \dim_K \operatorname{Hom}_{KG} (V,W)
+\]
+
+Also, \(\langle g_i, g_j \rangle = \delta_{ij}\) so it is an orthonormal basis.
+
+We have \(K_0 k G \times R_k G \to \mathbb{Z}\) given by \(\langle V, W \rangle_k = \dim_k \operatorname{Hom}_{kG} (V,W)\) with \(\langle e_i, f_j \rangle = \delta_{ij}\) so \(e_i, f_j\) are dual bases.
+
+\begin{center}
+    \begin{tikzcd}
+        K_0 k G \ar[rd] \\ K_0 k G \times K_0 k G \ar[u, "1 \times c"] \ar[r,,"\beta"'] & \mathbb{Z}
+    \end{tikzcd}
+\end{center} 
+
+Thus we have \(\beta (x,y) = \langle x, c(y) \rangle_k\).
+
+Is \(\beta\) symmetric?
+
+\(\beta(x,y) = \langle x, d(e(y)) \rangle_k = \langle e(x),e(y) \rangle _k = \beta(y,x)\) so it is symmetric.
+
+\(\beta\) is positive definite since \(\langle , \rangle _K\) is positive definite and \(e\) is injective.
+
+\(\beta(e_i, e_j) = \langle e_i, c(e_j) \rangle _k = \left\langle e_i, \sum_{i} c_{ij} f_i \right\rangle = C_{ij}\) 
+
+\(C\) is matrix of \(\beta\) and since \(\beta\) is positive definite we deduce that \(C\) is positive definite.
+
+\begin{theorem}
+    [36] Image of \(e\) = set of virtual characters which are zero in \(p\)-singular elements.
+\end{theorem}
+
+\begin{definition}
+    \(g\in G\) is \(p\)-regular if \((\operatorname{ord} g, p)=1\).
+    
+    \(g\in G\) is \(p\)-singular if \(p\mid \operatorname{ord} g\).
+\end{definition}
+
+Recall: \(\chi: R_K G \hookrightarrow \operatorname{Cl} (G) = \left\{ f: G\to K \mid f(\sigma \tau \sigma ^{-1}) = f(\tau) \right\} \).
+
+\[
+    \chi_{[V]-[W]} \coloneqq \chi_V - \chi_W
+\]
+
+\begin{theorem}
+    [36]
+
+    \(\operatorname{im} (e) = \{ y\in R_K G \mid \eval{\chi_y}_{p \text{-singular} }^{} \equiv 0 \} \).
+\end{theorem}
+
+\begin{exercise}
+    Verify this for \(G=D_6, p=2, p=3\).
+\end{exercise}
+
+\begin{proof}
+    \begin{center}
+        \begin{tikzcd}
+            K_0 k G\ar[rr, bend right,"e"] & K_0 A G \ar[l,"\cong"] \ar[r] & K_0 K G 
+        \end{tikzcd}
+    \end{center}
+
+    \(g\in G\,p\)-singular.
+    
+    Replace \(G\) by \(\langle g \rangle = P \times Q\) \(p\)-group times \(p^{\prime}\)-group. Then \(g = (g_P, g_Q)\) and \(g_p \neq e\).
+
+    \(e(\overline{E})\) where \(E\) is projective \(AG\)-module.
+    
+    15.7: \(E \cong s_{\ast} F = A[P] \otimes_A F\) with \(F\) \(A[Q]\)-mmodule.
+
+    \(\chi_{KE} = \chi_{KP} \otimes_{} \psi\).
+
+    \(\chi_{KP}\) is the regular representation.
+
+    \(\chi_{e(\overline{E})}(g) = \chi_{KE}(g)\) 
+
+    \(= \chi_{KP}(g_p)\psi(g_Q)\)
+
+    \(= 0 \psi (g_Q) = 0\).
+
+    Zero since trace of nontrivial permutation matrix is \(0\).
+
+    For the other direction \(\supseteq:\) 
+
+    When \(K\) is \(SL\):
+
+    Idea: Use BIT to reduce to \(P \times Q\). Then apply 15.7.
+
 \end{proof}
 
 \end{document}

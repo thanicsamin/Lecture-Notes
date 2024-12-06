@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd, physics}
 \usepackage{tikz-cd}
 \usepackage{graphicx}
 \usepackage{float}
@@ -36,11 +36,9 @@
 \newcommand{\Frac}{\operatorname{Frac}}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\acts}{\circlearrowright}
-\newcommand{\rank}{\operatorname{rank}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\Char}{\operatorname{char}}
-\newcommand{\Tr}{\operatorname{Tr}}
 \renewcommand{\span}{\operatorname{span}}
 \newcommand{\ad}{\operatorname{ad}}
 
@@ -135,7 +133,7 @@ We say \(V_\lambda\) is a \underline{weight space} with \(\lambda\) as its weigh
     \end{tikzcd}
 \end{center}
 
-Note that \(\div V < \infty\)
+Note that \(\dim V < \infty\)
 
 Thus, \(\exists v \in V\) such that \(x\cdot v = 0\).
 
@@ -1359,5 +1357,129 @@ We cannot recover \(\langle \alpha_i, \alpha_j \rangle\) when \(\langle  \rangle
 Claim 1: \(\operatorname{Aut} \Phi \cong \Gamma \rtimes \mathcal{W}\) where \(\Gamma = \{ \tau \in \operatorname{Aut} \Phi \mid \tau(\Delta)  \Delta \} \).
 
 Claim 2: \(\Gamma\) may be identified with automorphims of its dynkin diagram of \(\Phi\).
+
+\section{Thursday, 12/5/2024, Cartan Subalgebras (CSA) by Rostyslav}
+
+2+2 Definitions.
+
+General Lie Algebra:
+
+\begin{enumerate}[label=\roman*)]
+    \item In terms of a normalizer
+    \item In terms of Engel subalgebra 
+\end{enumerate} 
+
+Semisimple Lie Algebra:
+
+\begin{enumerate}[label=\roman*)]
+    \item Maximal toral subalgebras
+    \item Maximal centralizer 
+\end{enumerate} 
+
+If \(x\in \operatorname{End} (V), V = \bigoplus V_a(x), V_a(x) = \ker (x-a \operatorname{id}_{})^m\) where \(m\) is a multiplicity of root of char. poly.
+
+We have \(\eval{x}_{v_a(x)}^{} = \underbrace{a}_{\text{scalar}} + \underbrace{n}_{\text{nilpotent}} \).
+
+Then, \(L = \sqcup_{a\in F} L_a (\operatorname{ad} x) = L_u (\operatorname{ad} x) \oplus L_n(\operatorname{ad} x)\) 
+
+\begin{lemma}
+    If \(a,b\in F\) then,
+
+    \[
+        [L_a(\operatorname{ad} x), L_b(\operatorname{ad} x)] \subset L_{a+b}(\operatorname{ad} x)
+    \]
+
+    In particular, when \(L_t(\operatorname{ad} x)\) is a subalgebra of \(L, \operatorname{char} F = 0, a \neq 0\) then,
+    
+    \[
+        \forall l \in L_a(\operatorname{ad} x)\, l \text{ is nilpotent} 
+    \]
+\end{lemma}
+
+Fact: (simple) adjoints are derivations
+
+\[
+    (\operatorname{ad} x - (a+b))^m [yz] = \sum_{i=0}^m \binom{m}{i}[(\operatorname{ad} x - a)^i (y), (\operatorname{ad} x - b)^{m-i}(z)]  
+\]
+
+For \(m\) sufficiently large all elements on the right well vanish.
+
+\begin{definition}
+    [Engel Subalgebra] is \(L_0(\operatorname{ad} x)\).
+\end{definition}
+
+\begin{lemma}
+    [15.2.A] Let \(K \subset L\)-subalgebra. Choose \(z\in K\) such that \(L_0(\operatorname{ad} z)\) is minimal among \(L_0(\operatorname{ad} x)\) for all \(x\in K\). Suppose \(K \subset L_0(\operatorname{ad} z)\). Then \(L_0(\operatorname{ad} z) \subset L_0(\operatorname{ad} x) \, \forall x\in K\).  
+\end{lemma}
+
+Let \(x\in K\) fixed, but arbitrary. Consider a family of endomorphisms of \(L \{ \operatorname{ad} (z+cx) \mid c\in F \} \). \(K_0 = L_0(\operatorname{ad} z)\) is a subalgebra of \(L\) including \(K\) therefore these endoomorphisms will stabilize \(K_0(=L_0(\operatorname{ad} z))\).
+
+Can induce endomorphism of \(\eval{L}_{K_0(=L_0(\operatorname{ad} z))}^{} \).
+
+Endomorphism is \(\operatorname{ad} (z + cx)\). Let \(f,g\) be char. poly in \(K_0\) over \(L / K\) and let \(n = \dim K_0, n - \dim L\).
+
+\[
+    f(T,c) = T^r + f_1(c) T^{n-1} + \cdots + f_n(c)
+\]
+
+\[
+    g(T,c) = T^{n-r} + g_1(c) + T^{n-r-1} + \cdots g_{n-r}(c)
+\]
+
+\(f_i, g_i\) are polynomials.
+
+By definition, eigenvalue \(0\) appears only in \(K_0\) when \(T=0, g_{n-r}\) is not identically zero on \(F\). Lets take \(c_1, \cdots , c_{r+1}\) not zeros of \(g_{n-r}\). To say \(g_{n-r}(0) = 0 \iff\) \(0\) is not an eigenvalue of \(\operatorname{ad} (z+cx)\) on the quotient space.
+
+\(\implies \forall L_0(\operatorname{ad} (z+cx))\) lie in the subspace of \(K_0\).
+
+But \(K_0\) is minimal.
+
+\(K_0 = L_0(\operatorname{ad} z) = L_0(z+c_ix)\, 1 \leq i \leq r+1\).
+
+The only eigenvalues \(\operatorname{ad}(z+cx)\) has is \(0\).
+
+\(\implies f(T,c_i) = T^r, f_i = f(T,c_i)\).
+
+\(\forall f_i\) has \(r+n\) distinct zeros \(\implies \forall f_i\) are identically zero.
+
+\(L_0(\operatorname{ad} (z+cx)) \supset K_0 \forall c \in F\).
+
+Replace \(x\) with \(x-z, c=1\).
+
+\(L_0(\operatorname{ad} x)  \supset K_0 = L_0(\operatorname{ad} x)\) so we're done.
+
+\begin{lemma}
+    [15.2.B] If \(K \subset L\) subalgebra and \(L_0(\operatorname{ad} x) \subset K \implies K\) is self normalizing. In particular, Engel subalgebras are self-normalizing.  
+\end{lemma}
+
+\(L_0(\operatorname{ad} x) \subset K \implies \operatorname{ad} x\) acts on \(N_L(K) / K\) without an eigenvalue \(0\) in \(\ker = 0\).
+
+\(x\in K \, [N_L(K)x] \subset K \implies \operatorname{ad} x\) acts trivially on \(N_L(K) / K \implies N_L(K) = K\).
+
+\begin{definition}
+    [Cartan Subalgebra] Cartan Subalgebra is a nilpotent subalgebra of \(L\) that is self-normalizing.
+\end{definition}
+
+\begin{theorem}
+    [15.3] Let \(H\)-subalgebra of \(L\). \(H\) is a CSA \(\iff H\) is a minimal Engel subalgebra.
+\end{theorem}
+
+\(\impliedby:\) Assume it is a minimal Engel subalgebra. Then, \(H = L_0(\operatorname{ad} z) \overset{15.2.B}{\implies} H\) is self-normalizing. \(\overset{15.2.A}{\implies} L_0(\operatorname{ad} z) \subset L_0(\operatorname{ad} x)\).
+
+We apply \underline{Engel's Theorem} which states if \(\forall x\in L \operatorname{ad} x\) is nilpotent then \(L\) is nilpotent.
+
+\(\forall x\in H\) in particular \(\operatorname{ad}_H x\) is nilpotent so \(H\) is nilpotent.
+
+\(\implies:\) Let \(H\) be CSA, \(H\) is nilpotent by defintion. \(H \subset L_0(\operatorname{ad} x)\). We want to prove \(\exists z\) such that \(H = L_0(\operatorname{ad} z)\).
+
+Lets assume that is not the case.
+
+Take \(L_0(\operatorname{ad} z)\) smallest, \(\overset{15.2.A}{\implies} L_0(\operatorname{ad} z) \subset L_0(\operatorname{ad} x)\).
+
+\(L_0(\operatorname{ad} z) / H\) here \(x\in H\) will act as a nilpotent.
+
+\(H\) annihilates some \(y+H\) where \(y\neq 0\).
+
+\(\exists y\in H\) such that \([Hy] \subset H\). But \(H\) is self normalizing. Contradiction! So we're done.
 
 \end{document}
