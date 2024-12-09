@@ -3182,6 +3182,13 @@ Then \(u_{x_k} \) weakly solves a \underline{new} elliptic PDE.
 
     % insert picture figure
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/flattening}
+        \caption{}
+        \label{fig:flat}
+    \end{figure}
+
     Let \(\zeta\) be a cutoff function.
 
     \(\zeta \in C^{\infty}, \zeta \equiv 1\) in \(B(0,\frac{1}{2})\)
@@ -3826,6 +3833,126 @@ If, for example \(L u = f\) in \(\Omega\) and \(u = h\) on \(\partial \Omega\) t
 \section*{Wednesday, 10/28/2024}
 
 [to be entered]
+
+\section*{Eigenvalues and Eigenfunctions of Symmetric Elliptic Operators}
+
+\(Lu = - (a_{ij} (x) u_{x_i})_{x_j} + c(x) u\)
+
+\(a_{ij} = a_{ji} \)
+
+\(a_{ij} (x) \xi _i \xi _j \geq \theta \vert \xi \vert  ^{2}\), \(\theta > 0\).
+
+If we included \(b_i(x) u_{x_i} \) then \((Lu, v) _{L^2} = \int Lu \cdot v \neq \int u L v\).
+
+From our compact operator approach, we've seen that the set of eigenvalues \(\{ \lambda_j \} \) is either finite or \(\lambda _j \to \infty \) .
+
+We also saw: for \(a_{ij} = \delta _{ij}\), \(c \neq 0\), if there exists a minimizer of the Rayleigh quotient
+
+\[
+    \lambda_1 \coloneqq \inf_{u\in H^1_0(\Omega), u \not\equiv 0} \frac{\int_{\Omega} \vert \nabla u \vert ^2 \,\mathrm{d}x }{\int_{\Omega} u^2 \,\mathrm{d}x } = \mathcal{R} (u)
+\]
+
+say, \(u_1\), and if \(u_1\) is smooth, then \(u_1\) is the 1st eigenfunction and \(\lambda_1\) is the smallest eignevalue.
+
+\(- \Delta u_1 = \lambda _1 u_1\) in \(\Omega\) and \(u_1 = 0\) on \(\partial \Omega\).
+
+Recall the computed:
+
+\[
+    \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} \mathcal{R}(u_1+tv) = 0
+\]
+
+for any fixed \(v \in H^1_0\).
+
+\begin{theorem}
+    Given \(\Omega \subset \mathbb{R}^n\), bounded, open there exists a function \(u_1\) minimizing \(\mathcal{R} (u)\) over all \(u\in H^1_0(\Omega), u\not\equiv 0\) Furthermore, \(u_1\) is smooth and is the 1st eigenfunction.
+\end{theorem}
+
+\begin{proposition}
+    If \(u_j \overset{H^1}{\rightharpoonup} u\) then \(\liminf_{j \to \infty} \int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x \geq \int_{\Omega} \vert \nabla u \vert ^2 \,\mathrm{d}x \).
+\end{proposition}
+
+Recall \(u_j \overset{H^1}{\rightharpoonup} u\) means \(\forall v\in H^1, (u_j, v)_{H^1} \to (u,v)_{H^1}\).
+
+\begin{proof}
+    Note: Weakly convergent sequences are bounded. Therefore,
+
+    \(\lVert u_j \rVert _{H^1} < C\).
+
+    \(\implies u_{j_k} \overset{L^2}{\to} u\) 
+
+    \(\implies \int u_{j_k} v \to \int uv\) 
+
+    \(\forall v\in H^1_0, \lVert v \rVert _{H^1_0} = \left( \int \vert \nabla v \vert ^{2} \right) ^{1 / 2}\)
+    
+    \(= \sup_{\lVert w \rVert _{H^1_0} \leq 1} \int \nabla v \cdot \nabla w\).
+    
+    So we're assuming \(u_j \rightharpoonup u\).
+
+
+    Fix any \(w\) so that \(\lVert w \rVert _{H^1_0} \leq 1\). We have:
+    
+    \[
+        \int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x \geq \left( \int_{\Omega} \nabla u_j \cdot \nabla w \,\mathrm{d}x  \right) ^ 2
+    \]
+
+    Taking \(\liminf_{j \to \infty}\),
+
+    \[
+        \liminf_{j \to \infty} \int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x \geq \liminf_{j \to \infty} \left( \int_{\Omega} \nabla u_j \cdot \nabla w \,\mathrm{d}x  \right) ^{2} = \left( \int_{\Omega} \nabla u \cdot \nabla w \,\mathrm{d}x  \right) ^{2} 
+    \]
+
+    Now take \(\sup\) over all such \(w\).
+
+\end{proof}
+
+\begin{proof}
+    [Proof of Theorem] We use the direct method.
+
+    \[
+        \inf_{u\in H^1_0(\Omega), u\not\equiv 0} \mathcal{R}(u) \eqqcolon \lambda_1
+    \]
+
+    Note, for all \(c\neq 0\) constant we have \(\mathcal{R} (cu) = \mathcal{R}(u)\).
+
+    Thus, WLOG we can minimize \(\mathcal{R}\) over the admissible set:
+    
+    \(\mathcal{A} = \left\{ u\in H^1_0(\Omega) : u \not\equiv 0, \int_\Omega u^2 \,\mathrm{d} x = 1 \right\} \).
+
+    Let \(\{ u_j \} \subset \mathcal{A}\) such that \(\mathcal{R}(u_j) = \int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x \to \lambda_1 \).
+
+    \(\{ u_j \} \) is a minimizing sequence.
+
+    We know, \(\int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x < \lambda_1 + 1\).
+
+    Thus, \(\lVert u_j \rVert _{H^1_0} \leq \operatorname{const}\)
+
+    Thus, there exists subsequence \(\{ u_{j_k}  \} \) such that \(u_{j_k} \overset{H^1}{\rightharpoonup} u, u_{j_k} \overset{L^2}{\rightharpoonup} u\) for some \(u\in H^1_0(\Omega)\) by Rellich-Kondrachov.
+
+    Thus, \(\int u^2 = \lim_{k \to \infty} \int u_{j_k} ^2 = 1\).
+
+    Thus, \(u\in \mathcal{A}\).
+    
+    Thus, by the proposition,
+
+    \[
+        \lambda_1 = \liminf_{k \to \infty} \int_{\Omega} \vert \nabla u_{j_k}  \vert ^{2} \,\mathrm{d}x \geq \int_{\Omega} \vert \nabla u \vert ^{2} \,\mathrm{d}x
+    \]
+
+    \[
+        \implies \mathcal{R} (u) = \lambda_1
+    \]
+
+
+\end{proof}
+
+If \(Lu = - \Delta u + c(x) u\) then,
+
+\(\mathcal{R} (u) = \int \vert \nabla u \vert ^{2} + c(x) u ^{2}\).
+
+\[
+    \liminf_{j \to \infty} \mathcal{R} (u_j) \geq \mathcal{R} (u)
+\]
 
 \section*{Wednesday, 10/30/2024}
 
@@ -5149,7 +5276,13 @@ Examples:
 
     \item Plateau Problem / Soap Film Problem: \(E(u) = \int_{\Omega} \sqrt{1 + \vert \nabla u \vert ^2} \,\mathrm{d}x, \eval{u}_{\partial \Omega} = g\).
     
-    [insert picture here]
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/graph}
+        \caption{}
+        \label{fig:graph}
+    \end{figure}
 
     \[
         \eval{\frac{\mathrm{d}}{\mathrm{d}t}}_{t=0} E(u+th)
