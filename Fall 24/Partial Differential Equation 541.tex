@@ -5890,4 +5890,119 @@ However, there definiely exists a minimizer \(u^{\ast}\) by the direct method.
 
 Since \(E(-u^{\ast}) = E(u^{\ast})\), \(-u^{\ast}\) must also be a minimizer! Thus there exsits at least 2 minimizers. So we have non-uniqueness of minimizers.
 
+\section*{Monday, 12/9/2024}
+
+Final @ Wednesday 10:20-12:20, RH104
+
+\section*{Constrained Variational Problems}
+
+General Problem:
+
+\[
+    \inf_{u\in \mathcal{A}} E(u)
+\]
+
+\(\mathcal{A}\) includes some constraints in addition to Sobolev and boundary condition, such as:
+
+\(J(u) = 0, u(x) \substack{\leq \\ \geq} h(x), \vert \nabla u(x) \vert \leq 1\) etc.
+
+How does a constraint affect the Euler Lagrange equation?
+
+example: \(\inf_{u\in \mathcal{A}} \frac{1}{2} \int_{\Omega} \vert \nabla u \vert ^ 2 \,\mathrm{d}x \) where \(\mathcal{A} = \{ u \in H^1_0(\Omega) : J(u) = 0 \} \) where \(J(u) =  \int_{\Omega} G(u(x)) \,\mathrm{d}x \).
+
+We will assume \(G:\mathbb{R} \to \mathbb{R}\) smooth. We assume the bound \(\vert G(z) \vert \leq C(\vert z \vert ^ 2 + 1)\).
+
+\begin{enumerate}[label=\arabic*)]
+    \item A minimizer exists: \(\{ u_j \} =\) min. seq \(\subset \mathcal{A}\).
+    
+    \(\int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x \leq 2m + 1\).
+
+    \(\int_{\Omega} u_j ^{2} \,\mathrm{d}x \leq C_p \int_{\Omega} \vert \nabla u_j \vert ^{2} \,\mathrm{d}x\) 
+
+    \(\lVert u_j \rVert _{H^1} < \text{const}\).
+    
+    \(u_{j_k} \overset{H^1}{\rightharpoonup} u_0, u_{j_k} \overset{L^2}{\rightharpoonup} u_0\).
+    
+    \(\liminf_{k \to \infty} \int_{\Omega} \vert \nabla u_{j_k} \vert ^ 2 \,\mathrm{d}x \geq \int_{\Omega} \vert \nabla u_0 \vert ^2 \,\mathrm{d}x \).
+
+    We need to verify if \(u_0\) is admissible.
+
+    Since \(\int_{\Omega} G(u_j) \,\mathrm{d}x \leq \int_{\Omega} (c \vert u_j \vert ^ 2 + 1) \,\mathrm{d}x\), by dominated convergence theorem we have \(\int_{\Omega} G(u_0) \,\mathrm{d}x = 0\).
+
+    Strategy: We want to find a differential equation that the minimizer must solve. We get Euler Lagrangian equation from differentiating the curve \(t \mapsto u + tv\). But \(u+tv\) is not admissible.
+
+    We want to build a curve of competitors and differenitate along that curve to get a new criticality condition.
+
+    Suppose \(g = G^{\prime}\).
+
+    We \underline{assume} that \(\vert \{ x\in \Omega : g(u_0(x)) \neq 0 \}  \vert > 0 \).
+    
+    We select any \(w\in H^1_0(\Omega)\) such that \(\int_{\Omega} g(u_0(x))w(x) \,\mathrm{d}x \neq 0\).
+
+    For this \(w\), for \(\tau, \sigma \in \mathbb{R}\) and any \(v\in H^1_0(\Omega)\), define:
+
+    \[
+        j(\tau,\sigma) \coloneqq J(u_0+\tau v+\sigma w)
+    \]
+
+    We're looking for an admissible curve.
+
+    \(j(0,0) = J(u_0)\) since \(u_0 \in \mathcal{A}\).
+
+    We want to use Implicit Function Theorem.
+
+    \(\frac{\partial j}{\partial \tau} = \frac{\partial}{\partial \tau} \int_{\Omega} G(u_0 + \tau v + \sigma w) \,\mathrm{d}x = \int_{\Omega} g(u_0 + \tau v + \sigma w) v \,\mathrm{d}x \) 
+
+    \(\frac{\partial j}{\partial \sigma} = \int_{\Omega} g(u_0 + \tau v + \sigma w) w \,\mathrm{d}x  \) 
+
+    Since \(\int_{\Omega} g(u_0(x))w(x) \,\mathrm{d}x \neq 0\),
+
+    \(\frac{\partial j}{\partial \sigma} (0,0) \neq 0\). Thus we can use implicit function theorem! \(\exists \sigma(\tau)\) for \(\vert \tau \vert\) small so that \(j(\tau , \sigma(\tau)) = 0\).
+
+    Now we can compute first variation:
+
+    \[
+        \eval{\frac{\mathrm{d}}{\mathrm{d}\tau}}_{\tau = 0} j(\tau, \sigma(\tau)) = 0
+    \]
+
+    \[
+        j_{\tau} (\tau, \sigma(\tau)) + j_\sigma (\tau, \sigma(\tau)) \sigma^{\prime}(\tau) = 0
+    \]
+
+    Thus, \(\sigma ^{\prime} (0) = \frac{- j_{\tau}(0,0)}{j_\sigma(0,0)}\) 
+
+    \[
+        = \frac{- \int_{\Omega} g(u_0) v \,\mathrm{d}x}{\int_{\Omega} g(u_0) w \,\mathrm{d}x}
+    \]
+
+    Here's the curve of competitors:
+
+    \[
+        V(\tau) \coloneqq u_0 + \tau v + \sigma (\tau) w \in \mathcal{A} \, \forall \vert \tau \vert \, \text{small}
+    \]
+
+    \[
+        0 = \eval{\frac{\mathrm{d}}{\mathrm{d}\tau}}_{\tau = 0} \frac{1}{2} \int_{\Omega} \vert \nabla V \vert ^ 2 \,\mathrm{d}x 
+    \]
+
+    \[
+        0 = \eval{\frac{\partial}{\partial \tau}}_{\tau = 0} \frac{1}{2} \int_{\Omega} (\nabla u_0 + \tau \nabla v + \sigma (\tau) \nabla w, \nabla u_0 + \tau \nabla v + \sigma (\tau) \nabla w) \,\mathrm{d}x 
+    \]
+
+    \[
+        0 = \int_{\Omega} \nabla u_0 \cdot \nabla v + \nabla u_0 \cdot \nabla w \sigma ^{\prime} (0) \,\mathrm{d}x 
+    \]
+
+    \[
+        0 = \int_{\Omega} \nabla u_0 \nabla v \,\mathrm{d}x - \int_{\Omega} g(u_0) v \,\mathrm{d}x \frac{\int_{\Omega} \nabla u_0 \cdot \nabla w \,\mathrm{d}x }{\int_{\Omega} g(u_0) w \,\mathrm{d}x }
+    \]
+
+    \[
+        0 = \int_{\Omega} \nabla u_0 \cdot \nabla v - \lambda g(u_0) v \,\mathrm{d}x \overset{IBP}{\implies} - \Delta u_0 = \lambda g(u_0) \, \text{in } \Omega 
+    \]
+
+    \(- \Delta u_0 = \lambda g(u_0)\) in \(\Omega\) is a nonlinear eigenvalue problem.
+
+\end{enumerate} 
+
 \end{document}
