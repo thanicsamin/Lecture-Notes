@@ -7108,6 +7108,136 @@ Recall: \(\chi: R_K G \hookrightarrow \operatorname{Cl} (G) = \left\{ f: G\to K 
 
     Idea: Use BIT to reduce to \(P \times Q\). Then apply 15.7.
 
+\section*{Monday, 12/9/2024}
+
+Today: Proof of theorem 36, Brauer Characters.
+
+Wedsesday: Example \(A_y\).
+
+Now we go back to the proof.
+
+    Recall: \(g\in G\) is \(p\)-singular if \(p\mid \operatorname{ord} (g)\).
+
+    We did the \(\subseteq\) part last class.
+
+    Today: \(\supseteq \) 
+
+    Case 1: \(G = P \times Q\), \(p\)-group \(\times p^{\prime}\)-group.
+
+    \(R_K P \otimes_{\mathbb{Z}} R_K Q = R_K(P \times Q)\).
+
+    There exists \(y\in R_K G\) such that \(\chi_y(p-\text{sing}) = 0\).
+    
+    \underline{Claim}: \(\chi_y = \chi_{KP} \otimes_{f}\) where \(f(q) = \frac{1}{\vert P \vert} \chi_y(e,q) \in \operatorname{Cl} (Q)\).
+    
+    \underline{Proof of Claim}: Consider \(a\in P\) such that \(a \neq e\).
+
+    Since \(p\mid \operatorname{ord}(a)\) we have:
+
+    \(\chi_y(a,q) = 0 = \underbrace{\chi_{KP}(a)}_{=0} f(q) = 0\).
+    
+    \(\chi_y(p,q) = \vert P \vert f(q) = \chi_{KP}(e) f(q) = (\chi_{KP})(e)f(q) = (\chi_{KP}\otimes_{} f)(e,q)\).
+    
+    We want to show: \(f\in R_K Q\).
+    
+    \(\forall \rho\in R_K Q\), we have:
+
+    \(\langle f,\rho \rangle = \langle \chi_{KP}, 1 \rangle \langle f, \rho \rangle  = \langle\chi_y, 1 \otimes \rho \rangle \in \mathbb{Z}\) 
+
+    If \(\{ e_i \} \) is a basis for \(R_K Q\) then,
+
+    \(f = \sum_{i} \langle f, e_i \rangle e_i \in R_K Q\).
+
+    So we are done.
+
+    Now, \(K_0(AQ) \overset{\cong}{\to} R_K Q\) by 15.5.
+    
+    So \(y_Q \mapsto f\).
+
+    Thus, \(y = e(\overline{A[P] \otimes_{A} y_Q} )\) so we're done.
+
+    Case 2: General \(G\).
+
+    In this case we use BIT to reduce this to case 1.
+
+    BIT implies all representations are induced by elementary groups. So, the trivial representation is also induced by the elementary groups.
+
+    Recall that elementary groups are \(p\) group \(\times\) cyclic \(p^{\prime}\) group.
+
+    \(\forall y\in R_K G, y = \sum_{E} \operatorname{Ind}_E (\chi_E \operatorname{Res}_E y)\)
+    
+    \(= \sum_{E} \operatorname{Ind}_E (e(z_E))\) from case 1.
+
+    \(= e \left( \sum_{E} \operatorname{Ind}_E(z_E) \right) \) 
+
+\end{proof}
+
+\section*{Brauer Characters}
+
+``Setting'': We have a field \(K\) that is complete w.r.t.\ a valuation \(\nu\). We have valuation ring \(A\) and maximal ideal \(M\), and also the residue field \(k\). \(K\) is the quotient field of \(A\) and \(k = A / M\).
+
+We write it as \(((K, \nu), A, M , k)\).
+
+We assume \(K\) is sufficiently large.
+
+Given a \(kG\)-module \(E\) that is finitely generated, we want to find a ``modular representation'' [\(\operatorname{char} p\)] representation.
+
+We could, in the usual way, define a \(k\)-valued character \(G \overset{\chi_E}{\to} k\). This is lousy and we don't have much information.
+
+Brauer had the idea of `lifitng' it to characteristic \(0\).
+
+\begin{center}
+    \begin{tikzcd}
+        G_{\text{reg}} \ar[d, hook] \ar[rrr, "\phi_E", "\text{Brauer character}"'] & & & A \ar[d, two heads] \\ G \ar[rrr, "\chi_E"] & & & k
+    \end{tikzcd}
+\end{center}
+
+Where:
+
+\(G_{\text{reg}} = \{ g\in G \mid (\operatorname{ord} g, p) = 1 \} \) 
+
+\(m^{\prime} = \{ \operatorname{lcm} \operatorname{ord} g \mid g\in G_{\text{reg}} \} \) 
+
+\(m = p^k m^{\prime}\) where \((p,m^{\prime}) = 1\).
+
+\(\mathcal{N}_K = \mathcal{N}_K ^{m^{\prime}} = m^{\prime}\) roots of \(1\) in \(K\)
+
+\(\mathcal{N}_k = \mathcal{N}_k^{m^{\prime}} = m^{\prime}\) roots of \(1\) in \(k\). 
+
+These are integrally closed and we have \(A \twoheadrightarrow k\). Therefore, \(N_K \cong N_k\).
+
+\begin{center}
+    \begin{tikzcd}
+        N_K \ar[r, "\cong"] \ar[d, hook] & N_k \ar[d, hook] \\ A \ar[r, two heads] & k
+    \end{tikzcd}
+\end{center}
+
+\(kG\)-mod \(E \leftrightarrow P_E : G \to \operatorname{GL}_n k\).
+
+\(\forall g\in G_{\text{reg}}, \rho_E(g)\) is diagonalizable.
+
+\(\implies \chi_E(g) \coloneqq \Tr \rho_E(g) = \sum_{i} \lambda_{i}\) \(m^{\prime}\)-roots of \(1\).
+
+\begin{definition}
+    [Brauer Character]
+
+    \(\phi_E : G_{\text{reg}} \to A\) so that \(\chi_E(g) = \sum_{i} \widetilde{\lambda_i} \)  
+\end{definition}
+
+\begin{theorem}
+    [Facts about Brauer Character]
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\phi_E(e) = \dim E\) 
+        \item \(\phi_E : G_{\text{reg}} \to K\) is a class function
+        \item SES \(0 \to E^{\prime} \to E \to E^{\prime\prime} \to 0\) of \(kG\)-mod, \(\phi_E = \phi_{E^{\prime}} + \phi_{E^{\prime\prime}}\). Proof: for \(g\in G_{\operatorname{reg}}, \eval{E}_{\langle g \rangle}^{} \cong \eval{E^{\prime}}_{\langle g \rangle}^{} \oplus \eval{E^{\prime\prime} }_{\langle g \rangle }^{}  \)   
+        \item \(\phi_{E_1 \otimes_{} E_2} = \phi_{E_1} \phi_{E_2}\)
+        \item \(\chi_E(g) = \overline{\phi_E(g_r)}\) where \(g\in G, g_r \in G_{\text{reg}}\). 10.1 \(\implies \forall g\in G, \exists ! g = g_r g_p\) where \(g_r\) is a \(p^{\prime}\)-element and \(g_p\) is a \(p\)-element and \(g_r g_p = g_p g_r\).   
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    v: eigenvalues of \(\rho_E(g) =\) eigenvalues of \(\rho_E(g_r)\). Note that eigenvalues of \(\rho_E(g_p)\) are all \(1\). Since eigenvalues of \(\rho (g g_r ^{-1})\) are \(1\), \(g\) and \(g_r\) commutes. 
 \end{proof}
 
 \end{document}
