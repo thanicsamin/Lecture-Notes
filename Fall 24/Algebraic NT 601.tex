@@ -5386,4 +5386,202 @@ For any power series \(F(x_1, \cdots , x_n) \in K_{\text{nr}}[[x_1, \cdots , x_n
 
 \end{proof}
 
+\section*{Tuesday, 12/10/2024}
+
+Suppose we have two different Lubin-Tate series \(e,e^{\prime}\) for different \(\pi,\pi ^{\prime} \). Then,
+
+\[
+    e \circ \theta = \theta ^\varphi \circ e^{\prime}
+\]
+
+\(e = [\pi]_{F_e}, e^{\prime} = [\pi^{\prime}]_{F_{e^{\prime}}}\)
+
+A \underline{homomorphism} \(\vartheta : F_{e^{\prime}} \to F_e\) must satisfy \(\vartheta \circ [\pi]_{e^{\prime}} = [\pi]_e \circ \vartheta\).
+
+Important: This is not \(\vartheta \circ [\pi^{\prime}]_{e^{\prime}} = [\pi]_e \circ \vartheta\).
+
+So, in the work of the last class, we in fact have \(e^{\prime\prime} = e\). It was overcomplicated for this reason.
+
+\section{Local Complex Multiplication}
+
+This `generalizes' the construction of field extensions using roots of unity (group = \(\mathbb{G}_m\)) and division points on elliptic curves.
+
+Let \(C = K^{\operatorname{alg}} =\) algebraic closure of \(K \supset \mathcal{O} _C =\) valuation ring \(\supset P_C =\) maximal ideal =\( \langle \alpha \in C \mid \vert \alpha \vert < 1 \rangle\).
+
+\begin{proposition}
+    Let \(F(x,y)\) be a formal \(\mathcal{O}\)-module over \(\mathcal{O}\). Then \(P_C\) becomes an \(\mathcal{O}\)-module by setting \(\forall \alpha, \beta \in P_C \forall a\in \mathcal{O}: \alpha \underset{F}{+} \beta = F(\alpha ,\beta)\) and \(a \underset{F}{\cdot} \alpha = [a]_F (\alpha)\).
+\end{proposition}
+
+\begin{proof}
+    Straightforward once we observe that \(F(\alpha , \beta)\) and \([a](\alpha)\) converges since in \(P_C, \vert \alpha \vert < 1\).
+\end{proof}
+
+Let \(\pi \in K\) be a uniformizer, \(e =\) Lubin-Tate series for \(\pi, F = F_e =\) assoc. formal \(\mathcal{O}\)-module by 12.3.
+    
+Set \(F[n] = F_e[n] = \{ \alpha \in P_C \mid [\pi^n]_F (\alpha) = 0 \}\).
+
+Note that \([\pi^n]_F(\alpha) = \pi^n \underset{F}{\cdot} \alpha\).
+
+\begin{example}
+    \(K = \mathbb{Q}_p, e(x) = (1+x)^p - 1 = [p](x) \implies F = \widehat{G_m}, [p^n](x) = (1+x)^{p^n} - 1\).
+    
+    \(F[n] = \{ \alpha \in P_C \mid (1+\alpha)^{p^n} - 1 = 9 \} = \mu_{p^n}-1\)
+    
+    \(\iff 1+\alpha \in \mu_{p^n}\).
+
+    Note: \(F[n]\) is an \(\mathcal{O}\)-module.
+
+
+    \([\pi^n]([a](\alpha)) = [\alpha][[\pi^{n}](\alpha )]=[a](0) = 0\). 
+
+\end{example}
+
+\begin{lemma}
+    Set \(f(x)=\pi x + x^q\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(f_n(x) = \underbrace{f \circ \cdots 1 \circ f} (x)\) has all its roots \(C\) are in \(P_C\).
+        \item  \(f_n^{\prime} (x)\) has all rooots (in \(C \setminus P_C\)).
+        \item \(f_n(x)\) is separable and monic of degree \(q^n\) and \(f_n(x) \equiv x^{q^n}\mod\pi\) 
+        \item \(\frac{f_n(x)}{f_{n-1} }\) is an Eisenstein polynomial for the PID \(\mathcal{O}\) with coefficients in \(\mathcal{O}\).   
+    \end{enumerate} 
+\end{lemma}
+
+\begin{proof}
+    By induction. If \(n=1\) Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(f(\alpha) = 0 \implies 0 = \vert \alpha (\pi + \alpha^{q-1}) \vert = \vert \alpha \vert \vert \pi + \alpha ^ {q-1} \vert \implies \alpha = 0 \) or \(\vert \alpha  \vert = \vert \pi \vert ^{\frac{1}{q-1}} < 1\).
+        \item \(f^{\prime} (x) = \pi + q x^{q-1}\). If \(\operatorname{char} (K) = p\) then f\(^{\prime} (x) = \pi\) so we're ddone. If \(\operatorname{char} (K) = 0\) then \(p \mid q\) so \(q = pf \implies \frac{\pi}{q} = \frac{\pi}{pf} = \frac{1}{p^{f-1}} \left( \frac{\pi}{p} \right) \implies \left\vert \frac{\pi}{q} \right\vert \geq 1\).
+        
+        \(f^{\prime} (a) = 0 \implies \vert \alpha  \vert = \left\vert \frac{\pi}{q} \right\vert ^{\frac{1}{q-1}} \geq 1\).
+        
+        \item \(\impliedby\) i and ii.
+        \item \(\frac{f_1(x)}{x} = \pi + x^{q-1}\) is Eisenstein.
+    \end{enumerate} 
+
+    Now assume i to iv are true for \(n \geq 1\).
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(f_{n+1} (x) = f(f_n(x)) = \pi f_n(x) + f_n(x)^q = f_n(x)(\pi + f_n(x)^{q-1})\).
+        
+        \(f_n(x) = x^{q^n} +\) terms divisible by \(\pi\) and of degree \(< q^n\).
+
+        \(\vert \alpha \vert \geq 1 \implies \vert f_n(\alpha) \vert = \vert \alpha \vert ^{q^n } \geq 1 \implies \vert \pi + f_n(\alpha)^{q-1} \vert \geq 1\). Thus all roots of \(f_{n+1}\) are in \(P_C\).
+        
+        \item \(f_{n+1}^{\prime} (x) = \pi f_n ^{\prime} (x) + q f_n(x)^{q-1} f_n^{\prime} (x) = f_n^{\prime} (x) (\pi + q f_n(x)^{q-1})\).
+        
+        \(\vert \alpha \vert < 1 \implies \vert f_n(\alpha) \vert < 1 \implies \vert q f_n(x)^{q-1} \vert < \vert \pi \vert \) hence \(f_{n+1} ^{\prime} (x)\) has no roots in \(P_C\).
+
+        \item \(\impliedby\) i and ii.
+        \item \(\frac{f_{n+1}(x)}{f_n(x)} = \pi +  f_n(x)^{q-1} = \pi + (x^{q^n} +\) lower degree terms divisible by \(\pi x)^{q-1}\) which is Eisenstein. 
+
+    \end{enumerate} 
+
+\end{proof}
+
+\begin{proposition}
+    \(\forall n \geq 1: F[n]\) is a free \((\mathcal{O} / \pi^n )\)-module of rank \(1\).
+\end{proposition}
+
+\begin{proof}
+    Note: \(u\in \mathcal{O}^\times: [u](x) = ux + x^2(\text{power series in } x \text{ with coeff. in } \mathcal{O})\).
+    
+    \(=x(u + x(\text{power series in } x \text{ with coeff. in } \mathcal{O}))\) has only \(x=0\) as a root in \(P_C\).  
+
+    \([u ^{-1}]([u](x)) = x\).
+    
+    12.2(ii) \(\implies\) all LT formal \(\mathcal{O}\)-modules for the same uniformizer \(\pi\) are isomorphic over \(\mathcal{O}\).
+    
+    \(\implies\) WLOG we may assume \(e = f\) hence \([\pi]_F (x) = \pi x + x^q\).
+
+    12.5(iii) \(\implies \vert \underbrace{F[n]}_{=\text{roots of } f_n(x)} \vert = q^n \implies \exists \lambda \in F[n] \setminus F[n-1]\) so that the map \(\mathcal{O} \overset{\tau}{\to} F[n], a \mapsto [a](\lambda)\) has kernel \((\pi^n)\).
+
+    \(\tau\) factors as,
+
+    \begin{center}
+        \begin{tikzcd}
+            \mathcal{O} \ar[rr, bend left, "\tau"] \ar[r] & \mathcal{O} / (\pi^n) \ar[r,"\overline{\tau}","\text{injective}"'] & F[n]
+        \end{tikzcd}
+    \end{center}
+
+    Both \(\mathcal{O} / (\pi^n)\) and \(F[n]\) has size \(q^n\). So \(\overline{\tau}\) is an isomorphism of \(\mathcal{O}\)-modules.
+
+\end{proof}
+
+\begin{corollary}
+    The maps \(\mathcal{O} / (\pi ^ n) \to \operatorname{End}_{\mathcal{O} / (\pi^n)} (F[n])\) given by \(\overline{a} \mapsto (\alpha \mapsto [a](\alpha))\) and
+
+    \(\mathcal{O}^\times / (1 + \pi^n \mathcal{O}) \to \operatorname{Aut}_{\mathcal{O}/(\pi^n)}(F[n])\) given by \(\overline{a} \mapsto (\alpha \mapsto [a](\alpha))\) are isomorphisms.
+\end{corollary}
+
+\begin{proof}
+    \(\operatorname{End}_{\mathcal{O} / (\pi^n)} (F[n]) \underset{12.6}{=} \operatorname{End}_{\mathcal{O} / (\pi^n)} (\mathcal{O} / (\pi^n)) \cong \mathcal{O} / (\pi^n)\). 
+
+    \(\operatorname{Aut}_{\mathcal{O}/(\pi^n)}(F[n]) = \operatorname{Aut}_{\mathcal{O}/(\pi^n)}(\mathcal{O} / (\pi^n)) = (\mathcal{O} / (\pi^n))^\times \underset{\text{exercise}}{\cong} \mathcal{O}^\times / (1 + \pi^n \mathcal{O})\).
+\end{proof}
+\begin{definition}
+    Let \(F = F_e\) be a LT formal \(\mathcal{O}\)-module over \(\mathcal{O}\). The field \(L_n = L_{e,n} = K(F[n])\) is called the \underline{field of \(\pi^n\)-torsion points} (of \(F_e\)).
+    
+    It only depends on the uniformizer \(\pi\) and not on the LT series \(e\). 
+
+    Proof: \(\theta : F_{e^{\prime}} \to F_e\) isomorphism of formal \(\mathcal{O}\)-modules [same \(\pi\)] over \(\mathcal{O} \implies \mathcal{O} : F_e[n] \overset{\cong}{\to} F_{e^{\prime}}[n]\) isomorphism of \(\mathcal{O} / (\pi^n)\)-modules. \(L_{e,n} \ni \alpha \mapsto \theta (\alpha) = \sum_{i} c_i \alpha^i \in L_{e,n}\).
+\end{definition}
+
+The tower of fields \(K = L_0 \subset L_1 \subset L_2 \subset \cdots \) is called the \underline{Lubin-Tate tower} attached to \(\pi\).
+
+\begin{theorem}
+    \begin{enumerate}[label=\roman*)]
+        \item \(L_n\) is the splitting field of the polynomial \(f_n(x)\) with \(f(x) = \pi x + x^q\) as in 12.5.
+        \item \(\forall \lambda \in F[n] \setminus F[n-1]: L_n = K(\lambda)\).
+        \item \(L_n / K\) is Galois of degree \((q-1)q^{n-1} \) and the map:
+        
+        \[
+            G(L_n / K) = \operatorname{Gal} (L_n / K) \to \operatorname{Aut}_{\mathcal{O} / (\pi^n)}(F[n]) \underset{\text{can}}{\cong} \mathcal{O}^\times / (1 + \pi^n \mathcal{O}) (= (\mathcal{O} / \pi^n)^\times)
+        \]
+
+        \(\sigma \mapsto (\alpha \mapsto \sigma(\alpha))\)
+
+        is an isomorphism. Hence, \(\forall \sigma \in G(L_n / K) \, \exists ! \overline{a} \in \mathcal{O}^\times / (1+\pi^n \mathcal{O})\) such that \(\forall \alpha \in F[n]: \sigma (\alpha) = [a](\alpha)\).
+        
+        \item Any \(\lambda \in F_f[n] \setminus F_f[n-1]\) is a prime element of \(L_n\), and \(g_n(x) = \frac{f_n(x)}{f_{n-1} (x)}\) is the minimal polynomial of \(\lambda\).
+        
+        \(N_{L_n / K}(-\lambda) = \pi\) and \(L_n / K\) is purely ramified of degree \((q-1)q^{n-1}\).
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Since \(L_{e,n} = L_{e^{\prime},n}\) for two LT series \(e\) and \(e^{\prime}\) attached to \(\pi\) we may assume \(e = f = \pi x + x^q\).
+        
+        Then by definition \(L = K(F[n])\) is obtained by adjoining all roots of \(f_n(x)\). Hence it is the splitting field of \(f_n\).
+
+        \item Follows from the fact that the set of \(\pi^n\) torsion points is a module of rank \(1\), so 12.6 and \(F[n]\ni [a](\lambda) =\) power series in \(\lambda\) with coefficients in \(\mathcal{O} \in K(\lambda) \implies K(\lambda) = K(F[n])\).
+        
+        \item \(f_n\) is separable by 12.5 \(\implies L_n / K\) is Galois. \(g_n(x) = \frac{f_n(x)}{f_{n-1} (x)}\) is Eisenstein (hence irreducible) and has \(\lambda\) as a root. 
+        
+        \(\implies g_n (x)\) is the minimal polynomial of \(\lambda \implies [L_n : K] = [K(\lambda):K] = \deg(g_n) = (q-1)q^{n-1}\).
+
+        Thus we have the \underline{injective} map \(G(L_n / K) \to \operatorname{Aut}_{\mathcal{O} / (\pi^n)}(F[n])\) by \(\sigma \mapsto (\alpha \mapsto \sigma(\alpha))\).
+
+        \(\operatorname{Aut}_{\mathcal{O} / (\pi^n)}(F[n]) \cong \mathcal{O}^\times / (1+\pi^n \mathcal{O}) = (\mathcal{O} / (\pi^n))^\times\).
+
+        Size of \(\mathcal{O}^\times /(1+\pi^n \mathcal{O})\) is \((q-1)q^{n-1}\).
+
+        Size of \(G(L_n / K) = [L_n : K] = (q-1)q^{n-1}\).
+
+        Thus the map is an isomorphism.
+
+        \item Everything else has been shown. Last statement is 10.8.
+    \end{enumerate} 
+\end{proof}
+
+\underline{Upshot}: max abelian extension \(K^{\text{ab}} = K^{nr} . L_{\pi,\infty}, L_{\pi,\infty} = \bigcup_{n=1}^{\infty} L_n \).
+
+If we take \(\widehat{K^{nr}} . L_{\pi, \infty}\) and take a different uniformizer \(\pi^{\prime}\) then we have,
+
+\[
+    \widehat{K^{nr}} . L_{\pi, \infty} = \widehat{K^{nr}}.L_{\pi^{\prime}, \infty} \subset \widehat{K^{\text{ab}}}
+\]
+
 \end{document}
