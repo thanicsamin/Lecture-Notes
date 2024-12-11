@@ -7240,4 +7240,136 @@ These are integrally closed and we have \(A \twoheadrightarrow k\). Therefore, \
     v: eigenvalues of \(\rho_E(g) =\) eigenvalues of \(\rho_E(g_r)\). Note that eigenvalues of \(\rho_E(g_p)\) are all \(1\). Since eigenvalues of \(\rho (g g_r ^{-1})\) are \(1\), \(g\) and \(g_r\) commutes. 
 \end{proof}
 
+\section*{Wednesday, 12/11/2024}
+
+In the following, \(\phi_E:G_{\text{reg}}\to A\) are Brauer characters. The maps are the obvious ones. 
+
+\begin{center}
+    \begin{tikzcd}
+        \Phi_F: G \to A & & \phi_E: G_{\text{reg}} \to A \\ K_0 k G \ar[rr,tail, "c"] \ar[rd,tail, "e"] &  & R_k G \\ & R_K G \ar[ru, "d", two heads] \\ & \chi_V: G \to A
+    \end{tikzcd}
+\end{center}
+
+Suppose \(F\) is a projective \(kG\)-module.
+
+We can `lift' it to \(\widetilde{F}\), a projective \(AG\)-module.
+
+Then, \(\Phi_F \coloneqq \coloneqq \chi_{K \otimes_{} \widetilde{F}}\).
+
+We have: \(\chi_{e[F]} = \Phi_F\).
+
+\begin{theorem}
+    [36] \(\Phi_F(p \text{-sing}) = 0\). 
+\end{theorem}
+
+\begin{theorem}
+    [pg 150] \# of simple \(kG\)-modules = \# of conjugacy classes of \(p\)-regular elements of \(G\).
+
+    This is in the sufficiently large case.
+
+    This is also the number of projective indecomposable modules.
+\end{theorem}
+
+\begin{proof}
+    Follows from:
+
+    rank \(K_0 k G\) = rank \(R_k G\). So we can talk about the number of projective indecomposable modules instead of simple \(kG\)-modules.
+
+    \(e\) is injective (theorem 33).
+
+    Recall: \(\operatorname{im} e = \left\{ y \in R_K G \mid \chi_y (p \text{-sing}) = 0 \right\} \) 
+
+    \(R_K G \otimes K \overset{\cong}{\to} \operatorname{Cl} (G \to K)\).
+
+    \(\dim_K \{ f \in \operatorname{Cl} (G \to K) \mid f(p \text{-sing}) = 0 \} = \) \# of c.c. of \(p\)-reg elements. 
+\end{proof}
+
+We do an example: \(S_4\).
+
+conjugacy classes: \(1, (ab), (ab)(cd), (abc), (abcd)\) so we have \(\chi_1, \chi_2, \chi_3, \chi_4, \chi_5\).
+
+2 regular conjugacy classes: \(1, (abc)\). We have \(\phi_1, \phi_2, \Phi_1, \Phi_2\).
+
+3 regular conjugacy classes: \(1, (ab), (ab)(cd), (abcd)\).
+
+Questions: What are the dimensions of simple \(kG\)-modules? What are the composition factors of projective indecomposable \(kG\)-modules?
+
+We use characters.
+
+\begin{remark}
+    For symmetric groups we don't need `sufficiently large'. \(\mathbb{Q}\) (and hence \(\mathbb{Q}_p, \mathbb{F}_p\)) are splitting fields for \(S_n\).
+\end{remark}
+
+\(S_4 = \operatorname{Isom}(\text{tetrahedron}) = \underbrace{(C_2 \times C_2)}_{\substack{\text{rotation with axis} \\ \text{through midpoint of opposite edges}}} \rtimes \underbrace{S_3}_{\text{stabilizer of a vertex}}\).
+
+\(S_4 \to S_3 \to \{ \pm 1 \} \).
+
+\(S_3 = D_6\), isometries of triangle. Over complex numbers, it looks like:
+
+\[
+    \begin{bmatrix}
+        0 & 1 & & \\
+        1 & 0 & & \\
+        & & \zeta_3 & \\
+        & & & \zeta_3
+    \end{bmatrix}
+\]
+
+So we have:
+
+\[
+    \begin{matrix}
+       & & (1) & (ab) & (ab)(cd) & (abc) & (abcd) \\
+    & \chi_1 & 1 & 1 & 1 & 1 & 1\\
+    \text{sign} & \chi_2 & 1 & -1 & 1 & 1 & -1 \\
+    & \chi_3 & 2 & 0 & 2 & -1 & 0 \\
+    \text{geom} & \chi_4 & 3 & 1 & -1 & 0 & -1  \\
+    \text{geom} \otimes \text{sign} & \chi_5 & 3 & -1 & -1 & 0 & 1 \\
+    \end{matrix}
+\]
+
+To check we have all, we need to check irreducibility: \(\langle \chi_i, \chi_i \rangle = 1\).
+
+Now suppose we want \(R_{\mathbb{F}_2}S_4\). We want \(G\)-reg elements. So we copy over those ones:
+
+\[
+    \begin{matrix}
+        & & (1) & (abc) \\
+        \phi_1 =& \eval{\chi_1}_{G\text{-reg}} & 1 & 1\\
+        \phi_1 =& \eval{\chi_2}_{G\text{-reg}} & 1 & 1\\
+        \phi_2 =& \eval{\chi_3}_{G\text{-reg}} & 2 & -1 \\
+        \phi_1 + \phi_2 =& \eval{\chi_4}_{G\text{-reg}} & 3 & 0\\
+        \phi_1 + \phi_2 =&\eval{\chi_5}_{G\text{-reg}} & 3 & 0
+
+    \end{matrix}
+\]
+
+\(\phi_1\) and \(\phi_2\) are the irreducible ones!
+
+What is the matrix \(D\)?
+
+\[
+    D = \begin{bmatrix}
+        1 & 1 & 0 & 1 & 1 \\ 0 & 0 & 1 & 1 & 1
+    \end{bmatrix}
+\]
+
+In order to get \(E\) we can use \(E = D^T\).
+
+\[
+    \Phi_1 = \chi_1 + \chi_2 + \chi_4 + \chi_5 = 4 \phi_1 + 2 \phi_2 \, \text{on } G_{\text{reg}}
+\]
+
+\[
+    \Phi_2 = 2\phi_1 + 3 \phi_2
+\]
+
+We can also compute the Cartan matrix \(C\):
+
+
+\(C = D D^t = \begin{bmatrix}
+    4 & 2 \\ 2 & 3
+\end{bmatrix}\) so \(\Phi_1 = 4 \phi_1 + 2 \phi_2\) etc.
+
+
 \end{document}
