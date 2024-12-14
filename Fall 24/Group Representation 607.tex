@@ -7371,5 +7371,212 @@ We can also compute the Cartan matrix \(C\):
     4 & 2 \\ 2 & 3
 \end{bmatrix}\) so \(\Phi_1 = 4 \phi_1 + 2 \phi_2\) etc.
 
+\section*{Friday, 12/13/2024}
+
+Primitive Central Idempotents (pcils) = blocks.
+
+For all ring \(R\),
+
+\[
+    1 = e_1 + \cdots + e_b
+\]
+
+with \(e_i\) nonzero central idempotents (\(e_i^2 = e_i\)) with \(b\) maximal.
+
+For all ring \(R\),
+
+\(\exists ! _R R _R = B_1 \oplus \cdots \oplus B_b\) 
+
+nonzero 2 sided ideals with \(b\) maximal.
+
+\[
+    \begin{matrix}
+        \text{pcils} & \leftrightarrow & \text{blocks} \\
+        e_i & \mapsto & Re_i \\
+        pr_i(1) & \mapsfrom & B_i \\
+    \end{matrix} 
+\]
+
+eg suppose \(R = \mathbb{R} \times M_2\mathbb{R}\). Then \(b=2\).
+
+\(1 = (1,0) + (0,I_2) = \left( 1, \begin{bmatrix}
+    0 & 0\\
+    0 & 0\\
+\end{bmatrix}  \right) + \left( 0, \begin{bmatrix}
+    1 & 0\\
+    0 & 0\\
+\end{bmatrix} \right) + \left( 0, \begin{bmatrix}
+    0 & 0\\
+    0 & 1\\
+\end{bmatrix}  \right) \) 
+
+We have noncentral idempotents!a
+
+R semisimple, \# simple = \# blocks.
+
+what about \(kG\)?
+
+If \(R\) is an artinian ring, \(E_1, \cdots E_s\) isomorphism classes of simple modules,
+
+\[
+    _R R = P_1 \oplus \cdots \oplus P_s \, \text{proj. ind} 
+\]
+
+\(\forall P_i, \exists !j\) such that \(P_i \subset B_j\).
+
+\begin{corollary}
+    \(s \geq b\).
+\end{corollary}
+
+Method for computing blocks of \(kG\):
+
+\underline{Step 1}: Express \(1 = e_1 + \cdots + e_s \in KG\).
+
+\underline{Step 2}: Express \(1 = \widehat{e}_1 + \cdots \widehat{e}_b \in AG\)
+
+\underline{Step 3}: Reduce mod \(M \triangleleft A\).
+
+\[
+    1 = \overline{e}_1 + \cdots + \overline{e}_b \in kG
+\]
+
+Lemma from blog (p.3) \(\implies \overline{e}_i\) are pci.
+
+Thus, \# of \(kG\) blocks = \# of \(AG\) blocks.
+
+For step 1, we have \(KG \cong \prod M_{n_i}(K)\).
+
+\[
+    e_i = \frac{n_i}{\vert G \vert} \sum_{g\in G} \chi (g ^{-1})g
+\]
+
+Now, let's look at \(S_3\). Here we indeed have \(s \neq b\).
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        \toprule
+             & 1 & \((ab)\) & \((abc)\) \\
+        \midrule
+            \(\chi_1\) & \(1\) & \(1\) & \(1\) \\
+            \(\chi_2\) & \(1\) & \(-1\) & \(1\) \\
+            \(\chi_3\) & \(2\) & \(0\) & \(-1\) \\
+        \bottomrule
+    \end{tabular}
+    \caption{Character Table}
+\end{table}
+
+Another way of finding out: \(\chi_1 + \chi_2 + 2 \chi_3 = \chi_\text{reg}\).
+
+Then,
+
+\(e_1 = \frac{1+r+r^2 + s + sr + sr^2}{6} \notin \mathbb{Z}_2 S_3\).
+
+\(e_2 = \frac{1 + r + r^2 - s - sr - sr^2}{6} \notin \mathbb{Z}_2 S_3\) 
+
+\(e_3 = \frac{2 - r - r^2}{3}\).
+
+Suppose \(p = 2, A = \mathbb{Z}_2\).
+
+We need to combine \(e_1\) and \(e_2\) to get a pci.
+
+
+
+\(1 = \widehat{e}_1+\widehat{e}_2\) where \(\widehat{e}_1 = e_1 + e_2, \widehat{e}_2 = e_3\).
+
+\(\widehat{e}_1 = \frac{1 + r + r^2}{3}, \widehat{e}_3 = \frac{2 - r - r^2}{3}\).
+
+What about \(\mathbb{F}_2 S_3\)?
+
+\(p = 2\) so 2 blocks. \# simple \(\mathbb{F}_2 S_3\)-modules = \# of 2-reg c..c. = 2 so \(b=s\).
+
+\(1 = \overline{e}_1 + \overline{e}_2\).
+
+If \(p = 3\) then \(1\in \mathbb{Z}_3 S_3\) is a p.c.i since \(e_1 + e_2, e_2 + e_3, e_1 + e_3 \notin \mathbb{Z}_3 S_3\).
+
+So, if \(p=3\) then \(b=1, s=2\).
+
+Let's try to complete the CDE triangle for \(S_3\)!
+
+Suppose \(p=2\).
+
+What are the \(2\)-regular conjugacy classes?
+
+\(1\) and \((abc)\).
+
+So we have 2 simple modules.
+
+\[
+    \begin{array}{ccc}
+            & 1 & (abc)\\
+        \phi_1 & 1 & 1\\
+        \phi_2 = \eval{\chi_e}_{2\text{-reg}} & 2 & -1 \\
+    \end{array}
+\]
+
+\[
+    \begin{array}{cccc}
+         & 1 & (ab) & (abc) \\
+        \Phi_1 = \chi_1 + \chi_2 & 2 & 0 & 2 \\
+        \Phi_2 = \chi_3 & 2 & 0 & -1 \\
+    \end{array}
+\]
+
+\(C\) will be a \(2 \times 2\) matrix.
+
+\(C = \begin{bmatrix}
+    2 & 0\\
+    0 & 1\\
+\end{bmatrix} \) 
+
+Since \(\begin{bmatrix}
+    2 & 0\\
+    0 & 1\\
+\end{bmatrix} \begin{bmatrix}
+    \phi_1\\
+    \phi_2\\
+\end{bmatrix} = \begin{bmatrix}
+    \Phi_1\\
+    \Phi_2\\
+\end{bmatrix} \) 
+
+Then, \(E = \begin{bmatrix}
+    1 & 0\\
+    1 & 0\\
+    0 & 1\\
+\end{bmatrix} \) and \(D =\) what we get.
+
+What about \(p=3\)?
+
+\(3\)-reg c.c.:
+
+\[
+    \begin{array}{ccc}
+         & 1 & (ab)\\
+    \phi_1 & 1 & 1\\
+    \phi_2 = \eval{\chi_2} & 1 & -1 \\
+    \end{array}
+\]
+
+\[
+    \begin{array}{cccc}
+         & 1 & (ab) & (abc)\\
+    \Phi_1=\chi_1 + \chi_3 & 3 & 1 & 0 \\
+    \Phi_2=\chi_2 + \chi_3 & 3 & -1 & 0 \\
+    
+    \end{array}
+\]
+
+We get the linear combination since in \(\mathbb{F}_3 S_3 / J =\mathbb{F} _3 C_2 = \mathbb{F}_2^+ \oplus \mathbb{F}_2^-\).
+
+
+\(\mathbb{F}_3 S_3\) composition factor \(3 \mathbb{F}_2, 3 \mathbb{F}_3^{-1}\)
+
+\(\frac{1+s}{2}, \frac{1-s}{2}\).
+
+\(C = \begin{bmatrix}
+    3 & 0\\
+    0 & 1\\
+\end{bmatrix}\) 
 
 \end{document}

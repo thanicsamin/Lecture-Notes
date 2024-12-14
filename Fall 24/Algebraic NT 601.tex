@@ -3235,7 +3235,7 @@ We also write \(\vert \cdot \vert = \eval{\vert \cdot \vert_\infty}_\mathbb{R}\)
 
 \end{enumerate}
 
-\section{Topology}
+\subsection*{Topology}
 
 Let \(\vert \cdot \vert \) be an absolute value on \(K\). Then, \(d(x,y)\coloneqq \vert x-y \vert\) is a metric on \(K\) and \((K,d)\) is a metric space.
 
@@ -3467,7 +3467,7 @@ This gives rise to a commutative diagram:
     \end{tikzcd}
 \end{center}
 
-\section{Completions}
+\subsection*{Completions}
 
 Fix an absolute value on \(K\).
 
@@ -3663,7 +3663,7 @@ Fix an absolute value on \(K\).
     \end{enumerate} 
 \end{remark}
 
-\section{Extension of Absolute Values}
+\subsection*{Extension of Absolute Values}
 
 Let \((K, \vert \cdot \vert)\) be a (not necessarily completely) valued field.
 
@@ -5234,9 +5234,9 @@ For any power series \(F(x_1, \cdots , x_n) \in K_{\text{nr}}[[x_1, \cdots , x_n
 
     RHS: \(F^{\varphi}_{\leq r+1}(e^{\prime} (x)) \equiv F^{\varphi}_{\leq r}(e^{\prime} (\underline{x})) + rF^{\varphi}_{r+1}(e^{\prime}(x)) \equiv F^{\varphi}_{\leq r} (e^{\prime} (x))+F_{r+1}^{\varphi}(\pi^{\prime} x_1, \cdots , \pi^{\prime} x_n) \mod\deg r+2 \).
 
-    Hence, (1) \(\iff \pi E_{r+1}(\underline{x}_x) - (\pi^{\prime})^{r+1}(\underline{x}) \equiv \underbrace{F^{\varphi}_{\leq r}(e^{\prime}(x))- e(F_{\leq r}(\underline{x}))}_{G(\underline{x})} \mod \deg r+2 \) (2).
+    Hence, (1) \(\iff \pi F_{r+1}(\underline{x}) - (\pi^{\prime})^{r+1}F^{\varphi}_{r+1}(\underline{x}) \equiv \underbrace{F^{\varphi}_{\leq r}(e^{\prime}(x))- e(F_{\leq r}(\underline{x}))}_{G(\underline{x})} \mod \deg r+2 \) (2).
     
-    By induction hypothesis, \(G(\underline{x}) \equiv 0 \mod\deg r+1\) and \(G(\underline{x}) \equiv F^{\varphi}_{\leq r}(x^q) - F_{\leq r}(\underline{x})^q \mod \pi \equiv 0\mod \pi\),  
+    By induction hypothesis, \(G(\underline{x}) \equiv 0 \mod\deg r+1\) and \(G(\underline{x}) \equiv F^{\varphi}_{\leq r}(\underline{x}^q) - F_{\leq r}(\underline{x})^q \mod \pi \equiv 0\mod \pi\),  
     
     
     Thus we have: \(F_{r+1}(\underline{x}) = (\pi ^{-1})(\pi ^{\prime})^{r+1} F^{\varphi}_{\leq r+1}(\underline{x}) + \frac{1}{\pi}G(x) \).
@@ -5402,7 +5402,7 @@ Important: This is not \(\vartheta \circ [\pi^{\prime}]_{e^{\prime}} = [\pi]_e \
 
 So, in the work of the last class, we in fact have \(e^{\prime\prime} = e\). It was overcomplicated for this reason.
 
-\section{Local Complex Multiplication}
+\subsection*{Local Complex Multiplication}
 
 This `generalizes' the construction of field extensions using roots of unity (group = \(\mathbb{G}_m\)) and division points on elliptic curves.
 
@@ -5583,5 +5583,237 @@ If we take \(\widehat{K^{nr}} . L_{\pi, \infty}\) and take a different uniformiz
 \[
     \widehat{K^{nr}} . L_{\pi, \infty} = \widehat{K^{nr}}.L_{\pi^{\prime}, \infty} \subset \widehat{K^{\text{ab}}}
 \]
+
+\section*{Thursday, 12/12/2024}
+
+\subsection*{Lubin-Tate theory and the maximal abelian extension}
+
+R. Gold, Local Class Field Theory (LCFT) via Lubin-Tate groups, IUMJ, vol. 30 (1981).
+
+M. Hazewinkel, LCFT is easy.
+
+T. Yoshida, LCFT via LT theory
+
+\(K =\) local non-arch. field, \(p = \operatorname{char} (\overline{K}) = 0, q = \vert \overline{K}  \vert = p^f\).
+
+Fix a uniformizer \(\pi\) of \(K\).
+
+\(U = U_K = O_K^\times , U^{(m)} = 1 + \pi ^m \cdot \mathcal{O} _K, m\geq 1 [U^{(0)}=U]\).
+
+\(e =\) LT series for \(\pi, e(x) \equiv \pi x \mod\deg 2, e(x)\equiv x^q\mod\pi\).
+
+\(F = F_e =\) LT formal \(\mathcal{O}\)-module associated to e\(: [\pi]_F(x) = e(x)\).
+
+\(L_m = K(F[m])\).
+
+We have seen: \(L_m / K\) is a purely ramified Galois extension and the map:
+
+\[
+    \phi: G(L_m / K) = \operatorname{Gal} (L_m / K) \to U / U^{(m)} \cong (\mathcal{O}_K / (\pi^m))^\times 
+\]
+
+\[
+    \sigma \mapsto u \mod U^{(m)}\, \text{if } \forall \alpha \in F[m]: \sigma(\alpha) = [u]_F(\alpha)\,\text{ is an isomorphism} 
+\]
+
+We set \(L_\pi = \bigcup_{m=1}^{\infty} L_m\). Let as before \(K^{nr}\) be the maximal unramified extension of \(K\) inside some fixed algebraic closure \(C\) of \(K\).
+
+\begin{theorem}
+    The maximal abelian extension of \(K\) is (in \(C\)) is the composite field \(K^{nr}.L_\pi\).
+\end{theorem}
+
+\subsection*{Ramification Groups} Let \(G = G(L / K)\) where \(L / K\) any \underline{finite} Galois extension. \(v_L : L^\times \twoheadrightarrow \mathbb{Z}\) is the normalized valuation of \(L\) [so it sends the uniformizer to \(1\)]. 
+
+For \(i \geq -1, G_i = G(L / K)_i = \{ \sigma \in G(L / K) \mid \forall a\in \mathcal{O}_L: v_L(\sigma(a)-a) \geq i+1 \} \).
+
+\(G_{-1} = G = G(L / K)\).
+
+\(G_0 =\) inertia subgroup \(=\ker (G(L / K) \to G(\overline{L} / \overline{K}))\)  [since we want \(\sigma(a) - a \in (\pi_L)\) so we want \(\sigma (a) = a + \pi_L b\)].
+
+This is called the \underline{ramification filtration of \(G\)}. It's separated: \(\bigcap_{i=-1}^{\infty} G_i = \{ 1 \}\).
+
+\begin{lemma}
+    Identify \(G(L_m / K)\) with \(U / U^{(m)}\) via \(\phi\) as above. Then,
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(0 \leq n < m\): \(\overline{u} \in U^{(n)} \setminus U^{(n+1)} \iff \overline{u} \in G(L_m / K)_{q^n - 1} \setminus G(L_m / K)_{q^n}\).
+        \item \(\forall 0 \leq n < m\): \(G(L_m / K)_{q^n - 1} / G(L_m / K)_{q^n} \cong U^{(n)} / U^{(n+1)}\) and this group is isomorphic to \(\overline{K} ^\times\) if \(n= 0\) and isomorphic to \(\overline{K} \) if \(0 < n < m\).
+        
+        Note that, \((1+(\pi^n)) / (1+(\pi^{n+1})) \overset{\cong}{\to} \overline{K}\) by \(\overline{1 + a \pi^n} \mapsto a \mod P_K\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}[label=\arabic*)]
+        \item Let \(u = 1 + a \pi^n, \vert a \vert = 1, \lambda_m \in F[m] \setminus F[m-1]\). 12.8 \(\implies \lambda_m\) is a uniformizer of \(L_m\).
+        
+        \[
+            [u]_F (\lambda_m) = [1+a \pi^n]_F (\lambda_m) = [1]_F (\lambda_m) \underset{F}{+} [a \pi^n]_F (\lambda_m) = \lambda_m \underset{F}{+} [a]_F (\lambda_{m-n})
+        \]
+
+        \[
+            = \lambda_m \underset{F}{+} b \lambda_{m-n}\, b \in \mathcal{O}^\times_{L_{m-n}}
+        \]
+
+        \[
+            \underset{\text{excr}}{=} \lambda_m \underset{F}{+} \underbrace{c}_{\vert c \vert = 1} \lambda_m^{q^n} \equiv \lambda_m + c \lambda_m^{q^n} + (\text{divisible by $\lambda+m \cdot c \lambda_m^{q^n}$}) 
+        \]
+
+        Note: \(F(x,y) = x + y + xy(\cdots)\).
+        
+        Reason: we want to have \(F(x,0)=x\) and \(F(0,y)=y\).
+
+        Then \([u](\lambda_m) - \lambda_m = c \lambda_m ^{q^n} +\) (smaller).
+
+        \(v_{L_m} ([u](\lambda_m)-\lambda_m) = v_{L_m} (\lambda_m^{q^n})=q^n=(q^n - 1) + 1\).
+        
+        \(\implies u \in G(L_m / K)_{q^n - 1} \setminus G(L_m / K)_{q^n}\).
+
+        \item is a consequence.
+
+    \end{enumerate} 
+\end{proof}
+
+\subsection*{Upper ramification numbering}
+
+``Annoying'' problem with the lower ramification numbering [the one introduced before] is: if \(K \subset L^{\prime} \subset L\), \(L^{\prime} / K\) Galois, then the canonical map \(G(L / K) \twoheadrightarrow G(L^{\prime} / K)\) \underline{does not} map \(G(L / K)_i\) \underline{onto} \(G(L^{\prime} / K)_i\).
+
+However, it is possible to `renumber' the filtration. Under the renumbering, this will be true.
+
+We can define \(G(L / K)_x\) for any real \(x \geq -1: G(L / K)_x = \{ \sigma \in G(L / K) \mid \forall a\in \mathcal{O}_L, v_L(\sigma (a) - a) \geq x + 1 \}\).
+
+Then, \(G(L / K)_x = G(L / K)_{\lceil x \rceil}\).
+
+\begin{definition}
+    [Herbrand Function] The Herbrand function \(\eta_{L / K}:[-1,\infty) \to [-1,\infty)\) given by:
+
+    \[
+        \eta_{L / K}(x) = \int_{0}^{s} \frac{\mathrm{d} x}{[G_0 : G_x]} 
+    \]
+
+    Note that:
+
+    \[
+        \eta_{L / K}(-1) = \int_{0}^{-1} \frac{\mathrm{d} x}{[G_0 : G_x]} = -\int_{-1}^{0} \frac{\mathrm{d} x}{[G_0 : G_x]} = -1 
+    \]
+
+    This is a strictly increasing function. It is also continuous.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/herbrand}
+        \caption{Herbrand Function}
+    \end{figure}
+
+\end{definition}
+
+\begin{definition}
+    The upper numbering of ramification groups is defined by:
+
+    \[
+        G(L / K)^{(t)} \coloneqq G(L / K)_{\eta_{L / K}^{-1} (t)}
+    \]
+
+    We call \(t\in [-1,\infty)\) a \underline{break} of upper ramification filtration if \(G(L / K)^{(t)} \supsetneq G(L / K)^{(t+\epsilon)}\) for all \(\epsilon > 0\).
+\end{definition}
+
+\begin{proposition}
+    The breaks of the upper ramification filtration of \(G(L_m / K)\) are the non-negative integers:
+
+    \[
+        G(L_m / K)^{(n)} \underset{\phi}{\cong} U^{(n)} / U^{(m)}\, \text{ for } n = 0, \cdots ,m-1
+    \]
+
+    In particular: \(G(L_\pi / K)^{(n)} = \lim_{\leftarrow_m} G(L_m / K)^{(n)} \cong \lim_{\leftarrow_m} U^{(n)} / U^{(m)} \overset{\cong}{\leftarrow} U^{(n)} = 1 + (\pi^n)\)
+
+\end{proposition}
+
+Upper ramification numbering: If \(L \supset L^{\prime} \supset K\) are Galois extensions of \(K\), then \(\forall t \geq 1\):
+
+\begin{center}
+    \begin{tikzcd}
+        & & G(L / K)^{(t)} \ar[r, two heads] \ar[d, hook] & G(L^\prime / K)^{(t)} \ar[d,hook] \\
+        1 \ar[r] & G(L / L^\prime) \ar[r] & G(L / K) \ar[r, two heads] & G(L^\prime / K)
+    \end{tikzcd}
+\end{center}
+
+Equivalently, \(G(L / K)^{(t)} G(L / L^{\prime}) / G(L / L^{\prime}) \cong G(L^{\prime} / K)^{(t)}\).
+
+\begin{lemma}
+    Let \(M / K\) be an abelian and purely ramified extension of \(K\) but not necessarily finite. Then the maximal unramified extnesion of \(M\) is \(M.K^{nr}\).   
+\end{lemma}
+
+\begin{proof}
+    It is an immediate consequence of 10.6.
+\end{proof}
+
+\begin{lemma}
+    If \(L / K\) is a purely ramified abelian extension, then the breaks of the upper ramification numbering are integers, and
+
+    \[
+        \forall n \geq -1: \left\vert G(L / K)^{(n)} / G(L / K)^{(n+1)} \right\vert \leq q
+    \]
+
+\end{lemma}
+
+\begin{proof}
+    Hasse-Arf theorem.
+\end{proof}
+
+\begin{proposition}
+    Suppose \(L / K\) is abelian, \(L_\pi \subset L\) and \(L / L_\pi\) is purely ramified.
+
+    Then, \(L = L_\pi\).
+\end{proposition}
+
+\begin{proof}
+    Set \(G = G(L / K), H = \operatorname{Gal} (L / L_\pi)\) [which we want to prove is trivial].
+
+    \underline{Claim (easy)}: The upper ramification filtration:
+    
+    \[
+        \bigcap_{t\geq -1}^{} G^{(t)} = \{ 1 \} 
+    \]
+
+    Then we take \(n \geq 0\). Then, 
+    
+    \[
+        \underbrace{[G^n : G^{n+1}]}_{12.13 \implies \leq q} = \underbrace{[(G / H)^n : (G / H)^{n+1}]}_{\geq q-1, = q \text{ when } n > 0}[G^n \cap H : G^{n+1} \cap H]
+    \].
+
+    So, if \(n \geq 1\) we must have \(G^n \cap H = G^{n+1} \cap H\). But \(G^0 = G \supset H\).
+
+    In the case \(q \neq 2\) we have it for \(n \geq 0\).
+
+    By induction we have \(H \subset G^n\) for all \(n \geq 0\).
+
+    Then \(H \subset \bigcap_{n\geq -1} G^{(n)} = \{ 1 \} \) so \(H\) is trivial and thus \(L = L_\pi\).  
+    
+\end{proof}
+
+From 12.14 one can deduce a proof of 12.9.
+
+Tate: \(p\)-divisible groups.
+
+\[
+    T(G) = \lim_{\leftarrow} G[n](K^{\text{alg}}) \curvearrowleft \mathscr{G}_K = \operatorname{Gal} (K^{\text{alg}} / K)
+\]
+
+Suppose \(\zeta^p=1\).
+
+\begin{center}
+    \begin{tikzcd}
+        \lim_{\leftarrow} \mu_{p^n}(\overline{\mathbb{Q}}_p) \ar[r,phantom,sloped,"\cong"] & \mathbb{Z}_p \ar[r,phantom,"\curvearrowleft"] & \mathscr{G}_{\mathbb{Q}_p} \\
+        \mathbb{Z}_p(1) \ar[u,phantom,"\coloneqq"] & \chi_{\text{cyc}}(\sigma) \ar[u,phantom,sloped,"\in\mathbb{Z}_p^\times"] & \sigma \ar[u,phantom,sloped,"\in"] \ar[l,mapsto]
+    \end{tikzcd}
+\end{center}
+
+Where:
+
+\begin{center}
+    \begin{tikzcd}
+        \chi_{\text{cyc}}: & \mathscr{G}_{\mathbb{Q}} \ar[r] & \mathbb{Z}_p^\times \\ & \sigma \ar[r,mapsto] & u & \forall\zeta\in\mu_{p^\infty}:\sigma(\zeta)=\zeta^u=\zeta^{u\mod p^n}
+    \end{tikzcd}
+\end{center}
 
 \end{document}
