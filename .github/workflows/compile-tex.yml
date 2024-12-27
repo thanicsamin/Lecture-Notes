@@ -1,0 +1,42 @@
+name: Compile LaTeX Files
+
+on:
+  push:
+    branches:
+      - main  # Adjust to the branch you want to trigger on
+  pull_request:  # Optional, for PRs
+    branches:
+      - main
+
+jobs:
+  compile-latex:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full
+
+    - name: Compile LaTeX files
+      run: |
+        mkdir -p output
+        for file in *.tex; do
+          pdflatex -output-directory=output "$file"
+        done
+
+    - name: Upload compiled PDFs as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: compiled-pdfs
+        path: output/*.pdf
+
+    - name: Deploy PDFs to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: output
