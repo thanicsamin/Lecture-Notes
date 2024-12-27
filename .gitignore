@@ -4,6 +4,7 @@ Random Stuff.pdf
 
 ## Core latex/pdflatex auxiliary files:
 /*/*.pdf
+*.txt
 *.aux
 *.lof
 *.log
