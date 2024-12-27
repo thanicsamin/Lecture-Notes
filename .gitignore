@@ -3,7 +3,6 @@ Random Stuff.tex
 Random Stuff.pdf
 
 ## Core latex/pdflatex auxiliary files:
-*.pdf
 *.aux
 *.lof
 *.log
