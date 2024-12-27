@@ -2,6 +2,9 @@
 Random Stuff.tex
 Random Stuff.pdf
 
+.stignore
+.tmp.driveupload
+
 ## Core latex/pdflatex auxiliary files:
 /*/*.pdf
 *.txt
