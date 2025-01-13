@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\title{M522 Topology II}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+    \maketitle
+
+    \section*{Monday, 1/13/2025}
+    
+    \section*{Singular Homology and CW Complexes}
+
+    We want to talk about the \underline{Homology} of a space \(X\).
+
+    \begin{definition}
+        [Homology] Let \(X\) be a topological space. Consider the sequence of abelian groups:
+
+        \[
+            H_0 X, H_1 X, H_2 X, \cdots 
+        \]
+
+        These are the homemorphism invariants.
+
+    \end{definition}
+
+    For example, consider the \(2\)-torus \(T^2\) and the \(2\)-sphere \(S^2\). They are not homeomorphic, we can see that from their fundamental groups.
+
+    % insert
+
+    \(H_1 T^2 = \mathbb{Z} \oplus \mathbb{Z}\).
+
+    \(H_1 S^2 = 0\).
+
+    \(\therefore S^2 \not\cong T^2\) 
+
+    Do note that, even if all elements from the sequence are isomorphic the spaces might not be isomorphic!
+
+    Some application: see Davis and Kirk ``Homology Greatest Hits''.
+
+    Knot theory seems very intuitive but proving statements is very troublesome. For example, how do you prove that the trefoil and the unknot are not the same?
+
+    \begin{theorem}
+        [Brouwer's Fixed Point Theorem] Every \(f:D^n \to D^n\) has a fixed point.
+    \end{theorem}
+
+    \begin{theorem}
+        [Euler's Formula] For every `triangulation' of \(S^2\) we have:
+
+        \[
+            v - e + f = 2 = \chi(S^2)
+        \]
+
+        \(\chi\) denotes the \underline{Euler Characteristic}.
+
+        eg pyramid \(4-6+4=2\), triangulated bipyramid \(5-9+6 = 2\), cube \(8-12+6=2\).
+
+        % insert
+    \end{theorem}
+
+    \begin{theorem}
+        [Hairy Ball Theorem]
+
+        % insert
+
+        \(\not\exists f\colon S^2 \to S^2\) s.t. \(\forall x\in S^2, x \cdot f(x) = 0\).
+        
+        So you can't comb the hairy ball.
+    \end{theorem}
+    
+    \begin{theorem}
+        [Jordan Curve Theorem]
+
+        % insert
+
+        The complement of a closed curve in plane has two components.
+
+
+    \end{theorem}
+
+    \begin{theorem}
+        [Brouwer's Theorem on Invariance of Domain]
+
+        \(m \neq n \implies \mathbb{R}^m \not\cong \mathbb{R}^n\).
+
+        Consider open \(U \subset \mathbb{R}^n\) [a domain] and let \(f\) be a continuous injection \(f\colon U \to \mathbb{R}^n\).
+
+        Then \(f(U)\) is open in \(\mathbb{R}^n\).
+    \end{theorem}
+
+    \subsection*{Variants of Homology}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c|c}
+            \toprule
+                 & defined for &  \\
+            \midrule
+                Singular Homology &Top Spaces & Easy to define  but hard to compute \\
+                simplicial homology & simplicial complexes and \(\Delta\)-complexes & Easy to define and compute, but difficult to show homeo inv. \\
+                Cellular homology & CW-complexes & hard to define, easy to compute, flexible. \\
+            \bottomrule
+        \end{tabular}
+        \caption{Variants of Homology}
+    \end{table}
+
+    \section*{Definition of Singular Homology}
+
+    \begin{definition}
+        [Standard \(n\)-simplex]
+
+        \[
+            \Delta^n = \left\{ (t_0, \cdots , t_n) \mid \sum_{i} t_i = 1, 1 \geq t_i \geq 0 \right\} \subset \mathbb{R}^{n+1}
+        \]
+
+        \[
+            = \left\{ \sum_{i} t_i \underline{e}_i \mid 1 \geq t_i \geq 0, \sum_{i} t_i = 1 \right\} 
+        \]
+
+        \[
+            = \text{convex hull of } \{ \underline{e_0}, \cdots , \underline{e_n} \} 
+        \]
+
+        % insert
+    \end{definition}
+
+    Recall that convex hull is the intersection of all convex sets containing the original set.
+
+    \section*{Singular \(n\)-simplex in \(X\)}
+
+    \(n\)-simplices are images of standard simplices under continuous maps.
+
+    % insert
+
+    We define singular \(n\)-chains \(S_n X\). These are free abelian groups with \(\mathbb{Z}\)-basis the singular \(n\)-simplicies in \(X\).
+
+    A typical element will be a finite sum:
+
+    \[
+        n_1 \sigma_1 + \cdots + n_k \sigma_k \in S_n X
+    \]
+
+    Note: Davis and Kirk uses \(S_n X\), Hatcher uses \(C_n X\).
+
+    For example, let \(X\) be the punctured plane \(X = \mathbb{R}^2 - \{ 0 \}\).
+
+    \(\sigma_1 + \sigma_2 - \sigma_3 \in S_1 X\).
+
+    % insert
+
+    This is an example of a special \(1\)-chain callled the \(1\)-cycle.
+
+    \underline{Goal}: Define a boundary map \(\partial_n : S_n X \to S_{n-1} X\) [Read Davis Kirk].
+    
+    Then, \(H_n\) is given by the quotient map:
+
+    \[
+        H_n = \frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}} = \frac{n \text{-cycles}}{n \text{-boundaries}}
+    \]
+
+\end{document}
