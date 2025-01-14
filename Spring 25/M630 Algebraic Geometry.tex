@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\title{M630 Algebraic Geometry}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+    \maketitle
+
+    \section*{Monday, 1/13/2025}
+    
+    Textbook: Basic Alg Geom Vol 1 (I R Shafarevich)
+
+    Let \(k\) be a field.
+
+    An \underline{affine \(n\)-space over \(k\)} is \(k^n = \left\{ (x_1, \cdots , x_n) \mid x_j \in k \right\}\).
+
+    We denote this by \(\mathbb{A}_k^n\).
+
+    In particular, \(\mathbb{A}_k^2\) is the affine plane.
+
+    \begin{definition}
+        An \underline{affine plane curve} is the set of zeros of a polynomial \(f(x,y) \in k[x,y]\).
+        
+        \[
+            \left\{ (x,y) \in \mathbb{A}_k^2 \mid f(x,y) = 0 \right\} 
+        \]
+    \end{definition}
+
+    Let \(\Gamma = \left\{ (x,y) \in \mathbb{A}_k^2 \mid f(x,y)=0 \right\} \) 
+
+    \begin{itemize}
+        \item The degree of \(\Gamma\) is the degree of \(f\).
+        \item \(k[x,y]\) is a UFD.
+        \item \(\Gamma\) is irreducible if \(f\) is irreducible.
+        \item If \(f = f_1^{k_1} \cdots f_r^{k_r}\) where \(f_i\) are irreducible and \(f_i \neq f_j\) when \(i\neq j\), then,
+        \[
+            \Gamma = \Gamma_1 \cup \cdots \cup \Gamma_r
+        \]
+
+        where \(\Gamma_i = \{ f_i = 0 \}\).
+
+        The \(\Gamma_i\) are called irreducible components of \(\Gamma\).
+    \end{itemize} 
+
+    \begin{remark}
+        If \(k\) is not algebraically closed, these notions are may not make sense.
+
+        For example, let \(k = \mathbb{R}\) and consider the curve \(\Gamma = \{ x^2 + y^2 = 0 \}\). Then \(\Gamma = \{ (0,0) \}\).
+
+        Over the reals, \(x^2 + y^2\) is irreducible with degree \(2\).
+
+        But in \(\mathbb{R}^2\), this is not the only equation that describes this.
+
+        \(\Gamma = \{ x^4 + y^4 = 0 \}\). This is also not irreducible, and the degree is \(4\). Which one do we take?
+
+        This illustrates that the degree of \(\Gamma\) is ambigious. Also, \(x^2 + y^2 \in \mathbb{R}[x,y]\) is irreducible but \(x^4 + y^4 = (x^2 + y^2 + \sqrt{2}xy)(x^2 + y^2 - \sqrt{2}xy)\) is not irreducible.
+        
+        Thus, whether \(\Gamma\) is irreducible or not is not defined either.
+
+        Such issues do not arise in algebraically closed fields.
+    \end{remark}
+
+    \begin{lemma}
+        Let \(k\) be a field. Let \(f\in k[x,y]\) be an irreducible polynomial.
+
+        If \(f\nmid g\) then the set of common zeros of \(f\) and \(g\) is finite.
+    \end{lemma}
+
+    \begin{proof}
+        \(k[x,y] \subset k(x)[y]\) where \(k(x)\) is the field of rational functions in \(x\). So we can consider \(f\in k(x)[y]\).
+        
+        
+        We claim that \(f\) is irreducible as a member of \(k(x)[y]\).
+
+        (If \(f\) were to be factorizable in \(f(x)[y]\), clearing denominators yields a non-unique factorization of \(qf\) for some polynomial \(q\in k[x,y]\).)
+
+        Similarly, \(f\nmid g\) in \(k(x)[y]\). Hence, since \(k(x)[y]\) is a Euclidean domain, \(\gcd(f,g) = 1\).
+
+        Therefore, there exists \(\widetilde{u}, \widetilde{v} \in k(x)[y]\) so that \(\widetilde{u} f + \widetilde{v} g = 1\). Clearing denominators, \(\exists u,v\in k[x,y]\) such that:
+
+        \[
+            uf + vg = a(x)
+        \]
+
+        Since the denominators are polynomials in \(x\).
+
+        Now, \(f(\alpha,\beta) = g(\alpha, \beta) = 0 \implies a(\alpha)=0\). Thus \(\alpha\) is one of the finitely many roots of \(a(x)\).
+
+        For each such \(\alpha\) a root of \(a(x)\), the polynomials \(f(\alpha, y)\) and \(g(\alpha,y)\) have finitely many roots. Hence there are finitely many common zeroes \((\alpha, \beta)\) of \(f\) and \(g\).
+
+    \end{proof}
+
+    \begin{corollary}
+        For curves over an algebriacally closed field, the notions of degree, irreducibility, etc. are well defined.
+    \end{corollary}
+
+    \begin{proof}
+        Consider an irreducible curve \(\Gamma = \{ f = 0 \}\), \(f\) irreducible. If \(\Gamma = \{ g = 0 \}\), then \(f\mid g\). (Indeed, if \(k\) is algebraically closed, for all \(\alpha \in k, f(\alpha,y)\in k[y]\) has roots. Since \(\#k\) is infinite, \(\Gamma\) has infinitely many points.)
+        
+        Hence \(f\) appears as an irreducible factor of \(g\) (and can be recovered from \(g\) upto a unit).
+
+        Hence \(\deg \Gamma\) is defined.
+
+        If \(\Gamma = \{ g=0 \}\) where \(g = f_1^{k_1}\cdots f_r^{k_r}\) where \(f_i\)'s are irreducible.
+
+        Note that \(\Gamma = \{ f_1 \cdots f_r = 0 \} \). So, \(\deg \Gamma = \deg f_1 \cdots f_r = \sum_{i} \deg f_i\) 
+        
+    \end{proof}
+
+    Unless explicitly stated otherwise, we assume that fields are algebraically closed.
+
+    \underline{Another Justification}
+
+    \begin{theorem}
+        [Fundamental Theorem of Algebra] Let \(f(x)\in k[x]\) be a polynomial of degree \(n\). Then,
+
+        \(\# \left\{ y - f(x) = 0 \right\} \cap \{ y=0 \} = n\).
+
+        We have to be count properly, taking multiplicity into account.
+    \end{theorem}
+
+    More generally, we have:
+
+    \begin{theorem}
+        [Bezout's Theorem] (Approximate Statement) Let \(f,g\in k[x,y], \deg f = m, \deg g = n\). Assume \(f,g\) have no common irreducible factors.
+
+        Then, \(\#\{ f=0 \} \cap \{ g=0 \} =0\) (counted properly under certain assumptions).
+        
+        For example, in \(k=\mathbb{R}\) we can draw a pair of ellipses with \(0,2,4\) intersections. We have \(4\) intersections via Bezout's theorem.
+
+        % insert
+    \end{theorem}
+
+    Question: Does algebraic geometry not comment at all about fields that aren't algebraically closed?
+
+    Answer: One still obtains information about these by passing to the algebraic closure.
+
+    Assume \(k_0 = \mathbb{R}\). Consider the circle \(x^2 + y^2 = r^2\). From a point \(P\) outside the circle, we can consider the tangents \(PT_1\) and \(PT_2\). Let \(\ell\) be the line between \(T_1\) and \(T_2\). This is the polar line of \(P\) w.r.t.\ \(\Gamma\).
+    
+    What happens when \(P\) is inside \(\Gamma\)? We can still find \(T_1\) and \(T_2\) provided we can pass to the complex numbers.
+
+    We pass to \(\mathbb{C}^2\). Then there are still two lines tangent to \(x^2 + y^2 = r^2\) passing through \(P\) in \(\mathbb{C}^2\). We thus have \(T_1, T_2 \in \mathbb{C}^2\).
+
+    Since the original data is real it must be invariant under complex conjugation. Thus, we must have \(T_1 = \overline{T_2}\).
+
+    Therefore, the line \(\ell\) joining \(T_1\) and \(T_2\) must be real.
++
+\end{document}
