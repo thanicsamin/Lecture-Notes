@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathrsfs, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{subsection}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\title{M702 ANT}
+\author{Thanic Nur Samin}
+\date{\vspace{-5ex}}
+
+\begin{document}
+    \maketitle
+
+    \section*{Tuesday, 1/14/2025}
+
+    \begin{abstract}
+        Chapter 1: Local Class Field Theory (LCFT).
+
+        Chapter 2: \(p\)-divisible groups (eg LT formal groups) and associated Galois representations \(V\) and the \underline{Hodge-Tate Decomposition} of \(V \otimes_{\mathbb{Q}_p}\mathbb{C}_p\) and also the diagonal action of \(\mathscr{G}_K\).
+
+        \underline{Tate}: \(p\)-divisible groups.
+
+        Chapter 3: Sen theory, Fontaine's period rings \((\varphi, \Gamma)\)-modules.
+
+
+    \end{abstract}
+    
+    \section{Local Class Field Theory (LCFT)}
+
+    \subsection{Lubin Tate Theory}
+
+    [N] Neukirch, Alg. NT
+    
+    [S] Serre, Local Class Field Theory (Cassels-Frohlich)
+
+    [LT] Lubin, Tate Formal complex multiplication
+
+    \(K =\)  non-archimedean local field (locally compact) \(\supset \mathcal{O} = \mathcal{O}_K =\) valuation ring \(\supset P_K =\) valuation ideal.
+
+    Residue Field \(k = \mathcal{O} / P_K\), \(\operatorname{char} (k) = p > 0, q \coloneqq \vert k \vert = p^f\).
+
+    Normalized Valuation \(v = v_K : K \twoheadrightarrow \mathbb{Z} \cup \{ \infty \}, \vert a \vert = q^{-v(a)}\).
+    
+    \(U_K = \mathcal{O}_K^\times\).
+
+    \begin{definition}
+        \(e(x) \in \mathcal{O} [[x]]\) (a formal power series) is called a Lubin-Tate (LT) series for the uniformizer \(\pi\) (fixed) if the following conditions are fulfilled:
+
+        \begin{itemize}
+            \item \(e(x) \equiv \pi x \mod\deg 2\).
+            \item \(e(x) \equiv x^q \mod \pi\). 
+        \end{itemize} 
+    \end{definition}
+
+    Set \(\mathscr{E}_\pi =\) set of LT series for the uniformizer \(\pi\).
+
+    Recall: Let \(R\) be any \(\mathcal{O}\)-algebra (\(i: \mathcal{O}\to R\) ring homomorphism).
+
+    A formal \(\mathcal{O}\)-module over \(R\) is a \(1\)-dimensional commutative formal group \(F(x,y) \in R[[x,y]]\) over \(R\) (some people call it a formal group law) together with a unital (sending \(1\) to \(1\)) ring homomorphism:
+
+    \[
+        [\cdot]_F : \mathcal{O} \to \operatorname{End}_R(F) = \{ f(x) \in R[[x]] \mid f(0)=0, f(F(x,y))=F(f(x),f(y)) \}
+    \]
+
+    such that \(\forall a\in \mathcal{O}: [a]_F (x) = i(a)x \mod\deg 2\).
+
+    We have the following properties:
+
+    \(F(x,y) = x + y + \text{higher order terms}\)
+
+    Associativity: \(F(x,F(y,z))=F(F(x,y),z)\)
+
+    Commutativity: \(F(x,y) = F(y,x)\).
+
+    \(\implies\exists! \iota (x) \in R[[x]]: F(x,\iota(x)) = 0\). Also, \(\iota (x) = -x + \text{higher order terms}\).
+
+    If \(R\) is a local \(\mathcal{O}\)-algebra with maximal ideal \(M\) \((i ^{-1} (M) = P_K, k = \mathcal{O} / P_K \to R / M)\) then a formal \(\mathcal{O}\)-module \(F\) over \(R\) is callled a LT \(\mathcal{O}\)-module over \(R\) if in addition it is a formal \(\mathcal{O}\)-module and for any uniformizer \(\pi\) of \(K\): \([\pi]_F (x) \equiv x^q \mod M\).
+
+    \begin{remark}
+        If \(F\) is a LT \(\mathcal{O}\)-module over \(\mathcal{O}\) [\(i: \mathcal{O} \xrightarrow{\operatorname{id}} \mathcal{O}\)] then \([\pi]_F (x) \in \mathscr{E}_{\pi}\) [meaning it is a Lubin Tate series] for any uniformizer \(\pi\). 
+    \end{remark}
+
+    \begin{example}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(K = \mathbb{Q}_p, F = \widehat{\mathbb{G}}_m, \widehat{\mathbb{G}}_m(x,y) = x + y + xy = (1+x)(1+y)-1\).
+
+            Then, \([\cdot]: \mathbb{Z}_p \to \operatorname{End}_{\mathbb{Z}_p}(\widehat{\mathbb{G}}_m), [a](x) = (1+x)^a - 1 \coloneqq \sum_{n=1}^{\infty} \binom{a}{n}x^n, \binom{a}{n}= \frac{a(a-1)\cdots (a-n+1)}{n!}\in \mathbb{Z}_p\) for any \(a\in \mathbb{Z}_p, n \geq 1\).
+
+            \begin{exercise}
+                \begin{enumerate}[label=\arabic*)]
+                    \item \(\forall a\in \mathbb{Z}_p \forall n\geq 0, \binom{a}{n}\) as defined above is in \(\mathbb{Z}_p\).
+                    \item If \(K\) is a proper extension of \(\mathbb{Q}_p\) then \(\binom{a}{n}\notin \mathcal{O}_K\) for infinitely many \(a\in \mathcal{O}_K\). 
+                \end{enumerate} 
+            \end{exercise}
+            
+            \item \(K = \mathbb{F}_q((t)), F = \widehat{\mathbb{G}}_a, \widehat{\mathbb{G}}_a(x,y) \equiv  x+y\). Set \([t](x) = tx + x^q\). Then,
+            
+            \[
+                \left[ \underbrace{\sum_{\nu = 0}^{\infty} \alpha_\nu t^{\nu}}_{a}  \right](x) \coloneqq \sum_{\nu = 0}^{\infty} \alpha_\nu[t]^{\circ \nu}(x) = \sum_{n=1}^{\infty} a_n x^n \text{ where } a_1 = a
+            \]
+
+            gives \(F = \widehat{\mathbb{G}}_a\) the structure of a LT \(\mathcal{O}\)-module over \(\mathcal{O}\).
+
+        \end{enumerate}
+    \end{example}
+
+    \begin{theorem}
+        \begin{enumerate}[label=\roman*)]
+            \item For all uniformizer \(\pi\) of \(K\) and any \(e \in \mathscr{E}_{\pi}\) there exists unique LT \(\mathcal{O}\)-module \(F_e\) over \(\mathcal{O}\) such that:
+            
+            \[
+                [\pi]_{F_e}(x) = e(x)
+            \]
+
+            \item \(\forall e, e^{\prime} \in \mathscr{E}_{\pi}\) there is an isomorphism of formal \(\mathcal{O}\)-modules \(f: F_e \to F_{e^{\prime}}\) (\(f\in x \mathcal{O} [[x]], f(F_e(x,y))=F_{e^{\prime}}(f(x),f(y))\).
+            
+            \(\forall a\in \mathcal{O}: f([a]_{F_e}(x))=[a]_{F_{e^{\prime}}}(f(x))\).
+
+            \(f^{\prime} (0)\in \mathcal{O}^\times\).
+            
+            \item Let \(K^{nr}\) be the maximal unramified extension of \(K\) (inside some fixed algebraic closure \(\overline{K}\)) and let \(K_{nr} \coloneqq \widehat{K^{nr}}\) be the completion of \(K^{nr}\) and let \(\mathcal{O}_{K_{nr}}\) be its valuation ring. Then for any two uniformizers \(\pi , \pi ^{\prime} \) of \(K\) and LT series \(e\in \mathscr{E}_{\pi}\) and \(e^{\prime} \in \mathscr{E}_{\pi^{\prime}}, \exists\) an isomorphism of formal \(\mathcal{O}\)-modules \(F_e \to F_{e^{\prime}}\) over \(\mathcal{O}_{K_{nr}}\).  
+        \end{enumerate} 
+    \end{theorem}
+
+    \subsection*{Formal Complex Multiplication}
+
+    Let \(\overline{K}\) be the fixed algebraic closure of \(K \supset \mathcal{O}_{\overline{K}} \supset P_{\overline{K}}\). Let \(\pi =\) the fixed uniformizer, \(e\in \mathscr{E}_{\pi}, F_e =\) LT \(\mathcal{O}\)-module over \(\mathcal{O}\).
+    
+    Set \(F[\pi^m] = \left\{ \alpha \in P_{\overline{K}} \mid \underbrace{[\pi^m]_{F_e}}_{e^{\circ m}(x)}(\alpha) = 0 \right\} \). This can be shown to be finite from Theorem 1.1.1.ii by setting \(e^{\prime}(x) = \pi x + x^q\). Then the isomorphism will provide a bijection to \(F_{e^{\prime}}[\pi^{m}, e^{\prime} \in \mathscr{E}_{\pi}]\). Then the zeros of the power series are the zeros of the iteration of the polynomial. Hence the set is finite.
+
+    \(L_{\pi, m}\coloneqq K(F_e(\pi^m))\) called the field of \(\pi^m\)-torsion points of \(F_e\). It doesn't depend on \(e\), though it does depend on \(\pi\).
+
+    \begin{example}
+        if \(K=\mathbb{Q}_p\) and \(e(x) = (1+x)^p - 1\) then, \(L_{p,m} = \mathbb{Q}_p(\zeta - 1 \mid \zeta^{p^m} = 1) = \mathbb{Q}_{p}(\mu_{p^m})\).
+
+        If we take \(e^{\prime}(x) = px + x^p\), the power series and the torsion points \(F_e[p^m]\) and \(F_{e^{\prime}}[p^m]\) are different but the fields \(\mathbb{Q}_{p}(F_{e[p^m]})\) and \(\mathbb{Q}_{p}(F_{e^{\prime}}[p^m])\)  has to be the same!
+    \end{example}
+
+    \begin{theorem}
+        \begin{enumerate}[label=\roman*)]
+            \item \(F_e[\pi^m]\) is a free \(\mathcal{O} / (\pi^m)\) module of rank \(1\) [note that \([\pi^m]\) annihilates \([a](x)\) since \([\pi^m]_{F_e}(\alpha) = 0\)].
+            \item \(\forall m \geq 1\) the maps \(\mathcal{O} / (\pi^m) \to \operatorname{End}_{\mathcal{O}}(F_e[\pi^m]), a \mod \pi^m \mapsto [\alpha \mapsto [a](\alpha)]\).
+            
+            Also, \(\mathcal{O}^\times / (1+(\pi^m)) \to \operatorname{Aut}_{\mathcal{O}}(F_e[\pi^m])\), same formula are isomorphism (of finite groups).
+
+            \item \(L_{\pi, m}\) does not depend on \(e\in \mathscr{E}_{\pi}\) but depends on \(\pi\). In particular, if \(e^{\prime} (x) = \pi x + x^q\) then \(L_{\pi,m}=K(F_{e^{\prime}}[\pi^m])\). 
+            
+            \item \(L_{\pi,m}\) is a finite purely ramified Galois extension (so it does not contain a proper unramified extension) of \(K\) of degree \((q-1)q^{m-1}\).
+            
+            The map \(G(L_{\pi,m} / K) \to \operatorname{Aut}_{\mathcal{O}}(F_e[\pi^m]) \overset{\text{ii, canonical}}{\cong} \mathcal{O}^\times / (1 + (\pi^m))\) given by \(\sigma \mapsto a \mod (1+(\pi^m))\).
+            
+            If \(\forall \alpha \in F_e[\pi^m]\colon \sigma (\alpha) = [a]_{F_e}(\alpha)\), is an isomorphism.
+
+            \item If \(L_\pi = \bigcup_{m \geq 1} L_{\pi, m}\), then the maps in iv induce an isomorphism:
+            
+            \[
+                G(L_\pi / K) = \lim_{\xleftarrow[m]{}} G(L_{\pi,m} / K) \xrightarrow[]{\cong} \lim_{\leftarrow} \mathcal{O}^\times / (1 + (\pi^m)) \cong \mathcal{O}^\times
+            \]
+        \end{enumerate} 
+    \end{theorem}
+\end{document}
