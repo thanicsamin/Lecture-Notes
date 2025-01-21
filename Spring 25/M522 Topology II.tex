@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, mathrsfs, enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
 \usetikzlibrary{arrows}
 \usepackage{geometry}
     \geometry{
@@ -123,9 +123,9 @@
             \toprule
                  & defined for &  \\
             \midrule
-                Singular Homology &Top Spaces & Easy to define  but hard to compute \\
-                simplicial homology & simplicial complexes and \(\Delta\)-complexes & Easy to define and compute, but difficult to show homeo inv. \\
-                Cellular homology & CW-complexes & hard to define, easy to compute, flexible. \\
+                Singular Homology &Top Spaces & Easy to define  but \\ & & hard to compute \\ \midrule
+                Simplicial homology & simplicial complexes and  & Easy to define and compute \\ & \(\Delta\)-complexes & but difficult to show \\ & & homeo inv. \\ \midrule
+                Cellular homology & CW-complexes & hard to define, \\ & & easy to compute, flexible. \\
             \bottomrule
         \end{tabular}
         \caption{Variants of Homology}
@@ -157,6 +157,8 @@
 
     \(n\)-simplices are images of standard simplices under continuous maps.
 
+    They are defined by a continuous map \(\sigma : \Delta^n \to X\).
+
     % insert
 
     We define singular \(n\)-chains \(S_n X\). These are free abelian groups with \(\mathbb{Z}\)-basis the singular \(n\)-simplicies in \(X\).
@@ -166,6 +168,8 @@
     \[
         n_1 \sigma_1 + \cdots + n_k \sigma_k \in S_n X
     \]
+
+    Where \(\sigma_i : \Delta^n \to X\).
 
     Note: Davis and Kirk uses \(S_n X\), Hatcher uses \(C_n X\).
 
@@ -184,5 +188,359 @@
     \[
         H_n = \frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}} = \frac{n \text{-cycles}}{n \text{-boundaries}}
     \]
+
+    \section*{Wednesday, 1/15/2025}
+    
+    \underline{Goal}: We want to define a homomorphism called a \underline{boundary map}.
+
+    \[
+        \partial_n : S_n X \to S_{n-1} X
+    \]
+
+    We start with the \(j\)'th face map.
+
+    \[
+        \delta_j = \delta_j^n: \Delta^{n-1} \to \Delta^n
+    \]
+
+    We have the map of barycentric coordinates:
+
+    \[
+        (t_0, \cdots ,t_{n-1}) \mapsto (t_0, \cdots , t_{j-1}, 0, t_j, \cdots , t_{n-1})
+    \]
+
+    The \(j\)'th face map of \(\sigma\) is given by precomposing \(\delta_j\):
+
+    \[
+        \sigma \circ \delta_j : \Delta^{n-1} \to X
+    \]
+
+    \begin{definition}
+        The boundary \(\partial_n \sigma = \sum_{j=0}^n (-1)^j \sigma \circ \partial_j\).
+
+        We can extend this definition tp \(S_n\) by linearity.
+
+        \[
+            \partial_n \left( \sum_{j} n_j \sigma_j \right) = \sum_{j} n_j \partial_n \sigma_j
+        \]
+    \end{definition}
+
+    Let \(\sigma: \Delta^2 \to X\).
+
+    Then, \(\partial_2 \sigma = \sigma \circ \delta_0 - \sigma \circ \delta_1 + \sigma \circ \delta_2\).
+
+    % insert
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/boundary.pdf}
+        \caption{Boundary Map}
+        \label{fig:boundary}
+    \end{figure}
+
+    \(\sigma : \Delta^1 \to X\)
+
+    \(\partial \sigma = \sigma(e_1) - \sigma(e_0) = c_{\sigma(e_1)}=c_{\sigma(e_0)}\), endpoint - starting point.
+    
+    \begin{lemma}
+        \(\partial_{n+1} \circ \partial_n = 0\).
+
+        \begin{center}
+            \begin{tikzcd}
+                S_{n+1} X \ar[r,"\partial_{n+1}"] \ar[rr, bend right, "0"] & S_n X \ar[r,"\partial_n"] & S_{n-1} X
+            \end{tikzcd}
+        \end{center}
+
+        This is the reason for \(-\) signs.
+    \end{lemma}
+
+    Then, we have,
+
+    \[
+        \begin{matrix}
+            \operatorname{im} \partial_{n+1} & \subset & \ker \partial_n & \subset & S_n X \\
+            n \text{-boundaries} &  & n \text{-cycles} &  & n \text{-chains}  \\
+        \end{matrix} 
+    \]
+
+    \begin{definition}
+        [Singular Homology]
+
+        \[
+            H_n X = \frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}} = \frac{\text{cycles}}{\text{boundaries}}
+        \]
+    \end{definition}
+
+    \begin{proof}
+        We prove the lemma: \(\partial_{n-1} \circ \partial_n = 0\).
+
+        \[
+            \partial_{n-1} (\partial_n \sigma)
+        \]
+
+        \[
+            = \partial_{n-1} \left( \sum_{j} (-1)^{j} \sigma(t_0, \cdots , 0, \cdots , t_{n-1}) \right) 
+        \]
+
+        \[
+            = \sum_{k < j} (-1)^k (-1)^j \sigma(t_0, \cdots , 0, \cdots , 0, \cdots , t_n) \, \text{\(0\) s in \(k\)'th and \(j\)'th slots}
+        \]
+
+        \[
+            + \sum_{k > j} (-1)^{k-1} (-1)^j \sigma(t_0, \cdots , 0, \cdots , 0, \cdots , t_n) \, \text{\(0\) s in \(k\)'th and \(j\)'th slots}
+        \]
+
+        \[
+            = 0
+        \]
+    \end{proof}
+
+    \begin{remark}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(H_n X\) is defined for any topological space \(X\) and \(n \geq 0\).
+            
+            \item \(X \cong Y \implies H_n X \cong H_n Y\).
+            
+            \item Big and Formula Construction.
+            
+            \item Unclear how to compute.
+        \end{enumerate} 
+    \end{remark}
+
+    Answer to the question: What is \(H_n X\):
+
+    \[
+        H_{\ast} X = \left\{ H_0 X, H_1 X, H_2 X , \cdots  \right\} 
+    \]
+
+    is a graded abelian group. \(H_k X\) individually are abelian groups.
+
+    \begin{lemma}[Lemma 1]
+        \[
+            H_n(pt) \cong \begin{dcases}
+                \mathbb{Z}, &\text{ if } n = 0 ;\\
+                0, &\text{ otherwise} .
+            \end{dcases}
+        \]
+    \end{lemma}
+
+    \begin{lemma}[Lemma 2]
+        If \(X\) has path-components \(\{ X_\alpha \}_{\alpha \in I}\), then,
+
+        \[
+            H_n X = \bigoplus_{\alpha \in I} H_n (X_\alpha)
+        \]
+    \end{lemma}
+
+    \begin{lemma}
+        [Lemma 3]
+        \begin{enumerate}[label=\alph*)]
+            \item \( H_0 X \cong \bigoplus_{I} \mathbb{Z} = \mathbb{Z}^{\# \text{ of path component}}\)
+            \item \(X\) is path-connected, then \(H_0 X \cong \mathbb{Z}\).
+        \end{enumerate} 
+    \end{lemma}
+
+    Recall:
+
+    \begin{definition}
+        \(X\) is path-connected if \(\forall a,b\in X, \exists \gamma: [0,1] \to X\) such that \(\gamma(0)=a, \gamma(1)=b\) 
+    \end{definition}
+
+    \begin{definition}
+        A maximal path-connected subset of \(X\) is path-component.
+    \end{definition}
+
+    \begin{corollary}
+        Homology of rational numbers is isomorphic to the homology of integers:
+
+        \[
+            H_{\ast} \mathbb{Q} \cong H_{\ast} \mathbb{Z} = (\mathbb{Z}^{\infty}, 0, 0, \cdots)
+        \]
+
+        But \(\mathbb{Q} \not\cong \mathbb{Z}\).
+    \end{corollary}
+
+    \section*{Friday, 1/17/2025}
+    
+    Recall:
+
+    \(H_n X = \frac{\ker (\partial_n)}{\operatorname{im} (\partial_{n+1})} = \frac{\text{cycles}}{\text{boundary}} \in \text{homology class}\).
+
+    We are looking for two cycles that belong to the same homology class.
+
+    So, we want cycles \(z_1 \neq z_2\) which are homologous so that \(z_1 - z_2\) is a boundary. This implies their homology classes are equal: \([z_1] = [z_2]\).
+
+    % insert 0 cycle example
+
+    % insert torus example
+
+    \section*{Algebra}
+
+    \begin{definition}
+        [Chain Complex] A \underline{chain complex} \(C_\bullet\) is a sequence:
+        
+        \[
+            C_{\ast} = \{ C_0, C_1, C_2, \cdots \}
+        \]
+        
+        of abelian groups with \(\partial_n : C_n \to C_{n-1}\) such that \(\partial_n \circ \partial_{n+1} = 0\).
+
+        It looks like the following:
+
+        \begin{center}
+            \begin{tikzcd}
+                \cdots \ar[r] & C_3 \ar[r, "\partial_3"] & C_2 \ar[r,"\partial_2"] & C_1 \ar[r,"\partial_1"] & C_0
+            \end{tikzcd}
+        \end{center}
+
+        so that the composition of any two consecutive maps is \(0\). By conventions, \(\partial_0 = 0: C_0 \to 0\).
+    \end{definition}
+
+    Then, \(C_\bullet = \{ C_{\ast}, \partial_{\ast} \}\).
+
+    \begin{definition}
+        [Homology]
+
+        \[
+            H_n C_\bullet = \frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}} = \frac{Z_n}{B_n}
+        \]
+
+        Here, \(C_n = n\)-chain.
+        
+        \(Z_n = \ker \partial_n, n\)-cycles
+        
+        \(B_n = \operatorname{im} \partial_{n+1}, n\)-boundaries.
+
+        eg. \(S_\bullet X = \{ S_{\ast} X, \partial_{\ast} \}\) is a singular chain complex of \(X\).
+    \end{definition}
+
+    L1:
+
+    \[
+        H_n \text{pt} = \begin{dcases}
+            \mathbb{Z}, &\text{ if } n=0 ;\\
+            0, &\text{ otherwise} .
+        \end{dcases}
+    \]
+
+    \[
+        H_{\ast} (\text{pt}) = \{ \mathbb{Z},0,0,\cdots \}
+    \]
+
+    \begin{proof}
+        \(\forall n, \exists ! \sigma_n : \Delta^n \to \text{pt}\).
+
+        Then, \(\partial_1 \sigma_1 = \sigma_1 \circ \delta_0 - \sigma_1 \circ \delta_1\).
+
+        \(\delta_0(t_0) = (0,t_0), \delta_1(t_0) = (t_0, 1)\).
+
+        Thus, \(\partial_1 \sigma_1 = \sigma_1 \circ \delta_0 - \sigma_1 \circ \delta_1=(1-1)\sigma_0 = 0\)
+        
+        \(\partial_2 \sigma_2 = \sigma_2 \circ \delta_0 - \sigma_2 \circ \delta_1 + \sigma_2 \circ \delta_2 = (1-1+1)\sigma_1 = \sigma_1\).
+
+        \(\partial_n \sigma_n = \begin{dcases}
+            0, &\text{ if } n \text{ odd} ;\\
+            1, &\text{ if } n \text{ even}.
+        \end{dcases}\) 
+
+        \(S_{\ast} X:\)
+        
+        \begin{center}
+            \begin{tikzcd}
+                & & \ar[r] & \mathbb{Z}\sigma_2 \ar[r] & \mathbb{Z}\sigma_1 \ar[r] & \mathbb{Z}\sigma_0 \\
+
+                & & & \sigma_2 \ar[r,mapsto] & \sigma_1 \ar[r,mapsto] & 0 \\
+                \cong & \ar[r,"1"] & \mathbb{Z} \ar[r,"0"] & \mathbb{Z} \ar[r,"1"] & \mathbb{Z} \ar[r,"0"] & \mathbb{Z}
+            \end{tikzcd}
+        \end{center}
+
+        \(H_0 \text{pt} = \mathbb{Z} / 00 = \mathbb{Z}\).
+
+        \(H_1 \text{pt} = \mathbb{Z} / \mathbb{Z} = 0\) 
+
+        \(H_2 \text{pt} = 0 / 0 = 0\).
+    \end{proof}
+
+    L2: If \(\{ X_\alpha \}_{\alpha \in I}\) are path components of \(X\) then,
+
+    \[
+        H_n X = \bigoplus_{I} H_n X_\alpha
+    \]
+
+    \begin{proof}
+        \(\sigma: \Delta^n \to X \overset{\Delta^n \text{p.c.}}{\implies} \sigma(\Delta^n)\) p.c.
+
+        \(\implies \exists ! \alpha\) such that \(\sigma(\Delta^n) \subset X_\alpha\).
+
+        Also \((\sigma \circ \delta_j)(\Delta^{n-1}) \subset X_\alpha\)
+        
+        \(S_{\ast} X = \bigoplus_{I} S_{\ast} X_\alpha\) 
+    \end{proof}
+
+    Augmentation
+
+    \(\varepsilon : S_0 X \to \mathbb{Z}\)
+
+    \(\varepsilon (\sum_{i} n_i \sigma_i) \coloneqq \sum_{i} n_{i}\)
+    
+    \(\varepsilon  \circ \partial_1 (\sigma) = \varepsilon  (\sigma \circ \delta_0 - \sigma \circ \delta_1) = 1-1 = 0\)
+
+    Thus \(\operatorname{im} \partial_1 \subset \ker \mathscr{E}\)
+
+    Thus, \(\exists \overline{\varepsilon}: H_0 X \to \mathbb{Z}\)
+
+    \(\overline{\varepsilon} \left[\sum_{i} n_i \sigma_i\right] = \varepsilon \left( \sum_{i} n_i \sigma_i \right) = \sum_{i} n_i \). 
+
+    L3:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(X\) is path connected then,
+        
+        \[
+            \overline{\varepsilon}: H_0 X \xrightarrow{\cong}\mathbb{Z}
+        \]
+
+        \item If \(\{ X_\alpha \}_{\alpha \in I}\) are path components of \(X\) then,
+        
+        \[
+            H_0 X = \bigoplus_{I} H_0 X_\alpha = \mathbb{Z}^{\text{\# of p.c. of } X} 
+        \]
+    \end{enumerate}
+    
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item Need to show \(\ker \varepsilon \subset \operatorname{im} \partial_1\).
+            
+            Choose base point \(x_0 \in X\).
+
+            Suppose \(\varepsilon \left( \sum_{i} n_i \sigma_i \right) = 0\).
+
+            Choose path \(\gamma_i: \Delta^1 \to X\) such that \(\gamma_i(\underline{e}_1) = \sigma_i(\underline{e}_0), \gamma_0(e_0) = x_0\).
+            
+            \(\partial_1 \left( \sum_{i} n_i \gamma_i \right) = \sum_{i} n_i \sigma_i - \sum_{i} n_i \text{cons}_{X_0} = \sum_{i} n_i \sigma_i \) 
+        \end{enumerate} 
+    \end{proof}
+
+    \section*{\(\Delta\)-complex (p.102-104 of Hatcher)}
+
+    eg torus
+
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[->] (0,0) -- (2,0);
+        \end{tikzpicture}
+    \end{center}
+
+    % insert torus picture
+
+    \(1 =\) \# of vertices
+    
+    \(3 =\) \# of edges
+
+    \(2 =\) \# of faces
+
+    \(\Delta_2 T \to \Delta_1 T \to \Delta_0 T\) 
+
+    \(\cong \mathbb{Z}^2 \to \mathbb{Z}^3 \to \mathbb{Z}^1\) 
 
 \end{document}

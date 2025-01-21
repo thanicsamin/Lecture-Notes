@@ -150,7 +150,9 @@
     More generally, we have:
 
     \begin{theorem}
-        [Bezout's Theorem] (Approximate Statement) Let \(f,g\in k[x,y], \deg f = m, \deg g = n\). Assume \(f,g\) have no common irreducible factors.
+        [Bezout's Theorem] (Approximate Statement)
+        
+        Let \(f,g\in k[x,y], \deg f = m, \deg g = n\). Assume \(f,g\) have no common irreducible factors.
 
         Then, \(\#\{ f=0 \} \cap \{ g=0 \} =0\) (counted properly under certain assumptions).
         
@@ -172,5 +174,238 @@
     Since the original data is real it must be invariant under complex conjugation. Thus, we must have \(T_1 = \overline{T_2}\).
 
     Therefore, the line \(\ell\) joining \(T_1\) and \(T_2\) must be real.
-+
+
+    \section*{Wednesday, 1/15/2025}
+    
+    \begin{remark}
+        Algebraic Geometry over fields that are not algebraically closed has its applications.
+
+        For example,
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(K = \mathbb{Q}\): for example, finding rational points on  \(x^n + y^n = 1 \rightsquigarrow\) FLT.
+            \item \(k = \mathbb{F}_p\). Studying points on \(f(x,y)=0 \iff\) studying solutions of \(\widetilde{f}(x,y)\equiv 0\mod p\).
+            \item \(k = \mathbb{C}(z)\). A surface \(F(x,y,z)=0\) where \(F \in \mathbb{C} [x,y,z]\) is often studied by vieweing it as a curve in \(k(x,y)\). 
+        \end{enumerate} 
+    \end{remark}
+
+    \subsection*{Rational Curves}
+
+    Consider the curve \(\overbrace{y^2 = x^2 + x^3}^{X}\) over \(k=\mathbb{C}\). This is an irreducible (why?) curve.
+
+    Note that \((0,0)\in X\).
+
+    If \(P\in X, P \neq (0,0)\), consider the line joining \(O\) and \(P\), \(y = tx\). It meets \(X\) at points whose \(x\)-coordinates satisfy:
+
+    \[
+        (tx)^{2} = x^{2} +x^3 \iff x^{2} (t^2 - x - 1) = 0
+    \]
+
+    It has \(x=0\) as a double root, we have \(x=t^2 - 1, y = t(t^2 - 1)\).
+    
+    It turns out that every point on \(X\) is of the form \((t^2 - 1, t(t^2 - 1))\).
+
+    Since \(t^2 - 1, t(t^2 - 1) \in \mathbb{Q}[t] \subset \mathbb{R} [t]\), the \(\mathbb{Q}\) (resp. \(\mathbb{R}\)) points of \(X\) can be recovered by letting \(t\) roam over \(\mathbb{Q}\) (resp. \(\mathbb{R}\)).
+
+    \begin{definition}
+        Let \(X = \left\{ f(x,y) = 0 \right\}\) be an irreducible affine plane curve over an algebraically closed field \(k\). \(X\) is called rational if there exists rational functions \(\phi(t), \psi(t) \in k(t)\) such that \(f(\phi(t),\psi(t)) \equiv 0\) [in \(k(t)\)]
+    \end{definition}
+
+    For example, any irreducible conic is rational.
+
+    \begin{proof}
+        WLOG assume our conic \(X\) has equation \(y^2 = ax^2 + bx + c\), if necessary by shifting the \(y\)-coordinate.
+        
+        Let \((x_0, y_0)\in X\). Consider the line \(y - y_0 = t(x - x_0)\).
+        
+        It intersects \(X\) at points whose \(x\)-coordinate satisfy:
+
+        \[
+            (y_0 + t(x-x_0))^2 = ax^2 + bx + c
+        \]
+
+        \[
+            \iff t^2(x^2 - 2xx_0 + x_0^2) + 2t(x-x_0)y_0 + y_0^2 = ax^2 + bx + c \, (\star)
+        \]
+
+        \(\star\) is a quadratic, \(x_0\) is one root. The other root, by Vieta Jumping, is:
+        
+        \[
+            \frac{2t^2 x_0 - 2ty_0 + b}{t^2 - a} - x_0 = \phi(t)
+        \]
+
+        Thus, \(\psi(t) \equiv  y_0 + t(\phi(t) - x_0)\)
+
+        Then clearly \((\phi(t), \psi(t))\in X \forall t, \phi, \psi \in k(t)\).
+
+        Sub example: \(c > 0, x_0 = 0, y_0 = \sqrt{c} \).
+        
+        Then, \(\phi(t) = \frac{b - 2t \sqrt{c}}{t^2 - a}, \psi(t) = \sqrt{c} + t\left(\frac{b - 2t \sqrt{c}}{t^2 - a}\right) \) 
+    \end{proof}
+
+    Application: If \(X\) is a rational curve over \(\mathbb{R}\) then the equation \(f(x,y)=0\) defines \(y\) implicitly as a function of \(x\).
+
+    If \(g(x,y)\in k(x,y)\) we have:
+
+    \[
+        \int g(x,y(x))\,\mathrm{d}x = \int g(\phi(t),\psi(t))\phi^{\prime}(t)\, \mathrm{d}t \, (\star\star)
+    \]
+
+    where \((\phi(t),\psi(t))\) is a parametrization of \(X\). This turns LHS of \((\star\star)\) to an integral of a rational function.
+
+    For example if \(y^2 = ax^2 + bx + c, c > 0\) then putting \(x = \phi(t) = \frac{b-2t\sqrt{c}}{t^2 - a}, \psi(t) = \sqrt{c} + t \left( \frac{b - 2t \sqrt{c}}{t^2 - a} \right)\) turns \(\int g(x, \sqrt{ax^2 + bx + c})\) into \(\int (\text{rational function})\, \mathrm{d}t\).
+
+    These are called Euler substitutions of the second type.
+
+    Question: Characterize all rational curves.
+
+    \subsection*{Field of rational function on a curve}.
+
+    Let \(X = \left\{ f(x,y) = 0 \right\} \) be an irreducible affine algebraic curve.
+
+    \(S = \left\{ g \in k[x,y] \mid f \nmid g \right\}\). Then \(S\) is a multiplicative set.
+
+    Consider \(k(X) \coloneqq \frac{k[x,y][S ^{-1}]}{(f)}\).
+
+    Equivalently (check!): \(k(x)\) is the set of all fractions of the form \(\frac{p(x,y)}{q(x,y)}\) where \(o,q\in k[x,y]\) with \(f\nmid q\).
+    
+    \(\frac{p}{q} \sim \frac{p^{\prime}}{q^{\prime} =} \iff f \mid pq^{\prime} -p^{\prime} q\). 
+
+    Claim: \(k(X)\) is a field.
+
+    \begin{proof}
+        If \(\frac{p(x,y)}{q(x,y)}\neq 0\) in \(k(X)\),then \(f \nmid p(x,y) \implies \frac{q(x,y)}{p(x,y)}\in k(X) \).
+    \end{proof}
+
+    \(k(X)\) is called the field of rational functions on \(X\). Note that since \(f\nmid q\) and \(q(x,y)=0\) on at most finitely many points on \(X\). Thus \(\frac{p}{q}\) can be viewed as a function defined on all but finitely many points on \(X\).
+
+    \(\operatorname{tr} \deg_k k(X) = 1\) since \(x\) and \(y\) generate \(k(X)\) but are algebraically dependent since \(f(x,y)=0\).  
+    
+    \begin{definition}
+        A rational function \(u\in K(X)\)  is \underline{regular} at a point \(P\in X\) if \(u\) can be written as \(\frac{p(x,y)}{q(x,y)}\) such that \(q(P) \neq 0\).
+    \end{definition}
+
+    For example, let \(X = \{ x^2 + y^2 = 1 \}\) and let \(u(x,y) = \frac{1-y}{x}\). We want to f0ind all points on \(X\) where \(u\) is regular.
+
+    \(u\) is regular whenever \(x\neq 0\). That leaves \((0,\pm 1)\).
+
+    Note that \(u(x,y) = \frac{1-y}{x} = \frac{x}{1+y}\). Thus it is also regular at \((0,1)\).
+
+    Exercise: find out if \(u\) is regular at \((0,-1)\).
+
+    \begin{proposition}
+        If an irreducible curve \(X\) is rational, then \(k(X) \cong k(t)\).
+    \end{proposition}
+
+    \section*{Friday, 1/17/2025}
+    
+        Recall: if \(X\) is an irreducible algebraic plane curve, one has \(k(X)\) the field of rational functions on \(X\).
+
+        \(\operatorname{tr} \deg_k k(X) = 1\).
+        
+        \begin{lemma}
+            If \(K\) is a field extension of \(k\) of \(\operatorname{tr} \deg 1\) generated by \(x,y\in K\) then \(K \cong k(x)\) for some irreducible curve \(X\).
+        \end{lemma}
+
+        \begin{proof}
+            Since \(\operatorname{tr} \deg_k K = 1, x,y\) satisfy \(f(x,y) = 0\) for some irreducible polynomial \(f(x,y)\in k[x,y]\). Then \(K \cong k(X)\),
+
+            \[
+                X = \{ (x,y)\in \mathbb{A}_k^2 \mid f(x,y) = 0 \}
+            \]
+
+        \end{proof}
+
+        \begin{proposition}
+            Let \(X\) be irreducible algebraic plane curve over \(k\). Then, \(X\) is rational \(\iff k(X) \cong k(t)\).
+        \end{proposition}
+
+        \begin{proof}
+            \(X\) rational \(\implies k(X) \cong k(t)\)
+
+            Let \(X = \{ (x,y)\in \mathbb{A}^2_k \mid f(x,y)=0 \}\) where \(f\in k[x,y]\) irreducible since \(X\) is rational.
+
+            \(\exists \phi (t), \psi (t)\in k(t)\) such that \(f(\phi (t),\psi (t))\equiv 0\).
+
+            We construct a map:
+
+            \(i: k(x) \to k(t)\) 
+
+            \(x \mapsto \phi(t)\) 
+
+            \(y \mapsto \psi(t)\) 
+
+            \[
+                \frac{p(x,y)}{q(x,y)} \mapsto \frac{p(\phi(t),\psi(t))}{q(\phi(t),\psi(t))}
+            \]
+
+            We claim that \(i\) is well defined if \(q(\phi(t),\psi(t))\equiv 0\)
+
+            Then, note that as \(t\) runs over \(k\) the point \((\phi(t),\psi(t))\in X\) [whenever defined] takes infinitely many values.
+            
+            Since \(f\) does not divide \(q\), \(q(\phi(t),\psi(t))\not\equiv 0\).
+            
+            Hence, \(i \left( \frac{p(x,y)}{q(x,y)} \right)\) makes sense for \(\frac{p}{q}\in k(X)\).
+            
+            Checking that \(i\) is a ring homomorphism is easy [left as exercise].
+
+            \(\implies i \left( \frac{p}{q} \right) = i \left( \frac{p^{\prime}}{q^{\prime}} \right) \)
+
+            Since \(k(X),k(t)\) are fields, \(i\) is injective and \(\operatorname{im} (i) \hookrightarrow k(t)\) as a subfield.
+
+            Clearly, \(k \subsetneq \operatorname{im} (i) \subseteq k(t)\) 
+
+            By Luroth's theorem, \(\operatorname{im} (i) = k(g(t))\) for some rational function \(g(t)\).
+
+            Thus, \(i: k(X) \xrightarrow{\cong} \underbrace{k(g(t))}_{=k(v)} \hookrightarrow k(t)\)
+
+            Hence \(k(X) \cong k(t)\) for \(X\) rational since \(k(v) \cong k(t)\).
+
+            Conversely, if \(k(X) \cong k(t), X = \{ f(x,y)=0 \}\) let \(i: k(X)\) be a given isomorphism.
+
+            Let \(\phi (t) \coloneqq i(x), \psi (t) \coloneqq i(y)\) then, \(\phi , \psi \in k(t)\). Since \(f(x,y)\equiv 0\) in \(k(X)\) we have \(f(\phi(t),\psi(t))\equiv 0\).
+
+        \end{proof}
+
+        \begin{proposition}
+            Let \(X\) be a rational curve. Let \((\phi, \psi): k(X) \xrightarrow{\cong} k(t)\) be an isomorphism (here \((\phi ,\psi )\) stands for the ring homomorphism \(k(X) \to k(t)\) sending \(x \rightsquigarrow \phi(t), y \rightsquigarrow \psi(t)\)).
+
+            Then, if \(\chi(x,y) = (\phi,\psi)^{-1} (t)\),
+
+            The maps \(X \xrightarrow{\Psi} \mathbb{A}_k^1\) given by \((x,y) \mapsto \chi(x,y)\) 
+
+            \(\mathbb{A}_k^1 \xrightarrow{\Phi} X\) givn by \(t \mapsto (\phi(t),\psi(t))\) 
+
+            satisfying \(\Phi \circ \Psi = \operatorname{id}, \Psi \circ \Phi = \operatorname{id}\) wherever both compositions are defined.
+        \end{proposition}
+
+        \begin{proof}
+            Indeed, \(\chi(\phi(t),\psi(t)) \equiv  (\phi, \psi)(\phi,\psi)^{-1}(t) = t\) in \(k(t)\).
+            
+            The inverse of the given homomorphism sends \(\phi(t)\) to \(x\) and \(\psi(t)\) to \(y\). 
+
+            \(x = (\phi, \psi) ^{-1} \phi(t) = \phi(\chi(x,y))\), similar for \(y\).
+            
+            Suppose \((x_0,y_0)\in X, \Psi(x_0, y_0)\) is well defined. Suppose moreover that \(\Phi \circ \Psi (x_0,y_0)\) is also defined. Then, \(\Phi \circ \Psi(x_0,y_0)=\Phi(\chi(x_0,y_0)) = (\phi(\chi(x_0,y_0)),\psi(\chi(x_0,y_0))) = (x_0,y_0)\).
+            
+            Similarly, if \(\Phi(t) = (\phi (t), \psi (t))\) defined for some \(t_0 \in \mathbb{A}_k^1\), and \(\Psi(\Phi(t_0))\) is defined,
+            
+            \(\Psi(\Phi(t_0)) = (\chi(\phi(t_0),\psi(t_0)))=t_0\) 
+        \end{proof}
+
+        \begin{corollary}
+            Let \(U \subset X\) be the set of all points where \(\Psi\) is defined. Let \(V \subset \mathbb{A}^1_k\) be the set of all points where \(\Phi\) is defined.
+
+            Then the pair: \(\Psi : X \to \mathbb{A}_k^1, \Phi: \mathbb{A}_k^1 \to X\) induces a bijection of sets. 
+
+            \[
+                \Psi : U \cap \Psi ^{-1} (V) \to  V \cap \Phi ^{-1} (U)
+            \]
+
+            Note that \(U \cap \Psi ^{-1} (V)\) consists of all but finitely many points of \(X\), and \(V \cap \Phi ^{-1} (U)\) is all but finitely many points of \(\mathbb{A}^1_k\).
+
+        \end{corollary}
+
+
+
 \end{document}

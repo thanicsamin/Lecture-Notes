@@ -182,4 +182,296 @@
             \]
         \end{enumerate} 
     \end{theorem}
+
+    \section*{Thursday, 1/16/2025}
+    
+    Recall: we fixed an algebraic closure \(\overline{K}\). Residue field of \(\overline{K} = \overline{k} = \) algebraic closure of \(k = \mathbb{F}_q\).
+    
+    \begin{theorem}
+        If \(L / K\) is abelian, \(L_{\pi} \subset L\), and \(L / L_\pi\) is purely rammified, then \(L_\pi = L\).
+    \end{theorem}
+    
+    \begin{proof}
+        Proof uses the Hasse-Arf theorem, which says that the jumps (or breaks) of the upper ramification filtration (\(G(L / K)^t, t \geq -1\)) are integers.
+    \end{proof}
+
+    \begin{remark}
+        \(G(L_\pi / K)^m = \operatorname{Gal}(L_\pi / L_{\pi,m}), m \geq 0\).
+        
+        \(L_{\pi, 0} \coloneqq K\).
+    \end{remark}
+
+    Let \(K^{ab} \subset \overline{K}\) be the maximal abelian subextension.
+
+    \begin{theorem}
+        For any uniformizer \(\pi\) one has \(K^{ab} = K^{nr}\).
+        
+        \(K^{nr} =\) maximal unramified extension \(= K(\mu_n \mid p \nmid n)\). 
+    \end{theorem}
+
+    \begin{proof}
+        Set \(L_\pi^{nr} \coloneqq K^{nr}.L_\pi \subset K^{ab}\). This gives us an exact sequence:
+
+        \begin{center}
+            \begin{tikzcd}
+                1 \ar[r] & G(K^{ab} / L_\pi^{nr}) \ar[r] & G(K^{ab} / L_\pi) \ar[r, two heads] & G(L_\pi^{nr} / L_\pi) \ar[r] & 1
+            \end{tikzcd}
+        \end{center}
+        
+        \begin{center}
+            \begin{tikzcd}
+                G(L_\pi^{nr} / L_\pi) \ar[r,"\cong"] & G(\overline{k}\mid k) = \langle\varphi\rangle^{\text{top}}
+            \end{tikzcd}
+        \end{center}
+
+        Where \(\varphi(\overline{\alpha}) = \overline{\alpha}^q, \overline{\alpha} \in \overline{k}\).
+        
+        \[
+            \langle \varphi \rangle ^{\text{top}} \coloneqq \lim_{\leftarrow} \varphi^\mathbb{Z} / \varphi^{n\mathbb{Z}} \cong \lim_{\leftarrow} \mathbb{Z} / n \mathbb{Z} \eqqcolon \widehat{\mathbb{Z}}  
+        \]
+
+        Choose \(\widetilde{\varphi} \in G(K^{ab} / L_\pi)\) such that \(\eval{\widetilde{\varphi}}_{K^{nr}} = \varphi\)
+        
+         
+
+    \end{proof}
+
+    \section*{Tuesday, 1/21/2025}
+    
+    \underline{Recall}: \(K =\) local nonarch.. field, \(\pi =\) uniformizer, \(e \in \mathscr{E}_\pi\) a LT seriess for \(\pi\), \(F_e\) a LT formal \(\mathcal{O}\)-module, \(L_\pi = \bigcup K(F_e[\pi^m]) \subset K^{ab}\) with topological isomorphism \(\operatorname{Gal}(L_\pi / K) \xrightarrow[\iota_\pi]{\cong} U_K = \mathcal{O}_K^\times\).
+
+    1.1.6 \(\implies\) 
+
+    \begin{center}
+        \begin{tikzcd}
+            K^\times \ar[r, equal] & U_K \times \pi^\mathbb{Z} \ar[r] & G(K^{ab} / K) \\ & (a,\pi^n) \ar[r,mapsto] & \underbrace{\iota_\pi^{-1}(a)}_{\text{acts trivially on }K^{nr}}\widetilde{\varphi}^n
+        \end{tikzcd}
+    \end{center}
+
+    \(\widetilde{\varphi} =\) Frobenius element of \(G(K^{ab} / K)\).
+
+    The map:
+
+    \begin{center}
+        \begin{tikzcd}
+            U_K \ar[r, "\cong"', "\text{can}"] & G(L_\pi / K) & G(L_\pi K^{nr} / K^{nr}) \ar[l, "\cong", "\text{can}"'] \ar[r,hook] & G(K^{ab} / K)
+        \end{tikzcd}
+    \end{center}
+
+    is canoncial. Here, \(K^{ab} = L_\pi K^{nr}\).
+
+    \begin{definition}
+        The Weil group \(W_K\) is defined by:
+
+        \[
+            W_K = \left\{ \sigma \in G(\overline{K} / K) \mid \eval{\sigma}_{K^{nr}} \in \varphi^\mathbb{Z}_{K^{nr}} \right\} 
+        \]
+    \end{definition}
+
+    Here \(\varphi_{K^{nr}}=\) \underline{the} arithmetic Frobenius of \(K^{nr}\).
+
+    We equip \(W_K\) with the coarsest topology which makes the \underline{inertia subgroup}:
+    
+    \[
+        I_K = \left\{ \sigma \in G(\overline{K} / K) \mid \eval{\sigma}_{K^{nr}} = \operatorname{id}_{K^{nr}} \right\}
+    \]
+
+    an open subgroup, and \(I_K\) is equipped witth its profinite topology. Then,
+
+    \[
+        W_K = \sqcup_{n\in\mathbb{Z}} I_L \widetilde{\varphi}^\mathbb{Z}
+    \]
+
+    (disjoint union of open cosets) with \(\widetilde{\varphi}\) as in 1.1.6. 
+
+    \begin{proposition}
+        The abelianization \(W_K^{ab} = W_K / \overline{[W_K, W_K]}\) is isomorphic to:
+
+        \[
+            \left\{ \sigma \in G (K^{ab} \mid K) \mid \eval{\sigma}_{K^{nr}} \in \varphi^\mathbb{Z}  \right\} 
+        \]
+
+        The image of the homomorphism:
+
+        \[
+            K^\times \to G(K^{ab} / K)
+        \]
+
+        of 1..1.6 is \(W_K^{ab}\).
+
+        \(U_K \supset 1 + (p^m)\) is open.
+    \end{proposition}
+
+    \begin{definition}
+        Let \(\Gamma\) be a topological group and \(\rho: \Gamma \to \operatorname{Aut} (V)\) be a representation of \(\Gamma\) as an \(E\)-vector space (\(E\) = any field). \(\rho\) is called \underline{smooth} if \(\forall v\in V\) we have:
+
+        \[
+            \operatorname{Stab}_{\rho}(v) = \left\{ \gamma \in \Gamma \mid \rho (\gamma)(v) = v \right\} 
+        \]
+
+        is open.
+    \end{definition}
+
+    \begin{proposition}
+        [\(\ell\)-adic local Langlands correspondence for \(GL_1\)]
+
+        Let \(\ell \neq p\) be a prime. Then the isomorphism \(K^\times \to W^{ab}_{K}\) from 1.1.7 induces a bijection:
+        
+        \[
+            \begin{Bmatrix}
+                \text{continuous homomorphisms} \\ W_K \to GL_1(\overline{\mathbb{Q}_\ell}) = \overline{\mathbb{Q}_{\ell}}^\times 
+            \end{Bmatrix} \to \begin{Bmatrix}
+                \text{smooth irreducible} \\ \text{rep's of } GL_1(K) = K^\times \\ \text{on } \overline{\mathbb{Q}_{\ell}}\text{-vector space}
+            \end{Bmatrix} / \cong
+        \]
+
+        \[
+            \chi \mapsto \left[ K^\times \xrightarrow{\cong} W_K^{ab} \overset{\chi}{\dashrightarrow} \overline{\mathbb{Q}_{\ell}}^\times \right] 
+        \]
+
+        \begin{center}
+            \begin{tikzcd}
+                \chi \ar[r, mapsto] & \text{[} K^\times \ar[r,"\cong"] & W_K^{ab} \ar[r,"\chi",dash] & \overline{\mathbb{Q}}_{\ell}^\times \text{]} \\
+                
+                & & W_K \ar[u] \ar[ur,"\chi"]
+            \end{tikzcd}
+        \end{center}
+
+    \end{proposition}
+
+    \begin{proof}
+        Main point: a smooth irreducible representation of \(K^\times\) on a \(\overline{\mathbb{Q}}_{\ell}^\times\) vector space is \(1\)-dimensional.
+    \end{proof}
+
+    \begin{remark}
+        Proposition 1.1.8 is also true when \(\overline{\mathbb{Q}}_{\ell}\) is replaced by \(\mathbb{C}\) and with the appropriate modifications, when \(\overline{\mathbb{Q}}_{\ell}\) is replaced by \(\overline{Q}_p\).
+    \end{remark}
+
+    \subsection{1-dim formal groups: the functional equation lemma}
+
+    Cf. Hazewinkel, Formal groups and Applications = [H1 Formal]
+
+    Here we let:
+
+    \begin{itemize}
+        \item \(K\) = any commutative ring
+        \item \(A \subset K\) subring
+        \item \(p\) prime
+        \item \(q\) power of \(p\)
+        \item \(\sigma: K \to K\) ring homomorphism
+        \item \(I \subset A\) ideal
+        \item \(s_1, s_2, s_3, \cdots \in K\) 
+    \end{itemize} 
+
+    We assume:
+
+    \begin{itemize}
+        \item \(\sigma (A) \subset A\)
+        \item \(\forall a\in A: \sigma (a) \cong a^q \mod I\) 
+        \item \(p\in I\) so \(A / I\) is an \(\mathbb{F}_p\)-algebra
+        \item \(\forall i \geq 1: s_i I \subset A\) 
+        \item \(\forall b\in K \forall r \geq 0: b I^r \subset A \implies \sigma (b) I^r \subset A\). 
+    \end{itemize} 
+
+    \begin{lemma}
+
+        Let \(g(x) = \sum_{i=1}^{\infty} b_i x^i \in x A[[x]]\).
+
+        By HW1, \(\exists! f_g(x) = \sum_{i=1}^{\infty} d_i x^i \in x K[[x]]\) so that,
+
+        \[
+            f(x) = g(x) + \sum_{i=1}^{\infty} s_i (\sigma_{\ast} ^ i f)(x^{q^i}) \tag*{(1.2.1)}
+        \]
+
+        where \(\sigma_{\ast}^i f_g\) is power series obtained from \(f_g\) obtained by applying \(\sigma^i\) to all coefficients.
+    \end{lemma}
+
+    Indeed, \(d_n = \begin{dcases}
+        b_n, &\text{ if } q\nmid n ;\\
+        b_n + s_1 \sigma(d_{n / q}) + \cdots +s_r \sigma(d_{n / q^r}), &\text{ if } n = q^r m, q \nmid m.
+    \end{dcases}\) 
+
+    \begin{lemma}[The functional equation lemma (FEL)]
+
+        Let ll data be as above. Let \(g(x) = \sum_{i=1}^{\infty} b_i x^i\) and \(\overline{g}(x) = \sum_{i=1}^{\infty} \overline{b_i} x^i\) be in \(x A[[x]]\) and assume \(b_1 \in A^\times\). Then, \(f_g(x) = b_1 x +\) higher order terms \(\implies f_g\) has inverse \(f_g ^{-1}\) w.r.t.\ composition. Then,
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(F_g(x,y) \coloneqq f_g ^{-1} (f_g(x) + f_g(y))\) is a formal group over \(A\).
+            \item \(f_g ^{-1} (f_{\overline{g}}(x)) \in x A[[x]]\).
+            \item Given \(h(x) = \sum_{i=1}^{\infty} c_n x^n \in x A[[x]], \exists \widehat{h} (x) = \sum_{n=1}^{\infty} \widehat{c_n} x^n\) s.t. \(f_g(h(x))=f_{\widehat{h}}(x)\).
+            \item If \(\alpha(x) \in x A[[x]], \beta(x) \in K[[X]]\), then \(\forall r \geq 0: \alpha(x) \equiv \beta(x) \mod I^r A[[x]] \iff f_g(\alpha(x)) \equiv f_g(\beta (x)) \mod I^r A[[x]]\)   
+        
+        \end{enumerate} 
+
+    \end{lemma}
+
+    \begin{lemma}
+        [HW1] Write \(f_g(x) = \sum_{i=1}^{\infty} d_i x^i\) and write \(n = q^r m, q \nmid m\). Then \(d_n I^r \subset A\).  
+    \end{lemma}
+
+    \begin{lemma}
+        Let \(G(x,y) \in A[[x,y]]\) and \(n = q^r m\), and \(\ell > 0\). Then,
+        
+        \[
+            G(x,y)^{q^\ell n} \cong \left( (\sigma_{\ast}^{\ell} G)(x^{q^{\ell}, y^{q^{\ell}}}) \right)^n \mod I^{r+1} 
+        \]
+
+        \((\sigma(a) \equiv a^q \mod I)\) 
+    \end{lemma}
+
+    \begin{proof}
+        [Proof of (i) of FEL] Note that \(f_g ^{-1} (x) = b_1 ^{-1} x + h.o.t\). Then,
+        \[
+            F_g(x,y) = b_1 ^{-1} (b_1 x + b_1 y + h.o.t) = x + y + h.o.t \tag*{(1)}
+        \]
+        
+        and associativity follows from the definition.
+
+        Write \(F(x,y)=F_1(x,y)+F_2(x,y)+F_3(x,y) + \cdots\) with \(F_d(x,y) \in K[x,y]\) homogeneous of degree \(d\).
+
+        We want to show, \(\forall d\geq 1, F_d(x,y) \in A[x,y]\).
+
+        We prove this by induction. Case \(d=1\) already done.
+
+        Assume \(d \geq 2\) and the statement is true for \(F_1, \cdots , F_{d-1}\).
+
+        \underline{Note}:
+        \[
+            \forall r \geq 2: (F_1(x,y) + \cdots +F_{d-1} (x,y))^r \equiv F(x,y)^r \mod \deg d+1\tag*{(2)}
+        \] 
+
+        (2) and 1.2.4 together imply that \(\forall i \geq 1, n = q^r m, q \nmid m\) (\(n=1, r=0\) are ok).
+
+        \[
+            F(x,y)^{q^i n} \cong \left( (\sigma_{\ast}^i F) (x^{q^i},y^{q^i}) \right) ^ n \mod \deg d+1, I^{n+1} \tag*{(3)}
+        \]
+
+        By definition,
+
+        \[
+            f(F(x,y)) = f(x) + f(y) \tag*{(4)}
+        \]
+
+        (4) \(\implies\) (5):
+
+        \[
+            (\sigma_{\ast} f)((\sigma_{\ast} ^i F)(x,y)) = (\sigma_{\ast}^i f)(x) + (\sigma_{\ast}^i f)(y) \tag*{(5)}
+        \]
+
+        (1.1.2) = (6)
+
+        \[
+            f(x) = g(x) + \sum_{i=1}^{\infty} s_i (\sigma_{\ast}^i f)(x^{q^i}) \tag*{(6)}
+        \]
+
+        Substitute \(F(x,y)\) for \(x\) in (6). We get (7):
+
+        \[
+            f(F(x,y)) = g(F(x,y)) + \sum_{i=1}^{\infty} s_i \sum_{n=1}^{\infty} \sigma^i(d_n) F(x,y)^{q^i n}
+        \]
+
+        Then we use the 12.4 congruence and our knowledge about the integrality of \(s_i\). Eventually it turns out that \(F_d(x,y) \equiv 0 \mod A[[x,y]]\). Thus \(F_d\) has coefficients in \(A\). 
+        
+    \end{proof}
+
 \end{document}
