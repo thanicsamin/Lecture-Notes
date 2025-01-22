@@ -543,4 +543,253 @@
 
     \(\cong \mathbb{Z}^2 \to \mathbb{Z}^3 \to \mathbb{Z}^1\) 
 
+    \section*{Wednesday, 1/22/2025}
+    
+    \begin{definition}
+        [Simplex] Let \(v_0, \cdots , v_n \in \mathbb{R}^n\).
+
+        \[
+            [v_0, \cdots , v_n] = \left\{ \sum_{i} t_i v_i \mid \sum_{i} t_i = 1, 1 \leq t_i \leq 0 \right\}
+        \]
+
+        If \(v_0 - v_1, \cdots , v_0 - v_n\) are linearily independent, then \([v_0, \cdots , v_n]\) is a \underline{geometric} \underline{\(n\)-simplex}.
+    \end{definition}
+
+    If vertices are ordered,
+
+    \[
+        \sigma_{[v_0, \cdots , v_n]} : \Delta^n \to [v_0, \cdots , v_n]
+    \]
+
+    \[
+        \sum_{i} t_i e_i \mapsto \sum_{i} t_i v_i
+    \]
+
+    Note that,
+
+    \[
+        \delta_n \sigma_{[v_0, \cdots , v_n]} \equiv  \sum_{j} (-1)^j \sigma_{[v_0, \cdots , \widehat{v_j}, \cdots , v_n]}
+    \]
+
+    \(\Delta^n\) breaks up into boundary and interior.
+
+    \[
+        \Delta^n = \partial \Delta^n \cup \mathring{\Delta^n}
+    \]
+
+    \[
+        \partial \Delta^n = \left\{ \sum_{i} t_i e_i \mid \text{some } t_i = 0 \right\} 
+    \]
+
+    \[
+        \mathring{\Delta^n} = \left\{ \sum_{i} t_i e_i \mid t_i\neq 0 \text{ for all } i \right\} 
+    \]
+
+    \begin{definition}
+        A \(\Delta\)-complex is a space \(X\) with:
+
+        \[
+            \left\{ \sigma_\alpha : \Delta^n \to X \right\} \, \text{simplices} 
+        \]
+
+        such that:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\eval{\sigma_\alpha}_{\mathring{\Delta^n}}\) is injective.
+            
+            \(\forall x\in X, \exists !\) s.t. \(x\in \sigma_\alpha(\mathring{\Delta^n})\). Images of interiors partition \(X\).
+
+            \item \(\forall \alpha, \forall j, \exists \beta\) such that:
+            
+            \[
+                \sigma_\alpha \circ \delta_j = \sigma_\beta
+            \]
+
+            Faces of simplices are simplices.
+
+            \item \(A \subset X\) open \(\iff \forall \sigma_\alpha, \sigma_\alpha ^{-1} A\) is open in \(\Delta^n\). ``Weak Topolofy''.
+        \end{enumerate} 
+
+
+    \end{definition}
+
+    Hatcher says, one way to look at this is by taking a quotient of a disjoint union. We can consider:
+
+    \[
+        \frac{\Delta^0 \sqcup \Delta^1 \sqcup \Delta^1 \sqcup \Delta^1 \sqcup \Delta^2 \sqcup \Delta^2}{\sim}
+    \]
+
+    \begin{definition}
+        [Simplicial Chain Complex] \(\Delta_n X =\) free abelian group on \(n\)-simplices:
+
+        \[
+            \Delta_{n+1} X \xrightarrow{\partial_{n+1}} \Delta_n X \to \Delta_{n-1} X \to 
+        \]
+
+        Subcompplex \(\Delta_{\ast} X \subset S_{\ast} X\) 
+
+        \begin{center}
+            \begin{tikzcd}
+                \Delta_n X \ar[r,"\partial"] \ar[d, hook] & \Delta_{n-1} X \ar[d, hook] \\ S_n X \ar[r,"\partial"] & S_{n-1} X
+            \end{tikzcd}
+        \end{center}
+
+        The diagram commutes.
+
+        Simplicial Homology:
+
+        \[
+            H_{\ast} ^\Delta X \coloneqq H_{\ast} (\Delta_{\ast} X)
+        \]
+
+        \[
+            H_{\ast}^\Delta X \xrightarrow{\cong} H_{\ast} X
+        \]
+        
+    \end{definition}
+
+    Consider the \(2\)-torus with ``ordered'' vertices:
+
+    % insert picture
+
+    % insert picture
+
+    \[
+        \partial U = b-c+a
+    \]
+
+    \[
+        \partial L = a-c+b
+    \]
+
+    \[
+        \partial a = 0v, \partial b = 0v, \partial c = 0v
+    \]
+
+    \[
+        \Delta_2 T \to \Delta_1 T \to \Delta_0 T \to 0
+    \]
+
+    Then, \(\Delta_2 T\) has basis \(\mathbb{Z} U \oplus \mathbb{Z} L\)
+
+    \(\Delta_1 T\) has basis \(\mathbb{Z} a \oplus \mathbb{Z} b \oplus \mathbb{Z} c\)
+    
+    \(\Delta_0 T\) has basis \(\mathbb{Z}v\)
+
+    Now, \(H_0^\Delta T = \frac{\mathbb{Z} v}{0} \cong \mathbb{Z}\) 
+
+    \(H_2^\Delta T = \frac{\mathbb{Z}(U-L)}{0}\cong \mathbb{Z}\).
+
+    We only have \(U-L\) since \(\partial(n_1 U + n_2 L) = 0 \implies n_1(b-c+a) + n_2(a-c+b) = 0 \implies n_1 = -n_2\)
+
+    \(H_1^\Delta T = \frac{\mathbb{Z}(a,b,c)}{\mathbb{Z}(a-c+b)} = \frac{\mathbb{Z}(a,b,a-c+b)}{\mathbb{Z}(a-c+b)} \cong \mathbb{Z}^2\).
+
+    We can have a basis for homology since they are free abelian.
+
+    Basis for \(H_0^\Delta T\) is \([v]\)
+    
+    Basis for \(H_1^\Delta T\) is \([a],[b]\).
+    
+    Basis of \(H_2^\Delta T\) is \([U-L]\).
+
+    Matrix POV on \(H_{\ast}^\Delta T\)
+
+    \[
+        \Delta_\cdot \cong \mathbb{Z}^2 \xrightarrow{\begin{bmatrix}
+            1 & 1 \\
+            1 & 1 \\
+            -1 & -1
+        \end{bmatrix} } \mathbb{Z}^3 \xrightarrow{\begin{bmatrix}
+            0 & 0 & 0
+        \end{bmatrix}} \mathbb{Z}
+    \]
+
+    Integral row and column operations:
+
+    \begin{itemize}
+        \item Switch two rows (or columns)
+        \item Add multiples of a row (or column) to another row (or column)
+        \item Multiply row (or column) by \(\pm 1\) 
+    \end{itemize} 
+
+    These correspond to basis changes in the domain and codomain.
+
+    If matries \(A\) and \(B\) are equivalent \((A \sim B)\) it implies:
+
+    \[
+        \ker A \cong \ker B
+    \]
+
+    \[
+        \operatorname{coker}  A \cong \operatorname{coker} B
+    \]
+
+    Every integral matrix is equivalent to:
+
+    \[
+        \begin{bmatrix}
+            d_1 &  &  &  \\
+             & d_2 &  &  \\
+             &  & \ddots &  \\
+             &  &  & d_n \\
+        \end{bmatrix} 
+    \]
+
+    With \(d_1 \mid d_2 \mid d_3 \mid \cdots\) 
+
+    It is a smith normal form.
+
+    We have:
+
+    \[
+        \begin{bmatrix}
+            1 & 1 \\
+            1 & 1 \\
+            -1 & -1 \\
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & 0 \\
+            1 & 0 \\
+            -1 & 0 \\
+        \end{bmatrix} \sim \begin{bmatrix}
+            1 & 0 \\
+            0 & 0 \\
+            0 & 0 \\
+        \end{bmatrix} 
+    \]
+
+    This is \(\partial_2\).
+
+    \(H_2^\Delta T \cong \mathbb{Z}\) 
+
+    \(\operatorname{im} \partial_2 \cong \mathbb{Z}\) and summand of \(\Delta_1 T\)
+
+    \(H_1^\Delta T \cong \frac{\mathbb{Z}^3}{\mathbb{Z} \times 0 \times 0} \cong \mathbb{Z}^2\) 
+
+    Exercise: compute kernel and cokernel of: \(\begin{bmatrix}
+        9 & 3 \\
+        4 & 2 \\
+    \end{bmatrix} \) 
+
+    \(\begin{bmatrix}
+        9 & 3 \\
+        4 & 2 \\
+    \end{bmatrix} \sim \begin{bmatrix}
+        5 & 1 \\
+        4 & 2 \\
+    \end{bmatrix} \sim \begin{bmatrix}
+        5 & 1 \\
+        -1 & 1 \\
+    \end{bmatrix} \sim \begin{bmatrix}
+        6 & 0 \\
+        -1 & 1 \\
+    \end{bmatrix} \sim \begin{bmatrix}
+        6 & 0 \\
+        0 & 1 \\
+    \end{bmatrix} \sim \begin{bmatrix}
+        1 & 0 \\
+        0 & 6 \\
+    \end{bmatrix} \) 
+
+    Thus, \(\ker = 0, \operatorname{coker} = \mathbb{Z} / 6\mathbb{Z}\).
+
 \end{document}

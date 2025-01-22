@@ -406,6 +406,160 @@
 
         \end{corollary}
 
+    \section*{Wednesday, 1/22/2025}
+    
+        Recall: \(X\) is a rational (algebraic plane) curve \(\iff\) 
+        
+        \[
+            k(X) \overset{\Phi}{\cong} k(t), \begin{dcases}
+                x \mapsto \phi(t) \\ y \mapsto \psi(t)
+            \end{dcases}, t \overset{\Phi ^{-1}}{\mapsto} \chi(x,y)
+        \]
 
+        such an isomorphism yieelds a `good parametrization' of \(X\) in the following sense:
+
+        Prop 1: Let \(\Phi: X \to \mathbb{A}^1\) be the rational map \((x,y) \mapsto \chi(x,y)\)
+
+        Let \(\psi: \mathbb{A}^1 \to X\) be the map:
+
+        \[
+            t \mapsto (\phi(t), \psi(t))
+        \]
+
+        Let \(U \subseteq X\) be the set of points where \(\Phi\) is defined. \(V \subseteq \mathbb{A}^1\) be the set of points where \(\Psi\) is defined.
+
+        Then, the pair \(\Phi: U \cap \phi ^{-1} (V) \to V \cap \psi ^{-1} (U)\) is a bijection.
+
+        \begin{proof}
+            We recall from last lecture that \(\Psi \circ \Phi , \Phi \circ \Psi\) are identities wherever defined. 
+
+            Suppose \(P\in U\cap \phi ^{-1} (V), \Phi(P) \in V \implies \Psi \circ \Phi(P) = P \in U\) 
+
+            \(\Phi(P) \in V \cap \Psi ^{-1} (U)\). Similarly, \(Q\in V \cap \Phi ^{-1} (U)\)
+
+            \(\implies \Psi(Q) \in U \cap \Phi ^{-1} (V)\). The desired proposition thus follows.
+        \end{proof}
+
+        \begin{remark}
+            \(U \cap \Phi ^{-1} (V)\) is all but finitely many points of \(X\). \(U\) is all but finitely many points of \(X\). Since \(\mathbb{A}^1 \setminus V\) is only finitely many points, \(\Phi(P) \in \mathbb{A}^1 \setminus V\) for only finitely many points \(P\in X\).
+
+            Similarly, \(V \cap \Psi ^{-1} (U)\) is all but finitely many points of \(\mathbb{A}^1\).
+        \end{remark}
+
+        This is a special case of the following more general phenomenon.
+
+        \begin{definition}
+            Let \(X,Y\) be irreducible algebraic plane curves. A map \(\Phi: X \to \mathbb{A}^2\), \(P \mapsto (u(P),v(P))\) is called \underline{rational} if \(u,v\in k(X)\).
+
+            If \(\operatorname{im} (\Phi) \subseteq Y, \Phi: X \to Y\) is said to be a \underline{rational} map.
+
+            \begin{remark}
+                If \(u,v \in k(X)\) and \(\Phi \circ (u,v): X \to Y\) is a riational map, \(Y\) has equation \(\{ g(\alpha ,\beta) = 0\} \) then \(g(u,v) \equiv 0\) in \(k(X)\). 
+            \end{remark}
+        \end{definition}
+
+        Let \(X,Y\) be irreducible algebraic plane curves.
+
+        \begin{definition}
+            \(X\) is said to be \underline{birational} to \(Y\) if \(\exists \) a birational map \(\Phi : X \to Y\).
+            
+            Here, a rational map \(\Phi: X \to Y\) is called birational if \(\exists\) a rational map \(\Psi: Y \to X\) such that \(\Phi \circ \Psi\) and \(\Psi \circ \Phi\) are identities where defined.
+        \end{definition}
+
+        Then, Any rational curve is birational with an affine line.
+
+        \begin{proposition}
+            Let \(\Phi : X \to Y\) be a birational map with `inverse' \(\Psi : Y \to X\). Then, \(\Phi ,  \Psi\) defines a bijection:
+
+            \[
+                U \cap \Phi ^{-1} (V) \xleftrightarrow[\Psi]{\Phi}  V \cap \Psi ^{-1} (U)
+            \]
+
+            where \(U\) (resp. \(V\)) is the domain of definition of \(\Phi\) (resp. \(\Psi\)).
+        \end{proposition}
+
+        \begin{corollary}
+            Any birational map \(\Phi: X \to Y\) is \underline{not} constant.
+        \end{corollary}
+
+        \begin{proposition}
+            Let \(X,Y\) be irreducible algebraic plane curves. \(X\) is birational to \(Y \iff k(X) \cong k(Y)\).
+        \end{proposition}
+
+        \begin{proof}
+            [Sketch] Let \(X \subset \mathbb{A}^2 \leftarrow\) \(x,y\) coordinates on this copy of \(\mathbb{A}^2\). \(X = \{ f=0 \} \) 
+
+            Let \(Y \subset \mathbb{A}^2 \leftarrow\) \((u,v)\) coordintes on this copy of \(\mathbb{A}^2\). \(Y = \{ g=0 \}\) 
+
+            Suppose \(\Phi: X \to Y\) is a birational map with birational inverse \(\Psi: Y \to X\).
+
+            We have:
+
+            \(\Phi: X \to Y\) 
+
+            \((x,y) \mapsto (\eta(x,y), \xi(x,y))\)
+            
+            \(\Psi: Y \to X\)
+            
+            \((u,v) \mapsto (\lambda(u,v),\eta(u,v))\) 
+
+            Here, \(g(\eta,\xi)=0\) in \(k(X)\) and \(f(\lambda,\mu) = 0\) in \(k(Y)\).
+
+            Then we have the map:
+
+            \[
+                k(Y) \xrightarrow{\Phi^{\ast}} k(X)
+            \]
+
+            \[
+                u \mapsto \eta(x,y), v \mapsto \xi(x,y)
+            \]
+
+            \[
+                k(X) \xrightarrow{\Psi^\ast} k(Y)
+            \]
+            
+            \[
+                x \mapsto \lambda(u,v), y \mapsto \mu(u,v)
+            \]
+
+            We can check that \(\Phi^{\ast}, \Psi^{\ast }\) are inverses to each other.
+
+            \(\impliedby\): If \(\phi: k(X) \to k(Y)\) is an isomorphism with inverse \(\psi\),
+            
+            let \(\lambda(u,v)\coloneqq \phi(x), \mu(u,v) \coloneqq \phi(y)\).
+            
+            Then, \(f(\lambda ,\mu) \equiv 0\) in \(k(Y)\).
+
+            Let \(\eta(x,y) \coloneqq \psi(u), \xi(x,y) \coloneqq \psi(v)\). \(g(\eta, \xi) =0\) in \(k(X)\)..
+            
+            Then we have \(\Phi:X \to Y, (x,y) \mapsto (\eta(x,y),\xi(x,y))\) and \(\Psi: Y \to X, (u,v) \mapsto (\lambda(u,v),\mu(u,v))\) gives a birational equation between \(X \to Y\).  
+        \end{proof}
+
+        For example, let \(f(x,y)=0\) be an irreducible curve. If every monomial in \(f\) is of degree \(n-1\) or \(n\) then \(f\) is rational.
+
+        Proof: Let \(f(x,y) = u_{n-1} (x,y) + u_n(x,y)\) where \(u_i\) monomial of degree \(i\).
+
+        Let \(t = \frac{y}{x}\), with \(y = tx\).
+        
+        \(f(x,y)=0 \iff u_{n-1}(x,tx) + u_n(x,tx) = 0 \iff x^{n-1} u_{n-1} (1,t) + x^n u_n(1,t) = 0 \iff x^{n-1} (u_{n-1}(1,t)+xu_n(1,t)) =  0\).
+        
+        Thus, \(x = - \frac{u_{n-1}(1,t)}{u_n(1,t)}\in k(t), y = - \frac{t u_{n-1} (1,t)}{u_n(1,t)} \in k(t)\).
+
+        If \(f(x,y) = u_{n-2} (x,y) + u_{n-1} (x,y) + u_n(x,y)\) then \(\{ f(x,y)=0 \} \) is birational to a curve of the form \(s^2 = p(t)\).
+
+        Proof: Again we put \(t = \frac{y}{x} \iff y=tx\), so:
+
+        \[
+            x^{n-2} (u_{n-2}(1,t) + u_{n-1} (1,t) x + u_n(1,t) x^2) = 0
+        \]
+
+        \[
+            \iff a(t)x^2 + b(t)x + c(t) = 0
+        \]
+
+        Put \(s(x,t) = 2a(t)x + b(t)\).
+
+        Then, \(s^2 = b(t)^2 - 4a(t)c(t)\), degree \(\leq 2n-2\) 
 
 \end{document}
