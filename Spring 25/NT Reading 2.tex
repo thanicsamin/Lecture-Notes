@@ -150,4 +150,180 @@
         Then, \(H_1\) is conjugate with \(H_2\) by an element of \(\mathscr{E}(L)\).
     \end{theorem}
 
+    \section{Thursday, 1/23/2025, Cartan Subalgebra (CSA) by Rostyslav}
+
+    \begin{proof}
+        Induction on \(\dim L\).
+
+        Base case: suppose \(\dim L=1\). Since \(L\) is nilpotent \(L\) must be trivial.
+
+        Assume that \(L\) is not nilpotent. \(L\)--solvable \(\implies\) \(L\) has non-zero abelian ideals. eg least non-zero term of the derived series. Choose such \(A\) of least possible dimension.
+
+        Set \(L^{\prime} = L / A\). We have \(\phi: L \to L / A = L^{\prime}\) given by \(x \mapsto x^{\prime}\).
+
+        Lemma 15.4(image of CSA is CSA) implies \(H_1^{\prime} , H_2^{\prime}\) are CSAs of the solvable algebra \(L^{\prime}\). By induction \(\exists \sigma \in \mathscr{E} (L^{\prime})\) such that \(\sigma(H_1^{\prime})=H_2^{\prime}\).
+
+        Lemma 16.1(the commutative diagram) implies \(\exists \sigma \in \mathscr{E} (L)\) such that the diagram commutes. So, \(\sigma\) maps \(K_1 = \phi ^{-1} (H_1^{\prime})\) to \(\phi ^{-1} (H_2^{\prime}) = K_2\)
+        
+        But now \(H_2\) and \(\sigma(H_2)\) are both CSA''s of \(K_2\).
+
+        If \(K_2\) is smaller than \(L\) induction allows us to find \(\tau ^{\prime} \in \mathscr{E} (K_2)\) such that \(\tau ^{\prime} \sigma (H_1)=H_2\).
+
+        But \(\mathscr{E}(K_2)\) consists of restrictions of \(\mathscr{E}(L,K_2)\) to \(K_2\).
+
+        \(\exists \tau\) such that \(\tau \sigma (H_1) = H_2\) for \(\tau \in \mathscr{E} (L) \implies\) done.
+
+        Otherwise \(L = K_2 = \sigma(L_1)\).
+
+        \(K_2 = K_1\) and \(L = H_2 + A = H_1 + A\).
+
+        Theorem 15.3 \(\implies\) CSA \(H_2 = L_0(\operatorname{ad} x)\) for suitable \(x\in L\).
+
+        \(A\) being \(\operatorname{ad} x\) stable, so by lemma 15.1,
+
+        \[
+            A = A_0 (\operatorname{ad} x) \oplus A_{\ast} (\operatorname{ad} x)
+        \]
+
+        and each summand is stable under \(H_2 + A\).
+
+        Since \(A\)  is minimal, \(A = A_0 (\operatorname{ad} x)\) or \(A = A_{\ast}(\operatorname{ad} x)\)  
+
+        \(A\) cannot be equal to \(A_0(\operatorname{ad} x)\) since in that case \(A \subset H_2, L = H_2\).
+
+        But since \(L\) is \underline{not} nilpotennt we have a contradiction.
+
+        Thus, \(A = A_{\ast} (\operatorname{ad} x) \implies A = L_{\ast} (\operatorname{ad} x)\). Since \(L = H_1 + A\) we can write \(x = y+z\) with \(y\in H_1, z \in A_{\ast} (\operatorname{ad} x)\).
+        
+        Since \(\operatorname{ad} x\) is invertible on \(L_{\ast} (\operatorname{ad} x)\) we can write \(z = [x,z^{\prime}]\) where \(z^{\prime} \in L_{\ast} (\operatorname{ad} x)\).
+        
+        \(A\)-abelian \(\implies (\operatorname{ad} z^{\prime})^2 = 0\).
+        
+        Thus, \(\exp \operatorname{ad} z^{\prime} = 1_L + \operatorname{ad} z^{\prime}\).
+
+        Applying to \(x\) we have, \(x - z = y\).
+
+        \(\implies H_0 = L_0(\operatorname{ad} y)\) must also be a CSA of \(L\). Since \(y\in H_1, H \supset H_1\) and both minimal Engel, \(H = H_1\).
+
+        \(H_1\) is conjuate to \(H_2\) using \(\exp \operatorname{ad} z^{\prime}\).
+
+        We only need to show that, \(\exp \operatorname{ad} z^{\prime} \in \mathscr{E} (L)\).
+
+        \(z^{\prime} \) can be written as sum of strongly \(\operatorname{ad}\)-nilpotent elements of \(A = L_{\ast} (\operatorname{ad} x)\)
+        
+        \(\implies A\)-abelian so \(\exp \operatorname{ad} z^{\prime} = \prod \exp \operatorname{ad} z_i \in \mathscr{E} (L)\).
+
+        So we're done.
+
+    \end{proof}
+
+    Consider \(B = \) upper triangular matrices. It is a lie algebra. What is a CSA of this?
+
+    Attempt: we have \(H =\) upper triangular matrices with \(0\) diagonal. \(N_B (H) = B\). But it is not nilpotent so it doesn't work.
+
+    However, attempt 2: we can take \(H = \) diagonal matrices.
+
+    In fact, if \(\mathfrak{g} \subset \mathfrak{gl}_n\) is a subalgebra and \(\mathfrak{g}\) contains a diagonal matrix with all entries different, then the subalgebra \(\mathfrak{h}\) of \(\mathfrak{g}\) containing all diagonal matrices on \(\mathfrak{g}\) is a CSA.
+
+    \begin{definition}
+        A maximal solvable subalgebra of a lie algebra \(L\) is called a \underline{Borel} \underline{subalgebra}.
+    \end{definition}
+
+    \begin{lemma}
+        [16.3.A] If \(B\) is a borel subalgebra of \(L\) then \(B = N_L(B)\). Aka, Borel subalgebras are self normalizing.
+    \end{lemma}
+
+    \begin{proof}
+        Let \(x\in N_L(B)\). Then, \(B + Fx\) is a subalgebra of \(L\). It is solvable since \([B+Fx,B+Fx] \subset B\). Since \(B\) is maximal, we must have \(x\in B\).
+    \end{proof}
+
+    \begin{lemma}
+        [16.3.B] If \(\operatorname{Rad} L \neq L\) then there is a bijection between the sets of Borel subalgebras of \(L\) and Borel subalgebras of \(L / \operatorname{Rad} L\).
+    \end{lemma}
+
+    \begin{proof}
+        \(\operatorname{Rad} L\) is a solvable ideal of \(L\).
+
+        Therefore, \(B + \operatorname{Rad} L\) is a solvable subalgebra of \(L\).
+
+        \(\implies\) by maximality, we're done.
+    \end{proof}
+
+    \begin{definition}
+        Let \(H\) be a CSA in a semisimple lie algebra \(L\), \(\Phi\) a root system of \(L\) relative to \(H\). Fix a base \(\Delta\) and a set of positive roots.
+
+        Set \(B(\Delta) = H \sqcup_{\alpha > 0} L_\alpha\)
+
+        And \(N(\Delta) = \sqcup_{\alpha \not> 0} L_\alpha\).
+
+        Then \(B(\Delta)\) is the standard Borel subalgebra relative to \(H\).
+
+        \(N(\Delta)\) is the derived algebra of \(B(\Delta)\).
+    \end{definition}
+
+    \begin{lemma}
+        [16.3.C.1]
+
+        \(N(\Delta)\) is nilpotent.
+
+        If \(x\in L_\alpha (\alpha > 0)\) then,
+
+        Application of \(\operatorname{ad} x\) to root vector increases the \underline{height} by at least \(1\).
+
+        \(\implies\) decreasing central series goes to zero.
+
+        Thus, \(B(\Delta)\) is solvable.
+
+        Let \(K \supset B(\Delta)\). Then, \(K\) is stable under \(\operatorname{ad} H\).
+
+        Then \(K\) must include some \(L_\alpha\) with \(\alpha < 0\).
+
+        Thus, simple \(S_\alpha \subset K \implies K\) is not solvable.
+
+    \end{lemma}
+
+    Note: \(S_\alpha = \langle L_\alpha , L_{-\alpha}, H \rangle \) 
+
+    \begin{lemma}
+        [16.3.C2] All standard Borel subalgebras of \(L\) relative to \(H\) are conjugate under \(\mathscr{E} (L)\).
+    \end{lemma}
+
+    \begin{proof}
+        By 14.3 the reflection \(\sigma_\alpha\) acting on \(H\) may be extended to an inner automorphism \(\tau_\alpha\) of \(L\) which is, by construction, in \(\mathscr{E}(L)\).
+
+        \(\tau_\alpha\) would send \(B(\Delta)\) to \(B(\sigma\Delta)\).
+
+        The \underline{Weyl Group} is generated by those reflections, so we see that \(\mathscr{E}(L)\) will act transitively on standard Borel subalgebras relative to \(H\).
+
+    \end{proof}
+
+    \begin{theorem}
+        [16.4] The Borel subalgebras of an arbitrary Lie algebra \(L\) are all conjugate under \(\mathscr{E}(L)\).
+    \end{theorem}
+
+    We omit the proof for now.
+
+    \begin{corollary}
+        All the CSAs of lie algebra \(L\) are all conjugate under \(\mathscr{E}(L)\). 
+    \end{corollary}
+
+    \begin{proof}
+        Let \(H,H^{\prime}\) be CSAs. They're nilpotent by definition. Therefore, they're solvable. 
+
+        Therefore, \(H \subset B, H^{\prime} \subset B^{\prime}\) where \(B,B^{\prime}\) are some borel subalgebra.
+
+        By the previous theorem, \(\exists \sigma \in \mathscr{E}(L)\) such that \(\sigma(B) = B^{\prime}\).
+
+        Thus, \(\sigma(H)\) and \(H^{\prime}\) are CSAs of \(B^{\prime}\).
+
+        By theorem 16.2, \(\exists \tau^{\prime} \in \mathscr{E}(B^{\prime})\) such that \(\tau ^{\prime} \sigma (H) = H^{\prime}\).
+
+        But \(\tau ^{\prime} \) is a restriction of some \(\tau \in \mathscr{E}(L,B^{\prime}) \subset \mathscr{E}(L)\). Therefore,
+
+        \[
+            \tau \sigma (H) = H^{\prime}, \, \tau \sigma \in \mathscr{E}(L)
+        \]
+
+    \end{proof}
+
 \end{document}

@@ -792,4 +792,244 @@
 
     Thus, \(\ker = 0, \operatorname{coker} = \mathbb{Z} / 6\mathbb{Z}\).
 
+    \section*{Friday, 1/24/2025}
+    
+    Goal: if there is continuous \(f: X \to Y\) then we have homomorphism \(f_{\ast} : H_{\ast} X \to H_{\ast} Y\).
+    
+    We think of them in terms of Category Theory.
+
+    Setup:
+
+    Category \(\mathcal{C}\).
+
+    Collection of objects \(\operatorname{Ob} \mathcal{C}\).
+
+    \(\forall X, Y \in \operatorname{Ob} \mathcal{C}\) we have a collection of morphisms \(\mathcal{C}(X,Y)\).
+
+    \(\forall X,Y,Z \in \operatorname{Ob} \mathcal{C}\) we have composition law:
+
+    \[
+        \mathcal{C}(X,Y) \times \mathcal{C}(Y,Z) \to \mathcal{C}(X,Z)
+    \]
+
+    \[
+        (g,f) \mapsto f \circ g
+    \]
+
+    Also, \(\forall X\in \operatorname{Ob} \mathcal{C}, \exists \operatorname{id}_{X} \in \mathcal{C}(X,X)\).
+
+    We also have associative law:
+
+    \[
+        (f \circ g) \circ h = f \circ (g \circ h)
+    \]
+
+    \(\forall f\in \mathcal{C}(X,Y), f = \operatorname{id}_{Y} \circ f = f \circ \operatorname{id}_{X}\).
+
+    For \(f\in \mathcal{C}(X,Y)\) we can also write it as \(f: X \to Y\) or \(X \xrightarrow{f} Y\).
+
+    We sometimes call them `arrows' instead of `morphisms' to avoid thinking of them as functions.
+
+    \begin{center}
+        \begin{tikzcd}
+            X \ar[r,"g"] \ar[rr, bend right, "f\circ g"'] & Y \ar[r,"f"] & Z
+        \end{tikzcd}
+    \end{center}
+
+    \begin{definition}
+        \(f: X \to Y\) is an \underline{isomorphism} if \(\exists g: Y \to X\) such that:
+
+        \[
+            f \circ g = \operatorname{id}_{Y}, g \circ f = \operatorname{id}_{X} 
+        \]
+
+        We write it as \(X \cong Y\) and say \(X\) and \(Y\) are \underline{isomorphic}.
+    \end{definition}
+
+    Example of Categories:
+
+    \(\operatorname{Set}\) is (sets, functions).
+
+    \(\operatorname{Top}\) is (topological spaces, continuous functions)
+
+    \(\operatorname{Ab}\) is (abelian groups, homomorphisms)
+
+    Morphisms need not be functions!!
+
+    A group can be viewed as a category with one object. Elements of the group is the set of morphisms, and all morphisms are invertible.
+
+    Suppose \(G = \{ 1,T \}\) of order \(2\). Then, we have:
+
+    \begin{center}
+        \begin{tikzcd}
+            T \ar[loop left, "T"] \ar[loop right, "\operatorname{id}"]
+        \end{tikzcd}
+    \end{center}
+
+    Where \(T \circ T = \operatorname{id}\) 
+
+    We let \(\operatorname{Ch}\) be the category of \underline{chain complexes}.
+
+    The objects will be chain complexes. What are the morphisms?
+
+    Recall that Chain complexes are \(C_\bullet = (C_{\ast} , \partial_{\ast})\) where:
+
+    \begin{center}
+        \begin{tikzcd}
+            \, \ar[r] & C_{n+1} \ar[r,"\partial_{n+1}"] & C_n \ar[r,"\partial_n"] & C_{n-1} \ar[r] & \,
+        \end{tikzcd}
+    \end{center}
+
+    Where \(\partial_{n+1} \circ \partial_n = 0\).
+    
+    Morphisms are given by \underline{chain maps}.
+
+    \begin{definition}
+        [Chain map] \(f_\bullet: C_\bullet \to C_\bullet^{\prime}\) is a sequence of homomorphisms \(f_n : C_n \to C_n^{\prime}\) such that:
+
+        \[
+            f_{n-1} \circ \partial_n = \partial_n^{\prime} \circ f_n
+        \]
+
+        For all \(n\).
+    \end{definition}
+
+    We have the following commutative diagram:
+
+    \begin{center}
+        \begin{tikzcd}
+            \, \ar[r] & C_{n+1} \ar[d] \ar[r] & C_n \ar[d] \ar[r] & C_{n-1} \ar[d] \ar[r] & \, \\
+            \, \ar[r] & C_{n+1}' \ar[r] & C_n' \ar[r] & C_{n-1}' \ar[r] & \,
+        \end{tikzcd}
+    \end{center}
+
+    For example, if we have \(f: X \to Y\) we have the chain map:
+
+    \[
+        f_\# = S_\bullet f : S_\bullet X \to S_\bullet Y
+    \]
+
+    Given by:
+
+    \[
+        (S_{\bullet} f) \left( \sum_{i} n_i \sigma_i \right) \coloneqq \sum_{i} n_i (f \circ \sigma_i)
+    \]
+
+    % insert picture
+
+    This gives us:
+
+    \begin{center}
+        \begin{tikzcd}
+            S_n X \ar[r,"\partial_n"] \ar[d, "S_n f"] & S_{n-1} X \ar[d] \\ S_n Y \ar[r,"\partial_n"] & S_{n-1} Y
+        \end{tikzcd}
+    \end{center}
+
+    \begin{lemma}
+        A chain map \(f_\bullet: C_\bullet \to C_\bullet^{\prime} \) induces \(f_{\ast} = H_n(f_\bullet) : H_n C_\bullet \to H_n C_\bullet^{\prime}\) given by \([x] \mapsto [f_n x]\)  
+    \end{lemma}
+
+    \begin{remark}
+        elements in \(\frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}}\) can be \([x]\) [equivalence classes] or \(x + \operatorname{im} \partial_{n+1}\) [cosets]. We use equivalence classes:
+
+        \(x \sim x^{\prime} \iff x - x^{\prime} \in \operatorname{im} \partial\) 
+    \end{remark}
+
+    \begin{proof}
+        \(f_n(\text{cycles}) \subset \text{cycles}\).
+        
+        \(f_n(\text{boundaries}) \subset \text{boundaries}\).
+        
+        Recall that cycle is \(\ker \partial_n\).
+
+        Consider a cycle \(X\). Then, \(\partial X = 0 \implies f(\partial x) = 0 \implies \partial ^{\prime} f(x) = 0 \implies f(x) \in \ker \partial ^{\prime}\).
+
+        Boundary is \(\operatorname{im} \partial_{n+1}\).
+
+        \(f(\partial y) = \partial ^{\prime} f(y) \in \operatorname{im} \partial_{n+1}^{\prime}\).
+
+        Thus we have:
+        
+        \[
+            \ker \partial_n \to \ker \partial_n^{\prime} \to \frac{\ker \partial_n^{\prime}}{\operatorname{im} \partial_{n+1}^{\prime}}
+        \]
+
+        This induces,
+
+        \[
+            \frac{\ker \partial_n}{\operatorname{im} \partial_{n+1}} \to \frac{\ker \partial_n^{\prime}}{\operatorname{im} \partial_{n+1}^{\prime}}
+        \]
+
+    \end{proof}
+
+    Now we move on to functors. Functors are an analogy of functions on Categories.
+
+    Consider two categories \(\mathcal{C}\) and \(\mathcal{D}\). We want to define a functor between them.
+
+    \begin{definition}
+        A functor \(F: \mathcal{C} \to \mathcal{D}\) will be an `assignment' of objects and morphisms.
+        
+        We have \(F: \operatorname{Ob} \mathcal{C} \to \operatorname{Ob} \mathcal{D}\).
+        
+        \(\forall X,Y \in \operatorname{Ob} \mathcal{C}\) we have:
+
+        \[
+            F: \mathcal{C}(X,Y) \to \mathcal{D}(F(X),F(Y))
+        \]
+
+        Then, \(F(f \circ g) = F(f) \circ F(g)\).
+
+        \(F(\operatorname{id}_{X}) = \operatorname{id}_{F(X)}\) 
+    \end{definition}
+
+    So we can \(F\) a whole category:
+
+    \[
+        X \xrightarrow{f} Y
+    \]
+
+    \[
+        F(X) \xrightarrow{F(f)} F(Y)
+    \]
+
+    We have the \underline{singular} functor taking topological spaces to chain complexes. We also have functor taking chain complexes to abelian groups.
+
+    \[
+        \operatorname{Top} \xrightarrow{S_\bullet} \operatorname{Ch} \xrightarrow{H_n} \operatorname{Ab} 
+    \]
+
+    We also have forgetful functor which forgets:
+
+    \[
+        \operatorname{Ab} \to \operatorname{Set} 
+    \]
+
+    \[
+        \operatorname{Ab} \to \operatorname{Group} 
+    \]
+
+    We have the category \(\operatorname{Gr}\) of graded abelian groups.
+
+    \(\operatorname{Gr}\) has objects \(A_{\ast} = \{ A_0, A_1, A_2, \cdots \} \) set of abelian groups, and morphisms \(A_{\ast} \xrightarrow{f_0} B_{\ast}\).
+    
+    Then we can write:
+
+    \begin{center}
+        \begin{tikzcd}
+            \operatorname{Top} \ar[r,"S_\bullet"] \ar[rrr, bend right, "H_n"] & \operatorname{Ch} \ar[r,"H_{\ast}"] & \operatorname{Gr} \ar[r,"H_n"] & \operatorname{Ab}
+        \end{tikzcd}
+    \end{center}
+
+    \begin{lemma}
+        Consider a functor \(F: \mathcal{C} \to \mathcal{D}\). Then, \(X \cong Y \implies F(X) \cong F(Y)\).
+    \end{lemma}
+
+    Corollary: \(X \cong Y\) (homeomorphic) implies \(H_n X \cong H_n Y\) 
+
+    \begin{proof}
+        \(X\cong Y\) implies we have \(f,g\) so that \(f(X)=Y, g(Y) = X\) so that \(f \circ g = \operatorname{id}_{Y}, g \circ f = \operatorname{id}_{X}\).
+        
+        Then, \(F(f) \circ F(g) = F(f \circ g) = F(\operatorname{id}_{Y}) = \operatorname{id}_{F(Y)}\). Similar for \(g \circ f\). So, \(F(f)\) and \(F(g)\) are isomorphisms and thus \(F(X)\) and \(F(Y)\) are isomorphic. 
+    \end{proof}
+
 \end{document}
