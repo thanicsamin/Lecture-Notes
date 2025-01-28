@@ -732,9 +732,134 @@
         Fix a uniformizer \(\pi_L\) of \(L\) and define:
 
         \[
-            i: G(L / K) \to 
+            i: G(L / K) \to U(L) / V(L / K)
         \]
+
+        \[
+            i(\sigma) = \frac{\sigma(\pi_L)}{\pi_L} \mod V(L / K)
+        \]
+
+        Note: \(i\) does not depend on the choice of \(\pi_L\). Indeed, if \(\omega\) is another uniformizer of \(L\) then \(\omega = v \pi_L \implies \frac{\sigma(\omega)}{\omega} = \frac{\sigma(\pi_L)}{\pi_L} \frac{\sigma(v)}{v} \equiv \frac{\sigma(\pi_L)}{\pi_L} \mod V(L / K)\). 
+
+        \begin{theorem}
+            The seqeunce:
+    
+            \[
+                1 \to G(L / K) \to U(L) / V(L / K) \xrightarrow{N_{L / K}} U(K) \to 1
+            \]
+    
+            is exact.
+        \end{theorem}
         
+        \item Now assume that \(K\) has finite residue field (equivalently, \(K\) is locally compact). Also assume that \(L / K\) is a finite abelian extension. Set \(K_{nr} = \widehat{K^{nr}}, L_{nr} = \widehat{L^{nr}} = \widehat{L.K^{nr}} = L . K_{nr}\).
+        
+        Let \(\varphi_K \in \operatorname{Gal}(K^{nr} / K), \varphi_L \in \operatorname{Gal} (L^{nr} / L)\) be the arithmetic Frobenius. 
+
+        Let \(G(L / K)_0\) be the \(0^{\text{th}}\) ramification group. Then, we have an exeact sequence:
+
+        \[
+            1 \to G(L / K)_0 \to G(L / K) \to G(k_L / k) \to 0
+        \]
+
+        Here \(k_L\) is the residue field of \(L\).
+
+        Note: \(G(L / K)_0 \xleftarrow[\text{res}]{\cong} G(L^{nr} (= L.K^{nr}) / K^{nr}) \cong G(L / L\cap K^{nr})\). \(L \cap K^{nr}\) is the maximal unramified subfield of \(L\) over \(K\). Furthermore, \(G(L^{nr} / K^{nr})\) is isomorphic to the Galois group of the completion. Then we have,
+
+        \begin{center}
+            \begin{tikzcd}
+
+                & & & & 1 \ar[d] \\
+
+                & & & & U(K) \ar[d] \ar[dddlll] \\
+
+                1 \ar[r] & G(L / K)_0 \ar[d,"\sigma\mapsto 1"] \ar[r,"\cong"] & G(L_{nr} / K_{nr}) \ar[r] & \frac{U(L_{nr})}{V(L_{nr} / K_{nr})} \ar[r] \ar[d,"\psi_L"] & U(K_{nr}) \ar[r] \ar[d,"\psi_K"] & 1 \\
+                1 \ar[r] & G(L / K)_0 \ar[r,"\cong"] \ar[d] & G(L_{nr} / K_{nr}) \ar[r] & \frac{U(L_{nr})}{V(L_{nr} / K_{nr})} \ar[r] & U(K_{nr}) \ar[r]  & 1 \\
+                & G(L / K)_0
+            \end{tikzcd}
+        \end{center}
+
+        by snake lemma.
+
+        Here, \(\psi_K(v) = \varphi_K(v) v ^{-1}, \psi_L(v) = \varphi_L(v) v ^{-1}\).
+
+        Hence we get a canonical homomorphism:
+
+        \[
+            U(K) \xrightarrow{i_{L / K}} G(L / K)_0
+        \]
+
+        \begin{theorem}
+            \(i_{L / K}\) is surjective and \(\ker(i_{L / K}) = N_{L / K}(U(L))\).
+            
+            Hence we have a canonical basis:
+
+            \[
+                \frac{U(K)}{N_{L / K}}(V(L)) \xrightarrow[i_{L / K}]{\cong} G(L / K)_0
+            \]
+
+            If \(L / K\) is a subextension of a finite abelian exztension \(L^{\prime} / K\) one has a commutative diagram:
+
+            \begin{center}
+                \begin{tikzcd}
+                    \dfrac{U(K)}{N_{L' / K}(U(L'))} \ar[d] \ar[r,"i_{L'/K}"] & G(L' / K)_0 \ar[d] \\
+                    \dfrac{U(K)}{N_{L / K}(U(L))} \ar[r,"i_{L / K}"] & G(L / K)_0
+                \end{tikzcd}
+            \end{center}
+        \end{theorem}
+
+        [Use \(N_{L^{\prime} / K}(U_{L^{\prime}}) = N_{L / K}(N_{L^{\prime} / L}(U(L^{\prime}))) \subset N_{L / K} (U(L)) \)].
+
+        Taking the limit over all finite abelian extensions of \(K\) inside a fixed maximal abelian extension \(K^{ab}\) gives:
+
+        \begin{proposition}
+            The homomorphisms \(i_{L / K}\) for varying finit eabelian \(L / K\) induce canonicall isomorphism:
+
+            \[
+                U(K) \cong \lim_{\xleftarrow[L / K]{}} \frac{U(K)}{N_{L / K}(U(L))} \cong \lim_{\xleftarrow[L / K]{}} G(L / K)_0 = G(K^{ab} / K^{nr}) 
+            \]
+        \end{proposition}
+
     \end{enumerate} 
+
+    \underline{Preliminaries} Let \(K\) be a local field with perfect residue field \(k\). Given a finite Galois extension \(L / K\), we set \(K_L = \) maximal unramified subextension of \(L / K\), \(=L \cap K^{nr}\).
+
+    We have an exact sequence:
+
+    \[
+        1 \to \underset{=G(L / K)_0}{G(L / K_L)} \to G(L / K) \to G(k_L / k) \to 1 
+    \]
+
+    Set \(K_{nr} = \widehat{K^{nr}}, L_{nr} = \widehat{L^{nr}} = L . K_{nr}\). The maps:
+    
+    \[
+        G(L_{nr} / K_{nr}) \xrightarrow[\text{res}]{\cong} \underset{=G(L / L\cap K^{nr})}{G(L^{nr} / K^{nr})} \xrightarrow[\text{res}]{\cong} G(L / K_L)
+    \]
+
+    \begin{proposition}
+        \begin{enumerate}[label=\roman*)]
+            \item Let \(K\) be a local field with algebraically closed residue field \(k\) and \(L / K\) a finite extension. Then, \(N_{L / K}: L^\times \to K^\times\) and \(N_{L / K}: U(L) \to U(K)\) are both surjective.
+            \item Let \(K\) be a local field with finite residue field and \(L / K\) a finite unramified extension. Then, \(N_{L / K}: U(L) \to U(K)\) is surjective. 
+        \end{enumerate} 
+
+        \begin{proof}
+            HW3
+        \end{proof}
+    \end{proposition}
+
+    \subsection*{The Decomposition Theorem}
+
+    Fix an algebraically closed field \(\Omega\) containing \(K_{nr} = \widehat{K^{nr}}\). All composite fields are taken in \(\Omega\).
+
+    \begin{theorem}
+        Let \(K\) be a local field with finite residue field and \(L / K\) a finite Galois extension. Then \(\exists\) a totally ramified extension \(L^{\prime} / K\) inside \(L / K\) such that,
+
+        \[
+            (L^{\prime})_{nr} = L^{\prime} . K_{nr} = L . K_{nr} = L_{nr} 
+        \]
+
+        If \(G(L / K)_0\) is contained in the center \(Z(G(L / K))\) [in particular if \(G(L / K)\) is abelian] then \(L^{\prime}\) can be taken to be abelian over \(K\).
+    \end{theorem}
+
+    We have, \(K^{ab} = (\text{totally ramified extension}) . K^{nr}\)
 
 \end{document}
