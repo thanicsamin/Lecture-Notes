@@ -1032,4 +1032,160 @@
         Then, \(F(f) \circ F(g) = F(f \circ g) = F(\operatorname{id}_{Y}) = \operatorname{id}_{F(Y)}\). Similar for \(g \circ f\). So, \(F(f)\) and \(F(g)\) are isomorphisms and thus \(F(X)\) and \(F(Y)\) are isomorphic. 
     \end{proof}
 
-\end{document}
+    \section*{Monday, 1/27/2025}
+    
+    \section*{Homotopy Invariance of Homology}
+
+    \begin{definition}
+        [Homotopy] \(H: X \times I \to Y\, I = [0,1]\).
+
+        Homotpy is a `path' of map \(H_t: X \to Y\) where \(t\in [0,1]\) is `time'. \(H_t(x) = H(x,t)\).
+    \end{definition}
+
+    % insert picture
+
+    \begin{definition}
+        \(f,g : X \to Y\) are \underline{homotopic} if there exists \(H: X \times I \to Y\) such that \(H_0 = f, H_1 = g\).
+    \end{definition}
+
+    If they're homotopic we write \(f\simeq g\).
+
+    \begin{theorem}
+        [Homotopy Theorem]
+
+        \[
+            f \simeq g \implies H_{\ast} f = H_{\ast} g: H_{\ast} X \to H_{\ast} Y
+        \]
+
+        \[
+            f_{\ast} = g_{\ast} 
+        \]
+    \end{theorem}
+
+    Fact/Exercise: \(\simeq\) is a equivalence relation on \(\operatorname{TOP}(X,Y)\) 
+
+    \([X,Y] = \operatorname{TOP}(X,Y) / \simeq =\) homotopy classes of map \(X \to Y\).
+
+    Suppose for \(X,Y\), \(X \xleftrightarrow[g]{f} Y\) we have \(f \circ g \simeq \operatorname{id}_X,X \cong H_{\ast} Y\).
+    
+    For example, \(\mathbb{R}^2 - 0 \simeq S^1\). by \(x \xmapsto{f} \frac{x}{\vert x \vert}\) and \(g = \text{inclusion}\).
+
+    Straight line homotopy \(tx + (1-t) \frac{x}{\vert x \vert}\)
+
+    \begin{definition}
+        \(X\) \underline{contractible} if \(X \simeq pt\).
+
+        eg \(\mathbb{R}^2 \simeq \ast\) 
+    \end{definition}
+
+    % insert picture
+
+    \begin{definition}
+        Homotopy Category \(\operatorname{hTOP}\).
+
+        \underline{Objects}: Topological Spaces [\underline{NOT} HOMOTOPY EQUIVALENCE CLASSES]
+
+        \underline{Morphisms}: \(\operatorname{hTOP}(X,Y) = [X,Y]\). [These are Equivalence Classes]
+        
+        \underline{Exercise}: Composition is well defined. So, \(f \simeq f^{\prime} , g \simeq g^{\prime} \implies f \circ g \simeq f
+        \circ g^{\prime}\). Then, \([f] \circ [g] \coloneqq [f \circ g]\) 
+    \end{definition}
+
+    \subsection*{Isomorphisms in hTOP}
+
+    \(X,Y\) Isomorphic in \(\operatorname{hTOP} \iff X \simeq Y\) [homotopy equivalence].
+
+    So, homotopy theorem says homology factors through homotopy:
+
+    \begin{center}
+        \begin{tikzcd}
+            \operatorname{hTop}\ar[r,"H_\ast"] & \operatorname{Gr} \\ \operatorname{TOP} \ar[u] \ar[ur, "H_\ast"']
+        \end{tikzcd}
+    \end{center}
+
+    Thus, \(X \simeq Y \iff H_{\ast} X \implies H_{\ast} Y\) is really just a consequence of homotopy theorem.
+
+    \begin{definition}
+        \(A \subset X\), then \(A \) is a \underline{deformation retract} of \(X\) `if we can deform all of \(X\) into \(A\)'. Formally,
+
+        if \(\exists H: X \times I \to X\) such that:
+        
+        \(\forall x\in X, H(x,0)=x, H(x,1)\in A\) and \(H(a,1)=a \forall a\in A\).
+
+        Suppose \(A \simeq X\), \(A \xhookrightarrow{i} X, A \xleftarrow{H_1} X\).
+
+        \(\operatorname{id}_{A} = H_1 \circ i, \operatorname{id}_{X} \underset{H}{\simeq} i \circ H_1\)
+
+        eg M\"obius strip \((X)\) is homotopy equivalent to the cure circle \(A\).
+
+        % insert picture
+
+        \begin{definition}
+            \(X \subset \mathbb{R}^n\) is start shaped at \(p_0 \in X\) if \(\forall p\in X, \overline{pp_0} \subset X\).
+        \end{definition}
+
+        % insert picture
+
+        convex \(\implies\) star-shaped \(\implies\) contractable (by the straight line homotopy)
+
+        We can take \((1-t)p_0 + ^{\top}  = H(p,t)\).
+
+        eg the \(n\)-simplex \(\Delta^n\) and the prism \(\Delta^n \times I\) are star-shaped.
+
+    \end{definition}
+
+    \begin{theorem}
+        \(X\) start shaped \(\implies H_{\ast} (X) = \mathbb{Z}\) or \(0\).
+    \end{theorem}
+
+    \begin{corollary}
+        \(H_{\ast} (\Delta^n) \cong H_{\ast} (pt)\)
+
+        \(H_{\ast} (\Delta^n \times I) \cong H_{\ast} (p t)\).
+    \end{corollary}
+
+    \begin{proof}
+        Wlog \(\sigma : \Delta^n \to X\).
+
+        Syspension \(s \sigma : \Delta^{n=1} \to X\):
+
+        \[
+            s \sigma(t_0, \cdots , t_{n+1}) = \begin{dcases}
+                (1-t_0) \sigma \left( \frac{t_1}{1-t_0}, \cdots , \frac{t_{n+1}}{1-t_0} \right), &\text{ if }  t_0 \neq 1 ;\\
+                0, &\text{ if } t_0 = 1 .
+            \end{dcases}
+        \]
+
+        % insert picture
+
+        We will show that if \(z\) is a \(n\)-cycle with \(n > 0\) then \(z = \partial (s z) \implies z\) is a boundary.
+
+        Define: \(0\)th face of \(s \sigma\) is \(\sigma\).
+
+        \((s \sigma) \circ \delta_0 = \sigma\)
+
+        \((s \sigma) \circ \delta_{j+1} = s(\sigma \circ \delta_j) \implies s \partial + \partial s = \operatorname{id}_{S_n X} \, \forall n > 0\).
+
+        Thus if \(z \in S_n X\) then ,
+
+        \(s \partial z + \partial s z = z \implies \partial(sz) = z \implies z\) is a boundary.
+    \end{proof}
+
+    \subsection*{Algebra}
+
+    \begin{definition}
+        Chain map \(f_\bullet, g_\bullet: C_\bullet \to C_{\bullet}^{\prime}\) are \underline{chian} \underline{homotopic} if \(\exists\) homomorphisms \(h_n : C_n \to C_{n+1}
+    ^{\prime}\)  `degree one' such that:
+
+    \[
+        \partial ^{\prime} h + h_{n-1} \partial _n = f_n - g_n
+    \]
+
+    \begin{center}
+        \begin{tikzcd}
+            C_{n+1} \ar[r] & C_n \ar[ld,"h"] \ar[d, "f\,g"] \ar[r] & C_{n-1} \ar[ld, "h"] \\ C_{n+1}^\prime \ar[r] & C_n^\prime \ar[r] & C_{n-1}^\prime
+        \end{tikzcd}
+    \end{center}
+    \end{definition}
+
+\end{document} 
