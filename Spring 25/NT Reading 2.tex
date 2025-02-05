@@ -326,4 +326,188 @@
 
     \end{proof}
 
+    \section{Thursday, 1/30/2025, Cartan Subalgebra (CSA) by Rostyslav}
+
+    \begin{center}
+        \begin{tikzcd}
+            & L \ar[d,no head] & \\
+            & K \ar[dl, no head] \ar[dr, no head] & \\
+            C \ar[d,no head] & & C' \ar[d,no head] \\
+            B\cap K \ar[rd, no head] & & B'\cap K \ar[ld, no head] \\
+            & B\cap B' \ar[d, no head] \\ & N'
+        \end{tikzcd}
+    \end{center}
+
+    We prove theorem 16.4.
+
+    \begin{proof}
+        \underline{First induction hypothesis} \(\dim L\) upwards.
+
+        base: \(\dim L = 1\) is trivial.
+
+        WLOG by lemma 16.1 and 16.3B, we can assume that \(L\) is semisimple.
+
+        Fix a standard borel subalgebra relative to some CSA.
+
+        Suffices to shwo that \(\forall B^{\prime}\) -other borel subalgebra is conjugate to \(B\) under \(\mathscr{E} (L)\).
+
+        If \(B^{\prime} \cap B = B\) then \(B^{\prime} = B\) by maximality (both are borel).
+
+        \underline{Second induction hypothesis} 
+
+        \(\dim (B\cap B^{\prime})\) downwards for all larger dimension are conjugate.
+
+        (1) Suppose that \(B\cap B^{\prime} \neq 0\).
+
+        Case i: set \(N^{\prime}\) of nilpotent elements of \(B \cap B^{\prime}\) is nonzero.
+        
+        \(B\)-standard \(\implies N^{\prime}\) subspace derived alg of \(B \cap B^{\prime}\) consists of nilpotent elements.
+
+        \(\implies N^{\prime}\)-ideal of \(B\cap B^{\prime}\).
+
+        \(N^{\prime}\)-not an ideal of \(L \implies K = N_L(N)\) is proper.
+
+        Consider the action of \(N^{\prime}\) on \(B / (B \cap B^{\prime})\) induced by \(\operatorname{ad}\) for all \(x\in N^{\prime}\) acts nilpotently on this vector space.
+
+        Theorem 33 \(\implies \exists y\) such that \(y + (B\cap B^{\prime})\) killed by \(\forall x\in N\). ie st \([xy]\in B\cap B^{\prime} , y \notin B\cap B^{\prime}\) but \([xy]\) is also \([B,B] \implies [xy]\) is nilpotent \(\implies [xy] \in N^{\prime}\) or \(y\in N_R(N^{\prime})\). \(y\notin B\cap B^{\prime} = B\cap K\)
+        
+        Same way \(B\cap B^{\prime} \subsetneq B^{\prime} \cap K\). 
+        
+        \(B\cap K, B^{\prime} \cap K\) solvable subalgebra.
+
+        \(C,C^{\prime}\) borel subalgebra containing them \(K\neq L\) by induction \(\exists \sigma \in \mathscr{E} (L,K) \subset \mathscr{E} (L)\) such that \(\sigma (C^{\prime})=C\).
+        
+        Since \(B\cap B \subsetneq C\) and \(B\cap B^{\prime} \subseteq C^{\prime}\) second induction hypothesis implies \(\exists \tau \in \mathscr{E} (L)\) such that \(\tau \sigma (C^{\prime}) \subset B\)
+        
+        \(B \cap \tau \sigma (B^{\prime}) \supset \tau \sigma (C^{\prime}) \cap \tau \sigma(B^{\prime}) \supset \tau \sigma(B^{\prime} \cap K) \supsetneq \tau \sigma (B\cap B^{\prime})\) 
+
+        \(\implies\) Second induction hypothesis
+
+        \(B\) is conjugate under \(\mathscr{E} (L)\) to \(\tau \sigma (B^{\prime})\) so we have proved case i.
+
+        Case ii: There are no non-zero nilpotent elements in \(B\cap B^{\prime}\). 
+
+        Then, 4.2.c and 16.3.a implies that \(B\cap B^{\prime} = T =\) toral (semisimple).
+        
+        \(B\) is standard: \(B(\Delta) = H + N\), \(N(\Delta) = N\).
+
+        \([B,B] = N, T\cap N = 0\).
+
+        Thus, \(N_B(T) = C_B(T)\).
+
+        Let \(C\) be a a CSA of \(C_B(T)\). By (one of the) definitions of CSA we know it is self normalizing and \(N\)-nilpotent.
+
+        Thus, \(T \subset N_{C_B(T)}(C) = C\).
+        
+        In \(n\in N_B(C^{\prime}) (\operatorname{ad} t)^k n = 0\). \(t \subset T \subset C\).
+        
+        \(\operatorname{ad} t\)-semisimple \(\implies k = 1, n \in C_B(T)\) 
+
+        \(\operatorname{ad} t \cdot n = [t,n]\).
+
+        \(\implies N_B(C) = N_{C_B(T)}(C) = C\).
+
+        \(\implies C\) is self-normalizing not only in the centralizer, but also in \(B\). It is also nilpotent.
+
+        Therefore, \(C\)  is a CSA of \(B\).
+
+        \(C\)-maximal toral of \(L\) is conjugate under \(\mathscr{E} (B) \implies\) under \(\mathscr{E} (L)\).
+
+        Thus, WLOG we can assume that \(T \subset H\).
+
+        Suppose \(T = H\). Then, \(B^{\prime} \supsetneq H\).
+
+        \(\implies B^{\prime}\) includes at least on e \(L_\alpha\) with \(\alpha < 0\) relative to \(\Delta\).
+        
+        \(\tau_\alpha (B^{\prime}) = B^{\prime\prime}, B^{\prime\prime} \cap B \supset H + L_\alpha \) 
+
+        \(\implies\) second induction hypothesis
+
+        \(B^{\prime\prime} \) is conjugate to \(B\) under \(\mathscr{E} (L)\)
+
+        Let \(T \subsetneq H\).
+
+        \(B^{\prime} \subset C_L(T)\)
+
+        By first induction hypothesis we know it will have less degree.
+        
+        \(\dim C_L(T) < \dim L\).
+        
+        \(H \subset C_L(T)\) we can find a boorel subalgebra \(B^{\prime\prime}\) of \(C_L (T)\) that will contain \(H\).
+
+        \(\implies B^{\prime}\) and \(B^{\prime\prime}\) are conjugate under \(\mathscr{E} (L, C_L(T)) \subset \mathscr{E} (L)\).
+
+        \(B^{\prime} \subsetneq C_L(T), T = B\cap B^{\prime}\).
+
+        We can find an eigenvector \(x\in B^{\prime}\) for \(\operatorname{ad} T\) and \(t\in T\) such that \([t,x] = ax\). \(a\in\mathbb{Q}_+\).
+
+        \(S \coloneqq H + \sqcup_{\alpha \in \Phi} L_\alpha\) 
+
+        \(\alpha(t) \in \mathbb{Q}_+\).
+
+        \(S\) is subalgebra of \(L\).
+        
+        Similarly to llemma 16.3.c.2, \(S\) is solvable.
+
+        \(B^{\prime\prime} \supset C\) -  Borel subalgebra.
+
+        \(B^{\prime\prime} \cap B^{\prime}  \supset T + Fx \supsetneq T = B \cap B^{\prime}\) here \(x\) is eigenvector
+
+        \(\dim B^{\prime\prime} \cap B^{\prime} > \dim B\cap B^{\prime}\)
+
+        Second induction hypothesis \(\implies B^{\prime\prime}\) is conjugate to \(B\).
+
+        Similarly, we can prove that \(B^{\prime\prime}\) is conjugate to \(B^{\prime}\)
+
+        Thus, \(B\) is conjugate to \(B^{\prime}\).
+
+        (2) \(B\cap B^{\prime} = 0\)
+
+        Then \(\dim L \geq \dim B + \dim B^{\prime}\).
+
+        \(B\) is standard so \(\dim B \geq \frac{1}{2}\dim L\).
+
+        Let \(T\)-maximal toral subalgebra of \(B^{\prime}\).
+
+        Assume \(T=0 \implies B\) only has nilpotent elements \(\implies\) by Engel's theorem, \(B\) has to be nilpotent.
+
+        By lemma 16.3.A, since \(B\) is borel, it is self normalizing \(B = N_L (B)\).
+
+        Then \(B\) is a CSA of \(L\).
+
+        15.3 \(\implies\) all of CSAs of \(L\) are toral.
+
+        Being toral and nilpotent is a contradiction.
+
+        Thus, \(T\neq 0\).
+
+        \(T \subset H_0\)-maximal toral of \(L\)
+
+        \(\implies B \cap B^{\prime\prime} \neq 0 \implies B^{\prime} \) is conjugate to \(B\).
+
+        \(\dim B^{\prime} = \dim B^{\prime\prime} > \frac{1}{2} \dim L \implies\) we have a contradiction.
+    \end{proof}
+
+    There's a relationship between \(\mathscr{E}(L)\) and the inner automorphisms.
+
+    Suppose \(L\) is semisimple lie algebra, \(H\)-CSA of \(L\), \(\Delta\)-base, \(\Phi\)-root system
+
+    Let \(\tau \in \operatorname{Aut} L\). We can see that \(\tau (B)\) is conjugate to \(B\) by \(\sigma_1 \in \mathscr{E} (L)\).
+
+    We can find \(\sigma_2 \in \mathscr{E} (L,B) \subset \mathscr{E} (L)\) that sends \(\sigma_1 \tau (H)\) to \(H\) by 16.2.
+    
+    \(\sigma_2 \sigma_1 \tau\) preserves \(H\) and \(B\) \(\implies\) it induces an automorphism on \(\Phi\). Leave \(\Delta\) invariant.
+
+    Let \(\rho\) be such automorphism. It is not unique, \underline{but} \(\rho \sigma_2 \sigma_1 \tau (x_\alpha) = c_\alpha x_\alpha\) [\(\alpha > 0\)], \(\rho \sigma_2 \sigma_1 \tau (y_\alpha) = c_\alpha ^{-1} y_\alpha\)
+
+    \(\rho \sigma_2 \sigma_1 \tau (h_\alpha) = h_\alpha\)
+
+    \(\tau\) differes from \(\mathscr{E} (L) \cdot \Gamma(L)\) by a diagonal automorphism.
+    
+    And diagonal automorphisms are inner automorphisms.
+
+    Therefore, \(\operatorname{Aut} (L) = \operatorname{Inn} (L) . \Gamma(L)\). 
+
+    Note: in the semidirect case, \(\mathscr{E} (L) = \operatorname{Inn} (L)\).
+
 \end{document}

@@ -1183,9 +1183,452 @@
 
     \begin{center}
         \begin{tikzcd}
-            C_{n+1} \ar[r] & C_n \ar[ld,"h"] \ar[d, "f\,g"] \ar[r] & C_{n-1} \ar[ld, "h"] \\ C_{n+1}^\prime \ar[r] & C_n^\prime \ar[r] & C_{n-1}^\prime
+            C_{n+1} \ar[r] & C_n \ar[ld,"h"] \ar[d, "f-g"] \ar[r] & C_{n-1} \ar[ld, "h"] \\ C_{n+1}^\prime \ar[r] & C_n^\prime \ar[r] & C_{n-1}^\prime
         \end{tikzcd}
     \end{center}
     \end{definition}
+
+    \section*{Wednesday, 1/29/2025}
+    
+    We write it as \(f_\bullet \underset{h}{\simeq} g\) if \(\partial ^{\prime} _{n+1} h_n + h_{n-1} \partial_n = f_n - g_n\). Then \(f_\bullet\) and \(g_\bullet\) are chain homotopic.
+
+    Homotopy theorem: \(f\simeq g: X \to Y \implies f_{\ast} =g_{\ast} : H_{\ast} X \to H_{\ast} Y\)
+
+    \(\star\) Exercise: \(f_\bullet \simeq g_\bullet \implies H_n(f_\bullet) = H_n(g_\bullet): H_n(C_\bullet) \to H_n(C^{\prime}_\bullet)\).
+
+    Hint: \((f_n - g_n)(\text{cycle}) = \in \text{boundary}\)
+
+    \(\star\star\) \(H_n(\Delta^n \times I) = 0\) for all \(n > 0\).
+    
+    \(\Delta^n \times I \subset \mathbb{R}^{n+1}\)
+
+    convex \(\implies\) star shaped.
+
+    \underline{Homotopy}: \(\operatorname{id}_{}: X \times I \to X \times I\)
+
+    % insert picture
+
+    Let \(\eta_1 \simeq \eta_0: X \to X \times I\)
+
+    \(\eta_0(x) = (x,0)\)
+
+    \(\eta_1(x) = (x,1)\)
+
+    What we want to show that our theorem is true in this case.
+
+    \begin{lemma}
+        \(\exists\) homomorphism \(P_n^X: S_n X \to S_{n+1} (X \times I)\), natural in \(X\), such that \(\partial P + P \partial = S(\eta_1) - S(\eta_0)\).
+
+    \end{lemma}
+    
+    \begin{proof}
+        Recall that \(S_n: \operatorname{TOP} \to \operatorname{Ab}, \eta_0: X \to X \times I \implies S_n(\eta_0): S_n X \to S_n X \times I \eqqcolon \eta_{0\#}\) is given by composition:
+
+        \[
+            \eta_{0\#} \left( \sum_{i} n_i \sigma_i \right) = \sum_{i} n_i (\eta_0 \circ \sigma_i)
+        \]
+
+        We prove by induction on \(n\).
+
+        \(N_n\) by `naturality': \(X \xrightarrow{f} Y\) and we have commutative diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                S_n X \ar[r] \ar[d] & S_n Y \ar[d] \\ S_{n+1} (X \times I) \ar[r] & S_{n+1}(Y \times I)
+            \end{tikzcd}
+        \end{center}
+
+
+        \((H_n): \, \partial_{n+1} P_n^X + P_{n-1}^X \partial_n = S_n(\eta_1) - S_n(\eta_0)\).
+
+        \(n=0\): \(0 = P_{-1}: 0 \to S_0(X \times I)\).
+
+        \(P_0(\sigma) (t_0, t_1) = (\sigma(0),t_1)\) 
+
+        boundary of 1 chain is subtraction of midpoint.
+
+        \(\partial P_0(\sigma) = \eta_1 \circ \sigma - \eta_0 \circ \sigma\)
+        
+        Assume \(P_0^X, \cdots, P_0^X, \cdots , P_{n-1}^X\) are defined satisfying Hs and Ks.
+
+        Let \(\iota = \iota_n = \operatorname{id}_{\Delta^n}\). Goal is to define \(P_n^{\Delta^n}(\iota) \in S_{n+1} (\Delta^n \times I)\).
+
+        We want \(H_n\) to hold.
+
+        So we want \(\partial P(\iota) = \eta_{1\#}\iota - \eta_{0\#} \iota - P \partial \iota\).
+        
+        So we basically want to know whether \(\eta_{1\#}\iota - \eta_{0\#}\iota - P \partial \iota\) is a cycle.
+
+        We see \(\partial (\eta_{1\#}\iota - \eta_{0\#}\iota - P \delta \iota)\). Since \(\eta_{i\#}\) are chain maps they commute with \(\partial\) therefore:
+
+        \(= \eta_{1\#} \partial \iota - \eta_{0\#} \partial \iota - \partial P \partial \iota\)
+        
+        \(= \eta_{1\#} \partial \iota - \eta_{0\#} \partial \iota -(\eta_{1\#} - \eta_{0\#} - P \partial)(\partial i) = 0\) 
+
+        \(\star\star \implies\) cycles = boundaries.
+
+        Choose \(P_n \iota\) such that:
+
+        \(\partial P_n \iota = \eta_{1\#} - \eta_{0\#} - P \partial \iota\).
+
+        
+        Now, \((N_n)\):
+
+        \(\sigma : \Delta^n \to X, \sigma_\#: \iota \mapsto \sigma\)
+
+        \begin{center}
+            \begin{tikzcd}
+                S_n\Delta^n \ar[d,"P"] \ar[r,"\sigma\#"] & S_n X\ar[d] \\ S_{n+1}(\Delta^{n}\times I) \ar[r,"(\sigma\times id)_{\#}"] & S_{n+1}(X\times I)
+            \end{tikzcd}
+        \end{center}
+
+        Define \(P \sigma = (\sigma \times \operatorname{id}_{})_\# P \iota\) 
+
+    \end{proof}
+    
+    % insert picture
+
+    \begin{theorem}
+        [Homotopy Theorem] \(f\simeq g: X \to Y \implies f_{\ast} = g_{\ast} : H_{\ast} X \to H_{\ast} Y\).
+    \end{theorem}
+
+    \begin{proof}
+        \(H: X \times I \to Y\). We want \(h_n: S_n X \to S_{n+1} Y\) such that:
+        
+        \[
+            \partial h + h \partial = H_{1\#} - H_{0\#}
+        \]
+
+        Note: \(H_i = H \circ \eta_i\)
+
+        We define \(h_n \sigma \coloneqq H_\# (P_n \sigma)\) 
+
+        \((\partial h + h \partial)\sigma = \partial H_\# P \sigma + H_\# P_n \partial \sigma = H_\# (\partial P \sigma + P \partial \sigma) = H_\# (\eta_{1\#} - \eta_{0\#})\sigma = H_{1\#}\sigma - H_{0\#}\sigma\) 
+    \end{proof}
+
+    \section*{Friday, 1/31/2025}
+    
+    Exact sequences
+
+    Long Exact Sequences (LES)
+
+    Short Exact Sequences (SES)
+
+    Mayer-Vietoris Exact Sequences (MVES)
+
+    \(A \xrightarrow{\alpha} B \xrightarrow{\beta} C\) is \underline{exact} if \(\operatorname{im} \alpha = \ker \beta\) 
+    
+    \(\iff \operatorname{im} \alpha \subset \ker \beta\) and \(\operatorname{im} \alpha \supset \ker \beta\)
+
+    Note that \(\operatorname{im} \alpha \subset \ker \beta \iff \beta \circ \alpha =0\)
+
+    A sequence \(C_n \to C_{n-1} \to \cdots C_1 \to 0\) if it is exact at \(C_{n-1}, \cdots , C_1\).
+
+    Sequence,
+
+    \[
+        \cdots \to C_{n+1} \to C_n \to C_{n-1} \to \cdots 
+    \]
+
+    is exact if it is exact at \(C_i\) for all \(i\). LES.
+
+    \(\cdots \to C_{n+1} \to C_n \to C_{n-1} \to \cdots\) is exact \(\iff C_\bullet\) is a chain complex and \(H_{\ast} C_\bullet = 0\).
+
+    \(0 \to A \xrightarrow{\alpha} B\) is exact \(\iff \ker \alpha = 0 \iff \alpha\) is injective / 1-1.
+    
+    Dual: \( A \xrightarrow{\alpha} B \to 0\) is exact \(\iff \operatorname{im} \alpha = B \iff \alpha\) is surjective / onto.
+
+    \(0 \to A \xrightarrow{\alpha} B \to 0\) exact \(\iff \alpha\) is 1-1 and onto \(\iff \alpha\) is an isomorphism.
+
+    If \(A \hookrightarrow B\) then \(0 \to A \to B \to B / A \to 0\) is exact.
+
+    If \(A \xrightarrow{f} B\) then \(0 \to \ker f \to A \xrightarrow{f} B \to \operatorname{coker} f \to 0\).
+
+    Short Exact Sequence:
+
+    Suppose \(0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0\)
+
+    \(\iff \alpha\) 1-1, \(\beta\) onto, \(\operatorname{im} \alpha = \ker \beta \iff \alpha\) 1-1, \(\overline{\beta} : B / \operatorname{im} \alpha \xrightarrow{\cong} C \to 0\) 
+
+    \begin{center}
+        \begin{tikzcd}
+            0 \ar[r] & A \ar[d,"\cong"] \ar[r,"\alpha"] & B\ar[d,"="] \ar[r,"\beta"] & C \ar[d,"\cong"',"(\overline{\beta})^{-1}"] \ar[r] & 0 \\
+            0 \ar[r] & \alpha(A) \ar[r] & B \ar[r] & \, \ar[r] & 0
+        \end{tikzcd}
+    \end{center}
+
+    Canonical Example:
+
+    \(0 \to \mathbb{Z} / 2 \to \mathbb{Z} / 4 \to \mathbb{Z} /2 \to 0\) and \(0 \to \mathbb{Z} /2 \to \mathbb{Z} / 2 \oplus \mathbb{Z} /2 \to \mathbb{Z} /2 \to 0\).
+
+    Spaces \(A,B \subset X\)
+
+    \begin{center}
+        \begin{tikzcd}
+            A\cap B \ar[r, hook, "i"] \ar[d,hook,"j"] & A \ar[d,hook,"k"] \\ B \ar[r, hook, "\ell"] & X
+        \end{tikzcd}
+    \end{center}
+    
+    \begin{theorem}
+        [Mayer-Vietoris Exact Sequence]
+
+        If \(X = \operatorname{int} A \cup \operatorname{int} B\) [eg \(X = A\cup B, A, B\) open]
+
+        Then \(\exists\) LES:
+
+        \[
+            \cdots \to H_n A \cap B \xrightarrow{i_{\ast} \oplus j_{\ast}} H_n A \oplus H_n B \xrightarrow{k_{\ast} - \ell_{\ast}} H_n X \xrightarrow{\partial} H_{n-1} A \cap B
+        \]
+
+        \[
+            \cdots \to H_0 X \to 0
+        \]
+    \end{theorem}
+
+    We need \(\partial [\alpha]\). If \(\alpha\) is a cycle in \(X\) we have,
+
+    \[
+        \alpha \underset{\text{homologous}}{\sim} \alpha_A + \alpha_B
+    \]
+
+    Meaning \(\alpha - (\alpha_A + \alpha_B)\) is a boundary.
+
+    Furthermore, \(\partial [\alpha] = \partial [\alpha_A]\).
+
+    Homology of a circle \(S^1\).
+
+    Circle can be written as union of \(A = \cup\) and \( B = \cap\).
+
+    Then \(A \simeq pt, B \simeq pt, A\cap B \simeq 2 pts\) which is \(S^0\).
+
+    \(H_1 S^1 \xrightarrow{\partial} H_0 A \cap B \to H_0 A \oplus  H_0 B \to H_0 S^1 \to 0\) 
+
+    \(0 \to H_1 S^1 \to \mathbb{Z}^2 \xrightarrow{\begin{bmatrix}
+        1 & 1 \\
+        1 & 1 \\
+    \end{bmatrix}} \mathbb{Z}^2 \to H_0 S^1 \to 0\)
+    
+    Thus, \(H_1 S^1 = \ker \begin{bmatrix}
+        1 & 1 \\
+        1 & 1 \\
+    \end{bmatrix} = \mathbb{Z} \begin{bmatrix}
+        1 \\
+        -1 \\
+    \end{bmatrix} \cong \mathbb{Z}\) 
+
+    \(H_0 S^1 = \operatorname{coker} \begin{bmatrix}
+        1 & 1 \\
+        1 & 1 \\
+    \end{bmatrix} \cong \mathbb{Z}\).
+    
+    \(0 \to H_n S^1 \to 0 \to  \implies H_n S^1 = 0\).
+
+    For \(n > 0\), the homology of \(S^n\) can be done similarly with 2 \(D^n\).
+
+    \[
+        H_i S^n \cong \begin{dcases}
+            \mathbb{Z}, &\text{ if } i=0,n ;\\
+            0, &\text{ otherwise} .
+        \end{dcases}
+    \]
+
+    Can be proven via MVES and induction on \(n\).
+
+    \section*{Monday, 2/3/2025}
+    
+    \begin{theorem}
+        For \(n > 0\), we have:
+
+        \[
+            H_i S^n \cong \begin{dcases}
+                \mathbb{Z}, &\text{ if } i = 0,n ;\\
+                0, &\text{ otherwise} .
+            \end{dcases}
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        MVES + induction on \(n\).
+
+        For \(n = 1\):
+
+        Homology of a circle \(S^1\).
+
+        Circle can be written as union of \(A = \cup\) and \( B = \cap\).
+    
+        Then \(A \simeq pt, B \simeq pt, A\cap B \simeq 2 pts\) which is \(S^0\).
+    
+        \(H_1 S^1 \xrightarrow{\partial} H_0 A \cap B \to H_0 A \oplus  H_0 B \to H_0 S^1 \to 0\) 
+    
+        \(0 \to H_1 S^1 \to \mathbb{Z}^2 \xrightarrow{\begin{bmatrix}
+            1 & 1 \\
+            1 & 1 \\
+        \end{bmatrix}} \mathbb{Z}^2 \to H_0 S^1 \to 0\)
+        
+        Thus, \(H_1 S^1 = \ker \begin{bmatrix}
+            1 & 1 \\
+            1 & 1 \\
+        \end{bmatrix} = \mathbb{Z} \begin{bmatrix}
+            1 \\
+            -1 \\
+        \end{bmatrix} \cong \mathbb{Z}\) 
+    
+        \(H_0 S^1 = \operatorname{coker} \begin{bmatrix}
+            1 & 1 \\
+            1 & 1 \\
+        \end{bmatrix} \cong \mathbb{Z}\).
+
+        Thus it is indeed true for \(S_1\).
+
+        For \(S^n\) divide Let \(N = \begin{bmatrix}
+            0 \\
+            \vdots \\
+            1 \\
+        \end{bmatrix}\) and \(S \equiv  \begin{bmatrix}
+            0 \\
+            \vdots \\
+            -1 \\
+        \end{bmatrix}\). Write \(A = S^n - \{ S \}, B = S^n - \{ B \} \).
+        
+        Then, \(A \simeq \{ N \}, B \simeq \{ S \}, A\cap B \simeq S^{n-1}\).
+
+        These are deformation retracts: One way it's an inclusion, other way it is a retract.
+
+        i. \(A \simeq N\): Use normalized straight line homotopy.
+
+        \[
+            H: A \times I \to  A, x \mapsto \frac{(1-t)x + tN}{\lVert (1-t)x + tN \rVert}
+        \]
+
+        We avoid the south pole to avoid division by \(0\).
+
+        Same for ii.
+
+        \(A\cap B\): We don't have north and south pole.
+
+        Idea: project and normalize.
+
+        Suppose \(x = (x_0, \cdots , x_n) \in A \cap B\).
+
+        Let \(r(x)\coloneqq \frac{(x_0, \cdots , x_{n-1}, 0)}{\lVert x_0, \cdots , x_{n-1},0 \rVert }\)
+
+        Then \(H(x,t) = \frac{(1-t) + t r(x)}{\lVert  \rVert}\).
+
+        We're essentially going along an arc to minimize our journey throuth the sphere.
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{c|c|c|c}
+                \toprule
+                    \(i\) & \(H_i A \cap B\) & \(H_i A \oplus H_i B\) & \(H_i S^n\) \\
+                    & \(\cong H_i(S^{n-1})\) & \(\cong H_i(pt) \oplus H_i(pt)\) & \\  
+                \midrule
+                    \(0\)  & \(\mathbb{Z}\)  & \(\mathbb{Z} \oplus \mathbb{Z}\) & \(\mathbb{Z}\) \\
+                    \(1\)  & \(0\) & \(0\) & ? \\
+                    \(\vdots\)  &  &  &  \\
+                    \(n-1\)  & \(\mathbb{Z}\) & \(0\) & ? \\
+                    \(n\) & \(0\) & \(0\) & ? \\
+                \bottomrule
+            \end{tabular}
+            \caption{MVES for \(S^n\)}
+        \end{table}
+
+        All question marks should be \(0\) except for the last one since it maps to \(\mathbb{Z}\).
+
+        Application for \(H_{\ast} S^n: S^n \simeq S^m \implies n = m\).
+
+    \end{proof}
+
+    \begin{definition}
+
+        \(A \subset X\) is a retract if \(\exists\) continuous \(r: X \to A\) such that \(r(a) = a \forall a\in A\).
+
+        \(A\) is a retract. \(r\) is a retraction.
+
+        Thus, retract means \(r\) is a left inverse of the inclusion map \(i: A \to X\).
+
+        By functoriality, the same thing is true once we pass to homology.
+
+        \(r_{\ast} \circ i_{\ast} = \operatorname{id}_{H_{\ast} A} \implies  H_{\ast} X = i_{\ast} H_{\ast} A \oplus \ker r_{\ast}\).
+    \end{definition}
+
+    \begin{theorem}
+        [Brouwer No Retraction Theorem] \(S^{n-1}\) is \underline{not} a retract of \(D^n\).
+    \end{theorem}
+
+    \begin{proof}
+        We use contradiction. Assume \(\exists r: D^n \to S^{n-1}\) such that \(\eval{r}_{S^{n-1}}^{} = \operatorname{id}_{}\).
+
+        \begin{center}
+            \begin{tikzcd}
+                S^{n-1} \ar[r,"i"] \ar[rr, bend right, "id"] & D^n \ar[r,"r"] & S^{n-1}
+            \end{tikzcd}
+        \end{center}
+
+        Applying the functor \(H_n\), 
+
+        \begin{center}
+            \begin{tikzcd}
+                H_n S^{n-1} \ar[r,"i_*"] \ar[rr, bend right, "id"] & H_n D^n \ar[r,"r_*"] & H_n S^{n-1}
+            \end{tikzcd}
+        \end{center}
+
+        \(D^n\) is retractible. When \(n > 1\) we have \(H_{n-1} D^n = \mathbb{Z}\).
+
+        \begin{center}
+            \begin{tikzcd}
+                \mathbb{Z} \ar[r] \ar[rr, bend right, "id"] & 0 \ar[r] & \mathbb{Z}
+            \end{tikzcd}
+        \end{center}
+
+        Which cannot happen.
+
+    \end{proof}
+
+    \begin{theorem}
+        [Brower Fixed Point Theorem] Every \(f: D^n \to D^n\) has a fixed point.
+    \end{theorem}
+
+    \begin{proof}
+        Assume there doesn't exist a fixed point.
+
+        Then we can construct a retraction map \(r: D^n \to S^n\) by drawing a line from \(f(x)\) to \(x\) and intersecting it with boundary.
+    \end{proof}
+
+    \subsection*{Relative Homology}
+
+    Goal: exact of a pair \(A \subset X\).
+
+    \[
+        \cdots \to H_n A \to H_n X \to H_n(X,A) \xrightarrow{\partial} H_{n-1} \to \cdots 
+    \]
+
+    \(H_n(X,A)\): ``relative homology''. We extract `relative cycles'.
+
+    Chain is a formal linear combination. We require the boundary be in \(A\).
+
+    \begin{definition}
+        [Category of Pairs] \(\operatorname{Top}^2\).
+
+        Objects: \((X,A)\) where \(A \subset X\) open.
+
+        Morphism: \((X,A) \to (Y,B)\) is a continuous map \(f: X \to Y\) so that \(f(A) \subset B\).
+    \end{definition}
+
+    We have a functor \(H_n: \operatorname{Top}^2 \to \operatorname{Ab}\).
+
+    \begin{center}
+        \begin{tikzcd}
+            S_n A \ar[d,hook] \ar[r,"\partial"] & S_{n-1} A \ar[d,hook] \\ S_n X \ar[r,"\partial"] & S_{n-1} X
+        \end{tikzcd}
+    \end{center}
+
+    This means we have \(S_n X / S_n A \xrightarrow{\overline{\partial }} S_{n-1} X / S_{n-1} A\) 
+
+    Relative Chain complex:
+
+    \[
+        S_\bullet(X,A) = \left\{ \frac{S_{\ast} X}{S_{\ast} A}, \overline{\partial } \right\} 
+    \]
 
 \end{document} 
