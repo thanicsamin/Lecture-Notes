@@ -1631,4 +1631,219 @@
         S_\bullet(X,A) = \left\{ \frac{S_{\ast} X}{S_{\ast} A}, \overline{\partial } \right\} 
     \]
 
-\end{document} 
+    \section*{Wednesday, 2/5/2025}
+    
+    Suppose we have a Mayer-Vietoris Exact sequence.
+
+    \[
+        \cdots \to H_n (A \cap B) \xrightarrow{H_n(i) \oplus H_n(j)} H_n(A) \oplus H_n(B) \to \underline{H_n X} \to H_{n-1} (A\cap B) \to \cdots  
+    \]
+
+    Then we have the following short exact sequence:
+
+    \[
+        0 \to \operatorname{coker} (H_n i \oplus H_n j) \to H_n X \to \ker (H_n i \oplus H_n j) \to 0
+    \]
+
+    Then, \(H_n X\) is determined upto an extension.
+
+    If \(\operatorname{coker} = \mathbb{Z} / 2, \ker = \mathbb{Z} / 2\) then \(H_n X\) can be \(\mathbb{Z} / 4\) or \(\mathbb{Z} / 2 \oplus \mathbb{Z} / 2\).
+
+    If all of them are free [so maps are matrix maps] then we can use smith normal form.
+
+    This gives us: \(H_n S^n \cong H_{n-1} S^{n-1}\).
+
+    \begin{remark}
+        Generator of \(H_n S^n\) is represented by:
+
+        \[
+            \Delta^n \to \Delta^n / \partial \Delta^n \cong S^n
+        \]
+
+        or,
+
+        \[
+            \partial_{n+1} ( \Delta^{n+1} \to \Delta^{n+1})
+        \]
+
+        aka sum of top simplicies of \(\partial \Delta^n\).
+    \end{remark}
+
+    \subsection*{Relative Homology}
+
+    Consider the pair \((X,A)\) with \(A \subset X\).
+
+    \begin{definition}
+        [Singular Relative Chain Complex]
+
+        \[
+            S_\bullet(X,A) = \left\{ S_{\ast} (X,A), \overline{\partial} \right\} 
+        \]
+
+        \[
+            \cdots \to S_{n+1} (X,A) \xrightarrow{\overline{\partial}_{n+1}} S_n(X,A) \xrightarrow{\overline{\partial}_n} S_{n-1} (X,A) \to \cdots 
+        \]
+
+        \[
+            S_n (X,A) \coloneqq S_n X / S_n A
+        \]
+
+        [Quotient of free abelian group, basis is a subset. So quotient basis is the complement, quotient is free abelian]
+
+        Then it is a free abelian group with basis:
+
+        \[
+            \left\{ \sigma : \Delta^n \to X \eval \sigma(\Delta^n) \nsubseteq A \right\} 
+        \]
+
+        \[
+            \overline{\partial}: S_n(X,A) \to S_{n-1} (X,A) 
+        \]
+
+        induced by \(\partial: S_n X \to S_{n-1} X\).
+
+        or \(\overline{\partial } (c + S_n A) = \partial c + S_{n-1} A\) 
+
+    \end{definition}
+
+    \begin{definition}
+        [Relative Homology] Relative homology is the homology of the chain complex:
+
+        \[
+            H_n (X,A) = H_n(S_{\bullet}(X,A)) = \frac{\ker \overline{\partial_n}}{\operatorname{im} \overline{\partial_n}} = \frac{Z_n(X,A)}{B_n(X,A)}
+        \]
+
+        \[
+            \xleftarrow{\cong} \frac{\pi ^{-1} (Z_n(X,A))}{\pi ^{-1} (B_n(X,A))} = \frac{\left\{ c \in S_n X \mid \partial c \in S_{n-1} A \right\}}{\left\{ c \in S_n X \mid \exists d\in S_{n+1} X, \text{s.t.} \partial d - c \in S_n A \right\}} 
+        \]
+    \end{definition}
+
+    Example: \(H_n(D^n, S^{n-1}) \cong \mathbb{Z}\) 
+
+    For all \(n\) we have \(H_n: \operatorname{Top}^2 \to \operatorname{Ab}\) or we can consider \(H_{\ast} : \operatorname{Top}^2 \to \operatorname{Gr}\).
+
+    We have maps induced by morphisms: \(f(X,A) \to (Y,B)\) s.t. \(f(A) \subset B\).
+
+    We have a corresponding map of chain compplexes:
+
+    \[
+        S_\bullet f \coloneqq f_\# \coloneqq S_\bullet(X,A) \to S_\bullet(y,B)
+    \]
+
+    \[
+        H_{\ast} f = f_{\ast} : H_{\ast} (X,A) \to H_{\ast} (Y,B)
+    \]
+
+    It is a chain map [aka it commutes with the boundary] [see above].
+
+    \subsection*{Homotopy Invariance}
+
+    Suppsoe we have a homotopy \(H: X \times I \to Y\) so that \(H(A \times I) \subset B\).
+    
+    Let \(f = H_0, g = H_1\).
+    
+    We write \(f\simeq g\).
+
+    \begin{theorem}
+        \(f_{\ast} = g_{\ast} : H_n(X,A) \to H_n(Y,B)\) 
+    \end{theorem}
+
+    \begin{proof}
+        Same as absolute case.
+    \end{proof}
+
+    If we want to be fancy we can say:
+
+    \[
+        H_{\ast} : \operatorname{hTop}^2 \to \operatorname{Gr}  
+    \]
+
+    Objects are pairs of topolocial spaces, morphisms are homotopy classes of morphisms.
+
+    \begin{remark}
+        \((X,\varnothing) \to (X,A)\) is a map of pairs.
+
+        Clear from defiinion that \(H_n (X,\varnothing) = H_n X\) so we have a map \(H_n X \to H_n(X,A)\).
+    \end{remark}
+
+    \begin{theorem}
+        [LES of a pair] \(\exists\) LES like this:
+
+        \[
+            \cdots \to H_n A \xrightarrow{inc} H_n X \xrightarrow{\text{induced}} H_n (X,A) \xrightarrow{\partial} H_{n-1} A \to \cdots 
+        \]
+    \end{theorem}
+
+    Example:
+
+    \[
+        \underbrace{H_n D^n}_{=0} \to H_n (D^n, S^{n-1}) \to H_{n-1} S^{n-1} \to \underbrace{H_{n-1}D^n}_{=0}
+    \]
+
+    \[
+        \implies H_n(D^n, S^{n-1}) \cong \mathbb{Z}
+    \]
+
+    \[
+        H_i(D^n,S^{n-1}) \cong \begin{dcases}
+            \mathbb{Z}, &\text{ if } i = n ;\\
+            0, &\text{ otherwise} .
+        \end{dcases}
+    \]
+
+    Generator \(\Delta^n \to \Delta^n\).
+
+    \begin{proof}
+        We have a short exact sequence of chain complexes:
+
+        \[
+            0 \to S_\bullet A \to S_\bullet X \to S_\bullet (X,A) \to 0
+        \]
+
+        So, all maps are chain maps.
+
+        It is levelwise a SES of abelian groups.
+
+        \[
+            \forall n, 0 \to S_n A \to S_n X \to S_n(X,A) \to 0
+        \]
+
+        \begin{lemma}
+            [Zig-Zag Lemma] (Theorem 2.16 of Hatcher) Slogan: SES of chain complexes gives a long exact sequence in homology.
+
+            \[
+                0 \to A_\bullet \xrightarrow{i} B_\bullet \xrightarrow{j} C_\bullet \to 0
+            \]
+
+            \[
+                \cdots \to H_n A_\bullet \xrightarrow{i_{\ast}} H_n B_\bullet \xrightarrow{j_{\ast}} H_n C_\bullet \xrightarrow{\partial} H_{n-1} A_\bullet \to H_{n-1} B_\bullet
+            \]
+        \end{lemma}
+
+        Zig-Zag lemma \(\implies\) LES of pair.
+
+        Proof of Zig-Zag lemma: diagram chasing.
+
+        We need to define the boundary map \(\partial \). Also, we need to prove exactness at the following: \(H_n A, H_n B, H_n C\). 
+
+        We have \(6\) inclusions \(\subset \supset\). Look at Hatcher!
+
+        \(\partial : H_n C \to H_{n-1} A, \partial [c]\).
+
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar[r] & A_n \ar[r] \ar[d] & B_n \ar[r, "b \mapsto c \text{ cycle}"] \ar[d, "b\mapsto \partial b"] & C_n \ar[r] \ar[d] & 0 \\
+                0 \ar[r] & A_{n-1} \ar[r,"a\mapsto\partial b"', "i"] & B_{n-1} \ar[r] & C_{n-1} \ar[r] & 0
+            \end{tikzcd}
+        \end{center}
+
+        \[
+            \partial [c] = [i ^{-1} \partial j ^{-1} c] \in H_{n-1} A
+        \]
+
+        \[
+            \partial_{zz} = i ^{-1} \partial j ^{-1}
+        \]
+    \end{proof}
+
+\end{document}

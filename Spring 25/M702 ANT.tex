@@ -919,7 +919,7 @@
     \end{proof}
 
     \begin{corollary}
-        Let \(K^{ab}\) be the maximal abelian extension of \(K\) . Then, \(\exists\) a totallly ramified extension \(L / K\) such that \(K^{ab = L . K^{nr}}\).
+        Let \(K^{ab}\) be the maximal abelian extension of \(K\) . Then, \(\exists\) a totallly ramified extension \(L / K\) such that \(K^{ab} = L . K^{nr}\).
     \end{corollary}
 
     \begin{proof}
@@ -1327,9 +1327,211 @@
             
             \(\implies \psi_L \left( \frac{\sigma(y)}{y} \right) = \sigma (x) x ^{-1} \in V(L_{nr} / K_{nr})\). This shows ii. 
             
+            \item \(u\in \ker \psi_K\). Write \(u = \sum_{i=0}^{\infty} a_i \pi^i, a_i \in \mu(K^{nr}) \cup \{ 0 \}, a_0\neq 0\).
             
+            \(\implies \psi_K(u) = \varphi_{K_{nr} / K}(u) u ^{-1} = 1 \mod \pi. a_0^{q-1} \equiv 1\mod\pi\). \(a_0\) is a root of unity \(\implies a_0^{q-1} = 1\). \(\implies a_0 \in \mu_{q-1}(K^{nr})\). By Hensel's lemma, \(a_0\in \mu_{q-1}(K)\).
+            
+            By induction, assume \(a_0, \cdots , a_{n-1} \in \mu(K) \cup \{ 0 \}, n \geq 1\). \(\exists w\in U(K): u w ^{-1} = 1  + a \pi^n\) where \(a \in \mathcal{O}_{K_{nr}}\).
+
+            \(u = a_0 + a_1 \pi + \cdots + a_{n-1} \pi^n + b \pi^n\)
+            
+            \(=\underbrace{(a_0 + \cdots + a_{n-1} \pi^{n-1})}_{=w} \left( 1 + \frac{b \pi^n}{a_0 + a_1 \pi + \cdots + a_{n-1} \pi^{n-1}}\right)\).
+            
+            \(\implies 1 = \psi_K (u) = \psi_K(u w ^{-1}) = \frac{1 + \varphi_{K_{nr} | K}(a) \pi^n}{1 + a \pi^n} \equiv 1 + (a^q - a) \pi^n \mod \pi^{n+1}\)
+            
+            Therefore, \(a^q \equiv a \mod \pi \implies a = c_n + b_n \pi\) with \(c_n \in \mu_{q-1}(K)\cup \{ 0 \}, b_n \in \mathcal{O}_{K_{nr}}\).
+            
+            Thefefore, \(a_n \in \mu_{q-1}(K) \cup \{ 0 \}\).
+
             
         \end{enumerate} 
+    \end{proof}
+
+    \section*{Thursday, 2/6/2025}
+    
+    \begin{theorem}
+        Suppose \(k = k_K\) is finite. For any abelian totally ramified exttension \(L / K\), there is a canonical homomorphism:
+
+        \[
+            \eta_{L / L} : U(K) \to G(L / K)
+        \]
+
+        Which is surjective and has kernel \(N_{L / K}(U(L))\).
+
+        Hence \(\eta_{L / K}\) induces an isomorphism:
+
+        \[
+            \frac{U(K)}{N_{L / K}(U(L))} \xrightarrow{\eta_{L / K}} G(L / K)
+        \]
+
+        \(\eta_{L / K}\) is \underline{functorial} in the sense that if \(M / K \subseteq L / K\) is a subextension then there is a commutative diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                1 \ar[r] & N_{L / K}(U(L)) \ar[r] \ar[d, hook] & U(K) \ar[r,"\eta_{L / K}"] \ar[d,"id"] & G(L / K) \ar[r] \ar[d, two heads, "res"] & 1 \\
+
+                1 \ar[r] & N_{M / K}(U(M)) \ar[r] & U(K) \ar[r, "\eta_{M / K}"] & G(M / K) \ar[r] & 1
+            \end{tikzcd}
+        \end{center}
+    \end{theorem}
+
+    \begin{proof}
+        From the diagram we considered before the snake lemma gives us an exact sequence:
+
+        \begin{center}
+            \begin{tikzcd}
+    
+                U(L) \cap V(L_{nr} / K_{nr}) \ar[r] & U(L) \ar[dr] \ar[r, two heads] & \ker(\overline{\psi}_L) \ar[d, "\subset"] \ar[r, "N"] & \ker(\psi_K) \ar[dddll] \ar[d] \\
+                1 \ar[r] & G(L / K)  \cong G(L_{nr} / K_{nr}) \ar[d,"\sigma\mapsto 1"] \ar[r,"i_{L_{nr} / K_{nr}}"] & \frac{U(L_{nr})}{V(L_{nr} / K_{nr})} \ar[d,"\overline{\psi}_L"] \ar[r, "N"] & U(K_{nr}) \ar[d,"\psi_K"] \ar[r] & 1 \\
+                1 \ar[r] & G(L / K) \ar[d,"\cong"] \ar[r,"i_{L_{nr} / K_{nr}}"] & \frac{U(L_{nr})}{V(L_{nr} / K_{nr})} \ar[r] \ar[d] & U(K_n) \ar[r] & 1 \\
+                & G(L / K) \ar[r] & \operatorname{coker}(\overline{\psi_L}) \ar[d] \\ & & 1
+            \end{tikzcd}
+        \end{center}
+
+        \[
+            \ker(\overline{\psi_L}) \to \ker(\psi_K) \overset{1.3.17ii}{=} U(K) \xrightarrow{\eta_{L / K}} G(L / K) \to \operatorname{coker} (\overline{\psi}_L) \overset{1.3.17i}{=} 1
+        \]
+
+        Let \(\overline{u} = u V(L_{nr} / K_{nr}) \in \ker (\overline{\psi_L}) \implies \psi_L(u) \in V(L_{nr} / K_{nr})\).
+        
+        1.3.17ii \(\implies \exists w\in V(L_{nr} / K_{nr})\) such that \(\psi_L(w) = \psi_L(u)\).
+        
+        Thus, \(\psi_L(u w ^{-1}) = 1\).
+        
+        1.3.17iii \(\implies u w ^{-1} \in U(L)\).
+
+        Therefore we can deduce that \(\ker(\overline{\psi_L}) = U(L) V(L_{nr} / K_{nr})\).
+        
+        \(\implies \operatorname{im} (\ker (\overline{\psi}_L) \xrightarrow{N} \ker (\psi_K) = U(K)) = N_{L / K}(U(L))\).
+        
+        Hence, \(\frac{U(K)}{N(U(L))} \xrightarrow[\eta_{L / K}]{\cong} G(L / K)\)
+        
+        The functoriality of \(\eta_{L / K}\) follows from the functoriality of the connecting homomorphism of the snake lemma.
+
+    \end{proof}
+
+    \begin{theorem}
+        For every finite abelian extension \(L / K\) (not necessarily totally ramified), there is a canonical isomorphism
+
+        \[
+            \eta_{L / K} : \frac{U(K)}{N_{L / K}(U(L))} \to G(L / K)_0
+        \]
+
+        which is functorial w.r.t.\ subextensions \(M / K\) as in the previous theorem.
+    \end{theorem}
+
+    \begin{proof}
+        We use the \underline{decomposition theorem} [1.3.5].
+        
+        \(\exists L^{\prime} \subset L^{nr}\) such that \(L^{\prime} / K\) is finite abelian [since \(L^{nr} = L . K^{nr}\) the compositum of two abelian extensions] such that \((L^{\prime})^{nr} = L^{\prime} . K^{nr} = L . K^{nr} = L^{nr} \).
+
+        Then, \(\operatorname{Gal} (L^{\prime} / K) \cong G((L^{\prime})^{nr} / K^{nr}) \cong G(L^{nr} / K^{nr}) \cong G(L / K)_0\).
+        
+        1.3.18 \(\implies \frac{U(K)}{N_{L^{\prime} / K}(U(L^{\prime}))} \cong G(L^{\prime} / K) = G(L / K)_0\).
+        
+        We can pass to the completion.
+
+        Since \(L^{\prime} K_r \overset{(1)}{=} L.K_r\) for some unramified \(K_r / K\) (prooof  of 1.3.5).
+
+        and \(N_{L^{\prime} K_r / L^{\prime}}(U(L^{\prime}K_r)) \overset{(2)}{=}  U(L^{\prime})\) by 1.3.4i
+        
+        \(N_{LK_r / L}(U(LK_r)) \overset{(3)}{=} U(L)\) by 1.3.4i.
+
+        \(\implies N_{L^{\prime} / K}(U(L^{\prime})) \overset{(2)}{=} N_{L^{\prime} / K}(N_{L^{\prime} K_r / L^{\prime}}(U(L^{\prime} K_r)))\)
+
+
+        \(= N_{L^{\prime} K_r / K}(U)L^{\prime} K_r\)
+        
+        \(\overset{(1)}{=} N_{LK_r / K}(U(LK_r))\)
+
+        \(= N_{L / K}(N_{L K_r / L}(U(LK_r)))\) 
+
+        \(\overset{(3)}{=} N_{L / K}(U(L))\) 
+        
+        \(\implies\) we get an isomorphism:
+
+
+        \[
+            \frac{U(K)}{N_{L / K}(U(L))} \xrightarrow[\cong]{\eta_{L / K}} G(L / K)_0
+        \]
+
+    \end{proof}
+
+    Goal: we want to prove that there is a canonical isomorphism:
+
+    \[
+        K^\times / N_{L / K} (L^ \times) \xrightarrow{\cong} G(L / K)
+    \]
+
+    for any finite abelian extension \(L / K\).
+
+    We want to do something with uniformizers, and uniformizers should roughly correspond to frobenius elements.
+
+    \subsection*{Norm Groups of Lubin-Tate Extensions}
+
+    Let \(\pi\) be a uniformizer of \(K\), \(\vert k_K \vert = q = p^f, \mathcal{O} = \mathcal{O}_K, e \in \mathscr{E}_\pi\) aka a LT series for \(\pi\).
+
+    Let \(F_e\) be an LT \(\mathcal{O}\)-module for \(e\), and \(L_m = L_{\pi, m} = K(F_e[\pi^m])\) aka the series generated by \(\pi^m\) torsion points. This is independent of the choice of \(e\) but does depend on \(\pi\).
+
+    We know that \(L_m / K\) is totally ramified abelian Galois extension of degree \((q-1)q^{m-1}\) where \(m \geq 1\). Recall that \(L_0 = K\).
+
+    Set \(U^m(K) = 1 + \pi^m(K) \leq U(K), U^0(K) = U(K)\).
+
+    We now have \underline{two} description of \(G(L_m / K)\).
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Via LT theory: the map \(U(K) / U^m(K) \xrightarrow{\cong} G(L_m / K)\) defined by \(a U^m(K) \mapsfrom \sigma\) if for all \(\alpha \in F_e[\pi^m], \sigma(\alpha) = [a]_{F_e}(\alpha)\)
+        
+        \item Via \(\eta_{L / K}: U(K) / N_{L_m / K}(U(L_m)) \xrightarrow{\cong} G(L_m / K)\) [we don't need to put ramification since it is totally ramified].
+    \end{enumerate} 
+
+    Natural questions:
+
+    \begin{enumerate}[label=\roman*)]
+        \item Is \(N_{L_m / K}(U(L_m)) = U^m(K)\)? Answer is yes, but not obviously so.
+        \item If the answer to i is yes [which it is] then are these two maps the same? [Answer is no, but kind of close! \(\forall a\in U(K), \forall \alpha \in F_e[\pi^m], \eta_{L_m / K}(a) (\alpha) = [a ^{-1}](\alpha)\)]
+    \end{enumerate} 
+
+    \begin{lemma}
+        Given a monic polynomial \(f(x) \in \mathcal{O} [x] \setminus \{ 0 \}\) with degree \(n\) with \(p\nmid n\), there exists \(s\in \mathbb{Z}_{> 0}\) and \(r(x) \in \mathcal{O} [x]\) with \(r(0)=1, \deg r < s\) such that the \(\mod\pi\) reduction of \(h(x)\coloneqq x^s f(x) + r(x)\) is separable.
+    \end{lemma}
+
+    \begin{proof}
+        HW4
+    \end{proof}
+
+    \begin{theorem}
+        \(N_{L_m / K}(U(L_m)) = U^m (K)\) 
+    \end{theorem}
+
+    \begin{proof}
+
+        We show first \(N(U(L)) \subset U^m(K)\) 
+        
+        Set \(L_m = L\) and write \(w\in U(L)\) as \(w = \zeta u\) with \(u\in U^{\prime} (L)\) and \(\zeta \in \mu(L) \underset{=}{L \text{ totally ramified}} = \mu(K)=\mu_{q-1}(K)\).
+
+        \(\implies N(w) = N(\zeta u) = \zeta^{[L:K]} N(u) = \zeta^{(q-1)q^{m-1}}N(u) = N(u)\).
+        
+        Suffices to show that \(N_{L / K}(U^{\prime}(L)) \subset U^m(K)\).
+
+        Case \(m= 1\) is done.
+
+        Assume \(m \geq 2\), set \(n = m (q-1)q^{m-1} - 1 \implies p\nmid n.\) Let \(\lambda\) be a uniformizer of \(L\). Write \(U^{\prime} (L) \ni u = 1 + a_1 \lambda + \cdots + a_n \lambda^n + x, v(x) \geq n+1 = v(\pi^m)\).
+
+        \(v = v_L =\) normalized valuation on \(L, v_L(\lambda) = 1 (\implies v(\pi) = (q-1)q^{m-1})\).
+
+        Consider \(f(x) = x^n + a_1 x^{n-1} + \cdots + a_n \in \mathcal{O}[x]\). Since \(p\nmid n\) we can apply 1.3.20 and get \(h(x) = x^s f(x) + r(x), h \mod \pi\) separable. Then \(\overline{h}\) has \(s + n \coloneqq t = \deg(h) = \deg(\overline{h})\) distinct roots in \(\overline{k} = \overline{\mathbb{F}_q}\). Hensel's lemma implies roots of \(h\) in \(\overline{K}\) are actually in \(K_{nr}\).
+
+        Let \(z_1, \cdots , z_t\) be the roots of \(h(x)\) in \(K_{nr}\).
+
+        Since \(h\) is monic, they actually lie on \(\mathcal{O}_{K_{nr}}\). \(z_i \in \mathcal{O}_{K_{nr}}\).
+
+        Recall that \(h(0)=r(0)=1\) so \(\prod z_i = \pm 1\).
+        
+        Thus, \(z_i \in \mathcal{O}_{K_{nr}}^\times = U(K_{nr})\).
+    
+    
+
     \end{proof}
 
 \end{document}
