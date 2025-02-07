@@ -1846,4 +1846,43 @@
         \]
     \end{proof}
 
+    \section*{Friday, 2/7/2025}
+    
+    \begin{theorem}
+        [Zig-Zag Lemma] A SES:
+
+        \[
+            0 \to A_\bullet \xrightarrow{i} B_\bullet \xrightarrow{j} C_{\bullet} \to 0
+        \]
+
+        Induces a LES on homology:
+
+        \[
+            \cdots \to H_n A_\bullet  \xrightarrow{i_{\ast}} H_n B_\bullet \xrightarrow{j_{\ast}} H_n C_\bullet \xrightarrow{\partial} H_{n-1} A_0\bullet \to \cdots 
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        First we explicitly define the boundary map \(\partial: H_n C_\bullet \to H_{n-1} A_\bullet\) given by \(\partial = i ^{-1} \partial^B j ^{-1}\).
+
+        Suppose \(c\in \ker \partial^c\). From surjectivity of \(j\) we can choosee \(b\in B_n\) such that \(jb = c\).
+
+        \(j \partial^B b = \partial^c j b = \partial^c c = 0\).
+
+        Thus, \(c\in \ker \partial^c\). Then we can find \(a\) such that \(i(a) = \partial^B b\).
+
+        We define \(\partial [c] = [a]\).
+
+        Details:
+        
+        \(a\) is a cycle. \(i \partial^A a = \partial^B i a = \partial^B \partial^B B = 0\). \(i\) is injective \(\implies \partial^A a = 0\). 
+
+        \([a]\) is independent of the choice of \(b\).  Suppose \(jb = c = jb^{\prime}\). Then there exists \(a^{\prime\prime}\) such that \(ia^{\prime\prime} = b - b^{\prime}\).
+
+        We choose \(a, a^{\prime}\) such that \(ia = \partial^B b, i a^{\prime} = \partial ^B b^{\prime}\). Then \(a - a^{\prime} = \partial^A a^{\prime\prime} \implies [a]=[a^{\prime}] \in H_{n-1}A\)
+
+        \([a]\) is independent of the choice of \(c\). Suppose \(c - c^{\prime} = \partial c^{\prime\prime}\). We can find \(b^{\prime\prime}\) such that \(j(b^{\prime\prime}) = c^{\prime\prime}\). Then \(\partial b^{\prime\prime} \mapsto c - c^{\prime}\). Thus, \(\partial [c-c^{\prime}] = [0]\). Thus, \(\partial [c]= \partial [c^{\prime}]\)  
+
+    \end{proof}
+
 \end{document}
