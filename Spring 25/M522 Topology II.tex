@@ -2064,4 +2064,510 @@
 
     \end{proof}
 
+    \section*{Wednesday, 2/12/2025}
+    
+    We give examples of excisive triads.
+
+    \[
+        (S^n; S^n - S, S^n - N)
+    \]
+
+    \[
+        (S^n; S^n_+, S^n_-)
+    \]
+
+    \[
+        (I; \{ 0 \}, \varnothing)
+    \]
+
+    Goal is to discuss a proof of the \underline{Excision Theorem}: If \(X = \operatorname{int} A \cup \operatorname{int} B\) then \((X; A, B)\) is an excisive triad. This implies Mayer Vietoris. 
+
+    \begin{proof}
+        [Proof of Excision Theorem]
+
+        We have \(H_{\ast}(S_\bullet A + S_\bullet B) \to H_{\ast} X\).
+
+        Is it onto? We want to check if \(\gamma\in S_n X\) is homologous to \(\alpha + \beta \in S_n A + S_n B\). So, we want to find \(\eta\) such that \(\partial \eta = \gamma - (\alpha + \beta)\). Idea: subdivide \(\gamma\) to \(\alpha\) and \(\beta\) so the tiny pieces all lie on \(A\) or \(B\). We can do this by Lebesgue numbers.   
+    \end{proof}
+
+    We're going to gack to simplices in \(v_0, \cdots , v_p \in \mathbb{R}^N\).
+
+    A geometric \(n\)-simplex \(\Delta = \langle v_0, \cdots , v_p \rangle =\) the convex hull.
+
+    \(\sum_{i} t_i v_i \in \Delta, 0 \leq t_i \leq 1, \sum t_i = 1\).
+
+    The \underline{center} is called the barycenter \(b = b_\Delta = \frac{\sum_{i} v_i}{p+1}\), the center of mass.
+
+    We have the \underline{barycentric subdivision} \(\Delta^{\prime}\). This will be a collection of \(p\)-simplices whose union will be the whole thing.
+
+    \[
+        \Delta^{\prime} = \left\{ \langle b, w_0, \cdots, w_{p-1} \rangle \eval \langle w_0, \cdots , w_{p-1} \rangle \in \text{barycentric subdivision of  a facet of \(\Delta\)}  \right\} 
+    \]
+
+    A facet of \(\Delta\) is given by \(\langle v_0, \cdots , \widehat{v_i}, \cdots , v_p \rangle \) 
+
+    % insert picture
+
+    We need the following theorem to prove excision theorem.
+
+    \begin{theorem}
+        [Subdivision Theorem] See tom dieck, hatcher.
+
+        \(\exists\) chain \(\beta_\bullet = \beta_\bullet^X : S_\bullet \to S_\bullet\), natural in \(X\) such that:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\beta_\bullet ^X \simeq \operatorname{id}_{S_\bullet X}\) chain homotopy natural in \(X\). Reason: we want to make sure homologically it doesn't change things. As a consequence of this, image of cycle is cycle.
+            \item \(\beta_p(\sigma: \Delta^p \to X)\) is \underline{supported in} \((\Delta^p)^{\prime}\).
+            
+            If \(\beta_{p}(\sigma) = \sum_{i} n_i \sigma_i\) then \(\sigma_i(\Delta^p) \subset \sigma(\tau)\) for some \(\tau \in (\Delta^p)^{\prime}\).
+        \end{enumerate}
+        
+        Note: natural in \(X\) means if we have \(f:X \to Y\) then we have a commutative diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                S_\bullet X \ar[r, "f_\#"] \ar[d,"\beta_\bullet^X"] & S_\bullet U \ar[d,"\beta_\bullet^Y"] \\ S_\bullet X \ar[r,"f_\#"] & S_\bullet Y
+            \end{tikzcd}
+        \end{center}
+
+        For a chain homotopy \(h_p^X: S_p X \to S_{p+1} X\) to be natural means \(\partial h + h \partial = \beta - \operatorname{id}\) and we have the following commutative diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                S_p X \ar[r] \ar[d] & S_p Y \ar[d] \\ S_{p+1} X \ar[r] & S_{p+1} Y
+            \end{tikzcd}
+        \end{center}
+
+    \end{theorem}
+
+    \begin{proof}
+        Construction of \(\beta\).
+
+        Suppose we have convex \(D \subset \mathbb{R}^N\) and vertices \(v_0, \cdots , v_p \in D\). We have:
+
+        \[
+            [v_0, \cdots , v_p] : \Delta^p \to \langle v_0, \cdots , v_p \rangle
+        \]
+
+        \[
+            \sum_{i} t_i e_i \mapsto \sum_{i} t_i v_i
+        \]
+
+        For \(v\in D\) define suspension map:
+
+        \[
+            v \cdot : S_p D \to S_{p+1} D
+        \]
+
+        \[
+            v \cdot [v_0, \cdots , v_p] = [v, v_0, \cdots , v_p]
+        \]
+
+        Let \(\iota_p: \Delta^p \to \Delta^p\) be the identity.
+
+        We define \(\beta_p^X\) by induction on \(p\).
+
+        For \(p=0\) we have \(\beta_0(\sigma) = \sigma\) [we cannot subdivide point].
+
+        We want [by naturality] \(\beta_p(\sigma) = \sigma_\# \beta_p(\iota_p)\)
+
+        \(\beta_p(\iota_p) = b \cdot \beta_{p-1} (\delta \iota_p) \in S_p \Delta^p\)
+
+        Proof of i, ii ommitted.
+
+        \(\beta_1(\sigma)\) is given by formal difference between paths from \(b\) to each endpoint for example.
+
+    \end{proof}
+
+    Suppose we have a metric space \(A\). Recall that \(\operatorname{diam} A = \sup_{a,a^{\prime}} d(a,a^{\prime})\).
+
+    \begin{lemma}
+        \(v_0, \cdots , v_p \in \mathbb{R}^N\). Then \(\operatorname{diam} \langle v_0, \cdots , v_p \rangle = \max_{i,j} \lVert v_i - v_j \rVert\).
+    \end{lemma}
+
+    \begin{proof}
+        Suppose \(a, a^{\prime}\in \langle v_0, \cdots , v_p \rangle\). Write down barycentric coordinates:
+
+        \(a = \sum_{i} t_i v_i, a^{\prime} = \sum_{i} t_i^{\prime} v_i\).
+
+        \[
+            \lVert a - a^{\prime} \rVert = \left\lVert \sum_{i} t_i(v_i) - a^{\prime} \right\rVert = \left\lVert \sum_{i} t_i(v_i - a^{\prime}) \right\rVert \leq \sum_{i} t_{i} \lVert v_i - a^{\prime} \rVert
+        \]
+        
+        \[
+            \leq \left( \sum_{i} t_i \right) \max_i \lVert v_i - a^{\prime} \rVert \leq \max_{i,j} \lVert v_i - v_j \rVert 
+        \]
+    \end{proof}
+
+    \begin{corollary}
+        \(\Delta = \langle v_0, \cdots , v_p \rangle\) we have \(\tau \in \Delta^{\prime}\) and \(\operatorname{diam} \tau \leq \frac{p}{p+1} \operatorname{diam} \Delta\).
+    \end{corollary}
+
+    \section*{Friday, 2/14/2025}
+    
+    \begin{theorem}
+        [Classical Excision Theorem] If \(Z \subset A \subset X, \overline{Z} \subset \operatorname{int} A\), then,
+
+        \[
+            H_{\ast} (X - Z, A - Z) \xrightarrow{\cong} H_{\ast} (X,A)
+        \]
+
+        Basically we can cut out (excise) \(Z\).
+    \end{theorem}
+
+    \begin{proof}
+        Let \(Z = X - B\). Then, \(B\) and \(Z\) are complements.
+
+        \(\overline{Z} \subset \operatorname{int} A \subset X \iff X = \operatorname{int} A \cup \operatorname{int} B\).
+    \end{proof}
+
+    Slogan: you can excise closed sets from open sets.
+
+    Suppose we have a knot \(S^1 \cong K \subset S^3\). Suppose we have the trefoil.
+
+    % insert picture
+
+    We can prove that the trefoil is not a circle by the fundamental group \(\pi_1(S^3 - K)\) but not homology!
+    
+    One can use Seifert-Van Kampen theorem to show that \(\pi_1(S^3 - K) = \langle a,b \mid a^3 = b^2 \rangle \twoheadrightarrow \langle a, b \mid a^3 = b^2 = 1, b a b = a ^{-1} \rangle \)
+    
+    \(S_3\) non-abelian. Then, \(\pi_1(S^3 - K) \not\cong \mathbb{Z} = \pi_1(S^3 - S^1) \cong S^1 \times\mathring{D^2}\).
+
+    \(N(K) =\) tubuler neighborhood of \(K \cong S^1 \times D^2\) solid torus.
+
+    \(H_{\ast} (N(K), N(K)-S^1) \xrightarrow{\cong} H_{\ast} (S^3, S^3 - K)\).
+    
+    Also, \(H_{\ast} (N(K),N(K)-S^1)=H_{\ast} (N(S^1),N(S^1)-S^1)\) so \(S^3 - K\) is a homology circle [\(H_{\ast} (S^3 - K) = H_{\ast} (S^1)\)].
+
+    [See: Massey Algebraic Topology]
+
+    Let \(v_0, \cdots , v_p \in \mathbb{R}^n\). let \(\Delta = \langle v_0, \cdots , v_p \rangle = \left\{ \sum_{i} t_i v_i | 0 \leq t_i \leq 1, \sum_{i} t_i = 1 \right\}\).
+
+    \begin{lemma}
+        Suppose \(x\in \Delta\). Then, \(\sup_{y\in \Delta} \lVert x - y \rVert = \max_j \lVert x - v_j \rVert\) 
+    \end{lemma}
+
+    \begin{proof}
+        \[
+            \lVert x - y \rVert = \left\lVert x - \sum_{i} t_i y_i \right\rVert = \left\lVert \sum_{i} t_i (x - y_i) \right\rVert 
+        \]
+
+        \[
+            \leq \sum_{i} t_i \lVert x - y_i \rVert \leq \left\{ \sum_{i} t_i \right\} \left\{ \max_j \lVert x - y_j \rVert \right\} = \max_j \lVert x - y_j \rVert 
+        \]
+
+    \end{proof}
+
+    Applying this twice, \(\lVert x - y \rVert \leq \max_{i,j} \lVert x_i - x_j \rVert\)
+
+    The \(j\)-th face of \(\Delta\) is \(\delta_j \Delta = \langle v_i, \cdots , \widehat{v_j}, \cdots , v_p \rangle\).
+
+    The barycenter \(b = \frac{v_0 + \cdots + v_p}{p+1}\). Like the centroid.
+
+    Barycentric subdivision of \(\Delta\): It is going to be a collection of \(p\)-simplices that cover \(\Delta\).
+
+    \[
+        \Delta ^{\prime} = \left\{ \langle b, w_0, \cdots , w_{p-1} \rangle \mid \left\{ w_0, \cdots , w_{p-1} \right\} \in \left( \partial_j \Delta \right)^{\prime} \right\} 
+    \]
+
+    \begin{corollary}
+        \(\tau \in \Delta^{\prime} \implies \operatorname{diam} (\tau) \leq \frac{p}{p+1} \operatorname{diam} \Delta\).
+    \end{corollary}
+
+    \begin{proof}
+        We use induction on \(p\). Suppose \(\tau  = \langle b, w_0, \cdots , w_{p-1} \rangle\). 
+
+        Case 1: \(\operatorname{diam} \tau  = \lVert w_i - w_j \rVert\). \(\langle w_0, \cdots , w_{p-1} \rangle \in (\partial_j \Delta)^{\prime} \implies \lVert w_i - w_j \rVert \leq \frac{p-1}{p} \operatorname{diam} \partial_j \Delta\) by inductive hypothesis and \(< \frac{p}{p+1} \operatorname{diam} \Delta\).
+        
+        Case 2: Suppose \(\operatorname{diam} \tau = \lVert b - w_i \rVert\).
+
+        \(\lVert b - w_i \rVert \leq \lVert b - v_j \rVert \) for some \(j\) by the lemma.
+
+        \[
+            \lVert b - v_j \rVert = \left\lVert \frac{1}{p+1} \sum_{k} v_k - v_j \right\rVert = \left\lVert \frac{1}{p+1} \left( \sum_{k} v_k - v_j \right)  \right\rVert 
+        \]
+
+        \[
+            \leq \frac{1}{p+1} \sum_{k} \lVert v_k - v_j \rVert \leq \frac{1}{p+1} \sum_{k\neq j} \max_l \lVert v_l - v_j \rVert = \frac{p}{p+1} \operatorname{diam} \Delta 
+        \] 
+    \end{proof}
+
+    As we subdivide we have \(\lim_{k \to \infty} \left( \frac{p}{p+1} \right)^k = 0\) which is the point.
+
+    \begin{proposition}
+        If \(X = \operatorname{int} A \cup \operatorname{int} B\) and \(c \in S_p X\) is some chain then \(\exists k\) such that,
+
+        \[
+            \beta^k \subset S_p A + S_p B
+        \]
+
+        \(k\) is the subdivision operator.
+    \end{proposition}
+
+    This uses the Lebesgue Number Theorem [a fact about comapct metric spaces]:
+
+    \begin{theorem}
+        Let \(\mathcal{U}\) be an open cover of a compact metric space \((A,d)\) then, \(\exists \epsilon >0\) [called the Lebesgue number] such that if we have \(B \subset A\) such that \(\operatorname{diam} B < \epsilon\) then \(\exists O \in \mathcal{U}\) such that \(B \subset O\).
+    \end{theorem}
+
+    Using the theorem we can prove the proposition.
+
+    \begin{proof}
+        [Proof of Proposition] It suffices to prove this when \(c = \sigma : \Delta^p \to X\). We choose a Lebesgue number \(\epsilon\) for the open cover \(\left\{ \sigma ^{-1} \operatorname{int} A, \sigma ^{-1} \operatorname{int} B \right\}\).
+
+        Choose \(k\) such that \(\left( \frac{p}{p+1} \right)^k < \epsilon\).
+
+        Part ii of the subdivision theorem implies \(\mathop{\mathrm{supp}}(\beta^k \sigma) \) is contained in \((\Delta^p)^k\).
+        
+        i.e. \(\beta^k \sigma = \sum_{i} n_i \sigma_i\).
+
+        \(\sigma_i(\Delta^p) \subset \sigma(\tau)\) for some \(\tau \in(\Delta^p)^k\).
+
+        \(\operatorname{diam} \tau \leq \left( \frac{p}{p+1} \right)^k \epsilon\)
+
+        Therefoore, \(\tau \subset \sigma ^{-1} \operatorname{int} A\) or \(\sigma ^{-1} \operatorname{int} B\).
+
+        Therefore, \(\sigma(\tau) \subset \operatorname{int} A\) or \(\sigma(\tau) \subset \operatorname{int} B\).
+
+    \end{proof}
+
+    \section*{Monday, 2/17/2025}
+    
+    Recall subdivisin theorem.
+
+    \begin{theorem}
+        [Subdivision Theorem] There exists chain map \(\beta^X_\bullet \simeq \operatorname{id}: S_\bullet X \to S_\bullet X\) natural in \(X\) and supported in barycentric subdivision.
+    \end{theorem}
+
+    \begin{proposition}
+        Let \(X = \operatorname{int} A \cup \operatorname{int} B\). For chain \(c\in S_p X, \exists k\) such that if we subdivide \(k\) times aka take \(\beta^k c\), we have:
+
+        \[
+            \beta^k c \in S_p A + S_p B
+        \]
+    \end{proposition}
+
+    We want to prove the following theorem.
+
+    \begin{theorem}
+        [Excision Theorem] Suppose \(X = \operatorname{int} A \cup \operatorname{int} B\). Then,
+
+        \[
+            H_{\ast} (S_\bullet A + S_\bullet B) \xrightarrow{\cong} H_{\ast} X
+        \]
+    \end{theorem}
+
+    Chain homotopic implies we have equation:
+
+    \[
+        \beta^X_\bullet -\operatorname{id} = \partial h^X + h^X \partial
+    \]
+
+    Natural means if we hafe \(f: X \to Y\) we have the following commutative square: \(f_\# \circ \beta^X = \beta^Y \circ f_\#, f_{\ast} \circ h^X = h^Y \circ f_\#\).
+
+    Claim: \(\beta^k_\bullet \simeq \operatorname{id}\).
+
+    Proof: \(\beta \simeq \operatorname{id},f\simeq g \implies f \circ h \simeq g \circ h (\implies \beta^i \simeq \beta^{i+1})\). \(\simeq\) is an equivalence relation.
+
+    \begin{proof}
+        [Proof of Excision Theorem]
+
+        Onto: Let \([\gamma] \in H_p X\) be a cycle. Then \(\exists k\) such that \(\beta^k \gamma \in S_p A + S_p B\).
+
+        \(\beta^k - \operatorname{id} = \partial h + h \partial\).
+
+        \(\beta^k \gamma - \gamma = \partial h \gamma + \cancel{h \partial \gamma} \implies \gamma = \beta^k \gamma + \partial (h \gamma) \implies [\gamma] = [\beta^k \gamma] \in H_p X\).
+        
+        \([\beta^k \gamma] \in \operatorname{im} H_p(S_\bullet A + S_\bullet B)\).
+        
+        1-1: Suppose \([\gamma] \in \ker(H_p(S_\bullet A + S_\bullet B) \to H_p X)\). Then we can write \(\gamma = \partial \eta\). There exists \(k\) such that \(\beta^k \eta \in S_{p+1} A + S_{p+1} B\).
+        
+        \(\beta^k \eta - \eta = \partial h \eta + h \partial \eta\). Apply \(\partial\).
+        
+        \[
+            \partial \beta^k \eta - \partial \eta = \partial h\partial \eta
+        \]
+
+        \[
+            \partial \beta^k \eta - \gamma = \partial h \gamma
+        \]
+
+        Similarly, \(\gamma = \partial (\beta^k \eta - h \gamma) \in \partial (S_{p+1} A + S_{p+1} B)\)
+        
+        SInce \(h\) is natural, \(\gamma = \alpha + \beta , h \gamma = h \alpha + h \beta \in S_{p+1} A + S_{p+1} B, [\gamma] = 0 \in H_p(S_\bullet A + S_\bullet B)\).
+    \end{proof}
+
+    \begin{remark}
+        Let \(\mathcal{U}\) be a family of subsets from \(X\) such that \(X = \bigcup_{A_i \in \mathcal{U}} \operatorname{int} A_i\) and let \(S^{\mathcal{U}} X = \sum S_\bullet A_i\)
+        
+        Proof of excision theorem shows that:
+
+        \[
+            H_{\ast} (S^{\mathcal{U}}_\bullet X) \xrightarrow{\cong} H_{\ast} X
+        \]
+    \end{remark}
+
+    \begin{lemma}
+        [Five Lemma] If we have a commutative diagram with exact rows [like the following:]
+
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[d,"\alpha"] \ar[r] & B \ar[d,"\beta"] \ar[r] & C \ar[d,"\gamma"] \ar[r] & D \ar[d,"\delta"] \ar[r] & E \ar[d,"\epsilon"] \\ A' \ar[r] & B' \ar[r] & C' \ar[r] & D' \ar[r]& E'
+            \end{tikzcd}
+        \end{center}
+
+        If \(\alpha , \beta , \delta\) and \(\epsilon\) are isomorphisms, then so is \(\gamma\).
+
+    \end{lemma}
+
+    \begin{proof}
+        \(\gamma\) injective: Suppose \(\gamma(c) = 0\). 
+
+        \(a \mapsto b, b \mapsto c\). \(a^{\prime} \mapsto b^{\prime}, b^{\prime} \mapsto 0\). Thus, \(c = 0\).
+
+        \(\gamma\) surjective: Suppose \(c^{\prime} \in D^{\prime}\) so that \(c^{\prime} \mapsto d^{\prime} \mapsto 0\) then we have \(d \mapsto 0\), preimage gives us \(c \mapsto d \mapsto 0\). Since \(b^{\prime} \mapsto c^{\prime} - \operatorname{im} c \mapsto 0\), we are going to adjust \(c\) by the image of \(b\).
+
+        \(c + \operatorname{im} b \mapsto \operatorname{im} c + c^{\prime} - \operatorname{im} c = c^{\prime}\).
+    \end{proof}
+
+    Typical application (2/3): let isomorphisms \(f: (X,A) \to (Y,B)\) with \(f_{\ast} : H_{\ast} X \to H_{\ast} Y\) and \(f_{\ast}: H_{\ast} A \to H_{\ast} B\). Then, \(f_{\ast}: H_{\ast} (X,A) \to H_{\ast} (Y,B)\).
+
+    Proof:
+    
+    \begin{center}
+        \begin{tikzcd}
+            \cdots \ar[r] & H_n A \ar[r] \ar[d,"\cong"] & H_n X \ar[r] \ar[d,"\cong"] & H_n(X,A) \ar[r] \ar[d] & H_{n-1} A \ar[r] \ar[d,"\cong"] & H_{n-1} X \ar[r] \ar[d,"\cong"] & \cdots \\ \cdots \ar[r] & H_n B \ar[r] & H_n Y \ar[r] & H_n(Y,B) \ar[r] & H_{n-1}B \ar[r] & H_{n-1} Y \ar[r] & \cdots
+        \end{tikzcd}
+    \end{center}
+
+    \section*{Quotient Topology}
+
+    Let \(X\) be topological space, \(\sim\) an equivalence relation. Then \(X / \sim\) is the set of equivalence classes with \(\pi: X \to X / \sim\).
+
+    \begin{definition}
+        \(U \subset X / \sim\) is open in \( X / \sim \iff \pi ^{-1} (U)\) is open in \(X\).
+    \end{definition}
+
+    \section*{Wednesday, 2/19/2025}
+    
+    We can rephrase this.
+
+    \begin{definition}
+        [Saturated] \(V \subset X\) is \underline{saturated} if \(V\) is a union of equivalence classes, i.e. if we have \(v\in V, v^{\prime} \sim v \implies v^{\prime} \in V\).
+    \end{definition}
+
+    Then, open sets in \(X / \sim\) are the image of saturated open sets in \(X\).
+
+    \begin{definition}
+        \(q: X \to Y\) is a \underline{quotient map} if \(q\) is continuous, \(q\) is onto and \(U\) is open in \(Y \iff q ^{-1} U\) is open in \(X\).
+    \end{definition}
+    
+    Idea: Quotient Topology = Quuotient Map. \(X \to X / \sim\) is a quotient map! Further, if \(q: X \to Y\) is a quotient map we can define an equivalence relation on \(X\): \(x \sim x^{\prime}\) if \(q(x)=q(x^{\prime})\). Then, \(Y \cong X / \sim_q\). So the equivalence classes are \(q ^{-1} y\).
+
+    \subsection*{Universal Property of Quotient Topology}
+
+    Suppose we have a continuous \(f: X \to Z\) that is constant on equivalence class. Then it factors through the quotient:
+
+    \begin{center}
+        \begin{tikzcd}
+            X \ar[r,"f"] \ar[d] & Z \\ X / \sim \ar[ur,"\overline{f}", dotted]
+        \end{tikzcd}
+    \end{center}
+
+    \begin{theorem}
+        [Universal Property of Quotient Map]
+
+        Given the following Commutative Diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[r,"f"] \ar[d,"q"] & Z \\ Y \ar[ur,"h"] 
+            \end{tikzcd}
+        \end{center}
+
+        such that \(f\) is continuous and \(q\) is quotient map, then \(h\) is continuous.
+    \end{theorem}
+
+    \subsection*{Recognition of Quotient Map}
+
+    \(q: X \to Y\) is continuous, onto.
+
+    \(q\) open map \(\implies q\) quotient map.
+
+    \(q(\text{open})\) are open.
+    
+    \(q\) closed map \(\implies q\) qm.
+
+    \(q(\text{closed})\) are closed.
+    
+    \subsection*{Jim's Favorite Trick}
+
+    If \(f: X \to Y\) is continuous, \(X\) compact and \(Y\) Haussdorff then if \(X\) is \(\begin{Bmatrix}
+        \text{onto} \\
+        \text{bijective}  \\
+    \end{Bmatrix} \) then \(f\) is a \(\begin{Bmatrix}
+        \text{quotient map} \\
+        \text{homeomrophism}  \\
+    \end{Bmatrix} \)  
+
+    \begin{proof}
+        Idea: Closed subsets of compact spaces are compact.
+
+        Idea: A compact subset of a Hausdorff space is closed.
+
+        Then \(f: X \to Y\) is closed.
+    \end{proof}
+
+    Idea: if we have \(A \subset X\) then we can create \(X / A \coloneqq X / \sim_A\):
+
+    \(a \sim_A a^{\prime} \iff a, a^{\prime} \in A\).
+
+    This isn't an equivalence relation, this is just a relation. There is an equivalence relation: we need to add the condition \(x \sim_A x\).
+
+    Then, open sets in \(X / A\) are unions of open sets on \(X\) disjoint from \(A\) and open sets in \(X\) containing \(A\).
+
+    \underline{Claim}: \(D^n / S^{n-1} \cong S^n\).
+
+    Consider the map \(D^n \to \mathbb{R}^n \cup \{ \infty \} \xrightarrow[\cong]{t} S^n\) by stereographic projection, \(x \mapsto \frac{1}{1-\vert x \vert} x\) 
+
+    \begin{center}
+        \begin{tikzcd}
+            D^n \ar[r] \ar[d] & S^n \\ D^n / S^{n-1}
+        \end{tikzcd}
+    \end{center} 
+
+    is a quotient map by JFT, continuous bijection, hence homeomorphism by JFT.
+
+    \begin{definition}
+        \((X,A)\) is a \underline{good pair} if:
+
+        \[
+            H_{\ast} (X, A) \xrightarrow{\approx} H_{\ast} (X / A, A / A)
+        \]
+    \end{definition}
+
+    Note: \(H_{\ast} (X / A, A / A) \xrightarrow{\approx} \widetilde{H}_{\ast} (X / A)\).
+
+    Then this is the same as:
+
+    \[
+        H_{\ast} (X, A) \xrightarrow{\approx} \widetilde{H}_{\ast} (X / A)
+    \]
+
+    eg \((D^n, S^{n-1})\) is a good pair.
+
+    \((X,A)\) is a good pair \(\implies\) there is a long exact sequence:
+
+    \[
+        \widetilde{H}_n A \to \widetilde{H}_n X \to \widetilde{H}_n(X / A) \to \widetilde{H}_{n-1} A \to \widetilde{H}_{n-1} X 
+    \]
+
+    \begin{theorem}
+        If \(A \subset V \subset X\), \(A\) closed, \(A \subset \operatorname{int} V\) and \(A \to V\) is a deformation retract then \((X,A)\) is a good pair.
+    \end{theorem}
+
+    eg \((D^n, S^{n-1})\) is a good pair.
+
+    The proof requires exicision and homotopy invariance and the five lemma.
+
 \end{document}

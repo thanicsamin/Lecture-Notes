@@ -1514,7 +1514,7 @@
         
         Suffices to show that \(N_{L / K}(U^{\prime}(L)) \subset U^m(K)\).
 
-        Case \(m= 1\) is done.
+        Case \(m= 1\) is easy.
 
         Assume \(m \geq 2\), set \(n = m (q-1)q^{m-1} - 1 \implies p\nmid n.\) Let \(\lambda\) be a uniformizer of \(L\). Write \(U^{\prime} (L) \ni u = 1 + a_1 \lambda + \cdots + a_n \lambda^n + x, v(x) \geq n+1 = v(\pi^m)\).
 
@@ -1530,8 +1530,512 @@
         
         Thus, \(z_i \in \mathcal{O}_{K_{nr}}^\times = U(K_{nr})\).
     
+        \section*{Tuesday, 2/11/2025}
+        
+        Moreover:
+
+        \[
+            (1 - z_1 \lambda)(1- z_2 \lambda) \cdots (1-z_t \lambda) = 1 - \left( \sum_{i} z_i \right) \lambda
+        \]
+
+        \[
+            = 1 + a_1 \lambda + a_2 \lambda^2 + \cdots + a_n \lambda^n + x^{\prime}, v_L(x^{\prime}) \geq n+1
+        \]
+
+        \[
+            = 1 + a_1 \lambda + \cdots + a_n \lambda^n + x + (x^{\prime} - x) = v \left( 1 + \frac{x^{\prime} - x}{v} \right) 
+        \]
+
+
+        Let \(y\coloneqq \frac{x^{\prime} - x}{v}\). So \(v_L(y) \geq n + 1\).
+
+        Therefore,
+
+        \[
+            N(1 + y) = 1 + \sum_{\sigma \in G(L / K)} \sigma (y) + \cdots = 1 + y^{\prime}, v_L (y^{\prime}) \geq n + 1 = v_L(\pi^m)
+        \]
+
+        Thus, \(y^{\prime} \in \mathcal{O}_K \implies y^{\prime} \in \pi^m \mathcal{O}_K\).
+
+        Therefore, \(N(1+y) \equiv 1 \mod \pi^m\).
+
+        Therefore, \(N(u) \in U^m(K) \iff N \left( \prod_{i=1}^{t} (1 - z_i \lambda) \right) \in U^m(K)\,(2)\)
+        
+        NOTE: UNUSED: Then, \underline{STS}: \(\forall 1 \leq i \leq t: N_{L_m / K}(1-z_i \lambda) \in U^m(K)\).
+
+        Since \(L_m / K\) is totally ramified, \(G(L_{nr} / K_{nr}) \xrightarrow[res]{\cong} G(L / K)\).
+
+        Therefore, \(N_{L / K}(1 - z_i \lambda) = N_{L_{nr} / K_{nr}}(1 - z_i \lambda) = N_{L_{nr} / K_{nr}} (z_i (z_i ^{-1} -  \lambda))\)
+        
+        \(= z_i^d N_{L_{nr} / K_{nr}}(z_i ^{-1} - \lambda)\)
+
+        Setting \(\zeta_i = z_i ^{-1}, e_m(x) = [\pi^m]_{F_e}\), 
+
+        \(N_{L_{nr} / K_{nr}}(\zeta_i - \lambda)= \prod_{\sigma \in G(L / K)}(\zeta_i - \sigma(\lambda))=\text{min. poly of } \lambda(\zeta_i)\).
+        
+        From here WLOG assume that \(e(x) = \pi x + x^q\). We can further assume that \(e_m(\lambda) = 0\) but \(e_{m-1}(\lambda)\neq 0\).
+
+        Then, the minimal polynomial of \(\lambda\) is \(\frac{e_m(x)}{e_{m-1}(x)}\).
+
+        Thus, \(N_{L_{nr} / K_{nr}}(\zeta_i - \lambda) = \left( \frac{e_m}{e_{m-1}} \right)(\zeta_i)\). Since \(\zeta_i\) is not a root of these, \(= \frac{e_m(\zeta_i)}{e_{m-1}(\zeta_i)}\). Hence,
+
+        \[
+            N \left( \prod_i (1 - z_i \lambda) \right) = \prod N(1 - z_i \lambda) = \left( \prod z_i ^d \right) \prod_i N(\zeta_i - \lambda) = \left( \prod z_i \right)^d \prod_i N(\zeta_i - \lambda)
+        \]
+
+        Since \(d\) is even,
+
+        \[
+            = \prod N(\zeta_i - \lambda) = \prod_i \frac{e_m(\zeta_i)}{e_{m-1}(\zeta)i} = 1 + \frac{\prod_i e_m(\zeta_i) - \prod_i e_{m-1}(\zeta_i)}{\prod_i e_{m-1}(\zeta_i)}
+        \]
+
+        Note that \(\prod_i e_{m-1}(\zeta_i), \prod_i e_m(\zeta_i)\) have \(v_L = 0\).
+
+        Then it suffices to show that \(\prod_i e_m (\zeta_i) - \prod_i e_{m-1} (\zeta_i) \equiv 0\mod \pi^m \, (3)\).
+
+        Note: \(e(\zeta_i) \equiv \zeta_i^q \mod \pi\). It is the same as applying the frobenius. Note that the frobenius must permute the roots.
+
+        Thus, \(e(\zeta_i) \equiv \zeta_{\tau(i)}\) where \(\tau\) is some permutation of \(\{ 1, \cdots , t \}\).
+
+        Lifting the Expontent? \(\implies e(\zeta_i)^q = \zeta_{\tau(i)}\mod \pi^2\)
+
+        \(\implies e_2(\zeta_i) = e_1(\zeta_{\tau(i)})\mod \pi^2\).
+        
+        Inducting, \(e_m(\zeta_i) \equiv e_{m-1} (\zeta_{\tau(i)})\mod \pi^m\)
+        
+        Product \(\implies \prod_i e_m(\zeta_i) \equiv \prod_i e_{m-1} (\zeta_{\tau(i)}) \mod \pi^m\)
+        
+        This shows (3) \(\implies\) (2) \(\implies\) (1).
+
+        This ends Step 1.
+
+        Step 2: \(N_{L / K}(U(L)) = U^m(K)\).
+
+        Proof of Step 2 \(\vert G(L_m / K) \vert \underset{1.3.18}{=} \vert U(K) / N(U(L)) \vert \geq \vert U(K) / U^m(K) \vert\)
+        
+        inequality since \(N(U(L_m)) \subset U^m(K)\) from step 1.
+
+        However, \(\vert U(K) / U^m \vert = \vert G(L / K) \vert\) from LT Theory theorem 1.1.2 [as discussed in Fall].
+        
+    \end{proof}
+
+    \subsection*{Local Class Field Theory}
+
+    Let \(K\) be a field. Then we have a correspondence:
+
+    \[
+        \left\{ \mathcal{N} \subset K^\times \eval \mathcal{N} \text{ open }, [K^\times : \mathcal{N}] < \infty \right\} \leftrightarrow \left\{ L / K \subset K^{ab} / K \text{ finite exts}  \right\} 
+    \]
+
+    \[
+        \mathcal{N}  \mapsto L_{\mathcal{N}} = \text{ class field assoc. to } \mathcal{N}
+    \]
+
+    Here \(N_{L_{\mathcal{N}} / K}(L_{\mathcal{N}}^\times) = \mathcal{N}\) and \(K^\times / \mathcal{N} \xrightarrow{\cong} G(L_{\mathcal{N}} / K)\).
     
+    \[
+        N_{L / K}(L^\times) \mapsfrom L
+    \] 
+
+    \(L_{\mathcal{N}}\) is called the \underline{class field corresponding to \(\mathcal{N}\)}.
+
+    Let \(K\) be as above, \(\vert k \vert < \infty\). Let \(K^{ab} \subset \overline{K}\) be the maximal abelian extension of \(K\).
+
+    \[
+        G(K^{ab} / K)_0 \coloneqq \ker (G(K^{ab} / K) \to G(k_{K^{ab}} / k) = G(\overline{k} / k))
+    \]
+
+    Recall if we have \(M / K \subseteq L / K\) we indeed have \(G(L / K)_0 \xrightarrow{res} G(M / K)_0\). This is not true for lower numbering for larger numbers!!!
+
+    \begin{theorem}
+
+        \begin{enumerate}[label=\roman*)]
+            \item The isomorphisms \(\eta_{L / K}: U(K) / N(U(L)) \xrightarrow{\cong} G(L / K)_0\) from 1.3.19 for \(L / K\) finite abelian induce an isomorphism:
+
+            \[
+                U(K) \xrightarrow[\eta_K]{\cong} G(K^{ab} / K)_0
+            \]
+
+            \item The exact sequence:
+            \[
+                1 \to G(K^{ab} / K)_0 \to G(K^{ab} / K) \to G(\overline{k} / k) \to 1
+            \]
+
+            splits continuous (but not canonically).
+
+        \end{enumerate}
+
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Let \(\mathscr{A}\) be the set of all finite subestensions \(L / K \subset K^{ab} / K\).
+            Set \(\mathcal{N}_L^0 = N_{L / K}(U(L))\). Then \((\eta_{L / K})_{L \in \mathscr{A}}\) induces an isomorphism:
+
+            \[
+                \varprojlim_{L \in \mathscr{A}} U(K) / \mathcal{N}^0_L \xrightarrow{\cong} \varprojlim_{L \in \mathscr{A}} G(L / K)_0 \underset{\text{exercise}}{=} G(K^{ab} / K)_0
+            \]
+
+            Given \(L\in \mathscr{A}\), \(U(L)\) is compact. Since \(N_{L / K}\) is continuous, \(N_{L / K}(U(L))\) is compact. A compact subset in a Hausdorff space is closed. Thus, \(\mathcal{N}_L^0\) is closed. \(\mathcal{N}_L^0\) has finite index in \(U(K)\). It is also complement of union of finitely many cosets thus it is also open..
+
+            Thus, \(\exists m \geq 0 : U^m(K) \subseteq \mathcal{N}_L^0\).
+
+            1.3.21 \(\implies N_{L_m / K}(U(L_m)) = U^m(K) \implies\) the system \((\mathcal{N}_L^0)_{L\in \mathscr{A}}\) is equivalent to the system \((U^m(K))_{m\geq 0}\) but the profinite completion 
+                
+            \[
+                \varprojlim_{m} U(K) / U^m(K) \xleftarrow{\cong} U(K)
+            \]
+
+            \[
+                \varprojlim_{L\in \mathscr{A}} U(K) / \mathcal{N}_L^0 \xleftarrow{\cong} U(K)
+            \]
+
+            This proves i.
+                
+            \item HW 3
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{theorem}
+        With \(L_\pi = \bigcup_{m} L_{\pi, m}\) as in section 1.1 we have \(K^{ab} = L_\pi . K^{nr}\). 
+    \end{theorem}
+
+    \begin{proof}
+        Consider the commutative diagram with exact rows:
+
+        \begin{center}
+            \begin{tikzcd}
+                & U(K) \ar[d, "\cong \eta_K","1.3.22"']\\
+                1 \ar[r] & G(K^{ab} / K)_0 \ar[d, "\alpha=res"] \ar[r] & G(K^{ab} / K) \ar[d,"\beta=res"] \ar[r] & G(\overline{k} / k) \ar[d, "\gamma=res=id"] \ar[r] & 1 \\
+                1 \ar[r] & G(L_\pi K^{nr} / K)_0 \ar[r] \ar[d,"="] & G(L_\pi K^{nr} / K) \ar[r] & G(\overline{k} / k) \ar[r] & 1\\
+                & \varprojlim G(L_m K^{nr} / K)_0 \ar[d,"="] \\
+                & \varprojlim_m G(L_m / K) \ar[d,"="]\\
+                & \varprojlim_m U(K) / U^m(K) \ar[d,"="]\\
+                & U(K)
+            \end{tikzcd}
+        \end{center}
+
+        Note: \(\alpha = id \implies \beta\) is an isomorphism, thus \(G(K^{ab} / L_\pi K^{nr}) = \{ 1 \} \implies L_\pi K^{nr} = K^{ab}\) 
+    \end{proof}
+    
+    \section*{Thursday, 2/13/2025}
+    
+    \begin{lemma}
+        Let \(\pi\) be a uniformizer of \(K, e \in \mathscr{E}_\pi\) a LT series, \(L_{\pi, m} =\) Lubin tate extension associated to \(F_e\) [which is independent of choice of \(e\)]. Then, \(\pi\in N_{L_{\pi, m} / K}(L_{\pi, m}^\times =)\).
+    \end{lemma}
+
+    \begin{proof}
+        WLOG we may assume \(e(x) = \pi x + x^q\). Set \(e_m(x) = (\underbrace{e \circ \cdots \circ e}_{m})(x)\).
+        
+        We've seen \(\frac{e_m(x)}{e_{m-1}(x)} \in \mathcal{O}_K[x]\) is irreducible polynomial over \(K\) of degree \((q-1)q^{m-1}\). This is not only irreducible, but also Eisenstein. Since we're adjoining root \(\lambda_m\) of an Eisenstein polynomial, \(\lambda_m\) must be a uuniformizer.
+        
+        \[
+            \frac{e_m(x)}{e_{m-1}(x)} = \prod_{\sigma\in G_{L_{\pi,m}}} (x-\sigma(\lambda_m))
+        \]
+
+        Now note that,
+
+        \[
+            \pi = \left( \frac{e_m(x)}{e_{m-1}(x)} \right) (0) = \prod_\sigma (-\sigma(\lambda_m)) = \prod_\sigma \sigma(-\lambda_m) = N_{L_{\pi,m} / K} (\lambda_m)
+        \]
 
     \end{proof}
+
+    \subsection*{Definition of the norm residue symbol}
+
+    Let \(L^{\prime} / K\) be a totally ramified finite abelian extension. Let \(\lambda\in L^{\prime}\) be a uniformizer and set \(\pi = N_{L^{\prime} / K}(\lambda)\). Since it is totally ramified, \(\pi\) must be a uniformizer of \(K\). Let \(K_n / K\) be the unramified extension of degree \(n\). Set \(L \coloneqq L^{\prime} . K_n\). This is abelian over \(K\). Then the exact sequence:
+    
+    \begin{center}
+        \begin{tikzcd}
+            1 \ar[r] & G(L / K)_0 \ar[r] & G(L / K) \ar[r] & \underset{\cong G(k_L / k)}{G(K_n / K)} \ar[r] & 1
+        \end{tikzcd}
+    \end{center}
+
+    The exact sequence splits since the canonical map \(G(L / K) \to G(L^{\prime} / K) \times G(K_n / K)\) is an isomorphism.
+
+    Hence, there exists a unique \(\varphi_{L / L^{\prime}} \in G(L / K)\) such that \(\eval{\varphi_{L / L^{\prime}}}_{L^{\prime}} = \operatorname{id}_{L^{\prime}}\) and \(\eval{\varphi_{L / L^{\prime}}}_{K_n} = \varphi_{K_n / K}\).
+    
+    Then we define \(r_{L / K}: K^\times \to G(L / K)\) such that,
+
+    \[
+        r_{L / K}(a) = \eta_{L / K} \left( \underbrace{a ^{-1} \pi^{v(a)}}_{\in U(K)}  \right) \varphi_{L / L^{\prime}}^{v(a)} 
+    \]
+
+    Where \(v: K^\times \to \mathbb{Z}\) given by \(\pi \mapsto 1\) is the normalized valuation and \(\eta_{L / K} : U(K) \to G(L / K)\) is the surjective homomorphism in 1.3.19 with k\(\ker(\eta_{L / K}) = N_{L / K}(U(L))\).  
+
+    Note: \(r_{L / K}\) is a homomorphism.
+
+    Set \(\mathcal{N}_L = N_{L / K}(L^\times), \mathcal{N}_L^0 = N_{L / K}(U(L))\).
+    
+    \(r_{L / K}(a)\) is also written as \((a, L / K)\) and is alled the \underline{norm residue symbol}.
+
+    \begin{proposition}
+        Let \(L ^{\prime} / K\) and \(L = L^{\prime} . K_n, \lambda \in L^{\prime}\) a uniformizer and \(\pi = N_{L^{\prime} / L}(\lambda)\) be as above. Then, \(r_{L / K}\) is surjective and its kernel is \(\mathcal{N}_L\). Hence, \(r_{L / K}\) induces an isomorphism which by abuse of notation we can also denote as \(r_{L / K}\).
+
+        \[
+            \frac{K^\times}{\mathcal{N}_L} \xrightarrow[r_{L / K}]{\cong} G(L / K)
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        We have \(L^\times = U(L) \cdot \lambda^\mathbb{Z}\) since \(L / L^{\prime}\) is unramified. Applying the norm, \(\mathcal{N}_L = \mathcal{N}_L^0 \cdot N_{L / K}(\lambda)^\mathbb{Z} = \mathcal{N}_L^0 N_{L^{\prime} / K}(N_{L / L^{\prime}}(\lambda))^\mathbb{Z} = \mathcal{N}_L^0 \cdot N_{L^{\prime} / K}(\lambda^n)^\mathbb{Z} = \mathcal{N}_L^0 \cdot \pi^{n \mathbb{Z}}\).
+        
+        Write \(a\in K^\times\) as \(a = u \pi^m\) so that \(u \in U(K), m\in \mathbb{Z}\).
+
+        Thus, \(r_{L / K}(a) = \eta_{L / K}(u ^{-1})\varphi_{L / L^{\prime}}^m \overset{!}{=} \operatorname{id} \iff \eta_{L / K}(u) = \operatorname{id}\) and \(\varphi_{L / L^{\prime}}^m = \operatorname{id}\)
+        
+        \(\xLeftrightarrow{1.3.19} u \in \mathcal{N}_L^0, n \mid m\, (\operatorname{ord}(\varphi_{L / L^{\prime}})=\operatorname{ord}(\varphi_{K_n / K})=n) \iff a \in \mathcal{N}_L\).
+
+        1.3.19: \(\eta_{L / K}: U(K) \to G(L / K)_0\) is surjective, and since \(G(L / K) = G(L / K)_0 \cdot \varphi_{L / L^{\prime}}^\mathbb{Z}\) we deduce that \(r_{L / K}\) is surjective.
+    \end{proof}
+
+    Next goals:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Show that \(r_{L / K}\) is independent of the choice \(L^{\prime} \subset L\).
+        \item To show that for \underline{any} subextension \(M / K \subset L / K\),
+        \[
+            \ker (K^\times \to G(L / K) \to G(M / K)) = \mathcal{N}_M
+        \]
+    \end{enumerate} 
+
+    \begin{lemma}
+        If \(L / K\) is an arbitrary finite abelian extension, then \([K^\times : \mathcal{N}_L] = [L : K]\).
+    \end{lemma}
+
+    \begin{proof}
+        Let \(K_L \subset L\) be the maximal unramified subextension. Then \(L / K_L\) is totally ramified and if \(\lambda\) is a uniformizer of \(L\), then \(\pi \coloneqq N_{L / K_L}(\lambda)\) is a unfiromizer of \(K_L\). Hence, upto an element of \(U(K_L)\) also a unfirmozer of \(K \implies \vert K_L^\times \vert = \vert K^\times \vert = \vert \pi \vert^\mathbb{Z}\).
+        
+        \[
+            \implies \left\vert \frac{K^\times}{\mathcal{N}_L} \right\vert = \left\vert \frac{U(K)}{\mathcal{N}_L^0} \right\vert \left\vert \frac{\vert K^\times \vert}{\vert N_{L / K}(\lambda) \vert^{\mathbb{Z}}} \right\vert 
+        \]
+
+        \[
+            \overset{1.3.19}{=} \vert G(L / K)_0 \vert \left\vert \frac{\vert \pi \vert ^\mathbb{Z}}{\vert N_{K_L / K}(\pi) \vert ^\mathbb{Z}} \right\vert = \vert G(L / K)_0 \vert \left\vert \frac{\vert \pi \vert ^\mathbb{Z}}{\vert \pi \vert ^{[K_L : K]\mathbb{Z}}} \right\vert 
+        \]
+
+        \[
+            = \vert G(L / K)_0 \vert [K_L : K] = e(L / K) f(L / K) = [L : K]
+        \]
+    \end{proof}
+
+    \begin{proposition}
+        Let \(L^{\prime}, L, \lambda \in L^{\prime}\) be as in the beginning of this section. Let \(L_2^{\prime} \subset L\) be another totally ramified extension of \(K\) such that \(L_2^{\prime} . K_n = L\). Then,
+
+        \[
+            \ker(K^\times \xrightarrow{r_{L / K}} G(L / K) \to G(L_2^{\prime} / K)) = \mathcal{N}_{L_2^{\prime}} \subset K^\times
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Set \(r = r_{L / K}: K^\times \to G(L / K)\). Recall \(r(a) = \eta_{L / K}(a ^{-1} \pi^{v(a)}) \varphi_{L / L^{\prime}}^{v(a)}\). Let \(r_2\) be the composite homomorphism:
+        
+        \begin{center}
+            \begin{tikzcd}
+                K^\times \ar[rr, bend left,"r_2"] \ar[r,"r"] & G(L / K) \ar[r] & G(L_2' / K)
+            \end{tikzcd}
+        \end{center}
+
+        \(r_2\)  is surjective by \(1.3.25\). \(r_2\) induces an isomorphism:
+
+        \[
+            K^\times / \ker(r_2) \to G(L_2^{\prime} / K)
+        \]
+
+        If we show that \(\mathcal{N}_{L_2^{\prime}} \subset \ker (r_2) \implies\) surjection \(\underbrace{K^\times / \mathcal{N}_{L_2^{\prime}}}_{\text{order } [L_2^{\prime} : K]} \to K^\times / \ker(r_2) \xrightarrow{\cong} G(L_2^{\prime} / K) \)
+        
+        Hence \(N_{L_2^{\prime}} = \ker r_2\).
+
+        STS: \(\mathcal{N}_{L_2^{\prime}} \subset \ker(r_2)\).
+
+        \(\mathcal{N}_{L_2^{\prime}}= \mathcal{N}_{L_2^{\prime}}^0 \mathcal{N}_{L_2^{\prime} / K}(\lambda_2)^\mathbb{Z}\) for any uniformizer \(\lambda_2\) of \(L_2^{\prime}\).
+        
+        Since \(U(L_2^{\prime}) = \left\{ \lambda_2(\widetilde{\lambda}_2) ^{-1} \mid \lambda_2, \widetilde{\lambda}_2 \text{ uniformizer of } L_2^{\prime} \right\} \), it suffices to show \(N_{L_2^{\prime} / K}(\lambda_2) \in \ker (r_2)\) for any unformizer \(\lambda_2\) of \(L_2^{\prime}\).
+
+        Note: \(L / L_2^{\prime}\) is unramified sicne \(L = L_2^{\prime} . K_n\). Therefore, \(G(L / L_2^{\prime})\) is cycic and if we restrict this to \(G(K_n / K)\) we get an isomorphism. Since \(G(K_n / K)\) is generated by the frobenius \(\langle \varphi_{K_n / K} \rangle \) and \(\eval{\varphi_{L / L^{\prime}}}_{K_n} =\varphi_{K_n / K}\):
+
+        Let \(\varphi_{L / L_2^{\prime}}\) be the unique element with \(\eval_{\varphi_{L / L_2^{\prime}}}= \operatorname{id}\). Then, \(\eval{\varphi_{L / L_2^{\prime}} \circ \varphi_{L / L^{\prime}} ^{-1}}_{K_n} = \operatorname{id}\) and \(\eval{\varphi_{L / L_2^{\prime}}}_{K_n}  = \varphi_{K_n / K}\)  
+
+        \[
+            \implies \varphi_{L / L_2^{\prime}} \circ \varphi_{L / L^{\prime}} ^{-1} \in G(L / K)_0 \overset{1.3.19}{=} \eta_{L / K}(U(K))
+        \]
+
+        Thus \(\varphi_{L / L_2^{\prime}} = r(u) \varphi_{L / L^{\prime}}\) for some \(u \in U(K)\).
+        
+        Then, \(G(L / L_2^{\prime}) = \langle \varphi_{L / L_2^{\prime}} \rangle \) 
+
+        Fix a uniformizer \(\lambda_2\) of \(L_2^{\prime}\) which is a uniformizer of \(L\). Then \(\lambda_2 = x \lambda\) where \(\lambda\in L^{\prime}, x \in U(L)\). Therefore,
+
+        \[
+            \pi  = N_{L^{\prime} / K}(\lambda) = N_{L / K_n}(\lambda) = N_{L / K_n}(x ^{-1}) N_{L / K_n}(\lambda_2) = N_{L / K_n}(x ^{-1}) N_{L^{\prime}  / K}(\lambda_2) \in K
+        \]
+
+        Therefore, \(N_{L / K_n}(x) \in U(K)\).
+
+        Further, \((r(u)\varphi_{L / L^{\prime}})(\lambda_2) = \varphi_{L / L_2^{\prime}}(\lambda_2) = \lambda_2\).
+
+        Now we compute in \(U(L_{nr}) = U((L^{\prime})_{nr})=U((L_2^{\prime})_{nr})\).
+        
+        \[
+            \frac{\eta_{L / K}(u ^{-1})(\lambda)}{\lambda} = \frac{r(u)(\lambda)}{\lambda} = \frac{(r(u)\varphi_{L / L^{\prime}})(\lambda)}{\lambda} = \frac{\overbrace{(r(u)\varphi_{L / L^{\prime}})}^{\varphi_{L / L_2^{\prime}}}(x ^{-1} \lambda_2)}{x ^{-1} \lambda_2}
+        \]
+
+        \[
+            = \frac{(r(u)\varphi_{L / L^{\prime}})(x ^{-1})(r(v)\varphi_{L / L^{\prime}})(\lambda_2)}{x ^{-1} \lambda_2} = \frac{(r(v)\varphi_{L / L^{\prime}})(x ^{-1}) \lambda}{x ^{-1}  \lambda} = \frac{(r(v)\varphi_{L / L^{\prime}})(x ^{-1})}{x ^{-1}}
+        \]
+
+        \[
+            = \frac{r(v) (\varphi_{L / L^{\prime}}(x ^{-1}))}{\varphi_{L / L^{\prime}}(x ^{-1})} \frac{\varphi_{L / L^{\prime}}(x ^{-1})}{x ^{-1}} \equiv \frac{\varphi_{L / L^{\prime}}(x ^{-1})}{x ^{-1}} \mod V(L_{nr}^{\prime} / K_{nr})
+        \]
+
+    \end{proof}
+
+    \begin{corollary}
+        The definition of \(r_{L / K}\) is independent of the choice of \(L^{\prime} \subset L\) and he uniformizer \(\lambda\) of \(L^{\prime}\).
+    \end{corollary}
+
+    \begin{theorem}
+        For any finite abelian extension \(Ln / K\) choose an unramified extension \(K_n / K\) such that \(L K_n = L^{\prime} K_n\) for \(L^{\prime} / K\) totally ramified. Then,
+
+        \[
+            \ker(r_{L K_n / K}: K^\times \to G(LK_n / K) \to G(L / K)) = \mathcal{N}_L
+        \]
+
+        and induces an isomorphism:
+
+        \[
+            \frac{K^\times}{\mathcal{N}_L} \xrightarrow[r_{L / K}]{\cong} G(L / K)
+        \]
+    \end{theorem}
+
+    \newpage
+
+    \section*{Tuesday, 2/18/2025}
+    
+    \section{Tate's Article: \(p\)-divisible Groups}
+
+    Let \(R\) be a complete discrete valuation ring (CDVR) with \(\mathfrak{m} =\) maximal ideal, \(k = R / \mathfrak{m}, K = \operatorname{Frac}(R)\).
+
+    Convention: \(R\) is not a field (\(\iff \mathfrak{m} \neq 0\)).
+
+    Futher Assumption: \(k\) is perfect of \(\operatorname{char}(k) = p > 0\) and \(\operatorname{char}(K) = 0\)  (this is applicable in most settings we want to use this in).
+
+    Example: \(R = \mathbb{Z}_p\) or the ring of integers in a finite extension \(K / \mathbb{Q}_p\) =. Then \(K = \mathbb{Q}_p\) or a finite extension of \(\mathbb{Q}_p\).
+
+    Example: \(K = \widehat{\mathbb{Q}_p^{nr}} p\supset \mathcal{O}_{\widehat{\mathbb{Q}_p^{nr}}}, k = \overline{\mathbb{F}_p}\).
+
+    Example: \(k\) any perfect fielld of \(\operatorname{char}(k) = p\) and \(R = W(k)\) [Witt Vectors]. Then \(\mathfrak{m} = pR\).
+
+    Goal: To study certain continuous representation of \(\mathscr{G}_K = \operatorname{Gal}(\overline{K} / K)\) on finite dimensional \(\mathbb{Q}_p\)-vector spaces. Here we (implicitly) mean continuity by the \underline{Krull Topology}
+
+    Krull Topology on \(\operatorname{Gal}(K / F)\) is defined as follows:
+    
+    Let \(\mathcal{F} = \{ L \mid L \text{ finite galois subextension of } K \text{ over } F\} \) and \(\mathcal{N} = \{ \operatorname{Gal}(K / L) \mid L \in \mathcal{F} \} \). Then a subset \(X\) of \(\operatorname{Gal}(K / F)\) is open if \(X = \varnothing\) or \(X = \bigcup_i g_i N_i\) with \(g_i \in G, N_i \in \mathcal{N}\). This makes \(\operatorname{Gal}(K / F)\) a topological group.  
+
+    \underline{The Prototypical Example} is the \(p\)-adic cyclotomic character given by:
+
+    \[
+        \chi_{cyc} : \mathscr{G}_K \to \mathbb{Z}_p^\times \curvearrowright \mathbb{Q}_q = V
+    \]
+
+    \[
+        \chi_{cyc}(\sigma) = a \in \mathbb{Z}_p^\times \iff \forall \zeta \in \mu_{p^{\infty}}(\overline{K}): \sigma(\zeta) = \zeta^a
+    \]
+
+    This is meant as follow: if \(\zeta^{p^n} = 1\) and \(a \equiv b \mod p^n\) for some \(b\in \mathbb{Z}\) then \(\zeta^a \coloneqq \zeta^b\).
+    
+    Equivalently, \(\chi_{cyc}\) is obtained as the composition of:
+
+    \begin{center}
+        \begin{tikzcd}
+            \mathscr{G}_K \ar[r, two heads, "\chi_{cyc}"] \ar[rrr, bend right] & \varprojlim_{n} G(K(\mu_{p^n}) / K) \ar[r, hook] & \varprojlim_{n} (\mathbb{Z} / p^n \mathbb{Z})^\times \ar[r, "="] & \mathbb{Z}_p^\times
+        \end{tikzcd}
+    \end{center}
+
+    Note: if \(K = \mathbb{Q}_p\) (or \(\widehat{\mathbb{Q}_p^{nr}}\) ) then \(\chi_{cyc}\) is surjective by the irreducibility of the cyclotomic polynomials. If \(K / \mathbb{Q}_{p} \) is finite then \(\chi_{cyc}(\mathscr{G}_K)\) is open.
+    
+    Note: \(E / K\) elliptic curve, \(E[p^n](\overline{K}) = \left\{ x\in E(\overline{K}) \mid [p^n]_E (x) = \mathcal{O}_E \right\} \cong (\mathbb{Z} / p^n) \oplus (\mathbb{Z} / p^n) \curvearrowleft \mathscr{G}_K \). Therefore,
+
+    \(\mathscr{G}_K \to \varprojlim_n \operatorname{Aut}(E[p^n](\overline{K})) = \operatorname{Aut}(\varprojlim E[p^n](\overline{K} )) \cong \operatorname{Aut} (\varprojlim (\mathbb{Z} / p^n)^{\oplus 2}) = \operatorname{Aut} (\mathbb{Z}_p^{\oplus 2}) = \operatorname{GL}_2(\mathbb{Z}_p) \curvearrowright \mathbb{Q}_p^2\).
+    
+    This gives us a \(\mathbb{Z}_p\)-linear action of \(\mathscr{G}_K\) on \(T_p E = \varprojlim E[p^n](\overline{K})\) called the \(p\)-adic Tate module of \(E\), and also on \(V_p E = T_p E \otimes_{\mathbb{Z}_p}\mathbb{Q}_p\) which is a \(2\)-dimensional \(\mathbb{Q}_p\) vector space. 
+
+    Final: Let \(K / \mathbb{Q}_p\) finite and \(\pi = \) uniformizer. Then, \(e = \mathscr{E}_\pi\) a LT series for \(\pi\), \(F_e =\) LT \(\mathcal{O}_K\) module.
+
+    \(\mathscr{G}_K \curvearrowright T_p F_e = \varprojlim_n \underbrace{F_e[\pi^n](\overline{K})}_{\cong \mathcal{O}_K(\pi^n)} \underset{\text{non-canonically}}{\cong} \mathcal{O}_K\) as \(\mathcal{O}_K\)-module.
+
+    Thus, \(\operatorname{im} (\mathscr{G}_K \to T_p F_e) \cong \mathcal{O}_K^\times = \operatorname{Aut}_{\mathcal{O}_K}(\mathcal{O}_K)\).
+    
+    Thus, \(\mathscr{G}_K \curvearrowright V_p F_e = T_p F_e \otimes_{\mathbb{Z}_p} \mathbb{Q}_p\) is a vector space of dimension \([K:\mathbb{Q}_p]\). 
+
+    LCFT tells us this factors through the abelianization: \(\mathscr{G}_K \to \mathscr{G}_K^{ab} \curvearrowright V_p F_e\).
+
+    Question: Why \(p\)-adic representatons? Why not continuous representations \(\mathscr{G}_K \to \operatorname{GL}_n(\mathbb{C})\)? Why not \(\mathscr{G}_K \to \operatorname{GL}(\mathbb{Q}_l), l \neq p\)? Why not \(\mathscr{G}_K \to \operatorname{GL}_n (\mathbb{A}_\mathbb{Q}) = \prod_{l \leq \infty}^{\prime} GL_n(\mathbb{Q}_l)\) where \(\mathbb{Q}_\infty = \mathbb{R}\)?
+    
+    Answer: We can study them, but the \(p\)-adic representations are especially interesting for the following reason: Continuous representations \(\mathscr{G}_K \to \operatorname{GL}_n(\mathbb{C})\) have finite image! The topologies are incompatible.
+
+    For \(\mathscr{G}_K \to \operatorname{GL}_n(\mathbb{Q}_l),l\neq p\) have finite image when restricted to the wild inertial subgroup \(\mathscr{P}_K = \mathscr{G}_K^{> 0} = \bigcup_{s > 0} \mathscr{G}_K^s\) [upper numbering of ramification groups].
+
+    \(\mathscr{G}_K \to \operatorname{GL}_n(\mathbb{A}_\mathbb{Q})\) are put together from representations into \(\operatorname{GL}_n(\mathbb{Q}_l), l \leq \infty\). 
+
+    About \(\mathscr{G}_K\): There are two fundamental exact sequence:
+
+    \[
+        1 \to \mathscr{I}_K \to \mathscr{G}_K \to \operatorname{Gal}(\overline{k} / k) \to 1
+    \]
+
+    \(\mathscr{I}_K\) is the \underline{inertia subgroup}. It is closed, and we can write \(\mathscr{I}_K = \mathscr{G}_K^0\).
+    
+    Let \(\pi \in K\) be a uniformizer. Then \(\forall n\in \mathbb{Z}_{> 0} \setminus p \mathbb{Z}, \forall \sigma \in \mathscr{I}_K,\)
+
+    \[
+        \frac{\sigma(\sqrt[n]{\pi})}{\sqrt[n]{\pi}} \in \mu_n(\overline{K})
+    \]
+
+    is independent of the choince of \(\sqrt[n]{\pi}\) and also independent of the choice of \(\pi\). Hence one obtains a homomorphism \(t: \mathscr{I}_K \to \varprojlim_{n > 0, p\nmid n} \mu_n(\overline{K}) \eqqcolon \widehat{\mathbb{Z}}^{(p)}(1)\).
+
+    superscript \((p)\) since we're not taking the \(p\) divisible powers. `Twist' by \((1)\) since we're taking the roots of unity.
+    
+    It is non-canonically isomorphic to \(\varprojlim_{p\nmid n} \mathbb{Z} / n\mathbb{Z} = \prod_{l\neq p} \mathbb{Z} _l\).
+
+    Then, \(\mathscr{P}_K = \ker (t)\). We have the following exact sequence:
+
+    \[
+        1 \to \mathscr{P}_K \to \mathscr{I}_K \to \widehat{\mathbb{Z}}^{(p)}(1) \to 1
+    \]
+
+    \begin{theorem}
+        \(\mathscr{P}_K\) is a pro-\(p\) group, is maximal with this property, and is normal  in \(\mathscr{G}_K\). One has \(\mathscr{P}_K = G(\overline{K} / K_{nr}(\sqrt[n]{\pi} \mid n > 0, p \nmid n))\).
+    \end{theorem}
+
+    \(K_{nr}(\sqrt[n]{\pi} \mid n > 0, p \nmid n )\) is the maximal tamely ramified extension \(K^{tame}\). We have the following exact sequence:
+
+    \[
+        1 \to \widehat{\mathbb{Z}}^{(p)}(1) \to G(K^{tame} / K) \to G(K_{nr} / K) \cong G(\overline{k} / k) \to 1
+    \]
+
+    We can be more precise: it is in fact a semidirect product.
+
+    Motto: \(p\)-adic vector spaces are the natural environment for representations of \(\mathscr{G}_K\) (which is `close to being a pro-\(p\) group', meaning it has a very large pro-\(p\) subgroup).
+
+    Plan: 2.1: Finite Group Schemes.
+
+    2.2: \(p\)-divisible groups.
+
+    2.3: \(C = \widehat{\overline{K}}\). In case of \(\mathbb{Q}_p\) we denote this by \(\mathbb{C}_p\).
+    
+    2.4: Theorems on Galois Representations attached to \(p\)-divisible groups.
+   
+    \subsection{Finite Group Schemes}
+
+    \subsubsection{} Let \(R\) be a commutative ring. An \underline{affine group scheme over \(R\)} is an affine scheme \(G = \operatorname{Spec}(A) \xrightarrow{\uparrow s} S \coloneqq \operatorname{Spec}(R)\) equipped with:
+
+    \begin{itemize}
+        \item a multiplication \(m: G \underset{S}{\times} G \to G, S = \operatorname{Spec}(A \otimes_R A)\).
+        \item A unit section \(e: S \to G\)
+        \item An inversion \(i: G \to G\)    
+    \end{itemize} 
+
+    These are required to be morphisms over \(S\).
 
 \end{document}
