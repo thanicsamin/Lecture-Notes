@@ -2038,4 +2038,230 @@
 
     These are required to be morphisms over \(S\).
 
+    \section*{Thursday, 2/20/2025}
+    
+    We redo:
+
+    Let \(R\) be a commutative ring. An \underline{affine group scheme over} \(R\) is an affine scheme \(G = \operatorname{Spec} A \xrightarrow{P_G} S = \operatorname{Spec} R\), equipped with morphisms over \(S\):
+
+    \(m = m_G: S \underset{G}{\times} G = \operatorname{Spec} (A \underset{R}{\otimes} A) \to G\)
+    
+    \(i = i_G: G \to G\) [inverse]
+
+    \(e = e_G\) unit section so that:
+
+    \begin{center}
+        \begin{tikzcd}
+            S \ar[rr] \ar[rd,"id"] & & G \ar[ld, "P_G"] \\ & S
+        \end{tikzcd}
+    \end{center}
+
+    such that the following diagrams are commutative:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Associativity:
+        
+        \begin{center}
+            \begin{tikzcd}
+                (G \underset{S}{\times} G) \underset{S}{\times} G \underset{can}{\cong} G \underset{S}{\times} (G\underset{S}{\times} G) \ar[r,"m\times id"] \ar[d,"id\times m"] & G\times G \ar[d,"m"] \\ G \underset{S}{\times} G \ar[r,"m"] & G
+            \end{tikzcd}
+        \end{center}
+        
+        \item 
+        \begin{center}
+            \begin{tikzcd}
+                G = S \underset{S}{\times} G = G \underset{S}{\times} \ar[r,"e\times id"] \ar[rd,"id"] \ar[d,"id\times e"] & G \times G \ar[d,"m"] \\ G \times G \ar[r,"m"] & G
+            \end{tikzcd}
+        \end{center}
+
+        \item 
+
+        \begin{center}
+            \begin{tikzcd}
+                G \ar[rr,"i\times id"] \ar[dd,"id\times i"] \ar[rd,"P_G"] & & G \times G \ar[dd,"m"] \\ & S \ar[rd,"e"] \\ G \times G \ar[rr,"m"] & & G
+            \end{tikzcd}
+        \end{center}
+
+    \end{enumerate} 
+
+    1-3 can be reformulated in terms of \(A\).
+
+    \begin{itemize}
+        \item \(P_S\) makes \(A\) into an \(R\)-algebra.
+        \item \(m\) corresponds to a morphism of \(R\)-algebras \(\mu: A \to A \otimes_R A\), \underline{co-multiplication}
+        \item \(i\) corresponds to the morphism \(\iota : A\to A\) inverson.
+        \item \(e\) corresponds to \(\varepsilon : A \to R\) called the \underline{co-unit} 
+    \end{itemize} 
+
+    \((A,\mu , \iota , \varepsilon)\) has the property that the diagrams:
+    
+    \begin{enumerate}[label=\arabic*')]
+        \item  
+        
+        \begin{center}
+            \begin{tikzcd}
+                (A\otimes_R A) \otimes_R A = A \otimes_R (A \otimes_R A) & A\otimes_R A \ar[l,"\mu\otimes id"] \\ A \otimes_R A \ar[u,"id\otimes\mu"] & A \ar[l,"\mu"] \ar[u,"\mu"]
+            \end{tikzcd}
+        \end{center}
+
+        \item
+
+        \begin{center}
+            \begin{tikzcd}
+                R \otimes_R A = A \otimes_R R & A\otimes_R A \ar[l,"\varepsilon\otimes id"] \\ A \otimes_R A \ar[u,"id\otimes\varepsilon"] & A \ar[l,"\mu"] \ar[lu,"id"] \ar[u,"\mu"]
+            \end{tikzcd}
+        \end{center}
+        
+        \item 
+
+        \begin{center}
+            \begin{tikzcd}
+                A & A\otimes_R A \ar[l,"\delta"] & A \otimes_R A \ar[l,"\iota\otimes id"] \\ A \otimes A \ar[u,"\delta"] \\ A \otimes A \ar[u,"id\otimes\iota"] & & A\ar[ll,"\mu"] \ar[uu,"\mu"]
+            \end{tikzcd}
+        \end{center}
+
+        Here \(\delta: A \otimes_R A \to A\) is multiplication, \(G \xrightarrow[\Delta]{} G \underset{S}{\times} S\) 
+
+    \end{enumerate} 
+
+    This means that \((A,\mu, \iota, \varepsilon)\) is a \underline{Commutative Hopf Algebra}.
+    
+    The group scheme \(G = \operatorname{Spec}(A)\) is called \underline{commutative} if:
+
+    \begin{center}
+        \begin{tikzcd}
+            \underset{(g,h)}{G \otimes G} \ar[r,"m"] \ar[d] & G \ar[d,"id"] \\ \overset{(h,g)}{G \otimes G} \ar[r,"m"] & G
+        \end{tikzcd}
+    \end{center}
+
+    commutes. Equivalently,
+
+    \begin{center}
+        \begin{tikzcd}
+            \underset{b\otimes a}{A \otimes_R A} & A\ar[l,"\mu"] \\ \overset{a \otimes b}{A \otimes_R A} \ar[u] & A\ar[l,"\mu"] \ar[u,"id"]
+        \end{tikzcd}
+    \end{center}
+
+    commutes. In this case \(A\) is called co-commutative.
+
+    Examples:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item The additive group (scheme) \(\mathbb{G}_{a,R}\) over \(R: \mathbb{G}_{a,R} = \operatorname{Spec}(A), A = R[x], \mu: R[x] \to R[x] \otimes_R R[x]\) by \(x \mapsto 1 \otimes x + x \otimes 1\).
+        
+        \(\varepsilon : R[x] \to R\) by \(\varepsilon(x)=0, \iota : R[x] \to R[x]\) by \(x \mapsto -x\).
+
+        \item The multiplicative group (scheme) \(\mathbb{G}_{m,R}\) over \(R\): \(\mathbb{G}_{m,R}=\operatorname{Spec}(A)\), \(A = R[x,x ^{-1} ] = R[x,t] / (tx-1)\).
+        
+        \(\mu: A \to A \otimes_R A, \mu(x) = x \otimes x, \mu(x ^{-1}) = x ^{-1} \otimes x ^{-1}\).
+
+        \(\varepsilon: A \to R, \varepsilon(x) = \varepsilon(x ^{-1}) = 1, \iota (x) = x ^{-1} , \iota(x ^{-1}) = x\).
+
+        \item The group scheme of \(n\)'th roots of unity \(\underline{\mu}_{n,R}=\operatorname{Spec}(A), A = R[x] / (x^n - 1)\). Then \(\mu(\overline{x}) = \overline{x} \otimes \overline{x}, \varepsilon(\overline{x}) = 1, \iota(\overline{x}) = \overline{x}^{-1} = \overline{x}^{n-1}\).
+        
+        The quotient map \(R[x, x ^{-1}] \to R[x] / (x^n - 1) = R[x, x ^{-1}] / (x^n - 1)\) given by \(x \mapsto \overline{x}\) is a \underline{morphism} of Hopf algebras over \(R\).
+        
+        This induces a closed immertion \(\underline{\mu}_{n,R} \to G_{m,R}\).
+
+        \item Let \(\Gamma\) be any finite group of order \(m\). Set \(A = R^\Gamma\) (set of maps \(f: \Gamma \to R\)) equipped with pointwise addition and multiplication. Then,
+        
+        \(A = R \times \cdots \times R\) product of rings,
+
+        Comultiplication \(\mu: A \to A \otimes_R A \cong R^{\Gamma \times \Gamma}, f \otimes g \mapsto [(\gamma,\delta) \mapsto f(\gamma)g(\delta)]\) 
+
+        \(\mu(f)(\gamma,\delta) = f(\gamma \delta)\).
+        
+        \(\varepsilon: A \to R, \varepsilon(f) = f(1_\Gamma)\).
+        
+        \(\iota: A \to A, \iota(f)(\gamma) = f(\gamma ^{-1})\).
+        
+        Exercise: This makes \((A,\mu, \iota, \varepsilon)\) a commutative Hopf algebra, which is co-commutative if and only of \(\Gamma\) is commutatie.
+
+        We set \(\underline{\Gamma}_R = \operatorname{Spec}(R^\Gamma)\) and call it the constant group scheme associated to \(\Gamma\).
+
+        One can think of \(\underline{\Gamma}_R\) as \(m\) copies of \(S\) labeled by the elements of \(\Gamma\).
+
+        \item \(\operatorname{GL}_{n,R}=\operatorname{Spec}(A), A - R[x_{ij} \mid 1 \leq i, j \leq n][t] / (t \det - 1)\). \(\operatorname{SL}_{n,R}\) is closed inside \(\operatorname{GL}_{n,R}\). \(\operatorname{SL}_{n,R} = \operatorname{Spec}(A / I)\), \(A\) as above, \(\det = \det ((x_{ij})), I = (\overline{t} - 1) = (\det - 1)\).
+
+    \end{enumerate} 
+
+    \underline{Caution}: If \(G\) is a group scheme over \(S\) then \(\vert G \vert = \) underlying set (topological space) is in general \underline{not a group}.
+        
+    For example, \(G = \mathbb{G}_{a,\mathbb{C}} = \operatorname{Spec}(\mathbb{C}[x])\) which is bijective with \(\mathbb{C} \cup \{ \eta \} \) where \(\eta\) is a generic point associated to \((0)\), the zero ideal.
+
+    \underline{Note}: \(\vert G \underset{\operatorname{Spec}(\mathbb{C})}{\times} G \vert = \vert \operatorname{Spec} (\mathbb{C}[x,y]) \vert \neq \vert \operatorname{Spec} (\mathbb{C} [x]) \vert \times \vert \operatorname{Spec}(\mathbb{C}[y]) \vert\) 
+
+    \underline{Points} If \(T \xrightarrow{f} S\) is a scheme over \(S = \operatorname{Spec}(R)\) eg \(T = \operatorname{Spec}(R^{\prime})\) and \(G \to S\) is a group scheme, then \(G(T) \coloneqq \operatorname{Mor}_{\operatorname{Scheme} / S}(T,G)\). In the affine scheme it is the same as \(\operatorname{Hom}_{R \text{-alg}}(A,R^{\prime})\) if \(G = \operatorname{Spec}(A), T = \operatorname{Spec}(R^{\prime})\).
+    
+    \(G(T)\) is naturally a group, called the group of \(T\)-valued points of \(G\).
+
+    Given \(x,y:\) \begin{tikzcd}
+            T \ar[rr] \ar[rd] & & G \ar[ld] \\ & S 
+        \end{tikzcd}
+
+    There is a commutative diagram:
+
+    \begin{center}
+        \begin{tikzcd}
+            & G \times_S G \ar[rd,"p_2"] \ar[dd,"p_1"] \\
+            T \ar[ur,"\exists!xy"] \ar[rr,"x"] \ar[rd,"y"] & & G \ar[d] \\ & G \ar[r] & S
+        \end{tikzcd}
+    \end{center}
+
+    \(x^\# - y^\# (b) \mapsfrom a \otimes b\)
+
+    \begin{center}
+        \begin{tikzcd}
+            & A \otimes_R A \ar[dl,"(x\,y)^\#"] \\
+            R^\prime & & A\ar[ul] \ar[ll,"x^\#"] \\ & A \ar[ul,"y^\#"] \ar[uu] & R \ar[l] \ar[u]
+        \end{tikzcd}
+    \end{center}
+
+    Then define \(x \cdot y \coloneqq m \circ (x,y): T \to G\).
+    
+    \(R^{\prime} \xleftarrow{(x,y)^\#} A^{\prime} \otimes_R A \xleftarrow{\mu} A\). 
+
+    This gives \(G(T)\) the structure of a group with unique element \(e_G \circ f\) where \(T \xrightarrow{f} S\) is the structure map.
+
+    For example,
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\mathbb{G}_{a,R}(R^{\prime}) = (R^{\prime},+)\).
+        
+        \(\operatorname{Hom}_{R\text{-alg}}(R[x],R^{\prime}) \xleftrightarrow{bij} R^{\prime} \) with \(\varphi \mapsto \varphi(x)\).
+        
+        \item \(G_{m,R}(R^{\prime}) = ((R^{\prime})^\times, \cdot), \operatorname{Hom}_{R\text{-alg}}(R[x,x ^{-1}], R^{\prime})\) with \(\varphi \mapsto \varphi (x) \in (R^{\prime})^\times\).
+        
+        \(\underline{\mu}_{n,R}(R^{\prime}) = \{ a\in R^{\prime} \mid a^n = 1 \}  \) is not necessarily finite if \(R^{\prime}\) is not an integral domain. Sometimes we also have very few roots of unity.
+        
+        For example, if \(n = p^m, p\) prime and \(R = \mathbb{F}_p\) and \(R^{\prime}\) an integral domain (and also \(\mathbb{F}_p\) algebra), then,
+
+        \(\underline{\mu}_{p^m, \mathbb{F}_p}(R^{\prime})\). This is because \((x^{p^m}-1) = (x-1)^{p^m}\).
+    
+    \end{enumerate} 
+
+    \begin{definition}
+        Let \(S = \operatorname{Spec}(R)\). Let \(G = \operatorname{Spec}(A), H = \operatorname{Spec}(B)\) two (affine) group schemes over \(S\). A homomorphism \(f: H \to G\) over \(S\) is a morphism of schemes over \(S\) such that the following diagram commutes:
+
+        \begin{center}
+            \begin{tikzcd}
+                H \times H \ar[d,"f\times f"] \ar[r,"m_H"] & H \ar[d,"f"] \\ G \times G \ar[r,"m_G"] & G
+            \end{tikzcd}
+        \end{center}
+
+        If \(G\) and \(H\) are affine (as indicated) then \(f\) corresponds to \(f^\#: A \to B\) a morphism of \(R\) algebras and \(f\) is a homomorphism if and only if \(f^\#\) is a homomorphism of Hopf Algebras. 
+    \end{definition}
+
+    \underline{Example} Suppose \(p\) prime, \(R = \mathbb{F}_p\) algebra, \(\alpha_{p,R} = \operatorname{Spec}(A), A = R[x] / (x^p)\) with co-multiplication \(\mu(\overline{x}) = 1 \otimes \overline{x} + \overline{x} \otimes 1\) and inversion \(\iota(\overline{x}) = - \overline{x}\) and \(\varepsilon(\overline{x}) = 0\).
+    
+    Then \(R[x] \to A\) gives a morphism:
+
+    \[
+        \alpha_{p,R} \to \mathbb{G}_{a,R}
+    \]
+
+    Question: Is \(\alpha_{p,R}\) isomorphic to \(\mu_{p,R}\)?
+
+    Example 2: Suppose \(R\) is a \(k\)-algebra and \(k\) is a field containing a primitive \(n\)'th root of unity. Then \(\operatorname{char} k \nmid n\). In this case, \(\underline{\mu}_{n,R} \cong \underline{\mathbb{Z} / n\mathbb{Z}}_R\). 
+
 \end{document}

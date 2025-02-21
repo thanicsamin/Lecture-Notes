@@ -2570,4 +2570,113 @@
 
     The proof requires exicision and homotopy invariance and the five lemma.
 
+    \section*{Friday, 2/21/2025}
+    
+    Note: the previous theorem is Hatcher's definition of a good pair. These concepts are not equivalent!
+
+    \begin{proof}
+
+        Consider the following diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                H_*(X,A) \ar[r,"1"] \ar[d] & H_*(X,V) & H_*(X-A,V-A) \ar[l,"2"'] \ar[d,"3"] \\
+                H_*(X/A, A/A) \ar[r,"5"] & H_*(X/A,V/A) & H_*(X/A-A/A, V/A-A/A) \ar[l,"4"'] 
+            \end{tikzcd}
+        \end{center}
+        
+        We want to prove that each of them is an isomorphism.
+
+        2 is isomorphism by excision.
+
+        3 is isomorphism since we removed \(A\) and then modded out \(A\), so they're in fact the same spaces.
+
+        4 is isomorphism by excision.
+
+        1 and 5 are isomorphisms by homotopy invariance of homology and five lemma (cf HW ex 2). We have something like this:
+
+        \begin{center}
+            \begin{tikzcd}
+                H_n A \ar[r] \ar[d,"\cong"] & H_n X \ar[r] \ar[d,"\cong"] & H_n(X,A) \ar[r] \ar[d] & H_{n-1} A \ar[d,"\cong"] \ar[r] & H_{n-1} X \ar[d,"\cong"] \\
+                H_n V \ar[r] & H_n X \ar[r] & H_n (X,V) \ar[r] & H_{n-1} V \ar[r]n & H_{n-1} X
+            \end{tikzcd}
+        \end{center}
+        
+    \end{proof}
+
+    \subsection*{Degree}
+
+    We can talk about the degree of a map \(f: S^n \to S^n\). The degree is an integer. Think about winding number.
+
+    \(f: S^n \to S^n\) induces \(H_n S^n \to H_n S^n\). Easier to consider \(\widetilde{H}_n S^n \to \widetilde{H}_n S^n\). These are infinite cyclic groups so the map is a multiplication, thet number is \(\deg f\).
+
+    \[
+        \widetilde{H}_n S^n \xrightarrow{\cdot (\deg f)} \widetilde{H}_n S^n
+    \]
+
+    We have the following property:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\deg \operatorname{id} = 1 \).
+        \item \(\deg (f \circ g) = (\deg f)(\deg g)\).
+        \item Due to Hopf: \(\deg f = \pm 1 \iff f\) is homotopy equivalence.
+        \item \(f\) not onto \(\implies \deg f = 0\).
+        \item \(\deg(f: \widetilde{H}_0 (S^0) \to \widetilde{H}_0(S^0)) \in \{ -1,0,1 \}\).
+        \item Consider the antipodal map \(A = - \operatorname{id}: S^n \to S^n \) given by \(A(x) = -x\). \(\deg(-\operatorname{id}) = (-1)^{n+1} = \det(-I_{n+1})\)
+        \item \(f: S^n \to S^n\) with no fixed point then \(\deg f = (-1)^{n+1}\) [HW]
+        \item \(f: S^n \to S^n, f(x) \neq - x \forall x \implies \deg f = 1\).
+        \item global degree \(=\) local degree, \(\deg f = \# f ^{-1} (x)\).
+        \item \(\deg(z \to z^n) = n, S^1 \to S^1\).
+        \item \(M\in O(n) \implies \deg M = \det M\).  
+    \end{enumerate} 
+
+    \begin{proof}
+        1 and 2 follow from functoriality: \(\widetilde{H}_n: \operatorname{Top} \to \operatorname{Ab}\) is a functor.
+
+        3: \(\impliedby\): if \(f\) is homomotpy equivalence then there is a homotopy inverse \(g\), then \((\deg f)(\deg g) = 1 \implies \deg f = \pm 1\). \(\implies\) is a deep theorem of Hopf. We will not prove it in this class.
+
+        4: We need lemma.
+
+        \begin{lemma}
+            If \(f: S^n \to S^n, x_0\notin f(S^n)\) then \(f \simeq \text{const}_{-x_0}\): we'll take the straight line homotopy:
+
+            \[
+                \frac{t f(x) + (1-t)(-x_0)}{\left\lVert t f(x) + (1-t)(-x_0) \right\rVert }
+            \]
+
+            Thus \(\deg f = \deg(c_{-x_0})\).
+        \end{lemma}
+
+        \begin{center}
+            \begin{tikzcd}
+                S^n \ar[rr, "c_{-x_0}"] \ar[rd] & & S^n \\ & \{-x_0\} \ar[ru]
+            \end{tikzcd}
+        \end{center}
+
+        \begin{center}
+            \begin{tikzcd}
+                \widetilde{H}_n S^n \ar[rr] \ar[rd] & & \widetilde{H}_n S^n \\ & \widetilde{H}_n(pt)=0 \ar[ur]
+            \end{tikzcd}
+        \end{center}
+
+        Recall \(H_0 S^0\) has basis \(\left[ \sigma_1: \underset{e_0}{\Delta^0} \xrightarrow[\mapsto]{} \underset{1}{S^0}\right], \left[ \sigma_{-1}: \underset{e_0}{\Delta^0} \xrightarrow[\mapsto]{} \underset{-1}{S^0}\right] \) 
+
+        \(\widetilde{H}_0 S^0\) then has basis the kernel, which is \([\sigma_1] - [\sigma_{-1}]\).
+
+        \(\deg(\operatorname{id}: S^0 \to S^0) = 1, \deg (\text{const}: S^0 \to S^0) = 0\).
+        
+        \(\deg A = ? A_{\ast} ([\sigma_1]-[\sigma_{-1}]) = [\sigma_{-1}] - [\sigma_1], \deg A = -1\).
+        
+        \begin{lemma}
+            If \(f: S^n \to S^n\) has no fixed points then \(f\simeq -\operatorname{id} = A\).
+
+            Once again consider the normalized straight line homotopy:
+
+            \[
+                \frac{tf(x) + (1-t)(-x)}{\left\lVert tf(x) + (1-t)(-x) \right\rVert }
+            \]
+        \end{lemma}
+
+    \end{proof}
+
 \end{document}
