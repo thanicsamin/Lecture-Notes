@@ -2264,4 +2264,142 @@
 
     Example 2: Suppose \(R\) is a \(k\)-algebra and \(k\) is a field containing a primitive \(n\)'th root of unity. Then \(\operatorname{char} k \nmid n\). In this case, \(\underline{\mu}_{n,R} \cong \underline{\mathbb{Z} / n\mathbb{Z}}_R\). 
 
+    \section*{Tuesday, 2/25/2025}
+    
+    Note that, in the previous question, even though as schemes \(\underline{\alpha}_{p,R} \cong \underline{\mu}_{p,R}\), they are not isomorphic as group schemes over \(R\).
+
+    \begin{definition}
+        A group scheme \(G \xrightarrow{p_G} S = \operatorname{Spec}(R)\) is called \underline{finite}, if \(p_G\) is a finite morphism (\(G = \operatorname{Spec}(A)\) is affine and \(p_G^\#: R \to A\) makes \(A\) into a finitely generated \(R\)-module).
+
+        A finite group scheme \(G / R\) [here \(G = \operatorname{Spec}(A)\)] is called flat (resp. locally free) if \(A\) is flat (resp. projective) \(R\)-module.
+
+        We denote by \(\operatorname{Gps}_R\) the category of (affine) group schemes \(/R\) and \(\operatorname{Gps}^{\text{fin/proj}}\) category of finite locally free free group schemes \(/ R\) and \(\operatorname{Gps}_R^{\operatorname{fin}}\) category of finite group schemes \(/ R\).
+    
+    \end{definition}
+
+    Example from LT Theory: Let \(K / \mathbb{Q}_p\) be finite, \(F_e =\) LT \(\mathcal{O}_K\) module attached to the LT series \(e\in \mathscr{E}_\pi, F_e[\pi^m]\coloneqq \operatorname{Spec}(\mathcal{O}_K[[x]] / ([\pi^m]_{F_e}(x)))\).
+
+    Fact (HW7): \(A_m \coloneqq \mathcal{O}_K[[x]] / ([\pi^m]_{F_e}(x))\) is a free \(\mathcal{O}_K\)-module of rank \(q^m\) where \(q = \vert k_K \vert\). 
+
+    Hence, the co-multiplication \(A_m \to A_m \otimes_{\mathcal{O}_K} A_m\) is given by the formal module structure: \(x \mapsto F_e(x_1, x_2) \in \mathcal{O}_K[[x_1,x_2]] / ([\pi^m](x_1),[\pi^m](x_2)) \cong \mathcal{O}_K[x_1] / ([\pi^m](x_1)) \otimes_{\mathcal{O}_K} \mathcal{O}_K[[x_2]] / ([\pi^m](x_2))\).
+
+    Inversion map is given by inversion on \(F_e\).
+
+    Augmentation (\(\leftrightarrow\) unit section) \(A_m \to \mathcal{O}_K, x \mapsto 0\).
+    
+    \begin{remark}
+        If \(M\) is a finitely generated projective \(R\)-module then \(\forall P \in \operatorname{Spec}(R)\) the localization \(M_P\) is a finitely generated free \(R_P\)-module. This is a consequence of Nakayama's Lemma.
+        
+        The function \(\operatorname{Spec}(R) \to \mathbb{Z}_{\geq 0}, \operatorname{rk}(M)(P)\coloneqq \operatorname{rank}_{R_P}(M_P)\) is \underline{locally constant}.
+        
+        If \(G\) is in \(\operatorname{Gps}_R^{\operatorname{fin,proj}}\) then we let \(\operatorname{rk}(G) \coloneqq \operatorname{rk}(A)\) where \(G=\operatorname{Spec}(A)\). We call it the \underline{rank} or \underline{order} of \(G\).
+        
+    \end{remark}
+
+    \subsubsection{Carter Duality}
+
+    From now on all group schemes are assumed to be commutative. Given an affine group scheme \(G = \operatorname{Spec}(A)\) over \(R\) we set \(\mathcal{O}(G) = A\). So, \(\mathcal{O}(G)\) is the corresponding affine algebra of \(G\).
+    
+    Let \(\mu:A \to A\otimes_R A\) be the co-multiplication, and \(\delta_A : A \otimes_R A \to A\) the multiplication. Then, \(\delta_A(a \otimes b) = ab\).
+
+    Let \(A^\vee = \operatorname{Hom}_{R\text{-mod}}(A,R)\). Now assume that \(A\) is f.g. projective (\(\iff G\) is finite, locally free).
+    
+    Then we have the following:
+    
+    \((A \otimes_R A)^\vee = \operatorname{Hom}_{R\text{-mod}}(A \otimes_R A, R) = \operatorname{Hom}_{R\text{-mod}}(A, \operatorname{Hom}_{R\text{-mod}}(A,R))\) 
+
+    \(= \operatorname{Hom}_{R\text{-mod}}(A,R) \otimes_R \operatorname{Hom}_{R\text{-mod}}(A,R) = A^\vee \otimes_R A^\vee\).
+
+    Consider the maps: \(\delta_{A^\vee}\coloneqq \delta_A^\vee: A^\vee \to (A \otimes_R A)^\vee \underset{can}{\cong} A^\vee \otimes_R A^\vee\)
+    
+    \(\mu_{A^\vee}\) 
+
+    \textbf{Proposition/Definition 2.1.2.1}: Let \(G \in \operatorname{Gps}_R^{\text{fin, proj}}, A = \mathcal{O}(G)\). Then \(A^\vee\) equipped with the multiplication is given by \(\delta_{A^\vee} = \mu_A^\vee\) is a commutative ring with unit \(\varepsilon_A: A \to R (\varepsilon_A \in A^\vee)\).
+    
+    If we define:
+    
+    \(\varepsilon_{A^\vee}: A^\vee \to R, \varepsilon_{A^\vee}(f) = f(0)\)
+    
+    \(\iota_{A^\vee} \coloneqq \iota_A^\vee: A^\vee\to A^\vee, \iota_{A^\vee}(f) = f \circ \iota_A\)
+    
+    Then \(A^\vee, \mu_{A^\vee},\iota_{A^\vee},\varepsilon_{A^\vee}\) is a co-commutative Hopf algbra of the same rank as fcs on \(\operatorname{Spec}(R)\).
+
+    Furthermore, the map \(A \to (A^\vee)^{\vee}\) given by \(a \mapsto (f \mapsto f(a))\) is an isomorphism of Hopf Algebras. We set \(G^\vee: \operatorname{Spec}(A^\vee)\) and call it the \underline{Carter Dual} of \(G\). Then, \((G^\vee)^\vee\underset{can}{\cong} G\).  
+    
+    Example: let \(G = \underline{\mu}_{n,R}, A = R[x] / (x^n - 1), \mu_A(\overline{x}) = \overline{x} \otimes \overline{x}\).
+
+    \(A^\vee = \bigoplus_{i=0}^{n-1} Rf_i, f_i \left( \sum_{j=0}^{n-1} a_j \overline{x}^j \right) = a_i \in R\).
+
+    Then, \((f_i \cdot f_j)(\overline{x}^k)\) can be evaluated as follows:
+    
+    Recall \(A^\vee \otimes_R A^\vee \to A^\vee\) is given by \(f \otimes g \mapsto [a \mapsto (f \otimes g)(\mu_A(a))]\). Then,
+
+    \[
+        (f_i \cdot f_j)(\overline{x^k}) = (f_i \otimes f_j)(\mu_A(\overline{x}^k)) = (f_i \otimes f_j)(\overline{x}^k \otimes \overline{x}^k) = f_i(\overline{x}^k)f_j(\overline{x}^k)
+    \]
+
+    Therefore, \((f_i \cdot f_j)(\overline{x}^k) = \begin{dcases}
+        1, &\text{ if } i=j=k ;\\
+        0, &\text{ otherwise} .
+    \end{dcases}\) 
+
+    Therefore, \(f_i f_j = \delta_{i,j}f_i\).
+
+    Thus, \(f_0, \cdots , f_{n-1}\) are \underline{pairwise orthogonal idempotents}. Furthermore, \(f_0 + \cdots + f_{n-1} = 1_{A^\vee}\).
+
+    Therefore, as an \(R\)-algebra,
+
+    \[
+        A^\vee = \prod_{i=0}^{n-1} R f_i \cong R \times \cdots \times R \overset{!}{=} R^{\mathbb{Z} / n\mathbb{Z}}
+    \]
+
+    Then, the co-multiplication on \(A^\vee \cong R^{\mathbb{Z} /(n)}\) is given by:
+
+    \[
+        R^{\mathbb{Z} / (n)} \to R^{\mathbb{Z} /(n)} \times R^{\mathbb{Z} /(n)} = R^{\mathbb{Z} /(n) \times \mathbb{Z} /(n)} 
+    \] 
+
+    \[
+        f \mapsto \left[ (i \mod n, j \mod n) \mapsto f(i + j \mod n) \right] 
+    \]
+
+    \(f\in R^{\mathbb{Z} / n\mathbb{Z}} \leftrightarrow \left[ \sum_{i=0}^{n-1} a_i \overline{x}^i \mapsto \sum_{i=0}^{n-1} a_i f(i) \right] \) 
+
+    Therefore, \((\underline{\mu}_{n,R})^\vee \cong \underline{\mathbb{Z} / n\mathbb{Z}}_R \)
+    
+    Example: Assume \(p\) is prime and \(R\) an \(\mathbb{F}_p\) algebra. Then, \((\underline{\alpha}_{p,R})^\vee \cong \underline{\alpha}_{p,R}\).
+    
+    Note that this proves that \(\underline{\alpha}_{p,R}\not\cong \underline{\mu}_{p,R}\) for any ring \(R \neq 0\).
+
+    \begin{proof}
+        [Sketch of proof of 2.1.2.1]
+
+        Check Associativity of multiplication \(\delta_{A^\vee}\). It comes from the associativity of the comultiplication.
+        
+        Let \(a \in A\). Write \(\mu_A(a) = \sum_{i} a_i \otimes b_i\). 
+
+        \(\mu_A(b_i) = \sum_{j} b_{ij} \otimes d_{ij}, \mu_A(a_i) = \sum_{k} a_{ik} \otimes c_{ik} \implies \sum_{i,k} a_{ik} \otimes c_{ik} \otimes b_i = \sum_{i,j} a_i \otimes b_{ij} \otimes d_{ij}\).
+        
+        For all \(f,g,h\in A^\vee: ((f \cdot g) \cdot h)(a) = ((f\cdot g) \otimes h)(\mu_A(a)) = \sum_i (f \cdot g)(a_i) h(b_i) = \sum f(a_{ik})g(c_{ik})h(b_i) = (f \otimes g \otimes h)\left( \sum a_{ik} \otimes c_{ik} \otimes b_i \right) = (f \otimes g \otimes h) \left( \sum a_i \otimes b_{ij} \otimes d_{ij} \right) = \sum f(a_i)(gh)(b_i) = (f \cdot (g \cdot h))(a)\).
+        
+        Similarly one proves the associativity of co-multiplicatin \(\mu_{A^\vee}\) and verify the other axioms.
+        
+    \end{proof}
+
+    \underline{Functorial Description of the Carter Dual}: Let \(G = \operatorname{Spec}(A) \in \operatorname{Gps}_R^{\text{fin,proj}}\) for \(R^{\prime} \in R\)-alg (= cattegory of comm. \(R\)-algebras) we define:
+    
+    \[
+        \underline{\operatorname{Hom}}(G,\mathbb{G}_m)(R^{\prime}) \coloneqq \operatorname{Hom}_{\operatorname{Gps}_{R^{\prime}}}(G_{R^{\prime}},\mathbb{G}_{m,R^{\prime}})
+    \]
+
+    \[
+        = \operatorname{Hom}_{R^{\prime}\text{-Hopfalg}}(\mathcal{O}(\mathbb{G}_{m,R^{\prime}}),\mathcal{O}(G_{R^{\prime}})) = \operatorname{Hom}_{R^{\prime}\text{-Hopfalg}}\left( R^{\prime} [x,x ^{-1}], A \otimes_R R^{\prime} \right)
+    \]
+
+    This is a functor: \(R\)-alg \(\to\) (Groups) into the category of abstract groups.
+    
+    If we have \(\alpha ,\beta: G_{R^{\prime}}\to \mathbb{G}_{m,R^{\prime}}\) we can multiply them, \(\alpha \cdot \beta : G_{R^{\prime}} \to \mathbb{G}_{m,R}\) is a homomorphism. 
+
+    \textbf{Proposition 2.1.2.2} If \(G\in \operatorname{Gps}_R^{\text{fin,proj}}\), then \(G^\vee \underset{can}{\cong} \underline{Hom}(G,\mathbb{G}_{m})\). 
+
 \end{document}
