@@ -894,5 +894,143 @@
         
     \end{definition}
 
+    \section{Thursday, 2/27/2025, Representation Theory by Zoia}
+    
+    Notation:
+
+    \(L\)-Semisimple Lie Algebra over \(F\)-algebraically closed field of char \(0\).
+
+    \(H\)-fixed CSA of \(L\)
+    
+    \(H^{\ast}\)-dual space of the CSA \(H\).
+
+    \(\Phi\): the root system, \(\Delta = \{ \alpha_1, \cdots , \alpha_l \}\), base of \(\Phi\).
+    
+    \(\mathcal{W}\)- the Weyl Group.
+
+    Weight Spaces:
+
+    \(V\)- finite dim \(L\)-module.
+
+    \(H\) acts diagonally on \(\).
+
+    \(V = \bigoplus_\lambda V_\lambda\) where \(\lambda\) runs over \(H^{\ast}\).
+
+    \(V_\lambda = \left\{ v\in V \mid h \cdot v = \lambda(h)v \forall h \in H \right\}\).
+
+    If \(V_\lambda \neq 0\) we call \(V_\lambda\) a weight space. \(\lambda\) is the weight of \(H\) on \(V\).
+
+    \(V^{\prime}\)- the sum of all weight spaces \(V_\lambda\) [always direct].
+
+    Examples:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Consider \(L\) as an \(L\)-submodule via adjoint representation.
+        
+        Weights are the roots of \(\alpha \in \Phi \) with weight spaces \(L_\alpha\) of dim \(1\).
+
+        If \(L = \mathfrak{sl}(2,F)\) then a linear functional \(\lambda\) on \(H\) is completely defined by \(\lambda(h)\) at the basis vector \(h\).
+
+
+    \end{enumerate} 
+
+    Exercise 1: If \(V\) is an arbitrary \(L\)-module, then the sum of its weight space is direct.
+
+    \begin{lemma}
+        Let \(V\) be an arbitrary \(L\)-module. Then,
+
+        \begin{enumerate}[label=\alph*)]
+            \item \(L_\alpha\) maps \(V_\lambda\) into \(V_{\lambda + \alpha}\) with \(\lambda \in H^{\ast} , \alpha \in \varphi\).
+            
+            \item The sum \(V^{\prime} = \sum_{\lambda \in H^{\ast}} V_\lambda\) is diret, and \(V^{\prime}\) is an \(L\)-submodule of \(V\).
+            
+            \item If \(\dim V < \infty\) then \(V = V^{\prime}\) [ex1]
+            
+            \item If \(x\in L_\alpha, v \in V_\lambda, h \in H\),
+            \[
+                h\cdot \times \cdot v = x \cdot h \cdot v + [hx] \cdot v = (\lambda(h) + \alpha(h)) xv
+            \]
+
+            Thus, \(L_\alpha\) sends \(V_\lambda\) to \(V_{\lambda+\alpha}\).
+
+            \item \(L_\alpha, \alpha \in \Phi\) permutes the weight spaes.
+        \end{enumerate} 
+    \end{lemma}
+    
+    \subsection*{Standard Cyclic Modules}
+
+    \begin{definition}
+        A maximal vector (of weight \(\lambda\)) in an \(L\)-module \(V\) is a nonzero \(v^+\in V_\lambda\) is killed by all \(L_\alpha (\alpha \in \Phi^+), \alpha \in \Delta\).
+
+        Meaning, \(x_\alpha v^+ = 0\, \forall x_\alpha \in L_\alpha\) 
+    \end{definition}
+    
+    Example: If \(L\) is simple and \(\beta\) is the maximal root in \(\Phi\) relative to \(\Delta\) then any nonzero element from \(L_\beta\) is a \underline{maximal vector} (for the adjoint representation of \(L\)).
+
+    Note that the following fact about the Borel Subalgebra
+
+    \[
+        B(\Delta) = H + \bigoplus_{\alpha \succ 0} L_\alpha 
+    \]
+
+    has a common eigenvector: which is a maximal vector.
+
+    \begin{definition}
+        If \(V = \mathcal{U}(L) \cdot v^+\) for \(v^+\) maximal vector of weight \(\lambda\) then we say \(V\) is standard cyclic.
+
+        Then \(\lambda\) is the highest weight on \(V\).
+    \end{definition}
+
+    Example: If \(V\) is an arbitrary \(A\)-module, then the sum of its weight spaces is direct.
+    
+    Structure of such a submodule:
+
+    Fix nonzero \(x_\alpha \in L_\alpha, \alpha \succ 0\) and choose \(y_\alpha \in L_\alpha\) uniquely so that \([x_\alpha y_\alpha] = h_\alpha\).
+    
+    Recall we have a partial order:
+
+    \(\lambda \succ \mu \iff \lambda - \mu\) is a sum of positive roots.
+
+    \begin{theorem}
+        Consider \(V, v^+\in V_\lambda, \Phi^+ = \{ \beta_1, \cdots , \beta_m \}\). Then,
+
+        \begin{enumerate}[label=\alph*)]
+            \item \(V\) is spanned by vectors \(y_{\beta_1}^{i_1} \cdots y_{\beta_m}^{i_m} \cdot v^+\) where \(i_j \in \mathbb{Z}_{\geq 0}\).
+            \item The weights of of \(V\) are of the form:
+            
+            \[
+                \mu = \lambda - \sum_{i=1}^l k_i \alpha_i \, \lambda - \mu \succ 0 \forall \lambda
+            \]
+
+            \item \(\forall \mu \in H^{\ast}, \dim V_\mu < \infty\) and \(\dim V_\lambda = 1\).
+            
+            \item Each submodule of \(V\) is the direct sum of its weight spaces.
+            \item \(V\) is indecomposable with a unique maximal submodule and unique irreducible quotient.
+            \item Every nonzero homo-c image of \(V\) is also standard cyclic of weight \(\lambda\).
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\alph*)]
+            \item \(L = B(\Delta) + \bigoplus_{\alpha \prec 0} L_\alpha\). Then by the PBW theorem, it holds that \(\mathcal{U}(L)\cdot v^+ = \mathcal{U} \left( \bigoplus_{\alpha \prec 0} L_{\alpha} \right) \mathcal{U} \left( B(\Delta) \right) \cdot v^+ = \mathcal{U} \left( \bigoplus_{\alpha \prec 0} L_\alpha \right) \cdot F v^+\) [recall \(v^+\) is a common eigenvector for \(B\)].
+            \item Consider the vector \(y_{\beta_1}^{i_1} \cdots y_{\beta_m}^{i_m} \cdot v^+\) has weight \(\lambda - \sum i_j \beta_j\) Rewrite \(\beta\) as  a non-negative \(\mathbb{Z}\)-linear combination of simple roots.
+            \item \(\exists\) only finite number of polynomials \(\sum i_j \beta_j\) from part b. These span the weight space \(V_\mu\), if \(\mu = \lambda - \sum_{i} k_i \alpha_i\). The only vector of the form \(\sum_{j} i_j \beta_j\) which has weight \(\mu = \lambda\) is \(v^+\).
+            \item Let \(W\) be a submodule of \(V\) and \(w\in W\) such that \(w\) is a sum of \(v_i\) such that \(v_i \in V_{\mu_i}\) and all the weights \(\mu_i\) are distinct. We want to show that all \(v_i \in W\).
+            
+            Let \(w = v_1 + \cdots + v_n\). We apply contradiction. WLOG suppose there exists \(v_2 \notin W\).
+            
+            Suppose \(h\in H\) such that \(\mu_1(h)\neq \mu_2(h)\).
+
+            \(h \cdot w=\sum_{i} \mu_i(h)v_i \in W \implies (h - \mu_1(h)\cdot L)\cdot w=(\mu_2(h)-\mu_1(h))v_2 + \cdots  + (\mu_n(h) - \mu_1(h))\cdot v_n \neq 0\)
+            
+            Then \(v_2 \in W\). Contradiction.
+
+            \item By c and d each proper submodule of \(V\) lies in the sum of lies in the sum of weight spaces other than \(V_\lambda\). Then the sum \(W\) of all submodule is still proper.
+            
+            Thus \(V\) has a unique maximal submodule and unique irreducible quotient.
+
+            Thus, \(V\) cannot be the direct sum of two proper submodules since each of them are contained in \(W\).
+        \end{enumerate} 
+    \end{proof}
 
 \end{document}

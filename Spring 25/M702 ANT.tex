@@ -2044,7 +2044,7 @@
 
     Let \(R\) be a commutative ring. An \underline{affine group scheme over} \(R\) is an affine scheme \(G = \operatorname{Spec} A \xrightarrow{P_G} S = \operatorname{Spec} R\), equipped with morphisms over \(S\):
 
-    \(m = m_G: S \underset{G}{\times} G = \operatorname{Spec} (A \underset{R}{\otimes} A) \to G\)
+    \(m = m_G: G \underset{S}{\times} G = \operatorname{Spec} (A \underset{R}{\otimes} A) \to G\)
     
     \(i = i_G: G \to G\) [inverse]
 
@@ -2314,7 +2314,7 @@
     
     \(\mu_{A^\vee}\) 
 
-    \textbf{Proposition/Definition 2.1.2.1}: Let \(G \in \operatorname{Gps}_R^{\text{fin, proj}}, A = \mathcal{O}(G)\). Then \(A^\vee\) equipped with the multiplication is given by \(\delta_{A^\vee} = \mu_A^\vee\) is a commutative ring with unit \(\varepsilon_A: A \to R (\varepsilon_A \in A^\vee)\).
+    \textbf{Proposition/Definition 2.1.2.1.} Let \(G \in \operatorname{Gps}_R^{\text{fin, proj}}, A = \mathcal{O}(G)\). Then \(A^\vee\) equipped with the multiplication is given by \(\delta_{A^\vee} = \mu_A^\vee\) is a commutative ring with unit \(\varepsilon_A: A \to R (\varepsilon_A \in A^\vee)\).
     
     If we define:
     
@@ -2386,7 +2386,9 @@
         
     \end{proof}
 
-    \underline{Functorial Description of the Carter Dual}: Let \(G = \operatorname{Spec}(A) \in \operatorname{Gps}_R^{\text{fin,proj}}\) for \(R^{\prime} \in R\)-alg (= cattegory of comm. \(R\)-algebras) we define:
+    \subsection*{Functorial Description of the Carter Dual}
+    
+    Let \(G = \operatorname{Spec}(A) \in \operatorname{Gps}_R^{\text{fin,proj}}\) for \(R^{\prime} \in R\)-alg (= cattegory of comm. \(R\)-algebras) we define:
     
     \[
         \underline{\operatorname{Hom}}(G,\mathbb{G}_m)(R^{\prime}) \coloneqq \operatorname{Hom}_{\operatorname{Gps}_{R^{\prime}}}(G_{R^{\prime}},\mathbb{G}_{m,R^{\prime}})
@@ -2401,5 +2403,475 @@
     If we have \(\alpha ,\beta: G_{R^{\prime}}\to \mathbb{G}_{m,R^{\prime}}\) we can multiply them, \(\alpha \cdot \beta : G_{R^{\prime}} \to \mathbb{G}_{m,R}\) is a homomorphism. 
 
     \textbf{Proposition 2.1.2.2} If \(G\in \operatorname{Gps}_R^{\text{fin,proj}}\), then \(G^\vee \underset{can}{\cong} \underline{Hom}(G,\mathbb{G}_{m})\). 
+
+    \section*{Thursday, 2/27/2025}
+    
+    \underline{Notation}: Given a ring \(R\) we denote by \(\operatorname{Ab}_R\) the category of affine commutative group schemes over \(R\), and \(\operatorname{Ab}_R^{\text{fin}} (\operatorname{Ab}_R^{\text{fin, proj}})\) the categoory of objects which are finite (resp. finite and locally free (\(\iff \mathcal{O}(G)\) is projective)) over \(R\).
+    
+    For \(R^{\prime} \in R\)-alg we defined \(\underline{Hom}(G,\mathbb{G}_m)(R^{\prime}) = \operatorname{Hom}_{\operatorname{Ab}_{R^{\prime}}}(G_{R^{\prime}}, \mathbb{G}_{m,R^{\prime}})\).
+    
+    \textbf{Proposition 2.1.2.2.} For \(G\in \operatorname{Ab}_R^{\text{fin,proj}}\) we have \(G^\vee\) (=Carter dual) \(\cong \underline{Hom}(G,\mathbb{G}_m)\).
+    
+    \begin{proof}
+        [Sketch] \(R^{\prime} \in R\)-alg. Then,
+        
+        \(G(R^{\prime}) = \operatorname{Hom}_{R\text{-alg}}(\underset{\mathcal{O}(G)}{A},R^{\prime}) \hookrightarrow \operatorname{Hom}_{R\text{-mod}}(\underset{proj}{A},R^{\prime}) \cong \operatorname{Hom}_{R\text{-mod}}(A,R) \otimes_R R^{\prime} = A^\vee \otimes_R R^{\prime}\).
+
+        Where \(\underbrace{A^\vee}_{A^\vee_{R^{\prime}}} = \operatorname{Hom}_{R\text{-mod}}(A,R)\). Consider \(\varphi : A \to R^{\prime} \in G(R^{\prime})\), an \(R\)-algebra homomorphism. We can then make \(\varphi\) into \(R^{\prime}\)-linear in the obvious way: \(A \otimes_R R^{\prime} \xrightarrow{\varphi}R^{\prime}\) with \(a \otimes r \mapsto \varphi(a) \otimes r\). 
+
+        \(\mu_{A^\vee_{R^{\prime}}}\) 
+
+        \(\mu_{A^\vee_{R^{\prime}}}: A^\vee_{R^{\prime}} \to A^\vee_{R^{\prime}} \to A^\vee_{R^{\prime}} \otimes_{R^{\prime}} A^\vee_{R^{\prime}} \cong (A_{R^{\prime}} \otimes_{R^{\prime}} A_{R^{\prime}})^\vee\) 
+
+        Therefore, \((\mu_{A^\vee_{R^{\prime}}}(\varphi))(a \otimes b) = \varphi(a \otimes b) \underset{=}{\varphi \text{ ring hom}}  \varphi (a) \varphi(b) = (\varphi \otimes \varphi)(a \otimes b)\).
+
+        Therefore, \(\mu_{A^\vee_{R^{\prime}}}(\varphi) = \varphi \otimes \varphi\).
+
+        \begin{remark}
+            An element \(\varphi\) of a Hopf algebra \(H\) over \(R^{\prime}\) is called \underline{group-like} if the comultiplication \(\mu_H(\varphi) = \varphi \otimes \varphi\).
+        \end{remark}
+
+        So, \(\varphi\) is group-like.
+
+        On the other hand, any element \(\Phi\) of \(\underline{Hom}(G^\vee, \mathbb{G}_m)(R^{\prime}) = \operatorname{Hom}(G_{R^{\prime}}^\vee, \mathbb{G}_{m,R^{\prime}}) = \operatorname{Hom}_{R^{\prime}\text{-alg}}(R^{\prime}[x,x^{\prime}], A^\vee \otimes_R R^{\prime})\) is completely determined by \(\Phi(x) \in A^\vee_{R^{\prime}}\). Let this be \(\Psi\).
+        
+        Then we have \(\Psi(ab) = \mu_{A^\vee_{R^{\prime}}}(\Psi)(a \otimes b) = (\Phi \otimes \Phi)(\mu_{\mathbb{G}_{m,R^{\prime}}}(x))(a \otimes b) = (\Phi \otimes \Phi)(x \otimes x)(a \otimes b) = \Psi(x) \otimes \Psi(x)(a \otimes b) = \Psi(a) \Psi(b)\).
+
+        Moreover \(\Psi \cdot \Phi(x ^{-1}) = \Phi(x) \Phi(x ^{-1}) = \Phi(1) = 1\).
+
+        Therefore, \(\Psi \in (A^\vee_{R^{\prime}})^\times\).
+
+        Check: the element \(\varphi\) from before is a unit in \(A^\vee_{R^{\prime}}\).
+
+        Therefore, \(\underline{Hom}(G^\vee, \mathbb{G}_m)(R^{\prime}) = \operatorname{Hom}_{(\text{Hopf algs} / R^{\prime})}(R^{\prime}[x,x ^{-1}], A^\vee_{R^{\prime}})\)
+        
+        \(= \left\{ \varphi \in (A^\vee_{R^{\prime}})^\times \mid \varphi(ab) = \varphi (a) \varphi(b) \right\}\) 
+
+        \(= \operatorname{Hom}_{R^{\prime}\text{-alg}}(A,R^{\prime}) = G(R^{\prime})\).
+        
+        \(\implies \underline{\operatorname{Hom}}(G^\vee,\mathbb{G}_m) \cong G \) 
+
+        Replace \(G\) by \(G^\vee\) and use the fact that \(G^{\vee\vee} \underset{can}{\cong} G\).
+        
+        Therefore, \(G^\vee \cong \underline{Hom}(G,\mathbb{G}_m)\).
+        
+    \end{proof}
+
+    Example: \((\underline{\alpha}_{p,R})^\vee \cong \underline{\alpha}_{p,R}\) [from HW7]
+        
+    \((\mu_{n,R})^\vee \cong \underline{\mathbb{Z} / n\mathbb{Z}}_R\).
+
+    \subsubsection{Short Exact Sequences}
+
+    Let \(G,G^{\prime} ,G^{\prime\prime} \in \operatorname{Ab}_R^{\text{fin,proj}}\).
+    
+    \begin{definition}
+        A sequence \(0 \to G^{\prime} \xrightarrow{f} G \xrightarrow{g} G^{\prime\prime} \to 0\) is called \underline{exact} if:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(f\) is a \underline{closed} \underline{immersion} (\(\iff f^\# : \mathcal{O}(G) \to \mathcal{O}(G^{\prime})\) is surjective) which identifies \((G^{\prime}, f)\) with the categorical kernel of \(g\) in \(\operatorname{Ab}_R\).
+            
+            (If \(H \in \operatorname{Ab}_R\) and \(h: H_{\searrow} \xrightarrow[S = \operatorname{Spec}(R)]{} \,_{\swarrow} G\) has the property that \(g \circ h = e_{G^{\prime\prime}} \circ p_H\) [here \(p_H\) is the map \(H \to S\)] then there is a unique \(h^{\prime}: H \to G^{\prime}\) such that \(h = f \circ h^{\prime}\)).
+
+            \item \(g\) is faithfully flat (\(\iff g^\#: \mathcal{O}(G^{\prime\prime}) \to \mathcal{O}(G)\) is faithfully flat).
+        \end{enumerate} 
+    \end{definition}
+
+    \textbf{Propositon 2.1.3.1.} Let \(0 \to G^{\prime} \to G \to G \to G^{\prime\prime} \to 0\) be an exact sequence in \(\operatorname{Ab}_R^{\text{fin,proj}}\). Then,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\operatorname{rk}(G) = \operatorname{rk}(G^{\prime}) \operatorname{rk}(G^{\prime\prime})\) as functions on \(\operatorname{Spec}(R)\).
+        \item The dual sequence \(0 \to (G^{\prime\prime})^\vee \to G^\vee \to (G^{\prime})^\vee \to 0\) is exact.  
+    \end{enumerate} 
+
+    \underline{Reference}: Demazure, Gabriel Groupes Algebriques, SGA 3
+
+    \begin{remark}
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(0 \to H \to G \to Q \to 0\) is exact sequence of affine commutative group schemes \(/ R\), then the sequence of \(R^{\prime}\) valued points:
+            
+            \[
+                0 \to H(R^{\prime}) \to G(R^{\prime}) Q(R^{\prime}) \to 0
+            \]
+
+            need \underline{not} be exact for \(R^{\prime} \in R\)-alg. Usually surjectivity is the problem.
+
+            Example: We take \(G = \operatorname{Res}_{\mathbb{R}}^\mathbb{C} (\mathbb{G}_{m,\mathbb{C}}) = \operatorname{Spec}(\mathbb{R}[x,y,z] / (z(x^2 + y^2) - 1)) \supset H = \operatorname{Spec}(\mathbb{R}[x,y] / (x^2 + y^2 - 1))\).
+
+            \underline{Fact}: The morphism \(G = \underset{x^2 + y^2}{\operatorname{Spec}(\mathbb{R}[x,y]\left[ \frac{1}{x^2 + y^2} \right])} \underset{\mapsfrom}{\to}  Q: \underset{t}{\mathbb{G}_{m,\mathbb{R}} = \operatorname{Spec}(\mathbb{R}[t,t ^{-1}])}\) is the quotient of \(G\) by \(H \coloneqq \) we have an exact sequence of algebraic groups \(1 \to H = S^1 \to \underset{(x,y)}{\operatorname{Res}^\mathbb{C}_{\mathbb{R}}(\mathbb{G}_{m,\mathbb{C}})} \underset{\mapsto}{\to} \underset{x^2 + y^2}{\mathbb{G}_{m,\mathbb{R}}} \to 1\).
+            
+            Take \(\mathbb{R}\)-valued points: \(1 \to H(\mathbb{R}) = \underset{\subset \mathbb{C}^\times}{S^1} \to \underset{(x,y)}{\mathbb{C}^\times} \underset{\mapsto}{\to} \underset{x^2 + y^2}{\mathbb{R}^\times} \to 1 \)
+            
+            Note that \((x,y) \mapsto x^2 + y^2\) is \underline{not} surjective!
+
+            \item If \(R = K\) is a field and \(G \in \operatorname{Ab}_R\) has the property that \(\forall \) field extensions \(L / K: G(L) = \{ 1 \}\) then this does \underline{not} imply that \(G\) is the trivial group scheme over \(R\).
+            
+            Example: \(\operatorname{char} K = p > 0\) and \(G = \underline{\mu}_{p,K} \implies \forall L / K\) field extensions, \(\underline{\mu}_{p,K}(L) = \{ 1 \}\).
+        \end{enumerate} 
+
+        Prototypical Examples of Exact Sequences: 
+
+        \begin{enumerate}[label=\arabic*)]
+            \item
+            \begin{center}
+                \begin{tikzcd}
+                    & \zeta \ar[r,mapsto] & \zeta\quad a \ar[r,mapsto] & a^p \\
+                    1 \ar[r] & \underline{\mu}_{p,R} \ar[r] & \underline{\mu}_{p^n,R} \ar[r] & \underline{\mu}_{p^{n-1},R} \ar[r] & 1\\
+                    & R[t] / (t^p - 1) & R[x] / (x^{p^n} - 1) \ar[l] & R[y] / (y^{p^{n-1}} - 1) \\
+                    & \overline{t} & \overline{x} \quad \overline{x}^p \ar[l,mapsto] & \overline{y} \ar[l,mapsto]
+                \end{tikzcd}
+            \end{center}
+            \item If \(F = F_e\) is a LT \(\mathcal{O}_K\)-module for a uniformizer \(\pi\) then,
+            \begin{center}
+                \begin{tikzcd}
+                    & & a \ar[r,mapsto] & \,[\pi](a) \\
+                    0 \ar[r] & F[\pi] \ar[r] & F[\pi^m] \ar[r] & F[\pi^{m-1}] \ar[r] & 0
+                \end{tikzcd}
+            \end{center}
+            \item If \(R = k = \overline{k}\) is a field of \(\operatorname{char} p > 0\) and \(E\) an \underline{ordinary} elliptic curve over \(k\) [so \(E[p](k) = E(k)[p] \cong \mathbb{Z} / p\)] then,
+            
+            \[
+                0 \to E[p]^0 \to E[p] \to E[p]^{\text{\'et}} \cong \underline{\mathbb{Z} / p}_k \to 0 
+            \]
+
+            \(E[p]^0\) is connected component of rank \(p\).
+
+            \(E[p]\) has rank \(p^2\) 
+
+            \(E[p]^{\text{\'et}}\) is the \'Etale quotient. 
+        \end{enumerate} 
+    \end{remark}
+
+    \subsubsection{Connected and \'etale groups}
+
+    In this section \((R,\mathfrak{m})\) is a local complete noetherian ring (in particular, \(R \xrightarrow{can} R / \mathfrak{m}^n\) is an isomorphism). Let \(G \in \operatorname{Gps}_R^{\text{fin,loc free}} = \text{proj}, G = \operatorname{Spec}(A), A\) finite projective \(R\)-module.
+    
+    \begin{remark}
+        In such a case \(A\) is a free \(R\)-module [since \(R\) is local] [HW7].
+    \end{remark}
+
+    There is an exact sequence in \(\operatorname{Gps}_R^{\text{fin, loc. free}}\) 
+
+    \[
+        0 \to G^0 \to G \to G^{\text{\'et}} \to 0
+    \]
+
+    where \(G^0\) is connected [ie the underlying topological space is connected] and \(G^{\text{\'et}}\) is \'etale, \(\mathcal{O}(G^{\text{\'et}})\) is an \'etale \(R\)-algebra.
+    
+    \begin{definition}
+        Let \(A \xrightarrow{\varphi} B\) be a finitely generated \(A\)-algera. Then \(B\) is called \underline{\'etale} over \(A\), if
+        
+        \begin{enumerate}[label=\arabic*)]
+            \item \(B\) is a flat \(A\)-module, meaning \(B \otimes_A (-)\) is an exact functor.
+            \item \(\forall \mathfrak{q} \in \operatorname{Spec}(B)\) the homomorphism \(A_{\mathfrak{p}} \to B_{\mathfrak{q}}\) where \(\mathfrak{p} = \varphi^{-1}(\mathfrak{q})\) is unramified. i.e:
+            
+            \begin{itemize}
+                \item \(\varphi_{\mathfrak{q}}(\mathfrak{p} A \mathfrak{p}) \cdot B_{\mathfrak{q}} = \mathfrak{q} \cdot B_{\mathfrak{q}}\)
+                \item \(\kappa(\mathfrak{q})\coloneqq B_{\mathfrak{q}} / \mathfrak{q} B_{\mathfrak{q}} (= \operatorname{Frac}(B / \mathfrak{q}))\) is a separable (finite) extension of \(\kappa(\mathfrak{p}) = \operatorname{Frac}(A / \mathfrak{p})\)    
+            \end{itemize} 
+        \end{enumerate} 
+    \end{definition}
+
+    Example:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\vert \Gamma \vert < \infty \implies \underline{\Gamma}_R = \operatorname{Spec}(R^\Gamma)\) is \'etale.
+        \item If \(A,B / R\) is \'etale then \(A \times B\) is \'etale over \(R\).
+        \item \(\underline{\mathbb{Z} / n\mathbb{Z}}_R\) is \'etale over \(R\)
+        \item If \(n\in R^\times\) then \(\underline{\mu_n}_R\) is \'etale (HW7)
+    
+        \textbf{Proposition.} (Milne, \'Et. Coh. I, Prop 3.2) Let \(A\) be an \(R\)-algebra of finite type. Then \(A\) is unramified over \(R \iff \forall \mathfrak{p} \in \operatorname{Spec}(R)\) and any separably closed extension \(\widetilde{k} / \kappa(\mathfrak{p}) = \operatorname{Frac}(R / \mathfrak{p})\), the \(\widetilde{k}\)-algebra 
+
+        \[
+            A \otimes_R \widetilde{k} = (A \otimes_R \kappa(\mathfrak{p})) \otimes_{\kappa(\mathfrak{p})} \widetilde{k}
+        \]
+
+        Is unramified over \(\widetilde{k}\), ie a finite product of copies of \(\widetilde{k}\).
+
+        For us, \'etale = flat + unramified. We generally already have flat since we're working in the local case.
+
+        \[
+            \left( \underline{\mu}_{n,R} \times_{\operatorname{Spec}(R)} \operatorname{Spec}(\kappa(\mathfrak{p} )) \right) \times_{\operatorname{Spec}(\kappa(\mathfrak{p}))} \operatorname{Spec}(\widetilde{k}) = \underline{\mu}_{n,\widetilde{k}}
+        \]
+
+        \item \(R\) is a field of \(\operatorname{char} p > 0\) then \(\underline{\mu}_{p^n, R}\) and \(\underline{\alpha}_{p,R}\) are \underline{not} \'etale over \(R\), but they are connected: \(\vert \underline{\mu}_{p^n, R} \vert =n \{ \ast \} = \vert \underline{\alpha}_{p,R} \vert \) where \(\vert \cdot \vert\) denotes the underlying topological space.
+        \item Suppose \((R,\mathfrak{m})\) is local and \(\operatorname{char}(R / \mathfrak{m}) = p > 0\) and \(n = p^e m, e > 0, p\nmid m\). Then the \underline{connected-\'etale sequence} for \(\underline{\mu}_{n,R}\) is:
+        
+        \[
+            0 \to \underline{\mu}_{p^e, R} = (\underline{\mu}_{n,R})^0 \to \underline{\mu}_{n,R} \xrightarrow{\zeta \mapsto \zeta^{p^e}} \underline{\mu}_{m,R} = (\underline{\mu}_{n,R})^{\text{\'et}} \to 0
+        \]
+
+        This sequence actually splits. \(\underline{\mu}_{n,R} = \underline{\mu}_{p^e, R} \times_{\operatorname{Spec}(R)} \underline{\mu}_{m,R}\).
+        
+        \(\underline{\mu}_{p^e,R} = \operatorname{Spec}(R[x] / (x^{p^e} - 1))\): show that \(R[x] / (x^{p^e} - 1)\) is a local ring. It is known that spec of local rings are connected.
+
+    \end{enumerate}
+
+    More facts:
+
+    \(G\) is connected \(\iff G = G^0\). Then the order of \(G\) is a power of \(p = \operatorname{char}(R / \mathfrak{m})\).
+
+    In particular, \(G\) is \'etale if \(\operatorname{char}(R / \mathfrak{m}) = 0\).
+    
+    \(G\) is \'etale iff \(G = G^{\text{\'et}}\). One has an equivalence of categories:
+    
+    The category of finite affine \'etale commutative and co-commutative Hopf algebras over \(R\).
+
+    The category of finite abelian groups \(\Gamma\) together with a continuous action of the absolute galois group \(G_k \times \Gamma \to \Gamma\) by group automorphisms [here \(k = R / \mathfrak{m}\)].
+
+    Note that if \(R\) is local noetherian then f.g. flat \(\iff\) f.g. proj. \(\iff\) f.g. free.
+
+    The equivalence is given as follows: \(A \mapsto \operatorname{Hom}_R(A,k^{\text{sep}})\).
+
+    If \(G = \operatorname{Spec}(A)\) then \(G \mapsto G(k^{\text{sep}})\).
+
+    There is a maximal \'etale extension \(R_{\text{\'et}}\), called the strict Henselization, which is local and whose residue field is \(k^{\text{sep}}\) (= separable closure of \(k\)), an done has an isomorphism of groups:
+
+    \[
+        \operatorname{Aut}(R_{\text{\'et}} / R) \xrightarrow{\cong} G_k
+    \]
+
+    And \((R_{\text{\'et}})^{G_k} = R\) 
+
+    Given \((\Gamma, G_k \to \operatorname{Aut}(\Gamma))\) one sets \(A_\Gamma \coloneqq \operatorname{Map}_{G_k}(\Gamma , R_{\text{\'et}})\) [Galois Equivariant Map].
+
+    \(\implies A_\Gamma\) is a finite free \(R\)-module, and \'etale as \(R\)-algebra and \(A_\Gamma\) has a Hopf-algebra structure, and then \(\underline{\Gamma }_R = \operatorname{Spec}(A_\Gamma)\) is a commutative finite locally free \'etale group scheme over \(R\).
+
+    \begin{remark}
+        If \((\Gamma, G_k \to \operatorname{Aut}(\Gamma))\) then \(\forall \sigma \in G_k, \sigma(0_\Gamma) = 0_\Gamma\). Thus,
+        
+        \[
+            \operatorname{Map}_{G_k}(\Gamma, R_{\text{\'et}}) = \operatorname{Map}_{G_k}(\{ 0_\Gamma \}, R_{\text{\'et}}) \times \operatorname{Map}_{G_k}(\Gamma \setminus \{ 0 \} , R_{\text{\'et}})
+        \]
+        
+        \[
+            = R \times \underbrace{\operatorname{Map}_{G_k}(\Gamma \setminus \{ 0 \}, R_{\text{\'et}})}_{=\ker(\varepsilon_{A_\Gamma}), \text{ kernel of co-unit}}
+        \] 
+
+        Note that \(\ker(\varepsilon_{A_\Gamma})\) is itself a ring, so \(A_\Gamma = R \times \ker(\varepsilon_{A_\Gamma})\) is itself a product ring.
+
+        Therefore, \(\underline{\Gamma}_R = \operatorname{Spec}(A_\Gamma) = \underbrace{\operatorname{Spec}(R)}_{\text{image of unit section}} \coprod \operatorname{Spec}(\ker(\varepsilon_{A_\Gamma}))\).
+        
+        Upshot: If \(\Gamma \neq 0\) then \(\underline{\Gamma}_R\) is not connected.
+
+        A finite locally free \'etale group scheme is never connected unless it is the trivial group scheme (assumption \(R\) is local).
+
+        % insert picture
+
+    \end{remark}
+
+    \subsection{\(p\)-divisible groups}
+
+    \(p\) always denotes a prime number.
+
+    \begin{definition}
+        An (abstract) abelian group \(\Gamma\) is callled \underline{\(p\)-divisible} if \([p]_\Gamma : \Gamma \to \Gamma, a \mapsto pa \coloneqq a + \cdots + a\) is surjective.
+
+        In particular, every element of \(\Gamma\) can be `divided' by \(p\). Note that the result of the division need not be unique. Meaning, \([p]_\Gamma\) need not be injective.
+    \end{definition}
+
+    \begin{example}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\Gamma = \mathbb{Q}\) is uniquely \(p\)-divisible: \([p]_{\mathbb{Q}}\) is a bijection.
+            \item \(\Gamma = \mathbb{Q}_p / \mathbb{Z}_p = \bigcup_{\nu=0}^{\infty} \frac{1}{p^{\nu}} / \mathbb{Z}\). It is surjective but not injective: \([p]_{\mathbb{Q}_p / \mathbb{Z}_p}\) has a kernel.
+        \end{enumerate} 
+    \end{example}
+
+    In (arithmetic) algebraic geometry, `\(p\)-divisible' has a more specific meaning. These are also called Barsotti-Tate groups.
+
+    Grothendieck, Groupes de Borsotti-Tate et eristaux de Dreudonn\'e (1974)
+
+    Messing, The crystal associated to Borsotti-Tate groups
+
+    Berthelot-Breen-Messing
+
+    Demazure-Gabriel
+
+    Zink's Display Theory
+
+    \subsubsection{Definitions}
+
+    Let \(R\) be a ring, \(h\in \mathbb{Z}_{\geq 0}\). A \underline{\(p\)-divisible group over \(R\) of height \(h\)} is an inductive system \(G = (G_\nu, i_\nu: G_\nu \to G_{\nu+1})_{\nu\geq 0}\) where:
+    
+    \begin{itemize}
+        \item \(G_\nu\) is a finite loc. free comm. group scheme of order \(p^{\nu h}\) over \(R\).
+        \item for each \(\nu \geq 0\) the sequence:
+        
+        \[
+            0 \to G_\nu \xrightarrow{i_\nu} G_{\nu+1} \xrightarrow{[p^\nu]_{G_{\nu + 1}}} G_{\nu + 1}
+        \]
+
+        ie exact. \(i_\nu: G_\nu \to G_{\nu + 1}\) is the categorical kernel of \([p^\nu]: G_{\nu + 1} \to G_{\nu + 1}\).
+
+        We have the following commutative diagram:
+
+        \begin{center}
+            \begin{tikzcd}
+                0 \ar[r] & G_\nu \ar[r,"i_\nu"] & G_{\nu+1} \ar[r,"\text{[}p^\nu \text{]}_{G_{\nu + 1}}"] & G_{\nu+1} \\ & & H \ar[ul,dotted,"\exists!"] \ar[u,"\varphi"] \ar[r,"p_H"] & \operatorname{Spec}(R) \ar[u,"e_{G_{\nu + 1}}"]
+            \end{tikzcd}
+        \end{center}
+    
+    \end{itemize} 
+
+
+    If \(G_\nu\) would be ordinary abelian groups then \(G_\nu\) would have order \(p^{\nu h}\) and it would be annihilated by \(p^\nu\).
+
+    Thus, \(G_1 \cong (\mathbb{Z} / p)^h\) and \(G_\nu \cong \bigoplus_{i=1}^s \mathbb{Z} / p^{m_i}\) and \(\sum_{i=1}^s m_i = \nu h\).
+
+    Thus, \(G_\nu[p] = \bigoplus_{i=1}^s p^{m_i - 1} \mathbb{Z} / p^m \mathbb{Z}  \implies s = h \implies \forall i, m_i = \nu.\)
+
+    Upshot: \(G_\nu = (\mathbb{Z} / p^\nu)^h\).
+
+    \section*{Thursday, 3/6/2025}
+    
+    If the \(G_\nu\) would be just finite abelia= n groups \(\implies G_\nu = (\mathbb{Z} / p^\nu)^h \implies G = (\mathbb{Q}_p / \mathbb{Z}_p)^h\).
+    
+    Examples of more \(p\)-divisible groups:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \((\underline{(\mathbb{Z} / p^\nu)^h}_R)_\nu = \left( \underline{\left( \frac{1}{p^\nu}\mathbb{Z} / \mathbb{Z} \right)}_R \right)_\nu \) is the constant \(p\)-divisible group of ht \(h\) over \(R\).
+        \item \((\underline{\mu}_{p^\nu, R}^{\oplus h})_\nu\) is a \(p\)-divisible group over \(R\) of ht \(h\).
+        
+        Question: Are there any other \(p\)-divisible groups over \(\mathbb{Z}\) other than \(\underline{(\mathbb{Q}_p / \mathbb{Z}_p)^h}_\mathbb{Z}\) or \(\underline{\mu}_{p^{\infty} , \mathbb{Z}}^{\oplus h}\)?
+    
+        We don't know the answer.
+
+        See Fontaine (1980's) Ji n'ya pas de courbes elliptiques sur \(\mathbb{Z}\)
+
+        \item \(F =\) LT Formal \(\mathcal{O}_K\)-module, \([K:\mathbb{Q}_p] < \infty , \vert k_K \vert = q = p^f\) then \((F[p^\nu])_{\nu\geq 0}\) is a \(p\)-divisible over \(\mathcal{O}_K\) of height \(h = [K:\mathbb{Q}_p]\).
+        
+        Question: \(F[p^\nu] \underset{?}{\cong} (\underline{\mu}_{p^\nu, \mathcal{O}_K})^{\oplus h}, h = [K:\mathbb{Q}_p]\)? Answer is no if \(h > 1\). 
+
+        Lubin-Tate Theory provides us with \(p\)-divisible groups that are not obvious!
+    \end{enumerate}
+
+    A homomorphism of \(p\)-divisible groups \(f: G = (G_\nu) \to H = (H_\nu)\) is a system of morphisms of group schemes \(f_\nu: G_\nu \to H_\nu\) which are compatible with the transition maps:
+
+    \begin{center}
+        \begin{tikzcd}
+            G_\nu \ar[r,"f_\nu"] \ar[d] & H_\nu \ar[d] \\
+            G_{\nu+1} \ar[r, "f_{\nu+1}"] & H_{\nu+1}
+        \end{tikzcd}
+    \end{center}
+
+    For \(\nu,\mu \geq 0\) let \(i_{\nu,\mu}:G_{\nu} \xrightarrow{i_\nu} G_{\nu+1} \xrightarrow{i_{\nu+1}} \cdots \to G_{\nu+\mu}\) be the composition of \(i_j\) where \(\nu\leq j\leq \nu +\mu\).
+
+    Then, we have \(G_\nu \xrightarrow{i_{\nu,\mu}} G_{\nu+\mu} = \ker \left( [p^\nu]: G_{\nu+\mu} \to G_{\nu+\mu} \right) \) 
+
+    \(\implies [p^\nu]: G_{\nu+\mu} \to G_{\nu+\mu}\) has the property that \([p^\nu] \circ [p^\mu] = 0\). Indeed,
+    
+    \begin{center}
+        \begin{tikzcd}
+            \text{[}p^\nu\text{]} \ar[r,phantom,":"] & G_{\nu+\mu} \ar[r] \ar[d,"\exists!","j_{\mu,\nu}"'] & G_{\nu+\mu} \ar[d,"\text{[}p^\nu\text{]}"] \\ & G_\nu \ar[ur,"i_{\nu,\mu}"] & G_{\nu+\mu}
+        \end{tikzcd}
+    \end{center}
+
+    Thus we have an exact sequence:
+
+    \begin{center}
+        \begin{tikzcd}
+            & & & G_{\nu+\mu} \\
+            0 \ar[r] & G_{\mu} \ar[r,"i_{\mu,\nu}"] & G_{\mu+\nu} \ar[ru,"\text{[}p^\mu\text{]}"] \ar[r, "j_{\mu,\nu}"] & G_{\nu} \ar[u,"i_{\nu,\mu}"] \ar[r] & 0
+        \end{tikzcd}
+    \end{center}
+
+    eg \(0 \to p ^{-1} \mathbb{Z} / \mathbb{Z} \to p ^{-2} \mathbb{Z} / \mathbb{Z} \xrightarrow{p} p ^{-1} \mathbb{Z} / \mathbb{Z} \to 0\) 
+
+    \subsubsection{Relations with Formal Lie Groups}
+
+    \(R\) is assumed to be noetherian, local with maximal \(\mathfrak{m}\), complete with residue field \(k\) of \(\operatorname{char} p > 0\).
+
+    An \(n\)-dimensional commutative formal Lie group \(F\) over \(R\) is given by:
+
+    \(F(x,y) = (F_1(x,y), \cdots , F_n(x,y)) \in R[[x,y]]^n\)
+
+    Here \(R[[x,y]] = R[[x_1, \cdots , x_n, y_1, \cdots , y_n]]\)
+
+    Satisfying,
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(F(x,y)=F(y,x)\)
+        \item \(F(0,y)=y = (y_1, \cdots , y_n)\)
+        \item \(F(F(x,y),z)=F(x,F(y,z))\)  
+    \end{enumerate} 
+
+    We write \(x \underset{F}{+} y = F(x,y)\) then we have \([p](x) = x \underset{F}{+} \cdots \underset{F}{+} x = ([p]_1 (x), \cdots , [p]_n(x))\).
+
+    \(F\) is called \(p\) divisible if \([p](x)\) is an isogeny, i.e. the map \(R[[x]] \to R[[x]]\) sending \(x_i \to [p]_i (x), 1 \leq i \leq n\) turns \(R[[x]]\) into a module over itself which is finitely generated and free.
+
+    Example: We look at dimension \(1\).
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(F(x,y) = x + y \implies [p](x) = px\), then \(R[[x]]\) is \underline{not} a finite \(R[[x]]\)-module via \(x \mapsto px\). Recall that \(k\) has \(\operatorname{char} p\) so the \(\mod \mathfrak{m}\) reduction of this map is \(k[[x]] \to k[[x]]\) sending \(x \mapsto 0\).
+        \item \(F(x,y) = x + y + xy \implies [p](x) = (1+x)^p - 1 = px + \binom{p}{2} x^2 + \cdots + p x^{p-1} + x^p\) which is regular of order \(p\) in the terminology given in the HW.
+        
+        HW7 \(\implies R[[x]]\) a free \(R[[x]]\)-module of rank \(p\).
+        
+        \item If \(F\) is a Lubin-Tate \(\mathcal{O}_K\) module, it is \(p\)-divisible when \(K / \mathbb{Q}_p\) is finite.
+    \end{enumerate} 
+
+    If \(F\) is \(p\)-divisible, then not only multiplication by \(p\) is an isogeny, but iterations \([p^\nu]\) is an isogeny.
+    
+    For any \(\nu \geq 0, A_\nu \coloneqq \frac{R[[x]]}{([p^\nu]_1(x), \cdots , [p^\nu]_n(x)) R[[x]]}\) is finite free over \(R\), and the power series \(F(x,y)\) defines a co-multiplication \(A_\nu \to A_\nu \otimes_R A_\nu\) given by \(\overline{x_i} \mapsto F_i(x,y) \mod ([p^\nu]_j)_{j=1}^n\).
+
+    Then \(A_\nu\) becomes a commutative and co-commutative Hopf-algebra \(/ R\) and thus \(G_\nu = \operatorname{Spec}(A_\nu)\) is a finite free commutative group scheme \(/ R\).
+
+    Upshot: \(G = (G_\nu, \underset{A_\nu}{G_\nu} \underset{\leftarrow}{\to} \underset{A_\nu+1}{G_{\nu+1})}\)  is p\(\)-divisible over \(R\) and each \(A_\nu\) is a local ring \(\implies G_\nu\) is connected.
+
+    \textbf{Proposition 2.2.2.1.} Let \(R\) be a ccomplete noetherian local ring with residue field \(k\) of \(\operatorname{char} p > 0\). Then, \(F \rightsquigarrow G_F\) is an equivalence of the categories of \(p\)-divisible formal Lie groups and category of connected \(p\)-divisible groups over \(R\).
+
+    \begin{remark}
+        A \(p\)-divisible group \(G = (G_\nu)\) is called \underline{connected} if all \((G_\nu)\) are connected.
+    \end{remark}
+
+    Example:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(F = \widehat{\mathbb{G}}_{m,R}\) (so \(F(x,y) = x+y+xy \implies G_F = \underline{\mu}_{p^{\infty}, R}\))
+        \item \(F\)= LT \(\mathcal{O}_K\)-module, \([K:\mathbb{Q}_p] < \infty \implies G_F = (F[p^\nu])_\nu\). 
+    \end{enumerate} 
+
+    Going from connected \(p\)-divisible groups to formal Lie Groups:
+
+    Given \(G = (G_\nu, i_\nu)\) where \(G_\nu = \operatorname{Spec}(A_\nu)\) connected \(p\)-divisible group over \(R\) and \(i_\nu\) corresponds to morphisms of Hopf algebras \(A_{\nu+1} \to A_\nu\).
+
+    \textbf{Theorem.} \(A \coloneqq \varprojlim_{\nu} A_\nu\) is isomorphic to \(R[[x_1, \cdots , x_n]]\) and the co-multiplications \(A_\nu \to A_\nu \otimes A_\nu\) give a ring homomorphism:
+    
+    \(A \to \varprojlim_\nu A_\nu \otimes A_\nu \cong R[[x_1, \cdots , x_n, y_1, \cdots , y_n]] (\cong A \widehat{\otimes}_R A)\).
+
+    Complete w.r.t.\ the ideal \(\mathfrak{m} \otimes A + A \otimes \mathfrak{m}\).
+
+    \begin{proof}
+
+        Sending \(x_i\) to \(F_i(x,y)\) and \(F(x,y)=(F_1(x,y),\cdots ,F_n(x,y))\) is a formal lie group over \(R\) as define dbefore.
+
+    \end{proof}
+
+    \textbf{Proposition - Definition.} Given a \(p\)-divisible group \(G = (G_\nu)_\nu\) over \(R\), the systems \(G^0 = (G^0_\nu)_\nu\) and \(G^{\text{\'et}} =n (G_\nu^{\text{\'et}})_\nu\) are \(p\)-divisible groups. One has \(\operatorname{ht}(G) = \operatorname{ht}(G^0) = \operatorname{ht}(G^{\text{\'et}})\). If \(F\) is the formal lie group associated to \(G^0\) by proposition 2.2.2.1 then we set \(\dim(G) \coloneqq \dim (G^0) \coloneqq \dim (F)\).
+    
+    Example:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\dim(\underline{\mu}_{p^{\infty},R}) = 1\) recall that \(\underline{\mu}_{p^{\infty},R} \leftrightarrow \widehat{\mathbb{G}_m}\)
+        \item \(\dim(\underline{\mathbb{Q}_p / \mathbb{Z}_p}_R ) = 0\)
+        \item \(\mathscr{E} / R\) elliptic curve, \(\mathscr{E}[p^{\infty}] = (\mathscr{E} [p^\nu])_\nu \rightsquigarrow 0 \to \mathscr{E} [p^{\infty}]^0 \to \mathscr{E}[p^\infty] \implies \mathscr{E}[p^{\infty}]^{\text{\'et}} \to 0\)    
+    \end{enumerate} 
+
+    Either \(\mathscr{E} [p^{\infty}]^{\text{\'et}} = 0 \implies \dim(\mathscr{E}[p^{\infty}]) = 1\) and \(\operatorname{ht}(\mathscr{E}[p^{\infty}]^0) = \operatorname{ht}(\mathscr{E}[p^{\infty}]) = 2\) supersingular case.
+    
+    Ordinary: \(\mathscr{E}[p^{\infty}]^{\text{\'et}} \neq 0 \implies \operatorname{ht}(\mathscr{E}[p^{\infty}]^{\text{\'et}}) = 1\) and \(\operatorname{ht}(\mathscr{E}[p^{\infty}]^0) = 1\)
+    
+    \(\dim (\mathscr{E}[p^{\infty}]^{\text{\'et}}) = 0\) and \(\dim(\mathscr{E}[p^{\infty}]^0) = 1\)
+ 
+
+    In general \(\operatorname{ht}(\mathscr{A}[p^{\infty}]^0) \in [g, \cdots , 2g]\). Everything can be achieved inbetween. \(2g\) is the supersingular case, which is extreme in the sense that the \'etale part is \(0\).
+
+    \(\dim \left( \underbrace{\mathscr{E}_{\text{ord}}^a \times \mathscr{E}_{\text{supersing}}^b}_{\text{connected part} } \right) = a+b\)
+    
+    \(= (\mathscr{E}^0_{\text{ord}})^a \times \mathscr{E}_{\text{super}}^b\)
+    
+    So, \(\operatorname{ht}(\mathscr{E}[p^{\infty}]^0) = a + 2b\).
+
+    This shows we can achieve any number between \(g\) and \(2g\).
 
 \end{document}

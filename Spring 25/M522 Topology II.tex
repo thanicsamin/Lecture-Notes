@@ -2878,4 +2878,428 @@
     
     \end{proof}
 
+    \section*{Friday, 2/28/2025}
+    
+    Deviating from Hatcher, we `redefine' local degree.
+
+    Consider \(f: S^n \to S^n\). Let \(x\in S^n, y=f(x)\) such that \(x\) is an \underline{isolated point} of \(f ^{-1} (y)\). Meaning, there exists a neighborhood of \(U\) of \(x\) such that \(U \cap f ^{-1} y = x\). This is equivalento to saying there exists a neighborhood \(V\) of \(y = f(x)\) and a neighborhood \(U\) of \(x\) such that \(f(U) \subset V\).
+    
+    This is a generalization of a finite point.
+
+    If \(x\) is an isolated point of \(f\), will local degree of \(f\) at \(x\): \(\eval{\deg f}_x \in \mathbb{Z}\).
+
+    Idea:
+
+    \begin{center}
+        \begin{tikzcd}
+            H_n(U,U-x) \ar[r,"f_\ast"] \ar[d,"\approx"] & H_n(V,V-y) \ar[d,"\approx"] \\ \mathbb{Z} \ar[r,"\eval{\deg f}_x"] & \mathbb{Z}
+        \end{tikzcd}
+    \end{center}
+
+    Issue: we want the \(\mathbb{Z}\) to be the `same'.
+
+    Choose generator \([S^n]\in H_n S^n \iff\) choose isomorphism \(H_n S^n \cong \mathbb{Z}\): Orientation.
+
+    \begin{center}
+        \begin{tikzcd}
+            H_n (U, U-x) \ar[d,"\cong"] \ar[r,"f_\ast"] & H_n(V,V-y) \ar[d,"\cong"] \\ H_n (S^n, S^n - x) & H_n(S^n, S^n - y) \\ H_n S^n \ar[u,"\cong"] \ar[d,"\approx"] & H_n(S^n) \ar[u,"\cong"] \ar[d,"\approx"] \\ \mathbb{Z} \ar[r,"\cdot \eval{\deg f}_x"] & \mathbb{Z}
+        \end{tikzcd}
+    \end{center}
+
+    Remark: this is independent of choice of \(U\) and \(V\).
+
+    Also: \(f: V \to V\) is homeomorphism, then \(\eval{\deg f}_X = \pm 1\).
+
+    \begin{theorem}
+        [Global Degree = Local Degree] Le \(f: S^n \to S^n\). If \(y\in S^n\) such that \(f ^{-1} y\) is a finite set, then the global degree is sum of local degree:
+        
+        \[
+            \deg f = \sum_{x\in f ^{-1} y} \eval{\deg f}_x
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Suppose \(f ^{-1} y = \left\{ x_1, \cdots , x_m \right\} \). Choose an open neighborhood \(V \ni y\) and disjoint open \(U_i \nu x_i\).
+        
+        \begin{center}
+            \begin{tikzcd}
+                & \mathbb{Z}^m \ar[r] \ar[d,"\cong"] & \mathbb{Z} \ar[d,"\cong"] \\
+                & \bigoplus_{i} H_n(U_i,U_i - X) \ar[d,"\cong"] \ar[dl,"\cong"] \ar[r] & H_n(V,V-y) \ar[d,"\cong"]\\
+                \mathbb{Z}^m = \bigoplus_i H_n(S^n, S^n - x_i) & H_n(S^n, S^n - f^{-1} y) \ar[r] \ar[l] & H_n(S^n, S^n - y) \\
+                & H_n S^n \ar[d,"\cong"] \ar[r,"f_\ast"] \ar[u] \ar[ul] & H_n S^n \ar[d,"\cong"] \ar[u,"\cong"] \\
+                & \mathbb{Z} \ar[r,"\cdot\deg f"] & \mathbb{Z}
+            \end{tikzcd}
+        \end{center}
+
+        In the bottom \(\mathbb{Z}\) we have \(1 \mapsto \deg f\). But we can go all the way around the commutative diagram, \(1 \mapsto \begin{bmatrix}
+            1 \\
+            \vdots \\
+            1 \\
+        \end{bmatrix} \mapsto \sum_{i} \eval{\deg f}_{x_i}\), thus they are indeed the same. 
+
+    \end{proof}
+
+    Example of map where local degree is \(2\): \(\eval{\deg \Sigma(z \to z^2)}_{N} = 2\). 
+
+    \begin{definition}
+        \(y\in S^n\) is a \underline{regular value} of \(f: S^n \to S^n\) if `\(f\) is a local homeomorphism near \(f ^{-1} y\)', ie \(U_i \xrightarrow{\approx} V \forall i\). 
+    \end{definition}
+
+    Fact: If \(f: S^n \to S^n\) is \underline{smooth} and if \(f ^{-1} y = \{ x_1, \cdots , x_m \} \) and \(df_{x_i} T_{x_i}S^n \to T_y S^n\) is onto, then \(y\) is a regular value at \(f\).
+
+    \begin{theorem}
+        [Sard's Theorem] If \(f: S^n \to S^n\) is smooth then \underline{almost} all \(y\in S^n\) are regular values.
+    \end{theorem}
+
+    Suppose we have a category \(\mathcal{C}\), objects \(X\in \mathcal{C}\) and morphisms \(\mathcal{C}(X,Y)\).
+
+    \begin{definition}
+        A product of two objects \(X_1,X_2\in \mathcal{C}\) is a \underline{triple} \((X, X \xrightarrow{\pi_1} X_1, X\xrightarrow{\pi_2} X_2)\) such that it is \underline{final} in the class of triples. Meaning:
+        
+        \begin{center}
+            \begin{tikzcd}
+                & & X \\
+                Y \ar[rru, bend left] \ar[rrd, bend right] \ar[r,"\exists!", dotted] & X \ar[ru, "\pi_1"] \ar[rd, "\pi_2"] \\
+                & & Y
+            \end{tikzcd}
+        \end{center}
+
+        i.e given \(f_i: Y \to X_i\) for all \(i\), there exists unique \(f: Y \to X\) such that \(\pi_i \circ f = f_i\).
+        
+        In this case we write \(f = f_1 \times f_2\).
+
+        Note that the product is unique upto isomorphism by initial object argument.
+
+        Often we abuse notation and just call \(X\) the product.
+
+    \end{definition}
+
+    Products exsit in Set, Top, Ring, Group (take \(X = X_1 \times X_2\) the cartesian product) but not in Field.
+
+    \section*{Monday, 3/3/2025}
+
+    Functions into a product are easy since they're determined by components.
+
+    Example: curve \(\gamma: \mathbb{R} \to \mathbb{R}^2\) given by \(\gamma(t) = (\gamma_1(t),\gamma_2(t))\).
+    
+    \begin{definition}
+        [Infinite Product] Suppose we have \(\{ X_j \}_{j\in J}\), ie we have \(J \to \operatorname{Ob} \mathcal{C}\), we call \(J\) an index set. Then, the product of \(\{ X_j \}_{j\in J}\) is defined similarly:
+
+        \[
+            \left( X, \left\{ \pi_j : X \to X_j \right\}_{j\in J} \right) 
+        \]
+
+        Such that,
+
+        \begin{center}
+            \begin{tikzcd}
+                & & X_j \\ Y \ar[urr, bend left] \ar[r, dotted, "\exists!"] & X \ar[ur]
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    When \(\mathcal{C} = \operatorname{Top}\) we use the product topology.
+
+    Reversing all arrows give us coproducts also known as direct sum:
+
+    \begin{definition}
+        Coproduct of two objects \(X_1, X_2\) is given by a triple:
+        
+        \(\left( X, X_1 \xrightarrow{i_1} X, X_2\xrightarrow{i_2} \right)\) such that \(X\) is final.
+
+        \begin{center}
+            \begin{tikzcd}
+                & & X_1 \ar[lld, bend right] \ar[ld, "i_1"] \\ Y & X \ar[l,dotted,"\exists!"] \\ & & X_2 \ar[llu, bend left] \ar[lu,"i_2"]
+            \end{tikzcd}
+        \end{center}
+
+        We write \(f = f_1 + f_2\).
+
+        Coproducts exist in Set, Top, Ab, Grp, Ring, CRing.
+
+        Coproducts are unique upto isomorphism.0
+    \end{definition}
+
+    In Ab, the coproduct is given by the direct product, \(X = X_1 \times X_2, X_1 \to X, X_2 \to X\) by \(a \to (a,0)\) and \(b \to (0,b)\).
+
+    \(A_1 \oplus A_2 = A_1 \times A_2\).
+
+    In Set and Top coproducts are called disjoint union.
+
+    \(X_1 \coprod X_2, i_1, i_2\)
+
+    In Set, if \(X_1, X_2\) are disjoint then let \(X_1 \coprod X_2 = X_1 \cup X_2\).
+
+
+    In general, let \(X_1 \coprod X_2 = X_1 \times \{ 1 \} \cup X_2 \times \{ 2 \} \subset X_1 \cup x_2 \times \{ 1,2 \} \)
+
+    In Top, if \(\overline{X_1}, \overline{X_2}\) are disjoint then we can deinfe \(X_1 \coprod X_2 = X_1\cup X_2\).  
+
+    In general, consider set theoretic disjoint union \(X_1 \coprod X_2, i_1, i_2\) and define \(U \subset X_1 \coprod X_2\) open if and only if by definition \(i_1 ^{-1} U, i_2 ^{-1} U\) open.
+
+    Coproducts allow us to have an abstract definition of a Delta commplex.
+
+    \[
+        X = \frac{\coprod (J_n \times \Delta^{n-1}) }{\sim}
+    \]
+
+    In Grp, coproduct is the so calle free product.
+
+    In CRing, \(X_1 \otimes_{\mathbb{Z}} X_2\)
+
+    In Ring, free product.
+
+    Now we talk about `based spaces' in \(\operatorname{Top}_{\ast}\).
+
+    Objects \((X,x_0)\, x_0\in X\).
+
+    Morphisms \((X,x_0) \to (Y,y_0)\) with \(X \xrightarrow{cont} Y, x_0 \mapsto y_0\).
+
+    Fund group functor \(\pi_1 \operatorname{Top}_{\ast} \to \operatorname{Grp}\). We often write \(X\) for \((X,x_0)\).
+
+    Coproduct in \(\operatorname{Top}_{\ast}\) is the wedge sum (one point union) given by \(X \vee Y = \frac{X \coprod Y}{x_0 \sim y_0}\).
+
+    Example: Figure 8 is \(S^1 \vee S^1\).
+
+    \begin{definition}
+        To apply excision, we want \((X,x_0)\) to be well pointed.
+
+        If \(x_0\) is closed and \(\subset\) open \(U\) and \(x_0\) is a deformation retract of \(U\) then \((X,x_0)\) is well pointed.
+    \end{definition}
+
+    \begin{lemma}
+        \begin{enumerate}[label=\alph*)]
+            \item \(H_i X \oplus H_i Y \xrightarrow[\approx]{H_i(i_1 \coprod i_2)} H_i (X \coprod Y)\).
+            \item If \((X,x_0)\) and \((Y,y_0)\) are well pointed then,
+            
+            \[
+                \widetilde{H}_i(X) \oplus \widetilde{H}_i(Y) \xrightarrow{\approx} \widetilde{H}_i(X \vee Y)
+            \]
+            \item If \((X,x_0)\) and \((Y,y_0)\) are welll pointed then \(\pi_i X \ast \pi_i Y \xrightarrow{\approx} \pi_i X \vee Y\)
+        \end{enumerate} 
+    \end{lemma}
+
+    \section*{Wednesday, 3/5/2025}
+    
+    Today we do Pushouts and Adjunction Spaces.
+
+    Suppose we have a category \(\mathcal{C}\).
+
+    \begin{definition}
+        A Span is two morphisms with the same domain.
+
+        \begin{center}
+            \begin{tikzcd}
+                & X \ar[dl] \ar[dr] \\ X_1 & & X_2
+            \end{tikzcd}
+        \end{center}
+
+        A Cospan is two morphisms with the same Codomain.
+
+        \begin{center}
+            \begin{tikzcd}
+                X_1 \ar[dr] & & X_2 \ar[dl] \\ & P
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{definition}
+        [Pushout] A pushout of Span:
+
+        \begin{center}
+            \begin{tikzcd}
+                & X \ar[dl] \ar[dr] \\ X_1 & & X_2
+            \end{tikzcd}
+        \end{center}
+
+        Is a Cospan:
+
+        \begin{center}
+            \begin{tikzcd}
+                X_1 \ar[dr] & & X_2 \ar[dl] \\ & P
+            \end{tikzcd}
+        \end{center}
+
+        which is `initial': we have the following commutative square:
+
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[r] \ar[d] & X_1 \ar[d] \\ X_2 \ar[r] & P
+            \end{tikzcd}
+        \end{center}
+        
+
+        Initial in the sense that:
+
+        \begin{center}
+            \begin{tikzcd}
+                X \ar[r] \ar[d] & X_1 \ar[d] \ar[ddr, bend left] \\ X_1 \ar[r] \ar[rrd, bend right] & P \ar[dr, dotted, "\exists!"] \\ & & Y 
+            \end{tikzcd}
+        \end{center}
+
+        Sometimes we write a pushout square as follows:
+
+        \begin{center}
+            \begin{tikzcd}
+                X \arrow[r] \arrow[d]
+                \arrow[dr, phantom, "\ulcorner", very near start]
+                & X_1 \arrow[d] \\
+                X_2 \arrow[r]
+                & P
+            \end{tikzcd}
+        \end{center}
+
+    \end{definition}
+
+    \begin{definition}
+        We obtain the pullback by reverting the arrows:
+
+        \begin{center}
+            \begin{tikzcd}
+                P \ar[r] \ar[d] & X_1 \ar[d] \\ X_1 \ar[r] & X \ar[ul, phantom, "\lrcorner", very near start]
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    Pushouts existt in Set, Top, Ab, Grp, Ring, CRing. It is `quotient of coproducts'
+
+    eg in Set and Top,
+
+    \begin{center}
+        \begin{tikzcd}
+            X \ar[r,"g_1"] \ar[d,"g_2"] & X_1 \ar[d] \\ X_2 \ar[r] & P
+        \end{tikzcd}
+    \end{center}
+
+    \[
+        P = \frac{X_1 \coprod X_2}{g_1(x) \sim g_2(x) \forall x\in X}
+    \]
+
+    We write \(P = X_1 \cup_X X_2\).
+    
+    In Ab:
+
+    \(P = \frac{X_1 \oplus X_2}{\langle g_1(x) - g_2(x) \mid x\in X \rangle}\)
+
+    Grp: \(X_1 \ast_X X_2\)
+    
+    TOP:
+
+    \begin{center}
+        \begin{tikzcd}
+            \phi \ar[r] \ar[d] \ar[rd, phantom, "\ulcorner", very near start] & X_1 \ar[d] \\ X_2 \ar[r] & P = X_1\coprod X_2
+        \end{tikzcd}
+    \end{center}
+
+    \begin{center}
+        \begin{tikzcd}
+            \ast \ar[r] \ar[d] & X_1 \ar[d] \\ X_2 \ar[r] & P = X_1 \vee X_2
+        \end{tikzcd}
+    \end{center}
+
+    \begin{center}
+        \begin{tikzcd}
+            X \ar[r] \ar[d] & \ast \ar[d] \\ X_1 \ar[r] & P = X_1 / X
+        \end{tikzcd}
+    \end{center}
+
+    Now, suppose \(U,V\) are open subsets of \(X\) or \(U,V\) are closed subsets of \(X\).
+    
+    \begin{center}
+        \begin{tikzcd}
+            U \cap V \ar[r] \ar[d] & U \ar[d] \\ V \ar[r] & P = U \cup V
+        \end{tikzcd}
+    \end{center}
+
+    The universal property follows from `pasting lemma'.
+
+    \begin{theorem}
+        [Seifert-van Kampen Theorem] If \(X = U \cup V\), both open and \(x_0 \in U\cap V\), \(U\cap V, U, V\) all path-connected then, the following is a pushout square
+
+        \begin{center}
+            \begin{tikzcd}
+                \pi_1(U\cap V) \ar[r] \ar[d] \ar[rd, phantom, "\ulcorner", very near start] & \pi_1(U,x_0) \ar[d] \\ \pi_1(V,x_0) \ar[r] & \pi_1(X,x_0) \ar[r,phantom, "="] & \pi_1 U \ast_{\pi_1 U\cap V} \pi_1 V
+            \end{tikzcd}
+        \end{center}
+
+        Slogan: \(\pi_1\) preserves pushouts.
+
+    \end{theorem}
+
+    \begin{definition}
+        \(f: X \to Y\) is an \underline{embedding} if \(f: X \to f(X)\) is a homeomorphism. We write \(X \hookrightarrow Y\).
+
+        If \(X \subset Y\) we have an induced embedding.
+    \end{definition}
+
+    \begin{definition}
+        [Adjunction Spaces] (See DK). \(h: A\to B\) where \(A \subset C\), we can look at:
+
+        \begin{center}
+            \begin{tikzcd}
+                A \ar[r,"h"] \ar[d,hook] & B \ar[d] \\ C \ar[r] & B\cup_h C \ar[r, phantom, "="] & \frac{B \coprod C}{h(a) \sim a \forall a\in A}
+            \end{tikzcd}
+        \end{center}
+
+        \(B\cup_h C\) is called the adjunction space.
+
+        Slogan: Attach \(C\) to \(B\) along \(A\).
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/adjunction}
+            \caption{Adjunction Space}
+            \label{fig:Adjunction Space}
+        \end{figure}
+    \end{definition}
+
+    Exercise from DK:
+
+    If \(A\) is closed in \(C\),
+
+    \(B \hookrightarrow B \cup_h C\) 
+
+    \(C - A \hookrightarrow B \cup_h C\) 
+
+    Underlying set of \(B\cup_h C\) is \(B\coprod (C-A)\).
+
+    Consider the following examples:
+
+    \begin{center}
+        \begin{tikzcd}
+            \ast \ar[r] \ar[d, hook] & B \ar[d] \\ C \ar[r] & B \vee C \ar[r,phantom, "="] & B \cup_{h: \ast \to B} C
+        \end{tikzcd}
+    \end{center}
+
+    \begin{center}
+        \begin{tikzcd}
+            A \ar[r] \ar[d, hook] & \ast \ar[d] \\ C \ar[r] & C / A \ar[r,phantom,"="] & \ast \cup_{h: A \to \ast} C
+        \end{tikzcd}
+    \end{center}
+
+    \begin{definition}
+        \(n\)-cell is space homeomorphic to \(\mathring{D}^n\) 
+    \end{definition}
+
+    \begin{definition}
+        \(X \cup_{\phi:S^{n-1}\to X} D^n\) attaches \(n\)-cell to \(X\). 
+    \end{definition}
+
+    Write \(X \cup e^n = X \cup_{\phi} D^n\)
+
+    \(e^n\) open disk \(\subset X\cup e^n\) 
+
+    \(B = I^2\) square, \(n=2, \phi: S^1 \to I^2\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/ncell}
+        \caption{Gluing n-cell on square}
+        \label{fig:ncell}
+    \end{figure}
+
+    \begin{definition}
+        [CW Complex] (Not complete definition) Built from \(\varnothing\) by attaching \(0\)-cells, \(1\)-cells, \(2\)-cells etc.
+    \end{definition}
+
 \end{document}
