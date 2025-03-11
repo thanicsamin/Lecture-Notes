@@ -3302,4 +3302,133 @@
         [CW Complex] (Not complete definition) Built from \(\varnothing\) by attaching \(0\)-cells, \(1\)-cells, \(2\)-cells etc.
     \end{definition}
 
+    \section*{Monday, 3/10/2025}
+    
+    Recall: pushout:
+
+    \begin{center}
+        \begin{tikzcd}
+            A \ar[r,"f"] \ar[d,"g"] \ar[rd, phantom, "\ulcorner", very near start] & B \ar[d] \\ C \ar[r] & P 
+        \end{tikzcd}
+    \end{center}
+
+    \(P\) is supposed to be initial. In the Top categry we can have the following construction:
+
+    \[
+        P = \frac{B\coprod C}{f(a) \sim g(a) \forall a\in A}
+    \]
+
+    \begin{definition}
+        [Adjunction Space]
+
+        \begin{center}
+            \begin{tikzcd}
+                S^{n-1} \ar[r,"\phi"] \ar[d,hook] & X \\ D^n \ar[r,"\chi"] & X \cup_\phi D^n \ar[r,phantom,"="] & X\cap e^n
+            \end{tikzcd}
+        \end{center}
+    \end{definition}
+
+    \begin{definition}
+        [CW Complex] 
+
+        Definition A: Constructive, Start with \(0\)-cells, \(1\)-cells, \(2\)-cells etc.
+
+        CW complex is a pair \((X, \{ X^n \}_{n=0,1,2,\cdots})\) where \(X\) is a topological space and \(X^0 \subset X^1 \subset X^2 \subset \cdots \subset X\) is an increasing sequence of subspaces of \(X\) with the following properties:
+        
+        \begin{enumerate}[label=\arabic*)]
+            \item \(X^0\) discrete
+            \item \(\exists\) a pushout diagram of the following form:
+            
+            \begin{center}
+                \begin{tikzcd}
+                    \coprod S^{n-1} \ar[r] \ar[d] \ar[rd,very near start, phantom, "\ulcorner"] & X^{n-1} \ar[d] \\ \coprod D^n \ar[r] & X^n
+                \end{tikzcd}
+            \end{center}
+
+            \item \(X = \bigcup_{n\geq 1} X^n\)
+            \item `Weak topology' \(A \subset X\) open iff \(A \cap X^n \subset X^n\) open \(\forall n\). 
+        \end{enumerate} 
+
+        In this definition, \(X^n\) is called the \(n\)-skeleton of \(X\).
+
+    \end{definition}
+
+    \begin{remark}
+        Axiom 4 is unnecessary if \(\dim X\) is finite, which means we stop adding on sets after a while thus \(X = X^n\) for some \(n\). \(\phi\) are called attaching map, \(\chi\) characteristic map.
+    \end{remark}
+
+    Examples: \(\dim X = 1 \iff X\) is a graph.
+
+    If \(X\) is a torus, then \(X^0\) is a point, \(X^1\) is the figure \(\infty\) and \(X^2\) is the whole torus.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/toruscw}
+        \caption{Torus CW Complex}
+        \label{fig:toruscw}
+    \end{figure}
+
+    Here \(\phi = b ^{-1} a ^{-1} b a\). Then,
+    
+    \begin{center}
+        \begin{tikzcd}
+            S^1 \ar[r,"\phi"] \ar[d,hook] & \infty \ar[d] \\ D^2 \ar[r] & \text{torus}
+        \end{tikzcd}
+    \end{center}
+
+    There's a more elegant way of expressing 4, which is:
+
+    \(X - \operatorname{colim}_{n\to \infty} X^n\).
+    
+    \begin{center}
+        \begin{tikzcd}
+            X^0 \ar[r] \ar[rrd] \ar[rrrdd] & X^1 \ar[r] \ar[rd]  & X^2 \ar[r] \ar[d] \ar[rdd] & \cdots\\
+            & & X \ar[rd, dotted, "\exists!"] \\
+            & & & Y
+        \end{tikzcd}
+    \end{center}
+
+    \(\implies\) function \(X \to Y\) such that \(X^n \to Y\) is continuous then \(X \to Y\) is continuous.
+
+    \(S^n\) has two natural CW structures.
+
+    \(X^0 = pt = X^1 = X^2 = \cdots = X^{n-1} \subset X^n = S^n = X^{n+1}\).
+
+    \(S^n = e^0 \cup e^n\). We can also write:
+
+    \(S^n = e^0_+ \cup e^0_- \cup e^1_+ \cup e^1_- \cup \cdots \cup e^n_+ \cup e^n_-\).
+
+    \(D^n = e^0 + e^{n-1} \cup e^n\)
+
+    \begin{center}
+        \begin{tikzcd}
+            S^{n-1} \ar[r,"ID = \phi"] \ar[d] \ar[rd,phantom, "\ulcorner", very near start] & S^{n-1} \ar[d] \\ D^n \ar[r] & D^n
+        \end{tikzcd}
+    \end{center}
+
+    \(S^{\infty} = \cup S^n = \{ (x_0, \cdots) \in \mathbb{R}^{\infty} \}, \left\vert \sum_{i} x_i^2 \right\vert = 1\).
+    
+    \(\vee S^1 = \frac{\coprod S^1}{\sim}\) 
+
+    \begin{definition}
+        Definition B: Union of disjoint cells
+        
+        (NOT DISJOINT UNION OF CELLS!!!).
+
+        CW complex is a pair \((X,\{ e^n_\alpha \} ) is a Hausdorff\) space \(X\) with cells \(e^n_\alpha \subset X\) such that:
+        
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\forall x\in X, \exists ! e^n_\alpha \ni x\) [i.e. \(X\) is union of disjoint cells]
+            \item \(\forall e^n_\alpha , \exists \chi_\alpha^n: D^n \to \overline{e^n_\alpha}\) such that \(\eval{\chi^n_\alpha}: \mathring{D}^n \xrightarrow{\approx} e^n_\alpha\) homeomorphism.
+            \item Closure finite. \(\overline{e}^n_\alpha \to e^n_\alpha\) is contained in a finite union of cells of dim \(< n\).
+            \item Weak topology: \(A \subset X\) closed \(\iff A \cap \overline{e}^n_\alpha \subset \overline{e}^n_\alpha\) [closed food sells]  
+        \end{enumerate} 
+    \end{definition}
+
+    THis is by JHC Whiteheead.
+
+    Def A \(\implies\) Def B: \(X^n - X^{n-1}\) is disjoint set of \(n\)-cells.
+    
+    Def B \(\implies\) Def A: \(X^n = \cup\) cells of dim \(\leq n\). 
+
 \end{document}
