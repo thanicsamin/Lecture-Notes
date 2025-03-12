@@ -3415,7 +3415,7 @@
         
         (NOT DISJOINT UNION OF CELLS!!!).
 
-        CW complex is a pair \((X,\{ e^n_\alpha \} ) is a Hausdorff\) space \(X\) with cells \(e^n_\alpha \subset X\) such that:
+        CW complex is a pair \((X,\{ e^n_\alpha \} )\) is a Hausdorff space \(X\) with cells \(e^n_\alpha \subset X\) such that:
         
         \begin{enumerate}[label=\arabic*)]
             \item \(\forall x\in X, \exists ! e^n_\alpha \ni x\) [i.e. \(X\) is union of disjoint cells]
@@ -3425,10 +3425,91 @@
         \end{enumerate} 
     \end{definition}
 
-    THis is by JHC Whiteheead.
+    This is by JHC Whiteheead.
 
     Def A \(\implies\) Def B: \(X^n - X^{n-1}\) is disjoint set of \(n\)-cells.
     
     Def B \(\implies\) Def A: \(X^n = \cup\) cells of dim \(\leq n\). 
+
+    \section*{Wednesday, 3/12/2025}
+
+    \begin{proposition}
+        A finite CW complex is compact
+    \end{proposition}
+
+    \begin{proof}
+        \(X = \cup \chi(D_\alpha^n)\) then \(X\) is finite union of compact spaces \(\implies X\) is compact.
+    \end{proof}
+
+    \begin{proposition}
+        Converse: A compact CW complex is finite.
+    \end{proposition}
+
+    Idea: Let \(K \subset X\) consist of a point in each cell then \(K\) is discrete \(\implies K\) is closed \(\implies K\) is compact \(\implies K\) is finite.
+
+    \(\dot{e}^n = \overline{e^n} - e^n\) boundary.
+
+    \(\dot{e}^n \subset\) finite union of cells of \(\dim \leq n-1\).
+
+    Example of CW comple is delta complex.
+
+    \(\left( X, \left\{ \sigma_\alpha: \mathring{\Delta}^n \to X  \text{ cells} \right\}  \right) \) 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/cwdelta}
+        \caption{CW Complex, Delta Complex}
+        \label{fig:cwdelta}
+    \end{figure}    
+
+    \begin{center}
+        \begin{tikzcd}
+            S^1 \ar[r,"\text{awful cont. map}"] \ar[d] \ar[rd, phantom, very near start, "\ulcorner"] & S^1 \ar[d] \\ D^2 \ar[r] & X
+        \end{tikzcd}
+    \end{center}
+
+    \(X\) CW complex, not \(\Delta\)-complex.
+
+    \begin{definition}
+        A subcomplex of a CW complex is a subset \(A \subset X\) such that \((A,\{ A\cap X^n \} )\) CW complex or \(\left( A, \{ e^n_\alpha \}_{e^n_\alpha \subset A} \right)\) CW complex.
+    \end{definition}
+
+    \begin{proposition}
+        Suppose \(K \subset X, (X,\{ X^n \} )\) a CW complex.
+
+        Then, \(K\) is compact \(\iff K\) closed, \(K \subset A \subset X\) finite subcomplex.
+    \end{proposition}
+
+    \section*{Cellular Homology}
+
+    Suppose we have a CW complex \((X, \{ X^n \})\).
+
+    Cellular chain complex \(C_\bullet X = \cdots \to C_{n+1} X \to C_n X \to C_{n-1} X \to \cdots\).
+
+    Here, cellular chain \(C_n X \coloneqq H_n(X^n, X^{n-1})\underset{!}{\cong} \mathbb{Z}^{\text{\# of \(n\)-cells}}\). \(C_n X\) is called the relative singular homology.
+    
+    We also need boundary map. \(C.T.^2 = \mathbb{Z} e^2 \xrightarrow{0} \mathbb{Z} e^1_a + \mathbb{Z} e^1_b \to \mathbb{Z} e^0\) 
+
+    We have the following LES:
+
+    \(C_n X = H_n(X^n, X^{n-1}) \xrightarrow{\partial} H_{n-1} X^{n-1} \xrightarrow{j} H_{n-1}(X^{n-1}, X^{n-2})\)
+    
+    \(\partial^{cw}(z)=[\partial z]\).
+    
+    Claim: \(C_\bullet X = (C_{\ast} X, \partial^{cw})\) is a chain complex.
+
+    \begin{center}
+        \begin{tikzcd}
+            & & & H_{n-1}X^{n-1} \ar[rd] \\
+            H_{n+1}(X^{n+1},X^n) \ar[rd,"\partial"] \ar[rr] & & H_n(X^n, X^{n-1}) \ar[rr] \ar[ur,] & & H_{n-1}(X^{n-1},X^{n-2}) \\
+            & H_n X^n \ar[ru,"j"] \ar[rruu, bend right, "=0"]
+        \end{tikzcd}
+    \end{center}
+
+    Claim: \((X^n, X^{n-1} )\) is a good pair.
+
+    Proof: \(X^{n-1} \subset X^{n-1} \cup_{\coprod \chi} \coprod D^n - \{ 0 \} \subset X^n\)
+
+    \(C_n X = H_n(X^n, X^{n-1}) \cong \widetilde{H}_n(X^n / X^{n-1}) \cong \widetilde{H}_n(\vee S^n) \cong \oplus_{n\text{-cells}} \mathbb{Z}\) 
 
 \end{document}
