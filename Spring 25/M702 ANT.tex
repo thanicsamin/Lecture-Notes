@@ -2999,12 +2999,12 @@
 
     \begin{center}
         \begin{tikzcd}
-            A^{(p)}  \ar[r,phantom,"="] & k \underset{\varphi,k}{\otimes} A \ar[ddd,"F_G^\#"] \ar[rrrr, "\cong"] \ar[rd,"\ni"] & & & & k[x] / (f_1^{\varphi}, \cdots, f_r^{\varphi}) \ar[ddd] & f_j^\varphi \ar[ddd, mapsto] \\
+            A^{(p)}  \ar[r,phantom,"="] & k \underset{\varphi,k}{\otimes} A \ar[ddd,"F_G^\#"] \ar[rrrr, "\cong"] \ar[rd,"\ni"] & & & & \frac{k[x]}{(f_1^{\varphi}, \cdots, f_r^{\varphi})} \ar[ddd] & f_j^\varphi \ar[ddd, mapsto] \\
             \lambda\otimes a \ar[d,mapsto] & & 1 \otimes \overline{x}_i \ar[r,mapsto] & \overline{x}_i \\
 
             \lambda \otimes a^p & & 1 \otimes \overline{x}_i^p \ar[r,mapsto] & \overline{x}_i^p \\
 
-            & A \ar[rrrr,"id_A"] & & & & k[x] / (f_1, \cdots, f_r) & f_j^{\varphi}(x^p) = (f_j(x))^p
+            & A \ar[rrrr,"id_A"] & & & & \frac{k[x]}{(f_1, \cdots, f_r)} & \stackrel{f_j^{\varphi}(x^p)}{ = (f_j(x))^p}
 
         \end{tikzcd}
     \end{center}
@@ -3214,5 +3214,140 @@
     \(T(G)\) is something like \(\mathbb{Z}_p^h\).
     
     \(G(S)_{\text{torsion}} = \Phi(G)\) if \(S=\mathcal{O}_{\mathbb{C}_p}\). 
+
+    \section*{Tuesday, 3/25/2025}
+    
+    Recall" \(R\) is a CDVR, \(k = R / \mathfrak{m}_R, K = \operatorname{Frac}(R), \operatorname{char}(k) = p\), we most often assume \(k\) is perfect. \(\varpi =\) uniformizer of \(R\).
+
+    \(L =\) completion of a Galois extension of \(K\) inside \(\overline{K}\).
+
+    \(S =\) valuation ring of \(L \supset \mathfrak{m}_S =\) maximal ideal of \(S\).
+
+    Set \(G(S) = \varprojlim_i G(S / \varpi^i), G(S / \varpi^i) = \varinjlim_\nu G_\nu(S / \varpi^i)\)
+    
+    For example, \(G = \underline{\mu}_{p^{\infty} , R} \implies G(S) \cong 1 + \mathfrak{m}_S \supset \mu_{p^{\infty}}(\overline{K}) = G(S)_{\text{tors}}\). So \(G(S)\) in this case contains more than the torsion points.
+    
+    \textbf{Proposition.}
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(G(S)[p^{\nu}] = G_\nu (S)\), hence \(G(S)_{\text{tors}} = \varinjlim_\nu G_\nu(S)\).
+        \item \(G\) \'etale \(\implies G(S) = G(S)_{\text{tors}}\).
+        \item If \(G\) is commutative with associated formal group \(F = F(x_1, \cdots , x_n, y_1, \cdots , y_n)\) of \(\dim n\), then \(\exists \mathscr{G}_K (=\operatorname{Gal}(K^{\text{sep}} / K))\) equiv. isom. \(G(S) \cong (\mathfrak{m}_S^{\oplus n},\underset{F}{+})\). On \(G(S)\) the identity element is \(1\), but in \(\mathfrak{m}_S^{\oplus n}\) the identity element is \((0, \cdots , 0)\).
+        \item If \(\dim (G^0) = n\) then \(\exists \mathscr{G}_K\)-equivariant exct sequence
+        
+        \[
+            0 \to (\mathfrak{m}_S^{\oplus n},\underset{F}{+}) \to G(S) \to G^{\text{\'et}}(S) \to 0
+        \]
+
+        and \(G^{\text{\'et}} \cong (\mathbb{Q}_p / \mathbb{Z}_p)^{h^{\prime}}\) if \(L = \widehat{\overline{K}}\) and \(h^{\prime} = \text{height}(G^{\text{\'et}})\).   
+    \end{enumerate} 
+
+    \textbf{Proposition 2.2.4.1.} If \(k\) is perfect then \(G  \to G^{\text{\'et}}\) has a formal section in the sense that \(\mathcal{O}(G_\nu) \cong \mathcal{O} (G_{\nu}^{\text{\'et}}) \otimes_R \mathcal{O} (G_\nu^0)\) and these isom. can be chosen such that
+    
+    \[
+        \varprojlim \mathcal{O} (G_\nu) \cong (\varprojlim \mathcal{O}(G_\nu^{\text{\'et}})) \widehat{\underset{R}{\otimes}} (\varprojlim \mathcal{O} (G_\nu^0))
+    \]
+
+    \[
+        \cong A^{\text{\'et}} \widehat{\underset{R}{\otimes}} R[[x_1, \cdots , x_n]]
+    \]
+
+    \[
+        \coloneqq \varprojlim_i \left( A^{\text{\'et}} \underset{R}{\otimes} R[[x_1, \cdots , x_n]] / (x_1, \cdots , x_n)^i \right) 
+    \]
+
+    The sequence
+
+    \[
+        0 \to G^0(S) \to G(S) \to G^{\text{\'et}}(S) \to 0 
+    \]
+
+    is exact.
+
+    % end of prop
+
+    \textbf{Corollary 2.2.4.2.} Assume \(k\) is perfect. \(\forall x\in G(S) \exists\) finite extension \(L^{\prime} / L\) and \(y\in G(S)\) such that \(x = [p](y)\).
+    
+    \begin{proof}
+        (Sketch) Reduce to the case of a connected and an \'etale grup using 2.2.4.1. We check them individually.
+
+        \'Etale case: we only need to enlarge the residue field \(k\). In other words, we replace \(L\) by an unramified extension (at most), simply because in this case \(G_{\nu}^{\text{\'et}} \underset{k}{\times} k \) over a finite  Galois extension \(k^{\prime} / k \implies G_\nu^{\text{\'et}} \underset{R}{\times} R^{\prime}\) is constant for an unramified extension \(R^{\prime}  / R\) with residue field \(k^{\prime}\).  
+
+        Connected case:
+
+        \begin{center}
+            \begin{tikzcd}
+                & x_i \ar[r, mapsto] & \text{[}p\text{]}_i(x_1, \cdots, x_n) \\
+
+                \varprojlim_\nu \mathcal{O}(G_\nu) \ar[r, phantom, "\cong"] & R\text{[[} x_1, \cdots, x_n \text{]]} \ar[r, "\text{[}p\text{]}^\#"] \ar[d,"x_i\mapsto a_i \in \mathfrak{m}_S"] & R\text{[[} x_1, \cdots, x_n \text{]]} \ar[d]\\
+                
+                & S \ar[r, hook] & S^\prime = \mathcal{O}_{L^\prime}
+
+            \end{tikzcd}
+        \end{center}
+
+        Here \(R[[x_1, \cdots , x_n]] =\) finitely generated module over \(R[[x_1, \cdots , x_n]]\), use the theory of integral extensions. 
+    \end{proof}
+
+    \textbf{Corollary 2.2.4.3.} If \(L\) is algebraically closed (eg \(\operatorname{char} (K) = 0, L = \widehat{\overline{K}}\)) then \(G(S)\) is divisible, ie \(\forall n\in \mathbb{Z}_{>0}\), the multiplication-by-\(n\) map on \(G(S)\) is surjective.
+    
+    \begin{proof}
+        If \(p\nmid n\) then \([n]_{G_\nu}: G_\nu \to G_\nu\) is an isomorphism: choose \(m\) such that \(m \cdot n \equiv 1(p^\nu)\) then \([n]: G(S) \implies G(S)\) is an isomorphism.
+
+        2.2.4.2 \(\implies\) multiplication by \(p\) is surjective \(\implies\) multiplication by \(p^m\) is surjective.
+    \end{proof}
+
+    \underline{The logarithm} From now on we assume \(\operatorname{char} (K)=0\) and \(k\) is separable.
+
+    \begin{definition}
+        The \underline{tangent space} \(t_G\) of \(G\) is defined to be the tangent space of the formal group \(F\) associated to \(G\) [which is the same as the formal group associated to \(G^0\), the connected component].
+
+        If \(A_\nu^0 = \mathcal{O} (G^0_\nu)\) and \(A^0 \coloneqq \varprojlim A^0_\nu \cong R[[x_1, \cdots , x_n]] \supset U^0 \coloneqq (x_1, \cdots , x_n) = \ker (\varepsilon: A^0 \to R)\). We have \(\operatorname{Spec}(R)  \xrightarrow{e_{G^0_\nu}} G_\nu^0\). Corrrespondingly, we have \(R \xleftarrow{\varepsilon_{G_\nu^0}} A^0_\nu\) and also the zero section \(R\xleftarrow{\varepsilon} A^0\).
+        
+        Choosing the coordinates is non-canonical!
+
+        Then, \(t_G = \operatorname{Hom}_R (I^0 / (I^0)^2, R)\). This is sometimes called the Zariski tangent space.
+    \end{definition}
+
+    \begin{remark}
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(A\) is any ring and \(P\in \operatorname{Spec} (A) \eqqcolon X\) then the Zariski tangent space of \(X\) at \(P\) is defined to be \(\operatorname{Hom}_{k_P}(P A_P / (P A_P)^2, k_P)\) where \(k_P = A_P / P A_P = \operatorname{Frac} (A / P)\).
+            \item \(\exists\) canonical isomorphism \(t_G(L) \xrightarrow{\sim} \operatorname{Der}_R(A^0, L)\)
+            
+            \( = \left\{ \tau : A^0 \to L \mid \tau \text{ is \(R\)-linear, \(\forall f,g\in A^0: \tau (fg) = \varepsilon (f) \tau (g) + \varepsilon (g) \tau (f)\) }  \right\} \)     
+
+            \(\implies \tau \in \operatorname{Der}_R(A^0, L)\) and \(f,g\in I^0 \implies \tau (fg) = \underset{=0}{\varepsilon (f)} \tau (g) + \underset{=0}{\varepsilon(g)} \tau (f) = 0\)
+            
+            \(\implies \eval{\tau}_{(I^0)^2} = 0\).
+            
+            Also: \(\tau (1) = \tau (1 \cdot 1) = 1 \cdot \tau (1) + \tau (1) \cdot 1 \implies 2 \tau (1) = \tau (1) \implies \tau (1) = 0\).
+
+            \(\implies \forall a\in R: \tau (a) = 0 \implies \tau\) is uniquely determined by its restriction to \(I^0 / (I^0)^2\).
+
+            Note that \(I^0 / (I^0)^2 = Rx_1 \oplus .\cdot \oplus Rx_n \cong R^{\oplus n}\).
+            
+            \(\implies \dim_L(t_G(L)) = \dim (F) = \dim (G)\).
+        \end{enumerate} 
+    \end{remark}
+
+    Conclusion: Since \(I^0 / (I^0)^2 \cong R^{\oplus n} \implies \dim _L (t_G(L)) = \dim (F) = \dim (G)\) 
+
+    \underline{The Logarithm Map} \(\log = \log_G : G(S) \to t_G(L)\) is defined by:
+
+    \[
+        \log (\underset{\in S}{a}) (\underset{\in A^0}{f}) \coloneqq \lim_{i \to \infty} \frac{f([p^i]_G(a)) - f(0)}{p^i}
+    \]
+
+    If \(f=x_j\) then \(f([p]^i(a)) \equiv [p^i]_j(\underset{=(a_1, \cdots , a_n) \in G^0(S) \cong \mathfrak{m}_S^{\oplus n}}{a}) = p^i (\text{linear term in }a_k) + p^{2i} \text{higher order terms}\)
+    
+    So the limit exists in this case.
+
+    \underline{Note}:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item  For \(a\in G^{\text{\'et}}(S)\) one has \(p^i a = 0\) for \(i \gg 0\). Hence \(p^i a \in G^0(S)\). 
+        \item If \(G\) is \'etale then \(t_G(L) = 0\) and \(\log\) is the zeron map.
+        \item \(G(S)\) is a \(\mathbb{Z}_p\)-module: if \(n_j \in \mathbb{Z}\) converges \(p\)-adically to \(n\in \mathbb{Z}_p\) then \(\forall a\in G(S): n_j \cdot a\) converges in \(G(S) = \varprojlim G(\underbrace{S / \varpi^i}_{\text{equipped with discrete top}})\)
+    \end{enumerate} 
 
 \end{document}

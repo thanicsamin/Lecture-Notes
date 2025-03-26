@@ -3512,4 +3512,117 @@
 
     \(C_n X = H_n(X^n, X^{n-1}) \cong \widetilde{H}_n(X^n / X^{n-1}) \cong \widetilde{H}_n(\vee S^n) \cong \oplus_{n\text{-cells}} \mathbb{Z}\) 
 
+    \section*{Friday, 3/14/2025}
+    
+    We talk about why \(H_n(D^n, S^{n-1}) \cong \mathbb{Z}\) 
+
+    Recall: good pair \(\implies H_{\ast} (D^n, S^{n-1}) \cong \widetilde{H}_{\ast} (D^n / S^{n-1}) \cong \widetilde{H}_{\ast} (S^n) \cong (0, \cdots , \mathbb{Z} , 0, \cdots)\) 
+
+    What are the generators?
+
+    \(\operatorname{id}: \Delta^n \to \Delta^n \in H_n(\Delta^n, \partial \Delta^n) = H_n(D^n, S^n)\) 
+    
+    We have the notion of the boundary of a cell, \(\dot{e}^n = \overline{e^n} - e^n\)
+
+    \begin{theorem}
+        [Isomorphism Theorem] The following maps are isomorphisms.
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(H_n(D^n, S^{n-1}) \xrightarrow{\chi_{\ast}} H_n(\overline{e^n}, \dot{e}^n) \xrightarrow{q_{\ast}} \widetilde{H}_n(\overline{e^n} / \dot{e}^n) \to \widetilde{H}_n(D^n / S^{n-1}) \cong \widetilde{H}_n(S^n)\cong \mathbb{Z} \)  
+            
+            \item \(\bigoplus_{I_n} H_n(D^n, S^{n-1}) \to H_n\left(\coprod D^n, \coprod S^{n-1}\right) \xrightarrow{\chi_{\ast} +q} H_n(X^n, X^{n-1}) \xrightarrow{q_{\ast}} \widetilde{H}_n(X^n / X^{n-1}) = \widetilde{H}_n(\vee S^n) \cong \bigoplus_{I_n} \widetilde{H}_n(S^n) \cong \bigoplus_{I_n} \mathbb{Z}\) 
+            
+            \item \(\bigoplus_{\alpha \in I_n} H_n \left( \overline{e}^n_{\alpha} , \dot{e}^n_\alpha \right) \xrightarrow{\cong} H_n(X^n, X^{n-1}) = C_n X\) 
+
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        i and ii: \(q_{\ast}\) arre isomorphism because good pairs.
+        
+        Similarly, \(q_{\ast} \circ \chi_{\ast}\) is an isomorphism.
+
+        iii follows from i and ii.
+    \end{proof}
+
+    We also have basis for \(C_n X\), it is the image of \(H_n(\overline{e}^n_\alpha, \dot{e}^n_\alpha)\)s.
+
+    \begin{definition}
+        Oreintation for \(e^n_\alpha\) is a choice of generator \([e^n_\alpha] \in H_n(\overline{e}^n_\alpha , \dot{e}^n_\alpha)\).
+        
+        \(\left\{ \left[ e^n_\alpha \right]  \right\}_{\alpha \in I_n}\) give a basis for \(C_n X\)
+        
+        `oriented \(n\)-cells'
+
+        It's ok (???) to be sloppy and write \(e^n_{\alpha }\in C_n X\).
+    \end{definition}
+
+    We have basis for \(C_n X\) and \(C_{n-1} X\) given by \([e_\alpha^n]\) and \([e^{n-1}_\beta]\).
+    
+    \(\partial [e^n_\alpha] = \sum_{\beta} \delta_{\beta \alpha} [e_\beta^{n-1}]\)
+
+    We want to find the matrix of \(\partial\) where \(C_n X \xrightarrow{\partial} C_{n-1} X\). We essentially want to find \(\partial_{\beta \alpha}\).
+    
+    `Degree of attaching maps'
+
+    \[
+        S_\alpha^{n-1} \xrightarrow{\phi_\alpha} X^{n-1} \to X^{n-1} / X^{n-2} = \vee_{I_{n-1}} S^{n-1} \to S_\beta^{n-1}
+    \]
+
+    This is a map of sphere! Then we have degree, so we set \(\deg = \partial_{\beta \alpha}\).
+
+    Example: Torus \(T^2\) has CW structure \(e^0 \cup e^1_a \cup e^1_b \cup e^2\).
+
+    We choose orientation on \(e^2\). 
+
+    \(C_2 T^2 = \mathbb{Z}[e^2] \xrightarrow{\begin{bmatrix}
+        0 \\
+        0 \\
+    \end{bmatrix}} \mathbb{Z}[e^{1}_a]\oplus \mathbb{Z}[e^1_b] \to \mathbb{Z}[e^0]\).
+    
+    \(\partial[e^2] = [e^1_a] + [e^1_b] - [e^1_a] - [e^1_b] = 0\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/toruscell.jpg}
+        \caption{}
+        \label{fig:}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/S1map.jpg}
+        \caption{}
+        \label{fig:}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/deg0.jpg}
+        \caption{}
+        \label{fig:}
+    \end{figure}
+
+    So, \(S^1 \xrightarrow{\phi} X^1 \xrightarrow{proj} S_a^1\), since \(X^1 = S_a^1 \cup S_b^1\), the projection goes around \(S_a^1\), then waits at \(S_b^1\) since that's collapsed to a point, and then it goes back. This map has \(\deg 0\).  
+
+    \section*{Projective Space}
+
+    \(\mathbb{R} P^n =\) space of lines through \(0\) in \(\mathbb{R}^{n+1}\)
+    
+    \(\mathbb{C}P^n =\) space of \(\mathbb{C}\)-lines through \(0\) in \(\mathbb{C}^{n+1}\)
+
+    This is difficult so we take quotient space.
+
+    \(\mathbb{R}P^n \cong \frac{\mathbb{R}^{n+1} - \{ 0 \}}{\underline{x} \sim \lambda \underline{x}} \cong \frac{S^n}{\underline{x} \sim -\underline{x}} \cong \frac{D^n}{\underline{x} \sim - \underline{x} \text{ when } x \text{ is on the boundary}}\).
+
+    Then the simplest way to look at \(\mathbb{R}P^2\) is the disk \(D^2\) where we identify opposite points.
+
+    Same logic gives us \(\mathbb{R} P^1 \cong S^1\).
+
+    So, we have \(S^n \to \mathbb{R} P^n\) double cover.
+
+    
+
+
+
 \end{document}
