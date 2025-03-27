@@ -3621,8 +3621,163 @@
 
     So, we have \(S^n \to \mathbb{R} P^n\) double cover.
 
+    \section*{Monday, 3/24/2025}
     
+    Was absent
 
+    \section*{Wednesday, 3/26/2025}
+    
+    \section*{Cellular Maps}
 
+    \(H_{\ast}^{\text{CW}} \cong H_{\ast}^{\text{sing}} X\)
+    
+    Morphisms are people too:
+
+    Suppose we have CW \((X,\{ X^n \}), (Y,\{ Y^n \})\) 
+
+    \begin{definition}
+        Continuous \(f: X \to Y\) is \underline{cellular} if:
+
+        \[
+            f(X^n) \subset Y^n
+        \]
+    \end{definition}
+
+    Example: \(\operatorname{id}: S^1 \to S^1 \) but with two different CW decomposition:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/cellular}
+    \end{figure}
+
+    Thus, \(\not\iff f(n\text{-cell}) \subset n\text{-cell}\).
+    
+    Then chain map \(f_\# = C_\bullet f: C_\bullet X \to C_\bullet Y\)
+    
+    \[
+        C_n X = H_n(X^n, X^{n-1}) \to H_n(Y^n, Y^{n-1}) = C_n Y
+    \]
+
+    \(\implies f_{\ast} =H_{\ast} f: H_{\ast}^{\text{CW}} \to H_{\ast}^{\text{CW}} Y\) 
+
+    Thus we have the Category CW
+
+    Object: CW complexes.
+
+    Morphism: Cellular map
+
+    We have functors:
+
+    \begin{center}
+        \begin{tikzcd}
+            CW \ar[r,"C_\bullet"] \ar[rr, bend right, "H_\ast^{\text{CW}}"'] & Ch \ar[r,"H_\ast"] & Gr_{\mathbb{Z}}
+        \end{tikzcd}
+    \end{center}
+
+    \begin{theorem}
+        [Cellular Approximation Theorem, CAT] Every continuous map \(f: X \to Y\) is homotopic to a cellular map.
+    \end{theorem}
+
+    There is a relative version of it:
+
+    If \(A\) is a subcomplex of \(X\) and \(\eval{f}_A\) is cellular then \(f\simeq\) cellular (rel \(A\)). Relative to \(A\) meaning the homotopy map is identity on \(A\), meaning \(H(a,t)=H(a,0)\).
+
+    Proof ommitted.
+
+    Examples:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/cellexample}
+    \end{figure}    
+
+    This is not cellular. But we can squeeze the bottom part into the point. So homotopic to a cellular map.
+
+    \(\operatorname{id} \simeq f\) cellular.
+
+    \(f((S^1)^0) \subset (S^1)^0\).
+
+    \(f((S^1)^1) \subset (S^1)^1\)
+
+    Suppose \(k < l\). Every \(g: S^k = e^0 \cup e^k \to s^l e^0 \cup e^l\) is homotopic to a cellular map, i.e. constant map.
+
+    i.e. \(\pi_k S^l = 0, \pi^1 S^2 = 0\).
+
+    \begin{theorem}
+
+        Suppose we have CW \((X,\{ X^n \})\).
+
+        \(H_{\ast}^{\text{CW}} X \cong H_{\ast} X\). 
+    \end{theorem}
+
+    We need three lemmas.
+
+    L1: \(H_i(X^n, X^{n-1}) \equiv  0\) for \(i\neq n\).
+    
+    \begin{proof}
+        Slogan: Good pair. \(H_{\ast}(X^n, X^{n-1}) \cong \widetilde{H}_{\ast} (X^n / X^{n-1}) = \widetilde{H}_{\ast} (\vee S^n)\). 
+    \end{proof}
+
+    Corollary: \(H_i X^{n-1} \cong H_i X^n\) when \(i\neq n-1, n\).
+    
+    \begin{proof}
+        LES of pairs
+    \end{proof}
+
+    L2: \(H_n X^{n-1} = 0\)
+    
+    \begin{proof}
+        \(H_n X^0 \xrightarrow{\approx} \cdots \xrightarrow{\approx} H_n X^{n-2} \xrightarrow{\approx} H_n X^{n-1}\) 
+    \end{proof}
+
+    L3: \(H_n X^{n+1} \xrightarrow{\approx} H_n X\) 
+
+    \begin{proof}
+        Compactness. If we have \(\sigma : \Delta^k \to X\) then \(\sigma(\Delta^k) \subset X^N\) for some \(N\), compact. Any compact set intersects only a finite number of cells.
+
+        \(\implies S_\bullet X = \bigcup_N S_\bullet X^N\).
+
+        We check \(H_n X^{n+1} \to H_n X\) onto.
+
+        Take \([\alpha] \in H_n X \implies \exists N\) s.t. \(\alpha \in S_n X^N\)
+
+        Thus, \(H_n (X^{n+1}) \simeq H_n (X^N) \to H_n X\) where the map is given by \([\alpha] \mapsto [\alpha]\).
+
+        Injectivity: suppose \([\alpha] \mapsto 0\) then \(\alpha \in \partial \beta \implies \beta \in S_{n+1} X^N\) for some \(N\).
+
+        \(H_n X^{n+1} \to H_n X^N\) is an isomorphism, but here \([\alpha] \mapsto 0\). Contradiction.
+    \end{proof}
+
+    We prove the original theorem by combining L1, L2, L3.
+
+    \begin{proof}
+        Diagram Chase!
+
+        \begin{center}
+            \begin{tikzcd}
+                & & & \underset{\overset{L1}{=} 0}{H_n(X^{n+1},X^n)}
+                \\
+                0 \underset{L2}{=} H_n X^{n-1} \ar[dr]& & H_n(X^{n+1}) \overset{L3}{=} H_n X \ar[ur]
+                \\
+                & H_n(X^n) \ar[rd,"j"] \ar[ur]
+                \\
+                \underset{=C_{n+1} X}{H_{n+1}(X^{n+1}, X^n)} \ar[rr,"\partial_{n+1}^{\text{CW}}"] \ar[ur,"\partial"] & & \underset{=C_n X}{H_n (X^n, X^{n-1})} \ar[rr,"\partial{n}^{\text{CW}}"] \ar[rd] & & \underset{=C_{n-1}X}{H_{n-1}(X^{n-1},X^{n-2})} \\
+                & & & H_{n-1}(X^{n-1}) \ar[ur, tail] \\
+                & & 0 \underset{L2}{=} H_{n-1}X^{n-2} \ar[ur]
+            \end{tikzcd}
+        \end{center}
+
+        We have commutative, exact diagonals. Thus,
+
+        \(j: H_n X^n \rightarrowtail \ker \partial_n^{\text{CW}}\)
+
+        \(j: \operatorname{im} \delta \rightarrowtail \operatorname{im} \partial_{n+1}^{\text{CW}}\)
+
+        Then,
+
+        \[
+            H_n^{\text{CW}} X = \frac{\ker \partial^{\text{CW}}}{\operatorname{im} \partial^{\text{CW}}} = \frac{H_n X^n}{\operatorname{im} \partial} = \operatorname{cok} \partial \cong H_n X
+        \]
+    \end{proof}
 
 \end{document}
