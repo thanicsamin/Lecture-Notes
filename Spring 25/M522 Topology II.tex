@@ -3780,4 +3780,332 @@
         \]
     \end{proof}
 
+    \section*{Friday, 3/28/2025}
+    
+    \section*{Euler Characteristic}
+
+    \(\chi(S^{2k}) = 2, \chi(S^{2k+1})=0\) 
+
+    \(\chi(\mathbb{R} P^2)=1, \chi(T^2)=0\) 
+
+    If we have an abelian group \(A\):
+
+    \begin{definition}
+        \(\{ v_1, \cdots , v_k \} \subset A\) are \underline{linearly independent} if:
+
+        \[
+            n_1 v_1 + \cdots n_k v_k = 0 \implies n_1 = n_2 = \cdots = n_k = 0
+        \]
+    \end{definition}
+
+    \begin{definition}
+        \(\operatorname{rank} A = \sup \{ k \mid \exists \text{lin. ind.} \{ v_1, \cdots , v_k \}  \} \)
+
+        \(= \sup \{ k \mid \exists \mathbb{Z}^k \hookrightarrow A \} \) 
+    \end{definition}
+
+    Example: \(\operatorname{rank} \mathbb{Z} = 1\)
+
+    \(\operatorname{rank} \mathbb{Z}^k = k\)
+
+    \(\operatorname{rank} \mathbb{Z}^k \oplus \text{torsion} = k\) 
+
+    \(\operatorname{rank} \mathbb{Q} = 1\)
+
+    \(\operatorname{rank} \mathbb{R} = \infty\) 
+
+    \(\operatorname{rank} \mathbb{Q} / \mathbb{Z} = 0\) 
+
+    \(\operatorname{rank} \mathbb{R} / \mathbb{Z} = \infty\) 
+
+    If we have subgroup s.t. \([A:B] < \infty\) then \(\operatorname{rank} A = \operatorname{rank} B\).
+
+    \begin{definition}
+        [Euler Characteristic] For a space \(X\),
+
+        \[
+            \chi (X) = \sum_{i=0}^{\infty} (-1)^i \operatorname{rank} H_i X
+        \]
+
+        Defined if \(\operatorname{rank} H_i X < \infty \forall i, \operatorname{rank} H_i X = 0\) for \(i \gg 0\). 
+    \end{definition}
+
+    \(\chi(S^2) = 1 - 0 + 1 = 2\) 
+
+    \(\chi(\text{figure } 8) = 1-2 = -1\) 
+
+    \begin{definition}
+        [Betti Numbers]
+
+        \[
+            \beta_i(X) \coloneqq \operatorname{rank} H_i X
+        \]
+    \end{definition}
+
+    \begin{lemma}
+        [Additivity Lemma] If we have a SES:
+
+        \[
+            0 \to A \to B \to C \to 0
+        \]
+
+        Then \(\operatorname{rank} B = \operatorname{rank} A + \operatorname{rank} C\).
+    \end{lemma}
+
+    \begin{proof}
+        Special Case: suppose \(C\) is finitely generated. Then \(C = \mathbb{Z}^k \oplus \text{finite}\). Let \(B \xrightarrow{\pi} C\). From the SES, we can restrict so that:
+
+        \[
+            0 \to A \to \pi ^{-1} \mathbb{Z}^k \to \mathbb{Z}^k \to 0
+        \]
+
+        Thus, \(\pi ^{-1} \mathbb{Z}^k \cong A \oplus \mathbb{Z}^k\).
+
+        Also: finite index \(\implies \operatorname{rank} B = \operatorname{rank} \pi ^{-1} \mathbb{Z}^k = \operatorname{rank} A + \operatorname{rank} \mathbb{Z}^k = \operatorname{rank} A + \operatorname{rank} C\).
+
+        General case: Use two things: \(\operatorname{rank} A = \dim_{\mathbb{Q}} A \otimes \mathbb{Q}\).
+
+        \(\mathbb{Q}\) is a flat \(\mathbb{Z}\)-module.
+
+        We have the following SES:
+
+        \[
+            0 \to A \otimes \mathbb{Q} \to B \otimes \mathbb{Q} \to C \otimes \mathbb{Q} \to 0
+        \]
+
+        Thus, \(\operatorname{rank} B = \dim B \otimes \mathbb{Q} = \dim A \otimes \mathbb{Q} + \dim C \otimes \mathbb{Q} = \operatorname{rank} A + \operatorname{rank} C\).
+    \end{proof}
+
+    \begin{theorem}
+        If \(C_\bullet = \{ 0 \to C_n \to \cdots \to C_0 \to 0 \}\) is a chain complex [so \(\delta \circ \delta = 0\)] and \(\operatorname{rank} C_i < \infty \forall i\), then,
+
+        \[
+            \chi(H_{\ast} C) = \chi(C_{\ast})
+        \]
+    \end{theorem}
+
+    Meaning:
+
+    \[
+        \sum_{i} (-1)^i \operatorname{rank} H_i C = \sum_{i} (-1)^i \operatorname{rank} C_i
+    \]
+
+    \begin{proof}
+        Let \(Z_i =\) cycles \(= \ker (\partial_i: C_i \to C_{i-1})\) 
+
+        \(B_i =\) boundaries \(=n \operatorname{im} (\partial_{i+1}: C_{i+1} \to C_i)\) 
+
+        \(H_i =\) homology \(= Z_i / B_i\) 
+
+        We have SES:
+
+        \[
+            0 \to B_i \to Z_i \to H_i \to 0
+        \]
+        
+        \[
+            0 \to Z_i \to C_i \to B_{i-1} \to 0
+        \]
+
+        Additivity lemma \(\implies\):
+
+        \(\sum_{i} (-1)^i \operatorname{rank} H_i = \sum_{i} (-1)^i (\operatorname{rank} Z_i - \operatorname{rank} B_i) = \sum_{i} (-1)^i \operatorname{rank} Z_i - \sum_{i} (-1)^i \operatorname{rank} B_i = \sum_{i} \operatorname{rank} Z_i + \sum_{i} (-1)^i \operatorname{rank} B_{i-1} = \sum_{i} (-1)^i \operatorname{rank} C_i\) 
+    \end{proof}
+
+
+    \begin{corollary}
+        Corollary 1: Suppose \(X\) is a finite CW complex. Then,
+
+        \[
+            \sum_{i} (-1)^i \operatorname{rank} H_i X = \sum_{i} (-1)^i \text{\# of \(i\)-cells} 
+        \]
+
+        eg \(\chi(S^2) = v-e+f\)
+    \end{corollary}
+
+    \begin{corollary}
+        Suppose we have an exact sequence:
+
+        \[
+            0 \to C_n \to \cdots \to C_1 \to C_0 \to 0
+        \]
+
+        Then, \(\chi(C_{\ast}) = 0\).
+
+        \[
+            \sum_{i \text{ even}} \operatorname{rank} H_i C = \sum_{i \text{ odd}} \operatorname{rank} H_i C  
+        \]
+    \end{corollary}
+
+    \begin{corollary}
+        If \(0 \to C_\bullet \to D_\bullet \to E_\bullet \to 0\) is a chain complex then,
+
+        \[
+            \chi(H_{\ast} D_\bullet) = \chi(H_{\ast} C_\bullet) + \chi(H_{\ast} E_\bullet)
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Zig-Zag lemma and the theorem. 
+    \end{proof}
+
+    \begin{corollary}
+        If \((X,A)\) is a pair, then \(\chi(X) = \chi(A) + \chi(H_{\ast} (X,A))\)
+    \end{corollary}
+
+    \begin{corollary}
+        If \((X,A)\) is a good pair, then,
+
+        \[
+            \chi(X) = \chi(A) + \chi (X / A) - 1
+        \]
+    \end{corollary}
+
+    \begin{theorem}
+        [Poincar\'e-Hopf] Let \(M\) be a closed \(n\)-manifold.
+
+        \[
+            \chi(M) = 0 \iff \text{ can comb the hairy manifold} 
+        \]
+
+        i.e. \(\exists\) a nowhere \(0\) tangent vector field.
+    \end{theorem}
+
+    \section*{Monday, 3/31/2025}
+    
+    \section*{More Euler Characteristic}
+
+    Let \(\Sigma\) be a surface which is a closed \(2\)-manifold.
+
+    \begin{enumerate}[label=\roman*)]
+        \item Orientable surfaces are classified by \(\chi\).
+        
+        \(\chi(S^2) = 2, \chi(T^2) = 0, \chi(T^2 \# T^2) = -2, \chi(T^2 \# T^2 \# T^2) = -4\).
+
+        \(\#\) is the connected sum.
+
+        Thus \(\chi\) classifies orientable surfaces upto homeomorphism.
+        
+        \item Non-orientable surfaces are classified by Euler characcteristic.
+        
+        \(\chi(\mathbb{R}P^2) = 1, \chi(K = \mathbb{R} P^2 \# \mathbb{R} P^2) = 0, \chi(\mathbb{R} P^2 \# \mathbb{R} P^2 \# \mathbb{R}P^2) = -1, \cdots\). 
+    \end{enumerate} 
+
+    Surfaces are classified by Euler characteristic and orentiability.
+
+    Under connected sum \(\#\), the surfaces form a commutative monoid. The generators of this monoid are: \(\mathbb{R} P^2, T^2\).
+
+    Relation: \(\mathbb{R} P^2 \# T^2 = \mathbb{R} P^2 \# \mathbb{R} P^2 \# \mathbb{R} P^2\).
+
+    Let \(\Sigma\) be a Riemannian surface now [meaning we have a metric and can measure lengths].
+
+    Classical way: embed \(\Sigma^2 \subset \mathbb{R}^3\).
+
+    Then we have curvature \(K: \Sigma \to \mathbb{R}\).
+
+    \begin{theorem}
+        [Gauss-Bonnet Theorem]
+
+        \[
+            \int_{\Sigma} K \,\mathrm{d}S = 2\pi \chi(\Sigma) 
+        \]
+    \end{theorem}
+
+    Let \(p\in \Sigma\) be a point. \(K > 0\) at \(p\) means the surface lies on one side of tangent plane [think a sphere]. \(K < 0\) means the surface lies on both sides of a tangent plane [think hyperboloid].
+
+    If \(K \equiv 1\) that is a sphere. Then \(S^2 = 4\pi\).
+
+    In a torus, \(\int_{T^2} K \,\mathrm{d}S = 2\pi \chi(T^2) = 0\). On the `outer ring' \(K > 0\) and on the inner ring \(K < 0\). 
+
+    Even in weirdo embeddings in \(\mathbb{R}^3\) there must be one point with positive curvature. 
+
+    \section*{Hatcher 2B (or not 2 B?)}
+
+    Goal: Prove Jordan separation theorem.
+
+    \begin{theorem}
+        Let \(h: S^{n-1} \hookrightarrow S^n\) [or \(\mathbb{R}^{n}\)].
+
+        Then \(S^n - h(S^{n-1})\) has two components.
+    \end{theorem}
+
+    Another Goal: Prove Alexander duality.
+
+    \begin{theorem}
+        Let \(h: S^1 \hookrightarrow S^3\) be a knot. Then \(H_1(S^3 - S^1) \cong \mathbb{Z} \cong \mathbb{Z}\).
+
+        Also: meridian
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/meridian}
+            \end{figure}
+
+    \end{theorem}
+
+    Also: invariance of domain: open \(U \subset \mathbb{R}^n\), \(h: U \to \mathbb{R}^n\) 1-1, then \(U \xrightarrow{\approx} h(U)\).
+
+    Also one point compactification: \(S^n - \partial \cong \mathbb{R}^n \iff S^n = \mathbb{R}^n \cup \{ \infty \}\).
+
+    \begin{theorem}
+        [Boring Theorem] \(\forall h : D^k \hookrightarrow S^n\) embedding, then,
+
+        \[
+            \widetilde{H}_{\ast} (S^n - h(D^k)) = 0
+        \]
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/boring}
+        \end{figure}
+
+    \end{theorem}
+
+    Also: Alexander horned spphere.
+
+    \(H \cong D^3, \pi_1(\mathbb{R}^3 - H) \neq 1, H_1(\mathbb{R}^3 - H) = 0\). Recursively:
+
+    The meridians of horn bound a surface????
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/horn}
+    \end{figure}
+
+    \begin{proof}
+        (Proof of Boring Theorem) We induct on \(k\). \(k = 0: S^n - \text{pt} \cong \mathbb{R}^n\)
+
+        Assume true for \(k-1\).
+
+        Replace \(D^k\) by the `cube' \(I^k  = [0,1]^k\).
+
+        Assume, for the sake of contradiction: there exists a nonzero homology class \(0 \neq [\alpha] \in H_i(S^n - h(I^k))\).
+
+        Claim 1: we `chop' into pieces until dimension is \(k-1\). Formally: in the \(k=1\) case,
+
+        \(\exists\) interval \(I = I_0 \supset I_1 \supset I_2 \supset \cdots\) satisfying length of \(I_j = \frac{1}{2^j}\) and \(0 \neq [\alpha] \in \widetilde{H}_i (S^n - h(I_j))\).
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/intervals}
+        \end{figure}
+
+        Claim 2L \(\forall\) filtration of space \(X\) by open sets [ie \(X_0 \subset X_1 \subset X_2 \subset \cdots \subset X, X = \cup X_j\)],
+
+        If \([\alpha] \in \ker (\widetilde{H}_1(X_0) \to H_i X)\) then \(\exists j\) such that \([\alpha] \in \ker \widetilde{H}_i(X_0) - \widetilde{H}_i(X_j)\). 
+
+        Idea: Claim 1 involves MVES, claim 2 involves compactness.
+
+        Proof of claim 2: \([\alpha] \in \ker \widetilde{H}_i(X_0) \to \widetilde{H}_i X\)
+
+
+        Then \(\alpha = \partial \beta, \beta = \sum_{k} n_k \sigma_k\), \(\beta \in S_{i+1} X, \sigma_k : \Delta^{k+1} \to X\).
+
+        \(\mathop{\mathrm{supp}}(\beta) = \cup \sigma_k(\Delta^{i+1})\) compact.
+        
+        \(X_j \cap \mathop{\mathrm{supp}}(\beta) \)  is open cover of \(\mathop{\mathrm{supp}}(\beta)\).
+
+        Thus \(\exists j\) such that \(\mathop{\mathrm{supp}}(\beta) \subset X_j \implies [\alpha] \equiv 0 \in \widetilde{H}_{i} (X_j)\) which is the claim. 
+    \end{proof}
+
 \end{document}
