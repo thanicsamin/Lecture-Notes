@@ -4106,6 +4106,326 @@
         \(X_j \cap \mathop{\mathrm{supp}}(\beta) \)  is open cover of \(\mathop{\mathrm{supp}}(\beta)\).
 
         Thus \(\exists j\) such that \(\mathop{\mathrm{supp}}(\beta) \subset X_j \implies [\alpha] \equiv 0 \in \widetilde{H}_{i} (X_j)\) which is the claim. 
+
+        \section*{Wednesday, 4/2/2025}
+    
+        We rename some stuff from yesterday. We proved:
+
+        Lemma 1: if \(X_0 \subset X_1 \subset \cdots \subset X\) is a filtration of \(X\) by open sets, and if \([\alpha] \in \ker (\widetilde{H}_i X_0 \to \widetilde{H}_i X)\) then \(\exists j\) such that \([\alpha] \in \ker (\widetilde{H}_i X_0 \to \widetilde{H}_i X_j)\).
+
+        \begin{proof}
+            If \(\alpha = \partial \beta, \mathop{\mathrm{supp}}(\beta)\) compact then \(\mathop{\mathrm{supp}}(\beta) \subset X_j\) for some \(j\). 
+        \end{proof}
+
+        Main Proof: Replace \(D^k\) by the cube \(I^k = [0,1]^k\). We induct on \(k\).
+
+        True for \(k=0\) since \(S^n - \text{pt}\) is homeomorphic to \(\mathbb{R}^n\).
+
+        Assume true for \(k-1\) for induction.
+
+        Assume homology is nontrivial for contradiction.
+
+        \(\exists [\alpha] \in \widetilde{H}_i (S^n - h(I^k))\).
+
+        Lemma 2: \(\exists\) nested intervals \(I_0 = [0,1] \supset I_1 \supset I_2 \supset \cdots\) such that:
+        
+        \begin{enumerate}[label=\roman*)]
+            \item length \(I_j = \frac{1}{2^j}\)
+            \item \(0\neq [\alpha] \in \widetilde{H}_i (S^n - h(I^{k-1} \times I_j))\)
+        \end{enumerate} 
+
+        \begin{proof}
+            MVES.
+            
+            Let \(A = S^n - h(I^{k-1} \times [0,\frac{1}{2}])\).
+
+            \(B = S^n - h(U^{k-1} \times [\frac{1}{2}, 1])\)
+            
+            \(A\cup B = S^n - h(I^{k-1} \times \frac{1}{2})\). \(\widetilde{H}_{\ast} (A\cup B)\)  is trivial by induction.
+            
+            \(A\cap B = S^n - h(I^k)\).
+
+            \[
+                0 \to \widetilde{H}_i(A\cap B) \xrightarrow{\approx} \widetilde{H}_i (A) \oplus \widetilde{H}_i(B) \to 0
+            \]
+
+            \([\alpha]\) is nontrivial on one so it is nontrivial in at least one of the others.
+
+            \(0\neq [\alpha] \in \widetilde{H}_i(A) \implies\) choose \(I_1 = [0,\frac{1}{2}]\)
+
+            \(0\neq [\alpha] \in \widetilde{H}_i(B) \implies\) choose \(I_1 = [\frac{1}{2}, 1]\).
+            
+            Repeat to get \(I_2, I_3, \cdots\) 
+        \end{proof}
+
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/intervals}
+        \end{figure}
+
+        \(\bigcap I_j = \{ p \}\) 
+
+        Let \(X = S^n - h(I^{k-1} \times p), X_j = S^n - h(I^{k-1} \times I_j)\). \([\alpha] \neq 0 \in \widetilde{H}_i X\) by L2. This contradicts L1.
+
+    \end{proof}
+
+    \begin{theorem}
+        [Alexander Duality, Prop 2B1]
+
+        \(\forall h: S^k \hookrightarrow S^n\),
+        
+        \[
+            \widetilde{H}_{\ast} (S^n - h(S^k)) \cong \widetilde{H}_{\ast} (S^{n-k-1})
+        \]
+
+        `Represented by linking \(S^{n-k-1}\)'.
+    \end{theorem}    
+
+    Definition of Linking Sphere: Take a disk that intersects the space at one point and take the boundary.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/linking}
+        \caption{linking sphere}
+    \end{figure}
+
+    \begin{proof}
+        Induct on \(k\).
+
+        \(k = 0, S^n - 2\) pts \(\cong S^{n-1} \times \mathbb{R}\), true.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/duality}
+            \caption{}
+            \label{fig:}
+        \end{figure}
+
+        excisive triad:
+
+        \begin{center}
+            \begin{tikzcd}
+                S^n - h(S^k) \ar[r] \ar[d] & S^n - h(D^k_+) \ar[d] \\ S^n - h(D^k_-) \ar[r] & S^n - h(S^{k-1})
+            \end{tikzcd}
+        \end{center}
+
+        \(S^n - h(D^k_{\pm})\) are acyclic by Boring theorem [homology of a point]
+
+        MVES says:
+
+        \[
+            0 \oplus 0 \to \widetilde{H}_{\ast} (S^n - h(S^{k-1})) \xrightarrow[\partial]{\approx} \widetilde{H}_{\ast-1} (S^n - h(S^k)) \to 0\oplus 0 
+        \]
+    \end{proof}
+
+    Special case: If \(h:S^{n-1} \hookrightarrow S^n\) then \(S^n - h(S^{n-1})\) has two path components, both have homology of point. So \(\widetilde{H}_0 = \mathbb{Z}\).
+
+    This is Jordan-Brouwer Separation Theorem.
+
+    \begin{remark}
+        Both components are open. Boundary of each components is \(S^{n-1}\).
+    \end{remark}
+
+    If \(n=2\) all embeddings are standard: \(\exists\) homeo \(H: (S^2, S^1) \to (S^2, h(S^1))\).
+
+    We have non-standard embeddings:
+
+    \(D^3 \hookrightarrow S^3, S^2 \hookrightarrow S^3, D^2 \hookrightarrow S^3\).
+
+    \(S^1 \hookrightarrow S^3\) knots: \(H_{\ast} (S^3 - \text{knot}) = H_{\ast} (S^1)\) but homotopy group might not be same.
+    
+    We also have nonstandard \(D^1 \hookrightarrow S^3\), wild arc.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/wildarc}
+        \caption{Wild Arc}
+    \end{figure}
+
+    \section*{Friday, 4/4/2025}
+    
+    Syllabus:
+
+    Homology with Coefficients
+    Borsuk-Ulam
+    Ham Sandwich
+    Invariance of Domains
+    Division Algebras
+    Axioms
+    Cohomology
+
+    \section*{Homology with Coefficients}
+
+    Let \(M\) be an abelian group (\(\mathbb{Z}\)-module).
+
+    \(S_n(X;M)\) singular \(n\)-chains with coefficients in \(M\).
+
+    \(m_1 \sigma_1 + \cdots + m_k \sigma_k \in S_n(X;M), m_i \in M, \sigma_i : \Delta^n \to X\).
+
+    i.e. \(S_n(X;M) = \bigoplus_{\sigma: \Delta^n \to X} M\) abelian group
+    
+    Davis-Kirk: \(S_n(X;M) = S_n X \otimes_\mathbb{Z} M\). \(\partial_n^M = \partial_n \otimes \operatorname{id}_{M}\) 
+
+    Define \(\partial_n^M: S_n(X;M) \to S_{n-1}(X;M)\):
+
+    \[
+        \partial_n^M(m \sigma) = m \left( \sum_{j=0}^n (-1)^j \sigma \circ \delta_n^j  \right) 
+    \]
+
+    As before. The alternating sign implies the double composite is zero, so we have a chain complex \(S_\bullet(X;M) = (S_\bullet (X,M), \partial_{\ast}^M)\).
+    
+    \(H_n(X;M) \coloneqq H_n(S_\bullet(X;M)) = \frac{\ker \partial_n^M}{\operatorname{im} \partial^M_{n+1}}\).
+
+    Example:
+
+    \(H_n(X;\mathbb{Z}) = H_n X\).
+
+    \(H_n(X; M \oplus N) = H_n(X;M) \oplus H_n(X;N)\).
+    
+    \(H_n(X;\mathbb{Z}^k) = (H_n X)^k\).
+
+    We actually get the whole package: pair, excision, MV, homotopy invariance, reduced, cellular.
+
+    When \(X\) is CW, \(C_n(X;M) = H_n(X^n, X^{n-1}; M) \cong \widetilde{H}_n(X^n / X^{n-1}, M) \cong M^{\# \text{of \(n\)-cells}}\) 
+
+    So \(C_n(X;M) = \bigoplus_j Me_j^i\).
+
+    \(\partial_n^{CW;M}\) has same matrix as \(\partial_n^{CW}\):
+
+    \[
+        \partial_n^{CW,M} = \partial_n^{CW} \otimes \operatorname{id}_{M}
+    \]
+
+    Proof: Suppose \(X\) is CW. When \(d_{\alpha \beta}\) denotes degree:
+
+    \[
+        \partial_n^{CW} e_\beta = \sum_{\alpha} d_{\alpha \beta} e_\alpha
+    \]
+
+    Then we have:
+
+    \begin{center}
+        \begin{tikzcd}
+            S^{n-1} \ar[rrr, bend right, "d_{\alpha\beta}=\text{degree}"] \ar[r,"\phi_B"] & X^n \ar[r] & X^n / X^{n-1} \ar[r,"pr_\alpha"] & S^{n-1}
+        \end{tikzcd}
+    \end{center}
+
+    In order to prove that \(\partial_n^{CW;M}\) has same matrix as \(\partial_n^{CW}\) we need lemma 2.49:
+
+    Lemma 2.49: If \(f: S^k \to S^k\) has degree \(d\) then,
+
+    \[
+        f_{\ast} : H_k(S^k;M) \to H_k(S^k;M)
+    \]
+
+    is multiplication by \(d\).
+
+    To prove this we need the claim: \(\partial_n^M(me_B) = m \sum_{\alpha} d_{\alpha \beta} e_\alpha \).
+    
+    \begin{proof}
+        Note that \(H_n: \operatorname{Top} \times \operatorname{Ab} \to \operatorname{Ab}\) given by \((X,M) \mapsto H_n(X;M)\) is a functor.
+
+        Let \(m\in M\). Let \(\Delta_m:\mathbb{Z} \to M\) given by \(1 \mapsto m\).
+
+        We can consider \((\operatorname{id}, \Delta_m) \circ (f, \operatorname{id}) = (f, \Delta_m) = (f,\operatorname{id}) \circ (\operatorname{id}, \Delta_m)\) which gives a commutative square. So we have: 
+
+        \begin{center}
+            \begin{tikzcd}
+                H_k(S^k;\mathbb{Z}) \ar[r] \ar[d] & H_k(S^k;\mathbb{Z}) \ar[d] \\ H_k(S^k;M) \ar[r] & H_k(S^k;M)
+            \end{tikzcd}
+        \end{center}
+
+        We have the maps:
+
+        \begin{center}
+            \begin{tikzcd}
+                a \ar[r,mapsto] \ar[d,mapsto] & da \ar[d, mapsto] \\ ma \ar[r, mapsto] & dma = mda
+            \end{tikzcd}
+        \end{center}
+
+        So the bottom map is indeed multiplciation by \(d\).
+
+    \end{proof}
+
+    Let \(X = \mathbb{R} P^n = e^0 \cup e^1 \cup \cdots \cup e^n\).
+
+    \(e^2 = \{ [-:-:-:0:\cdots :0] \}\).
+    
+    \(C_\bullet \mathbb{R} P^n = \mathbb{Z} \to \mathbb{Z} \to \cdots \xrightarrow{0} \mathbb{Z} \xrightarrow{2} \mathbb{Z} \xrightarrow{0} \mathbb{Z}\).
+
+    Then, reducing mod \(2\) matrices remain the same:
+
+    \(\mathbb{Z} / 2 \xrightarrow{0} \mathbb{Z} / 2 \xrightarrow{0} \cdots \xrightarrow{0} \mathbb{Z} / 2\).
+
+    \(H_i(\mathbb{R} P^n; \mathbb{Z} / 2) = \begin{dcases}
+        \mathbb{Z} / 2, &\text{ if } i = 0, \cdots , n ;\\
+        0, &\text{ otherwise} .
+    \end{dcases}\) 
+
+    We can go from \(\mathbb{Z}\) to any abelian group. Can we do this for arbitrary abelian groups?
+
+    \begin{theorem}
+        [Universal Coefficient Theorem] You can compute \(H_{\ast} (X;M)\) for \(H_{\ast} X\),  which is universal.
+    \end{theorem}
+
+    Question: Why bother?
+
+    \(M = \mathbb{Z} / 2\): no fuss with signs, orentatio.
+
+    \(\forall\) closed manifold, \(H_n(M;\mathbb{Z}) = \mathbb{Z} / 2\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/z2cycle}
+    \end{figure}
+
+    Also, \(\beta_n(X \times Y) = \sum_{i+j=n} \beta_i X \beta_j Y\)
+    
+    Kunneth formula.
+
+    \(M\) field eg \(\mathbb{Z}_p\) or \(\mathbb{Q}\) then,
+
+    \[
+        H_n(X \times Y; M) \cong \bigoplus_{i+j=n} H_i(X;M) \otimes_M H_j(Y;M) 
+    \]
+
+    Not true for \(M = \mathbb{Z}\)!!!
+
+    \section*{Borsuk-Ulam}
+
+    \begin{theorem}
+        [Borsuk-Ulam] If \(g: S^n \to \mathbb{R}^n\) is continuous, \(\exists x\in S^n\) such that \(g(x) = g(-x)\).
+    \end{theorem}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/borsukulamexample}
+        \caption{Here \(x\) is the pole}
+    \end{figure}    
+
+    When \(n=1\) it says \(\exists\) antipodal points on equator with same temparature.
+
+    Alternate proof:
+
+    \begin{proof}
+        \(f(x) = g(x) - g(-x)\) so \(f(-x) = -f(x)\).
+
+        USE IVT: If \(x(x) > 0, f(-x) < 0\) then \(\exists x_0\) such that \(f(x_0) = 0\).
+    \end{proof}
+
+    When \(n=2\) it says \(\exists\) antipodal points with same temprature and humidity.
+
+    \begin{proposition}
+        [2B6, Borsuk] An odd map \(f: S^n \to S^n\) has odd degree.
+    \end{proposition}
+
+    2B6 \(\implies\) Borsuk Ulam Theorem.
+
+    \begin{proof}
+        By contradiction. Let \(f(x) = \frac{g(x) - g(-x)}{\lVert g(x) - g(-x) \rVert}\).
+        
+        Then \(f: S^n \to S^{n-1} \hookrightarrow S^n\) is an odd map with zero degree. 
     \end{proof}
 
 \end{document}

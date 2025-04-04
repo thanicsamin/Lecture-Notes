@@ -3437,7 +3437,7 @@
         = \sum_{i}^{\infty} \left( \frac{1}{[G(L / K)_0 : G(L / K)_i]} - \frac{1}{[L:K]} \right)
     \]
 
-    2.3.1. Study of certain totally ramified extensions:
+    \underline{2.3.1. Study of certain totally ramified extensions:}
 
     Let \(K_{\infty} / K\) be an infinite Galois extension of \(K\) which is totally ramified with \(\mathscr{C} \coloneqq \operatorname{Gal}(K_\infty / K)\) isomorphic to \(\mathbb{Z}_p\) as a profinite group.
 
@@ -3452,5 +3452,313 @@
     \(e\) being the absolute ramification index of \(K\) over \(\mathbb{Q}_p, p \cdot R= \pi^e \cdot R\). 
 
     \(\underset{e(K_n / K) = p^n}{\iff} V_{K_n}(D_{K_n / K}) = e \cdot p^n \cdot n + c p^n + a_n\) 
+
+    \section*{Tuesday, 4/1/2025}
+    
+    For simplicity let \(K = \mathbb{Q}_p(\mu_p) \implies K_n = \mathbb{Q}_p(\mu_{p^{n+1}})\). Then \(\operatorname{Gal}(K_n / K)  \cong \mathbb{Z} / p^n\).
+
+    In fact, \(\operatorname{Gal}(K_n / K) = (1 + p \mathbb{Z}_p) / (1+p^{n+1} \mathbb{Z}_p) \cong \mathbb{Z} / p^n \mathbb{Z}\). [\(p\) odd].
+    
+    \(G(K_n / K)_i \cong p^{m-1}\mathbb{Z} / p^n \mathbb{Z}, p^{m-1} \leq i < p^m\) [follows from \(G(\mathbb{Q}(\mu_{p^n}) / \mathbb{Q}_p)_i\)].
+
+    \(\implies v_{K_n}(D_{K_n / K}) \overset{HW1}{=} \sum_{i=0}^{\infty} (\vert G(K_n / K)_i \vert - 1) = p^n - 1 + \sum_{m=1}^n (p^m - p^{m-1})(p^{n-m+1} - 1) = (p-1)n p^n\)
+    
+    Normalized means we have to divide by the ramification index. The ramification index in this case is equal to the degree \(p^n\) so:
+
+    \[
+        v_K(D_{K_n / K}) = \frac{1}{p^n} v_{K_n}(D_{K_n / K}) = (p-1)n = e(K / \mathbb{Q}_p) n
+    \]
+
+    Reminder: Herbrand function and upper ramification filtration
+
+    Let \(L / K\) be any finite Galois etension of local fields with \(G = G(L / K)\), \(G_{x} \coloneqq G_{\lceil x \rceil}, x \geq -1\)
+    
+    Herbrand function \(\varphi_{L / K}: [-1,\infty) \to [-1, \infty)\)
+
+    \[
+        \varphi_{L / K}(s) = \int_{0}^{s} \frac{\mathrm{d} x}{[G_0 : G_x]} 
+    \]
+
+    This is a bijection.
+
+    We define \(\psi_{L / K} \coloneqq \varphi_{L / K} ^{-1}\).
+
+    The \underline{upper ramification numbering} is a restatement: \(G^t \coloneqq G_{\psi_{L / K}(t)}\).
+    
+    \begin{theorem}
+        [Herbrand] If \(L \supset M \supset K\) and \(M / K\) is Galois, then,
+
+        \[
+            G(M / K)^t = \operatorname{im} (G(L / K)^t \hookrightarrow G(L / K) \twoheadrightarrow G(M / K))
+        \]
+
+        \[
+            \equiv  G(L / K)^t G(L / M) / G(L / M)
+        \]
+    \end{theorem}
+
+    \begin{theorem}
+        [Hasse-Arf] If \(L / K\) is abelian and \(n \in [-1,\infty)\) is a break of the upper ramification filtration [\(G(L / K)^t < G(L / K)^n \forall t > n\)] then n\(\in \mathbb{Z}_{\geq 1}\).
+    \end{theorem}
+
+    Upper filtration of: \(\begin{matrix}
+        \mathscr{G}_K^t \\
+        \mathscr{A}_K^t \\
+    \end{matrix} \) 
+
+    \begin{proposition}
+        \(L / K\) finite Galois and \(\overline{L} / \overline{K} \) separable (hence is Galois). Then,
+
+        \[
+            v_K(D_{L / K}) = \int_{0}^{\infty} \left( 1 - \frac{1}{\vert G(L / K)^t \vert } \right)  \,\mathrm{d}t 
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Set \(G = G(L / K), \varphi = \varphi_{L / K}, \psi = \psi_{L / K}\). HW4 \(\implies v_L(D_{L / K}) =  \sum_{i=0}^{\infty} (\vert G_i \vert - 1)\).
+        
+        \(G_0 = \ker (G \to \operatorname{Aut} (\overline{L} / \overline{K})), ef=n \implies \vert G_0 \vert = e(L / K)\) 
+
+        \(\implies v_k(D_{L / K}) = \frac{1}{e(L / K)} v_L(D_{L / K}) = \sum_{i=0}^{\infty} \left( \frac{\vert G_i \vert}{\vert G_0 \vert } - \frac{1}{\vert G_0 \vert } \right) = \int_{0}^{\infty} \left( \frac{1}{[G_0, G_x]} - \frac{1}{\vert G_0 \vert } \right)  \,\mathrm{d}x \) 
+
+        Set \(x = \psi (t) \implies \mathrm{d} x = \psi ^{\prime} (t) \mathrm{d} t, (\varphi \circ  \psi)(t) \implies \varphi^{\prime}(\psi(t)) \psi ^{\prime} (t) = 1 \implies \psi ^{\prime} (t) = \frac{1}{\varphi ^{\prime} (\psi (t))}\)
+        
+        \(= [G_0 : G_{\psi}(t)] = v_K(D_{L / K}) = \int_{0}^{\infty} \left( \frac{1}{\cancel{[G_0 : G_{\psi(t)}]}} - \frac{1}{\vert G_0 \vert} \right) \cancel{[G_0: G_{\psi(t)}]}  \,\mathrm{d}t \) 
+
+        \[
+            = \int_{0}^{\infty} \left( 1 - \frac{1}{\vert G_{\psi(t)} \vert } \right)  \,\mathrm{d}t = \int_{0}^{\infty} \left( 1 - \frac{1}{\vert G^t \vert } \right)  \,\mathrm{d}t 
+        \]
+    \end{proof}
+
+    Let \(K_\infty = \bigcup_{n \geq 0} K_n\) be as in the beginning of 2.3.1.  \(\mathscr{C}_n = G(K_n / K)\)
+    
+    \(\mathscr{C}(i) \coloneqq G(K / K_i) = p^i e (\cong p^i e)\) which is unique closed subgroup of index \(p^i\) of \(\mathscr{C}\).
+
+    \begin{lemma}
+        Let \(v_{-1} \coloneqq -1 < v_0 < v_1 < .\cdot\) be the sequence of breaks (ncessarily integers by Hasse-Arf) of \((\mathscr{C}^t)_{t\geq -1}\) so that \(\forall i \geq 0: \mathscr{C}^t = \mathscr{C}(i)\) for \(v_{i-1} < t < v_i\).
+
+        Then there is \(i_0 \in \mathbb{Z}_{\geq 0}\) such that \(\forall i > i_0: v_i = e+v_{i-1}\). Hence \(v_i = (i-i_0)e + v_{i_0}\) for all \(i > i_0\) 
+    \end{lemma}
+
+    \begin{proof}
+        [Sketch] Assume \(K\) is locally compact, hence \(K / \mathbb{Q}_p\) is finite. Write \(\mathscr{A} = G(K^{ab} / K)\) which is \(\cong \widehat{K^\times}\) the profinite completion and \(\mathscr{A}^0 = \varprojlim G(L / K)^0, L / K\) finite abelian.
+        
+        \(= \varprojlim_{L / K \text{ finite abelian} } G(L / K)_0 \overset{LCFT}{=} U(K) = \mathcal{O}_K^\times\). Also, LCFT tells us \(\mathscr{A}^t \cong U^t(K) = 1 + \pi^t \mathcal{O}_K\) when \(t\in\mathbb{Z} _{\geq 0}, U^0(K) = U(K)\).
+        
+        Easy: \(\exists t_0 \in \mathbb{Z}_{> 0} \forall t\in [t_0, \infty) \cap \mathbb{Z}: \mathscr{A}^t \xrightarrow[\log]{\cong} \pi^t \mathcal{O}_K\) [is even on an isometry of \(\mathbb{Z}_p\)-modules.]
+        
+        Choose \(i_0\) minimal such that \(v_{i_0} \geq t_0\) 
+
+        \(\implies \mathscr{C} (i_0 + 1) = {p^0}^{i+1} \mathscr{C} = p \mathscr{C} (i_0) = p \mathscr{C}^{v_{i_0}} = p \operatorname{res}(\mathscr{A}^{v_{i_0}})\).
+        
+        \(= \operatorname{res}((\mathscr{A}^{v_{i_0}})^p)\) the subgroup of \(p\)'th powers / \(p\)-multiples.
+
+        \(\cong \operatorname{res}(\mathscr{A}^{v_{i_0}+e})\) 
+        
+        So we need:
+
+        \(p \pi^t \mathcal{O}_K = \pi^e \pi ^T \mathcal{O}_K = \pi^{e+t} \mathcal{O}_K\)
+
+        It follows by definition: \(v_{i_0 + 1} \leq v_{I_0}=e\).
+
+        Need to show: \(v_{i_0 + 1} = v_{i_0} + e\). Repeat the argument with any \(i > i_0\). 
+
+    \end{proof}
+
+    \begin{proof}
+        [Sketch of 2.3.1.1.]
+
+        Let \(\mathscr{C}_n = G(K_n / K)\). 
+
+        \[
+            v_K(D_{K_n / K}) \xrightarrow[\text{prop}]{\text{prev}}= \int_{0}^{\infty} \left( 1 - \frac{1}{\vert \mathscr{C}_n^t \vert} \right)  \,\mathrm{d}t
+        \]
+
+        and \(\mathscr{C}_n^t = \mathscr{C}^t \mathscr{C}(n) / \mathscr{C}(n) = \mathscr{C}(i) / \mathscr{C}(n)\) for \(0 \leq i \leq n, v_{i-1} < t \leq v_i\).
+
+        Note: \(\mathscr{C}(i) / \mathscr{C}(n)\) has order \(p^{n-i}\).
+
+        \[
+            =\int_{0}^{v_{i_0}} \left( \cdots \right)  \,\mathrm{d}t + \sum_{i=i_0 + 1}^{n-1} \int_{v_{i-1}}^{v_i} \left( 1 - \frac{1}{\vert \mathscr{C}_n^t \vert } \right)  \,\mathrm{d}t 
+        \]
+
+        \[
+            = \underbrace{\int_{0}^{v_{i_0}} \left( \cdots \right)  \,\mathrm{d}t }_{= c^{\prime} + \frac{b_n}{p^n}} + \underbrace{e \cdot \sum_{i=i_0 + 1}^{n-1} \left( 1 - \frac{p^i}{p^n} \right)}_{n + c^{\prime\prime} + \frac{a_n}{p^n}} = en + c + \frac{a_n}{p^n}
+        \]
+
+    \end{proof}
+
+    \section*{Thursday, 4/3/2025}
+    
+    \underline{Lemma}: Let \(v_{-1} \coloneqq -1 < 0 \leq v_0 < v_1 < \cdots\) be the breaks of the upper ramification filtration \((\mathscr{C}^t)_{t\geq 1}\) so that \(\mathscr{C}^t = \mathscr{C}(i) = p^i \mathscr{C}\) for \(v_{i-1} < t \leq v_i\) for all \(i \geq 0\). Recall that \(\mathscr{C} \cong \mathbb{Z}_p\).
+
+    Then \(\exists i_0 \in \mathbb{Z}_{\geq 0}\) such that \(\forall i \geq i_0: v_i = e(i-i_0) + v_{i_0}\).
+
+    Complement to the proof of the Lemma: we had seen: \(\forall i \geq i_0,\) 
+
+    \[
+        \mathscr{C}^{v_i + e} = p \mathscr{C}^{v_i}
+    \]
+
+    This implies \(v_{i+1} \geq v_i + e\).
+
+    \(\mathscr{C}^{v_i + 1} = p \mathscr{C}^{v_i}\) since \(v_i\) is a break.
+
+    \(v_i + e\) is a break so \(v_{i+1} = v_i + e\) if \(\mathscr{C}^{v_i + e + 1} = p \mathscr{C} ^{v_i + e}\). But this is true. Namely, since \(v_i\) is a break, \(\mathscr{C}^{v_i + 1} = p \mathscr{C}^{v_i}\)
+
+    Therefore, \(\mathscr{C}^{v_i + e + 1} = \operatorname{res} (\mathscr{A}^{v_i + e + 1}) = \operatorname{res} (U^{v_i + e + 1}(K))\) where \(\mathscr{A}\) denotes the maximal abelian extension.
+
+    \(= \operatorname{res} (1+\pi^{v_i + e_i + 1}\mathcal{O}_K) = \operatorname{res}(1 + p \pi^{v_i + 1}\mathcal{O}_K) = \operatorname{res}((1+ \pi^{v_i + 1} \mathcal{O}_K)^p)\) 
+
+    \(= \operatorname{res}((\mathscr{A}^{v_i + 1})^p) = p \operatorname{res}(\mathscr{A}^{v_i + 1}) = p \mathscr{C}^{v_i + 1} = p p \mathscr{C}^{v_i} = p \mathscr{C}^{v_i + e}\).
+    
+    Thus, \(v_i\) is a break \(\implies v_{i+1} = v_i + e\). This finishes the proof of the lemma.
+    
+    \textbf{Proposition 2.3.1.1.} \(v_K(D_{K_n / K}) = en + c + \frac{a_n}{p^n}\) for some constant \(c\) and some bounded sequence \(a_n\).
+
+    \begin{proof}
+        \(v_K(D_{K_n / K}) = \int_{0}^{\infty} \left( 1 - \frac{1}{\vert \mathscr{C}_n^t \vert } \right) \,\mathrm{d}t\) and use the lemma.
+    \end{proof}
+
+    \textbf{Corollary 2.3.1.2.} \(\exists\) bounded sequence \((b_n)_n\) of real numbers \(b_n\) such that \(\forall n \geq 0:\)
+    
+    \[
+        v(D_{K_{n+1} / K_n}) = e + p^{-n} b_n
+    \]
+
+    \begin{proof}
+        \(v_{K_n}(D_{K_{n+1} / K_n}) = \int_{0}^{\infty} \left( 1 - \frac{1}{\vert G(K_{n+1} / K_n)^t \vert } \right)  \,\mathrm{d}t \). Now use the lemma and determine the unique break of \((G(K_{n+1} / K_n)^t)_{t\geq -1}\) 
+
+        Caution: the upper numbering of ramification groups is not compatible with passing to subgroups.
+
+        Alternatively, use that \(D_{K_{n+1} / K} = D_{K_{n+1} / K_n} \cdot (D_{K_n / K} \mathcal{O}_{K_{n+1}})\).
+        
+        cf Serre, Local Fields III, S4, Prop 8.
+    \end{proof}
+
+
+
+    \textbf{Corollary 2.3.1.3} \(\exists\) constant \(a\geq 0\) independent of \(n\) such that: \(\forall n \geq 0 \forall x \in K_{n+1}:\) 
+
+    \[
+        \left\vert \Tr_{K_{n+1} / K_n}(x) \right\vert \leq \vert p \vert ^ {1 - a / p^n} \vert x \vert 
+    \]
+
+    \begin{proof}
+        Write \(D_{K_{n+1} / K_n} = \mathfrak{m}_{n+1}^d\) where \(\mathfrak{m}_{n+1}\) is the maximal ideal of \(\mathcal{O}_{K_{n+1}}\), where
+
+        \[
+            d = v_{K_{n+1}} (D_{K_{n+1} / K_n}) = [K_{n+1} : K] v_K (D_{K_{n+1} / K_n})
+        \]
+        \[
+            \overset{2.3.1.2.}{=} p^{n+1} (e+p^{-n} b_n) = p^{n+1} e + p b_n
+        \]
+        
+        HW5/1/iii \(\implies \Tr_{K_{n+1} / K_n}(\mathfrak{m}_{n+1}^i) = \mathfrak{m}_n^j \) where \(j = \left\lfloor \frac{d+i}{p} \right\rfloor\) where \(p = [K_{n+1} : K_n]\) 
+
+        Suppose \(xf\in \mathfrak{m}_{n+1}^i \setminus \mathfrak{m}_{n+1}^{i-1}\).
+
+        Then \(\vert x \vert = \vert \pi_{n+1}^i \vert = \vert \pi \vert^{i / p^{n+1}}\).
+        
+        \(\vert\Tr_{K_{n+1} / K_n}(x)\vert \leq \vert \pi_n^j \vert = \vert \pi \vert^{j / p^n} \leq \vert \pi \vert^{\left( \frac{d+i}{p}-1 \right) / p^n} = \vert \pi \vert ^{\frac{d}{p^{n+1}} - \frac{1}{p^n} + \frac{i}{p^{n+1}}} = \vert \pi \vert^{e + \frac{b_n}{p^n} - \frac{1}{p^n}} \cdot \vert \pi \vert^{i / p^{n+1}} = \vert \pi \vert ^{e \left( 1 + \frac{(b_n - 1) / e}{p^n} \right)} \vert x \vert = \vert p \vert^{1 + \frac{(b_n - 1) / e}{p^n}} \vert x \vert\).
+        
+        \((b_n)_n\) bounded, so \(\exists a \geq 0 : \forall n \geq 0: \frac{b_n - 1}{e} \geq -a\).
+        
+        Thus, \(\vert p \vert^{1 + \frac{(b_n - 1) / e}{p^n}} \leq \vert p \vert^{1 - a / p^n}\).
+        
+        Thus we ultimately have:
+
+        \[
+            \vert \Tr_{K_{n+1} / K_n}(x) \vert \leq \vert p \vert^{1 - a / p^n} \vert x \vert 
+        \]
+    \end{proof}
+
+    \textbf{Corollary 2.3.1.4.} \(\exists\) constant \(c \geq 0\) independent of \(n\) such that \(\forall n \geq 0 \forall x\in K_n\):
+
+    \[
+        \vert \Tr_{K_n / K}(x) \vert \leq \vert p \vert^{n-c} \vert x \vert
+    \]
+
+    \begin{proof}
+        Iterate the formula in 2.3.1.3:
+
+        \(\vert \Tr_{K_n / K} (x) \vert = \vert \Tr_{K_1 / K} (\Tr_{K_n / K_1}(x)) \vert \overset{2.3.1.3}{\leq} \vert p \vert^{1-a} \vert \Tr_{K_n / K_1}(x) \vert\)
+        
+        \(\leq \vert p \vert^{1-a} \vert \Tr_{K_2 / K_1}(\Tr_{K_n / K_2}(x)) \vert \overset{2.3.1.3.}{\leq} \vert p \vert^{1-a} \vert p \vert^{1-a / p} \vert \Tr_{K_n / K_2}(x) \vert  \) 
+
+        \(= \vert p \vert^{2 - a (1+1 / p)} \vert \Tr_{K_n / K_2}(x) \vert \leq  \cdots \leq \vert p \vert ^{n - a(1 + 1 / p + \cdots + 1 / p^{n-1})} \vert x \vert\) 
+
+        We can take \(c = \frac{a}{1 - 1 / p}\) 
+    \end{proof}
+
+    Let \(\sigma \in \mathscr{C}\) be a \underline{topological generator}, aka \(\sigma \mod \mathscr{C}(n)\) is a generator of \(\mathscr{C} / \mathscr{C} (n) \cong G(K_n / K)\) for all \(n \geq 0\). 
+
+    \textbf{Lemma 2.3.1.5:} \(\exists c > 0\) independent of \(n\) such that \(\forall n\geq 0 \forall x\in K_{n+1}:\)
+
+    \[
+        \left\vert x - p ^{-1} \Tr_{K_{n+1} / K_n}(x) \right\vert \leq c \vert \sigma^{p^{n}}(x) - x \vert 
+    \]
+
+    \begin{proof}
+        Write \(\tau  = \sigma^{p^n}\). Then \(\eval{\tau}_{K_{n+1}}\) is a generator of \(G(K_{n+1} / K_n)\). Then \(px - \Tr_{K_{n+1} / K_n}(x) = \sum_{i=0}^{p-1} (\operatorname{id} - \tau^i)(x)\). 
+
+        \[
+            = \sum_{i=0}^{p-1} (\underbrace{1 + \tau  + \cdots + \tau^{i-1}}_{=0 \text{ if } i = 0}) (1-\tau) (x)
+        \]
+
+        \[
+            = \sum_{i=0}^{p-1} \left( \sum_{j=0}^{p-1} \tau^j ((1-\tau)(x)) \right) 
+        \]
+
+        Note that \(\vert \tau^j(1-\tau)(x) \vert = \vert (1-\tau)(x) \vert\) so, 
+        
+        \[
+            \leq \vert (1-\tau)(x) \vert
+        \]
+
+        Divde by \(\vert p \vert\) and get,
+
+        \[
+            \vert x - p ^{-1} \Tr_{K_{n+1} / K_n}(x) \vert \leq \vert p \vert ^{-1} \vert \sigma^{p^n}(x) - x \vert  
+        \]
+
+        Can take \(c = \vert p \vert ^{-1}\) 
+    \end{proof}
+
+    A most crucial definition:
+
+    \begin{definition}
+        Define \(t: K_\infty \to K\) by \(t(x) = p^{-n} \Tr_{K_n / K}(x)\) if \(x\in K_n\).
+    \end{definition}
+
+    \begin{remark}
+        This is well defined. If \(x \in K_n\) and \(m\geq n\) then \(p^{-m} \Tr_{K_m / K}(x) = p^{-n} \Tr_{K_n / K}(p^{-(m-n)} \Tr_{K_m / K_n}(x)) = p^{-n} \Tr_{K_n / K}(p^{-(m-n)} p^{m-n} x)\) 
+    \end{remark}
+
+    \textbf{Proposition 2.3.1.6.} Let \(\sigma\) be as above. \(\exists\) constant \(d > 0\) such that \(\forall x\in K_{\infty}\),
+
+    \[
+        \vert x - t(x) \vert \leq d \vert \sigma(x) - x \vert
+    \]
+
+    \begin{proof}
+        Let \(c_0 = 1, c_1 =\) constant in 2.3.1.5. Hence \(\vert  x - p ^{-1} \Tr_{K_1 / K_0} (x) \vert \leq c_1 \vert \sigma(x) - x \vert\) for all \(x \in K_1\) [here \(K = K_0\)].
+
+        For \(n \geq 1, c_{n+1} \coloneqq \vert p \vert^{- a / p^n} c_n\) with \(a\) as in 2.3.1.3.
+        
+        Clearly, \(c_n \to c > 0\).
+
+        Consider for any \(n \geq 0\),
+
+        \[
+            \forall x\in K_n: \vert x - t(x) \vert \leq c_n \vert \sigma(x) - x \vert \tag*{$(\ast)$}
+        \]
+
+        For \(n = 0\) both sides are \(0\).
+
+        For \(n = 1\) this is the statement \(\vert  x - p ^{-1} \Tr_{K_1 / K_0}(x) \vert \leq c_1 \vert \sigma(x) - x \vert\) which we have above.
+
+        To be continued.
+    \end{proof}
 
 \end{document}
