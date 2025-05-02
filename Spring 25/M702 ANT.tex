@@ -28,7 +28,7 @@
 \newtheorem*{corollary*}{Corollary}
 \newtheorem*{remark}{Remark}
 
-\title{M702 ANT}
+\title{M702}
 \author{Thanic Nur Samin}
 \date{\vspace{-5ex}}
 
@@ -3759,6 +3759,708 @@
         For \(n = 1\) this is the statement \(\vert  x - p ^{-1} \Tr_{K_1 / K_0}(x) \vert \leq c_1 \vert \sigma(x) - x \vert\) which we have above.
 
         To be continued.
+
+        \section*{Tuesday, 4/8/2025}
+        
+        Assume \((\ast)\) is true for \(n \geq 1\). Let \(x\in K_{n+1}\) and set \(y = \Tr_{K_{n+1} / K_n}(x)\).
+        
+        \(\implies \vert y - p t (x) \vert  = \vert y - p^{-n} \Tr_{K_{n+1} / K}(x) \vert = \vert y - p^{-n} \Tr_{K_n / K}(y) \vert\) 
+
+        By induction, \(\leq c_n \vert \sigma(y) - y \vert = c_n \left\vert \left( \sum_{i=0}^{p-1} (\sigma^{p^n})^i (x) \right) - \sum_{i=0}^{p-1} (\sigma^{p^n})^i(x) \right\vert \) 
+
+        \(= c_n \left\vert \sum_{i=0}^{p-1} (\sigma^{p^n})^i (\sigma (x)) - \sum_{i=0}^{p-1} (\sigma^{p^n})^i(x) \right\vert = c_n \left\vert \Tr_{K_{n+1} / K_n} (\sigma(x) - x) \right\vert  \) 
+        
+
+        by 2.3.1.3 \(\leq c_n \vert p \vert^{1-ap^{-n}} \vert \sigma(x) - x \vert\) 
+
+        Furthermore: \(\vert x - t(x) \vert \leq \max \{ \vert x - p ^{-1} y \vert, \vert p ^{-1} y - t(x) \vert \} \, (+)\).
+
+        2.3.1.5 and \(+\) implies \(\leq \max \{ c_1 \vert \sigma^{p^n}(x) - x \vert, c_n \vert p \vert^{-ap^{-n}} \vert \sigma(x) - x \vert \} \). \(c_{n+1} \coloneqq c_n \vert p \vert^{- a p^{-n}}\).
+        
+        Note: \(\vert \sigma^{i+1}(x) - x \vert \leq \max \{ \vert \sigma^{i+1} (x) - \sigma^i(x) \vert, \vert \sigma^i(x) - x \vert \}\)
+
+        \(= \max \{ \vert \sigma^i(\sigma (x) - x) \vert, \vert \sigma^i(x) - x \vert\}\)
+        
+        \(= \max \{ \vert \sigma(x) - x \vert, \vert \sigma^i(x) - x \vert \}\).
+
+
+        Iterating, \(\leq \vert \sigma (x) - x \vert\).
+
+        Thus, the thing before note \(\leq \max \{ c_1, c_{n+1} \} \vert \sigma(x) - x \vert = c_{n+1} \vert \sigma(x) - x \vert\)
+        
+        Hence we have proved \(\ast\) for \(n+1\).
+
+        We end the proof by letting \(d = \lim_{n \to \infty} c_n\).
+
     \end{proof}
+
+    \begin{remark}
+        An inspection of the proof of 2.3.1.6 shows that the statement of 2.3.1.6 is also true, \underline{with the same constant} \(d\) if we replace \(K\) by \(K_n\) as base field.
+
+        Note: \(G(K_\infty / K_n) \cong \mathbb{Z}_p\).
+    \end{remark}
+
+    Notation: set \(X = \widehat{K_\infty}\). This is a \(K\)-Banach space, since the absolute value on \(K_\infty\) extends to \(X\).
+
+    The action of \(\mathscr{C}\) also extends continuously to \(X\).
+
+    \textbf{Proposition.} \(t: K_\infty \to K\) extends continuously to a \(K\)-linear map \(t: X \to K\) which is the identtiy on \(K\).
+
+    \begin{proof}
+        \(t\) extends continuously by 2.3.1.4 or 2.3.1.6.
+    \end{proof}
+
+    Set \(X_0 = \ker (t) \subset X\). It is a closed (by continuity) \(K\)-subspace of \(X\).
+
+    Naturally \(X = X_0 \oplus K\).
+
+    \textbf{Proposition 2.3.1.7.}
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(X = X_0 \oplus K\) as a topological \(K\)-vector space.
+        \item \(\sigma - \operatorname{id}: X \to X\) has kernel \(K\) and is bijective on \(X_0\) with a continuos inverse on \(X_0\).
+        \item Let \(\lambda \in R\) such that \(\lambda \equiv 1 \pmod\pi\) and assume that \(\lambda\) is \underline{not} a root of unity. Then \(\sigma - \lambda \operatorname{id} : X \to X\) is bijective with a continuous inverse.
+    \end{enumerate} 
+
+    \begin{proof}
+        \begin{enumerate}[label=\alph*)]
+            \item Define \(p_0: X \to X_0\) by \(p_0(x) = x - t(x) \implies t(p_0(x)) = t(x) - t(t(x)) = 0\).
+            
+            Thus \(p_0(x) \in X_0\) and the map \(X \to X_0 \oplus K\) given by \(x \mapsto (p_0(x),t(x))\) is a conitinuous \(K\)-linear bijection with inverse \(X_0 \oplus K \to X\) given by \((x_0,a) \mapsto x_0 + a\).
+
+            \item Clear: \(\ker (\sigma - \operatorname{id}) \supset K\). Write \(K_n = K_{n,0} \oplus K\) with \(K_{n,0}= \ker(\Tr_{K_n / K}) = \ker(\eval{t}_{K_n})\).
+            
+            2.3.1.6 \(\implies \forall x\in K_{n,0} : \vert \sigma(x) - x \vert \geq \frac{1}{d} \vert x - t(x) \vert = \frac{1}{d} \vert x \vert \implies \eval{(\sigma - \operatorname{id})}_{K_{n,0}}\) is bijective. Also, \(\forall y\in K_{n,0} : \vert (\sigma - \operatorname{id})^{-1} (y) \vert \leq d \vert y \vert \) [by the previous inequality].
+            
+            Therefore, \((\sigma - \operatorname{id}) ^{-1}\) extends continuously to \(\bigcup_{n \geq 1} K_{n,0} = \ker(\eval{t}_{K_\infty})\).
+            
+            By this inequality, \((\sigma - \operatorname{id}) ^{-1} \) extends continuously to the closure of \(\ker(\eval{t}_{K_\infty})\) inside \(X\), which is \(X_0\).
+
+            \item \(\lambda \neq 1\) thus \(\sigma - \lambda \operatorname{id}\) is bijective on \(K\) since \(\eval{\sigma - \lambda \operatorname{id}}_K = (1-\lambda) \operatorname{id}_{K} \).
+            
+            For \(x\in X_0, (\sigma - \operatorname{id}) ^{-1} (\sigma - \lambda) = (\sigma - \operatorname{id})^{-1} (\sigma - \operatorname{id} + (1-\lambda) \operatorname{id}) = \operatorname{id} - (1-\lambda) (\sigma - \operatorname{id}) ^{-1}\).
+            
+            If \(\vert 1-\lambda \vert < d\) with \(d\) as in 2.3.1.6,
+
+            \(\vert (\lambda - 1) (\sigma - \operatorname{id})^{-1} (y)\vert \leq \vert \lambda - 1 \vert d \vert y \vert \leq d^{\prime} \vert y \vert\) with \(d^{\prime} \coloneqq \vert \lambda -1 \vert d < 1\).
+
+            Thus, \((\operatorname{id} - (1-\lambda)(\sigma - \operatorname{id}) ^{-1}) ^{-1} = \sum_{n=0}^{\infty} ((1-\lambda) (\sigma - \operatorname{id})^{-1})^n\)
+            
+            Converges as a continuous \(K\)-linear operator on \(X_0\).
+
+            Thus, \((\sigma - \lambda) ^{-1}  = (\sigma - \operatorname{id}) ^{-1} (\operatorname{id} - (1-\lambda)(\sigma - \operatorname{id}) ^{-1}) ^{-1}\) exists as a continuous \(K\)-linear operator on \(X\).
+
+            If \(\vert 1-\lambda \vert d \geq 1\) instead we replace \(\sigma\) by \(\sigma^{p^n}\) and \(\lambda\) by \(\lambda^{p^n}\) with \(n\) large enough so that \(\vert \lambda^{p^n} - 1 \vert d < 1\). Replacing \(K\) by \(K_n\) and using the remark after 2.3.1.6, \(\vert \sigma^{p^n} - \lambda^{p^n} \vert\) has a continuous inverse on \(X\). Recall that \(\lambda^{p^n} \neq 1\) by assumption. Note that:
+
+            \((\sigma - \lambda)(\sigma^{p^n - 1} + \cdots + \lambda^{p^n - 1}) = \sigma^{p^n} - \lambda^{p^n}\).
+            
+            Thus, \(\sigma - \lambda\) has a continuous inverse on \(X\).
+        \end{enumerate} 
+    \end{proof}
+
+    \subsection*{Continuous Cohomology (in degrees \(\leq 1\))}
+
+    Let \(V\) be a \(K\)-Banach space. So,
+
+    \(\lVert \cdot \rVert: V \to \mathbb{R}_{> 0}\).
+
+    \(\lVert \lambda v \rVert = \vert \lambda  \vert \lVert v \rVert, \lambda \in K\) 
+
+    \(\lVert v + w \rVert \leq \max \{ \lVert v \rVert , \lVert w \rVert \}\)
+
+    \(\lVert v \rVert = 0 \iff v = 0\).
+
+    \(V\) is complete w.r.t.\ \(\lVert \cdot \rVert \) topology.
+
+    We assume \(V\) is equipped with a continuous action of \(\mathscr{C} (\cong \mathbb{Z}_p)\).
+
+    i.e. \(\mathscr{C} \times V \to V\) is continuous.
+
+    i.e. For each \(\tau \in \mathscr{C}\) the map \(v \mapsto \tau v\) is continuous.
+
+    Define \(Z^1(\mathscr{C} , V) \coloneqq Z^1_{\text{cont}}(C,V) = \{ c: \mathscr{C} \to V, \sigma \mapsto c_\sigma \mid c \text{ continuous and } \forall \sigma ,\tau \in \mathscr{C} : c_{\sigma \tau} = c_\sigma +\sigma(c_{\tau}) \} \) \(K\)-vector space of continuous \(1\)-cocycles.
+
+    Map \(V \xrightarrow{d} Z^1(\mathscr{C} , V), (dv)_\sigma = v - \sigma(v). B^1(\mathscr{C},V) = B^1_{\text{cont}}(\mathscr{C} , V) = \operatorname{im} (d: V \to Z^1(\mathscr{C} , V)) \) is called the \(K\)-vector space of continuous \(1\)-coboundaries.
+    
+    \(H^0(\mathscr{C}, V) = V^{\mathscr{C}} = \{ v\in V \mid \forall \sigma \in \mathscr{C}: \sigma(v) = v \}\).
+
+    \(H^1(\mathscr{C}, V) \coloneqq Z^1_{\text{cont}} (\mathscr{C}, V) / B^1_{\text{cont}}(\mathscr{C} , V)\)
+    
+    Let \(\chi : \mathscr{C} \to R^\times\) be a continuous character. Set \(X(\chi) = X (=\widehat{K_\infty})\) with the action of \(\mathscr{C}\) given by \(\sigma \underset{\chi}{.} x \coloneqq \chi(\sigma) \cdot \sigma(x)\).
+
+    \textbf{Proposition 2.3.1.8.}
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(H^0(\mathscr{C}, X) = K\) and \(\dim_K H^1(\mathscr{C}, X) = 1\).
+        
+        \item \(\vert \operatorname{im} (\chi) \vert = \infty \implies H^0(\mathscr{C}_{1X(\chi)}) = 0 = H^1(\mathscr{C}_1 X(\chi)) = 0\)  
+    \end{enumerate} 
+
+    \begin{proof}
+        Let \(Y \subset X\) be a closed \(K\)-subspace stable under \(\mathscr{C}\).
+        
+        Let \(\sigma\) be a top. gen of \(\mathscr{C}\).
+
+        Then \(H^0 (\mathscr{C}, Y(\chi)) = \ker (\eval{\sigma - \chi(\sigma) ^{-1}}_Y)\) and any \(c\in Z^1(\mathscr{C}, Y(\chi))\) is determined by \(c_\sigma \in Y\).
+
+        \((dy)_\sigma = y - \sigma \underset{\chi}{.} y = y - \chi(\sigma) \sigma(y) = - \chi(\sigma)(\sigma - \chi(\sigma)^{-1})(y)\)
+
+        Thus, \(H^1(\mathscr{C}, Y(\chi)) \hookrightarrow Y / \operatorname{im} (\eval{\sigma - \chi(\sigma) ^{-1}}_Y)\).
+
+        \(\chi(\sigma)\) not a root of \(1\).
+
+        To be continued.
+    \end{proof}
+
+    \section*{Thursday, 4/10/2025}
+    
+    Skipped
+
+    \section*{Tuesday, 4/15/2025}
+    
+    \subsection*{3.2 Finite extensions of \(K_\infty\)}
+
+    \(L / K_\infty, R_L \subset L, R_\infty = R_{K_\infty} \supset \mathfrak{m}_\infty , \mathscr{H} = \operatorname{Gal}(\overline{K} / K_\infty)\)
+    
+    \textbf{Proposition 2.3.2.1.} (Almost \'etaleness of \(\overline{K}\) over \(K_\infty\))
+
+    \[
+        \Tr_{L / K_\infty} (R_L) \supset \mathfrak{m}_\infty
+    \]
+
+    Note that \'Etale would mean \(\Tr_{L / K_\infty}(R_L) = R_\infty\) unramified.
+    
+    \(H_c^0(\mathscr{C}, X(\chi)), H^1_c(\mathscr{C}, X(\chi))\)
+
+    The \(c\) stands for continuous.
+
+    \underline{Cohomology}: \(M\) = abelian group, \(\circlearrowleft G =\) pro-finite group.
+    
+    \begin{definition}
+        \(M\) is called \underline{discrete} \(G\) module if \(M = \cup_{H \leq G, H \text{ open}} M^H\) ie for every \(m\in M \exists\) open subgroup \(H \leq G\) such that \(H < \operatorname{stab}_G(m)\).
+    \end{definition}
+
+    \begin{remark}
+        If \(G\) is a \(p\)-adic group [eg \(G = GL_n(\mathbb{Q}_p)\)] then a representation of \(G\) on a vector space \(V\) is called \underline{smooth} if \(V\) is a discrete \(G\)-module in the previously defined sense.
+    \end{remark}
+
+    Consider \(G \times M \to M\). Then \(\{ 1 \} \times \{ m \} \to m\), continuity means open pre-image. Giving \(M\) discrete topology, an open neighborhood must contain a set of the form \(U \times \{ m \}\) where \(U \subset G\) open with \(1\in U\).
+
+    \underline{Continuous cochains} \(C^r(G,M) = \{ f: C^r \to M^\delta \mid f \text{ continuous} \}\). Notation: \(M^\delta\) is \(M\) with discrete topology.
+
+    \(d^r: C^r(G,M) \to C^{r+1}(G,M), (d^r f)(g_1, .\cdots ,g_{r+1}) = g_1 \cdot f(g_2, \cdots ,g_{r+1})\)
+    
+    \(+ \sum_{i=1}^r (-1)^i f(g_1, \cdots, g_i g_{i+1}, \cdots, g_{r+1}) + (-1)^{r+1} f(g_1, \cdots , g_r)\) 
+
+    these are called `\(r\)-cochains'. We have \(d^{r+1} \circ d^r = 0\)
+    
+    Then \(Z^r(G,M) = \ker(d^r), B^r(G,M)=\operatorname{im} (d^{r-1}), H^r(G,M) = \frac{\ker (d^r)}{\operatorname{im}(d^{r-1})}\)
+    
+    Example: \(r = 0\) gives us \(C^0(G,M) = M, d^0: M \to C^1(G,M)\).
+
+    \((dm)(g) = g \cdot m - m\). \(B^0 = 0\) thus \(H^0(G,M) = M^G =\) set of elements fixed by \(G\).
+    
+    We also consider \(\Tr_{L / K_\infty}: L \to K_\infty = Z^0(G(L / K_\infty), L) \subset C^0(G(L / K_\infty), L)\).
+    
+    Referecnce: Article on group cohomology in Cossels-Fr\"ohlich.
+
+    Serre, Galois Cohomology.
+
+    Set \(L^\delta = L\) with discrete topology.
+
+    \textbf{Corollary 2.3.2.2.} Let \(L / K_\infty\) be a finite Galois extension with group \(G\). Fix a real number \(c > 1\). Let \(r \geq 0\) and \(f\in C^r(G,L)\). Then \(\exists g\in C^{r-1} (G,L)\) s.t. \(\lVert f - dg \rVert \leq c \lVert df \rVert \) and \(\lVert g \rVert \leq c \lVert f \rVert\).
+
+    \(\lVert f \rVert = \max \{ \vert f(g) \vert \mid g\in G^r \} = \sup(\cdots)\) by compacntess of \(G\). If \(r = 0\) then \(\exists y\in L\) such that,
+
+    \(dy \coloneqq \Tr_{L / K_\infty}(y)\) is such that \(\lVert f - dy \rVert = \vert f - dy \vert \leq c \lVert df \rVert\) and \(\vert dy \vert \leq c \vert f \vert\).
+
+    \begin{proof}
+        Proposition 2.3.2.1 (almost \'etaleness) implies \(\exists y\in R_L : \underbrace{\vert \Tr_{L / K_\infty}(y) \vert}_{=dy} \geq c ^{-1} \).
+        
+        Consider \(y\) as a \((-1)\)-cochain. 
+
+        Define an \((r-1)\) cochain by \(y \cup f = yf\) if \(r = 0\).
+
+        Formally, \(C ^{-1}(G, L) \coloneqq L\).
+
+        If \(r \geq 1\) then
+        
+        \((y\cup f)(s_1, \cdots , s_{r-1}) = (-1)^r \sum_{s_r \in G} \underbrace{(s_1, \cdots ,s_r)(y)}_{\in L} \underbrace{f(s_1, \cdots , s_r)}_{\in L} \) 
+
+        Check: \(\underbrace{dy}_{K_\infty} \cdot f - d^{r-1} (y\cup f) = y \cup (d^r f) \quad (\ast)\) 
+
+        Example: If \(r=0\) then LHS \(= \Tr(y) \cdot f - \Tr(y f)\).
+        
+        RHS \(= (y\cup d^0 f)(1) = (-1)^1 \sum_{s\in G} s(y) (df)(s) =  \sum_{s\in G} s(y) (s(f)-f) = \sum_{s\in G} s(y) f - \sum_{s\in G} s(yf) = \Tr(y)f - \Tr(yf)\).
+    \end{proof}
+
+    Set \(x = dy \in K_\infty^\times, g = x ^{-1} (y \cup f)\) [as maps \(G^{r-1} \to L\)].
+
+    Note: \(dg = x ^{-1} d(y\cup f)\).
+    
+    \(\ast \implies f - dg = x ^{-1} (y \cup df)\).
+
+    Note: 1. \(\vert x ^{-1} \vert \leq c\).
+    
+    2. \(\lVert g \rVert \leq \vert x ^{-1} \vert \lVert y \cup f \rVert \leq c \lVert f \rVert\).
+
+    2. \(\lVert f - dg \rVert = \lVert x ^{-1} (y\cup df)  \rVert \leq \vert x ^{-1}  \vert \lVert y\cup df \rVert \leq c \lVert df \rVert\).
+
+    Now we pass to \(\overline{K}\) which is a discretee module for \(\mathscr{H} = \operatorname{Gal}(\overline{K} / K_\infty)\).
+
+    \textbf{Corollary 2.3.2.3.} Fix \(c > 1\). Let \(r \geq 0\) and f\(\in C^r(\mathscr{H}, \overline{K})\). Let \(f\in C^r(\mathscr{H}, \overline{K}^\delta)\). Then \(\exists g\in C^{r-1} (\mathscr{H}, \overline{K}^\delta)\) such that \(\lVert f - dg \rVert \leq c \lVert df \rVert \) and \(\lVert g \rVert \leq c \lVert f \rVert\).
+    
+    For \(r = 0\) the conclusion is to be replaced by: \(\exists x\in K^{\infty}\) such that \(\vert f - x \vert \leq c \lVert df \rVert\).
+
+    \begin{proof}
+        This is because \(C^r(\mathscr{H}, \overline{K}^\delta) = \cup_{L / K_\infty \subseteq \overline{K} / K_\infty, \text{finite galois}} C^r(G(L / K_\infty), L)\).
+        
+        Use compactness of \(\mathscr{H}^r\).
+    \end{proof}
+
+    \underline{Continuous Cohomology} Set \(C = \widehat{\overline{K}}\) endowed with the topology induced by absolute value. \(\mathscr{H} = G(\overline{K} / K_\infty)\) and \(\mathscr{G} = G(\overline{K} / K)\) act continuously on \(C\).
+    
+    Let \(C^r(\mathscr{H}, C)\) be the continuous map \(\mathscr{H}^r \to C\).
+
+    Define \(d^r, Z^r(\mathscr{H}, C), B^r(\mathscr{H}, C)\) as before. We call:
+
+    \(H^r_c(\mathscr{H}, C) = Z^r(\mathscr{H}, C) / B^r(\mathscr{H}, C)\).
+
+    The continuous cohomology group of \(\mathscr{H}\) with coefficients in \(C\). Similarly for \(\mathscr{G}\).
+
+    \textbf{Proposition 2.3.2.4.} \(H^0_c(\mathscr{H}, C) = \widehat{K_\infty} = X\). \(H^r_c(\mathscr{H}, C) = 0\) for all \(r > 0\).
+
+    \begin{proof}
+        Let \(\mathcal{O}_C = \{ x\in C \mid \vert x \vert \leq 1 \}\). Then \(C = \overline{K} + \pi^{\nu} \mathcal{O}_C\) for any \(\nu \geq 0\). Let \(\psi_\nu : C \to C / \pi^{\nu} \mathcal{O}_C\), endow the target with the quotient topology, hence discrete topology.
+        
+        As \(\eval{\psi_\nu}_{\overline{K}}\) is surjective \(\exists \phi_\nu : C / \pi^{\nu} \mathcal{O}_C \to \overline{K}^\delta \) such that \(\psi_\nu \circ \phi_\nu = \operatorname{id}\). Note that \(\phi_\nu\) is continuous.
+        
+        Set \(f_\nu = \phi_\nu \circ \psi_\nu \circ f: \mathscr{H}^r \to \overline{K}\) which is continuous.
+        
+        \(\psi_\nu \circ f_\nu = \psi_\nu \circ \phi_\nu \circ \psi_\nu \circ f = \psi_\nu \circ f \implies \lVert f - f_\nu \rVert \leq \vert \pi \vert^{\nu}\). 
+
+        To be continued.
+
+        \section*{Thursday, 4/17/2025}
+        
+        Fix \(c > 1\) once and for all. Consider \(f\in Z^r(\mathscr{H}, C)\) to be an \(r\)-cocycle. We want to show it is a coboundary: \(\exists g \in C^{r-1}(\mathscr{H}, C)\) such that \(f = dg\). If \(r=0\) we instead mean \(\exists g_\nu\in L_\nu \underset{\text{finite}}{/} K_\infty\) such that \(f = \lim_{\nu \to \infty} \Tr_{L_\nu / K_\infty}(g_\nu) \in K_\infty\).
+
+        Case \(r=0\): \(f\in Z^0(\mathscr{H}, C) = C^{\mathscr{H}}\). Then \(f_\nu \in \overline{K}\) so we have \(f_\nu \to f\).
+
+        \(t: K_\infty \to K, t(a) = \frac{1}{p^n} \Tr_{K_n / K}(a)\).
+        
+        \(d: \overline{K} \to K_\infty\). \(L \subset \overline{K}\) and \(L \xrightarrow{\Tr_{L / K_\infty}} K_\infty\).
+        
+        Then, for \(a\in L, d(a) = \frac{1}{[L:K_\infty]} \Tr_{L / K_\infty}(a)\).
+        
+        2.3.2.3 \(\implies \exists L_\nu / K_\infty\) finite, \(g_\nu \in L_\nu: \vert f_\nu - \underbrace{dg_\nu}_{\in K_\infty} \vert \leq c \lVert d f_\nu \rVert = c \max \{ \sigma \in \mathscr{H} \mid \vert \sigma(f_\nu) - f_\nu \vert  \} = c \lVert d(f_\nu - f) \rVert \leq c \lVert f_\nu - f \rVert \to 0 \)
+        
+        Thus, \(\lVert f - d g_\nu \rVert \leq \max \{ \underset{\to 0}{\vert f - f_\nu \vert} , \underset{\to 0}{f_\nu - d g_\nu}  \} \to 0\). Therefore, \(f\in \widehat{K_\infty}\).
+
+        Now we finish the case \(r > 0\).
+        
+        2.3.2.3. \(\implies \exists g_\nu \in C^{r-1} (\mathscr{H}, \overline{K}^\delta) : \lVert f - d g_\nu \rVert \leq c \lVert d f_\nu \rVert\) and \(\lVert g_\nu \rVert \leq c \lVert f_\nu \rVert\).
+        
+        We want: \(\lVert g_\nu - g_\nu \rVert \xrightarrow{?} 0\).
+        
+        Again, 2.3.2.3. \(\implies \exists h_\nu n\mathbb{I}  C^{r-2} (\mathscr{H}, \overline{K}^\delta): \lVert g_{r+1} - g_r - dh_\nu \rVert \leq c \lVert d(g_{r+1} - g_r) \rVert \leq c \max \{ \underset{\to 0}{\lVert d g_{\nu + 1} - f_{\nu + 1} \rVert}, \lVert f_{\nu + 1} - f_\nu \rVert , \underset{\to 0}{\lVert f_\nu - d g_\nu \rVert}\} \leq \max \{ \underset{\to 0}{\lVert f_{\nu+1} - f \rVert} , \underset{\to 0}{\lVert f - f_\nu \rVert} \} \).
+        
+        Thus, \(g\coloneqq g_1 + \sum_{\nu = 1}^{\infty} (\underset{\in C^{r-1} (\mathscr{H}, \overline{K}^\delta)}{g_{\nu+1} - g_\nu - dh_\nu})\) 
+
+        Converges in \(C^{r-1}(\mathscr{H}, C)\).
+
+        Note: \(dg = dg_1 + \sum_{\nu \geq 1} d(g_{\nu+1} - g_\nu - dh_\nu) = dg_1 + \sum_{\nu \mathbb{G} eq 1} (dg_{\nu+1} - dg_\nu)  \) 
+
+        Claim: \(dg\) converges to \(f\).
+
+        Proof: \(dg = \lim_{\mu \to \infty} (dg_1 + \sum_{\nu =1}^\mu (dg_{\nu+1} - dg_\nu)) = \lim_{\mu \to \infty} d g_{\mu+1} = \lim_{\mu \to \infty} ((dg_{\mu+1}-f_{\mu+1}) + f_{\mu+1}) = \underbrace{\lim_{\mu  \to \infty} (dg_{\mu+1}-f_{\mu+1})}_{=0} + \lim_{\mu\to \infty} f_{\mu+1} = f\). 
+
+    \end{proof} 
+
+
+    \subsection*{3.3 The action of \(\mathscr{G}_K\) on \(C\)}
+
+    Define continuous cohomology groups \(H^r_c(\mathscr{G}_K, C(\chi))\) as before. We usually droop the subscript \(c\) and \(K\) and just write \(H^r(\mathscr{G}, C(\chi))\).
+
+    Recall: \(\mathscr{G}\) is the absolute Galois group of \(K\) .
+
+    We have the following theorem.
+
+    \textbf{Theorem 2.3.3.1.} \(H^0(\mathscr{G}, C) = K\) and \(H^1(\mathscr{G},C)\) is a \(1\)-dimensional \(K\)-vector space. 
+
+    \begin{proof}
+        \(H^0(\mathscr{G}, C) = H^0(\mathscr{C}, H^0(\mathscr{H}, C)) \overset{2.3.2.4}{=} H^0(\mathscr{C},X) \overset{2.3.1.8}{=} K\).
+        
+        \[
+            1 \to \mathscr{H} = G(\overline{K} / K_\infty) \to \mathscr{G} = \mathscr{G}_K \to G(K_\infty / K) \to G(K_\infty / K) = \mathscr{C} \to 1
+        \]
+
+        \underline{\(H^1\)}: \(\exists\) inflation-restriction exact sequence (Weibel, Serre, Local Fields, Galois Cohomology)
+        \[
+            0 \to H^1(\mathscr{C}, H^0(\mathscr{H}, C)) \to H^1(\mathscr{G}, C) \xrightarrow{res} H^1(\mathscr{H}, C) \underset{2.3.2.4}{=} 0
+        \]
+
+        Hence the assertion follows from 2.3.1.8
+        
+    \end{proof}
+
+    \textbf{Theorem 2.3.3.2.} Given a continuous homomorphism \(\chi: \mathscr{G}_K \to R^\times\) we define \(C(\chi) = C\) with \(\mathscr{G}_K\) action given by the twist \(\sigma \underset{\chi}{\cdot} a = \chi(\sigma) \sigma(a)\).
+
+    Let \(K_\infty = \overline{K}^{\ker (\chi)}\). Then \(G(\overline{K} / K_\infty) = \ker (\chi)\). Suppose \(\exists\) finite extension \(K_0 / K\) such that \(K_\infty / K_0\) is a purely ramified extension and \(G(K_\infty / K_0) \cong \mathbb{Z}_p\) as topological groups.
+    
+    Then \(H^0(\mathscr{G}_K, C(\chi)) = H^1(\mathscr{G}_K, C(\chi)) = 0\).
+
+    \begin{remark}
+        \(\underset{\cong \mathbb{Z}_p}{G(K_\infty / K_0)} \underset{\text{fin. index}}{\hookrightarrow}  G(K_\infty / K) = \mathscr{G}_K / G(\overline{K} / K_\infty) \xrightarrow{\cong} \operatorname{im}(\chi)\)
+    
+        Furthermore, \(\operatorname{im}(\chi)\) is abelian. Thus, \(K_0 / K\) is Galois.
+    
+        This excludes the case that \(K_\infty\) is the Lubin-Tate extension associated to a LT group over \(\mathcal{O}_K\) (unless \(K=\mathbb{Q}_p\)). (in this case \(G(K_\infty / K_0) \underset{\text{open}}{\subset} G(K_\infty / K) \xrightarrow{\sim} \mathcal{O}_K^\times\)). But this includes the case of the cyclotomic class: \(\chi_{cyc}: \mathscr{G}_K \xrightarrow{\text{open image}} \mathbb{Z}_p^\times \subset R^\times\).
+    
+    \end{remark}
+
+    \begin{proof}
+        Case \(H^0\): \(H^0(\mathscr{G}_K, C(\chi)) \subset H^0(\mathscr{G}_{K_0}, C(\chi))\) 
+
+        Note that:
+
+        \[
+            1 \to G(\overline{K} / K_\infty) \eqqcolon \mathscr{H} \hookrightarrow G(\overline{K} / K_0) = \mathscr{G}_{K_0} \twoheadrightarrow G(K_\infty / K_0) \eqqcolon \mathscr{C} \cong \mathbb{Z}_p
+        \]
+
+        Thus, \(H^0(\mathscr{G}_{K_0}, C(\chi)) = H^0(\mathscr{C}, H^0(\mathscr{H}, C(\chi)))\)
+        
+        \( = H^0(\mathscr{C}, H^0(\mathscr{H}, C)(\chi)) \overset{2.3.2.4}{=} H^0(\mathscr{C}, X(\chi)) \overset{2.3.1.8b, \vert \operatorname{im} \chi \vert = \infty}{=} 0\).
+        
+        Case \(H^1\): Apply infl-res. sequence to:
+
+        \[
+            1 \to G(\overline{K}/K_0) \to G(\overline{K} / K) \to \underset{finite}{G(K_0 / K)} \to 1
+        \]
+
+        \[
+            1 \to \mathscr{G}_{K_0} \to \mathscr{G}_K \to G(K_0 / K) \to 1
+        \]
+
+        Thus,
+
+        \[
+            0 \to \underbrace{H^1(G(K_0 / K), \underbrace{H^0(\mathscr{G}_{K_0}, C(\chi))}_{K_0 \text{-v.s., char 0}})}_{=0} \to H^1(\mathscr{G}_K, C(\chi)) \to H^1(\mathscr{G}_{K_0}, C(\chi))
+        \]
+
+        Apply infl-res. sequence to:
+
+        \[
+            1 \to \mathscr{H} = G(\overline{K} / K_\infty) \to \mathscr{G}_{K_0} \to \mathscr{C} \to 1
+        \]
+
+        Thus,
+
+        \[
+            0 \to \underbrace{H^1(\mathscr{C}, \underbrace{H^0(\mathscr{H}, C(\chi))}_{\underset{2.3.2.4}{=} X(\chi)})}_{\underset{2.3.1.8}{=} 0} \to \underbrace{H^1(\mathscr{G}_{K_0}, C(\chi))}_{=0} \to H^1(\mathscr{H}, C(\chi)) = H^1(\mathscr{H}, C) \underset{2.3.2.4}{=} 0 
+        \]
+        
+    \end{proof}
+
+    \section*{4 Theorems on \(p\)-divisible groups}
+
+    \(R=\) cdvr, \(k = R / \mathfrak{m}_R\) perfect field of char \(p > 0, K = \operatorname{Frac}(R)\) is of char \(0\), \(C = \widehat{\overline{K}}\).
+
+    Recall proposition 2.1.2.2: which says that the cartier dual \(G_\nu^\vee = \underline{\operatorname{Hom}}_{\text{gpsch/}R} (G_\nu, \mathbb{G}_{m,R})\)
+    
+    \((\implies \forall S \in \operatorname{Alg}_R: G_\nu^\vee(S) = \operatorname{Hom}_{\text{gpschm/}R} (G_\nu \otimes_R S, \mathbb{G}_{m,S})= G_\nu \times_{\operatorname{Spec}(R)} \operatorname{Spec}(S))\) 
+
+    Thus \(G_\nu^\vee(\mathcal{O}_C) = \operatorname{Hom}_{\text{gpschm/}\mathcal{O}_C}(G_\nu \otimes_R \mathcal{O}_C, \mathbb{G}_{m, \mathcal{O}_C})\)
+    
+    Easily \(= \operatorname{Hom}_{\text{gpsch/} \mathcal{O}_C} (G_\nu \otimes_R \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C})\, (1)\).
+
+    \underline{Tate module} \(T G^\vee = \varprojlim_\nu G^\vee_\nu(\overline{K}) = \operatorname{Hom}_{R\text{-alg}}(\mathcal{O}(G_\nu), \overline{K}) = \varprojlim G_\nu^\vee(C) = \varprojlim G_\nu^\vee(\mathcal{O}_C) \, (2)\)
+
+    Here \(G^\vee = (G_\nu^\vee)_\nu\) 
+
+    (1) and (2) togehter imply:
+
+    \(T G^\vee \operatorname{Hom}_{p \text{-div gps} / \mathcal{O}_C} \left( \varinjlim_\nu G_\nu \otimes_R \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C} \right)\)
+    
+    \(= \operatorname{Hom}_{p \text{-div. gps} / \mathcal{O}_C} \left( G \otimes_R \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C} \right)\, (3)\)
+    
+    Note \(\operatorname{Hom}(\mu_{p^{\infty}}, \mu_{p^{\infty}}) = \mathbb{Z}_p\)
+    
+    \(T(\mathbb{Q}_p / \mathbb{Z}_p) \cong \mathbb{Z}_p\) has trivial Galois action.
+
+    \section*{Tuesday, 4/22/2025}
+    
+    Recall: \(G = (G_\nu)_\nu\) is a \(p\)-divisible group \(/ R\). \(C = \widehat{barr\overline{K}} \supset \mathcal{O}_C \supset \mathfrak{m}_C \coloneqq \mathfrak{m}_{\mathcal{O}_C}\).
+    
+    \textbf{Proposition 2.1.2.2.} \(G_\nu^\vee = \underline{\operatorname{Hom}}_{\text{gpsch} / R} (G_\nu, \mathbb{G}_{m,R})\).
+    
+    \((G_\nu^\vee(S) = \operatorname{Hom}_{\text{gpsch} / S})(G_\nu \otimes_R S, \mathbb{G}_{m,S})\)
+    
+    \(T G^\vee = \varprojlim_\nu G_\nu^\vee(\overline{K}) = \varprojlim_\nu G_\nu^\vee(C) = \varprojlim_\nu G_\nu^\vee(\mathcal{O}_C) = \varprojlim_\nu \operatorname{Hom}_{\text{gpsch} / \mathcal{O}_C}(G_\nu \otimes_R \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C})\)
+    
+    \(= \operatorname{Hom}_{p \text{-div} / \mathcal{O}_C} (\varinjlim_\nu G_\nu \otimes_R \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C}) = \operatorname{Hom}_{p \text{-div gps} / \mathcal{O}_C} (G \otimes \mathcal{O}_C, \mu_{p^{\infty}, \mathcal{O}_C})\) 
+    
+
+    Recall: \(G(\mathcal{O}_C) \coloneqq \varprojlim_i G(\mathcal{O}_C / \pi^i) = \varprojlim_i \left( \varinjlim G_\nu(\mathcal{O}_C / \pi^i) \right) \) 
+
+    \((\neq \varinjlim_\nu G_\nu(\mathcal{O}_C))\)
+    
+    Example: \(G = \mu_{p^{\infty}}\). Claim: \(G(\mathcal{O}_C / \pi^i) = 1 + \mathfrak{m}_C / \pi^i \mathcal{O}_C\)
+
+    \(a\in \mathcal{O}_C, a \mod \pi^i \in \mu_{p^\nu}(\mathcal{O}_C / \pi^i)\)
+    
+    \(\implies a^{p^\nu} \equiv 1\mod \pi^i \implies a^{p^\nu} \equiv  1 \mod(\mathfrak{m}_C)\)
+    
+    Thus \(\overline{a} = 1\) where \(\overline{a} = a \mod \mathfrak{m}_C\) and \(\mathcal{O}_C / \mathfrak{m}_C = \overline{k}\).
+
+    Then, \(a \mod \pi^i \in 1 + \mathfrak{m}_C / \pi^i \mathcal{O}_C\).
+
+    Conversely, if \(a \in 1 + \mathfrak{m}_C\) then \(\forall \nu \gg 0: a^{p^\nu} \equiv 1 \mod{\pi^i} \implies (a\mod\pi^i)^{p^\nu} = 1\) in \(\mathcal{O}_C / \pi^i\).
+    
+    Then \(a \mod \pi^i \in \mu_{p^\nu}(\mathcal{O}_C / \pi^i)\).
+
+    Then \(\mu_{p^{\infty}}(\mathcal{O}_C) = \varprojlim \mu_{p^{\infty}}(\mathcal{O}_C / \pi^i) = \varprojlim (1+ \mathfrak{m}_C / \pi^i \mathcal{O}_C) = 1 + \mathfrak{m}_C\)
+    
+    From now on: \(U \coloneqq 1 + \mathfrak{m}_C\) considered as \(\mu_{p^{\infty}}(\mathcal{O}_C).\). This is \(\mathbb{Z}_p\)-module. 
+
+    Then \([c](a) = a^c = \sum_{j=0}^{\infty} \binom{c}{j} (a-1)^j \in U\). 
+
+    \(U_{\text{tors}} = \bigcup_\nu \mu_{p^\nu}(\mathcal{O}_C) = \Phi(\mu_{p^{\infty}})\) 
+
+    We have a logarithm: \(\log_{\mu_{p^{\infty}}} : \mu_{p^{\infty}}(\mathcal{O}_C) = U \to C\) 
+
+    \(a \mapsto \log(a) = \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} (a-1)^n\)
+    
+    Then we have exact sequence:
+
+    \[
+        0 \to \Phi(\mu_{p^{\infty}}) = U_{\text{tors}} \to U \xrightarrow{\log} C \to 0
+    \]
+
+    Recall:
+
+    \(T G^\vee \underset{\text{can}}{\cong} \operatorname{Hom}_{p \text{divgps} / \mathcal{O}_C}(G \otimes \mathcal{O}_C , \mu_{p^{\infty}, \mathcal{O}_C})\) 
+
+    \begin{definition}
+        We define a pairing \(T G^{\nu} \times G(\mathcal{O}_C) \to \mu_{p^{\infty}}(\mathcal{O}_C) = U\)
+        
+        \((\tau, \xi) \mapsto \langle \tau, \xi \rangle = \varepsilon_\xi (\tau)\) as follows: given \(\xi \in G(\mathcal{O}_C)\), write \(\xi = (\xi_i)_i\) with \(\xi_i \in G(\mathcal{O}_C / \pi^i)\), and \(\tau \in TG^\vee\), we have:
+        
+        \[
+            \begin{tikzcd}
+                \tau \circ \xi_i : & \operatorname{Spec}(\mathcal{O}_C / \pi^i) \ar[r] \ar[rr, bend right] & G \otimes \mathcal{O}_C \ar[r,"\tau"] & \mu_{p^{\infty}, \mathcal{O}_C} \\ \in \mu_{p^{\infty}}(\mathcal{O}_C / \pi^i)
+            \end{tikzcd}
+        \]
+
+        \(\implies \varepsilon_\xi(\tau) \coloneqq (\tau \circ \xi_i)_i \in \varprojlim \mu_{p^{\infty}}(\mathcal{O}_C / \pi^i) = \mu_{p^{\infty}}(\mathcal{O}_C) = U\)
+        
+        Check: this pairing is \(\mathbb{Z}_p\)-bilinear.
+    \end{definition}
+
+    Recall: \(\log_G : G(\mathcal{O}_C) \to t_G(C) = \operatorname{Hom}_R(I^0 / (I^0)^2, C)\)
+
+    Where \(I^0 = \ker (A^0 \to R)\) is the augmentation ideal. \(A^0 \to R\) is induced by the unit section.
+
+    \(A^0 = \varprojlim_\nu \mathcal{O}(G^0_\nu)\) \([\cong R[[x_1, \cdots , x_n]], n = \dim G]\)
+
+    Then for \(a\in G(\mathcal{O}_C), f\in I^0\),
+
+    \[
+        \log_G(a)(f) = \lim_{i \to \infty} \frac{f([p^i]_G (a)) - f(a)}{p^i}
+    \]
+
+    We get an induced pairing \(TG^\vee \times t_G(C) \to t_{\mu_{p^{\infty}}}(C)\) 
+
+    \((\tau,\log_G(\xi)) \mapsto \langle \tau , \log_G(\xi) \rangle = \log_{\mu_{p^{\infty}}}(\langle \tau , \xi \rangle)\) 
+
+    Recall the exact sequence:
+
+    \[
+        \begin{tikzcd}
+            O \ar[r] & G(\mathcal{O}_C)_{\text{tors}} = & \Phi(G) \ar[d] & = \varinjlim G_\nu(\mathcal{O}_C) \\ & & G(\mathcal{O}_C) \ar[d,"\log_G"] \\ & & t(C) \ar[d] \\ & & 0
+        \end{tikzcd}
+    \]
+
+    So independent of lift \(\xi\) of \(\log_G(\xi)\).
+
+    We have the diagram \((\ast)\):
+    ' 
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & \Phi(G) = G(\mathcal{O}_C)_{\text{tors}} \ar[d,"\alpha_0"] \ar[r, hook] & G(\mathcal{O}_C) \ar[r,"\log_G"] \ar[d,"\alpha"] & t_G(C) \ar[r] \ar[d,"d \alpha"] & 0 \\
+            0 \ar[r] & \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, \Phi(\mu_{p^{\infty}})) \ar[r] & \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, \mu_{p^{\infty}}(\mathcal{O}_C)) \ar[r] & \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee,\underset{=C}{t_{\mu_{p^{\infty}}}(C))} \ar[r] & 0
+        \end{tikzcd}
+    \]
+
+    \(\lambda \mapsto \log_{\mu_{p^{\infty}}} \circ \lambda\) 
+
+    Here \(\alpha : \xi \mapsto \langle -,\xi \rangle \) 
+
+    \underline{Exactness of Bottom Row}: \(0 \to U_{\text{tors}} \to U \xrightarrow{\log_{\mu_{p^{\infty}}}} C \to 0\) exact by earlier results.
+    
+    \(TG^\vee\) is a free \(\mathbb{Z}_p\) module of rank \(h = ht(G^\vee)=ht(G)\). Hence it is projetive. Hence \(\operatorname{Hom}_{\mathbb{Z}^p}(TG^\vee,-)\) produces an exact sequene.
+    
+    \underline{Rem} All groups in the diagram \((\ast)\) are naturally \(\mathscr{G}\)-modules. For the top row, this action comes from the action of \(\mathscr{G} = \operatorname{Gal}(\overline{K} / K)\) on \(C\). The \(\mathscr{G}\) action on the modules in the bottom row is given by \((\sigma \cdot \lambda)(\tau) = \sigma (\lambda (\sigma ^{-1} (\tau )))\). \(\tau \in TG^\vee\). \(\alpha_0, \alpha\) and \(d \alpha\) are \(\mathscr{G}\)-equivariant.
+
+    Check for \(\alpha\): \(\alpha(\sigma(\xi))(\tau) = \langle \tau , \sigma(\xi) \rangle = (\tau \circ \sigma(\xi_i))_i\)
+    
+    \((\sigma \cdot \alpha (\xi))(\tau) = \sigma(\alpha(\xi)(\sigma ^{-1} (\tau))) = \sigma (\langle \sigma ^{-1} (\tau), \xi \rangle) = \sigma ((\sigma ^{-1} (\tau) \circ \xi_i))_i = (\tau \circ \sigma(\xi_i))_i\)
+    
+    \textbf{Lemma 2.4.1.1.} If \(W\) is a \(C\)-vector space with a semi-linear \(\mathscr{G}\)-action (\(\sigma(c \cdot w) = \sigma(c) \cdot \sigma(w)\) for all \(c\in C\) and \(w\in W\)), then the map \(C \otimes_K W^{\mathscr{G}} \to W, c \otimes w \mapsto c \cdot w\) is injective.
+    
+    \begin{proof}
+        Let \(\{ w_1, \cdots , w_n \}\) be a set of \(K\)-linearly independent vectors in \(W^{\mathscr{G}}\). We want to show that for all scalars \(c_1, \cdots , c_n \in C: \sum_{i} c_i w_i = 0\) then \(c_1 = \cdots = c_n = 0\).
+
+        Suppose there is a linear combination with not all \(c_i = 0\). WLOG assume \(c_1 = 1\). We may also assume \(n\) is minimal with this property.
+
+        \(\forall \sigma \in \mathscr{G}: 0 = \sigma \left( \sum c_i w_i \right) = \sum \sigma(c_i) \sigma(w_i) = \sum \sigma(c_i) w_i = \sum c_i w_i\) 
+
+        Therefore, \(\sum_{i=2}^n (\sigma(c_i) - c_i) w_i = 0\).
+
+        \(n = 1\) is impossible. For \(n \geq 2\) we get a linear combination with fewer terms, unless \(\sigma(c_i) = c_i\) for all \(c_i\). This implies \(\forall i: c_i \in K\). But this contradicts the linear independence of \(w_i\) over \(K\).
+    \end{proof}
+    
+    \textbf{Proposition 2.4.1.2.} In the diagram \((\ast)\), \(\alpha_0\) is bijective whereas \(\alpha\) and \(d \alpha\) are injective.
+
+    \textbf{Theorem 2.4.1.3.} The maps \(\alpha_R: G(R) = G(\mathcal{O}_C)^{\mathscr{G}} \to \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, U)^{\mathscr{G}} = \operatorname{Hom}_{\mathbb{Z}_p(\mathscr{G})}(TG^\vee, U)\)
+    
+    \(d \alpha_R : t_G(K) = t_G(C)^{\mathscr{G}} \to \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, t_{\mu_{p^{\infty}}}(C))^{\mathscr{G}} = \operatorname{Hom}_{\mathbb{Z}_p[\mathscr{G}]} (TG^\vee, C)\) 
+
+    are bijective.
+
+    \section*{Thursday, 4/24/2025}
+    
+    \textbf{Lemma 2.4.1.4.}
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(\forall \nu \geq 0\) the map \(G_\nu^\vee (C) \times G_\nu(C) \to \mu_{p^{\nu}}(C), (\tau_\nu, \xi_\nu) \mapsto \langle \tau_\nu, \xi_\nu \rangle \coloneqq \tau_\nu \circ \xi_\nu\) (recall \(G_\nu^\vee(C) = \operatorname{Hom}_{\text{gpsch} / C}(G_\nu \otimes_R C, \mathbb{G}_{\mathfrak{m, C}}) = \operatorname{Hom}_{\text{gpsch} / C}(G_\nu \otimes C, \mu_{p^\nu, C})\)) is a perfect \(\mathscr{G}\)-equivariant pairing, i.e. \(G_\nu^\vee (C) \to \operatorname{Hom}_{\mathbb{Z}}(G_\nu(C), \mu_{p^\nu}(C))\) is bijective.
+        \item The pairings in (i) induce a perfect \(\mathscr{G}\)-equivariant \(\mathbb{Z}_p\)-bilinear pairing \(TG^\vee \times TG \to T \mu_{p^{\infty}}\).
+        \item The pairings in (i) induce a \(\mathscr{G}\)-equivariant isomorphism \(\Phi(G)\to \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, \Phi(\mu_{p_\infty}))\) and this map is equal to the map \(\alpha_0\) in the diagram. 
+    \end{enumerate} 
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(\underline{\Gamma}_S =\) constant gp scheme over \(\operatorname{Spec}(S)\) associated to \(\Gamma = \operatorname{Spec}(S^\Gamma)\).
+            
+            \(G_\nu^\vee(C) = \operatorname{Hom}_{\text{gpsch} / C}(G_\nu \otimes_R C, \mu_{p^\nu, C})\), from \'etaleness \(= \operatorname{Hom}_{\text{gpsch} / R}(\underline{G_\nu(C)}_C, \underline{\mu_{p^\nu}(C)}_C) = \operatorname{Hom}_{\mathbb{Z}}(G_\nu(C), \mu_{p^\nu}(C)) = \operatorname{Hom}_{\mathbb{Z}_p}(G_\nu(C), \mu_{p^\nu}(C))\).
+            
+            \item Follows from (i).
+            \item The map \(\Phi(G) \to \operatorname{Hom}(TG^\vee, \Phi(\mu_{p^{\infty}}))\) is given by \(\xi_\nu \in G_\nu(C) \subset \Phi(G)\). Then \(\xi_\nu: TG^\vee \to G_\nu^\vee(C) \dasharrow \Phi(\mu_{p^{\infty}})\) is given by \((\tau_\mu)_\mu \mapsto \tau_\nu \circ \xi_\nu\).
+            
+            \(\operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, \Phi(\mu_{p^{\infty}})) = \varinjlim_\nu \operatorname{Hom}_{\mathbb{Z}_p} (TG^\vee, \mu_{p^\nu}(C)) = \varinjlim_\nu \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee / p^\nu TG^\vee, \mu_{p^\nu}(C))\)
+            
+            Use \(\Phi(G^\vee) = TG^\vee \otimes (\mathbb{Q}_p / \mathbb{Z}_p) = \varinjlim_\nu TG^\vee \otimes (\frac{1}{p^\nu}\mathbb{Z} / \mathbb{Z}) = \varinjlim (TG^\vee / p^\nu TG^\vee)\)
+            
+            Then, \(\varinjlim_\nu \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee / p^\nu TG^\vee, \mu_{p^\nu}(C)) = \varinjlim_\nu \operatorname{Hom}_{\mathbb{Z}_p}(\Phi(G^\vee)[p^\nu], \mu_{p^\nu}(C))\)
+
+            \(=\varinjlim_\nu \operatorname{Hom}_{\mathbb{Z}_p}(G_\nu^\vee(C), \mu_{p^\nu}(C)) = \varinjlim_\nu G_\nu(C) = \Phi(G)\).
+
+            To see that this map is the same map as \(\alpha_0\) just trace through the definition.
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proof}
+        [Proof of Theorem 2.4.1.3.] 2.4.1.2. \(\implies\) the maps \(\alpha_R\) and \(d \alpha_R\) in 2.4.1.3. are injective.
+
+        Consider from \(\ast\):
+
+        \[
+            0 \to G(\mathcal{O}_C) \xrightarrow{\alpha} \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, U) \to \operatorname{coker}(\alpha) \to 0
+        \]
+
+        Take \(\mathscr{G}\)-invariants:
+
+        \[
+            \begin{tikzcd}
+                0 \ar[r] & G(\mathcal{O}_C)^{\mathscr{G}} \ar[d,"= 2.3.3.1"] \ar[r,"\alpha_R"] & \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, U)^{\mathscr{G}} \ar[d,"="] \ar[r] & \operatorname{coker}(\alpha)^{\mathscr{G}} \ar[r] & H_c^1(\mathscr{G}, G(\mathcal{O}_C)) \\ & G(R) & \operatorname{Hom}_{\mathbb{Z}_p(\mathscr{G})}(TG^\vee, U)
+            \end{tikzcd}
+        \]
+
+        \[
+            \implies \operatorname{coker}(\alpha_R) \hookrightarrow \operatorname{coker} (\alpha)^{\mathscr{G}}
+        \]
+
+        Note that 2.4.1.2. implies \(\alpha\) is injective.
+
+        Similarly, we have \(d \alpha\) is injective.
+
+        \[
+            0 \to t_G(C) \xrightarrow{d \alpha} \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, C) \to \operatorname{coker} (d \alpha) \to 0
+        \]
+
+        Take \(\mathscr{G}\) invariants:
+
+        \[
+            0 \to t_G(K) \xrightarrow{d \alpha_R} \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, C)^{\mathscr{G}} \to \operatorname{coker} (d \alpha)^{\mathscr{G}}
+        \]
+
+        Thus, \(\operatorname{coker} (d \alpha_R) \hookrightarrow \operatorname{coker}(d \alpha)^{\mathscr{G}}\).
+
+        We have a commutative diagram.
+
+        \[
+            \begin{tikzcd}
+                \operatorname{coker}(\alpha) \ar[r,"\cong"] & \operatorname{coker} (d \alpha) \\
+                \operatorname{coker} (\alpha)^{\mathscr{G}} \ar[u, hook] \ar[r,"\cong"] & \operatorname{coker}(d \alpha)^{\mathscr{G}} \ar[u, hook] \\ \operatorname{coker} (\alpha_R) \ar[u, hook] \ar[r] & \operatorname{coker}(d \alpha_R) \ar[u, hook] 
+            \end{tikzcd}
+        \]
+
+        Adding \(\operatorname{coker}\) to \(\ast\) and using snake lemma, the upper horizontal map is an isomorphism.
+
+        It follows that \(\operatorname{coker}(\alpha_R) \to \operatorname{coker} (d \alpha_R)\) is injective.
+
+        In order to prove bijectivity, we should prove now that the cokernel vanishes.
+
+        It suffices to show \(\operatorname{coker} (d \alpha_R) = 0\).
+
+        Hence we need to show: \(n \coloneqq \dim (G) = \dim_K t_G(K) \underset{\text{need to show}}{=} \dim \operatorname{Hom}_{\mathbb{Z}_p[\mathscr{G}]}(TG^\vee, C)^{\mathscr{G}} \, (1)\)
+        
+        Set \(W\coloneqq \operatorname{Hom}_{\mathbb{Z}_p}(TG, C)\)
+
+        \(W^{\prime} = \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, C)\) 
+
+        Then \(\dim_C W = \operatorname{ht} (G) \eqqcolon h = \dim_C(W^{\prime})\)
+
+        Set \(d \coloneqq \dim_K ((W^{\prime})^{\mathscr{G}}), d^{\prime} = \dim_K((W^{\prime})^{\mathscr{G}})\)
+
+        \(2.4.1.2 \implies\)
+
+        \(t_G(C) \hookrightarrow \operatorname{Hom}_{\mathbb{Z}_p}(TG^\vee, C) = W^{\prime} \implies n \leq d^{\prime}\) 
+
+        \(t_{G^\vee}() \hookrightarrow \operatorname{Hom}_{\mathbb{Z}_p}(TG,C) = W \implies n^\vee \coloneqq \dim (G^\vee) \leq d\)
+        
+        Together they're \((2)\).
+
+        2.2.3.1 \(\implies n + n^\vee \underset{(3)}{=} h \overset{(2)}{\implies} h \underset{(4)}{\leq } d + d^{\prime}\)
+        
+        Upshot: STS: \(d + d^{\prime} \underset{(5)}{\leq} h\).
+        
+        Set \(VG = TG \otimes \mathbb{Q}_p, VG^\vee = TG^\vee \otimes_{\mathbb{Z}_p} \mathbb{Q}_p\)
+
+        \(Q_p(1) \coloneqq V\mu_{p^{\infty}} = T \mu_{p^{\infty}} \otimes_{\mathbb{Z}_p} \mathbb{Q}_p = \mathbb{Q}_p \cdot \chi_{\text{cyc}}\)
+
+        \(\chi_{\text{cyc}}: \mathscr{G} \to \mathbb{Z}_p^\times , \sigma(\zeta_{p^n}) = \zeta_{p^n}^{\chi_{\text{cyc}}(\sigma) \mod p^n}\) 
+
+        Lemma 2.4.1.4. \(\implies VG \underset{\mathscr{G}}{\cong} \operatorname{Hom}_{\mathbb{Q}_p}(TG^\vee, \mathbb{Q}_p(1)) = \operatorname{Hom}_{\mathbb{Q}_p}(TG^\vee, \mathbb{Q}_p)(1)\).
+
+        \(\mathbb{Q}_p\) gets the trivial \(\mathscr{G}\) action.
+
+        Then \(VG \otimes_{\mathbb{Q}_p} C \underset{\mathscr{G}}{\cong} \operatorname{Hom}_{\mathbb{Q}_p}(TG^\vee, C)(1) = W^{\prime}(1)\) 
+
+        \(W = \operatorname{Hom}_{\mathbb{Q}_p}(VG,C) = \operatorname{Hom}_C (VG \otimes_{\mathbb{Q}_p} C, C) = \operatorname{Hom}_C (W^{\prime}(1), C)\) 
+
+        \(\implies W \times W^{\prime}(1) \to C\) perfect \(\mathscr{G}\)-equivariant pairing \(\implies W \times W^{\prime} \to C(-1)\) perfect \(\mathscr{G}\)-equivariant pairing.
+
+        Thus \(W^{\mathscr{G}} \times (W^{\prime})^{\mathscr{G}} \to C(-1)^{\mathscr{G}} \underset{2.3.3.2}{=} 0\)
+        
+        Thus, \(W^{\mathscr{G}}, (W^{\prime})^{\mathscr{G}}\) are perpendicular w.r.t.\ \(\langle , \rangle\) 
+
+        Thus \(W^{\mathscr{G}} \otimes C \underset{2.4.1.1}{\hookrightarrow} W\) and \((W^{\prime})^{\mathscr{G}} \otimes C \underset{2.4.1.1}{\hookrightarrow} W^{\prime}\) are perpendicular w.r.t.\ \(\langle , \rangle\)
+
+        it is elementary to see now that \(d + d^{\prime} \leq h\) hence we're done.
+
+    \end{proof}
+
+
 
 \end{document}

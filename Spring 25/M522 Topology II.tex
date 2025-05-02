@@ -3586,21 +3586,18 @@
         \centering
         \includegraphics[width=0.8\textwidth]{img/toruscell.jpg}
         \caption{}
-        \label{fig:}
     \end{figure}
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{img/S1map.jpg}
         \caption{}
-        \label{fig:}
     \end{figure}
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{img/deg0.jpg}
         \caption{}
-        \label{fig:}
     \end{figure}
 
     So, \(S^1 \xrightarrow{\phi} X^1 \xrightarrow{proj} S_a^1\), since \(X^1 = S_a^1 \cup S_b^1\), the projection goes around \(S_a^1\), then waits at \(S_b^1\) since that's collapsed to a point, and then it goes back. This map has \(\deg 0\).  
@@ -4427,5 +4424,1274 @@
         
         Then \(f: S^n \to S^{n-1} \hookrightarrow S^n\) is an odd map with zero degree. 
     \end{proof}
+
+    \section*{Monday, 4/7/2025}
+    
+    Proof of 2B6 needs \(\begin{Bmatrix}\text{Smith} \\ \text{Transfer} \end{Bmatrix}\) exact sequence.
+    
+    Suppose \(\widetilde{X} \xrightarrow{p} X\) is a double cover. Then we have SES of abelian groups:
+
+    \[
+        0 \to \mathbb{Z}_2 \xrightarrow{\begin{bmatrix}
+            1 \\
+            1 \\
+        \end{bmatrix}} \mathbb{Z}_2\oplus \mathbb{Z}_2 \xrightarrow{\begin{bmatrix}
+            1 & 1 \\
+        \end{bmatrix}} \mathbb{Z}_2 \to 0
+    \]
+
+    We have SES of chain complexes:
+
+    \[
+        0 \to S_\bullet(X;\mathbb{Z}_2) \xrightarrow{\tau} S_\bullet(\widetilde{X};\mathbb{Z}_2) \xrightarrow{p_\#} S_\bullet(X;\mathbb{Z}_2) \to 0
+    \]
+
+    \begin{center}
+        \begin{tikzcd}
+            & \widetilde{X} \ar[d] \\ \Delta^n \ar[ur, "\widetilde{\sigma}_1 \text{,}\widetilde{\sigma}_2"] \ar[r,"\sigma"] & X
+        \end{tikzcd}, \(\tau(\sigma) = \widetilde{\sigma }_1 + \widetilde{\sigma}_2\) 
+    \end{center}
+
+    \begin{center}
+        \begin{tikzcd}
+            & (\overline{X},\overline{x}_0) \ar[d] \\ (Y,y_0) \ar[ru,dotted,"\exists"] \ar[r] & (X,x_0)
+        \end{tikzcd} \(\iff\) \begin{tikzcd}
+            & \pi_1(\overline{X},\overline{x}_0) \ar[d] \\ \pi_1(Y,y_0) \ar[ru,dotted,"\exists"] \ar[r] & \pi_1(X,x_0)
+        \end{tikzcd}
+    \end{center}
+
+    Zig-Zag lemma \(\implies\) LES:
+
+    \[
+        \cdots \to H_i(X;\mathbb{Z}_2) \xrightarrow{\tau_{\ast}} H_i(\widetilde{X};\mathbb{Z}_2) \to H_i(X;\mathbb{Z}_2) \xrightarrow{\partial} H_{i-1} (X;\mathbb{Z}_2) \to \cdots
+    \]
+
+    Natural w.r.t.\ maps of double covers, so commutative diagram:
+
+    \begin{center}
+        \begin{tikzcd}
+            \widetilde{X} \ar[r] \ar[d] & X \ar[d] \\ \widetilde{Y} \ar[r] & Y
+        \end{tikzcd}
+    \end{center}
+
+    Smith ES for \(\widetilde{X} \to X \to\) Smith ES for \(\widetilde{Y} \to Y\).
+
+    Recall 2B6: Odd \(f: S^n \to S^n\) has odd degree.
+
+    \begin{proof}
+        [Proof of 2B6]
+
+        Let \(P \coloneqq \mathbb{R}P^n\) then odd \(f: S^n \to S^n\) gives us \(\overline{f}: P \to P\) given by \(\overline{f}[\pm x] = [f(x)]\). This is well defined since \([f(x)]=[f(-x)]\).
+        
+        We have Smith Exact Sequence:
+
+        \[
+            0 \to H_n (P;\mathbb{Z}_2) \xrightarrow{\approx} H_n(S^n;\mathbb{Z}_2) \xrightarrow{0} H_n(P;\mathbb{Z}_2) \xrightarrow{\approx} H_{n-1} (P;\mathbb{Z}_2) \to \cdots 
+        \]
+
+        \[
+            \cdots \to H_i(P;\mathbb{Z}_2) \xrightarrow{\partial, \approx} H_{i-1} (P;\mathbb{Z}_2) \to \cdots 
+        \]
+
+        \[
+            \cdots \to H_1(P;\mathbb{Z}_2) \xrightarrow{\approx} H_0(P;\mathbb{Z}_2) \xrightarrow{0} H_0(S^n;\mathbb{Z}_2) \xrightarrow{\approx} H_0(P;\mathbb{Z}_2) \to 0
+        \]
+
+        So, \(H_n(P;\mathbb{Z}_2) \xrightarrow{\approx} H_n(S^n,\mathbb{Z}_2)\).
+        
+        Inductively, \(\overline{f}_{\ast}\) isomorphism \(\implies f_{\ast}\) isomorphism, lemma 249 \(\implies \deg f \not\equiv 0 \mod 2 \implies \deg f\) odd.
+
+    \end{proof}
+
+    \begin{theorem}
+        [Ham Sandwich Theorem] You can cut a sandwich with three items (ham, cheese and bread) in half.
+    \end{theorem}
+
+    \begin{proof}
+        Let \(\underline{b} \in S^n\) and define \(p_{\underline{b}} : \mathbb{R}^n \to \mathbb{R}\) by:
+        
+        \[
+            p_b (x_1, \cdots , x_n) = b_0 + b_1 x_1 + \cdots + b_n x_n
+        \]
+
+        Then \(p_b = 0\) denotes an affine hyperplane [the knife].
+
+        HST: let \(F_1, \cdots , F_n \subset \mathbb{R}^n\) have finite volume. Then \(\exists \underline{a} \in S^n\) such that \(\forall i\),
+        
+        \[
+            \operatorname{Vol}(F_i \cap (P_a < 0)) = \operatorname{Vol}(F_i \cap (P_a > 0))
+        \]
+
+        Where \((P_a < 0) = P_a ^{-1} (-\infty , 0)\).
+
+        We start the proof now.
+
+        \(f: (f_1, \cdots , f_n): S^n \to \mathbb{R}^n\).
+
+        \(f_i(\underline{b}) = \operatorname{Vol}(F_i \cap P_{\underline{b}} < 0) - \operatorname{Vol}(F_i \cap P_{\underline{b}} > 0)\).
+        
+        Finite volume \(\implies f(-\underline{b}) = - f(\underline{b})\) so \(f\) is odd. Thus \(\exists \underline{a} \in S^n\) such that \(f(\underline{a}) = f(-\underline{a})\).
+        
+        Then \(P_{\underline{a}} = 0\) cuts sandwich in half. 
+    \end{proof}
+
+    \section*{Wednesday, 4/9/2025}
+    
+    \begin{proposition}
+        [2B1]
+
+        \begin{enumerate}[label=\alph*)]
+            \item If \(D \subset S^n\) and \(\exists h: D \to B(1,\mathbb{R}^k)\) homeomorphism implies,
+            \[
+                \widetilde{H}_i(S^n - D) = 0 \, \forall i
+            \]
+
+            \item If \(S \subset S^n\) and \(\exists h: S \to S^k \subset \mathbb{R}^n\) homeomorphism implies,
+            
+            \[
+                \widetilde{H}_i(S^n - S) \cong \begin{dcases}
+                    \mathbb{Z}, &\text{ if } i=n-k-1 ;\\
+                    0, &\text{ otherwise} .
+                \end{dcases}
+            \]
+        \end{enumerate} 
+    \end{proposition}
+
+    \subsection*{Manifolds}
+
+    \begin{definition}
+        A manifold of dimension \(n\) is a topological space \(X\) so that,
+
+        \begin{enumerate}[label=\arabic*)]
+            \item Hausdorff
+            \item `Locally Euclidean' i.e. every point \(x\in X\) has a neighborhood \(U\), \(x\in U\) and \(\exists\) homeomorphism \(h: U \to W \underset{\text{open}}{\subset} \mathbb{R}^n\). 
+        \end{enumerate} 
+    \end{definition}
+
+    eg sphere, torus, klein bottle.
+
+    Lets go back to 2B1. We want to prove Jordan Curve Theorem, which is: \(f: S^1 \to \mathbb{R}^2\) has two path connected commponents.
+
+    We want \(n-k-1=0\) in 2B1b. Recall \(\operatorname{rank} (\widetilde{H}_0(X)) = \#\) path components of \(X - 1\) which gives us the result.
+
+    \(\mathbb{R}^n\) is locally path connected \(\implies\) path component \(=\) component.
+
+    \begin{definition}
+        \(X\) is disconnected if \(X = U_1 \cup U_2, U_i\) open, \(U_1\cap U_2=\varnothing\).
+    \end{definition}
+
+    \subsection*{Invariance of Domain}
+
+    \begin{theorem}
+        [2B3] Let \(X \subset \mathbb{R}^n\). Suppose \(\exists\) homeomorphism \(X \xrightarrow[\cong]{h} U\) where \(U \subset \mathbb{R}^n\) is open. Then \(X \subset \mathbb{R}^n\) is open. 
+    \end{theorem}
+
+    \begin{proof}
+        Since \(\mathbb{R}^n \underset{\text{open}}{\subset} S^n\) we can replace \(\mathbb{R}^n\) with \(S^n\).
+
+        Let \(B(h(x), \epsilon)\) be a closed ball of radius \(\epsilon\) small enough so that \(B(h(x),\epsilon) \subset U\).
+
+        Let \(D\) be the preimage. \(D\coloneqq h ^{-1} (B)\). \(D\) is closed in \(X\).
+
+        Let \(S = h^{-1} (\partial B) = h^{-1} (S(h(x),\epsilon))\). 
+
+        Now we use 2B1. \(\eval{h}_D : D \to B\) implies \(\widetilde{H}_0(S^n - D) = 0\). Thus \(S^n - D\) is path connected.
+
+        Similarly, replacing \(D\) with \(S\),
+
+        \(\widetilde{H}_0(S^n - S) = \mathbb{Z} \implies H_0(S^n - S) = \mathbb{Z} \oplus \mathbb{Z}\).
+
+        Thus, \(S^n - S\) has exactly two path components. One of them is \(S^n - D\).
+
+        Therefore, \(D \setminus S\) is connected.
+
+        Thus, \(S^n \setminus S = (S^n - D) \sqcup (D - S)\).
+
+        \(S^n - S = C_1 \sqcup C_2\), \(S^n - D \subset C_1, D - S \subset C_2\).
+
+        \(S^n - D\) and \(D - S\) are open components of \(S^n - S\).
+
+        Thus \(x\in D-S \underset{\text{open}}{\subset} S^n\).
+    \end{proof}
+
+    \begin{corollary}
+        If \(M\) is a compact \(n\)-dimensional manifold and \(N\) is any \(n\)-dimensional manifold and \(e: M \to N\) is an embedding (1-1 continuous), then \(e\) is a homeomorphism.
+    \end{corollary}
+
+    \begin{proof}
+        \(e(M)\) is closed [\(M,N\) hausdorff, \(M\) compact]. Enough to show \(e(M)\) open.
+
+        \(e(M)\) being open follows from Invariance of Domain. We can replace \(N\) with \(\mathbb{R}^n\) since \(N\) is locally \(\mathbb{R}^n\) and openness is a local property.
+    \end{proof}
+
+    For example we can say \(T^2 \not\cong S^2\).
+
+    We have another application.
+
+    \begin{theorem}
+        \(\mathbb{R}\) and \(\mathbb{C}\) are the only commutative unital finite dimensional division algebras over \(\mathbb{R}\).
+
+        Equivalently, \(\mathbb{R}\) and \(\mathbb{C}\) are the only fields \(F\) such that \(F \supset \mathbb{R}, [F:\mathbb{R}] < \infty\).
+    \end{theorem}
+
+    This is a special case of a more famous theorem [Hopf invariant 1 problem].
+
+    \begin{theorem}
+        [Hopf Invariant 1] \(\mathbb{R},\mathbb{C},\mathbb{H}, \mathbb{O}\) are the only finite dimensional division algebras over \(\mathbb{R}\).
+    \end{theorem}
+
+    \begin{proof}
+        We prove the easy case.
+
+        Suppose we have a division algebra \((\mathbb{R}^n, +, \cdot)\) where \(n > 2\).
+
+        Define \(f: S^{n-1} \to S^{n-1}\) by \(f(x) = \frac{x^2}{\vert x^2 \vert}\). Being division algebra gurantees we don't divide by \(0\).
+        
+        \(f(x) = f(-x) \implies\) we have a map \(f:\mathbb{R} P^{n-}=S^{n-1} / \pm 1 \to S^{n-1}\).
+
+        Calculation shows that \(f: \mathbb{R} P^{n-1} \to S^{n-1}\) is injective.
+
+        Not possible for \(n > 2\).
+    \end{proof}
+
+    \section*{Thursday, 4/11/2025}
+
+        Skipped
+
+    \section*{Monday, 4/14/2025}
+    
+    \section*{Cohomology}
+
+    Cohomology is \(H^{\ast} X\)
+
+    \[
+        \operatorname{Top}^{op} \xrightarrow{S_\bullet} \operatorname{Ch}^{op} \xrightarrow{\ast} \operatorname{CoCh} \xrightarrow{H^{\ast}} \operatorname{Gr} 
+    \]
+
+    \underline{The Category of cochain complexes} \(\operatorname{CoCh}\)
+
+    In this category, objects \(C = \{ C^{\ast}, \delta^{\ast}\} \). Then,
+
+    \[
+        C^0 \xrightarrow{\delta^0} C^1 \xrightarrow{\delta^1} C^2 \xrightarrow{\delta^2} C^3 \to \cdots 
+    \]
+
+    \(\delta^{n+1} \circ \delta^n = 0 \forall n\).
+
+    Main difference: CoChain complex is increasing.
+
+    Morphisms: \(f: C^\bullet \to D^\bullet\) And all the squares commute in the following:
+
+    \[
+        \begin{tikzcd}
+                \cdots \ar[r] & C^n \ar[r] \ar[d,"f_n"] & C^{n+1} \ar[r] \ar[d,"f_{n+1}"] \ar[r] & \cdots \\ \cdots \ar[r] & D^n \ar[r] & D^{n+1} \ar[r] & \cdots
+        \end{tikzcd}
+    \]
+
+    Cohomology:
+
+    \(H^n(C^\bullet) = \frac{\ker \delta^n}{\operatorname{im} \delta \delta^{n-1}} = \frac{\text{cocycles}}{\text{cobooundaries}}\) 
+
+    \(H^n: \text{CoCh} \to \operatorname{Ab}\)
+    
+    \(H^{\ast} : \text{CoCh} \to \operatorname{Gr}\)
+
+    We have dual \(\ast : \operatorname{Ab}^{op} \to \operatorname{Ab}\)
+
+    \(A^{\ast} = \operatorname{Hom}(A,\mathbb{Z})\)
+
+    \(f: A \to B\) gives us \(f^{\ast}: B^{\ast} \to A^{\ast}\).
+
+    eg we have:
+
+    \((\mathbb{Z}^n)^{\ast} \cong \mathbb{Z}^n\) 
+
+    \(\mathbb{Q}^{\ast} = 0\) 
+
+    \((\mathbb{Z} / p)^{\ast} = 0\) 
+
+    \(\left( \bigoplus_{\infty} \mathbb{Z} \right)^{\ast} = \prod_{\infty} \mathbb{Z} \) 
+
+    We extend to \(\ast: \operatorname{Ch}^{op} \to \operatorname{CoCh}\)
+
+    We get CoChain complex from chain complex. So we want to talk about the dual of a chain complex \((C_\bullet)^{\ast}\). What happens in degree \(n\)?
+
+    \((C_\bullet)^n = (C_n)^{\ast}\).
+
+    \(\partial^{\ast} = \delta\). Since we always index by domain,
+
+    \(\partial_{n+1}^{\ast} = \delta^n\).
+    
+    Double boundary and double coboundary are zero
+
+    \[
+        0 = 0^{\ast} = (\partial \circ \partial)^{\ast} = \delta \circ \delta
+    \]
+
+    We can write \(C^\bullet, C^{\ast}, C^{-\ast}\).
+
+    \(H^{\ast} X \coloneqq H^{\ast} (S^\bullet X)\)
+
+    \(S^\bullet X \coloneqq (S_\bullet X)^{\ast}\).
+
+    \(f: X \to Y\) 
+
+    \(H^n(f): H^n(Y) \to H^n(X)\).
+
+    \subsection*{Cohomology with Coefficients in Abelian Group \(M\)}
+
+    We have functor \(\operatorname{Ch}^{op} \to \operatorname{Ch}\). Instead of taking hom to \(\mathbb{Z}\) we take hom to \(M\). Then,
+
+    \[
+        \operatorname{Hom}(-,M): \operatorname{Ch}^{op} \to \operatorname{CoCh}
+    \]
+
+    \[
+        C_\bullet \mapsto \operatorname{Hom}(C_\bullet, M)
+    \]
+
+    Thus, \(H^{\ast}(X;M) = H^{\ast} (S^\bullet(X;M),\delta^{\ast})\)
+    
+    \(S^n(X;M) = \operatorname{Hom}(S_n X, M)\) 
+
+    \(H^n X = H^n(X;\mathbb{Z})\).
+
+    If \(X\) is a CW complex we can compute \(H^{\ast} X\) by using cellular methods.
+
+    \(H^{\ast} X = H^{\ast}_{CW}(X)\). Consider \(X = S^1 \cup_{z \mapsto z^3} D^2\). We get:
+
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[->] (-1,0) -> (1,0);
+            \draw[->] (1,0) -> (0,1.7);
+            \draw[->] (0,1.7) -> (-1,0);
+        \end{tikzpicture}
+    \end{center}
+
+    Moore space \(M(\mathbb{Z} / 3, 1)\) 
+
+    We have \(X = e^0 \cup e^1 \cup e^2\) with \(\partial e^2 = 3 e_1\).
+
+    \(C_\bullet X = \mathbb{Z} [e_2] \to \mathbb{Z}[e_1] \to \mathbb{Z} [e_0]\) 
+
+    \(\cong \mathbb{Z} \xrightarrow{3} \mathbb{Z} \xrightarrow{0} \mathbb{Z}\).
+
+    \(H_{\ast} X = \{ \mathbb{Z} , \mathbb{Z} / 3, 0, 0, \cdots \}\)
+
+    \(C^\bullet X = \mathbb{Z} \widehat{e^2} \xleftarrow{\delta^1} \mathbb{Z} \widehat{e^1} \xleftarrow{\delta^0} \mathbb{Z} \widehat{e^0}\)
+
+    Where \(\widehat{e^2}\) etc are linear functionals. Calculating, we have:
+
+    \(\mathbb{Z} \xleftarrow{3} \mathbb{Z} \xleftarrow{0} \mathbb{Z}\)
+
+    \(H^n X = \begin{dcases}
+        \mathbb{Z}, &\text{ if } n=0 ;\\
+        0, &\text{ if } n\neq 0,2 ;\\
+        \mathbb{Z} / 3, &\text{ if } n=2 .
+    \end{dcases}\)
+    
+    We get the `whole package' from homology.
+
+    \(H^{\ast} (\text{pt})\)
+
+    \(H^{\ast} (\coprod X_\alpha)\) 
+
+    \(H^0\) 
+
+    \(\widetilde{H}^{\ast}\) 
+
+    \(\widetilde{H}^{\ast} (\vee X_\alpha)\) 
+
+    LES of pair
+
+    homotopy invariance
+
+    excision
+
+    good pair
+
+    Mayer Vietoris
+
+    Cellular Cohomology
+
+    \(H^{\ast} (\text{pt}) = \{ \mathbb{Z} , 0, 0, \cdots \}\).
+    
+    \(H^{\ast} (\coprod X_\alpha) \cong \prod H^{\ast} (X_\alpha)\) [dual of direct sum is direct product]
+
+    \(H^0 X = \prod_{\text{path components of \(X\)}} \mathbb{Z} \)
+    
+    Suppose we have:
+
+    \[
+        \cdots \to S_2 X \to S_1 X \to S_0 X \xrightarrow{\epsilon} \mathbb{Z} \to 0
+    \]
+
+    Taking dual,
+
+    \[
+        \cdots \leftarrow S^2 X \leftarrow S^1 X \leftarrow S^0 X \leftarrow \mathbb{Z} \leftarrow 0
+    \]
+
+    Cohomology is \(\widetilde{H}^{\ast} X\).
+
+    Then \(\widetilde{H}^{\ast} (\vee X_\alpha ) = \prod \widetilde{H}^{\ast} X_\alpha\) 
+
+    Good pair: \(H^{\ast} (X,A) = H^{\ast} (X / A, A / A) = \widetilde{H}^{\ast} (X / A)\).
+    
+    LES of pair:
+
+    Recall in a pair \(A \subset X\).
+
+    Similar to homology, \(S^n (X,A) = \frac{S^n X}{S^n A}\)
+    
+    We need work to make sense of this.
+
+    Punchline: There is going to be a cohomology exact sequence:
+
+    \[
+        \cdots \to H^n(X,A) \to H^n A \to H^n X \to H^{n+1} (X,A) \to H^{n+1} A
+    \]
+
+    \section*{Wednesday, 4/16/2025}
+    
+    Today:
+
+    LES of pair in \(H^{\ast}\)
+
+    Cellular cohomology
+
+    De Rham cohomology
+
+    Kronecker Pairing
+
+    UCT (Universal Coefficient Theorem).
+
+    First we talk about \(S^\bullet(X;M)\). The singular \(M\)-cochains are duals of chains:
+
+    \[
+        S^n(X;M) = \operatorname{Hom}(S_n X, M) = \operatorname{func}(\text{set of singular \(n\)-simplices } \sigma: \Delta^n \to X, M)
+    \]
+
+    We can now define:
+
+    \[
+        S^n(X,A;M) = \operatorname{Hom}(S_n(X,A), M)
+    \]
+
+    \[
+        S_n(X,A) = S_n X / S_n A
+    \]
+
+    We have this SES by definition of chain complexes:
+
+    \[
+        0 \to S_\bullet A \to S_\bullet X \to S_\bullet(X,A) \to 0
+    \]
+
+    We can use zigzag lemma to obtain a LES of homology.
+
+    Problem: Dual of SES of groups is not necessarily exact. We avoid that:
+
+    Notice that, \(S_n A\) is free, therefore the SES splits. This implies, if we apply \(\operatorname{Hom}(-,M)\), the SES splits. Thus, we have SES:
+
+    \[
+        0 \leftarrow S^\bullet(A;M) \leftarrow S^\bullet(X;M) \leftarrow S^\bullet(X,A;M) \leftarrow 0
+    \]
+
+    Applying zig-zag lemma, we have LES:
+
+    \[
+        \cdots \to H^n(X,A;M) \xrightarrow{j^{\ast}} H^n(X;M) \xrightarrow{i^{\ast}} H^n(A;M) \xrightarrow{\delta} H^{n+1} (X,A;M) \to \cdots
+    \]
+
+    Recall: definition of splitting: Suppose we have:
+
+    \[
+        0 \to A \to B \xrightarrow[\pi]{\overset{s}{\leftarrow}} C \to 0
+    \]
+
+    So that there is a one sided inverse \(s\) such that \(\pi \circ s = \operatorname{id}_{C}\).
+
+    \(\iff 0 \to A \to A \oplus C \to C \to 0\) and maps are what we want.
+
+    \subsection*{Cellular Cohomology}
+
+    Consider CW complex \((X,\{ X^n \})\). Then, cellular cochains \(C^n(X;M) \coloneqq H^n(X^n, X^{n-1};M)\).
+
+    Coboundary map:
+    
+    \[
+        \begin{tikzcd}
+            H^n(X^n, X^{n-1}; M) \ar[rr,"\delta^n"] \ar[rd, "j^{\ast}"] & & H^{n+1}(X^{n+1}, X^n; M) \\ & H^n(X^n;M) \ar[ru, "\delta"]
+        \end{tikzcd}
+    \]
+
+    Then \(H^{\ast}_{CW} X = H^{\ast} (C^\bullet(X;M))\).
+    
+    Facts:
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(C^\bullet X = (C_\bullet X)^{\ast}\)
+        \item \(H^{\ast} (X;M) = H^{\ast}_{CW} (X;M)\) 
+    \end{enumerate} 
+
+    \subsection*{DeRham Cohomology}
+
+    Let \(X\) be a manifold. Consider cochain complex \(\Omega^\bullet X\).
+
+    \(\Omega^n X\) differential \(n\)-forms on \(X\).
+
+    Exterior derivative \(d: \Omega^n X \to \Omega^{n+1} X\).
+
+    Then \(\Omega^\bullet X = (\Omega^{\ast} X, d)\).
+
+    Then the DeRham Cohomology is:
+
+    \[
+        H^n_{DR}(X;\mathbb{R}) = H^n(\Omega^\bullet X) = \frac{\text{closed \(n\)-forms}}{\text{exact \(n\)-forms}}
+    \]
+
+    \begin{theorem}
+        [DeRham's Theorem]
+
+        \[
+            H^n_{DR}(X) \cong H^n(X;\mathbb{R})
+        \]
+    \end{theorem}
+
+    eg, we expect \(H^1_{DR}(\mathbb{R}^2 - 0) \cong \mathbb{R}\).
+
+    Map: \(w \mapsto \int_{S^1} w\).
+    
+    Thus the generator is: \(w = \frac{y dx + x dy}{x^2 + y^2}\). Formally this is known as \(d \theta\).
+
+    \(\int_{S^1} w = 2\pi\).
+    
+    Difference between closed and exact?
+    
+    Let \(\gamma_1\) and \(\gamma_2\) be homotopic paths then \(\int_{\gamma_1} w = \int_{\gamma_2} w\). But my not be true globally!
+
+    We now have:
+
+    \[
+        H^n_{DR}(X,A) \to H^n_{DR}(X) \to H^n_{DR}(A) \to H^{n+1}_{DR} (X,A)
+    \]
+
+    \subsection*{Kronecker Pairing}
+
+    Slogan: Cohomology eats Homology
+
+    Kronecker Pairing: For any space \(X\) [not necessarily manifold anymore] there is a bilinear pairing:
+
+    \[
+        \langle -,- \rangle : H^n X \to H_n X \to \mathbb{Z}
+    \]
+
+    This is exactly the same as saying we have a map \(H^n X \to (H_n X)^{\ast}\).
+
+    This is always surjective. It is a consequence of UCT.
+
+    We develop the bilinear pairing. We take cochain-chain bilinear map:
+
+    \(\langle -,- \rangle : S^n X \times S_n X \to \mathbb{Z}\) 
+
+    \[
+        \left\langle \alpha , \sum_{i} n_i \sigma_i \right\rangle = \sum_{i} n_i \alpha(\sigma_i)
+    \]
+
+    Thus, in order to pass to cohomology, homology, we want to show:
+
+    \[
+        \langle \text{cocycle, boundary} \rangle = 0
+    \]
+
+    \[
+        \langle \text{coboundary, cycle} \rangle = 0
+    \]
+
+    We have the property [from the definition of \(\delta (=\partial^{\ast})\)]
+
+    \[
+        \langle \delta \alpha , c \rangle = \langle \alpha , \partial c \rangle
+    \]
+
+    This is trivial here but in DeRham theory it is analogous to \underline{Stoke's Theorem}: \(\int_X dw = \int_{\partial X}w\).
+    
+    Then we have:
+
+    \(\langle \text{cocycle, boundary} \rangle = \langle \underset{\in \ker \delta}{\alpha}, \partial c \rangle = \langle \delta \alpha , c \rangle = 0\)
+
+    \(\langle \text{coboundary, cycle} \rangle = \langle \delta \alpha , \underset{\in \operatorname{ker} \partial}{c} \rangle = \langle \alpha, \partial c \rangle = 0 \) 
+
+    Therefore, we naturally have:
+
+    \[
+        \langle -,- \rangle : H^n X \times H_n X \to \mathbb{Z}
+    \]
+
+    \(\langle [\alpha], [c] \rangle = \langle \alpha , c \rangle\).
+    
+    \subsection*{UCT, Universal Coefficient Theorem}
+
+    This gives us formula of \(H^n X\) in terms of \(H_n X, H_{n-1} X\).
+
+    \begin{theorem}
+        [UCT] If \(H^n X\) is finitely generated \(\forall n\) then there exists (split) SES:
+
+        \[
+            0 \to (\text{torsion } H_{n-1} X) \to H^n X \to (H_n X)^{\ast} \to 0
+        \]
+
+        ie \(H^n X \cong (H_n X)^{\ast} \oplus \text{torsion } H_{n-1} X\).
+    \end{theorem}
+
+    \begin{corollary}
+        If a space has no torsion in its homology (for example \(\mathbb{C} P^n\)) then \(H^n X \cong (H_n X)^{\ast}\). In particular, for \(\mathbb{C} P^n\),
+
+        \[
+            H^{\ast} (\mathbb{C} P^n) = \mathbb{Z} \text{ for } 0 \leq \ast \leq 2n, \ast \text{ even}
+        \]
+
+        Thus, \(H^{\ast} \mathbb{C} P^n \cong H_{\ast} \mathbb{C} P^n\)
+    \end{corollary}
+
+    Example: Consider \(X = S^1 \cup_{z \mapsto z^3} D^2 = e^0 \cup e^1 \cup e^2\).
+    
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[->] (-1,0) -> (1,0);
+            \draw[->] (1,0) -> (0,1.7);
+            \draw[->] (0,1.7) -> (-1,0);
+        \end{tikzpicture}
+    \end{center}
+
+    \(C_\bullet X = \mathbb{Z} \xrightarrow{3} \mathbb{Z} \xrightarrow{0} \mathbb{Z}\)
+
+    \(C^\bullet X = \mathbb{Z} \xrightarrow{3} \mathbb{Z} \xrightarrow{0} \mathbb{Z}\) 
+
+    \(H_{\ast} X = (\mathbb{Z}, \mathbb{Z} / 3, 0, \cdots)\)
+    
+    \(H^{\ast} X = (\mathbb{Z}, 0, \mathbb{Z} / 3)\)
+
+    Thus, the torsion \(H_1 X \cong\) torsion \(H^2 X\).
+    
+    We use this to prove UCT.
+
+    We can have other coefficients. Interestingly, if our coefficients form a field, we don't have to worry about torsion. As a result,
+
+    \(H^{\ast}(X;F) \xrightarrow{\cong} H_{\ast} (X,F)^{\ast}\)
+    
+    \section*{Friday, 4/18/2025}
+    
+    \subsection*{Why Cohomology is bad? Why Cohomology is good?}
+
+    UCT: If \(H_n X\) is f.g. \(\forall n\) then,
+
+    \[
+        H^n X \cong (H_n X)^{\ast} \oplus \operatorname{torsion} H_{n-1} X
+    \]
+
+    Furthermore, the map given by the Kronecker pairing \(H^n X \xrightarrow{kp} (H_n X)^{\ast}\) given by \(\alpha \mapsto \langle \alpha, - \rangle\) is onto.
+
+    The ontoness is true for any \(X\) but the theorem is not.
+
+    Since dual of finite group is \(0\), and dual of free group is free,
+
+    \[
+        H^n X \cong \operatorname{Free}(H_n X) \oplus \operatorname{torsion} (H_{n-1} X)
+    \]
+
+    But this is not canonical: it depends on a choice of basis.
+
+    We will prove this when \(X\) is a finite CW complex.
+
+    \begin{definition}
+        A chain complex \(C_\bullet\) is \underline{finite free} if \(\forall n\, C_n\) is free and \(\bigoplus_{n} C_n\) is f.g.
+
+        eg \(C_\bullet = C_\bullet(X)\) where \(X\) is a fintie CW complex.
+    \end{definition}
+
+    \begin{definition}
+        An elementary chain complex is a chain complex of one of the forms:
+
+        \[
+            0 \to 0 \to \underset{n}{\mathbb{Z}} \to 0 \to 0
+        \]
+
+        \[
+            0 \to  0 \to \underset{n}{\mathbb{Z}} \xrightarrow{d} \underset{n-1}{\mathbb{Z}} \to 0
+        \]
+    \end{definition}
+
+    For example, recall the triangle \(C_\bullet X = \mathbb{Z} \xrightarrow{3} \mathbb{Z} \xrightarrow{0}\mathbb{Z}\). This is the direct sum of:
+
+    \[
+        0 \to 0 \to \mathbb{Z}
+    \]
+
+    \[
+        \oplus
+    \]
+
+    \[
+        \mathbb{Z} \xrightarrow{3} \mathbb{Z} \to 0
+    \]
+
+    \begin{lemma}
+        Any finite free chain complex \(C_\bullet\) is isomorphic to direct sum of elementary chain complexes.
+    \end{lemma}
+
+    \begin{proof}
+        Consider \(C_2 \to C_1 \xrightarrow{\partial_1} C_0\).
+
+        Put \(\partial_1\) in SNF. Choose basis \(\{ e_i \}\) for \(C_1 \cong \mathbb{Z}^n\) and choose basis \(\{ f_j \}\) for \(C_0 \cong \mathbb{Z}^m\) such that the matrix for \(\partial_1\) is \(\begin{bmatrix}
+            d_1 &  &  &  \\
+             & \ddots &  &  \\
+             &  & d_k &  \\
+             &  &  & 0 \\
+        \end{bmatrix} \). 
+        
+        Then \(C_\bullet \cong C_n \to \cdots \to C_2 \to \operatorname{span}\{ \underbrace{e_{k+1}, \cdots , e_n}_{\ker \partial_1} \} \to 0 \oplus\) other stuff.
+        
+        What is other stuff?
+
+        \(\oplus (\mathbb{Z} \xrightarrow{d_i} \mathbb{Z})\)
+        
+        \(\oplus (0 \to \mathbb{Z})\) for the \(f_j\) that don't get hit at all.
+
+        We proceed by induction on the `length' of the chain complex.
+    \end{proof}
+
+    Note that UCT is true for the elementary chain complexes. Recall:
+
+
+    \begin{theorem}
+        [UCT for chanin complex] If \(C_\bullet\) is a finite free chain complex then,
+
+        \[
+            H^n((C_\bullet)^{\ast}) \cong (H_n C_\bullet)^{\ast} \oplus \operatorname{torsion} H_{n-1} (C_\bullet)
+        \]
+    \end{theorem}
+
+    The Lemma \(\implies\) UCT for cc \(\implies\) UCT for finite CW.
+
+    Therefore, cohomology is useless: if we know homology we can calculate the cohomology.
+
+    Now we learn why it is useful.
+
+    \section*{Cohomology ring \(H^{\ast} X\) and \(f:X \to Y\) gives a ring map \(f^{\ast}: H^{\ast} Y \to H^{\ast} X\)}
+
+    We can say \(H^{\ast} X = \bigoplus_{n} H^n X\) is a ring. We have addition. We need multiplication.
+
+    Warm-up: \(S^{\ast} X\) or \(\bigoplus_{n} S^n X\) is a ring.
+
+    We need a \underline{multiplication}. The multiplication is called the cup product.
+
+    Suppose we have \(\sigma : \Delta^n \to X\) where \(n = p+q\). We can break \(\sigma\) to two pieces: the front \(p\) face and the back \(q\) face.
+
+    Front \(p\)-face: \(_p \sigma: \Delta^p \to X\): append \(0\)'s at the back.
+    
+    Back \(q\)-face: \(\sigma_q: \Delta^q \to X\) : append \(0\)'s at the front.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/frontback}
+    \end{figure}
+
+    \(_2 \sigma  = \sigma, \sigma_2 = \sigma\) 
+
+    \(_0 \sigma , _1 \sigma , \sigma_0, \sigma_1\).
+
+    Then we can define:
+
+    \begin{definition}
+        [Cup Product]
+
+        \[
+            \underset{\alpha}{S^p X} \times \underset{\beta}{S^q X} \to S^{p+q} X = \operatorname{Hom}(S_{p+q}, X)
+        \]
+
+        \[
+            (\alpha \cup \beta)(\sigma) \coloneqq \alpha(_1 \sigma) \beta(\sigma_q)
+        \]
+
+        \(S^{\ast} X\) is a graded ring with unit.
+
+        eg \(1 \in S^0 X, 1(\sigma) = 1, 1 \left( \sum_{i} n_i \sigma_i \right) = \sum_{i} n_i\). \(1\) is \(\epsilon\) the augmentation map.
+    \end{definition}
+
+    \((S^{\ast} X = \bigoplus_{n} S^n X, 0,1,+,\cup)\) is a ring.
+
+    Graded means \((S^n X, 0, +)\) is an abelian group.
+
+    \((S^p X) \cup S^q X \subset S^{p+q} X\).
+
+    \begin{lemma}
+        [3.6 Hatcher] \(\delta(\alpha \cup \beta) = (\delta \alpha) \cup \beta + (-1)^p \alpha \cup (\delta \beta)\) 
+    \end{lemma}
+
+    \begin{corollary}
+        \begin{enumerate}[label=\arabic*)]
+            \item (coboundary) \(\cup\) (cocycle) is coboundary.
+            \item (cocycle) \(\cup\) (coboundary) is coboundary. 
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item \((\delta \alpha) \cup \beta = \delta \alpha \cup \beta + (-1)^p (\alpha \cup \delta \beta) = \delta(\alpha \cup \beta)\).
+            \item Similar.  
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{corollary}
+        We can define \(H^p X \times H^q X \to H^{p+q} X\) by \([\alpha] \cup [\beta] \mapsto [\alpha \cup \beta]\). Corollary is that this is well defined. This follows from the previous corollary.
+    \end{corollary}
+
+    \section*{Monday, 4/21/2025}
+    
+    We continue cup product.
+
+    \(H^p X \times H^q X \to H^{p+q} X\) 
+
+    \([\alpha] \cup [\beta] = [\alpha \cup \beta]\) 
+
+    \(S^p X \times S^q X \to S^{p+q} X = \operatorname{Hom}(S_{p+q} X, \mathbb{Z})\)
+
+    For \(\sigma: \Delta^{p+q} \to X\) define:
+
+    \((\alpha \cup \beta)(\sigma) = \alpha(_p \sigma) \beta(\sigma_q)\) 
+
+    Front \(p\)-face \(_p \sigma: \Delta^p \to X\) 
+
+    \(_p \sigma(t_0, \cdots , t_p) = \sigma(t_0, \cdots , t_p, 0, \cdots, 0)\)
+
+    back \(q\)-face \(\sigma_q: \Delta^q \to X\)
+    
+    \(\sigma_q(t_0, \cdots , t_q) = \sigma(0, \cdots , 0, t_0, \cdots , t_q)\)
+
+    If \(R\) is a commutative ring, then \(H^{\ast} (X;R)\) and \(S^{\ast} (X;R)\) is a ring.
+
+    To see \(\cup\) is well-defined on \(H^{\ast}\) we need to show it is independent of choice in \([\alpha], [\beta]\). This follows from lemma 3.6 in Hatcheer: \(\delta(\alpha \cup \beta) = \delta \alpha \cup \beta + (-1)^p \alpha \cup \delta \beta\).
+
+    \begin{proof}
+        Apply \(3\)-terms to \(\sigma: \Delta^{p+q+1} \to X\) and compute.
+
+        \((\delta(\alpha \cup \beta ))(\sigma) = (\alpha \cup \beta)(\partial \sigma) = \alpha(_p \partial \sigma) \beta(\partial \sigma_q)\) 
+
+        \((\delta \alpha \cup \beta)(\sigma) = (\delta \alpha)(_{p+1}\sigma) \beta(\sigma_q)=\alpha(\partial _{p+1}\sigma) \beta(\sigma_q)\)
+        
+        \[
+            = \alpha \left( \sum_{i=0}^{p+1} (-1)^i (_{p+1}\sigma \circ \delta^i) \right) \beta(\sigma_q)
+        \]
+        \[
+            = \sum_{i=0}^p (-1)^i \alpha(_{p+1}\sigma \circ \delta^i) \beta(\sigma_q) + (-1)^{p+1} \alpha(_p \sigma) \beta(\sigma_q) 
+        \]
+
+        Calculate everything like this and it cancels out.
+    \end{proof}
+
+    Now we talk about how a map of spaces give us a ring map on the cohomology.
+
+    If \(f: X\to Y\) is continuous map of spaces we have a induced ring map \(H^{\ast} (f)= f^{\ast} H^{\ast} (Y) \to H^{\ast} (X)\).
+
+    To see this, we note first that we have a induced ring map \(f^\# : S^{\ast} Y \to S^{\ast} X\).
+
+    Clearly \(f^\# (0) = 0\). \(f^\# (\alpha + \beta) = f^\# \alpha + f^\# \beta\).
+
+    \(f^\# (1_Y) = ? 1_Y \in S^0 Y, 1_Y(\text{point}) = 1\). Thus \((f^\# 1_Y)(\sigma) = 1_Y(\sigma \circ f) = 1 = 1_X(\sigma)\)
+    
+    Thus, \(f^\# 1_Y = 1_X\).
+
+    Now, \((f^\# (\alpha \cup \beta))\sigma  = (\alpha \cup \beta)(\sigma \circ f) = \alpha(_p (\sigma \circ f))\beta ((\sigma \circ f)_q) = \alpha (_p \sigma \circ f) \beta(\sigma_q \circ f) = ((f^\# \alpha)(_p \sigma))((f^\# \beta)(\sigma_q)) = (f^\# \alpha \cup f^\# \beta)(\sigma)\).
+
+    Now we switch to the graded commutative part.
+
+    \(H^{\ast} X\) graded commutative.
+
+    \begin{theorem}
+        \(a \in H^p X, b\in H^q X \implies a\cup b = (-1)^{pq} b \cup a\).
+    \end{theorem}
+
+    As a consequence, if \(p\) is odd, \(a\in H^p X \implies a\cup a - a\cup a \implies 2(a\cup a)\). So torsion \(2\).
+
+    eg \(a\in H H^1(S^1 \times S^1) \implies a\cup a = 0\) since \(H^2(S^1 \times S^1)\) is torsion free.  
+
+    DK proves this using acyclic models.
+
+    Hatcher proves it using formulas.
+
+    \begin{proof}
+        Outline of Hatcher's Proof.
+
+        Step 1: Define a chain map \(\rho: S^\bullet X \to S^\bullet X\).
+
+        \(\sigma: \Delta^n \to X\) 
+
+        \(\rho(\sigma) = (-1)^{\frac{n(n+1)}{2}}\overline{\sigma}\) 
+
+        \(\overline{\sigma}(t_0, \cdots , t_n) \coloneqq \sigma(t_n, \cdots , t_0)\)
+
+        Step 2: \(\rho\) and \(\operatorname{id}\) are chain homotopic. Meaning, \(\rho - \operatorname{id} = \partial P + P \partial\) where \(P: S^n X \to S^{n+1} X\).
+
+        Step 3: Compute \((\alpha \cup \beta)(\rho \sigma) \pm (\beta \cup \alpha)(\sigma)\).
+        
+        Then \([(\alpha \cup \beta)(\text{cocycle})] = [(\alpha \cup \beta)(\rho(\text{cocycle}))] = \pm[(\beta \cup \alpha)(\text{cocycle})]\) 
+        
+    \end{proof}
+
+    Question: WHY is \(H^{\ast} X\) a ring but \(H_{\ast} X\) isn't?
+
+    Answer: There is no interesting map \(X \times X \to X\) but the diagonal map \(\Delta : X \to X \times X\) given by \(\Delta(x) = (x,x)\) is interesting.
+
+    \[
+        \begin{tikzcd}
+            H^{\ast} (X \times X) \ar[r,"\Delta^{\ast}"] & H^{\ast} X \\ H^{\ast} X \otimes H^{\ast} X \ar[u] \ar[ru, "\cup"]
+        \end{tikzcd}
+    \]
+
+    Consequently, for topological groups homology have ring structure.
+
+    \begin{remark}
+        If \(X\) is CW eg \(X = \Delta^n\) then X\( \xrightarrow{\Delta} X \times X\) is not cellular but \(\simeq\) to a cellular map. `diagonal approximation' \(\leftrightarrow _p \sigma\) and \(\sigma_q\). 
+    \end{remark}
+
+    \section*{Wednesday, 4/23/2025}
+    
+    Cohomology of Sphere is not interesting.
+
+    \(H^{\ast} (S^n) = \left\{ \underset{1}{\mathbb{Z}}, 0, \cdots , 0, \underset{\mu}{\mathbb{Z}}, 0, \cdots \right\}\) 
+
+    \(1 \cup \mu = \mu\) 
+
+    \(H^{\ast} (S^n) = \frac{\mathbb{Z}[\mu]}{\mu^2}\)
+
+    Lets move on to torus.
+
+    \(T^2 = S^1 \times S^1\) 
+
+    \(H_{\ast} T = \{ \mathbb{Z} , \mathbb{Z} \oplus \mathbb{Z} , \mathbb{Z} , 0, \cdots \} \) 
+
+    \(H^{\ast} T = \{ \mathbb{Z} , \mathbb{Z} \oplus \mathbb{Z} , \mathbb{Z} , 0, \cdots  \} \) 
+
+    \(a \cup a = 0\) so only mystery is \((1,0)\cup (0,1)\) in a sense.
+
+    We take the \(\Delta\)-complex.
+
+    % picture
+
+    \(H_{\ast} T = \{ \mathbb{Z} , \underset{[x]}{\mathbb{Z}} \oplus \underset{[y]}{\mathbb{Z}}, \underset{L-U}{\mathbb{Z}}, 0, \cdots\}\)
+    
+    \(H^{\ast} T = \left\{ \mathbb{Z}, \underset{a}{\mathbb{Z}} \oplus \underset{b}{\mathbb{Z}}, o \right\} \) 
+
+    \(a[x] = \langle a, [x] \rangle = 1\) 
+
+    \(\langle a, [y] \rangle = 0\) 
+
+    \(\langle b, [x] \rangle = 0\) 
+
+    \(\langle b, [y] \rangle = 1\)
+
+    \((\alpha \cup \beta)(U) = \alpha(_1 U)\beta(U_1) = \alpha(y) \beta(x) = 0 \cdot 0 = 0\).
+
+    \((\alpha \cup \beta)(L) = \alpha(_1 L) \beta(L_1) = \alpha(x) \beta(y) = 1 \cdot 1 \equiv  1 \)
+    
+    \(H^{\ast} T^2 = \frac{\mathbb{Z} [a,b]}{a^2, b^2, ab+ba} = \Lambda_\mathbb{Z} (a,b)\) exterior algebra.
+    
+    \(a\cup b = [\alpha] \cup [\beta] = [\gamma]\)
+    
+    Application 1: \(T^2 \not\simeq S^1 \vee S^1 \vee S^2\). Idea: the right one has no natural coop produts.
+
+    Application 2: \(T^2 \to S^2\) induces map on \(\widetilde{H}^{\ast}, \widetilde{H}_{\ast}\) 
+
+    \(f: H^{\ast}(T^2) \to H^{\ast} (S^2)\) 
+
+    \(f^{\ast} (w) = f^{\ast} (a\cup b) = f^{\ast} (a) B))\) 
+
+    can't keep up
+
+    Lemma:
+
+    i: \(H^{\ast} (X \coprod Y) = H^{\ast} X \times H^{\ast} Y\) ring product
+
+    ii: \(H^{\ast} (X\vee Y) = \frac{H^{\ast} X \times H^{\ast} Y}{1_X - 1_Y}\)
+    
+    iii \(c\in H^i X \hookrightarrow H^i(X \vee Y), d\in H^j Y \hookrightarrow 0\). Then \(c \cdot d = 0\) 
+
+    Then \(c \cdot d = 0\)
+
+    \begin{proof}
+        i: \(\widetilde{H}^{\ast} (X \vee Y) \underset{\text{group}}{=} \widetilde{H}^{\ast} X \oplus \widetilde{H}^{\ast} Y\) 
+    \end{proof}
+
+    Sorry LMAO
+
+    \section*{Friday, 4/25/2025}
+    
+    We continue on with the \(2\)-torus.
+
+    \(H^{\ast} T^2 = \{ \underset{1}{\mathbb{Z}}, \underset{a}{\mathbb{Z}} \oplus \underset{b}{\mathbb{Z}} , \underset{a\cup b = \mu}{\mathbb{Z}} , 0, \cdots \} \) 
+
+    \(H_{\ast} T^2 = \{ \underset{p t}{\mathbb{Z}}, \underset{x}{\mathbb{Z}} \oplus \underset{y}{\mathbb{Z}}, \underset{[T^2]}{\mathbb{Z}}, 0, \cdots \} \) 
+
+    We want to make sure, that by kronecker pairing, \(x,y\) is the dual basis of \(a,b\).
+
+    We also have: \(\langle \mu, [T^2] \rangle = 1\) by kronecker pairing. \(\mu [T^2] = 1\).
+    
+    Geometrically: setting the torus as \(T^2 = S^1 \times S^1\) given by \((e^{i 2\pi \theta}, e^{i 2\pi \lambda})\) and \(a = d \theta, b = d \lambda\). The cup product is the wedge product of these two.
+
+    \(\langle a,x \rangle = \int_x a\).
+
+    \begin{corollary}
+        \(T^2 \not\simeq S^1 \vee S^1 \vee S^2\) even though the have same \(H_{\ast}, H^{\ast}_{\text{grp}}\).
+
+        They have different cohomology rings.
+    \end{corollary}
+
+    We try to make it a little bit more precise.
+    \begin{lemma}
+        \begin{enumerate}[label=\roman*)]
+            \item \(H^{\ast} (X\coprod Y) \to H^{\ast} X \times H^{\ast} Y\) is isomorphism. This is in fact a cohomology ring isomorphism.
+            \item If \(x_0 \in X\) and \(y_0 \in Y\) have contractible neighborhoods (non-degenerate base points) then we have a map induced by the quotient map \(H^{\ast} (X \vee Y) \to H^{\ast} (X\coprod Y)\) is a ring map and a group isomorphism in degrees \(\ast > 0\).
+        \end{enumerate} 
+    \end{lemma}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Clear
+            \item Clear from MVES (which we can apply from contractible neighborhood) 
+        \end{enumerate} 
+    \end{proof}
+
+    \(X \leftrightarrow X \vee Y \leftrightarrow Y\), both retracts.
+
+    Claim: suppose \(c\in H^i X, d\in H^j Y, i,j > 0\). Then, \(i^{\ast}_X c \cup i^{\ast}_Y d = 0\). Thus \(S^1 \vee S^1 \vee S^2\) has no nontrivial cup products [we pass to the product, and \((c,0) \cup (0,d) = (0,0)\)].
+
+    \begin{corollary}
+        Any map  \(f: S^2 \to T^2\) is trivial on \(\widetilde{H}^{\ast}\) [and by UCT on \(\widetilde{H}_{\ast}\)]
+    \end{corollary}
+
+    \begin{proof}
+        \(f^{\ast} \mu = f^{\ast} (a\cup b) = f^{\ast} (a) \cup f^{\ast} (b) = 0 \cup 0 = 0\) so it is trivial on \(H^2\).
+
+        Trivial on \(H^1\) since it is \(0\).
+
+        UCT \(\implies\) homology is dual to cohomology. Also true for maps: \(H_2 S^2 \to H_2 T^2\) and \(H^2 T^2 \leftarrow H^2 T^2\) are dual. Dual of \(0\) map is \(0\) map.
+    \end{proof}
+
+    Note: there exists a nontrivial map \(T^2 \to S^2\). We quotient by the boundary: \(T^2 \to (T^2) / (T^2)^1 = S^2\). In fact this is an isomorphism.
+
+    This is called the \underline{degree one collapse map}. Take \(2\)-manifold, take a little disk \(D^2\) inside, take \(D^2 / \partial D^2 \cong S^2\). This is \(H_2\).
+
+    Now, let \(\Sigma_g\) be the closed surface of genus \(g\). In other words:
+
+    \[
+        \Sigma_g = \underbrace{T^2 \# \cdots \# T^2}_{g \text{-torii}} 
+    \]
+
+    Question: \(H^{\ast} (\Sigma_g) = ?\) 
+
+    Note: \(H_{\ast} \Sigma_g = \{ \mathbb{Z} , \mathbb{Z}^{2g}, \mathbb{Z}, 0, \cdots \}\)
+
+    Thus \(H^{\ast} \Sigma_g = \{ \mathbb{Z} , \mathbb{Z}^{2g}, \mathbb{Z}, 0, \cdots \}\) by UCT. We don't have the ring structure.
+
+    \(H_1(\Sigma_g) = \underset{x_1}{\mathbb{Z}} \oplus \underset{y_1}{\mathbb{Z}} \oplus  \cdots \oplus \underset{x_g}{\mathbb{Z}} \oplus \underset{y_g}{\mathbb{Z}}\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/geng}
+    \end{figure}
+
+    take dual basis: \(H^1(\Sigma_g) = \underset{a_1}{\mathbb{Z}} \oplus \underset{b_1}{\mathbb{Z}} \oplus \cdots \oplus \underset{a_g}{\mathbb{Z}} \oplus \underset{b_g}{\mathbb{Z}}\)
+
+    \begin{corollary}
+        \(a_1 \cup b_1 = \cdots = a_g\cup b_g\) and the answer is a generator of \(H^2\) [say \(\mu\)]
+
+        \(a_i \cup a_j = 0, b_i \cup b_j = 0, i\neq j \implies a_i \cup b_j = 0\) 
+    \end{corollary}
+
+    Then the matrix of bilinear product is given by:
+
+    \[
+        \begin{bmatrix}
+            0 & 1 &  &  &  &  &  \\
+            -1 & 0 &  &  &  &  &  \\
+             &  & 0 & 1 &  &  &  \\
+             &  & -1 & 0 &  &  &  \\
+             &  &  &  & \ddots &  &  \\
+             &  &  &  &  & 0 & 1 \\
+             &  &  &  &  & -1 & 0 \\
+        \end{bmatrix} 
+    \]
+
+    \[
+        \begin{tikzcd}
+            \Sigma_g \ar[r,"\psi"] & T^2 \vee \cdots \vee T^2 \\ & T_2 \coprod \cdots \coprod T^2 \ar[u,"\phi"]
+        \end{tikzcd}
+    \]
+
+    We collapse the joining ring between torii to get \(\psi\). The result is:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/collapsed}
+        \caption{\(\psi(\Sigma_g)\)}
+    \end{figure}
+
+    MV \(\implies \psi , \phi\) give hisomorphism on \(H_1, H^1\).
+
+    MV \(\implies H^2(\phi)\) isomorphism.
+
+    We have the map:
+
+    \[
+        H^2(\Sigma_g) \leftarrow H^2(T^2 \vee \cdots \vee T^2)
+    \]
+
+    \[
+        \mathbb{Z} \xleftarrow{[1 \cdots 1]} \mathbb{Z}^g
+    \]
+
+    Suppose basis of \(H^2(\Sigma_g)\) is \(a_i \cup b_i\), basis of \(H^2(T^2 \vee \cdots \vee T^2)\) be \(a_i ^{\prime} \cup b_i^{\prime}\)
+    and \(H_2(T^2 \coprod \cdots \coprod T^2)\) be \(a_i^{\prime\prime}\cup b_i^{\prime\prime}\).
+    
+    Basis of \(\mathbb{Z}^g\) is given by \(a_i ^{\prime\prime} \cup b_i^{\prime\prime}\).
+
+    Then we have: since \(H^2\) is contravariant: \(\mu \mapsfrom a_i^{\prime} \cup b_i^{\prime} \mapsto a_i ^{\prime\prime} \cup b_i^{\prime\prime}\)
+
+    \section*{Monday, 4/28/2025}
+    
+    Other computations of \(H^{\ast} T\) 
+
+    K\"unneth Theorem
+    Poincar\'e duality
+
+    If \(A^{\ast}\) and \(B^{\ast}\) are graded commutative rings, then so is \(A^{\ast} \otimes B^{\ast}\).
+
+    Also, \((A^{\ast} \otimes B^{\ast})^n = \bigoplus_{i+j = n} A^i \otimes B^j\).
+
+    \((a \otimes b)(a^{\prime} \otimes b^{\prime}) =(-1)^{\vert a^{\prime} \vert \vert b \vert} aa^{\prime} \otimes b b^{\prime}\), extended linearly to the whole ring.
+
+    We have map of graded commutative ring:
+
+    \[
+        H^{\ast} X \otimes H^{\ast} Y \to H^{\ast} (X \times Y)
+    \]
+
+    \[
+        a \otimes b \mapsto P_X^{\ast} (a) \cup P_Y^{\ast} (b)
+    \]
+
+    We like to think about this as an isomorphism (even though it's not).
+
+    \begin{theorem}
+        [K\"unneth Theorem] If \(X\) and \(Y\) are finite CW complexes,
+
+        \begin{itemize}
+            \item the above map is injective
+            \item isomorphism if \(H^i X, H^j Y\) are free for all \(i,j\). 
+        \end{itemize} 
+    \end{theorem}
+
+    \(H^{\ast} (S^1 \times S^1) \cong H^{\ast} S^1 \otimes H^{\ast} S^1 = \frac{\mathbb{Z}[a]}{a^2} \otimes \frac{\mathbb{Z}[b]}{b^2} = \Lambda(a,b)\) 
+
+    Recall \(H^{\ast} (X;R)\) is a ring as long as \(R\) is a commutative ring. In the case \(R = \mathbb{Q}\), the betty numbers:
+
+    \[
+        \beta_n(X \times Y) = \sum_{i+j=n} \beta_i(X) \beta_j(Y)
+    \]
+
+    Where \(\beta_i X = \dim_{\mathbb{Q}} H_{i}(X;\mathbb{Q}) = \operatorname{rank} H_i X\) 
+
+    \subsection*{Poincar\'e Duality}
+
+    \begin{definition}
+        \(M\) is a (topological) \(n\)-manifold if \(\forall p\in M, \exists\) neighborhood \(U \cong \mathbb{R}^n\).
+
+        eg \(T^2\) is a \(2\)-manifold.
+
+        We assume \(M\) is connected and compact. This is sometimes called closed.
+    \end{definition}
+
+    Let \(A,B,C\) be \(R\)-modules.
+
+    \begin{definition}
+        [Perfect Pairing] A perfect pairing is a bilienar map \(\beta : A \times B \to C\) such that the corresponding adjoint maps \(A \to \operatorname{Hom}_R(B,C)\) and \(B \to \operatorname{Hom}_R(A,C)\) are isomorphisms.
+        
+        Note: obviously, \(a \mapsto \beta(a,-), b \mapsto \beta(-,b)\).
+    \end{definition}
+
+    In algtop we traditionally write \(\mathbb{F}_2 = \mathbb{Z} / 2\). There are two duality theorems: one with \(\mathbb{F}_2\) and one with \(\mathbb{Z}\).
+
+    \begin{theorem}
+        [Poincar\'e Duality]
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(H_n(M, \mathbb{F}_2) = \mathbb{F}_2\). Call generator `fundamental class' which we write as \([M] = H_n(M; \mathbb{F}_2)\). It is the `sum' of all top dimensional simplices.
+            \item `Intersection Pairing' is a perfect pairing: \(I: H^i(M; \mathbb{F}_2) \times H^{n-i} (M; \mathbb{F}_2) \to \mathbb{F}_2\) where \(I(a,b) = \langle a \cup b, [M] \rangle\).
+            \item \(H_i(M;\mathbb{F}_2) \cong H^{n-i} (M, \mathbb{F}_2)\) 
+            \item \(H_i(M, \mathbb{F}_2) \cong H_{n-i} (M, \mathbb{F}_2)\).
+        \end{enumerate} 
+
+        Note: iii \(\iff\) iv by UCT since \(\mathbb{F}_2\) is a field.
+    \end{theorem}
+
+    \begin{corollary}
+        Corollary to ii: \(H^{\ast} (T^2;\mathbb{F}_2) = \frac{\mathbb{F}_2[a,b]}{(a^2 = 0, b^2 = 0)}\).
+    \end{corollary}
+
+    \begin{theorem}
+        \(H^{\ast} (\mathbb{R} P^{\infty}; \mathbb{F}_2) = \mathbb{F}_2[a], \vert a \vert = 1\)
+        
+        \(H^{\ast} (\mathbb{R} P^n; \mathbb{F}_2) = \frac{\mathbb{F}_2[a]}{a^{n+1}}\) [truncated polynomial ring] 
+
+        Recall: \(\mathbb{R} P^{\infty} = e^0 \cup e^1 \cup e^2 \cup\cdots \) 
+    \end{theorem}
+
+    \begin{proof}
+        Poincar\'e Duality and induction on \(n\). We use ii.
+
+        True for \(n=1\) since \(\mathbb{R} P^1 = S^1\).
+
+        Assume true for \(n-1\). 
+
+        \(\mathbb{R} P^{n-1} \hookrightarrow \mathbb{R} P^n\).
+
+        Thus \(i^{\ast} : H^j(\mathbb{R} P^n; \mathbb{F}_2) \to H^j(\mathbb{R} P^{n-1} ; \mathbb{F}_2)\).
+        
+        Claim: this is an isomorphism for \(j < n\).
+
+        Proof: \(C_\bullet(\mathbb{R} P^{n-1}; \mathbb{F}_2) = \mathbb{F}_2 \xrightarrow{0} \mathbb{F}_2 \xrightarrow{0} \mathbb{F}_2 \to \cdots\), same for \(\mathbb{R} P^n\). So, the chain complexes are the same up to \(n - 1\).
+        
+        \[
+            \begin{tikzcd}
+                & \mathbb{F}_2 \ar[r,"0"] \ar[d,"\cong"] & \mathbb{F}_2 \ar[r] \ar[d,"\cong"] & \cdots \ar[r] & \mathbb{F}_2 \ar[d,"\cong"] \\
+                \mathbb{F}_2 \ar[r,"0"] & \mathbb{F}_2 \ar[r,"0"] & \mathbb{F}_2 \ar[r] & \cdots \ar[r] & \mathbb{F}_2
+            \end{tikzcd}
+        \]
+
+        \(0 \neq a \in H^i(\mathbb{R} P^n; \mathbb{F}_2)\)
+
+        \(a^{n-1} \neq 0\) by \(\operatorname{inc}^{\ast}\) and induction.
+
+        \(a^n \neq 0\) by ii P.D.
+
+        \(I: H^1(\mathbb{R}P^n; \mathbb{F}_2) \times H^{n-1} (\mathbb{R} P^n; \mathbb{F}_2) \to \mathbb{F}^2\) by \((a, a^{n-1}) \neq 0\) 
+    \end{proof}
+
+    Corollary: \(\not\exists r: \mathbb{R} P^n \to \mathbb{R} P^{n-1}\) which is isomorphism on \(\pi_1\).
+
+    \begin{proof}
+        Assume \(r\) exists. Then \(r\) is isomorphism on \(\pi_1\).
+
+        Then \(r_{\ast}\) is isomorphism on \(H_1(;\mathbb{F}_2)\), abelianization
+
+        Then \(r^{\ast}\) is iso on \(H^1(;\mathbb{F}_2)\), dual
+
+        \(0 = r^{\ast} (0) = r^{\ast}(a^n) = r^{\ast} (a)^n \neq 0\). Contradiction.
+
+    \end{proof}
+
+    See eimilarity: any \(S^2 \to T^2\) is trivial on \(\widetilde{H}_{\ast}\).
 
 \end{document}
