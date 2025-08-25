@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs, xurl}
 \usetikzlibrary{arrows}
 \usepackage{geometry}
     \geometry{
@@ -36,6 +36,140 @@
 
     \section*{Monday, 8/25/2025}
     
+    Textbook: The Rising Sea.
+    
+    Link: \url{https://math.stanford.edu/~vakil/216blog/FOAGjul2724public.pdf}
+
+    It's basically an introduction to the scheme point of view for algebraic geometry.
+
+    Grothendieck POV: if we get the definitions right, hard problems will become easier. We are trying to get the definition here.
+
+    \section*{Motivation / A Pseudo History}
+
+    Let \(X\) be a topological space (Compact, Hausdorff).
+
+    \(C(X)=\) ring of real-valued continuous functions.
+
+    Question: What are the maximal ideals of \(C(X)\)?
+
+    Fact: TFAE: given a ring \(A\),
+
+    \begin{enumerate}[label=\roman*)]
+        \item \(I\) is maximal among proper ideals of \(A\)
+        \item \(A / I\) is a field
+        \item There exists a surjective homomorphism from \(A\) to a field \(F\), \(\phi : A \to F\) such that \(I = \ker \phi\)  
+    \end{enumerate} 
+
+    If \(x_0\in X\), we have the ring homomorphism \(\operatorname{eval}_{x_0}: f \mapsto f(x_0)\).
+
+    This is an \(\mathbb{R}\)-linear map.
+
+    This is also obviously surjective.
+
+    Thus, \(\ker \operatorname{eval}_{x_0} = \left\{ f\in C(x) \mid f(x_0) = 0 \right\}\). This is a maximal ideal. In fact,
+
+    \begin{theorem}
+        All maximal ideals of \(C(X)\) are of the form \(\ker \operatorname{eval}_{x_0}\).
+    \end{theorem}
+
+    \begin{proof}
+        Suppose not. Let \(\phi : C(X) \to F\) be a surjective homomorphism to a field, and let \((f_1, f_2, f_3, \cdots) = \ker \phi\).
+        
+        If \(\ker \phi \neq \ker \operatorname{eval}_{x_0} \implies \exists f_{x_0}\in \ker \phi\) such that \(f_{x_0}(x_0)\neq 0\). This is true for each point \(x_0\in X\).
+
+        Therefore, \(f_{x_0}(x)\neq 0\) for all \(x\in U_{x_0}\) where \(U_{x_0}\) is an open neighborhood of \(x_0\).
+
+        Since \(X\) is compact, there is \(x_1, \cdots , x_n \in X\) so that \(U_{x_j}\) cover \(x\).
+
+        \(f_1, \cdots , f_n \in \ker \phi\) such that \(f_i(x) \neq 0 \forall x\in U_{x_i}\).
+
+        Then \(f(x) \coloneqq \sum_{i} f_i^2(x) > 0\) for all \(x\in X\). Then \(\frac{1}{f}\in C(X) \implies 1\in \ker \phi\). Contradiction!  
+    \end{proof}
+
+    Given \(f\in C(X)\) define \(Z(f) = f ^{-1} (0)\). This is a closed subset of \(X\).
+    
+    We can do abuse of notation and say \(X = \operatorname{Max}(C(X))\).
+
+    Then \(Z(f) = \left\{ \mathfrak{m} \in \operatorname{Max} (C(X)) \mid f\in \mathfrak{m} \right\} \) 
+
+    Then, \(Z(f)^c\) open in \(X\)
+
+    \(= \left\{ \mathfrak{m} \in \operatorname{Max} (C(X)) \mid f\notin \mathfrak{m} \right\} \) 
+
+    We have successfully turned a topological space into a ring.
+
+    If we have \(X \xrightarrow{cont} Y\) we have \(C(Y) \to C(X)\).
+
+    Instead of arbitrary topological spaces, now we focus on \(\mathbb{C}^n\).
+
+    Lets look at polynomials \(\mathbb{C}^n \to \mathbb{C}\).
+
+    Ring of polynomial functions is \(\mathbb{C} [x_1, \cdots , x_n]\).
+
+    \begin{theorem}
+        [Weak Hilbert Nullstellensatz] Maximal ideals of this ring are exactly the kernels of evaluation maps at points \((a_1, \cdots , a_n) \in \mathbb{C}^n\).
+    \end{theorem}
+
+    Note that \(x_1 - a_1, \cdots , x_n - a_n\in \ker \operatorname{eval}_{(a_1, \cdots , a_n)}\). In fact, \(\ker \operatorname{eval}_{(a_1, \cdots , a_n)} = (x_1 - a_1, \cdots , x_n - a_n)\).
+
+    \begin{proof}
+        WLOG \(a_1 = \cdots = a_n = 0\). Then \(\ker \operatorname{eval}_{(0,\cdots ,0)}\) are exactly the polynomial with no constant term, which is exactly \((x_1, \cdots , x_n)\).
+    \end{proof}
+
+    Now we prove weak Nullstellensatz.
+
+    \begin{proof}
+        Let \(\mathfrak{m} \subset \mathbb{C} [x_1, \cdots , x_n]\) be a maximal ideal. Then \(F = \mathbb{C}[x_1, \cdots , x_n] / \mathfrak{m}\) is a field extension of \(\mathbb{C}\). So, \(F\) is transcendental. Choose \(x\in F \setminus \mathbb{C}\). Then \(x\) generates a subfield \(\mathbb{C} (x)\).
+
+        Then, \(\dim _{\mathbb{C} \text{-v.s.}} \mathbb{C}(x)\) is uncountable. To prove this, note that \(\left\{ \frac{1}{x-c} \mid c\in \mathbb{C} \right\}\) are linearly independent.
+        
+        However, \(\dim_{\mathbb{C}\text{-v.s.}} \mathbb{C}[x_1, \cdots, x_n]\) is countable. 
+    \end{proof}
+
+    Given a system of polynomial equations:
+
+    \(f_1 (x_1, \cdots , x_n) = 0\)
+    
+    \(\vdots\)
+    
+    \(f_m(x_1, \cdots , x_n) = 0\) 
+
+    Find or describe the set of complex solutions.
+
+    We want to find all \(\mathfrak{m} \in \operatorname{Max} (\mathbb{C} [x_1, \cdots , x_n])\) such that \(f_1, \cdots , f_m \in \mathfrak{m}\).
+
+    Define \(I = (f_1, \cdots , f_m)\). Then, we want \(\{ \mathfrak{m} \mid I \subset \mathfrak{m} \}\).
+
+    We have turned the problem of finding solutions to finding maximal ideal containing a certain ideal.
+
+    From the theorem about order preserving bijection of ideal containing ideal and quotient,
+
+    We want all maximal ideals \(\overline{\mathfrak{m}}\) in \(\mathbb{C} [x_1, \cdots , x_n] / I\).
+
+    We want to do the most general thing. There is nothing special about polynomials!
+
+    Let \(A\) be a commutative ring.  We think of \(\operatorname{Max}(A)\) as the associated space.
+
+    \textbf{If somebody gives us a ring \(A\), we want to think of it as a ring of function on a space. \(\operatorname{Max}(A)\) is that space.}
+
+    There is a problem with this idea: We would like to be able to go from \(\operatorname{Max}(A) \to \operatorname{Max}(B)\) whenever we have a ring homomorphism \(f: B \to A\).
+
+    Suppose \(\mathfrak{m} \subset A\). We want t have \(f ^{-1} (\mathfrak{m})\). We want this to be maximal. It is not always maximal!
+    
+    Suppose we have a homomorphism \(\mathbb{C} [x] \hookrightarrow \mathbb{C} (x)\).
+
+    There is only one maximal ideal on \(\mathbb{C}(x)\). It is \((0)\). Then \(f ^{-1} ((0)) = (0)\) but \((0)\) is not a maximal ideal in \(\mathbb{C}[x]\).
+
+    The solution is to not use \(\operatorname{Max}(A)\), but rather \(\operatorname{Prime}(A)\).
+
+    Let \(f: B \to A\) be a homomorphism and let \(P \subset A\) be a prime ideal.
+
+    Claim: \(f^{-1} (P)\) is also prime.
+
+    Proof: \(xy\in f ^{-1} (P) \implies f(xy)\in P \implies f(x)f(y)\in P \implies f(x) \in P \lor f(y)\in P \implies x\in f ^{-1} (P) \lor y\in f ^{-1} (P)\).
+
+    This works! But how does this mess up the space? What additional points do we have?
+
     
 
 \end{document}
