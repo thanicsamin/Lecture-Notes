@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 40mm,
+        top = 20mm,
+        right = 40mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{remark}{Remark}
+
+\title{M623 Geometric Topology I}
+\author{Thanic Nur Samin}
+\date{}
+
+
+\begin{document}
+    \maketitle
+
+    \section*{Monday, 8/25/2025}
+
+    Textbook: \textit{Characteristic Classes} by Milnor and Stasheff. Hereafter referred by MS.
+
+    \underline{Read Chapter 1 and 2 of MS.}
+
+    \begin{definition}
+        [\(n\)-manifold]
+
+        Two different variants: embedded and abstract.
+
+    
+
+        Abstract: \((M, \mathcal{A})\) where \(\mathcal{A}\) is an atlas.
+    \end{definition}
+
+    Embedded: \(M \subset \mathbb{R}^A\). Here, \(A =\) index set, \(\mathbb{R}^A = \text{func}(A,\mathbb{R})\) with the product topology.
+
+    \(M\) Hausdorff space, \(U \subset M\) open, \(V \subset \mathbb{R}^n\) open.
+        
+    Chart \(\phi : U \xrightarrow{\approx} V\) homeomorphism.
+
+    Parameterization (ptz) \(h: V \xrightarrow{\approx} U\)
+
+    We want some calculus.
+
+    Let open \(V \subset \mathbb{R}^n\).
+
+    A function \(f: V \to \mathbb{R}\) is \textit{smooth} if all partials of all orders exist: \(\frac{\partial^k f}{\partial x_{i_1} \cdots \partial x_{i_{p}}}\).
+
+    \(f: V \to \mathbb{R}^A\) is \textit{smooth} if \(f_\alpha\) smooth \(\forall \alpha \in A\).
+
+    \[
+        \begin{tikzcd}
+            V \ar[rr, bend right,"f_\alpha"'] \ar[r,"f"] & \mathbb{R}^A \ar[r,"pr_{\alpha}"] & \mathbb{R}
+        \end{tikzcd}
+    \]
+
+    We can go from abstract manifold to embedded manifold.
+
+    Let \(A = C^{\infty} (M,R)\).
+
+    \(M \xrightarrow{i}\mathbb{R}^A\) where \(i(x) = (f \mapsto f(x))\).
+
+    We can go to the reverse direction easily once we have all the definitions.
+
+    \begin{definition}
+        Two charts \((\phi_1: U_1 \to V_1)\) and \((\phi_2: U_2 \to V_2)\) are compatible (or smoothly compatible) if \(\phi_2 \circ \phi_1 ^{-1}\) is smooth. Explicitly,
+
+        \(\phi_1(U_1 \cap U_2) \xrightarrow{\phi_2 \circ \phi_1 ^{-1}} \phi_2(U_1 \cap U_2)\) needs to be smooth. 
+    \end{definition}
+
+    \begin{definition}
+        Parameterization \(h: V \to U\) is \textit{smooth} (assume \(M \subset \mathbb{R}^A\)) if:
+
+        \[
+            \begin{tikzcd}
+                V \ar[r,"h"] \ar[rrr, bend right,"h"] & U \ar[r,hook] & M \ar[r,hook] & \mathbb{R}^n
+            \end{tikzcd}
+        \]
+
+        is smooth.
+
+        and has rank \(n\). ie, \(\forall v\in V\) the Jacobian:
+
+        \[
+            dh = \left( \frac{\partial_\alpha h}{\partial x_j}(v) \right)
+        \]
+    
+        has rank \(n\).
+
+        eg \(x \mapsto x^3\) is a parameterization which is not smooth, since the Jacobian has rank \(0\) at \(0\).
+    \end{definition}
+
+    Now we can properly define manifolds.
+
+    \begin{definition}
+        [Embedded Smooth \(n\)-Manifold] \(M \subset \mathbb{R}^A\) so that \(\forall x\in M\) there exists a smooth rank \(n\) parameterization \(h : V \to U \ni x\).
+    \end{definition}
+
+    We can now define a Cateogry of Embedded Manifolds.
+
+    \begin{definition}
+        [Category of Embedded Manifolds] \(\operatorname{Embmfld}\).
+
+        \underline{Objects}: embedded \(M \subset \mathbb{R}^A\) of \(\dim n\) for some \(n\).
+
+        \underline{Morphisms}: Smooth Maps (has to be defined carefully, restricting in Euclidean space).
+
+        Diffeomorphism = invertible morphism.
+    \end{definition}
+
+    Let \((M \subset \mathbb{R}^A), (N \subset \mathbb{R}^B)\). \(f: M \to N\) is smooth if \textit{locally smooth}, meaning \(\forall x\in M, \exists\) smooth parameterization \(h: V \to U \ni x\) such that \(V \to U \hookrightarrow M \xrightarrow{f} N \to \mathbb{R}^B\) is smooth.
+
+    Now we can define abstract manifold independend of embedded manifolds.
+
+    \begin{definition}
+        [Abstract Manifold] Let \(M\) be Hausdorff. An \(n\)-\textit{atlas} on \(M\) is a set \(\mathcal{A}=\left\{ \phi_\alpha : U_\alpha \xrightarrow{\approx} V_\alpha \subset \mathbb{R}^n \right\}\) of compactible \(n\)-charts such that \(\{ U_\alpha \} \) covers \(M.\)
+
+        Atlas \(\mathcal{A}\) and \(\mathcal{A}^{\prime}\) are \underline{compatible} if all charts are.
+
+        Fact: Every atlas is contained in a unique maximal atlas.
+
+        Then an abstract manifold is \((M,\mathcal{A})\) with a maximal \(n\)-atlas.
+    \end{definition}
+
+\end{document}
