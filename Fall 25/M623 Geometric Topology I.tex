@@ -113,6 +113,8 @@
 
     \begin{definition}
         [Embedded Smooth \(n\)-Manifold] \(M \subset \mathbb{R}^A\) so that \(\forall x\in M\) there exists a smooth rank \(n\) parameterization \(h : V \to U \ni x\).
+
+        We assume \(M\) is Hausdorff.
     \end{definition}
 
     We can now define a Cateogry of Embedded Manifolds.
@@ -140,5 +142,159 @@
 
         Then an abstract manifold is \((M,\mathcal{A})\) with a maximal \(n\)-atlas.
     \end{definition}
+
+    \section*{Wednesday, 8/27/2025}
+    
+    Recall: embedded \(n\)-manifold \(M \subset \mathbb{R} ^ A\): \(\forall x\in M, \exists\) smooth, rank \(n\) parameterization \(h: V \to U \subset M\) such that \(x\in U\). We assume \(M\) is Hausdorff.
+
+    Abstract \(n\)-manifold: \((M, \mathcal{A})\) where \(\mathcal{A}\) is an \(n\)-atlas, so \(\mathcal{A}  = \{ \text{charts } \phi_\alpha : U_\alpha \xrightarrow{\cong} V_\alpha \}\) such that \(\{ U_\alpha \}\) cover \(M\) and \(\{ \phi_\alpha \} \) smoothly compatible. We assume \(M\) is Hausdorff.
+    
+    \begin{remark}
+        If we have an abstract manifold we have a surjective map \(\coprod V_\alpha \overset{\coprod \phi_\alpha ^{-1}}{\twoheadrightarrow} M\).
+        
+        Then we can define \(M \cong \frac{\coprod V_\alpha}{\sim}\). This gives us another definition of a manifold. 
+    \end{remark}
+
+    \begin{exercise}
+        Define smooth \(f: (M,\mathcal{A}) \to (N,\mathcal{B})\).
+
+        Not hard, just annoying to get the definitions right!
+    \end{exercise}
+
+    \begin{theorem}
+        Categories of abstract manifolds and embedded manifolds are equivalent.
+
+        \[
+            \text{EmbMflds} \simeq \text{absMflds}  
+        \]
+    \end{theorem}
+
+    Recall equivalent categories:
+
+    \begin{definition}
+        Categories \(\mathcal{C}\) and \(\mathcal{D}\) are equivalent (Notation: \(\mathcal{C} \simeq \mathcal{D}\)): If there are functors \(\mathcal{C} \xrightarrow{F} \mathcal{D}\) and \(\mathcal{D} \xrightarrow{G} \mathcal{C}\) such that \(F \circ G\) and \(G \circ F\) are naturally isomorphic to the respective identities.
+    \end{definition}
+
+    We need some more definitons.
+
+    \begin{definition}
+        A skeleton of \(\mathcal{C}\) is \(\operatorname{Sk} \mathcal{C} \subset \mathcal{C}\) is a full subcategory \(\forall c\in \mathcal{C}, \exists ! c^{\prime} \in \operatorname{Sk} \mathcal{C}\) such that \(c \cong c^{\prime}\).
+
+        \(\mathcal{A} \subset \mathcal{B}\) is full if \(\forall a,a^{\prime} \in \operatorname{Ob} \mathcal{A}, \mathcal{A}(a,a^{\prime}) \xrightarrow{\cong} \mathcal{B}(a,a^{\prime})\) 
+    \end{definition}
+
+    For example, let \(\mathcal{C} =\) finite sets. Then \(\operatorname{Sk} \mathcal{C} = \{ 1 \}, \{ 1,2 \}, \{ 1,2,3 \}, \cdots\) 
+
+    \begin{theorem}
+        \(\mathcal{C} \simeq \mathcal{D} \iff \operatorname{Sk} \mathcal{C} \cong \operatorname{Sk} \mathcal{D}\).
+    \end{theorem}
+
+    Note that \(\mathcal{C} \simeq \operatorname{Sk} \mathcal{C}\) so one direction is trivial.
+
+    \begin{lemma}
+        [1.1] Let \(h\) and \(h^{\prime}\) be smooth rank \(n\) on \(M \subset \mathbb{R}^A\). Then \(h ^{-1} \circ  h^{\prime}\) is smooth (thus a diffeomorphism).
+        
+        Let \(V\) and \(V^{\prime}\) be the domain of \(h\) and \(h^{\prime}\) respectively. Then \(h ^{-1} \circ h^{\prime} : (h^{\prime})^{-1} (V\cap V^{\prime}) \to h ^{-1} (V \cap V^{\prime})\) 
+    \end{lemma}
+
+    \begin{corollary}
+        \(\mathcal{A} = \{ h ^{-1} \mid h \text{ parameterization} \}\) is \(n\)-atlas on \(M\).
+
+        This gives us \(\text{EmbMflds}\to \text{AbstMflds}\).
+    \end{corollary}
+
+    \begin{proof}
+        This is the proof of lemma 1.1, lemma 3 in the notes.
+
+        Assume \(V = V^{\prime}\). WTS: \((h^{\prime})^{-1} V \to h ^{-1} (V)\) is smooth.
+
+        For \(x\in V\) choose \(\alpha_1, \cdots , \alpha_n \in A\) such that \(\det \left( \frac{\partial \alpha_i}{\partial x_j} (x) \right)  \not\equiv 0\). 
+
+        We have:
+
+        \[
+            \begin{tikzcd}
+                M \ar[r, hook] & \mathbb{R}^A \ar[d, "pr_{\alpha_1 \cdots \alpha_n}"] \\ V \ar[u,"h"] \ar[r,dotted] & \text{subset of } \mathbb{R}^n
+            \end{tikzcd}
+        \]
+
+        Then, by the inverse function theorem, the dotted map is locally invertible.
+
+        \(h^{-1} \circ h^{\prime} = (pr \circ inc \circ h)^{-1} \circ inc \circ pr \circ h^{\prime}\) near \(h ^{-1} x\).
+
+    \end{proof}
+
+    Given abstract \((M,\mathcal{A})\), let \(A = C^{\infty} (M,\mathbb{R})\) smooth functions.
+    
+    \(i: M \to \mathbb{R}^A, x \mapsto (f \to f(x))\).
+    
+    Let \(M_1 = i(M)\).
+    
+    \begin{lemma}
+        [1.5] \(M_1 \subset \mathbb{R}^A\) is \(\text{EmbMfld}\). \(M \xrightarrow{i} M_1\) is diffeomorphism.
+    \end{lemma}
+
+    \subsection*{Definition of tangent vector, tangent space and tangent bundle}
+
+    \begin{definition}
+        [Tangent Vector] is velocity vector of a curve.
+
+        We have defined morphisms. Consider the embedded case: suppose we have smooth \(\gamma : \mathbb{R} \to M \subset \mathbb{R}^A\). Then,
+
+        \[
+            \gamma^{\prime} (0) = \lim_{h \to 0} \frac{\gamma (h) - \gamma(0)}{h} \in \mathbb{R}^A
+        \]
+
+        is a tangent vector
+    \end{definition}
+
+    \begin{definition}
+        [Tangent Space] Suppose \(x\in M \subset \mathbb{R}^A\), an \(n\)-dim embedded manifold. \(T_x M =\) tangent space of \(M\) at \(x\). This is:
+        
+        \[
+            \left\{ \gamma ^{\prime} (0) \mid \gamma(0) = x \right\} \subset \mathbb{R}^A
+        \]
+
+        an \(n\)-dim subspace.
+    \end{definition}
+
+    We are going to bundle this together.
+
+    \begin{definition}
+        [Tangent Bundle]
+
+        \(TM = \left\{ (x,v) \in M \times \mathbb{R}^A \mid v\in T_x M \right\}\).
+
+        By definition, \(TM \subset M \times \mathbb{R}^A\) so this is in fact a topological space.
+
+        We have a projection map \(TM \xrightarrow{\pi} M\) by \((x,v) \mapsto x\).
+    \end{definition}
+
+    \begin{remark}
+        Fibers of \(\pi\), \(\pi ^{-1} (x)\) are vector spaces: \(\pi ^{-1} (x) = T_x M\).
+
+        Then, \(TM = \bigcup_{x\in M} \{ x \} \times T_x M\).
+
+        Abuse of notation lets us write this as \(\bigcup T_x M\).
+
+        Thus, tangent bundle is in fact a bundle of tangents.
+    \end{remark}
+
+    What about abstract manifolds \((M,\mathcal{A})\)?
+
+    We can define \(TM\) as follows:
+
+    \begin{itemize}
+        \item \(M \subset \mathbb{R}^{C^{\infty}(M,\mathbb{R})}\).
+        \item \(TM = \frac{\coprod V_\alpha \times \mathbb{R}^n}{\sim}\)
+        \item \(T_x M =\) velocity vector of curves.
+        \item derivations.
+    \end{itemize} 
+
+    Suppose we have smooth function between manifolds \(f: M \to N\). \(\forall x\in M\) we can define linear \(\mathrm{d}f_x : T_x M \to T_{f(x)} N\), \(\gamma ^{\prime} (0) \mapsto (f \circ \gamma)^{\prime} (0)\). \(\mathrm{d} f_x\) is a map between vector spaces, so it is a linear transformation. It is the `Jacobian'.
+    
+    Then we have \(\mathrm{d} f: TM \to TN\) such that \(\mathrm{d} f(x,v) = \mathrm{d} f_x(v)\).
+
+    We also have the chain rule: \(\mathrm{d} (f \circ g) = \mathrm{d} f \circ \mathrm{d} g\) 
 
 \end{document}
