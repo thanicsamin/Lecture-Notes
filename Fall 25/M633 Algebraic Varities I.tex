@@ -170,6 +170,147 @@
 
     This works! But how does this mess up the space? What additional points do we have?
 
+    \section*{Wednesday, 8/27/2025}
     
+    Now we go back to the textbook.
+
+    We start with some category theory. For this course, categories will be locally small. The objects might not be sets, but hom-sets will be sets.
+
+    Let \(\mathcal{C}, D\mathcal{C}\) be categories. \(\mathcal{C} \xrightarrow{F} \mathcal{D}\) morphisms.
+
+    Let \(F: \operatorname{ob} \mathcal{C} \to \operatorname{ob} \mathcal{D}\).
+
+    Suppose \(X,Y\in \operatorname{ob} \mathcal{C}\).
+
+    \(\phi: X \to Y\) means \(\phi \in \operatorname{Mor}_{\mathcal{C}}(X,Y)\).
+    
+    Then, \(F(\phi): F(X) \to F(Y), F(\phi)\in \operatorname{Mor}_{\mathcal{D}}(F(X),F(Y))\). 
+
+    We have the following categories: Sets, Groups, Ab, Top, Rings, Comm, Field, \(R\)-mod, COmplexes of \(R\)-mod, Sheaves on \(X\), etc.
+
+    \begin{definition}
+        A functor is \textit{faithful} if \(\forall X,Y\in \operatorname{Ob} \mathcal{C}, \operatorname{Mor}_{\mathcal{C}} (X,Y) \to \operatorname{Mor}_{\mathcal{D}}(F(X),F(Y))\) is injective.
+
+        It is \textit{fully faithful} if this map is a bijection.
+    \end{definition}
+
+    \(\operatorname{Top} ^{\ast} =\) category of pointed topological spaces. This contains pairs \((X,x)\), space with a point.
+    
+    \(\operatorname{Mor}_{\operatorname{Top}^{\ast}}\left( (X,x),(Y,y) \right) = \left\{ \text{cont. maps } f: X\to Y \text{ s.t. } f(x) = y \right\}\)
+
+    This is useful: we can't find fundamental group without a base point.
+
+    Then, \(\pi_1\) is a functor from \(\operatorname{Top}^{\ast}\) to Groups. Morphism \((X,x) \xrightarrow{f} (Y,y)\) gives us \(f_{\ast} : \pi_1(X,x) \to \pi_1(Y,y)\) which is a group homomorphism.
+
+    We want to talk about natural transformation which is important for this course.
+
+    \begin{definition}
+        [Natural Transformation] Consider functors \(\mathfrak{f},\mathfrak{g}: \mathcal{C} \to \mathcal{D}\).
+
+        A natural transformation \(T: \mathfrak{f} \to \mathfrak{g}\) assigns to each \(x \in \operatorname{ob} \mathcal{C}\) an element \(T(x) \in \operatorname{Mor}_{\mathcal{D}} (\mathfrak{f}(x), \mathfrak{g}(x))\) with compatibilty condition:
+
+        Given \(x,y\in \operatorname{Ob} (\mathcal{C}), f\in \operatorname{Mor}_{\mathcal{C}}(x,y)\) such that the following diagram commutes:
+
+        \[
+            \begin{tikzcd}
+                \mathfrak{f} (x) \ar[r,"T(x)"] \ar[d,"\mathfrak{f}(f)"'] & \mathfrak{g}(x) \ar[d,"\mathfrak{g}(f)"] \\ \mathfrak{f}(y) \ar[r,"T(y)"] & \mathfrak{g}(y) 
+            \end{tikzcd}
+        \]
+    \end{definition}
+
+    
+    \begin{definition}
+        If \(f\in \operatorname{Mor}_{\mathcal{C}}(x,y), g\in \operatorname{Mor}_{\mathcal{C}}(y,x)\) we say \(f\) and \(g\) are inverses iff \(f \circ g = \operatorname{id}_{y}, g \circ f = \operatorname{id}_{x}\).
+
+        A morphism which has an inverse is called an isomorphism.
+    \end{definition}
+    
+    Inverses are unique. If \(h\) is also an inverse of \(f\) then \(h \circ f \circ g = h \circ (f \circ g) = h \circ \operatorname{id}_{y} = h\) and \(h \circ f \circ  g= (h \circ f) \circ  g = \operatorname{id}_{x} \circ  g = g\).
+
+    \begin{definition}
+        Morphisms with inverses are isomorphisms.
+    \end{definition}
+
+    \begin{definition}
+        A category in which every morphism has an inverse is called a groupoid.
+    \end{definition}
+
+    Lets talk about an example. Consider the cateory with \(1\) object \(\{ \ast \}\). Since our categories are locally small, the morphisms form a set. There is a composition law. This gives us:
+
+    \textit{A category with one object is a monoid}.
+
+    Of course, if we add the stipulation that every morphism must have an inverse,
+
+    \textit{A groupoid with one object is a group}.
+
+    We want a categorical analogue for injectivity and bijectivity. Consider the example of the same set with two topologies, one finer than the other. Then on the point level we can have a bijection, but one map is continuous and the inverse map is not.
+
+    This gives us the concepts of monomorphism and epimorphism.
+
+    Monomorphism loosely resembles injectivity.
+
+    Epimorphism loosely resembles surjectivity.
+
+    \begin{definition}
+        \(f \in \operatorname{Mor}_{\mathcal{C}}(x,y)\) is a \textit{monomorphism} if \(\forall z\in \operatorname{Ob} \mathcal{C}\) and all \(g,h\in \operatorname{Mor}_{\mathcal{C}}(z,x)\) we have:
+        
+        \[
+            f \circ  g = f \circ h \implies g = h
+        \]
+
+        \[
+            \begin{tikzcd}
+                z \ar[r, shift left = 2pt, "g"] \ar[r, shift right = 2pt, "h"'] & x \ar[r,"f"] & y
+            \end{tikzcd}
+        \]
+    \end{definition}
+
+    \begin{definition}
+        \(f \in \operatorname{Mor}_{\mathcal{C}}(x,y)\) is epimorphic if \(\forall z\in \operatorname{Ob}\mathcal{C}, \forall g,h\in \operatorname{Mor}_{\mathcal{C}}(y,z)\),
+        
+        \[
+            g \circ f = h \circ  f \implies g = h
+        \]
+
+        \[
+            \begin{tikzcd}
+                x \ar[r,"f"] & y \ar[r, shift left = 2pt, "g"] \ar[r, shift right = 2pt, "h"'] & z
+            \end{tikzcd}
+        \]
+    \end{definition} 
+
+    \begin{definition}
+        [Natural Isomorphism] Given categories \(\mathcal{C}\) and \(\mathcal{D}\) and a functor \(\mathfrak{f}, \mathfrak{g}: \mathcal{C} \to \mathcal{D}\), a natural isomorphism is a natural transformation \(T\) from \(\mathfrak{f}\) to \(\mathfrak{g}\) such that for all \(x\in \operatorname{Ob} \mathcal{C}\),
+
+        \[
+            T(x) \in \operatorname{Mor}_{\mathcal{D}}(\mathfrak{f}(x), \mathfrak{g} (x))
+        \]
+
+        is an isomorphism.
+    \end{definition}
+
+    Nonexample of natural isomorphism: fix a field \(k\) and let \(C = \operatorname{Vect}_k\). Consider the double dual functor \(f: \mathcal{C} \to \mathcal{C}\) so that \(V \to (V^{\ast})^{\ast}\).
+
+    [We take two duals since only one would mean this is a contravariant functor. We want the direction of the functors to be the same].
+
+    Consider the identity functor \(\operatorname{id}_{\mathcal{C}}: V \to V\).
+    
+    We have a natural transformation \(\operatorname{id}_{\operatorname{Vect}_k} \to \mathfrak{f}\) by \(V \mapsto (V \to V^{\ast})\)
+    
+    Any \(v\in V\) defines a linear transformation \(T_v : V^{\ast} \to k\) given by \(T_v(v^{\ast}) = v^{\ast} (v)\). Then \(T_v \in (V^{\ast})^{\ast} = V^{\ast\ast}\).
+    
+    We have the following commutative diagram:
+
+    \[
+        \begin{tikzcd}
+            V \ar[r,"T_v"] \ar[d,"A"] & V^{\ast\ast} \ar[d,"T(A)"] \\ W \ar[r,"T_w"] & W^{\ast\ast} 
+        \end{tikzcd}
+    \]
+
+    If \(V\) is infinite dimensional, then \(\dim V^{\ast} > \dim V\). Then \(\dim V^{\ast\ast} > \dim V\). So this is only a natural transformation, not a natural isomorphism.
+
+    Note that however in \(\operatorname{Vect}_k^{\text{fin}}\) the double dual is a natural isomorphism.
+
+    Also see: equivalence of categories.
 
 \end{document}
