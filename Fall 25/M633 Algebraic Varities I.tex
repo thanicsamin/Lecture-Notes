@@ -315,6 +315,155 @@
 
     \section*{Friday, 8/29/2025}
     
-    
+    We continue category theory today.
+
+    \begin{definition}
+        [Equivalence of Categories] If \(\mathcal{C}\) and \(\mathcal{D}\) are categories and \(F: \mathcal{C} \to \mathcal{D}\) and \(G: \mathcal{D} \to \mathcal{C}\) are functors such that \(F \circ G : \mathcal{D} \to \mathcal{D}\) and \(G \circ F: \mathcal{C} \to \mathcal{C}\) are naturally isomorphic to \(\operatorname{id}_{\mathcal{D}} \) and \(\operatorname{id}_{\mathcal{C}} \) respectively.
+    \end{definition}
+
+    For example, let \(\mathcal{C} =\) category with objects \(\varnothing , \{ 1 \} , \{ 1,2 \}, \{ 1,2,3 \}, \cdots\) and morphisms are functions.
+
+    Let \(\mathcal{D}\) be the category of finite sets and morphisms are functions.
+
+    We have an obvious functor: \(\mathcal{C} \to \mathcal{D}\) sends each \(\{ 1, 2, \cdots , n \} \) to itself.
+
+    For \(\mathcal{D} \to \mathcal{C}\) we need to work a little bit harder, and we have to deal with axiom of choice and other stuff. To avoid these, we introduce the following easier definition:
+
+    \begin{definition}
+        If \(\mathcal{C}\) and \(\mathcal{D}\) are categories and \(F: \mathcal{C} \to \mathcal{D}\) and:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(F\) is fully faithful
+            \item \(F\) is essentially surjective. 
+        \end{enumerate} 
+
+        [Essentially surjective means every object is isomorphic to an object in the image. Every set with \(n\) elements is isomorphic to \(\{ 1,\cdots ,n \}\) for example.]
+
+        Then \(\mathcal{C}\) and \(\mathcal{D}\) are equivalent.
+    \end{definition}
+
+    Given a category \(\mathcal{C}\) and \(A \in \operatorname{ob} \mathcal{C}\) we define functors:
+
+    \(h_A: \mathcal{C} \to \operatorname{Sets}\) given by \(h_A(X) = \operatorname{Mor}_{\mathcal{C}} (A,X)\). This is contravariant.
+
+    \(h^A: \mathcal{C} \to \operatorname{Sets}\) given by \(h^A(X) = \operatorname{Mor}_{\mathcal{C}} (X,A)\)
+
+    Given \(A,B \in \operatorname{Ob} \mathcal{C}, \phi \in \operatorname{Mor}_{\mathcal{C}} (A,B)\), \(\phi\) deines a functor \(h_B(X) \to h_A(X)\) and \(h^A(X) \to h^B(X)\).
+
+    \begin{definition}
+        A contravariant functor \(F: \mathcal{C} \to \operatorname{Sets}\) is \textit{representable} if \(\exists A \in \operatorname{Ob} \mathcal{C}\) such that \(F = h_A\).
+    \end{definition}
+
+    \begin{theorem}
+        [Yoneda Lemma] The set of natural transformations \(h_A \to h_B\) is naturally isomorphic to \(\operatorname{Mor}_{\mathcal{C}}(B,A)\).
+    \end{theorem}
+
+    \begin{proof}
+        Let \(N\) be a natural transformation from \(h_A\) to \(h_B\). i.e. for \(X\in \operatorname{ob} \mathcal{C}\) we have:
+
+        \[
+            N(X) : \underset{= \operatorname{Mor}_{\mathcal{C}} (A,X)}{h_A(X)} \to \underset{=\operatorname{Mor}_{\mathcal{C}} (B,X)}{h_B(X)}  
+        \]
+
+        Let \(X = A\). Then, \(N(A): h_A(A) \to h_B(A) \implies N(A): \operatorname{Mor}_{\mathcal{C}} (A,A) \to \operatorname{Mor}_{\mathcal{C}} (B,A)\)
+        
+        Let \(N(A)(\operatorname{id}_{A})\eqqcolon \psi\).
+        
+        Composition by \(\psi\) gives a map \(h_A \to h_B\), i.e. for all \(Y\in \operatorname{Ob} \mathcal{C}\), composition by \(\psi\) gives \(h_A(Y) \to h_B(Y)\) which is the same as \(N(Y)\).
+
+        Let \(f: X \to Y\). We have:
+
+        \[
+            \begin{tikzcd}
+                \operatorname{Mor}_{\mathcal{C}} (A,X) \ar[r,"N(X)"] \ar[d,"f_{\ast}"] & \operatorname{Mor}(B,X) \ar[d,"f_{\ast}"] \\ \operatorname{Mor}(A,Y) \ar[r,"N(Y)"] & \operatorname{Mor}(B,Y)
+            \end{tikzcd}
+        \]
+
+        Setting \(X = A\),
+
+        \[
+            \begin{tikzcd}
+                \operatorname{Mor}_{\mathcal{C}} (A,A) \ar[r,"N(X)"] \ar[d,"f_{\ast}"] & \operatorname{Mor}(B,A) \ar[d,"f_{\ast}"] \\ \operatorname{Mor}(A,Y) \ar[r,"N(Y)"] & \operatorname{Mor}(B,Y)
+            \end{tikzcd}
+        \]
+
+        taking \(\operatorname{id}_{A}\) and applying the commutativity,
+
+        \[
+            \begin{tikzcd}
+                \operatorname{id}_{A} \ar[r,"N(X)"] \ar[d,"f_{\ast}"] & \psi \ar[d] \\ f \ar[r] & N(Y)(f) = f \circ \psi  
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \subsection*{Universal Objects}
+
+    \begin{definition}
+        An object \(X\in \operatorname{ob} \mathcal{C}\) is an \textit{initial object} if \(\forall Y\in \operatorname{ob} \mathcal{C}, \vert \operatorname{Mor}_{\mathcal{C}} (X,Y) \vert = 1\).
+
+        It is a final object if \(\forall Y\in \operatorname{ob} \mathcal{C}, \vert \operatorname{Mor}_{\mathcal{C}} (Y,X) \vert = 1\). 
+    \end{definition}
+
+    Up to \textit{unique isomorphism} an initial or final object in a category is unique if it exists.
+
+    \begin{definition}
+        Let \(L\) be a (commutative) ring and \(S\) a multiplicative system in \(A\), meaning \(1\in S, x,y\in S \implies xy\in S, 0\notin S\).
+
+        The localization \(S ^{-1} A\) is the \textit{universal \(A\)-algebra in which every element of \(S\) is invertible.}
+
+        \(\frac{a_1}{s_1} = \frac{a_2}{s_2}\) means \((a_1 s_2 - a_2 s_1) s_3 = 0\) for some \(s_3 \in S\).
+    \end{definition}
+
+    We need the construction to show that the localization exists. But it is easier to work with the universal property!
+
+    \(S ^{-1} A\), assuming it exists, is universal among all \(A\)-algebras in which \(S\) is invertible.
+
+    Consider all ring homomorphisms \(\left\{ \phi : A \to B \mid \phi(s) \text{ is a unit in \(B\) for all \(s\in S\)} \right\} \) 
+
+    We can now define a category. Let this set be \(\operatorname{ob} \mathcal{C}\). Let the morphisms be as follows:
+
+    \[
+        \begin{tikzcd}
+            & B \ar[dd]\\ A \ar[ru,"\phi"] \ar[rd,"\psi"] \\ & C
+        \end{tikzcd}
+    \]
+
+    Existence of \(S ^{-1} A\) is expressed by yhe existence of an initial object in this category.
+
+    We have the homomorphism \(A \to S ^{-1} A\) by \(a \mapsto \frac{a}{1}\).
+
+    \[
+        \begin{tikzcd}
+            & S ^{-1} A \ar[dd, dotted, "!"]\\ A \ar[ru] \ar[rd,"s \mapsto b^{\ast}"] \\ & B
+        \end{tikzcd}
+    \]
+
+    Another example: suppose \(A\) is a ring and \(M,N\) are \(A\)-modules. We can define tensor product \(M \otimes_A N\).
+
+    The property we're interested in is: \(\operatorname{Hom}_A (M \otimes_A N, X) = A \text{-billinear}(M \times N, X)\). 
+
+    Fix \(M,N\). Consider the functor \(X \mapsto \left\{ A \text{-billinear maps } M \times N \to X \right\}\).
+
+    This functor is \textit{representable} by in the category of \(A\)-modules.
+
+    \[
+        \begin{tikzcd}
+            & M \otimes_A N \ar[rd,dotted, "!"] \\ M \times N \ar[rr] \ar[ur] && X
+        \end{tikzcd}
+    \]
+
+    Does (Sets) have an initial and final object? \(\varnothing\) is initial, any \(1\)-element set is final.
+
+    What about the category of complex vector spaces?
+
+    \(0\) is initial and final.
+
+    A zero object is an object that is both initial and final.
+
+    Category of infinite sets doesn't have an initial or final object.
+
+    In the category of rings, \(\mathbb{Z} \to R\) always exists so it's initial. We don't take zero rings so there's no final object.
+
+    Note that if we have a map of rings \(A \to B\), the map of schems go in the opposite direction: \(\operatorname{Spec} B \to \operatorname{Spec} A\). So there should be a final object in the category of schemes.
 
 \end{document}
