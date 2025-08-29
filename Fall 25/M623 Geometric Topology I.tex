@@ -299,6 +299,149 @@
 
     \section*{Friday, 8/29/2025}
     
+    No class next week!
+
+    Manifold constructed by:
+
+    \begin{itemize}
+        \item open subset of \(\mathbb{R}^n\)
+        \item Subset double torus \(\subset \mathbb{R}^3\)
+        \item Quotients: \(P^n = \mathbb{R} P^n = S^n / x \sim -x\)
+        \item Lie groups/ matrix group, eg closed subgroups of \(\operatorname{GL}_n\mathbb{R} \underset{\text{open}}{\subset} M_n \mathbb{R} = \mathbb{R}^{n^2}\) 
+        \item Zero sets.
+        \begin{itemize}
+            \item regular values
+            \item transversality
+            \item smooth varieties 
+        \end{itemize} 
+    \end{itemize} 
+
+    \begin{definition}
+        \(t_0\in \mathbb{R}\) is a regular value of \(f: M \to \mathbb{R}\) if \(\forall x\in f ^{-1} t_0, \mathrm{d}f_x\) is onto.
+    \end{definition}
+
+    \(f^{-1}(\text{regular value})\) is a submanifold of \(M\).
+
+    Consider \(S^n \subset \mathbb{R}^{n+1}\), and \(f: \mathbb{R}^{n+1} \to \mathbb{R}\) given by \(x \mapsto x_1^2 + \cdots + x_{n+1}^2\).
+
+    \(1\) is a regular value \(f ^{-1} 1 = S^n\).
+
+    \begin{definition}
+        Let \(f: M \to N \supset X\) submanifold.
+
+        \(f\pitchfork X\), \(f\) is \textit{transverse} to \(X\) if \(\forall m \in f ^{-1} X, T_{f(m)}N = T_{f(m)} X + \mathrm{d}f_m (T_m M)\).
+    \end{definition}
+
+    \begin{theorem}
+        \(f ^{-1} X\) is a submmanifold of \(M\).
+
+        Furthermore, \(\dim N - \dim X = \dim M - \dim f ^{-1} X\).
+    \end{theorem}
+
+    In fact, \(\nu (f ^{-1} X \hookrightarrow M) \to \nu (X \hookrightarrow N)\) as vector space isomorphism on fibers.
+
+    [insert picture later]
+
+    Now, suppose \(F\) is a topological space.
+
+    \begin{definition}
+        A fiber bundle with fiber \(F\):
+
+        Let \(E \xrightarrow{\pi} B\) be a continuous map suuch that \(\forall b\in B, \exists\) open \(b\in U \subset B\) and:
+
+        \[
+            \begin{tikzcd}
+                U \times F \ar[rr, "h", "\approx"'] \ar[rd, "pr_U"] && \pi ^{-1} U \ar[ld,"\pi"] \\ & U 
+            \end{tikzcd}
+        \]
+
+        \(h\) fiber preserving homeomorphism. \(\forall b^{\prime} \in U\), \(F \cong F \times b^{\prime} \xrightarrow{\approx} F_{b^{\prime}} \coloneqq \pi ^{-1} (b^{\prime})\).
+    \end{definition}
+
+    Write: \( \begin{tikzcd}
+        F \ar[r] & E \ar[d] \\ & B 
+        \end{tikzcd} \)
+
+    \[
+        \begin{tikzcd}
+            I \ar[r] & Mob \ar[d] \\ & S^1
+        \end{tikzcd}
+    \]
+
+    eg \(B \times F \to B\) trivial bundle.
+
+    \section*{Chapter 2 of MS}
+
+    \begin{definition}
+        A real vector bundle \(\xi\) over \(B\) is:
+
+        \[
+            \xi = \left( \begin{tikzcd} E \ar[d,"\pi"] \\ B \end{tikzcd}, \forall b\in B, \pi ^{-1} b = F_b \text{ is a fin. dim vector space.} \right) 
+        \]
+
+        \(F_b \times F_b \to F, \mathbb{R} \times F_b \to F\) satisfies \(8\) axioms s.t.
+
+        \(\forall b\in B, \exists b\in U \subset B\) and \(n\geq 0\) and \(\begin{tikzcd}U \times \mathbb{R}^n \ar[rr,"h","\approx"'] \ar[rd] && \pi ^{-1} U \ar[ld] \\ & U\end{tikzcd}\).
     
+        \(\mathbb{R}^n \cong b \times \mathbb{R}^n \xrightarrow[\approx]{h} \pi ^{-1} b\) is an isomorphism of vector spaces.
+    \end{definition}
+
+    If \(B\) is connected then \(n\) is constant.
+
+    `rank \(n\) vector bundle'.
+
+    \(n\)-plane bundle.
+
+    Another thing MS does is write this: \(\xi = \begin{tikzcd} E(\xi) \ar[d,"\pi(\xi)"] \\ B(\xi)\end{tikzcd}\) for vector bundle which is very precise.
+
+    \subsection*{Isomorphism of vector bundles over \(B\)}.
+
+    Consider two bundles \(\xi\) and \(\eta\) and we have the homeomorphism
+
+    \[
+        \begin{tikzcd}
+            E(\xi) \ar[rr, "\approx"] \ar[rd] && E[\eta] \ar[ld] \\ & B
+        \end{tikzcd}
+    \]
+
+    vector space isomorphism on the fibers.
+
+    \subsection*{Examples of vector bundles}
+
+    We have the trivial bundle \(\begin{tikzcd} B \times \mathbb{R}^n \ar[d,"\underline{\mathbb{R}^n} = \underline{\mathbb{R}}^n_B = \varepsilon^n_B ="'] \\ B \end{tikzcd}\) 
+
+    We have tangent bundles:
+
+    \[
+        \tau_M = \left\{ \begin{tikzcd} TM \ar[d,"\pi"] \\ M \end{tikzcd} , T_x M \right\} 
+    \]
+
+    \begin{definition}
+        \(M\) is parallelizable if \(\tau_M\) is trivial.
+    \end{definition}
+
+    \(S^1\) is paralellizable.
+
+    Lie groups are parallelizable eg \(S^3\).
+
+    \(S^2\), or \(S^{2n}\) in general not parallelizable via the hairy ball theorem.
+
+    We also have normal bundles. Consider \(M \subset \mathbb{R}^N\).
+
+    \(\nu(M \subset \mathbb{R}^n) = \{ (x,v) \in M \times \mathbb{R}^n \mid x \in M, v \in (T_x M)^{\perp}\}\)
+    
+    \(\nu (S^2 \hookrightarrow S^3) \leftarrow S^2 \times \mathbb{R}\) is trivial, the map is \((x,tx) \mapsfrom (x,t)\).
+
+    Tautological bundle over \(P^n\): \(\gamma_n^1 = \begin{tikzcd}
+        \mathbb{R} \ar[r] & E(\gamma_n^1) \ar[d] \\ & P^n
+    \end{tikzcd}\) 
+
+    Note that \(P^n = S^n / x \sim -x =\) lines through \(O\) in \(\mathbb{R}^{n+1}\).
+
+    \(E(\gamma_n^1) = \left\{ (\{ x,-x \}, v) \in P^n \times \mathbb{R}^{n+1} \mid v \in \mathbb{R} x \right\}\).
+
+    \(E(\gamma_n^1) \xrightarrow{\pi} P^n, (\{ x,-x \} \mapsto \{ x,-x \})\). Essentially, point on line \(\mapsto\) line. 
+
+    This tautological bundle is non-trviial.
 
 \end{document}
