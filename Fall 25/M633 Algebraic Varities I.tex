@@ -428,7 +428,7 @@
         \end{tikzcd}
     \]
 
-    Existence of \(S ^{-1} A\) is expressed by yhe existence of an initial object in this category.
+    Existence of \(S ^{-1} A\) is expressed by the existence of an initial object in this category.
 
     We have the homomorphism \(A \to S ^{-1} A\) by \(a \mapsto \frac{a}{1}\).
 
@@ -464,6 +464,193 @@
 
     In the category of rings, \(\mathbb{Z} \to R\) always exists so it's initial. We don't take zero rings so there's no final object.
 
-    Note that if we have a map of rings \(A \to B\), the map of schems go in the opposite direction: \(\operatorname{Spec} B \to \operatorname{Spec} A\). So there should be a final object in the category of schemes.
+    Note that if we have a map of rings \(A \to B\), the map of schemes go in the opposite direction: \(\operatorname{Spec} B \to \operatorname{Spec} A\). So there should be a final object in the category of schemes.
+
+    \section*{Wednesday, 9/3/2025}
+    
+    \subsection*{Products and Coproducts}
+
+    Suppose we have a category \(\mathcal{C}\), index set \(I\) and for each \(\alpha \in I\) we have \(X_\alpha \in \operatorname{ob} \mathcal{C}\).
+
+    We want to talk (in a categorical sense) about the product of all the \(X_\alpha\)'s. This should be analogous to the cartesian product, we should be able to extract the initial object.
+
+    The product, thus, should be an object \(X\in \operatorname{ob} \mathcal{C}\) together with the maps \(\pi_\alpha \in \operatorname{Mor}_{\mathcal{C}} (X,X_\alpha)\) which is universal for such data.
+
+    For example, in the case \(I = \{ 1,2 \}\) and \(X = X_1 \times X_2\), \(X\) is universal in the following sense:
+
+    \[
+        \begin{tikzcd}
+            & Y \ar[ldd, bend right] \ar[rdd, bend left] \ar[d, dotted] \\ & X \ar[ld] \ar[rd] \\ X_1 & & X_2
+        \end{tikzcd}
+    \]
+
+    For coproducts we just reverse the arrows.
+
+    Category \(\mathcal{C}, \alpha \in I\) index set, \(X_\alpha \in \operatorname{ob} \mathcal{C}\).
+    
+    The coproduct \(\coprod_\alpha X_\alpha\) of the \(X_\alpha\)'s is an object \(X\in \operatorname{ob} \mathcal{C}\) together with maps \(i_\alpha \in \operatorname{Mor}_{\mathcal{C}} (X_\alpha , X)\) with is universal for such data. For \(I = \{ 1,2 \}\) and \(X = X_1 \coprod X_2\):
+
+    \[
+        \begin{tikzcd}
+            & Y & \\ & X \ar[u, dotted] \\ X_1 \ar[uur, bend left] \ar[ur] & & X_2 \ar[uul, bend right] \ar[ul]
+        \end{tikzcd}
+    \]
+
+    In the category of sets, product is the cartesian product, and coproduct is the disjoint union.
+
+    In \(\operatorname{Ab}\), the product and coproduct of two objects are the same, the direct sum as long as the index set is finite.
+
+    For infinite index set,
+
+    \(\coprod_{i=1}^{\infty} = \bigoplus_{i=1}^{\infty} X_i = \left\{ (x_1, x_2, \cdots ) \mid x_i \in X_i, x_i = 0 \, \forall i \gg 0 \right\}\)
+    
+    Finite sums.
+
+    \(\prod_{i=1}^{\infty} X_i = \left\{ (x_1, x_2, \cdots ) \mid x_i\in X_i \right\} \)
+    
+    Unrestricted.
+
+    These are not the same! Infinite product of \(\mathbb{Z}\) is not free for example.
+
+    We can write it like this:
+
+    \(\operatorname{Ab} \times \operatorname{Ab} \xrightarrow{\coprod} \operatorname{Ab}\) 
+
+    \(\operatorname{Ab} \times \operatorname{Ab} \xrightarrow{\prod} \operatorname{Ab}\)
+
+    We have the following natural transformation:
+
+    \((X_1, X_2) \mapsto \begin{matrix} (X_1 \oplus X_2 \to X_1 \times X_2) \\ (x_1, x_2) \mapsto (x_1, x_2) \end{matrix}\) 
+
+    Something that is both a product and a coproduct is called a biproduct.
+
+    \subsection*{Limits and Colimits}
+
+    We can generalize the concepts of product to limit and coproduct to colimit.
+
+    Limits/Colimits are the \textit{same thing} but instead of an index set \(I\) we use an \textit{index category} \(\mathcal{I}\).
+
+    The data which determines the limit/colimit is a functor from \(\mathcal{I} \to \mathcal{C}\).
+
+    For example: consider the following category of \(3\) elements (ignore the identity morphisms):
+
+    \[
+        \begin{tikzcd}
+            1 \ar[d] \\ 0 & 2 \ar[l]
+        \end{tikzcd}
+    \]
+
+    Consider functors from this category to a category \(\mathcal{C}\). We then have the following in \(\mathcal{C}\):
+
+    \[
+        \begin{tikzcd}
+            X_1 \ar[d] \\ X_0 & X_2\ar[l]
+        \end{tikzcd}
+    \]
+
+    The limit of such a diagram, if it exists consists of \(X\in \operatorname{ob} \mathcal{C}\) and maps \(\pi_i \in \operatorname{Mor}_{\mathcal{C}}(X,X_i)\) such that the diagram:
+
+    \[
+        \begin{tikzcd}
+            X_1 \ar[d] & X \ar[l] \ar[ld] \ar[d] \\ X_0 & X_2\ar[l]
+        \end{tikzcd}
+    \]
+
+    commutes with the universal property:
+
+    \[
+        \begin{tikzcd}
+            & & Y \ar[dll] \ar[ddl] \ar[dl, dotted] \\ X_1 \ar[d, "f_1"] & X \ar[l] \ar[ld] \ar[d] \\ X_0 & X_2\ar[l, "f_2"]
+        \end{tikzcd}
+    \]
+
+    This is specific case is called the fiber product.
+
+    In (Sets) all limits and colimits exist.
+
+    In the fiber product example, we can consider \(X = \coprod_{x_0\in X_0} f_1 ^{-1} (x_0) \times f_2 ^{-1} (x_0)\).
+
+    We can look at the following category of natural number: \(\mathcal{I} \coloneqq \cdots \to 4 \to 3 \to 2 \to 1\) [we don't write arrows \(4 \to 1\) since it's a composition].
+
+    Let \(\mathcal{C} = \operatorname{Ab}\). We can consider \(\mathcal{I} \to \operatorname{Ab}\) so that we have \(\cdots \to X_4 \to X_3 \to X_2 \to X_1\).
+    
+    Then taking limit gives us the projective limit \(\varprojlim_n X_n\).
+
+    For example if \(X_i = \mathbb{Z} / p^i \mathbb{Z}_i\).
+
+    We have \(\mathbb{Z} / p^{i+1} \mathbb{Z} \to \mathbb{Z} / p^i \mathbb{Z}\) by taking \(\mod p^i\). 
+
+    Then \(\varprojlim_n \mathbb{Z} / p^n\mathbb{Z} = \mathbb{Z}_p = a_0 + a_1 p + a_2 p^2 + \cdots\).
+
+    Note: the topology of \(\mathbb{Z}_p\) is important. Individual \(\mathbb{Z} /p^n \mathbb{Z}\) have discrete topology. They're finite and thus compact. The topology of \(\mathbb{Z}_p\) then comes from Tychonoff's theorem.
+
+    \subsection*{Filtered Category}
+
+    A \textit{filtered category} \(\mathcal{I}\) satisfies:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\mathcal{I}\) is non-empty.
+        \item If \(x,y\in \operatorname{ob} \mathcal{I}\) there exists \(z\in \operatorname{ob} \mathcal{I}\) such that \(\operatorname{Mor}_{\mathcal{C}} (x,z)\neq \varnothing, \operatorname{Mor}_{\mathcal{C}} (y,z)\neq \varnothing\).
+        \item If \(x,y\in \operatorname{ob} \mathcal{I}, f,g\in \operatorname{Mor}_{\mathcal{C}} (x,y)\) then \(\exists z\in \operatorname{ob} \mathcal{I}, h\in \operatorname{Mor}_{\mathcal{C}}(y,z)\) such that \(h \circ f = h \circ g\).   
+    \end{enumerate} 
+
+    Condition 2 implies given \(x,y\) we can always find \(z\) such that,
+
+    \[
+        \begin{tikzcd}
+            x \ar[rd] \\ & z \\ y \ar[ru]
+        \end{tikzcd}
+    \]
+
+    Condition 3 implies given
+
+    \[
+        \begin{tikzcd}
+            x \ar[r, bend right] \ar[r, bend left] & y
+        \end{tikzcd}
+    \]
+
+    We can find
+
+    \[
+        \begin{tikzcd}
+            x \ar[r, bend right] \ar[r, bend left] & y \ar[r] & z
+        \end{tikzcd}
+    \]
+
+    Advantage of having a filtered category: we can make colimits exist.
+
+    \begin{theorem}
+        The category of fields does not have general colimits but it does have \textit{filtered colimits}
+    \end{theorem}
+
+    Take a colimit in the category of sets and observe that it has a field structure.
+
+    How do we add up two elements in different fields \(x\) and \(y\)? Take the field \(z\) and add there!
+
+    \subsection*{Adjoint Functors}
+
+    Suppose we have categories \(\mathcal{C}\) and \(\mathcal{D}\) and functors \(F: \mathcal{C} \to \mathcal{D}, G: \mathcal{D} \to \mathcal{C}\). TFAE:
+  
+    \begin{enumerate}[label=\arabic*)]
+        \item \((F,G)\) is an adjoint pair
+        \item \(F\) is the left-adjoint of \(G\)
+        \item \(G\) is the right-adjoint of \(F\)
+    \end{enumerate} 
+
+    All these equate to saying:
+
+    \begin{definition}
+        There is a natural isomorphism between the following: \(\operatorname{Mor}_{\mathcal{D}}(F(X), Y)\) and \(\operatorname{Mor}_{\mathcal{C}}(X, G(Y))\). We denote this by \(N(X,Y)\). So \(\operatorname{Mor}_{\mathcal{D}}(F(X),Y) \xrightarrow{N(X,Y)} \operatorname{Mor}_{\mathcal{C}} (X,G(Y))\).
+    \end{definition}
+
+    The picture looks like the following: 
+    Suppose we have \(X_1 \to X_2\) in \(\mathcal{C}\). 
+
+    \[
+        \begin{tikzcd}
+            \operatorname{Mor}_{\mathcal{D}}(F(X_1),Y) \ar[r,"N(X_1\text{,}Y)"] & \operatorname{Mor}_{\mathcal{C}} (X_1, G(Y)) \\ \operatorname{Mor}_{\mathcal{D}}(F(X_2),Y) \ar[r,"N(X_2\text{,}Y)"] \ar[u,"F(f)^{\ast}"] & \operatorname{Mor}_{\mathcal{C}} (X_2, G(Y)) \ar[u,"f^{\ast}"] 
+        \end{tikzcd}
+    \]
 
 \end{document}
