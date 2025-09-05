@@ -40,6 +40,8 @@
     
     Link: \url{https://math.stanford.edu/~vakil/216blog/FOAGjul2724public.pdf}
 
+    Office Hours: Wednesdays 3-4, Fridays 1-2
+
     It's basically an introduction to the scheme point of view for algebraic geometry.
 
     Grothendieck POV: if we get the definitions right, hard problems will become easier. We are trying to get the definition here.
@@ -652,5 +654,166 @@
             \operatorname{Mor}_{\mathcal{D}}(F(X_1),Y) \ar[r,"{N(X_1,Y)}"] & \operatorname{Mor}_{\mathcal{C}} (X_1, G(Y)) \\ \operatorname{Mor}_{\mathcal{D}}(F(X_2),Y) \ar[r,"{N(X_2,Y)}"] \ar[u,"F(f)^{\ast}"] & \operatorname{Mor}_{\mathcal{C}} (X_2, G(Y)) \ar[u,"f^{\ast}"] 
         \end{tikzcd}
     \]
+
+    \section*{Friday, 9/5/2025}
+    
+    Consider the following example:
+
+    \(\mathcal{C} = \text{(Sets)}\)
+    
+    \(\mathcal{D} = \text{(Ab)}\)
+
+    \(G: \mathcal{D} \to \mathcal{C}\) the forgetful functor.
+
+    \(F: \mathcal{C} \to \mathcal{D}\) the free abelian group functor.
+
+    If \(X\) is any set and \(Y\) is any abelian group, then,
+
+    \[
+        \operatorname{Hom}(\operatorname{Free}(X), Y) \xrightarrow{\cong} \operatorname{Func} (X,Y)
+    \]
+
+    These are adjoint functors.
+
+    Let \(H\) be a commutative ring, and \(M,X,Y\in \operatorname{ob}(A \text{-mod})\). Then,
+
+    \[
+        \operatorname{Hom}_A(M \otimes_A X, Y) \xrightarrow{\cong} \operatorname{Hom}_A (X, \operatorname{Hom}_A(M,Y))
+    \]
+
+    Here \(F(X)= M \otimes_A X\)
+    
+    \(G(Y) = \operatorname{Hom}_A (M,Y)\).
+
+    An example from Homological Algebra:
+
+    Abelian Categories. Examole: Abelian groups, \(k\)-vector spaces, \(A\)-modules, left \(R\)-modules, sheaves of abelian groups, \(k\)-vector spaaces with \(G\)-rep, etc.
+
+    There are axioms for abelian categories but you don't really need to remember it.
+
+    Let \(\mathcal{C}\) be an abelian category. We have the following:
+    
+    \(\operatorname{Mor}_{\mathcal{C}}(X,Y)\) is an abelain group.
+
+    Composition \(\operatorname{Mor}_{\mathcal{C}}(X,Y) \times \operatorname{Mor}_{\mathcal{C}} (Y,Z) \to \operatorname{Mor}_{\mathcal{C}}(X,Z)\) is bilinear.
+
+    The category has a \(0\)-object.
+
+    The category has a biproduct.
+
+    The category has kernels and cokernels.
+
+    Every monomorphism is the kernel of its cokernel.
+
+    Every epimorphism is the cokernel of its kernel.
+
+    Let's unpack what kernel/cokernel means in a categorical sense.
+
+    Consider \(X \xrightarrow{f} Y\). We also have the zero map \(X \xrightarrow{0} Y\).
+
+    Kernel: Let \(K\) be universal in the following:
+
+    \[
+        \begin{tikzcd}
+            K^{\prime} \ar[d, dotted] \ar[dr] \\
+            K \ar[r] & X \ar[r, bend right,"0"] \ar[r, bend left, "f"] & Y 
+        \end{tikzcd}
+    \]
+
+    Then the kernel is the morphism \(K \to X\).
+
+    Similarly, let C be universal in the following:
+
+    \[
+        \begin{tikzcd}
+            X \ar[r, bend right, "0"] \ar[r, bend left, "f"] & Y \ar[r] \ar[rd] & C \ar[d, dotted] \\ & & C^{\prime} 
+        \end{tikzcd}
+    \]
+
+    cokernel is the morphism \(Y \to C\). That is why it makes sense to talk about kernel of cokernel and cokernel of the kernel.
+
+    Most importantly:
+
+    \begin{theorem}
+        An abelian category is a category in which diagram chasing works.
+    \end{theorem}
+
+    Every abelian category is equivalent to a full subcategory of \(R\)-mod for some ring \(R\).
+
+    Now let's talk about complexes, so we can talk about homological algebra.
+
+    \begin{definition}
+        [Complex] A complex is a sequence of objects and morphisms with the rule that composing any two consecutive morphisms gives the \(0\) morphism.
+    \end{definition}
+
+    Going up gives you cochain complexes.
+
+    Going down gives you chain complexes.
+
+    Consider the cochain complex:
+
+    \[
+        \cdots \xrightarrow{\phi_{n-2}} X^{n-2} \xrightarrow{\phi_{n-1}} X^{n-1} \xrightarrow{\phi_n} X^n \xrightarrow{\phi_{n+1}} X^{n+1} \xrightarrow{\phi_{n+2}} X^{n+2} \to \cdots 
+    \]
+
+    We have the following: \(\phi_{n+1} \circ \phi_n = 0\).
+
+    The \textit{cohomology} of this \textit{cochain complex} is \(H^n(X^\bullet) = \ker \phi_{n+1} / \operatorname{im} \phi_n\).
+
+    Consider \(X \to Y\). We have the following:
+
+    \[
+        \begin{tikzcd}
+            X \ar[rr] \ar[rd,"epi"] & & Y \\ & Z \ar[ur, "mon"]
+        \end{tikzcd}
+    \]
+
+    Then \(Z \to Y\) is the image.
+
+    \(X \xrightarrow{f} Y \to \operatorname{coker} f \) then \(\operatorname{im} f = \ker (Y \to \operatorname{coker} f)\).
+    
+    Example of diagram chase:
+
+    Consider the following \textit{exact} complexes: their cohomology is \(0\), with some more morphisms.
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & X^0 \ar[r] \ar[d,"f^0"] & X^1 \ar[r] \ar[d,"f^1"] & X^2 \ar[r] \ar[d,"f^2"] & 0 \\
+            0 \ar[r] & Y^0 \ar[r] & Y^1 \ar[r] & Y^2 \ar[r] & 0
+        \end{tikzcd}
+    \]
+
+    Then we will have the following:
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & \ker f^0 \ar[r] & \ker f^1 \ar[r] & \ker f^2 \ar[dddll, bend left] \\
+            0 \ar[r] & X^0 \ar[r] \ar[d,"f^0"] & X^1 \ar[r] \ar[d,"f^1"] & X^2 \ar[r] \ar[d,"f^2"] & 0 \\
+            0 \ar[r] & Y^0 \ar[r] & Y^1 \ar[r] & Y^2 \ar[r] & 0 \\
+            & \operatorname{coker} f^0 \ar[r] & \operatorname{coker} f^1 \ar[r] & \operatorname{coker} f^2 
+        \end{tikzcd}
+    \]
+
+    Proof same as previous course.
+
+    \section*{Sheaves}
+    
+    Suppose we have a smooth manifold. Note that we have the extra data of charts and atlases, which gives us the tools to work.
+
+    Not the best POV for doing algebra, we don't always have smoothness. Topological manifolds are easy, we just want transition functions to be continuous.
+
+    The additional structure on \(X\) to make it a smooth manifold is the data of which functions on \(X\) are smooth.
+
+    We want the following data: For each open set \(U\)  in \(X\), we want a commutative ring \(C^{\infty} (U)\) of smooth functions.
+
+    Note: this is not saying the functions have to be smooth. \textit{This data defines what the smooth functions are!}
+
+    Now, if \(V \subset U\) then we have a restriction homomorphism \(C^{\infty} (U) \to C^{\infty} (V)\).
+
+    We can do this in a categorical way: we can look at the category of open sets with inclusion as morphisms, and look at a contravariant functor. This doesn't give us a sheaf though.
+
+    \begin{definition}
+        [Presheaf] A presheaf of commutative rings on \(X\) is a contravariant functor from the category \(\operatorname{Open}(X)\) to the category \(\operatorname{CommRing}\).
+    \end{definition}
 
 \end{document}
