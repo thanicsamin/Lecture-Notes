@@ -816,4 +816,126 @@
         [Presheaf] A presheaf of commutative rings on \(X\) is a contravariant functor from the category \(\operatorname{Open}(X)\) to the category \(\operatorname{CommRing}\).
     \end{definition}
 
+    \section*{Monday, 9/8/2025}
+
+    Actually, we can replace commutative ring with any category.
+
+    \(\forall U \subset \) open, \(\mathcal{F}(U)\) is an object in \(\mathcal{C}\) and if \(U \subset V\) we have a restriction map \(\operatorname{Res}_{V, U}: \mathcal{F}(V) \to \mathcal{F}(U)\). For \(U \subset V \subset W\) we have:
+
+    \[
+        \operatorname{Res}_{V,U} \circ \operatorname{Res}_{W,V} = \operatorname{Res}_{W,U}
+    \]
+    
+    Presheaves form a category \(\mathcal{C}_X\) whose morphisms are natural transformations.
+
+    \(\mathcal{F}, \mathcal{G} \in \operatorname{ob} \mathcal{C}_X\).
+
+    \(\phi: \mathcal{F} \to \mathcal{G}\) gives morphisms \(\mathcal{F}(U) \to \mathcal{G}(U)\) in \(\mathcal{C}_X\) for each \(U \subset X\) and for all \(V \subset U \subset X\) the following diagram commutes:
+
+    \[
+        \begin{tikzcd}
+            \mathcal{F}(U) \ar[r,"\phi(U)"] & \mathcal{G}(U) \\ \mathcal{F}(V) \ar[u,"\operatorname{Res}_{V,U}"] \ar[r,"\phi(V)"] & \mathcal{G}(V) \ar[u,"\operatorname{Res}_{V,U}"]
+        \end{tikzcd}
+    \]
+
+    Examples: presheaves of functions of any usual types [eg continuous, smooth etc.]
+
+    An element of \(\mathcal{F}(U)\) is callled a \underline{section}.
+
+    To understand this terminlogy, consider the following example:
+
+    Suppose \(Y \xrightarrow{\pi} X\) is a continuous map of topological spaces.
+
+    Then \(\mathcal{F}(U) = \text{presheaf of continuous functions \(f: U \to Y\) such that \(\pi \circ f = \operatorname{id}_{U}\)}\).
+    
+    For \(x\in X, f ^{-1} X\) is callled the fiber of \(f\) over \(x\). We can pick a point on each fiber so that it varies continuously. This is called a section.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{img/section}
+        \caption{}
+    \end{figure}
+
+    The \textit{stalk} of \(x\in X\) is \(\varinjlim_{U \ni x} \mathcal{F}(U)\).
+
+    If \(\mathcal{F}\) is a presheaf of analytic functions on \(X = \mathbb{C}\), what is the stalk at \(x = 0\)?
+
+    It is defined by the taylor series. So it contains power series with positive radius of convergence.
+
+    Suppose \(U \subset X\) is open. Let \(U_\alpha\) be an open cover of \(U\). We also have \(\bigcup_{\alpha \in I} U_\alpha = U\).
+
+    We have two obvious maps \(\prod_{\alpha \in I} \mathcal{F}(U)\) to \(\prod_{\beta ,\gamma \in I} \mathcal{F} (U_\beta \cap U_\gamma)\).
+
+    \[
+        \begin{tikzcd}
+            \prod_{\alpha \in I} \mathcal{F}(U) \ar[r, bend left, "\phi : \alpha \mapsto \beta"] \ar[r, bend right, "\psi : \alpha \mapsto \gamma"] & \prod_{\beta, \gamma\in I} \mathcal{F}(U_\beta \cap U_\gamma)
+        \end{tikzcd}
+    \]
+
+    Let's take a look into this. We have sections \((s_\alpha)_\{ \alpha \in I \} \mapsto (t_{\beta, \gamma})_{\beta, \gamma}\).
+
+    \(\phi((s_\alpha))_{\beta,\gamma} = \operatorname{Res}_{U_\beta, U_\beta \cap U_\gamma} s_\beta \)
+    
+    \(\psi((s_\alpha))_{\beta ,\gamma} = \operatorname{Res}_{U_\gamma, U_\beta \cap U_\gamma} s_\gamma\).
+    
+    
+
+    Thus we have:
+
+    \[
+        \begin{tikzcd}
+            \mathcal{F}(U) \ar[r] & \prod_{\alpha \in I} \mathcal{F}(U) \ar[r, bend left, "\alpha \mapsto \beta"] \ar[r, bend right, "\alpha \mapsto \gamma"] & \prod_{\beta, \gamma\in I} \mathcal{F}(U_\beta \cap U_\gamma)
+        \end{tikzcd}
+    \]
+
+    This diagram commutes.
+
+    Let \(\mathcal{F}: \operatorname{Open}(X) \to \mathcal{C}\). If \(\Delta \in \operatorname{ob} \mathcal{C}\) then,
+
+    \[
+        \begin{tikzcd}
+            \Delta \ar[d,dotted] \ar[rd] \\ \mathcal{F}(U) \ar[r] & \prod \mathcal{F}(U_\alpha) \ar[r, bend right] \ar[r, bend left] & \prod \mathcal{F} (U_\beta \cap U_\gamma)
+        \end{tikzcd}
+    \]
+
+    If \(s_\alpha \in \mathcal{F}(U_\alpha)\) is a collection of sections so that \(\forall \beta ,\gamma\), \(s_\beta\) and \(s_\gamma\) agree on overlaps, i.e. \(\operatorname{Res}_{U_\beta, U_\beta \cap U_\gamma} s_\beta = \operatorname{Res}_{U_\gamma , U_\beta \cap U_\gamma} s_\gamma\) then \(\exists s\in \mathcal{F}(U)\) such that \(\operatorname{Res}_{U, U_\alpha} s = s_\alpha\) for all \(\alpha\).
+
+    This is the sheaf axiom.
+
+    Since there exists the empty product, we have to have a terminal object. But in our definition of the category of rings, we are excluding the zero ring so we don't have a final object in that category. But then we cannot define schemes. We need to modify some things.
+
+    \subsection*{Presheaf which is not a Sheaf}
+
+    We want to define sheaves. Consider the following example:
+
+    Let \(X = \mathbb{R}\) and \(\mathcal{F} =\) sheaf of continuous functions \(X \to \mathbb{Z}\). Let \(\mathcal{G} =\) presheaf of constant \(\mathbb{Z}\)-valued functions on \(X\).
+
+    Then, \(\mathcal{G}(U) = \mathbb{Z}\) for all \(U\neq \varnothing\).
+
+    \(\mathcal{G}(\phi) = (0)\).
+
+    \(\mathcal{F}\) agrees with \(\mathcal{G}\) on connected sets. But not necessarily on disconnected sets.
+
+    \(\mathcal{G}\) is not a sheaf!
+
+    What are the stalks of \(\mathcal{F}\) and \(\mathcal{G}\)?
+
+    In both cases, the stalk at every point is \(\mathbb{Z}\).
+
+    Furthermore, in the category of presheaves, there is a map \(\mathcal{G} \to \mathcal{F}\) in the sense that we have \(\mathcal{G}(U) \to \mathcal{F}(U)\) which is essentially the identity. On the stalks, this is an isomorphism.
+
+    In general, if \(\mathcal{G}\) and \(\mathcal{F}\) are both presheaves on \(X\) and \(\phi: \mathcal{G} \to \mathcal{F}\) is a morphism of presheaves, then \(\forall x\in X\), \(\phi\) induces a map \(\phi_x\) sending stalks to stalks: \(\phi_x : \mathcal{G}_x \to \mathcal{F}_x\).
+
+    \[
+        \begin{tikzcd}
+            \mathcal{F}(U) \ar[r] & \mathcal{F}(W) & \mathcal{F}(V) \ar[l] \\ \mathcal{G}(U) \ar[u] \ar[r] & \mathcal{G}(W) \ar[u] & \mathcal{G} (V) \ar[u] \ar[l]
+        \end{tikzcd}
+    \]
+
+    is commutative.
+
+    Note that, we can thus have two different presheaves with the same stalks. We don't want this, stalk should contain all the data of a sheaf.
+
+    Slogan: A sheaf is a local object, i.e. determined by local data: stalks and \textit{compatibility of nearby stalks}.
+
 \end{document}

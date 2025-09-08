@@ -332,6 +332,13 @@
         \(f\pitchfork X\), \(f\) is \textit{transverse} to \(X\) if \(\forall m \in f ^{-1} X, T_{f(m)}N = T_{f(m)} X + \mathrm{d}f_m (T_m M)\).
     \end{definition}
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/transverse}
+        \caption{}
+        \label{fig:}
+    \end{figure}
+
     \begin{theorem}
         \(f ^{-1} X\) is a submmanifold of \(M\).
 
@@ -444,6 +451,126 @@
 
     This tautological bundle is non-trivial.
 
+    \section*{Monday, 9/8/2025}
     
+    Last week was a break.
+
+    HWK: an exercise from ch2. (C, D, E are recommended).
+
+    Recall: a vector bundle \(\xi\) is \begin{tikzcd} \mathbb{R} \ar[r] & E \ar[d,"\pi"] \\ & B\end{tikzcd} meaning fibers of \(\pi\) are \(k\)-dimensional vector spaces.
+
+    \begin{definition}
+        A section of \(\xi\) is actually a section of \(\pi\).
+
+        \(s: B \to E\) such that \(\pi \circ s = \operatorname{id}_{B}\).
+    \end{definition}
+
+    Section looks like this:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R}^k \ar[r] & E \ar[d,"\pi"] \\ & B \ar[u, dotted, bend left, "s"]
+        \end{tikzcd}
+    \]
+
+    Section of \(TM \eqqcolon\) vector field.
+
+    There's also the zero section \(z: B \to E\) given by \(b \mapsto 0 \in \pi ^{-1} b\).
+
+    \(\begin{tikzcd} E \ar[d,"\pi"] \\ B \ar[u,bend left, dotted,"z"] \end{tikzcd}\) homotopy inverses.
+
+    Now we show there is some twisting.
+
+    \(\begin{tikzcd} E_0 \ar[d] & = E - z(B) \\ B \end{tikzcd}\). \(B\) trivial implies \(E_0 \cong B \times (\mathbb{R}^k \setminus  e) \simeq B \times S^{k-1}\).
+
+    We have the tautological line bundle:
+
+    \[
+        \begin{tikzcd}
+            R \ar[r] & E \ar[d] & = \{ ([x],v) \mid v\in \mathbb{R} x \} & \subset P^n \times \mathbb{R}^{n+1} \\ & P^n & = S^n / x \sim -x 
+        \end{tikzcd}
+    \]
+
+    We can think of it like \((\text{line}, \text{point on line}) \in E\).
+    
+    For example, consider \(P^1\). This gives us the open mobius strip.
+
+    \begin{theorem}
+        [2.1] \(\gamma_n^1\) is nontrivial for \(n \geq 1\).
+    \end{theorem}
+
+    \begin{proof}
+        \(E(\gamma_n^1)_0\) is connected \(\iff \not\simeq P^n \times S^0\).
+    \end{proof}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[height=0.8\textwidth, angle=90]{img/gamma11.pdf}
+        \caption{}
+    \end{figure}
+
+    \begin{definition}
+        A metric on a vector bundle \(\xi \) is \(g: E \times_B E \to \mathbb{R}\) such that \(\forall b\in B, \pi ^{-1} b \times \pi ^{-1} b \to \mathbb{R}\) is an inner product.
+    \end{definition}
+
+    Recall: pullback of \(\begin{tikzcd}
+        & B\ar[d,"\beta"] \\ A \ar[r,"\alpha"] & C
+    \end{tikzcd}\) is \(A \times_C B = \left\{ (a,b) \mid \alpha (a) = \beta(b) \right\} \subset A \times B\).
+
+    Also see: a vector bundle \(E \to B\) needs all fibers to be vector spaces. For a metric we want them to be inner product spaces.
+
+    A bundle with metric is often callled a Euclidean vector bundle.
+
+    Examples: A \textit{Riemannian manifold} is \(TM\) with a smooth metric [\(g\) is smooth].
+
+    If \(M^n \subset \mathbb{R}^N\) we can use the inner product inherited from \(\mathbb{R}^N\) so it is a riemannian manifold.
+
+    eg the trivial bundle has a metric: \((B \times \mathbb{R}^n) \times_B (B \times \mathbb{R}^n) \to \mathbb{R}^n\) which looks like \(((b,v),(b,w)) \mapsto v \cdot w\). 
+
+    If \(M^n \subset \mathbb{R}^N\), \(TM = \left\{ (x,v) \in M \times \mathbb{R}^N \mid v = \gamma^{\prime} (0), \gamma(0) = x \right\} \) 
+
+    \(\lVert (x,v) \rVert = \lVert v \rVert, g((x,v),(x,w)) = v \cdot w\).
+
+    Then \(\lVert \cdot \rVert : E \to \mathbb{R}_{\geq 0}\) given by \(\lVert v \rVert \coloneqq \sqrt{g(v,v)}\).
+
+    \begin{theorem}
+        [Exercises, ch2] Suppose \(B\) is paracompact. We can look at Isomorphism classes of Euclidean vector bundles over \(B\), forget the metric to get isomorphism classes of vector bundles over \(B\):
+
+        \[
+            \begin{Bmatrix}
+                \text{iso class of euclidean} \\
+                \text{vector bundle over \(B\)} 
+            \end{Bmatrix} \xrightarrow{\text{forget } g}\begin{Bmatrix}
+                \text{iso class of} \\
+                \text{vector bundle over \(B\)} 
+            \end{Bmatrix} 
+        \]
+
+        This is an isomorphism.
+    \end{theorem}
+
+    \begin{definition}
+        Sections \(s_1, \cdots , s_n\) of rank \(n\) vector bundle \(\begin{tikzcd}
+            E \ar[d] \\ B \ar[u, bend right, dotted, "s_i", swap]
+        \end{tikzcd}\) are llinearly independent (l.i) if \(\forall b\in B, \left\{ s_1(b), \cdots , s_n(b) \right\} \) is linearly independent in \(\pi ^{-1} (b)\).  
+    \end{definition}
+
+    \begin{theorem}
+        [2.2] rank \(n\) vector bundle \(\xi \) is trivial iff \(\xi \) has \(n\) l.i. sections.
+    \end{theorem}
+
+    \begin{proof}
+        \(\implies: s_i(b) \coloneqq (b,\underline{e_i}) \in B \times \mathbb{R}^n\).
+        
+        \(\impliedby:\) define \(f: B \times \mathbb{R}^n \to E\) by \(\left( b, \sum a_i e_i \right) \mapsto \sum a_i s_i(b)\) 
+    \end{proof}
+
+    eg \(T^2\) has \(2\) l.i. sections, thus \(TT^2 \cong T^2 \times \mathbb{R}^2\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{img/trivialtorus}
+        \caption{}
+    \end{figure}
 
 \end{document}
