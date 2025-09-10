@@ -573,4 +573,123 @@
         \caption{}
     \end{figure}
 
+    \section*{Wednesday, 9/10/2025}
+    
+    \section*{Chapter 3: New bundles}
+
+    Homeowrk: pick up problems from chapter 3 (and chapter 2).
+
+    \textit{Abstract definition of bundle} (Steenrod, see D-Kirk 5.2).
+
+    Let \(G\) be a topological group, \(F\) a space, \(G \curvearrowright F\)
+
+    Topological group meaning: \(G\) topological group means \(G\) is a group and a space such that \(G \times G \to G, (a,b) \mapsto ab\) and \(G \to G, a \mapsto a ^{-1}\) are continuous.
+
+    Action of \(G\) on \(F\): \(G \times F \to F\) given by \(ef = f\) and \((gg^{\prime})f = g (g^{\prime} f)\).
+
+    \begin{definition}
+        A fiber bundle with structure group \(G\) and fiber \(F\) [\((G,F)\)-bundle] is a map with:
+        
+        Map \(\begin{tikzcd}
+            E \ar[d] \\ F
+        \end{tikzcd}\)
+        
+        Atlas \(\mathcal{A} = \{ \phi : U_{\phi} \times F  \xrightarrow{\approx} \pi ^{-1} U_\phi \} \) 
+
+        Transition functions \(\Theta = \left\{ \theta_{\phi,\psi} : U_{\phi} \cap U_{\psi} \to G \mid \phi,\psi \in \mathcal{A} \right\} \) 
+
+        such that:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\{ U_{\phi} \} \) open cover of \(B\).
+            \item Fiber preserving homeomorphism:
+            
+            the following diagram commutes: \(\begin{tikzcd}
+                U_{\phi} \times F \ar[rr,"\approx"] \ar[rd] && \pi ^{-1} U_\phi\ar[ld] \\ & U_{\phi} 
+            \end{tikzcd}\)   
+            \item \(b \in U_{\phi}\cap U_{\psi}, f\in F \implies \psi(b,f) = \phi(b,\theta_{\phi, \psi}(b)f)\) 
+            \item \(\theta_{\phi,\psi}(b) = \theta_{\phi, \chi}(b) \theta_{\chi,\psi}(b)\) 
+        \end{enumerate} 
+    \end{definition}
+
+    Examples:
+
+    \(G\) trivial group implies the bundle is a trivial bundle, \(\begin{tikzcd}
+        B \times F \ar[d] \\ B
+    \end{tikzcd}\) 
+
+    \(G = \operatorname{GL}(n,\mathbb{R}), F = \mathbb{R}^n\) gives us the rank \(n\) vector bundle. Let \(b\in B\), choose \(\phi , b\in U_{\phi}\). Use the atlas to find bijection \(\pi ^{-1} b \cong \mathbb{R}^n\). This gives us a vector space on \(\pi ^{-1} b\) independent of the choice of \(U_{\phi}\) by the 3rd condition.
+
+    If the \(G\)-action on \(F\) is \textit{effective}, meaning every non-trivial action does something, meaning there is \(f\in F\) such that \(gf\neq f\) for every \(g\in G \setminus \{ e \}\), then we don't need condition 4.
+
+    If \(G=\operatorname{O}(n)\) and \(F=\mathbb{R}^n\) then we have a vector bundle with a metric.
+    
+    If \(G = \operatorname{GL}(n,\mathbb{R})^+\) and \(F\) is \(\mathbb{R}^n\) then we have an oriented vector bundle.
+
+    If \(G = S_F = \operatorname{Aut}(F)\) where \(F\) is discrete,  then we have a cover.
+
+    For discrete \(G\) with \(F = G\) then we have a regular \(G\)-cover.
+
+    If \(G = \operatorname{Spin}(n), F = \mathbb{R}^n\) then we have a vector bundle with spin structure. 
+
+    Now we start chapter 3. We can do a lot of things on vector spaces, like tensor products. This lets us do stuff with vector bundles as well.
+
+    Some basic constructions involving vector bundles:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Restriction: Let \(\xi\) be a vector bundle, \(\overline{b} \hookrightarrow B\). Then we can let \(\eval{\xi}_{\overline{B}}^{} = \begin{tikzcd}
+            \pi ^{-1} \overline{B} \ar[d] \\ \overline{B}
+        \end{tikzcd}\)  
+
+        \[
+            \begin{tikzcd}
+                & \xi \ar[d,phantom,"||"] \\ & E \ar[d, "\pi"] \\ \overline{B} \ar[r, hook] & B 
+            \end{tikzcd}
+        \]
+
+        \item Induced bundles (= Pullback bundle) Let \(\xi\) be a vector bundle, and \(B_1 \xrightarrow{f} B\). We can \textit{pullback} the bundle and get \(f ^{\ast} \xi\):
+        
+        \[
+            \begin{tikzcd}
+                f^{\ast} E = B_1 \times_B E \ar[r] \ar[d] & E \ar[d] \\ B_1 \ar[r,"f"] & B
+            \end{tikzcd}
+        \]
+
+        in fact \(\eval{\xi}_{\overline{B} }^{} = \operatorname{inc}^{\ast} \xi\).
+    \end{enumerate} 
+
+    \begin{definition}
+        Bundle map \(g: \eta \to \xi\) [both \(n\)-plane] is given by a commutative diagram which is isomorphism on fibers:
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[r,"g"] \ar[d] & E(\xi) \ar[d] \\ B(\eta) \ar[r,"\overline{g}"] & B(\xi)
+            \end{tikzcd}
+        \]
+    \end{definition}
+
+    \begin{lemma}
+        [3.1] \(\eta \cong \overline{g}^{\ast}\)  as vector bundle over \(B(\eta)\).
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[rr,"\approx"] \ar[rd] & & \overline{g}^{\ast} E(\xi) \ar[ld] \\ & B(\eta)
+            \end{tikzcd}
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        We just need to define the map.
+
+        \[
+            E(\eta) \to B(\eta) \times_{B(\xi)} E(\xi)
+        \]
+
+        \[
+            e \mapsto (\pi(e), g(e))
+        \]
+    \end{proof}
+
+    pullback stuff works for \((G,F)\)-bundles.
+
 \end{document}
