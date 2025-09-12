@@ -1068,4 +1068,140 @@
 
     In general, gluability on \(\mathcal{F}\) and separability on \(\mathcal{G}\) implies gluability on \(\mathcal{H}\).
 
+    \section*{Friday, 9/12/2025}
+    
+    If \(\mathcal{F}, \mathcal{G}\) are sheaves and \(\phi: \mathcal{F} \to \mathcal{G}\) is a morphism, then if we take image in the category of presheaves, then \(\operatorname{im} (\phi) (U) = \phi(U)(\mathcal{F}(U)) \subset \mathcal{G}(U)\).
+
+    Then \(\operatorname{im} (\phi)\) is not a sheaf.
+
+    For sheaves, we need a different notion of images!
+
+    The separability axiom is fine: if \(f_1, f_2\in \operatorname{im} (\phi)(U)\) and \(U = \bigcup_\alpha U_\alpha\) and \(\forall \alpha : \operatorname{Res}_{U, U_\alpha}(f_1) = \operatorname{Res}_{U,U_\alpha}(f_2)\) then \(f_1 = f_2\).
+
+    Problem is gluability.
+
+    Suppose \(g_\alpha \in \operatorname{im} (\phi) (U_\alpha)\) and \(\forall \alpha ,\beta\) we have \(\operatorname{Res}_{U_\alpha, U_\alpha \cap U_\beta} g_\alpha  = \operatorname{Res}_{U_\beta, U_\alpha \cap U_\beta} g_\beta\).
+
+    Can we find a \(g\in \operatorname{im} (\phi)(U)\) such that \(\operatorname{Res}_{U,U_\alpha} (g) = g_\alpha\)?
+
+    Note that since \(g_\alpha \in \operatorname{im} (\phi)(U_\alpha)\), there exists \(f_\alpha\in \mathcal{F}(U_\alpha)\) such that \(\phi(U_\alpha) (f_\alpha) = g_\alpha\).
+
+    We can do this gluing if \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} f_\alpha = \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta}\) for all \(\alpha , \beta\) by gluability of \(\mathcal{F}\). But we don't necessarily have that, we can only deduce that \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} f_\alpha - \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta} f_\beta\)  is in \(\ker \phi(U_\alpha \cap U_\beta)\).
+
+    Thus, if we want an abelian category of sheaves, we want a different notion of image and cokernels.
+
+    \begin{theorem}
+        If \(\mathcal{F}, \mathcal{G}\) are sheaves and \(\phi : \mathcal{F} \to \mathcal{G}\) is a morphism of sheaves which is an isomorphism at the stalk level, then \(\phi\) is an isomorphism.
+
+        Isomorphism at the stalk level: \(\phi: \mathcal{F} \to \mathcal{G}\) induces \(\phi_x: \mathcal{F}_x \to \mathcal{G}_x\) for each \(x\in X\). We want this to be an isomorphism.
+
+        Slogan: A sheaf is determined by its stalks.
+    \end{theorem}
+
+    \begin{proof}
+
+        Let \(U\) be any open subset of \(X\). We want \(\phi(U): \mathcal{F}(U) \to \mathcal{G}(U)\) to be an isomorphism.
+
+        Suppose \(f_1, f_2\in \mathcal{F}(U)\) such that \(\phi(U)(f_1) = \phi(U)(f_2)\). Then \(\forall x\in U\), the germ of \(f_1\), which we write as \(f_{1,x}\) and the germ of \(f_2\), \(f_{2,x}\) map to the same germ, i.e. \(\phi(U)(f_1)_x = \phi(U)(f_2)_x\) in \(\mathcal{G}_x\). So, \(f_{1,x} = f_{2,x}\) for all \(x\in U\). Thus \(\exists U_x \subset U\) such that \(\operatorname{Res}_{U,U_x} f_1 = \operatorname{Res}_{U,U_x} f_2\).
+
+        By separability, \(f_1 = f_2\).
+
+        Now we prove gluability. Let \(g\in \mathcal{G}(U)\). \(\forall x\in U\) we have \(g_x = \phi_x(f_x)\) for some (unique) \(f_x \in \mathcal{F}_x\).
+
+        Then \(\exists f_{U_x} \in \mathcal{F}(U_x)\) such that \(f_{U_x}\) represents \(f_x\) where \(U_x\) is a neighborhood of \(x\).
+
+        Then \(\phi(U_x)(f_{U_x}) = g_{U_x}\) which has stalk \(g_x\). Then there exists \(U_x \supset V_x \ni x\) such that \(\phi(V_x)(\operatorname{Res}_{U_x, V_x}f_{U_x}) = \operatorname{Res}_{U,V_x}(g)\).
+        
+        Define \(f_{V_x}^{\prime} = \operatorname{Res}_{U_x, V_x} f_{U_x}\). Then, \(\phi(V_x)(f^{\prime} _{V_x}) = \operatorname{Res}_{U, V_x} (g)\).
+
+        Claim: \(\{ f^{\prime}_{V_x} \}\) agree on overlaps.
+
+        Proof: \(\forall x,y\in U\) we have \(\operatorname{Res}_{V_x, V_x\cap V_y} (f^{\prime} _{V_x}) = \operatorname{Res}_{V_y, V_x\cap V_y}(f^{\prime}_{V_y})\). This is true stalk by stalk and \(\mathcal{F}\) is a sheaf. By gluability we can find \(f^{\prime} \in \mathcal{F}(U)\) such that \(\operatorname{Res}_{U,V_x} f^{\prime} = f^{\prime} _{V_x}\) for all \(x\).
+
+        Therefore, \(\phi(U)(f^{\prime})_x = g_x\) for all \(x\). \(\phi(U)(f^{\prime}) = g\).
+
+    \end{proof}
+
+    Given a presheaf \(\mathcal{F}\) there exists at most one sheaf \(\mathcal{G}\) and morphism \(\mathcal{F} \to \mathcal{G}\) which is an isomorphism of stalks at each \(x\). The process of finding such a \(\mathcal{G}\) is called \textit{sheafification}.
+
+    \begin{definition}
+        [Sheafification] Let \(\mathcal{F}\) be a presheaf. We define its sheafification \(\mathcal{F} ^{sh}\) in the following way:
+
+        The stalks \(\mathcal{F}_x^{sh}\) are the same as \(\mathcal{F}_x\).
+
+        Compatibility is the same.
+
+        Let us be very specific about what sections are.
+
+        \(\mathcal{F}^{sh} = \text{functions } U \to \coprod_{x\in U} \mathcal{F}_x\) such that each \(x\in U\) maps to \(f_x\in \mathcal{F}_x\) such that \(f_x\) are compatible as usual. 
+    \end{definition}
+
+    We need to check if \(\mathcal{F}^{sh}\) is actually a sheaf, and if there exists a map \(\mathcal{F} \to \mathcal{F}^{sh}\) which is an isomorphism at the stalk level.
+
+    WTS: \(f_\alpha \in \mathcal{F}^{sh}(U_\alpha)\) and \(\forall \alpha ,\beta\) we have \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} (f_\alpha) = \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta}(f_\beta)\) then \(\exists ! f \in \mathcal{F}^{sh}(U)\).
+
+    \(f_\alpha\) gives us a function \(U_\alpha \to \coprod_{x\in U_\alpha} \mathcal{F}_x\).
+    
+    \(f_\beta\) gives us a function \(U_\beta \to \coprod_{x\in U_\beta} f_x\).
+
+    \(\forall x\in U_\alpha \cap U_\beta\) we have \(f_{\alpha, x} = f_{\beta , x}\).
+
+    Define \(f_x = f_{\alpha , x}\) for some \(\alpha\) with \(x\in U_\alpha\).
+
+    Now we need the map \(\mathcal{F} \to \mathcal{F}^{sh}\). Consider \(\mathcal{F}(U) \to \mathcal{F}^{sh}\) given by \(f \mapsto (x \mapsto f_x)\).
+    
+    We trivially have \(\mathcal{F}_x^{sh} = \mathcal{F}_x\): let \(s_x = [(s\in \mathcal{F}(U), x)]\). \(s\) defines compatible germs in a neighborhood of \(x\) therefore a section of \(\mathcal{F}_x^{sh}\) in a neighborhood of \(x\).
+
+    \subsection*{Exponential Sequence for analytic functions on \(X = \mathbb{C} \setminus \{ 0 \}\)}
+
+    Let \(\mathcal{O} =\) analytic functions [as additive group]
+
+    \(\mathcal{O} ^\times =\) non-vanishing analytic functions [as multiplicative group]
+
+    Let \(\underline{\mathbb{Z}}\) be sheaf of locally constant \(\mathbb{Z}\)-valued functions.
+
+    We have the following:
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & \underline{\mathbb{Z}} \ar[r] & \mathcal{O} \ar[rr, "f \mapsto \exp(2 \pi i f)"] & & \mathcal{O}^\times \ar[r,"?"] & 0
+        \end{tikzcd}
+    \]
+
+    Question: is this sequence exact?
+
+    We can't take log uniquely in \(\mathcal{O}^\times\) so not for presheaves. But we can take log locally, so on the stalk level we can take log and thus this is a short exact sequence for sheaves!
+
+    Slogan: Exactness for presheaves is determined on the section level, exactness for sheaves is determined on the stalk level.
+
+    Let \(\phi : \mathcal{F} \to \mathcal{G}\) be a morphism of sheaves in an abelian category.
+
+    \(\operatorname{im} (\phi)_{\text{sheaves}} = (\operatorname{im}(\phi)_{\text{presheaves}})^{sh}\)
+
+    \(\operatorname{coker}(\phi)_{\text{sheaves}} = (\operatorname{coker}(\phi)_{\text{presheaves}})^{sh}\) 
+    
+    \begin{theorem}
+        If \(\mathcal{F}\) is a presheaf, \(\mathcal{F}^{sh}\) is the universal sheaf admitting a map from \(\mathcal{F}\).
+    \end{theorem}
+
+    Thus, if \(\mathcal{F}\) is a presheaf and \(\mathcal{G}\) is a sheaf and we have \(\mathcal{F} \to \mathcal{G}\) we have a unique \(\mathcal{F}^{sh} \to \mathcal{G}\).
+    
+    \[
+        \begin{tikzcd}
+            \mathcal{F} \ar[r] \ar[rd] & \mathcal{F}^{sh} \ar[d, dotted] \\ & G
+        \end{tikzcd}
+    \]
+
+    Sheafification is a functor. There is also a forgetful functor from sheaves to presheaves.
+
+    Sheafification is the left adjoint of the forgetful functor.
+
+    If \(\mathcal{F}\) is a presheaf and \(\mathcal{G}\) is a sheaf,
+
+    \[
+        \begin{tikzcd}
+            \operatorname{Mor}_{\text{sheaves}} (\mathcal{F}^{sh}, \mathcal{G}) \ar[r, "\cong"] & \operatorname{Mor}_{\text{presheaves}} (\mathcal{F} , \mathcal{G}) 
+        \end{tikzcd}
+    \]
+
 \end{document}

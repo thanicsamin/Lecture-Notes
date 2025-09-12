@@ -692,4 +692,128 @@
 
     pullback stuff works for \((G,F)\)-bundles.
 
+    \section*{Friday, 9/12/2025}
+    
+    Today we finish chapter 3.
+
+    We can study construction of new vector bundles in the following ways:
+
+    \begin{enumerate}[label=\alph*)]
+        \item \textit{Restriction}: \(\eval{\xi}_{\overline{B}}^{}\) for \(\overline{B} \subset B \leftarrow E\)
+        \item \textit{Pullback}: \(f^{\ast} \xi\) for \(\overline{B} \xrightarrow{f} B \leftarrow E\)
+        \item \textit{Product}: \(\xi_1 \times \xi_2\).
+        
+        \[
+            \begin{tikzcd}
+                F_b(\xi_1) \times F_b(\xi_2) \ar[r] & E(\xi_1) \times E(\xi_2) \ar[d] \\ & B(\xi_1) \times B(\xi_2)
+            \end{tikzcd}
+        \]
+
+        eg \(T(M_1 \times M_2) = TM_1 \times TM_2\).
+        \item \textit{Whitney Sum}: We keep the base space the same. Let \(\xi_1, \xi_2\) be vector bundles over the same base space \(B\). Then we can define the whitney sum as the pullback of the diagonal map to the product:
+        
+        \[
+            \xi_1 \oplus \xi_2 \coloneqq \Delta^{\ast} (\xi_1 \times \xi_2)
+        \]
+
+        \(B \xrightarrow{\Delta} B \times B\) is \(b \mapsto (b,b)\).
+
+        For example, in \(S^2 \hookrightarrow \mathbb{R}^3\), the whitney sum of the tangent bundle and the normal bundle gives us the trivial bundle: \(\varepsilon ^3_{S^2} = TS^2 \oplus \nu(S^2 \hookrightarrow \mathbb{R}^3)\).
+
+        \item \textit{Subbundles, Quotients and Orthogonal Complements}: A subbundle \(\eta\) of \(\xi\) is \(E(\eta) \subset E(\xi)\) such that \(\eval{\pi}_{E(\eta)}^{} \) is a vector bundle.
+        
+        \[
+            \begin{tikzcd}
+                F_b(\eta) \ar[rr, hook] \ar[d] & & F_b(\xi) \ar[d] \\ E(\eta) \ar[rr, hook] \ar[rd] & & E(\xi) \ar[ld] \\ & B
+            \end{tikzcd}
+        \]
+
+        In order to study quotient, we need \textit{bundle morphisms}. We want the following diagram to be commutative and also want the map to be linear on fibers:
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[r] \ar[d] & E(\xi) \ar[d] \\ B(\eta) \ar[r] & B(\xi)
+            \end{tikzcd}
+        \]
+
+        \textit{Bundle morphism over \(B\)} is different: we want the following commutative diagram to be linear on fibers:
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[rr] \ar[rd] & & E(\xi)  \ar[ld] \\ & B
+            \end{tikzcd}
+        \]
+
+        An example: suppose we have smooth \(f: M \to N\). Then we have bundle morphism:
+
+        \[
+            \begin{tikzcd}
+                M \ar[d] \ar[r,"df"] & TN \ar[d] \\ M \ar[r,"f"] & N
+            \end{tikzcd}
+        \]
+
+        and the bundle morphism \(/ M\):
+
+        \[
+            \begin{tikzcd}
+                TM \ar[rr,"\cong"] \ar[rd] & & f^{\ast} TN \ar[ld] \\ & M
+            \end{tikzcd}
+        \]
+
+        We can define quotient bundles from subbundles: subbundle \(\eta\) of \(\xi\) there exists quotient bundle \(\xi / \eta\) so that \(F_b(\xi / \eta)\) are \(F_b(\xi) / F_b(\eta)\). We have bundle map over \(B\) \(\xi \to \xi / \eta\) 
+
+        Bundles \(/ B\) fform abelian category. We have the SES:
+
+        \[
+            0 \to \eta \to \xi \to \xi / \eta \to 0
+        \]
+
+        We now define normal bundles. Normal bundle of submanifold \(M\) of \(N\) is given by \(\nu (M \hookrightarrow N) = \frac{\left( \eval{TN}_{M}^{} \right) }{TM}\).
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/normal}
+            \caption{}
+        \end{figure}
+
+        If \(N \subset \mathbb{R}^k\) (or \(N\) Riemannian metric space) then \((TM)^\perp \subset \eval{TN}_{M}\).
+
+        \[
+            \begin{tikzcd}
+                (TM)^\perp \ar[rr, bend right, "\cong"] \ar[r] & \eval{TN}_{M}^{} \ar[r] & \nu(M \hookrightarrow N) 
+            \end{tikzcd}
+        \]
+
+        We have \((TN)_M = TM \oplus (TM)^\perp\).
+
+        If \(\xi\) is a bundle with metric and \(\eta\) is a subbundle then \(\xi = \eta \oplus \eta^\perp\) and \(\eta^\perp \cong  \xi / \eta\).
+
+    \end{enumerate}
+
+    If \(B\) is paracompact [eg \(B \subset W\)] then bundles over \(B\) form an exact category [meaning all SES split].
+    
+    Reason: consider the following SES:
+
+    \[
+        0 \to \alpha  \to \beta \to \gamma \to 0
+    \]
+
+    Since \(B\) is paracompact we can give \(\beta\) a metric. \(\alpha^ \perp \xrightarrow{\approx} \gamma\) so it splits.
+    
+    This tells us: if \(M \subset N\) and \(N\) has a Riemannian metric, then,
+    
+    \(\eval{TN}_{M}^{} = TM \oplus TM^ \perp \cong TM \oplus \nu(M \hookrightarrow N)\).
+
+    \begin{definition}
+        Smooth \(f: M \to N\) is a immersion/submersion if \(\forall x\in M\), \(df_x\) is injective/surjective.
+    \end{definition}
+
+    For example, consider \(S^1 \to \mathbb{R}^2\) given by \(\bigcirc \to \infty\) is an immersion, since it's locally an embedding.
+
+    \(TS^2 \to S^2\) is a submersion.
+
+    Let \(f: M\to N\) be an immersion. Then, \(\nu(f) = \frac{f^{\ast} TN}{TM}\).
+
+    If \(N\) has a metric then \(TM \cong \eval{TN}_{M}^{} \oplus \nu (f)\).
+
 \end{document}
