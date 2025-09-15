@@ -1204,4 +1204,132 @@
         \end{tikzcd}
     \]
 
+    \section*{Monday, 9/15/2025}
+
+    \subsection*{Sheaf w.r.t.\ a base}
+    
+    Let \(X\) be a topological space and \(B\) a base for the topology on \(X\).
+
+    A presheaf on \(X\) w.r.t.\ \(B\) is a contravariant functor from \(B\) to \(\mathcal{C}\).
+
+    A sheaf on \(X\) w.r.t.\ \(B\) is a presheaf \(\mathcal{F}\) such that any section \(f\in \mathcal{F} (U)\) is determined uniquely by compatible restrictions to \(U_\alpha\) where \(U_\alpha \in B\) and \(\bigcup_{\alpha} U_\alpha = U\).
+
+    \[
+        \begin{tikzcd}
+            \mathcal{F}(U) \ar[r] & \prod_{\alpha} \mathcal{F}(U_\alpha) \ar[r, bend right] \ar[r, bend left] & \prod_{\alpha,\beta,\gamma, U_\alpha \subset U_\beta \cap U_\gamma} \mathcal{F}(U_\alpha) \\ C \ar[u, dotted] \ar[ur]
+        \end{tikzcd}
+    \]
+
+    If \(\mathcal{F}\) is a sheaf on \(X\) and \(B\) is a base then by forgetting some data we get a sheaf on \(X\) w.r.t.\ \(B\). In fact every sheaf on \(X\) w.r.t.\ \(B\) comes from a sheaf \(\mathcal{F}\) on \(X\) which is unique up to unique isomorphism.
+
+    Given \(\mathcal{F}_B\) a sheaf w.r.t.\ \(B\), \(B = \left\{ U_\alpha \mid \alpha \in I \right\} \) define:
+    
+    \[
+        \mathcal{F} (U) \coloneqq \prod_{\alpha \mid U_\alpha \subset U} \mathcal{F}_B (U_\alpha) \rightrightarrows \prod_{\alpha ,\beta, \gamma \mid U_\alpha \subset U_\beta \cap U_\gamma} \mathcal{F}_B (U_\alpha)
+    \]
+
+    Now take stalks.
+
+    Let \(\mathcal{F}_{B,x} = \varinjlim_{U\in B, x\in U} \mathcal{F} _B (U)\).
+
+    A set of elements \(s_x\in \mathcal{F}_{B,x}\) where \(x\in U \in \operatorname{Open} (X)   \) is compatible if \(\forall x\in U \exists V\in B, x\in V\) and a section \(s_V \in \mathcal{F}_B (V)\) suh that \((s_V)_x = s_x \forall x\in V\).
+    
+    Let \(\mathcal{F}\) be the sheaf given by stalks \(\mathcal{F}_{B,x}\) and this is compatibility.
+
+    \subsection*{Gluing Sheaves}
+
+    Now, suppose \(X\) is a topological space and \(\mathcal{F}\) is a sheaf on \(X\) and also \(X\) has an open cover: \(X = U_1 \cup U_2\).
+
+    Consider the restriction of \(\mathcal{F}\): \(\eval{\mathcal{F}}_{U_i}\) which iis the sheaf which we obtain from \(\mathcal{F}\) by restricting to open sets contained in \(U_1\).
+
+    This means \(\eval{\mathcal{F}}_{U_1}\) is a contravariant functor from \(\operatorname{Open}(U_i)\) to \(\mathcal{C}\) such that:
+
+    \(\forall U \subset U_i: \eval{\mathcal{F}}_{U_i}(U) = \mathcal{F}(U)\)
+
+    \(\forall V \subset U \subset U_i: \operatorname{Res}_{U, V}\) on \(\eval{\mathcal{F}}_{U_i}\) is the same as on \(\mathcal{F}\).
+
+    Which means, if we have a sheaf on \(U_1\cup U_2\), we can get sheaves on \(U_1\) and \(U_2\).
+
+    Can we do the reverse? Given sheaves \(U_1\) and \(U_2\) can we get a sheaf on \(U = U_1\cup U_2\)?
+
+    Consider sheaves \(\mathcal{F}_1\) on \(U_1\) and \(\mathcal{F}_2\) on \(U_2\).
+
+    We want something akin to \(\eval{\mathcal{F}_1}_{U_1\cap U_2} \cong \eval{\mathcal{F}_2}_{U_1\cap U_2}\) but this is not enough data. We actually want the following:
+
+    Suppose we have isomorphism \(i: \eval{\mathcal{F}_1}_{U_1 \cap U_2} \to \eval{\mathcal{F}_2}_{U_1\cap U_2}\) then there exists a unique sheaf on \(X\) such that \(\eval{\mathcal{F}}_{U_1} \cong \mathcal{F}_1\) and \(\eval{\mathcal{F}}_{U_2} \cong \mathcal{F}_2\).
+    
+    \(\forall \in U_i\) the stalk \(\mathcal{F}_x\) is in fact \((\mathcal{F}_i)_x\).
+
+    For \(x\in U_1\cap U_2\): \(\mathcal{F}_x = (\mathcal{F}_{1,x} \coprod \mathcal{F}_{2,x}) / \sim_i\).
+
+    Suppose \(X = \bigcup_{\alpha \in I} U_\alpha\) and \(\mathcal{F}_\alpha\) is a sheaf on \(U_\alpha\). For all \(\alpha , \beta : \eval{\mathcal{F}_\alpha}_{U_\alpha \cap U_\beta} \to \eval{\mathcal{F}_\beta}_{U_\beta \cap U_\alpha}\) is an isomorphism. Further, \(\forall \alpha ,\beta \gamma\) we have:
+
+    \[
+        \eval{i_{\beta, \gamma}}_{U_\alpha \cap U_\beta \cap U_\gamma} \circ \eval{i_{\alpha , \beta}}_{U_\alpha \cap U_\beta \cap U_\gamma} = \eval{i_{\alpha , \gamma}}_{U_\alpha \cap U_\beta \cap U_\gamma}
+    \]
+
+    [This is needed for \(\sim_i\) to be an equivalence relation].
+
+    Then we can glue together to get a sheaf \(\mathcal{F}\) on \(X\).
+
+    \subsection*{Pullback sheaves}
+
+    Let \(\mathcal{F}\) be a sheaf on \(Y\) and \(X \xrightarrow{f} Y\).
+
+    The \'etal\'e space of \(f^{-1} \mathcal{F}\) is the pullback of the \'etal\'e space of \(\mathcal{F}\) via \(X \xrightarrow{f} Y\).
+
+    If we think about \(\mathcal{F}\) as an \'etal\'e space, then we have a map \(\mathcal{F} \to Y\), and we have \(X \to Y\). Then we have a fiber product:
+
+    \[
+        \begin{tikzcd}
+            X \times_Y \mathcal{F} \ar[r] \ar[d] & \mathcal{F} \ar[d] \\ X \ar[r] & Y
+        \end{tikzcd}
+    \]
+
+    Define presheaf \(\mathcal{G}\) by \(\mathcal{G}(U) = \varinjlim_{V \supset f(U)} \mathcal{F}(V)\)
+
+    Then let \(f^{-1} (\mathcal{F}) = \mathcal{G}^{\operatorname{sh}}\).
+
+    Example: Let \(y\in Y\) and let \(f: \{ y \} \to Y\) by \(f(y) = y\).
+
+    Then \(f ^{-1} \mathcal{F}\) is a sheaf on \(\{ y \}\).
+    
+    \[
+        \mathcal{G}(\{ y \}) = \varinjlim_{V\ni y} \mathcal{F} l(V) = \mathcal{F}_y
+    \]
+
+    Clean way of saying this: \(f ^{-1}\) is the left adjoint of \(f_{\ast}\).
+
+    Meaning: suppose \(X \xrightarrow{f} Y\) with \(\mathcal{F}, \mathcal{G}\) sheaves on \(X,Y\) respectively. Then,
+
+    \[
+        \operatorname{Mor}_{\operatorname{Sh} (X)} ( f ^{-1} (\mathcal{G}), \mathcal{F}) \to \operatorname{Mor}_{\operatorname{Sh} (Y)} (\mathcal{G}, f_{\ast} \mathcal{F})
+    \]
+
+    \subsection*{Spectrum}
+
+    Let \(A\) be a commutative ring. Then \(\operatorname{Spec} A\) is the set of prime ideals.
+
+    A `function' \(f \in A\) `vanishes' at a point \(P \in A\) if \(f \in P\).
+
+    Define \(V(f) = \{ P \in \operatorname{Spec} A \mid f\in P \}\).
+
+    We want \(V(f)\) to be closed.
+
+    Consider the topology on \(\operatorname{Spec} A\) defined by the subbase \(V(f) ^{c} \).
+
+    For example, \(A = \mathbb{C} [x] \implies \operatorname{Spec} A = \{ (x-c) \} \cup \{ (0) \}\).
+
+    Then closed sets are finite collections of complex numbers.
+
+    So, open sets are \(\mathbb{C}\) and all but finitely many points but we aren't allowed to delete \((0)\).
+
+    Note that this space isn't Hausdorff since \(\overline{(0)} = \mathbb{C}\).
+
+    [insert picture, \(\mathbb{C}\) is a line and the point \((0)\) is smeared over the line]
+
+    \begin{remark}
+        If \(I\) is any ideal we can define \(V(I) = \left\{ P \in \operatorname{Spec} A \mid I \subset P \right\} = \bigcap_{f\in I} V(f)\) is closed.
+    \end{remark}
+
 \end{document}
