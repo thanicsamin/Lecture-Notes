@@ -816,4 +816,176 @@
 
     If \(N\) has a metric then \(TM \cong \eval{TN}_{M}^{} \oplus \nu (f)\).
 
+    \section*{Tuesday, 9/16/2025}
+
+    \subsection*{UCT, Cup and Cap Prodcuts}
+    
+    Let \(M\) be an abelian group. Then we have homology \(H_i(X,A;M)\) and cohomology \(H^i(X,A;N)\) abelian groups.
+    
+    The cohomology \(H^i(X,A;N)\) is the cohomology of the following cochain complex: \(H^i(\operatorname{Hom} (S_\bullet(X,A),N))\) 
+
+    `Cohomology eats homology' via the following \textit{Kronecker Pairing}:
+
+    \[
+        \langle , \rangle: H^i(X,A;N) \otimes H_i(X,A;M) \to N \otimes_\mathbb{Z} M
+    \]
+
+    \[
+        [\phi] \otimes \left[ \sum_{i} k_i \sigma_i \otimes m_i \right] \mapsto \sum_{i} k_i \varphi (\sigma_i) \otimes m_i
+    \]
+
+    Now we do UCT. Let \(R = \mathbb{Z}\) and \(M = \mathbb{Z}\)-module, i.e. abelian group.
+    
+    If \(X = \mathbb{R} P^n\) then the cellular chain complex of \(\mathbb{R} P^n\) is:
+
+    \[
+        C_\bullet X = \mathbb{Z} \xrightarrow[0 \text{ \(n\) odd}]{2 \text{ \(n\) even}}\cdots \to \mathbb{Z} \xrightarrow{2} \mathbb{Z} \xrightarrow{0} \mathbb{Z}
+    \]
+
+    Thus, if \(n\) odd, then \(H_i \mathbb{R} P^n = \begin{dcases}
+        \mathbb{Z} , &\text{ if } i = 0,n ;\\
+        \mathbb{Z} _2, &\text{ if } i \text{ odd, } 0 < i < n ;\\
+        0, &\text{ otherwise} .
+    \end{dcases}\)
+
+    If coefficients are in \(\mathbb{Z}_2\) then,
+    
+    \[
+        C_\bullet X \otimes \mathbb{Z}_2 \xrightarrow{0} \mathbb{Z}_2 \xrightarrow{0} \cdots \xrightarrow{0} \mathbb{Z}_2
+    \]
+
+    Thus \(H_i (\mathbb{R} P^n;\mathbb{Z}_2) = \mathbb{Z}_2\) for \(0 \leq i \leq n\).
+
+    UCT states that the following is a split short exact sequence:
+
+    \[
+        0 \to H_i X \otimes M \to H_i(X;M) \to \operatorname{Tor} (H_{i-1} X,M) \to 0
+    \]
+
+    We can say three things about Tor:
+
+    Tor is a functor, \(\operatorname{Tor}: \operatorname{Ab} \times \operatorname{Ab} \to \operatorname{Ab}\).
+
+    If \(M,N\) are f.g. then \(\operatorname{Tor} (M,N) \cong (\text{torsion } M) \otimes_\mathbb{Z} (\text{torsion } N)\) 
+
+    \begin{definition}
+        Find an exact sequence of free groups as follows:
+
+        \[
+            0 \to F_1 \to F_0 \to M \to 0
+        \]
+
+        Then \(\operatorname{Tor}(M,N) = H_1(F_1 \otimes N \to F_0 \otimes N)\).
+    \end{definition}
+
+    For example, \(\operatorname{Tor}(\mathbb{Z}_2, \mathbb{Z}_2)\), we have following free groups:
+
+    \[
+        0 \to \mathbb{Z} \xrightarrow{\times 2} \mathbb{Z} \xrightarrow{\text{mod } 2} \mathbb{Z}_2 \to 0
+    \]
+
+    Tensoring with \(\mathbb{Z}_2\) to get the following: \(\mathbb{Z}_2 \xrightarrow{0} \mathbb{Z}_2\). Then \(H_1\) is the kernel.
+
+    So, \(\operatorname{Tor}(\mathbb{Z}_2, \mathbb{Z}_2) = \mathbb{Z}_2\).
+
+    Now we go back to geometry.
+
+    Suppose we have space \(X\) such that \(H_{i-1} X = \mathbb{Z}_2 \oplus ?\)
+
+    This gives us \(H_i(X) \to \mathbb{Z}_2 \subset H_i(X;\mathbb{Z}_2)\).
+
+    Geometrically, consider \(H_i(X;\mathbb{Z}_2) \to \operatorname{Tor}(H_{i-1} (X); \mathbb{Z}_2)\).
+    
+    If there is \([a] \in \operatorname{Tor}(H_{i-1} X; \mathbb{Z}_2)\) with \(2a = \partial b\) then section given by \([b] \mapsfrom [a]\)  
+
+    UCT works even if we change \(\mathbb{Z}\) with a PID. For any PID \(R\) we can talk about \(R\)-modules \(M\), then \(H_i(X;M) \cong H_i(X;R) \otimes M \oplus \operatorname{Tor}^R(H_{i-1}(X;R),M)\).
+
+    We want the analogue of UCT for cohomology. This gives us the split exact sequence:
+
+    \[
+        0 \to \operatorname{Ext}(H_{i-1} X, M) \to H^i(X;M) \to \operatorname{Hom}(H_i X, M) \to 0
+    \] 
+
+    Again, for \(n\) odd consider the chain complex:
+
+    \[
+        C_\bullet \mathbb{R} P^n = \mathbb{Z} \xrightarrow{0} \mathbb{Z} \to \cdots \mathbb{Z} \xrightarrow{2} \mathbb{Z} \xrightarrow{0} \mathbb{Z} \to 0
+    \]
+
+    For cochain complex we'd simply reverse the arrows:
+
+    \[
+        C^\bullet \mathbb{R} P^n = \mathbb{Z} \xleftarrow{0} \mathbb{Z} \leftarrow \cdots \mathbb{Z} \xleftarrow{2} \mathbb{Z} \xleftarrow{0} \mathbb{Z} \leftarrow 0
+    \]
+
+    \(H_i \mathbb{R}P^n = \mathbb{Z}\) for \(i=0,n\) and \(\mathbb{Z}_2\) for \(0 < i < n, n\) odd.
+
+    \(H^i (\mathbb{R} P^n; \mathbb{Z} ) = \mathbb{Z}\) for \(i = 0,n\) and \(\mathbb{Z}_2\) for \(0 < i < n, n\) even.
+    
+    We have: \(\operatorname{Ext}(\text{Free}, M) = 0\).
+    
+    In general, \(\operatorname{Ext}(A,B)\) is given by: resolve \(A\), apply \(\operatorname{Hom}(-,B)\) cohomolgy.
+
+    Suppose \(0 \to F_1 \to F_0 \to A \to 0\).
+
+    Then, \(\operatorname{Hom}(F_1, B) \xleftarrow{\partial^1} \operatorname{Hom}(F_0, B)\).
+
+    Thus \(\operatorname{Ext}(A,B) = \operatorname{coker} \partial^1\).
+
+    If \(A, B\) are finitely generated then \(\operatorname{Ext}(A,B) \cong (\operatorname{torsion} A) \otimes B\).
+
+    Now, suppose \(R\) is a commutative ring.
+
+    Then \(H^i(X;R) = H^i(\operatorname{Hom}_\mathbb{Z}(X_\bullet X, R))\)
+    
+    But might be more in the spirit of how we are doing this to do the following:
+
+    \(H^i(X;R) = H^i(\operatorname{Hom}_R(S_\bullet(X;R),R))\)
+    
+    For \(R\)-modules \(M\),
+
+    \(H^i(X;M) = H^i(\operatorname{Hom}_\mathbb{Z}(S_\bullet X, M)) = H^i(\operatorname{Hom}_R(S_\bullet(X;R),M))\)
+    
+    Then, \(H^{\ast} (X;R)\) is a graded commutative ring under the cup product.
+
+    \(H^{\ast} (X;R)\) is a graded commutative ring meaning we can write:
+    
+    \(H^{\ast} (X;R) = \bigoplus_{i \geq 0} H^i(X;R)\) and we have \(H^i(X;R) \otimes_R H^j(X;R) \to H^{i+j} (X;R)\)
+
+    Commutative graded ring meaning \(\alpha \cup \beta = (-1)^{\vert \alpha  \vert \vert \beta \vert} \beta \cup \alpha\).
+    
+    For De Rham cohomology,
+
+    \(H^i_{\text{DR}}(M;\mathbb{R}) \otimes H^j_{\text{DR}}(M;\mathbb{R})\) we have \(\alpha  \otimes \beta  \mapsto [\alpha \wedge \beta]\) 
+
+    We also have: \(H_{\ast} (M;R)\) is a graded module over \(H^{\ast} (M;R)\) w.r.t.\ cap product.
+
+    For \(\alpha \in H^i(M;R)\) and \(z\in H_j(M;R)\) then \(\alpha \cap z \in H_{j-i}(M;R)\).
+
+    So, cap product by \(\alpha\) eats \(i\) dimensions from \(z\).
+
+    We also have \(\langle \alpha \cup \beta, z \rangle = \langle \alpha , \beta \cap z \rangle \).
+
+    If \(f: X\to Y\) is continuous, we have a ring map \(f^{\ast} : H^{\ast} (Y;R) \to H^{\ast} (X;R)\) by \(f^{\ast} (\alpha \cup \beta) = f^{\ast} \alpha \cup f^{\ast} \beta\).
+
+    Poincar\'e Duality: if \(M^n\) is closed and oriented and connected then \(H_n M \cong \mathbb{Z}\). Choose generator \([M] \in H_n M\).
+
+    Then we have isomorphism \(\cap [M]: H^i M \xrightarrow{\cong} H_{n-i} M  \) 
+
+    Another fact:
+
+    \[
+        \frac{H^i M}{\text{torsion}} \otimes \frac{H^{n-i} M}{\text{torsion}} \to \mathbb{Z}
+    \]
+
+    is a nonsingular perfect pairing: \(\alpha \otimes \beta\) is given by \((\alpha \cup \beta)[M] \in \mathbb{Z}\).
+
+    Recall \(A \times B \to \mathbb{Z}\) is perfect \(\iff A \xrightarrow{\cong} \operatorname{Hom}(B,\mathbb{Z})\) and \(B \xrightarrow{\cong} \operatorname{Hom}(A,\mathbb{Z})\) are isomorphism.
+
+    In \(\mathbb{C} P^n = e^0 \cup e^2 \cup \cdots \cup e^{2n}\) we have \(H^{\ast} \mathbb{C} P^n \cong \mathbb{Z} [\alpha] / \alpha^{n+1}\), with \(\deg \alpha = 2\).
+
+    This is a truncated polynomial ring.
+
+    We can prove this by Poincar\'e duality and induction on \(n\).
+
 \end{document}
