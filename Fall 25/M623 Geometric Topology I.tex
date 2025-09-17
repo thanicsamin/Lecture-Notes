@@ -991,9 +991,183 @@
     We also have Kunneth Theorem. If \(R\) is a field, then:
 
     \[
-        H^{\ast} (X;R) \otimes H^{\ast} (X;R) \xrightarrow{\cong} (X \times Y; R)
+        H^{\ast} (X;R) \otimes H^{\ast} (Y;R) \xrightarrow{\cong} H^{\ast}(X \times Y; R)
     \]
 
     It is only an injection for general ring.
+
+    \section*{Wednesday, 9/17/2025}
+    
+    HWK due 9/29.
+
+    4 Exercises: 1 from Ch2, 1 from Ch3, 2 from Ch4.
+
+    Today we finish chapter 3, construction of bundles.
+
+    We skipped part f on Friday.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+                Vector Spaces & Vector Bundle \\
+            \midrule
+                \(V \otimes W\) & \(\xi \otimes \eta\) \\
+                \(\operatorname{Hom}(V,W)\) & \(\operatorname{Hom}(\xi, \eta)\) \\
+                \(V^{\ast} = \operatorname{Hom} (V,\mathbb{R})\) & \(\xi ^{\ast} = \operatorname{Hom} (\xi , \epsilon_B^1)\) \\
+                \(\Lambda^k V\) & \(\Lambda ^k \xi\) \\
+                \(\Lambda ^{\ast} V\) & \(\Lambda ^{\ast} \xi\)  \\
+            \bottomrule
+        \end{tabular}
+        \caption{Anythong we can do on Vector Spaces, we can do in Vector Bundles.}
+    \end{table}
+
+    As for \(\operatorname{Hom}(\xi, \eta)\) we assume base space is the same:
+    
+    \[
+        \begin{tikzcd}
+            \operatorname{Hom}(\mathbb{R}^k, \mathbb{R}^l) \ar[r] & E \operatorname{Hom}(\overset{k}{\xi}, \overset{l}{\eta}) \ar[d] \\ & B
+        \end{tikzcd}
+    \]
+
+    Here \(E \operatorname{Hom}(\xi, \eta) =\) [roughly] \(\bigcup_{b\in B} \operatorname{Hom}_{\mathbb{R}} (F_b(\xi), F_b(\eta))\)
+    
+    \(\coloneqq \coprod_{\text{open } U \subset B, \eval{\xi}_U, \eval{\eta}_U \text{ trivial}} U \times \operatorname{Hom}(\mathbb{R}^k, \mathbb{R}^l) / \sim\).
+    
+    \section*{Cotangent Bundle}
+
+    Let \(M^n\) be a smooth \(n\)-manifold.
+
+    \begin{definition}
+        [Cotangent Bundle] Is dual to the tangent bundle: \(T^{\ast} M \coloneqq (TM)^{\ast}\).
+    \end{definition}
+
+    We can take exterior power to get differential \(k\) forms:
+
+    \[
+        \begin{tikzcd}
+            \Lambda^k \mathbb{R} ^ n \ar[r] & \Lambda ^k T^{\ast} M \ar[d] \\ & M \ar[u, bend right, dotted]
+        \end{tikzcd}
+    \]
+
+    Differential \(k\)-form on \(M, \omega \in \Gamma (\Lambda ^ k T^{\ast} M)\) smooth section.
+
+    \(\begin{matrix}
+        \Lambda ^{\ast} \mathbb{R}^n \to & \Lambda ^{\ast} T^{\ast} M \\
+        & \downarrow \\
+        & M \\
+    \end{matrix} \leftarrow\) wedge product. 
+
+    In fact, \(\Gamma (\Lambda ^{\ast} T^{\ast} M)\) is a graded algebra, \(\Omega ^{\ast} M\).
+    
+    \section*{Chapter 4}
+
+    Now we start on Characteristic Classes.
+
+    \begin{definition}
+        [Stiefel-Whitney Classes] have these 4 axioms:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\forall\) vector bundle \(\xi\), assign \(w_i(\xi) \in H^i(B(\xi);\mathbb{F}_2)\) so that \(w_0(\xi) = 1\) and \(w_i(\xi) = 0\) for \(i > n\) when \(\xi\) is a an \(n\)-plane bundle.
+            \item \textit{Naturality}: For continuous \(f: B \to B(\xi)\), we have \(w_i(f^{\ast} \xi) = f^{\ast} (w_i \xi) \in H^i(B;\mathbb{F}_2)\). [First one is the pullback on the bundle, second one is the induced map on the cohomology.]
+            \item \textit{Whitney Sum Formula}: If \(\xi , \eta\) are vector bundles over \(B\) we have: \(w_k(\xi \oplus \eta) = \sum_{i+j=k} w_i(\xi) \cup w_j(\eta) \).
+            \item \(0 \neq w_1(\gamma^1_1) \in H^1(P^1;\mathbb{F}_2) = H^1(S^1; \mathbb{F}_2) = \mathbb{F}_2\).
+        \end{enumerate} 
+
+        This sequence of cohomology classes is called the Stiefel-Whitney Classes.
+
+    \end{definition}
+
+    Recall: \(\gamma^1_1\) for a mobius strip is the zero section, i.e. \(S^1\).
+
+    Milnor-Stasheff says naturality a bit differently. Recall: If
+
+    \[
+        \begin{tikzcd}
+            E(\eta) \ar[r, "\text{iso/fibers}"] \ar[d] & E(\xi) \ar[d] \\ B(\eta) \ar[r,"f"] & B(\xi)
+        \end{tikzcd}
+    \]
+
+    then \(\eta = f^{\ast} \xi, w_i(\eta) = f^{\ast} w_i(\xi)\).
+
+    Note: axioms 1 and 2 says \(w_i\) are \textit{characteristic classes}. Characteristic Classes are cohomology classes respecting naturality. Meaning they respect nontriviality of bundles. Just like homology `classifies' upto homotopy in a sense, we need characteristic classes to capture the `twists' in a vector bundle.
+
+    Axiom 1 and 2 implies:
+
+    \begin{proposition}
+        [1] \(\xi \cong \eta \implies w_i(\xi) = w_i(\eta)\).
+    \end{proposition}
+
+    Recall that vector bundlles are isomorphic if:
+
+    \[
+        \begin{tikzcd}
+            E(\xi) \ar[rr,"\cong"] \ar[rd] & & E(\eta) \\ & B
+        \end{tikzcd}
+    \]
+
+    \begin{proof}
+        \(f = \operatorname{id}\).
+    \end{proof}
+
+    \begin{proposition}
+        [2] \(w_i(\epsilon^n_B) = 0\) for \(i > 0\).  
+    \end{proposition}
+
+    \begin{proof}
+        \[
+            \begin{tikzcd}
+                B \times \mathbb{R}^n \ar[r] \ar[d] & \mathbb{R}^n \ar[d] \\ B \ar[r,"c"] & \text{pt}
+            \end{tikzcd}
+        \]
+
+        \(w_i(\epsilon^n_B) = w_i (c^{\ast} \epsilon^n_{\text{pt}}) = c^{\ast} w_i(\epsilon^n_{\text{pt}}) \in H^i(\text{pt};\mathbb{F}_2) = 0\).
+        
+        Thus, nontrivial Stiefel-Whitney Class implies nontrivial bundle.
+
+    \end{proof}
+
+    \begin{proposition}
+        [3] If \(\epsilon\) trivial then \(w_i(\epsilon \oplus \eta) = w_i(\eta)\). In other words, \(w_i\) stable characteristic classes.
+    \end{proposition}
+
+    \begin{proposition}
+        [4] If \(\xi\) is an \(n\)-plane bundle with \(k\) linearly independent sections, then \(k\) of them vanishes:
+
+        \[
+            w_{n-k+1}(\xi) = \cdots = w_{n-1} (\xi) = w_n(\xi) = 0
+        \]
+    \end{proposition}
+
+    Most interesting case is \(k = 1\) contrapositive.
+
+    \(w_n(\xi) \neq 0 \implies \not\exists\) nowhere zero section. Hairy ball theorem!
+
+    eg for \(n\) odd there exists a nowhere zero section of the tangent bundle \(TS^n\). Therefore, \(w_n(TS^n) = 0\).
+    
+    Since \(n\) is odd \(n+1\) is even, and we can switch the coordiantes in pairs:
+
+    \[
+        \underline{x} = (x_1, \cdots , x_n) \mapsto (\underline{x}, -x_2, x_1, \cdots ,-x_{n+1}, x_n) \in TS^n \subset S^n \times \mathbb{R}^{n+1} 
+    \]
+
+    \(w_4(T \mathbb{C} P^2)\neq 0, \not\exists\) nowhere vanishing vector field on \(\mathbb{C}P^2\).
+
+    If \(M^n\) is a closed \(n\)-manifold then \(w_n(TM^n) \equiv \xi(M) \pmod 2\).
+
+    \begin{proof}
+        The condition of \(k\) linearly independent section is equivalent to existence of a subbundle \(\epsilon^k_B \subset \xi\).
+
+        Case 1: Suppose \(\xi\) has a metric.
+
+        Then \(\xi = \epsilon^k_B \oplus (\epsilon^k_B)^{\perp}\). 
+
+        \(w_i(\xi) = w_i(\epsilon^{k \perp}_B)\) by proposition 3. Note that \(\epsilon^{k \perp}_B\) is a \(n - k\) bundle, axiom 1 implies the statement.
+
+        Case 2: \(B\) is a CW complex so \(B\) is paracompact which implies \(\xi\) has a metric.
+
+        General case: suppose \(\begin{matrix} E(\xi) \\ \downarrow \\ B \end{matrix}\). Then \(\exists\) CW-approximation \(B^{\prime} \to B\) where \(B^{\prime}\) is a CW complex which is isomorphism on \(\pi_{\ast}\) which is isomorphism in homology and cohomology. This reduces to case 2.
+
+    \end{proof} 
 
 \end{document}
