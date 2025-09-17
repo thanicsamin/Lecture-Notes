@@ -1125,20 +1125,20 @@
     Given a presheaf \(\mathcal{F}\) there exists at most one sheaf \(\mathcal{G}\) and morphism \(\mathcal{F} \to \mathcal{G}\) which is an isomorphism of stalks at each \(x\). The process of finding such a \(\mathcal{G}\) is called \textit{sheafification}.
 
     \begin{definition}
-        [Sheafification] Let \(\mathcal{F}\) be a presheaf. We define its sheafification \(\mathcal{F} ^{sh}\) in the following way:
+        [Sheafification] Let \(\mathcal{F}\) be a presheaf. We define its sheafification \(\mathcal{F} ^{\operatorname{sh}}\) in the following way:
 
-        The stalks \(\mathcal{F}_x^{sh}\) are the same as \(\mathcal{F}_x\).
+        The stalks \(\mathcal{F}_x^{\operatorname{sh}}\) are the same as \(\mathcal{F}_x\).
 
         Compatibility is the same.
 
         Let us be very specific about what sections are.
 
-        \(\mathcal{F}^{sh} = \text{functions } U \to \coprod_{x\in U} \mathcal{F}_x\) such that each \(x\in U\) maps to \(f_x\in \mathcal{F}_x\) such that \(f_x\) are compatible as usual. 
+        \(\mathcal{F}^{\operatorname{sh}} = \text{functions } U \to \coprod_{x\in U} \mathcal{F}_x\) such that each \(x\in U\) maps to \(f_x\in \mathcal{F}_x\) such that \(f_x\) are compatible as usual. 
     \end{definition}
 
-    We need to check if \(\mathcal{F}^{sh}\) is actually a sheaf, and if there exists a map \(\mathcal{F} \to \mathcal{F}^{sh}\) which is an isomorphism at the stalk level.
+    We need to check if \(\mathcal{F}^{\operatorname{sh}}\) is actually a sheaf, and if there exists a map \(\mathcal{F} \to \mathcal{F}^{\operatorname{sh}}\) which is an isomorphism at the stalk level.
 
-    WTS: \(f_\alpha \in \mathcal{F}^{sh}(U_\alpha)\) and \(\forall \alpha ,\beta\) we have \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} (f_\alpha) = \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta}(f_\beta)\) then \(\exists ! f \in \mathcal{F}^{sh}(U)\).
+    WTS: \(f_\alpha \in \mathcal{F}^{\operatorname{sh}}(U_\alpha)\) and \(\forall \alpha ,\beta\) we have \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} (f_\alpha) = \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta}(f_\beta)\) then \(\exists ! f \in \mathcal{F}^{\operatorname{sh}}(U)\).
 
     \(f_\alpha\) gives us a function \(U_\alpha \to \coprod_{x\in U_\alpha} \mathcal{F}_x\).
     
@@ -1148,9 +1148,9 @@
 
     Define \(f_x = f_{\alpha , x}\) for some \(\alpha\) with \(x\in U_\alpha\).
 
-    Now we need the map \(\mathcal{F} \to \mathcal{F}^{sh}\). Consider \(\mathcal{F}(U) \to \mathcal{F}^{sh}\) given by \(f \mapsto (x \mapsto f_x)\).
+    Now we need the map \(\mathcal{F} \to \mathcal{F}^{\operatorname{sh}}\). Consider \(\mathcal{F}(U) \to \mathcal{F}^{\operatorname{sh}}\) given by \(f \mapsto (x \mapsto f_x)\).
     
-    We trivially have \(\mathcal{F}_x^{sh} = \mathcal{F}_x\): let \(s_x = [(s\in \mathcal{F}(U), x)]\). \(s\) defines compatible germs in a neighborhood of \(x\) therefore a section of \(\mathcal{F}_x^{sh}\) in a neighborhood of \(x\).
+    We trivially have \(\mathcal{F}_x^{\operatorname{sh}} = \mathcal{F}_x\): let \(s_x = [(s\in \mathcal{F}(U), x)]\). \(s\) defines compatible germs in a neighborhood of \(x\) therefore a section of \(\mathcal{F}_x^{\operatorname{sh}}\) in a neighborhood of \(x\).
 
     \subsection*{Exponential Sequence for analytic functions on \(X = \mathbb{C} \setminus \{ 0 \}\)}
 
@@ -1176,19 +1176,19 @@
 
     Let \(\phi : \mathcal{F} \to \mathcal{G}\) be a morphism of sheaves in an abelian category.
 
-    \(\operatorname{im} (\phi)_{\text{sheaves}} = (\operatorname{im}(\phi)_{\text{presheaves}})^{sh}\)
+    \(\operatorname{im} (\phi)_{\text{sheaves}} = (\operatorname{im}(\phi)_{\text{presheaves}})^{\operatorname{sh}}\)
 
-    \(\operatorname{coker}(\phi)_{\text{sheaves}} = (\operatorname{coker}(\phi)_{\text{presheaves}})^{sh}\) 
+    \(\operatorname{coker}(\phi)_{\text{sheaves}} = (\operatorname{coker}(\phi)_{\text{presheaves}})^{\operatorname{sh}}\) 
     
     \begin{theorem}
-        If \(\mathcal{F}\) is a presheaf, \(\mathcal{F}^{sh}\) is the universal sheaf admitting a map from \(\mathcal{F}\).
+        If \(\mathcal{F}\) is a presheaf, \(\mathcal{F}^{\operatorname{sh}}\) is the universal sheaf admitting a map from \(\mathcal{F}\).
     \end{theorem}
 
-    Thus, if \(\mathcal{F}\) is a presheaf and \(\mathcal{G}\) is a sheaf and we have \(\mathcal{F} \to \mathcal{G}\) we have a unique \(\mathcal{F}^{sh} \to \mathcal{G}\).
+    Thus, if \(\mathcal{F}\) is a presheaf and \(\mathcal{G}\) is a sheaf and we have \(\mathcal{F} \to \mathcal{G}\) we have a unique \(\mathcal{F}^{\operatorname{sh}} \to \mathcal{G}\).
     
     \[
         \begin{tikzcd}
-            \mathcal{F} \ar[r] \ar[rd] & \mathcal{F}^{sh} \ar[d, dotted] \\ & G
+            \mathcal{F} \ar[r] \ar[rd] & \mathcal{F}^{\operatorname{sh}} \ar[d, dotted] \\ & G
         \end{tikzcd}
     \]
 
@@ -1200,7 +1200,7 @@
 
     \[
         \begin{tikzcd}
-            \operatorname{Mor}_{\text{sheaves}} (\mathcal{F}^{sh}, \mathcal{G}) \ar[r, "\cong"] & \operatorname{Mor}_{\text{presheaves}} (\mathcal{F} , \mathcal{G}) 
+            \operatorname{Mor}_{\text{sheaves}} (\mathcal{F}^{\operatorname{sh}}, \mathcal{G}) \ar[r, "\cong"] & \operatorname{Mor}_{\text{presheaves}} (\mathcal{F} , \mathcal{G}) 
         \end{tikzcd}
     \]
 
@@ -1336,5 +1336,169 @@
     \begin{remark}
         If \(I\) is any ideal we can define \(V(I) = \left\{ P \in \operatorname{Spec} A \mid I \subset P \right\} = \bigcap_{f\in I} V(f)\) is closed.
     \end{remark}
+
+    \section*{Wednesday, 9/17/2025}
+    
+    We set up some definition:
+
+    Let \(A\) be a ring, \(\operatorname{Spec} A\) the set of prime ideals. Let \(a\in A\) be a `function'.
+
+    Define: \(V(a) = \left\{ P \in \operatorname{Spec} A \mid a\in P \right\}\).
+
+    \(D(a) \coloneqq V(a) ^{c}\).
+
+    Note that, \(V(ab) = \left\{ P \in \operatorname{Spec} A \mid ab\in P \right\} = V(a) \cup V(b)\).
+
+    De Morgan \(\implies D(ab) = D(a) \cap D(b)\) so closed under intersection.
+
+    Then the zariski topology is defined by the \textit{base} \(D(a)\).
+
+    Suppose we have \(A \xrightarrow{\phi} B\). Then we have \(\operatorname{Spec} B \xrightarrow{f} \operatorname{Spec} B\) where \(f(P) = \phi ^{-1} (P)\).
+    
+    \begin{theorem}
+        This function is continuous.
+    \end{theorem}
+
+    \begin{proof}
+        WTS: \(f ^{-1} (\text{open})\) is open. Any open set can be written as \(\bigcup_{\alpha \in I} D(a_\alpha)\).
+
+        \(f ^{-1} \left( \bigcup_\alpha D(a_\alpha) \right) = \bigcup_\alpha f ^{-1} (D(a_\alpha))\).
+
+        Thus ETS: \(f ^{-1} (D_{\operatorname{Spec} A}(a_\alpha)) = D_{\operatorname{Spec} B}(f(a_\alpha))\).
+        
+        \(f(a_\alpha) \notin P \iff a_\alpha \notin \phi ^{-1} P \iff \phi(a_\alpha) \notin P\).
+    \end{proof}
+
+    Recall \(V(I) = \left\{ P\in \operatorname{Spec} A \mid I \subset P \right\}\). Abuse of notation: \(V((f)) = V(f)\). Then, \(V(I) = \bigcap_{f\in I} V(f)\) is closed. 
+
+    \begin{proposition}
+        There is a bijective correspondence between \(V(I)\) and \(\operatorname{Spec} A / I\).
+
+        This correspondence is in fact bicontinuous if we endow \(V(I)\) with its subspace topology.
+    \end{proposition}
+
+    \begin{remark}
+        A basis for \(V(I)\) is given by \(D(a) \cap V(I)\) which is the complement in \(V(I)\) of \(V(f) \cap V(I) = V((f) + I)\).
+
+        If \(J \subset A / I\) is the ideal \(((f)+I) / I\) then \(V(J)\) corresponds to \(V(f) \cap V(I)\).
+    \end{remark}
+
+    To what extent do we have a bijective correspondense between ideals and closed subsets?
+
+    If we have an ideal \(I\) we can go to a closed subset \(V(I)\).
+
+    However, if we have a closed subset \(Z\) we can go to the set \(\left\{ f \in A \mid f\in P\, \forall P \in Z \right\}\).
+
+    aka from \(Z\) we get the ideal of stuff that vanishes in \(Z\). This is not quite a bijective correspondense.
+
+    Example: \((x)\) and \((x^2)\) both give us the same closed subset.
+
+    We need to take the radical \(\operatorname{rad} (I)\) [other notation: \(\sqrt{I}\)].
+
+    \(\operatorname{rad} (I) = \sqrt{I} = \bigcap_{P \in \operatorname{Spec} A, I \subset P} P\) 
+
+    Suppose \(I = (x^2) \subset k[x]\). \((x^2) \subset P \iff (x) \subset P\).
+
+    eg \(\operatorname{Spec} k[x] / (x^2)\) has picture of a point and a line.
+
+    [insert picture]
+
+    Let \(\mathbb{A}^1\) be an affine line: \(\operatorname{Spec} k[x]\).
+
+    What does a map \(\mathbb{A}^1 \to \mathbb{A}^1\) look like?
+
+    Let \(\mathbb{A}^1 \to \mathbb{A}^1\) be \(\operatorname{Spec} k[x] \to \operatorname{Spec} k[y]\).
+
+    It corresponds to a ring homomorphism in the opposite direction: \(k[y] \to k[x]\).
+
+    If we want to classify all such homomorphism, we should worry about what happens on the \(k\)-level. But when one is talking about varities, we are really talking about varities over a particular field, so we are essentially talking about a diagram like this:
+
+    Note: Provisional definition of an affine variety: We can only talk about varities over a field \(k\). Consider \(\operatorname{Spec} A \to \operatorname{Spec} k\) where \(A\) is a finitely generated \(k\)-algebra. Then we have \(a_1, \cdots , a_n \in A\). We can look at \(\phi: k[x_1, \cdots , x_n] \to A\) which follows \(x_i \mapsto a_i\). Then \(A \cong k[x_1, \cdots , x_n] / I, \ker \phi = I\). 
+
+    \[
+        \begin{tikzcd}
+            \mathbb{A}^1 \ar[rr] \ar[rd] & & \mathbb{A}^1 \ar[ld] \\ & \operatorname{Spec} k
+        \end{tikzcd}
+    \]
+
+    So we are essentially talking about morphims of varities over \(\operatorname{Spec} k\). Then in the ring level we have: 
+
+    \[
+        \begin{tikzcd}
+            k[x] & & k[y] \ar[ll] \\ & k \ar[ul] \ar[ur]
+        \end{tikzcd}
+    \]
+
+    We only need to see where \(y\) goes. \(y\) maps to a polynomial \(p(x)\). So the morphisms are exactly what we want.
+
+    Example: suppose \(k\) is algebraically closed and consider the map \(y \mapsto x^2\).
+
+    What are the points on \(\operatorname{Spec} k[x]\)? Note that \(k[x]\) is a PID, so every ideal must be a scalar multiples of some polynomial \(f\). Since \(k\) is algebraically closed any polynomial \(f\) factors into linear factors. Thus, prime ideals are precisely \((x-a)\) [and \((0)\)].
+
+    Thus, there is a bijective correspondence between \(\operatorname{Spec} k[x]\) and \(k \cup \{ \eta \}\) [\(\eta\) corresponds to the \((0)\) ideal. We call it the \textit{generic point}].
+    
+    Then, we have:
+
+    \[
+        \begin{tikzcd}
+            & y \ar[r, mapsto] & x^2 \\
+            & k[y] \ar[r] & k[x] \\
+            (x-a) \ar[d] & \operatorname{Spec} k[x] \ar[r] \ar[d] & \operatorname{Spec} k[y] \ar[d] & (y - a^2) \ar[d] \\
+            a\ar[u] & k \cup \{ \eta \} \ar[u] \ar[r, dotted] & k \cup \{ \eta \} \ar[u] & a^2 \ar[u]
+        \end{tikzcd}
+    \]
+
+    \(\phi ^{-1} ((x-a)) = \left\{ P(y) \mid P(x^2) \in (x-a) \right\} = \left\{ P(y) \mid P(a^2) = 0 \right\} = (y-a^2)\).
+    
+    \(\phi ^{-1} (0): P(x^2) \equiv 0 \implies P(y) \equiv 0\) so \(\eta \leftrightarrow \eta\).
+
+    Consider \(\operatorname{Spec} \mathbb{R} [x]\). Here \(\mathbb{R} [x]\) has prime ideals \((0)\) and \((f(x))\) where \(f\) is irreducible.
+
+    eg \(x^2 + 1\) is irreducible in \(\mathbb{R} [x]\).
+
+    Note that \(\mathbb{R} [x] / (x^2 + 1) \xrightarrow{\cong} \mathbb{C}\).
+
+    The isomorphism map is as follows: \(f(x) \mapsto f(i)\). But it could be \(f(x) \mapsto f(-i)\).
+
+    For a real polynomial, the condition of vanishing at \(i\) and \(-i\) are the same. This kind of maximal ideal doesn't correspond to an element in the field. In fact they don't even correspond to an element in a field extension. They correspond to a pair of elements in a field extension!
+
+    There are thus two types of maximal ideal in \(\mathbb{R} [x]\):
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \((x-a)\) where \(a\in \mathbb{R}\).
+        \item \(((x-\alpha)(x-\overline{\alpha})), \{ \alpha , \overline{\alpha} \} \subset \mathbb{C} \setminus \mathbb{R}\) 
+    \end{enumerate} 
+
+    In addition there iis one prime ideal which is not maximal, \((0)\).
+
+    What about fields where there are a lot of extension fields?
+
+    What about \(\operatorname{Spec} A\) where \(A\) has a zero divisor?
+
+    One way we can obtain a ring with a zero divisor is starting with a nice ring and modding out a product: \(k[x,y] / (f(x,y)g(x,y))\).
+    
+    Then \(V(fg) = V(f) \cup V(g)\).
+
+    Consider zero sets of \(f(x,y)=0\) and \(g(x,y)=0\). Our space is the union of these sets, neither of which are the whole space. There is a point whose closure is the first component, a point whose closure is the second component, but no generic point!
+
+    [insert picture]
+
+    What if \(f=g\) in this case?
+
+    Consider \(k[x,y] / (y-x)^2\). We have the same space as \(k[x,y] / (y-x)\), but we have an infinitesimal!
+    
+    [insert picture]
+
+    What about \(\operatorname{Spec} \mathbb{Q} [x]\)? Too hard
+
+    Now suppose \(k\) is algebraically closed. What about \(\operatorname{Spec} k[x,y] = \mathbb{A}^2_k\)?
+
+    Our maximal ideals are \((x-a, y-b)\). This corresponds to the point \((a,b)\).
+
+    We also have the middle case \((f(x,y))\) which are the intermediate ideals. If \(f(x,y) = y - x^2\) then it's closure consists of itself and all the points on the parabola. We can think about it as smeared over the whole parabola.
+
+    We have the zero ideal \((0)\) which is the minimal ideal. It corresponds to a generic point.
+
+    There are \(3\) levels, so the space should be roughly \(3\) dimensional. This is the idea behind Krull dimension.
 
 \end{document}
