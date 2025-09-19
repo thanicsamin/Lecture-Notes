@@ -1501,4 +1501,141 @@
 
     There are \(3\) levels, so the space should be roughly \(3\) dimensional. This is the idea behind Krull dimension.
 
+    \section*{Friday, 9/19/2025}
+    
+    Some more commutative algebra, and topology on Spec.
+
+    \begin{theorem}
+        \(\operatorname{Spec} A\) is quasi-compact. 
+    \end{theorem}
+
+    \begin{proof}
+        Note: we basically want to show every open cover has a finite subcover. We use the word `quasi' because \(\operatorname{Spec} A\) is not Hausdorff.
+
+        Let \(\bigcup_{\alpha \in I} U_\alpha = \operatorname{Spec} A\).
+        
+        Each \(U_\alpha\) has an open cover \(U_\alpha = \bigcup_{\beta \in J_\alpha}^{} D(f_{\alpha , \beta})\).
+
+        Then, \(\operatorname{Spec} A = \bigcup_{\alpha \in I}^{} \bigcup_{\beta \in J_\alpha}^{} D(f_{\alpha , \beta})\).
+
+        We can reduce in this way to covers by \(D(f_{\alpha , \beta})\) `affine opens'. Changing notation, we write \(\operatorname{Spec} A = \bigcup_{\alpha \in I}^{} D(f_\alpha)\).
+
+        Consider the ideal \(J = (f_\alpha)_{\alpha \in I}\).
+
+        Case 1: \(J \neq A\). Then there exists a maximal ideal \(\mathfrak{m} \supset J \ni f_\alpha\).
+
+        \(\mathfrak{m} \leftrightarrow x \in \operatorname{Spec} A\) then \(x\in V(f_\alpha)\) and \(x\notin D(f_\alpha) \forall \alpha\). So \(x\notin \bigcup_{\alpha \in I}^{} D(f_\alpha) = \operatorname{Spec} A\) which is a contradiction.
+
+        Case 2: \(J = A\). Then \(1 \in J\) so \(\exists g_\alpha\) and finite \(I_0 \subset I\) and \(g_\alpha\) such that \(\sum_{\alpha \in I_0} f_\alpha g_\alpha = 1\).
+
+        Claim: \(\bigcup_{\alpha \in I_0}^{} D(f_\alpha) = \operatorname{Spec} A\).
+
+        Claim \(\iff \forall x\in \operatorname{Spec} A \exists \alpha \in I_0\) such that \(x\in D(f_\alpha) \iff \forall P\) prime ideal \(\exists \alpha \in I_0\) such that \(f_\alpha \notin P\). This is true since otherwise \(1 = \sum_{\alpha \in I_0} f_\alpha g_\alpha \in P\) which is impossible.  
+    \end{proof}
+
+    At first glance the previous theorem seems unprovable without the noetherian condition. But we don't need it.
+
+    \begin{definition}
+        A topological space \(X\) is \textit{Noetherian} if every decreasing chain of closed subsets \(X = X_0 \supset X_1 \supset  X_2 \supset \cdots\) eventually stabilizes.
+    \end{definition}
+
+    We then have the following theorem:
+
+    \begin{theorem}
+        If \(A\) is a noetherian ring then \(\operatorname{Spec} A\) is a noetherian topological space.
+    \end{theorem}
+
+    \begin{proof}
+        \(\exists\) bijective correspondence between closed subsets and radical ideals, i.e. ideals \(I = \sqrt{I}\). 
+
+        \[
+            X \to I(X) = \left\{ f\in A \mid f\in P \forall P \in X \right\}
+        \]
+
+        A decreasing chain of \(X_i\) gives an increasing chain of \(I(X_i)\) which stabilizes.
+    \end{proof}
+
+    This gives us: any field \(k\) is noetherian since the only ideal is \((0)\).
+
+    \begin{theorem}
+        [Hilbert] If \(A\) is Noetherian then \(A[x]\) is Noetherian.
+    \end{theorem}
+
+    Corollary: \(k[x_1, \cdots , x_n]\) is Noetherian.
+
+    Corollary: \(\mathbb{A}^n_k = \operatorname{Spec} k[x_1, \cdots , x_n]\) is Noetherian.
+
+    Corollary: A closed subspace of a Noetherian space is Noetherian. On the ring side, a quotient ring of a Noetherian ring is Noetherian.
+
+    \subsection*{Connectedness}
+
+    If \(X = U_1 \sqcup U_2\) which are open then it is disconnected. \(U_1\) and \(U_2\) will also be closed.
+
+    Question: is \(\operatorname{Spec} k[x_1, \cdots , x_n]\) connected?
+
+    Is \(\operatorname{Spec} k[x_1, \cdots , x_n] / I\) connected?
+    
+    \begin{theorem}
+        The following conditions are equivalent:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\operatorname{Spec} A\) is disconnected.
+            \item \(A \cong A_1 \times A_2\) for some \(A_1 \times A_2\) [here not considering the zero ring as a ring helps us]
+            \item \(A\) has a non-trivial idempotent \(e\) [i.e. \(e\neq 0,1, e^2 = e\). If your space has two components you can think of a function that is \(1\) on one component and \(0\) on the other component, then that function must be an idempotent].
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \(2 \implies 3:\) Let \(e = (1,0)\).
+        
+        \(3 \implies 2:\) Let \(A_1 = A e, A_2 = A(1-e)\). Then \(A_1 \times A_2 \xrightarrow{\cong} A\) by \((xe, y(1-e)) \mapsto xe + y(1-e)\).
+        
+        \(1 \implies 3:\) Suppose \(\operatorname{Spec} A = V(I) \sqcup V(J)\). Then \(I + J = A\) otherwise \(I + J \subset \mathfrak{m}\) and the corresponding point \(x \in \operatorname{Spec} A \in V(I) \cap V(J)\).
+
+        Claim: \(\phi : A \to A / I \times A / J\) is surjective and its kernel is nilpotent.
+
+        Surjectivity: we can find \(a\in A\) such that \(a \equiv 1 \mod I, a \equiv 0 \mod J\) since \(I + J = A\).
+
+        Now, suppose \(x\in \ker \phi\). Then \(x\in I \cap J\).
+
+        Recall that for every prime ideal \(P\) of \(A\) we have \(I \subset P\) or \(J \subset P\) thus \(I \cap J \subset P\).
+
+        Thus \(I \cap J \subset \bigcap_{P \in \operatorname{Spec} A} P = \operatorname{rad} (0) = \operatorname{rad} A\).
+        
+        So, \(x\in \operatorname{rad} A\) is nilpotent.
+
+        Let \(e\in A\) satisfy \(\phi(e) = (1,0)\). THen \(e^2 - e \in \ker \phi \implies e^2 - e\) is nilpotent.
+
+        Suppose \((e^2 - e)^n \equiv  0\).
+
+        Claim: \(E = 1-(1-e^n)^n\) is an idempotent.
+
+        Proof: \(E^2 - E = E(1-E) = (1-e^n)^n(1-(1-e^n)^n)\) which is a multiple of \(e^n(1-e)^n\) so it is \(0\).
+        
+        \(E \in (e^n)\) and \((1-E) \in ((1-e)^n)\).
+
+        \(2 \implies 1\): Suppose \(A = A_1 \times A_2\). Every prime ideal either contains \(((1,0)) = A_1 \times (0)\) or \(((0,1)) = 0 \times A_2\).
+
+        Equivalently project \(P \subset A\) onto \(A_1\) and project it into \(A_2\). Exactly one of these projections is surjective: if \(\operatorname{proj}_{A_1} P = I_1 \subsetneq A_1\) and \(\operatorname{proj}_{A_2} P = I_2  \subsetneq A_2\), we have \((x,1)(1,y) = (x,y) \in P\) but individually not in \(P\) which is a contradiction.
+    \end{proof}
+
+    \begin{theorem}
+        A topological space \(X\) is reducible if \(X = X_1 \cup X_2\) where \(X_1, X_2 \subsetneq X\) and \(X_1\) and \(X_2\) are closed.
+
+        Every disconnected space is reducible.
+    \end{theorem}
+
+    The key theorem for tomorrow:
+
+    \begin{theorem}
+        TFAE:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\operatorname{Spec} A\) is irreducible.
+            \item \(A\) has a minimum prime ideal: a prime ideal contained in all other prime ideals.
+            \item \(\operatorname{Spec} A\) has a generic point: \(\eta \in \operatorname{Spec} A\) such that \(\overline{\{ \eta \} } = \operatorname{Spec} A\)
+            \item \(\operatorname{rad} A\) is a prime ideal. 
+        \end{enumerate} 
+    \end{theorem}
+
 \end{document}

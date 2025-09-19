@@ -1068,10 +1068,10 @@
         [Stiefel-Whitney Classes] have these 4 axioms:
 
         \begin{enumerate}[label=\arabic*)]
-            \item \(\forall\) vector bundle \(\xi\), assign \(w_i(\xi) \in H^i(B(\xi);\mathbb{F}_2)\) so that \(w_0(\xi) = 1\) and \(w_i(\xi) = 0\) for \(i > n\) when \(\xi\) is a an \(n\)-plane bundle.
-            \item \textit{Naturality}: For continuous \(f: B \to B(\xi)\), we have \(w_i(f^{\ast} \xi) = f^{\ast} (w_i \xi) \in H^i(B;\mathbb{F}_2)\). [First one is the pullback on the bundle, second one is the induced map on the cohomology.]
-            \item \textit{Whitney Sum Formula}: If \(\xi , \eta\) are vector bundles over \(B\) we have: \(w_k(\xi \oplus \eta) = \sum_{i+j=k} w_i(\xi) \cup w_j(\eta) \).
-            \item \(0 \neq w_1(\gamma^1_1) \in H^1(P^1;\mathbb{F}_2) = H^1(S^1; \mathbb{F}_2) = \mathbb{F}_2\).
+            \item \(\forall\) vector bundle \(\xi\), assign \(\operatorname{w}_i(\xi) \in H^i(B(\xi);\mathbb{F}_2)\) so that \(\operatorname{w}_0(\xi) = 1\) and \(\operatorname{w}_i(\xi) = 0\) for \(i > n\) when \(\xi\) is a an \(n\)-plane bundle.
+            \item \textit{Naturality}: For continuous \(f: B^{\prime} \to B(\xi)\), we have \(\operatorname{w}_i(f^{\ast} \xi) = f^{\ast} (\operatorname{w}_i \xi) \in H^i(B;\mathbb{F}_2)\). [First one is the pullback on the bundle, second one is the induced map on the cohomology.]
+            \item \textit{Whitney Sum Formula}: If \(\xi , \eta\) are vector bundles over \(B\) we have: \(\operatorname{w}_k(\xi \oplus \eta) = \sum_{i+j=k} \operatorname{w}_i(\xi) \cup \operatorname{w}_j(\eta) \).
+            \item \(0 \neq \operatorname{w}_1(\gamma^1_1) \in H^1(P^1;\mathbb{F}_2) = H^1(S^1; \mathbb{F}_2) = \mathbb{F}_2\).
         \end{enumerate} 
 
         This sequence of cohomology classes is called the Stiefel-Whitney Classes.
@@ -1088,21 +1088,21 @@
         \end{tikzcd}
     \]
 
-    then \(\eta = f^{\ast} \xi, w_i(\eta) = f^{\ast} w_i(\xi)\).
+    then \(\eta = f^{\ast} \xi, \operatorname{w}_i(\eta) = f^{\ast} \operatorname{w}_i(\xi)\).
 
-    Note: axioms 1 and 2 says \(w_i\) are \textit{characteristic classes}. Characteristic Classes are cohomology classes respecting naturality. Meaning they respect nontriviality of bundles. Just like homology `classifies' upto homotopy in a sense, we need characteristic classes to capture the `twists' in a vector bundle.
+    Note: axioms 1 and 2 says \(\operatorname{w}_i\) are \textit{characteristic classes}. Characteristic Classes are cohomology classes respecting naturality. Meaning they respect nontriviality of bundles. Just like homology `classifies' upto homotopy in a sense, we need characteristic classes to capture the `twists' in a vector bundle.
 
     Axiom 1 and 2 implies:
 
     \begin{proposition}
-        [1] \(\xi \cong \eta \implies w_i(\xi) = w_i(\eta)\).
+        [1] \(\xi \cong \eta \implies \operatorname{w}_i(\xi) = \operatorname{w}_i(\eta)\).
     \end{proposition}
 
-    Recall that vector bundlles are isomorphic if:
+    Recall that vector bundles are isomorphic if:
 
     \[
         \begin{tikzcd}
-            E(\xi) \ar[rr,"\cong"] \ar[rd] & & E(\eta) \\ & B
+            E(\xi) \ar[rr,"\cong"] \ar[rd] & & E(\eta) \ar[dl] \\ & B
         \end{tikzcd}
     \]
 
@@ -1111,7 +1111,7 @@
     \end{proof}
 
     \begin{proposition}
-        [2] \(w_i(\epsilon^n_B) = 0\) for \(i > 0\).  
+        [2] \(\operatorname{w}_i(\epsilon^n_B) = 0\) for \(i > 0\).  
     \end{proposition}
 
     \begin{proof}
@@ -1121,29 +1121,29 @@
             \end{tikzcd}
         \]
 
-        \(w_i(\epsilon^n_B) = w_i (c^{\ast} \epsilon^n_{\text{pt}}) = c^{\ast} w_i(\epsilon^n_{\text{pt}}) \in H^i(\text{pt};\mathbb{F}_2) = 0\).
+        \(\operatorname{w}_i(\epsilon^n_B) = \operatorname{w}_i (c^{\ast} \epsilon^n_{\text{pt}}) = c^{\ast} \operatorname{w}_i(\epsilon^n_{\text{pt}}) \in H^i(\text{pt};\mathbb{F}_2) = 0\).
         
         Thus, nontrivial Stiefel-Whitney Class implies nontrivial bundle.
 
     \end{proof}
 
     \begin{proposition}
-        [3] If \(\epsilon\) trivial then \(w_i(\epsilon \oplus \eta) = w_i(\eta)\). In other words, \(w_i\) stable characteristic classes.
+        [3] If \(\epsilon\) trivial then \(\operatorname{w}_i(\epsilon \oplus \eta) = \operatorname{w}_i(\eta)\). In other words, \(\operatorname{w}_i\) stable characteristic classes.
     \end{proposition}
 
     \begin{proposition}
         [4] If \(\xi\) is an \(n\)-plane bundle with \(k\) linearly independent sections, then \(k\) of them vanishes:
 
         \[
-            w_{n-k+1}(\xi) = \cdots = w_{n-1} (\xi) = w_n(\xi) = 0
+            \operatorname{w}_{n-k+1}(\xi) = \cdots = \operatorname{w}_{n-1} (\xi) = \operatorname{w}_n(\xi) = 0
         \]
     \end{proposition}
 
     Most interesting case is \(k = 1\) contrapositive.
 
-    \(w_n(\xi) \neq 0 \implies \not\exists\) nowhere zero section. Hairy ball theorem!
+    \(\operatorname{w}_n(\xi) \neq 0 \implies \not\exists\) nowhere zero section. Hairy ball theorem!
 
-    eg for \(n\) odd there exists a nowhere zero section of the tangent bundle \(TS^n\). Therefore, \(w_n(TS^n) = 0\).
+    eg for \(n\) odd there exists a nowhere zero section of the tangent bundle \(TS^n\). Therefore, \(\operatorname{w}_n(TS^n) = 0\).
     
     Since \(n\) is odd \(n+1\) is even, and we can switch the coordiantes in pairs:
 
@@ -1151,9 +1151,9 @@
         \underline{x} = (x_1, \cdots , x_n) \mapsto (\underline{x}, -x_2, x_1, \cdots ,-x_{n+1}, x_n) \in TS^n \subset S^n \times \mathbb{R}^{n+1} 
     \]
 
-    \(w_4(T \mathbb{C} P^2)\neq 0, \not\exists\) nowhere vanishing vector field on \(\mathbb{C}P^2\).
+    \(\operatorname{w}_4(T \mathbb{C} P^2)\neq 0, \not\exists\) nowhere vanishing vector field on \(\mathbb{C}P^2\).
 
-    If \(M^n\) is a closed \(n\)-manifold then \(w_n(TM^n) \equiv \xi(M) \pmod 2\).
+    If \(M^n\) is a closed \(n\)-manifold then \(\operatorname{w}_n(TM^n) \equiv \xi(M) \pmod 2\).
 
     \begin{proof}
         The condition of \(k\) linearly independent section is equivalent to existence of a subbundle \(\epsilon^k_B \subset \xi\).
@@ -1162,12 +1162,178 @@
 
         Then \(\xi = \epsilon^k_B \oplus (\epsilon^k_B)^{\perp}\). 
 
-        \(w_i(\xi) = w_i(\epsilon^{k \perp}_B)\) by proposition 3. Note that \(\epsilon^{k \perp}_B\) is a \(n - k\) bundle, axiom 1 implies the statement.
+        \(\operatorname{w}_i(\xi) = \operatorname{w}_i(\epsilon^{k \perp}_B)\) by proposition 3. Note that \(\epsilon^{k \perp}_B\) is a \(n - k\) bundle, axiom 1 implies the statement.
 
         Case 2: \(B\) is a CW complex so \(B\) is paracompact which implies \(\xi\) has a metric.
 
         General case: suppose \(\begin{matrix} E(\xi) \\ \downarrow \\ B \end{matrix}\). Then \(\exists\) CW-approximation \(B^{\prime} \to B\) where \(B^{\prime}\) is a CW complex which is isomorphism on \(\pi_{\ast}\) which is isomorphism in homology and cohomology. This reduces to case 2.
 
     \end{proof} 
+
+    \section*{Friday, 9/19/2025}
+    
+    Recap: Stiefel-Whitney-Classes:
+
+    Suppose we have an \(n\)-plane bundle \(\begin{pmatrix}
+        \mathbb{R}^n & \to & E \\
+         &  & \downarrow \\
+         &  & B \\
+    \end{pmatrix} \) 
+
+    Then \(\operatorname{w}_i E = \operatorname{w}_i (\xi) \in H^i(B;\mathbb{F}_2)\).
+
+    We have some axioms:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\operatorname{w}_0(\xi) = 1, \operatorname{w}_i(\xi) = 0\) for \(i > n\)
+        \item Naturality: if we have \(f: B^{\prime} \to B\) then \(\operatorname{w}_i(f^{\ast} \xi) = f^{\ast} \operatorname{w}_i(\xi) \in H^i(B^{\prime} ; \mathbb{F}_2)\).
+        
+        One way to rephrase it is as follows: \(f^{\ast} E\) is the pullback bundle in the following:
+
+        \[
+            \begin{tikzcd}
+                f^{\ast} E \ar[r] \ar[d] & E \ar[d] \\ B^{\prime} \ar[r,"f"] & B
+            \end{tikzcd}
+        \]
+
+        Another way: if we have a bundle map:
+
+        \[
+            \begin{tikzcd}
+                E^{\prime} \ar[r] \ar[d] & E \ar[d] \\ B^{\prime} \ar[r] & B
+            \end{tikzcd}
+        \]
+
+        which is an isomorphism on the fibers, then \(f^{\ast} E \cong E^{\prime}\). We have \(E^{\prime} \to B^{\prime} \) which is equal to \(f^{\ast} \xi\).
+
+        In Milnor-Stasheff, if we have:
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[r] \ar[d] & E(\xi) \ar[d] \\ B(\eta) \ar[r] & B(\xi)
+            \end{tikzcd}
+        \]
+
+        \(\eta \to \xi\) in this case \(\operatorname{w}_i(\eta) = f^{\ast} \operatorname{w}_i(\xi)\).
+
+        Note that properties 1 and 2 are called characteristic class on a bundle.
+
+        \item Whitney Sum formula: \(\operatorname{w}_k(\xi \oplus \eta) = \sum_{i+j=k} \operatorname{w}_i(\xi) \operatorname{w}_i(\eta)\)
+        \item \(\operatorname{w}_1(\gamma^1_1) \neq 0\).
+    \end{enumerate} 
+
+    Recall proposition 3: if \(\epsilon\) trivial then \(\operatorname{w}_i(\epsilon \oplus \eta) = \operatorname{w}_i(\eta)\).
+
+    Proposition 4: \textit{obstruction to sections}: If \(\xi\) has \(k\)-linearly independent sections then the top \(k\) Stiefel-Whitney Classes vanish.
+
+    \subsection*{Whitney Sum Inverses}
+
+    \begin{definition}
+        Suppose \(\xi \oplus \eta = \epsilon^N\). Then \(\xi\) and \(\eta\) are whitney sum inverses of each other.
+        
+        Example: Normal bundle and tangent bundle.
+    \end{definition}
+
+    Fact: \(\dim B < \infty\) implies every bundle has an inverse.
+
+    Observation: \(\operatorname{w}_{\ast} (\xi)\) can be computed in terms of \(\operatorname{w}_{\ast} (\eta)\).
+
+    \[
+        0 = \operatorname{w}_1(\xi \oplus \eta) = \operatorname{w}_1(\xi) + \operatorname{w}_1 (\eta) \implies \operatorname{w}_1(\xi) = \operatorname{w}_1(\eta)
+    \]
+    
+    \[
+        0 = \operatorname{w}_2(\xi \oplus \eta) = \operatorname{w}_2(\xi) + \operatorname{w}_1(\xi) \operatorname{w}_1(\eta) + \operatorname{w}_2(\eta) \implies \operatorname{w}_2(\xi) = \operatorname{w}_1(\eta)^2 + \operatorname{w}_2(\eta)
+    \]
+
+    In Milnor Stasheff, they define a new ring:
+
+    \[
+        H^{\prod}  (B;\mathbb{F}_2) = \prod_i H^i(B;\mathbb{F}_2)
+    \]
+
+    This allows us to take infinite series:
+
+    \[
+        \operatorname{w}(\xi) = 1 + \operatorname{w}_1 \xi + \operatorname{w}_2 \xi + \cdots \in H^{\prod}  (B;\mathbb{F}_2)
+    \]
+
+    Then we can rephrase the Whitney sum theorem as follows:
+
+    \(\operatorname{w}(\xi \oplus \eta) = \operatorname{w}(\xi) \cup w(\eta)\).
+
+    \begin{lemma}
+        \(\left\{ 1 + a_1 + a_2 + \cdots \in H^{\prod} (B;\mathbb{F}_2) \mid a_i \in H^i(B;\mathbb{F}_2) \right\}\)
+    \end{lemma}
+
+    \begin{proof}
+        Due to `Euler':
+
+        \((1 + a_1 + a_2 + \cdots ) ^{-1}  = \frac{1}{1+(a_1 + a_2 + \cdots)}\)
+        
+        \(= 1 + (a_1 + a_2 + \cdots ) + (a_1 + a_2 + \cdots)^2 + (a_1 + a_2 + \cdots)^3\)
+
+        \(= 1 + a_1 + (a_2 + a_1^2) + (a_3 + a_1^3) + \cdots\) 
+        
+        
+    \end{proof}
+
+    Notation: Suppose \(\operatorname{w}(\xi) \in H^{\prod} (B;\mathbb{F}_2)\) then we can have the formal multiplicative inverse: \(\overline{\operatorname{w}}(\xi) \in H^{\prod } (B;\mathbb{F}_2)\) so that \(\operatorname{w} (\xi) \overline{\operatorname{w}}(\xi) = 1\)  
+
+    This gives us the following observation: \(\xi \oplus \eta = \epsilon^N\) gives us \(\operatorname{w}(\xi) \operatorname{w}(\eta) = 1 \implies \operatorname{w}(\xi) = \overline{\operatorname{w}}(\eta)\).
+    
+    eg \(H^{\ast} (\mathbb{P}^{\infty} ;\mathbb{F}_2) = \mathbb{F}_2[a]\) then we have canonical line bundle \(\gamma^1\) then \(\operatorname{w} (\gamma^1) = 1+a\) so \((1+a)^{-1} = 1 + a + a^2 + \cdots\) which has infinitely many terms so the inverse might not exist! The line bundle doesn't have any whitney sum inverse.
+
+    \begin{theorem}
+        [Whitney Duality Theorem] Let \(M^n \subset \mathbb{R} ^N\) be a smooth manifold. Then \(\operatorname{w}_i(TM) = \overline{\operatorname{w}}_i \left( \nu (M \hookrightarrow \mathbb{R}^N) \right)  \) 
+    \end{theorem}
+
+    \begin{proof}
+        \((TM \oplus \nu (M \hookrightarrow \mathbb{R}^N)) = \eval{T\mathbb{R}^N}_M\) 
+    \end{proof}
+
+    \begin{lemma}
+        Suppose we have a closed codim \(1\) manifold: \(M^n \subset \mathbb{R}^{n+1}\). Then \(\operatorname{w} (TM) = 1\).
+    \end{lemma}
+
+    So Stiefel-Whitney Classes give an obstruction to submanifolds of codimension \(1\).
+
+    \begin{proof}
+        \(TM \oplus \nu (M \hookrightarrow \mathbb{R}^{n+1})\) is trivial, \(\nu (M \hookrightarrow \mathbb{R}^{n+1})\) gives nowhere zero section.
+    \end{proof}
+
+    \begin{corollary}
+        Non-orientable submanifolds must have codimension at least \(2\).
+    \end{corollary}
+
+    Recall \(P^n = \mathbb{R} P^n = S^n / x \sim -x = \frac{S^n_+}{x \sim -x \text{ when } x \in S^{n-1}} =\) lines in \(\mathbb{R}^{n+1}\) through \(0\).
+    
+    \(P^n\) is a CW complex via the pushout:
+
+    \[
+        \begin{tikzcd}
+            S^{n-1} \ar[r] \ar[d, hook] & P^{n-1} \ar[d] \\ D^n \ar[r] & P^n
+        \end{tikzcd}
+    \]
+
+    \(P^0 \subset P^1 \subset \cdots \subset P^n\) is the skeleton.
+
+    Essentially \(P^n = e^0 \cup e^1 \cup \cdots \cup e^n\) with \(e^i \cong \overset{\circ}{D^i}\).
+    
+    Cellular chain complex:
+
+    \[
+        C_\bullet(P^n; \mathbb{F}_2) = \mathbb{F}_2 \xrightarrow{0} \cdots \xrightarrow{0} \mathbb{F}_2
+    \]
+
+    Cochain complex:
+
+    \[
+        C^\bullet(P^n;\mathbb{F}_2) = \mathbb{F}_2 \leftarrow \cdots \leftarrow \mathbb{F}_2
+    \]
+
+    \(H_{\ast} (P^n;\mathbb{F}_2) = H^{\ast} (P;\mathbb{F}_2) = \{ \mathbb{F}_2: x \leq n \}\)
+
+    Next: \(H^{\ast} (P^n;\mathbb{F}_2) = \frac{\mathbb{F}_2[a]}{a^{n+1}}\) truncated polynomial ring. 
 
 \end{document}
