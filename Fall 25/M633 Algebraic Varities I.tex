@@ -1632,10 +1632,147 @@
 
         \begin{enumerate}[label=\arabic*)]
             \item \(\operatorname{Spec} A\) is irreducible.
-            \item \(A\) has a minimum prime ideal: a prime ideal contained in all other prime ideals.
             \item \(\operatorname{Spec} A\) has a generic point: \(\eta \in \operatorname{Spec} A\) such that \(\overline{\{ \eta \} } = \operatorname{Spec} A\)
+            \item \(A\) has a minimum prime ideal: a prime ideal contained in all other prime ideals.
             \item \(\operatorname{rad} A\) is a prime ideal. 
         \end{enumerate} 
     \end{theorem}
+
+    \section*{Monday, 9/22/2025}
+    
+    We can instead prove the following theorem:
+
+    \begin{theorem}
+        TFAE:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\operatorname{Spec} A\) is reducible.
+            \item \(\operatorname{Spec} A\) has no generic point
+            \item \(A\) has no minimal prime ideal.
+            \item \(\operatorname{rad} A\) is not prime.
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        We prove \(1 \implies 2 \implies 3 \implies 4 \implies 1\).
+
+        \(1 \implies 2\): Suppose \(\operatorname{Spec} A = X \cup Y\) where \(X,Y\) are closed and \(X,Y \subsetneq \operatorname{Spec} A\).
+
+        If \(\eta \in \operatorname{Spec} A\) then either \(\eta \in X\) or \(\eta \in Y\).
+
+        So, \(\overline{\{ \eta \}} \subset X\) or \(\overline{\{ \eta \} } \subset Y\) so no generic point.
+        
+        \(2 \implies 3\): If \(P\) and \(Q\) are prime ideals, then \(Q \in \overline{\{ P \}} \implies Q \in V(P) \implies P \subset Q\). If there is no generic point, then there is no prime ideal that is contained in all other prime ideals.
+        
+        \(3 \implies 4\): Since every prime ideal contains \(\bigcap_{P\in \operatorname{Spec} A} P = \operatorname{rad} A\) it follows that \(\operatorname{rad} A\) is not prime.
+
+        \(4 \implies 1\): Since \(\operatorname{rad} A\) is not prime, we have \(f,g\in A\) such that \(fg\in \operatorname{rad} A\) but \(f,g\notin \operatorname{rad} A\). Thus, there exists \(P\in \operatorname{Spec} A\) so that \(f\notin P\) i.e. \(P \notin V(f)\) and \(g\notin \operatorname{rad} A\) i.e. \(Q \notin V(g)\). But \(fg\in \operatorname{rad} A\) implies all prime ideals lie in \(V(fg)\).
+
+        Thus, \(V(f) \cup V(g) = \operatorname{Spec} A\).
+    \end{proof}
+
+    \begin{corollary}
+        \(A\) is intrgral domain \(\iff \operatorname{Spec} A\) is irreducible and \(A\) has no non-zero nilpotents.
+    \end{corollary}
+
+    \begin{proof}
+        \(A\) integral implies [\(fg\in (0) \implies f\in (0)\) or \(g\in (0)] \implies (0)\) is prime \(\implies (0)\) is the minimum prime ideal \(\implies \operatorname{Spec} A\) is irreudible. Further, if \(f^n = 0\) then \(f=0\) so no non-zero nilpotents.
+
+        Other direction: if \(\operatorname{Spec} A\) is irreducible then \(\operatorname{rad} A\) is prime. If \(\operatorname{Spec} A\) has no non-zero nilpotents, then \(\operatorname{rad} A = (0)\). Thus \((0)\) is prime. Thus, \(fg = 0 \implies fg\in (0) \implies f \in (0)\) or \(g\in (0) \implies f=0\) or \(g=0\). Thus \(A\) is an integral domain.
+    \end{proof}
+
+    \begin{lemma}
+        If \(A\) is an integral domain then any polynomial ring \(A[x_1, \cdots , x_n]\) is also an integral domain.
+    \end{lemma}
+
+    \begin{proof}
+        Use induction on \(n\). ETS: \(A\) integral \(\implies A[x]\) integral.
+
+        Suppose \(P(x) = \sum_{i=0}^n a_i x^i, Q(x) = \sum_{j=0}^m b_j x^j\) are non-zero of degree \(n\) and \(m\) respectively. We may assume that \(a_n \neq 0, b_m\neq 0\). Then \(P(x) Q(x) = \sum_{k=1}^{n+m} \sum_{i+j=k} a_i b_j x^k \). So, the \(x^{n+m}\) coefficient of \(P(x)Q(x)\) is \(a_n b_m \neq 0\). Thus, \(P(x)Q(x) \neq 0\). 
+    \end{proof}
+
+    Thus, polynomial rings over an integral domain are integral. In particular, polynomial rings over fields are integral.
+
+    \begin{corollary}
+        \(\operatorname{Spec} k[x_1, \cdots , x_n]\) is irreudiclbe when \(k\) is a field.
+    \end{corollary}
+
+    Note that \(\operatorname{Spec} k[x_1, \cdots , x_n]\) is the affine \(n\)-space over \(k\).
+
+    A consequence of irreducibility: In an irreudcible topological space \(X\), the closure of a non-empty open set \(U\) is everything: \(\overline{U} = X\).
+
+    Why? Note that \(U^c \cup \overline{U} \supset U^c \cup U = X\). 
+
+    \begin{theorem}
+        Every \(n \times n\) matrix over \(\mathbb{C}\) satisfies its own characteristic polynomial.
+    \end{theorem}
+
+    \begin{proof}
+        Let \(M \in M_n(\mathbb{C})\). Let \(p_M\) be the characteristic polynomial. If \(\operatorname{disc} p_M(x) \neq 0\) then \(M\) is diagonalizable with distinct entries. Thus \(M \sim \begin{bmatrix}
+            \lambda_1 & \cdots & 0 \\
+            \vdots & \ddots & \vdots \\
+            0 & \cdots & \lambda_n \\
+        \end{bmatrix} \) where \(\lambda_i \neq \lambda_j\).
+
+        Then \(p_M(x) = p_D(x) = (x-\lambda_1) \cdots (x-\lambda_n)\) and \(p_M(M) = p_D(D) = 0\).
+        
+        i.e. Cayley Hamilton theorem is trivial when eigenvalues are distinct.
+
+        Now we can easily finish with algebraic geometry:
+
+        \(\operatorname{disc} p_M(x) \neq 0\) is a non-empty open condition on \(\mathbb{A}^{n^2}_{\mathbb{C}}\). 
+
+        Any identity that holds on a dense subset of \(\mathbb{A}^{n^2}_{\mathbb{C}}\) holds on \(\mathbb{A}^{n^2}_{\mathbb{C}}\). So we're done! 
+    \end{proof}
+
+    What is happening under the hood? Note that \(\operatorname{disc} p_M \cdot p_M(M)\) on \(M_n(\mathbb{C})\) is always zero, so it is in fact the zero polynomial.
+
+    \begin{definition}
+        A ring \(A\) is a Jacobson ring if the intersection of its maximal ideals is \((0)\).
+    \end{definition}
+
+    This is a stronger condition than being an integral domain: eg a valuation ring has only one max ideal and thus it is a Jacobson ring.
+
+    \begin{theorem}
+        Every polynomial ring over a field is a Jacobson ring.
+    \end{theorem}
+
+    \section*{Chapter 4: Define \(\mathcal{O}_{\operatorname{Spec} A}\)}
+
+    \(\operatorname{Spec} \mathcal{O}_{\operatorname{Spec} A}\): sheaf of regular functions on \(\operatorname{Spec} A\).
+
+    \(U \subset \operatorname{Spec} A\) is any open set. We want \(\mathcal{O}_{\operatorname{Spec} A}(U)\).
+
+    Suppose \(A\) is an integral domain with fraction field \(K\).
+
+    Then \(\mathcal{O}_{\operatorname{Spec} A}(U) \subset K\). Which elements of \(K\) count as regular on \(U\)?
+
+    Suppose we have \(\frac{a}{b}\in K\). As long as \(b\) doesn't vanish on \(U\), we can talk about \(\frac{1}{b}\) on \(U\). Thus we can talk about \(\frac{a}{b}\) on \(U\).
+
+    Recall if \(P\in \operatorname{Spec} A\) then we can take \(\mathbb{K} (P) = \operatorname{Frac}(A / P)\). For \(f\in A\) then \(f(P) \in \mathbb{K}(P)\) namely, \((f \mod P) \in A / P \subset \operatorname{Frac} (A / P)\).
+    
+    Thus \(a,b\in A, \frac{a}{b}\in \mathbb{K} (P)\) is problematic when \(b\in P\).
+    
+    We want to work more generally than integral domains. We want to use the sheaf machinery.
+
+    Stalk POV:
+
+    What is the \textit{set of germs of regular functions at} \(P\)?
+
+    We're basicallly looking at fractions where the denominator doesn't belong to \(P\).
+
+    Recall we have localization: \(A_P = \left\{ \frac{a}{b} \mid b \in A \setminus P \right\} / \sim\).
+
+    Let \(A_P\) be the stalks and compatibility of a family of a map \(U \to \sqcup_{P\in U} A_P\) by \(P \mapsto s_P\) are compatible if \(\forall P\in U \exists V \subset U\) open neighborhood of \(P\) and a fraction \(\frac{a}{b}\) where \(b\) does not lie in any prime ideal in \(V\) such that \(\frac{a}{b}\) gives \(s_P\) for all \(P\in V\).
+
+    Base POV:
+
+    \(D(f) = \operatorname{Spec} A \setminus V(f)\) gives a base for the topology of \(\operatorname{Spec} A\).
+
+    \(\mathcal{O}_{\operatorname{Spec} A}(D(f)) = A \left[ \frac{1}{f} \right] = A_f = S ^{-1} A \) where \(S = \{ 1, f, f^2, \cdots \}\). We don't want \(f\) to be nilpotent. This is just \(A[x] / (fx - 1)\).
+
+    
+
+
 
 \end{document}

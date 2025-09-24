@@ -1336,4 +1336,131 @@
 
     Next: \(H^{\ast} (P^n;\mathbb{F}_2) = \frac{\mathbb{F}_2[a]}{a^{n+1}}\) truncated polynomial ring. 
 
+    \section*{Monday, 9/22/2025}
+    
+    We do some computations today.
+
+    Recall: \(P^n = S^n / x \sim -x = \underbrace{e^0 \cup e^1 \cup \cdots}_{P^{n-1} } \cup e^n\)
+
+    Then \(H^{\ast} (P^n; \mathbb{F}_2) = \begin{dcases}
+        \mathbb{F}_2, &\text{ if } \ast \leq n ;\\
+        0, &\text{ otherwise} .
+    \end{dcases}\) 
+
+    Let \(0 \neq a \in H^1(P^n; \mathbb{F}_2)\).
+
+    \begin{theorem}
+        \(H^{\ast} (P^n; \mathbb{F}_2) = \frac{\mathbb{F}_2[a]}{a^{n+1}}\), truncated polynomial ring.
+    \end{theorem}
+
+    \begin{proof}
+        Induction on \(n\) and Poincar\'e Duality.
+
+        It is true for \(n = 1\).
+
+        Now suppose it is true for \(n - 1\).
+
+        We have injection \(i : P^{n-1} \hookrightarrow P^n\). Thus \(i^{\ast}\) is a rang map isomorphism on dimension \(\leq n - 1\).
+
+        Thus \(a, a^2, \cdots , a^{n-1}\) non-zero.
+
+        Question: do we have \(a^n \neq 0\)?
+        
+        We use Poincar\'e Duality to prove that.
+
+        Suppose \([P^n] \in H_n(P^n;\mathbb{F}_2) \neq 0\).
+        
+        Then we have: \(\cap [P^n]: H^{n-1} (P^n;\mathbb{F}_2) \xrightarrow{\sim} H_1(P^n;\mathbb{F}_2)\).
+        
+        Then \(\langle a^n, [P^n] \rangle = \langle a^{n-1}, a\cap [P^n] \rangle \neq 0\) since UCT implies:
+        
+        \(H^{n-1}(P^n;\mathbb{F}_2) \xrightarrow{\approx} \operatorname{Hom} (H_{n-1}(P^n;\mathbb{F}_2),\mathbb{F}_2)\) by \(\beta \mapsto (b \mapsto \langle \beta , b \rangle )\) and both \(a^{n-1}\) and \(a\cap [P^n]\) are nonzero.
+    \end{proof}
+
+    Now we can look at SW classses of \(\gamma_n^1\) and \(TP^n\).
+
+    \begin{proposition}
+        \(\operatorname{w} (\gamma_n^1) = 1 + a \in H^{\ast} (P^n; \mathbb{F}_2)\).
+    \end{proposition}
+
+    \begin{proof}
+        True for \(n=1\) by axiom \(4\).
+
+        Now consider restriction: \(\eval{\gamma^1_n}_{P^1} = \gamma^1_1\).
+
+        By the axiom we have \(1+a = \operatorname{w}(\gamma^1_1) = i^{\ast} \operatorname{w} (\gamma^1_n)\).
+    \end{proof}
+
+    Now let \(\gamma=\gamma^1_n = \left\{ \{ ([x],v) \} \mid v\in \mathbb{R}x \right\} \subset P^n \times \mathbb{R}^{n+1}\) be the tautological line bundle.
+
+    \(\gamma \subset \epsilon^{n+1}_{P^n} \implies \gamma \oplus \gamma^{\perp} =\epsilon^{n+1} \).
+
+    Therefore, \(\operatorname{w}(\gamma^{\perp}) = \overline{\operatorname{w}}(\gamma) = (1+a)^{-1} = 1 + a + \cdots + a^n \in H^{\ast} (P^n;\mathbb{F}_2)\). 
+
+    Thus \(\gamma^{\perp}\) has no nonzero sections.
+
+    \begin{corollary}
+        \(\gamma^1_\infty\) over \(P^{\infty}\) has no W.SI.
+    \end{corollary}
+
+    Question: \(\operatorname{w}(TP^n) = ?\) 
+
+    Recall: \(G \curvearrowright X\) then orbit space \(X / G = X / x \sim gx, S^n / C_2 = P^n\).
+
+    \begin{theorem}
+        \begin{enumerate}[label=\roman*)]
+            \item \(TP^n \oplus \epsilon^1 = \underbrace{\gamma \oplus \cdots \oplus \gamma}_{n+1}\).
+            \item \(\operatorname{w} (TP^n) = (1+a)^{n+1} = \sum_{j=0}^n \binom{n+1}{j} a^j \in H^{\ast} (P^n;\mathbb{F}_2) \)
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        Apply the antipodal map to:
+
+        \[
+            TS^n \oplus \nu = \epsilon^{n+1} = \epsilon ^1 \oplus \cdots \oplus \epsilon^1 \tag{\(\ast\)}
+        \]
+
+        To get the following:
+
+        \[
+            TP^n \oplus \epsilon = \gamma \oplus \cdots \gamma \tag{\(\ast \ast\)}
+        \]
+
+        where \(C_2 \curvearrowright S^n \times \mathbb{R}^{n+1}\) by \((x,v) \mapsto (-x,-v)\).
+
+        Note: \(TP^n = (TS^n) / C_2\) since \(S^n\) is a covering space of \(TP^n\).
+
+        Note: \(\nu(S^n \hookrightarrow \mathbb{R}^{n+1}) \cong \epsilon^1_{S^n}\)
+        
+        Note: \(\nu(S^n \hookrightarrow \mathbb{R}^{n+1}) / C_2 \cong \epsilon^1_{P^n}\)
+        
+        Note: \(\epsilon^1_{S^n} / C_2 \cong \gamma\) since \(\frac{S^n \times \mathbb{R}}{C_2} \cong E(\gamma)\) by \([(x,t)] \mapsto ([x],tx)\) 
+
+        This proves \((\ast \ast)\).
+
+        Now we prove i \(\implies\) ii.
+
+        \(\operatorname{w}(P^n) = \operatorname{w}(TP^n \oplus \epsilon) = \operatorname{w}((n+1)\gamma) = \operatorname{w}(\gamma)^{n+1} = (1+a)^{n+1}\) 
+
+    \end{proof}
+
+    MS shows \(TP^n \cong \operatorname{Hom} (\gamma , \gamma^{\perp})\).
+
+    \subsection*{Parallelizable Manifolds}
+    
+    \begin{definition}
+        A manifold \(M^n\) is \textit{parallelizable} if \(TM^n = \epsilon^n_M \) [i.e. if there exists \(n\) linearly independent vector fields]
+    \end{definition}
+
+    eg \(S^{2n}\) is not parallelizable via the hairy ball theorem.
+
+    Lie Groups are parallelizable: note that \(T_e G^n\) has basis \(e_1, \cdots , e_n\), and for \(g\in G\) we have \(\ell_g: G \to G\) given by \(h \mapsto gh\).
+
+    We then have \(g \mapsto (d \ell_{g \ast})(e_i)\) giving \(n\) linearly independent vector fields. 
+
+    Thus, \(\operatorname{w}_i(TM^n) \neq 0\) for \(i > 0\) implies \(M\) is not a lie group.
+
+    \(S^0, S^1, S^3, P^0, P^1, P^3 (=\operatorname{SO}(3))\) are lie groups.
+
 \end{document}
