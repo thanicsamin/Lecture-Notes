@@ -1771,8 +1771,220 @@
 
     \(\mathcal{O}_{\operatorname{Spec} A}(D(f)) = A \left[ \frac{1}{f} \right] = A_f = S ^{-1} A \) where \(S = \{ 1, f, f^2, \cdots \}\). We don't want \(f\) to be nilpotent. This is just \(A[x] / (fx - 1)\).
 
+
+    \section*{Wednesday, 9/24/2025}
     
 
+    We need to check if \(\mathcal{O}_{\operatorname{Spec} A}(D(f)) \coloneqq A \left[ \frac{1}{f} \right]\) is well defined and satisfies the sheaf axioms.
+    
+    Well defined:
 
+    \begin{proposition}
+        \(D(f) = D(g) \implies A \left[ \frac{1}{f} \right] \cong A \left[ \frac{1}{g} \right]\).
+    \end{proposition}
+
+    \begin{proof}
+        It suffices to show that \(f\) is invertible in \(A[1 / g]\) and \(g \) is invertible in \(A[1 / f]\).
+
+        Thus it suffices to show that \(f\) is invertible in \(A[1 / g]\).
+
+        Note that \(D(f) = D(g) \implies D(f) \subset D(g)  \implies V(g) \subset V(f) \implies f\) vanishes on every point of \(V(g)\), i.e. \(\forall P \in V(g), f\in P\).
+
+        Thus, \(f\in \bigcap_{P\in V(g)} P = \operatorname{rad} (g)\).
+
+        Thus, \(f^n \in (g)\), i.e. \(\exists a\in A\) such that \(f^n = ag \implies \frac{1}{g} = \frac{a}{f^n} \in A[1 / f]\). Thus \(g\in A[1 / f]\). QED.  
+    \end{proof}
+
+    Thus, \(\mathcal{O}_X(D(f))\) is well defined. 
+    
+    \begin{proposition}
+        Suppose \(D(f) = \bigcup_{\alpha \in I} D(f_\alpha)\). WTS: \(\mathcal{O}_X(D(f))\) is the \textit{equalizer} of the following diagram:
+
+        \[
+            \begin{tikzcd}
+                \prod_{\alpha \in I} \mathcal{O}_X (D(f_\alpha)) \ar[r, bend right,"\phi"] \ar[r, bend left,"\psi"] & \prod_{\alpha,\beta \in I} \mathcal{O}_X(D(f_\alpha)\cap D(f_\beta))
+            \end{tikzcd}
+        \]
+
+        i.e. \(\mathcal{O}_X(D(f)) = \left\{ g \in \prod_{\alpha \in I} \mathcal{O}_X(D(f_\alpha)) \mid \phi(g) = \psi(g)  \right\} \) 
+    \end{proposition}
+
+    \begin{proof}
+
+        Specializations:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(D(f) = X\)
+            \item \(I\) is finite. 
+        \end{enumerate} 
+
+        Note \(D(f) = \operatorname{Spec} A \left[ \frac{1}{f} \right] \) and \(A \left[ \frac{1}{f_\alpha} \right] = A \left[ \frac{1}{f} \right] \left[ \frac{1}{f_\alpha} \right] \). So WLOG we can assume that \(D(f) = X\). Then,
+
+        \[
+            \begin{tikzcd}
+                A \ar[r] & \operatorname{Eq} \bigg(  \prod A \left[ \frac{1}{f_i} \right] \ar[r, bend left] \ar[r, bend right] & \prod A \left[ \frac{1}{f_i f_j} \right] \bigg)
+            \end{tikzcd}
+        \]
+
+        \[
+            \begin{tikzcd}
+                a \ar[r] & \left( \frac{a}{1} \right) \ar[r, bend right] \ar[r, bend left] & \left( \frac{a}{1} \right) 
+            \end{tikzcd}
+        \]
+
+        We prove injectivity first.
+
+        Suppose \(a\in A\) is in the kernel. Then \(a\in A\) maps to \(0\) in each \(A[1 / f_i]\). Thus, \(a / 1 = 0\) in \(A[1 / f_i]\) for all \(i \in I\). Thus, for all \(i\in I\), \(a f_i^{k_i} = 0\) for some \(k_i \in \mathbb{N}\).
+        
+        Furthermore, \(\operatorname{Spec} A = \bigcup_{i\in I} D(f_i)\), \(\forall P\in \operatorname{Spec} A, \exists f_i\) such that \(f_i \notin P\).
+
+        Thus, \((f_1, f_2, \cdots) = 1\).
+
+        Thus \(\sum_{i} a_i f_i = 1\) for some finite collection of the \(f_i\).
+
+        For every \(k\) we have \((f_1^k, f_2^k, \cdots ) = 1\).
+
+        Thus, \(\sum_{i} a_{i,k} f_i^k = 1\) for some finite collection of \(i\). Choosing \(k \geq k_i\) for the finite collection of \(i\), we see that \((f_1^{k_1}, f_2^{k_2}, \cdots ) = 1\). So, \(\sum_{i} b_i f_i^{k_i} = 1 \implies \sum_{i} a b_i f_i^{k_i} = a  = 0\).
+
+        Now suppose \(I\) is finite. we now want to show surjectivity.
+
+        Suppose \(\forall i,j\) we have \(\frac{a_i}{f_i} = \frac{a_j}{f_j}\) in \(A \left[ \frac{1}{f_i f_j} \right] \).
+
+        Then we can find \(k_{i,j}\in\mathbb{N}\) such that \((a_i f_j - a_j f_i) (f_i f_j)^{k_{i,j}} = 0\).
+        
+        Suppose \(a_i f_j = a_j f_i\) [special case]. Note that \((f_1, f_2, \cdots , f_n) = 1 \implies b_1 f_1 + \cdots +b_n f_n = 1\).
+
+        Let \(a = a_1 b_1 + \cdots + a_n b_n\). Claim: \(a = \frac{a_i}{f_i}\) for all \(i\).
+
+        WTS: \(a = \frac{a_1}{f_1} \iff f_1 a = a_1\). Recall \(f_1 a = f_1 a_1 b_1 + f_1 a_2 b_2 + \cdots + f_1 a_n b_n = f_1 a_1 b_1 + f_2 a_1 b_2 + \cdots + f_n a_1 b_n = a_1(b_1 f_1 + \cdots + b_n f_n) = a_1\) So we're done.
+        
+        What if \(a_i f_j = a_j f_i\) doesn't hold? Note that \(\frac{a_1}{f_1}= \frac{a_1 f_1}{f_1^2} = \frac{a_1 f_1^2}{f_1^3} = \cdots\). These power gives us bigger powers of \((f_i f_j)^{k_{i,j}}\). So we have proved for finite \(I\).
+        
+        Now suppose \(I\) is infinite.
+
+        Let \(J\) be the finite subset such that \(\bigcup_{j\in J} D(f_j) = \operatorname{Spec} A\).
+
+        Given compatible fractions \(\frac{a_j}{f_j}, \exists a\in A\) which is equal to all of them. Moreover \(a\) is unique: \(a = \frac{a_i}{f_i}\) for all \(i\in I\). 
+
+    \end{proof}
+
+    Some clarification about partition of unity.
+
+    Let \(X = \bigcup_i U_i\) and \(\phi_i: U_i \to \mathbb{R}\), \(\phi_i(x)=\phi_j(x)\) in \(U_i \cap U_j\). A partition of unity of \(X\): we define on the cover \(U_i\) a collection of functions \(\psi_i: X \to \mathbb{R}\) sucht hat each \(\psi_i\) is \(0\) outside \(U_i\) and \(\sum_{i} \psi_i = 1\).
+
+    Note that \(\sum_{i} \phi_i \psi_i = f: X \to \mathbb{R}\) with the property if \(x\in U_i, f(x) = \phi_i(x)\).
+
+    In the proof, role of \(\psi\) is played by \(b_i f_i\) which vanishes on \(V(f_i)\) and thus is suppported on \(D(f_i)\).
+
+    Therefore, the sheaf \(\mathcal{O}_X\) exists and satisfies \(\mathcal{O}_X(D(f)) = A \left[ \frac{1}{f} \right]\).
+
+    What about open sets not of the form \(D(f)\)? Suppose \(X = \mathbb{A}^2_{\mathbb{C}} = \operatorname{Spec} \mathbb{C} [x,y]\). Define \(U = X - \{ (0,0) \}\).
+
+    We can take a cover of \(U\) by \(D(f)\)s.
+    
+    Let \(U_1 = \operatorname{Spec} \mathbb{C} [x,y]\left[ \frac{1}{y} \right] \) and \(U_2 = \operatorname{Spec} \mathbb{C}[x,y]\left[ \frac{1}{x} \right]\). Then \(U = U_1 \cup U_2\).
+    
+    We have \(\mathbb{C} \left[ x, y, \frac{1}{x} \right] \times \mathbb{C} \left[ x,y,\frac{1}{y} \right] \to \mathbb{C}\left[ x,y,\frac{1}{xy} \right]\).
+    
+    Let \(f = \sum_{i,j} a_{ij} x^i y^j \in \mathbb{C} \left[ x,y,\frac{1}{x} \right]  \) and \(g = \sum_{i,j} b_{ij} x^i y^j \in \mathbb{C} \left[ x,y,\frac{1}{y} \right]\). Then \(a_{ij} = b_{ij}\), no negatives, some positives. Thus we have no extra functions.
+
+    \section*{Friday, 9/26/2025}
+    
+    Recall:
+
+    We constructed \(\mathcal{O}_X\) for \(X = \operatorname{Spec} A\) using the base \(D(f)\) the so called distinguished opens.
+
+    \(\mathcal{O}_X(D(f)) = A[f ^{-1}]\).
+    
+    What is the stalk at \(x\in X \leftrightarrow P \subset A\)? We take a direct limit over all the open neighborhoods of \(x\), aka the sections.
+
+    \(\mathcal{O}_{X,x} = \varinjlim_{D(f) \ni x} \mathcal{O}_X(D(f)) = \varinjlim_{f \notin P} A \left[ \frac{1}{f} \right]\).
+
+    \(= \varinjlim_{f \in A \setminus P} A \left[ \frac{1}{f} \right] = (A \setminus P) ^{-1} A = A_P\).
+
+    We have the same construction for \(A\)-modules. Let \(M\) be an \(A\)-module. We can construct a sheaf of \(\mathcal{O}_X\)-modules \(\widetilde{M}\) in exactly the same way:
+
+    Define \(\widetilde{M}(D(f)) = M \left[ \frac{1}{f} \right] = M \otimes_A A \left[ \frac{1}{f} \right] = \{ 1, f, f^2, \cdots \}^{-1} M\).
+    
+    We need to check if it is well defined, i.e. \(D(f)=D(g) \implies M \left[ \frac{1}{f} \right] = M \left[ \frac{1}{g} \right]\). Proof is also the same.
+
+    If \(D(f) = \bigcup_{\alpha \in I} D(f_\alpha)\) then,
+    
+    \(\widetilde{M} (D(f)) = \operatorname{Eq} \left( \prod_{\alpha \in I} \widetilde{M} (D(f_\alpha)) \rightrightarrows \prod_{\alpha , \beta} \widetilde{M} (D(f_\alpha)\cap D(f_\beta)) \right) \) 
+
+    \(M \left[ \frac{1}{f} \right] = \operatorname{Eq} \left( \prod_{\alpha \in I} \widetilde{M} \left[ \frac{1}{f_\alpha} \right] \rightrightarrows \prod_{\alpha , \beta} \widetilde{M} \left[ \frac{1}{f_\alpha f_\beta} \right] \right)\).
+
+    If \(x \leftrightarrow P\) then stalk at \(x\), \(\widetilde{M}_x = M_P = (A \setminus P)^{-1} M\).
+
+    \section*{Schemes in general}
+
+    If \(\mathcal{F}\) is a sheaf on a topological space \(X\) and \(U \subset X\) is open, we can define \(\eval{f}_{U}\) to be the `restriction of \(\mathcal{F}\) to \(U\)' to be \(\eval{\mathcal{F}}_U(V) = \mathcal{F}(V) \forall V \subset U\) open.
+
+    \begin{definition}
+        [Scheme] A \textit{scheme} is a pair \((X, \mathcal{O}_X)\) consisting of a topological space and a sheaf of commutative rings such that \(X = \bigcup_{\alpha \in I} U_\alpha\) with the property that \(\forall \alpha \in I, \exists\) a commutative ring \(A_\alpha\) and an isomorphism of ringed spaces \((U_\alpha , \eval{\mathcal{O}_X}_{U_\alpha}) \cong (\operatorname{Spec} A_\alpha, \mathcal{O}_{\operatorname{Spec} A_\alpha})\).
+    \end{definition}
+
+    \begin{definition}
+        [Locally Ringed Space]
+
+        A \textit{locally ringed space} is a ringed space for which every stalk is a local ring.
+    \end{definition}
+
+    \begin{proposition}
+        Every scheme is a locally ringed space.
+    \end{proposition}
+
+    \begin{proof}
+        WTS: \(\mathcal{O}_{X,x}\) is a local ring \(\forall x\in X\).
+
+        Choose \(U_\alpha \ni x\) and identify \(\eval{\mathcal{O}_X}_{U_\alpha}\) with \(\left( \operatorname{Spec} A_\alpha , \mathcal{O}_{\operatorname{Spec} A_\alpha} \right) \). Then \(x\) corresponds to \(P \subset A_\alpha\). We can take the direct limit w.r.t.\ this identification over all neighborhoods of \(x\) contained in \(U_\alpha\).
+
+        w.r.t.\ this identification, we have:
+
+        \[
+            \mathcal{O}_{X,x} = \mathcal{O}_{\operatorname{Spec} A_\alpha, P} = (A_\alpha)_P
+        \]
+    \end{proof}
+
+    On a locally ringed space, one can think of a section as a function which sends each point to an element of a field.
+
+    Consider \((X, \mathcal{O}_X)\) with \(x\in X\). \(x\in U \subset X\)..
+    
+    THen \(s\in \mathcal{O}_X(U)\) gives us \(s_x\in \mathcal{O}_{X,x}\).
+
+    \((\mathcal{O}_{X,x}, \mathfrak{m}_x) \implies \mathcal{O}_{X,x} / \mathfrak{m}_x = \mathbb{K} (x)\).
+    
+    \(\overline{s}(x) \in \mathbb{K} (x)\).
+
+    Question: What does a one-point scheme look like? We take a look at the simplest space to see what the structure sheaf is doing for us.
+
+    \(X\) has an open cover which consists of a single open set \(X = \{ x \}\) and so \(\mathcal{O}_X(X) = A\).
+    
+    \((\operatorname{Spec} A, \mathcal{O}_{\operatorname{Spec} A}) \cong (X, \mathcal{O}_X)\).
+    
+    So \(A\) is a ring with a single prime ideal \(P\). \(\operatorname{rad} A =\) nilpotent elements of \(A\).
+
+    \(P\) is maximal ideal so \(A / P \cong k\).
+
+    Example: suppose \(A = k[x_1, x_2, \cdots] / (x_1, x_2, \cdots)^2\).
+
+    \(= \left\{ a_0 + a_1 x_1 + a_2 x_2 + a_3 x_3 + \cdots  \right\} \).
+
+    There is an ascending chain of prime ideals \((x_1) \subset (x_1, x_2) \subset (x_1, x_2, x_3) \subset \cdots\).
+    
+    So \(A\) is not necessarily Noetherian.
+
+    \begin{proposition}
+        \(A\) is Noetherian \(\implies A\) is artinian. 
+    \end{proposition}
+
+    Examples of non-affine schemes:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Infinite disjoint union of schemes.
+        \item \(A^2_k \setminus \{ 0,0 \} \)
+        \item \(P^1\) 
+        \item \(-:-\) the non Hausdorff space, the affine line with the origin dobuled. 
+    \end{enumerate} 
 
 \end{document}

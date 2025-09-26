@@ -1360,7 +1360,7 @@
 
         Now suppose it is true for \(n - 1\).
 
-        We have injection \(i : P^{n-1} \hookrightarrow P^n\). Thus \(i^{\ast}\) is a rang map isomorphism on dimension \(\leq n - 1\).
+        We have injection \(i : P^{n-1} \hookrightarrow P^n\). Thus \(i^{\ast}\) is a ring map isomorphism on dimension \(\leq n - 1\).
 
         Thus \(a, a^2, \cdots , a^{n-1}\) non-zero.
 
@@ -1462,5 +1462,245 @@
     Thus, \(\operatorname{w}_i(TM^n) \neq 0\) for \(i > 0\) implies \(M\) is not a lie group.
 
     \(S^0, S^1, S^3, P^0, P^1, P^3 (=\operatorname{SO}(3))\) are lie groups.
+
+    \section*{Wednesday, 9/24/2025}
+    
+    \begin{corollary}
+        [4.6i] \(\operatorname{w}_n(P^n) \neq 0 \iff n\) even.
+
+        (ii). \(\operatorname{w}(P^n) = 1 \iff n+1 = 2^r\)
+    \end{corollary}
+
+    \begin{corollary}
+        \(n\) even implies \(P^n\) has no nowhere zero vector field.
+
+        \(P^n\) parallelizable [i.e. \(TP^n\) trivial] implies \(n = 2^r - 1\). 
+    \end{corollary}
+
+    \begin{proof}
+        4.6i: \(\operatorname{w}_n(P^n) \neq 0 \iff \binom{n+1}{n}a^n \neq 0 \iff n+1 \neq 0 \iff n+1\) odd.
+
+        4.6ii: \(\operatorname{w}(P^{2^r - 1}) = (1+a)^{2^r} = 1 + a^{2^r} = 1\) gives one direction. For other direction, if \(n+1 = 2^r m\) for odd \(m > 1\) then \(\operatorname{w}(P^n) = (1+a)^{2^r m} = (1 + a^{2^r})^m = 1 + m a^{2^r} + \cdots\).
+
+    \end{proof}
+
+    \begin{theorem}
+        [4.7 Stiefel] Suppose \(\exists\) bilinear map \(p: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^n\) without zero divisor [meaning \(p(x,y) = 0 \implies x=0\) or \(y=0\)].
+
+        Then \(P^{n-1}\) is parallelizabl [thus \(n = 2^r\)].
+    \end{theorem}
+
+    e.g. \(\mathbb{R}, \mathbb{C} ,\mathbb{H} , \mathbb{O}\). Theorem by Adams states \(n = 1,2,4,8\).
+
+    \begin{proof}
+        Let \(\{ b_1, \cdots , b_n \} \) be basis for \(\mathbb{R}^n\). Define \(v_i\):
+
+        \[
+            \begin{tikzcd}
+                \mathbb{R}^n \ar[rr, bend right, "v_i"] & \mathbb{R}^n \ar[l, "{p(-,b_1)}", swap] \ar[r, "{p(-,b_i)}"] & \mathbb{R}^n
+            \end{tikzcd}
+        \]
+
+        Then \(x\neq 0 \implies p(x,b_1),\cdots ,p(x,b_n)\) are linearly independent, thus \(v_1(x), \cdots , v_n(x)\) linearly independent.
+
+        Note that \(v_1(x) = x\).
+
+        Define linearly independent sections \(s_2, \cdots , s_n\) of \(TP^{n-1}\).
+
+        \(s_i[x] = [x,  \operatorname{pr}_{(\mathbb{R} x)^{\perp}}(v_i(x))]\in TP^{n-1} = (TS^{n-1}) / C_2\). 
+    \end{proof}
+
+    \section*{Stiefel-Whitney Numbers}
+
+    We want to prove the following theorem:
+
+    \begin{theorem}
+        A closed manifold is a boundary \(\iff\) Stiefel-Whitney numbers are all zero.
+    \end{theorem}
+
+    We need to talk about first fundamental class.
+
+    If \(M^n\) is a closed connected manifold [since we have \(\mathbb{F}_2\) coefficient we don't worry about orientation] then the fundamental class \([M] \in H_n(M;\mathbb{F}_2) \cong H^0(M;\mathbb{F}_2) = \mathbb{F}_2\).
+
+    We dont really need connectedness. If \(M^n = M_1 \sqcup \cdots \sqcup M_k\) where each \(M_j\) are connected then the fundamental class \([M] = i_{1 \ast} [M_1] + \cdots + i_{k \ast} [M_k] \in H_n(M;\mathbb{F}_2) = \mathbb{F}_2^k\).
+
+    \begin{definition}
+        A partitition of \(n\) is \(r_1, \cdots , r_n \in \mathbb{Z}_{\geq 0}\) such that \(r_1 + 2r_2 + 3r_3 + \cdots + nr_n = n\).
+
+        Let \(\Pi(n) =\) set of partitions of \(n\).
+
+        For example, \(\Pi(4) = \left\{ (0,0,0,1),(0,2,0,0),(1,0,1,0),(2,1,0,0),(4,0,0,0)\right\} \) 
+    \end{definition}
+
+    \begin{definition}
+        [Stiefel-Whitney Number] Given \((r_i) \in \Pi(n)\) the Stiefel-Whitney Number is defined by:
+
+        \[
+            \operatorname{w}_1^{r_1} \cdots \operatorname{w_n}^{r_n} [M] \coloneqq \left\langle \operatorname{w}_1(TM)^{r_1} \cup \cdots \operatorname{w}_n(TM)^{r_n}, [M] \right\rangle \in \mathbb{F}_2
+        \]
+    \end{definition}
+
+    For example we find Stiefel-Whitney numbers of \(P^2\).
+
+    \(\operatorname{w}(P^2) = \operatorname{w}(TP^2) = (1+a)^3 = 1+a+a^2\).
+
+    \(\operatorname{w}_1^2 [P^2] = \langle a^2, P^2 \rangle = 1\) 
+
+    \(\operatorname{w}_2 [P^2] = \langle a^2, P^2 \rangle = 1\)
+
+    Thus \(P^2\) is not the boundary of a \(3\)-manifold.
+
+    We can see this more easily since the characteristic of \(P^2\) is odd.
+
+    \section*{Friday, 9/26/2025}
+    
+    Homeowork Due Monday.
+
+    Ch2: 1 Exercise
+    Ch3: 1 Exercise
+    Ch4: 2 Exercise
+
+    \section*{Manifolds with Boundary}
+
+    Classic examples: disk \(D^n\), cylinder \(S^{n-1} \times I\)
+
+    \begin{definition}
+        \textit{Local Model} is the upper half-space \(H^n = \left\{ (x_1, \cdots , x_n) \in \mathbb{R}^n \mid x_1 \geq c \right\} \).
+    \end{definition}
+
+    \begin{definition}
+        Let \(M \subset \mathbb{R}^A\). An \(n\)-\textit{manifold with boundary} such that \(\forall x\in M, \exists\) smooth homeomorphism (parameterization) \(h: V \to U\) where \(V \subset H^n\) and \(x \in U \subset M\) open such that \(\forall y\in V, \mathrm{d}h_y:\mathbb{R}^n \to \mathbb{R}^A\) has rank \(n\).
+    \end{definition}
+
+    \begin{definition}
+        \(\operatorname{Int} M \coloneqq \left\{ x\in M \mid \exists \text{nbhd } U \cong \mathbb{R}^n \right\} \).
+        
+        \(\partial M \coloneqq M - \operatorname{Int} M\)
+
+        \(M = \partial M \cup \operatorname{Int} M\) 
+        
+        \(D^n = S^{n-1} \cup \operatorname{Int} D^n\)
+    \end{definition}
+
+    \(n\)-manifold is \(n\)-manifold with boundary.
+
+    manifold with nonempty interior is not a manifold.
+
+    \(M\) is an \(n\)-manifold with boundary \(\implies \operatorname{Int} M\) is a \(n\)-manifold and \(\partial M\) is a \(n-1\) manifold.
+
+    \(M \simeq \operatorname{Int} M\).
+
+    Now consider tangent space:
+
+    \(\begin{matrix}
+        \mathbb{R}^n & \rightarrow & TM & = \{ (x,v) \mid x\in M, v= \gamma^{\prime} (0), \gamma(0)=x  \\ & & \downarrow & , \gamma : [0,\infty) \to M \lor \gamma :(-\infty,0] \to M \} \\ & & M
+    \end{matrix}\) 
+
+    Then \(\eval{TM}_{\partial} \cong T \partial M \oplus \epsilon^1\) where \(\epsilon^1\) is the outward poinitng normal, the nowhere zero section of \(\eval{TM}_\partial \).
+
+    \subsection*{Poincar\'e-Lefschetz Duality}
+
+    (PL duality).
+
+    \begin{theorem}
+        \(H_n(M, \partial M; \mathbb{F}_2) = \mathbb{F}_2\).
+    \end{theorem}
+
+    \begin{definition}
+        Fundamental class \([M] \in H_n(M, \partial M; \mathbb{F}_2)\).
+    \end{definition}
+
+    \begin{theorem}
+        [PL Duality]  \(\cap [M]: H^i(M, \partial M; \mathbb{F}_2) \xrightarrow{\approx} H_{n-i} (M;\mathbb{F}_2)\).
+
+        \(\cap [M]: H^i(M,\mathbb{F}_2) \xrightarrow{\approx} H_{n-i} (M, \partial M, \mathbb{F}_2)\).
+    \end{theorem}
+
+    Exercise: Work this out for \(D^n\).
+
+    Furthermore, if we look at the long exact sequence of a pair:
+
+    \[
+        H_n(M, \partial M; \mathbb{F}_2) \xrightarrow{\partial} H_{n-1}(\partial M;\mathbb{F}_2) \to H_{n-1}(M;\mathbb{F}_2)  
+    \]
+
+    then \(\partial [M] = [\partial M]\).
+
+    \begin{theorem}
+        [MS 4.9, Pontryagin] Suppose \(M\) is a compact \(n+1\)-manifold with boundary. Then the Stiefel Whitney numbers of \(\partial M\) are \(0\).
+    \end{theorem}
+
+    \begin{proof}
+        WLOG \(M\) is connected. Let \(r_i \in \Pi(n)\) [thus \(\sum_{i} r_i i = n\)].
+
+        Then \(\left\langle \operatorname{w}_1 (T \partial M)^{r_1} \cup \cdots \operatorname{w}_n(T \partial M)^{r_n}, [\partial M] (= \partial [M]) \right\rangle\)
+        
+        \(= \left\langle \delta (\operatorname{w}_1(T \partial M)^{r_1} \cdots \operatorname{w}_n(T \partial M)^{r_n}), [M] \right\rangle \).
+
+        Now, recall:
+    
+        \[
+            H^n(M;\mathbb{F}_2) \xrightarrow{i^{\ast}} H^n(\partial M, \mathbb{F}_2) \xrightarrow{\delta} H^{n+1} (M, \partial M; \mathbb{F}_2)
+        \]
+
+        WTS: \(\operatorname{w}_1(T \partial M)^{r_1} \cdots \operatorname{w}_n(T \partial M)^{r_n} \in \operatorname{im} i^{\ast}\).
+
+        Note that it is equal to:
+
+        \[
+            \operatorname{w}_1 \left( i^{\ast} (TM) \right)^{r_1} \cdots \operatorname{w}_n(i^{\ast} (TM))^{r_n} = i^{\ast} \left( \operatorname{w}_1(TM)^{r_1} \cdots \operatorname{w}_n(TM)^{r_n} \right)  
+        \]
+
+    \end{proof}
+
+    \begin{theorem}
+        [P-Thom] A closed \(n\)-manifold is the boundary of a compact \(n\)-manifold iff all Stiefel Whitney numbers vanish.
+    \end{theorem}
+
+    Note that all manifolds are boundary of a not necessarily compact manifold, just take \(M \times [0,\infty)\) 
+
+    \begin{definition}
+        [Bordism Groups] Two closed \(n\)-dimenstional manifolds \(M_1, M_2\) are \textit{bordant} if \(\exists\) a compact \(W^{n+1}\) manifold with boundary such that \(\partial W \underset{\text{diff}}{\cong} M_1 \coprod M_2\). W is called the \textit{cobordism}.
+
+        Easy exercise: Bordism is an equivalence relation. Canonical example: Pant \(\implies S^1 \sim S^1 \coprod S^1\).
+
+        One can get a group \(\Omega^o_n = (\text{bordism classes of closed \(n\)-manifold}, \coprod)\).
+        
+        This is called the unoriented bordism group.
+
+    \end{definition}
+
+    Note that \(2 \Omega^o_n = 0\) since \(\partial (M \times I) = M \coprod M\), \(-[M] = [M]\).
+
+    \begin{theorem}
+        [Collar Neighborhood] \(\exists\) neighborhood \(U\) of \(\partial W\) and a diffeomorphism \(h: U \xrightarrow{i} \partial W \times [0,\infty)\) such that \(h(x,0)\) for \(x\in \partial W\).
+    \end{theorem}
+
+    Note that \(\Omega^o_{\ast}\) is a graded ring with cartesian product.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c|c}
+            \toprule
+                \(n\) & \(\Omega^n_o\) & \(\Pi(n)\) \\
+            \midrule
+                \(0\) & \(\mathbb{Z} / 2\) pt & \(1\) \\
+                \(1\) & \(0\) & \(1\) \\
+                \(2\) & \(\mathbb{Z}/2\, P^2\) & \(2\) \\
+                \(3\) & \(0\) & \(0\) \\
+                \(4\) & \(\mathbb{Z}/2 \oplus \mathbb{Z}/2\, P^4, P^2 \times P^2\) & \(5\) \\
+                \(5\) & \(\mathbb{Z} / 2\) Wu-\(n\)-manifold \(SU(3) / SO(3)\) & \(7\) \\
+            \bottomrule
+        \end{tabular}
+        \caption{Bordism Group Calculations}
+    \end{table}
+
+    \begin{theorem}
+        [PT Theorem]
+
+        \[
+            \Omega^o_n \overset{\text{SW\#}}{\rightarrowtail} (\mathbb{F}_2)^{\Pi(n)}
+        \]
+    \end{theorem}
 
 \end{document}
