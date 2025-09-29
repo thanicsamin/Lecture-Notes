@@ -1703,4 +1703,138 @@
         \]
     \end{theorem}
 
+    \section*{Monday, 9/29/2025}
+    
+    Applications:
+
+    Let \(M \to \overline{M}\) is a \(k\) to \(1\) covering map with \(k\) odd. Then,
+
+    \(0 = [M]\in \Omega^o_n \iff 0 = [\overline{M}] \in \Omega^o_n\) 
+
+    eg Lens spaces \(L(k)\) with \(k\) odd are boundaries.
+
+    \begin{proof}
+        \(H_n(M;\mathbb{F}_2) \xrightarrow[\cong]{\cdot k} H_n(\overline{M};\mathbb{F}_2)\).
+        
+        SW numbers of \(M =\) SW numbers of \(\overline{M}\).
+    \end{proof}
+
+    MS poses the question:
+
+    Why is \(P^{2k-1}\) a boundary?
+
+    \begin{proof}
+        First proof: 
+
+        We explicitly calculate the SW numbers.
+
+        \(\operatorname{w}(P^{2k-1}) = (1+a)^{2k} = (1+a^2)^k\).
+        
+        Thus, for \(i\) odd, \(\operatorname{w}_i(P^{2k-1}) = 0\).
+
+        Thus, since \(\sum_{i} ir_i\) is odd, taking mod \(2 \to \sum_{i \text{ odd}} r_i\) is odd so some odd \(r_i\) is nonzero. Thus, \(\operatorname{w}_1^{r_1} \cdots \operatorname{w}_{2k-1}^{r_{2k-1}}[P^{2k-1}] = 0\).
+        
+        Second proof:
+
+        If \(\exists\) free \(C_2\)-action on \(M\) then \(M\) is a boundary.
+
+        Proof: \(\partial (M \times_{C_2} [1,-1]) = M \times_{C_2} \{ -1, 1 \} = M\).
+
+        Or: \(\begin{tikzcd} S^0\ar[r] & M \ar[d] \\ & \overline{M} \end{tikzcd}\), change fiber \(D^1\) gives us \(\begin{tikzcd} D^1 \ar[r] & W = M \times_{C_2} [-1,1] \ar[d] \\ & \overline{M} \end{tikzcd}\) which gives us \(\partial W = M\). 
+
+        Lens space \(L(4)\) with \(\pi_1 = C_4\) then covered by \(P^{2k-1}\).
+    \end{proof}
+
+    Conjecture by Farrell/Yau:
+
+    Almost flat manifolds are boundaries.
+
+    \begin{theorem}
+        [Gromov] Almost flat \(\iff\) infranil \(\overset{def}{\iff } \begin{matrix} \text{nilmanifold} \\ \downarrow & \text{finite cover} \\ M \end{matrix}\) 
+    \end{theorem}
+
+    Nilmanifold is a simply connected lie group modulo a lattice. Example: \(\begin{bmatrix}
+        1 & \ast & \ast  \\
+        0 & 1 & \ast  \\
+        0 & 0 & 1 \\
+    \end{bmatrix} \), lattice is where \(\ast\) are integers.
+
+    \begin{theorem}
+        [D-Fang] Yes if finite cover is \(2^k\)-to-\(1\).
+
+        \(N / \Gamma \to M\) if \(2^k\)-to-\(1\) implies \(M = \partial W\). 
+    \end{theorem}
+
+    \section*{Chapter 5}
+
+    \(\mathbb{R} P^{k-1} =\) lines in \(\mathbb{R}^k\). By lines we mean \(1\)-dim spaces through the origin. Easier to think of \(\frac{S^{k-1}}{x \sim -x}\) usually.
+
+    We have the tautological line bundle given by \(E(\gamma) = \{ \text{(line, point on line)} \} \subset \mathbb{R}P^{k-1} \times \mathbb{R}^k\).
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R} \ar[r] & E(\gamma)\ar[d] \\ & P^{k-1}
+        \end{tikzcd}
+    \]
+
+    Instead of lines we can think about higher dimensional vector spaces through the origin which gives us the Grassmanian.
+
+    \subsection*{Grassmanian or Grassmanian Manifold of \(n\)-planes in \(\mathbb{R}^k\)}
+
+    Notation: \(G_n(\mathbb{R}^k)\) is the Grassmanian. Points are \(n\)-dim subspaces of \(\mathbb{R}^k\).
+
+    \(X\in G_n(\mathbb{R}^k) \implies X = n\)-dim subspaces of \(\mathbb{R}^k\).
+
+    Example: planes through the origin in \(\mathbb{R}^n\).
+
+    We have a tautological \(n\)-plane bundle \(E(\gamma^n) = \{ \text{point, point on plane} \} \) 
+
+    \(\begin{tikzcd} \mathbb{R}^n \ar[r] & E(\gamma^n) = \{ (X,v) \in G_n(\mathbb{R}^k) \times \mathbb{R}^k \mid v\in X \} \ar[d] \\ & G_n(\mathbb{R}^k) \end{tikzcd}\) 
+
+    Suppose \(M^n \subset \mathbb{R}^k\). Then we have \(M \to G_n(\mathbb{R}^k), p \mapsto T_p M\).
+
+    We in fact have a bundle map:
+
+    \[
+        \begin{tikzcd}
+            TM \ar[d] \ar[r] & E(\gamma^n) \ar[d] \\ M \ar[r] & G_n(\mathbb{R}^k)
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            (p,v) \ar[r,mapsto] \ar[d,mapsto] & (T_{\pi(v)}M, v) \ar[d,mapsto] \\ p \ar[r, mapsto] & T_p M
+        \end{tikzcd}
+    \]
+
+    We can do the same for the normal bundle.
+
+    \[
+        \begin{tikzcd}
+            \nu(M \hookrightarrow \mathbb{R}^k) \ar[r] \ar[d] & E(\gamma^{k-n}) \ar[d] \\ M \ar[r] & G_{k-n}(\mathbb{R}^k)
+        \end{tikzcd}
+    \]
+
+    \subsection*{Topology on \(G_n(\mathbb{R}^k)\)}
+
+    We need to find an atlas. What is the dimension?
+
+    \begin{definition}
+        [Stiefel Manifold] \(V_n(\mathbb{R}^k) =\) orthonormal \(n\)-frames in \(\mathbb{R}^k\)
+
+        \(= \left\{ (v_1, \cdots , v_n) \in \mathbb{R}^k \times \cdots \mathbb{R}^k \mid v_i \cdot v_j = \delta_{ij} \right\} \).
+
+        This is a closed, bounded subsset of \((\mathbb{R}^k)^n \implies\) it is compact.
+    \end{definition}
+
+    Thus this has a topology. Now, we have an onto map \(q:V_n(\mathbb{R}^k) \twoheadrightarrow G_n(\mathbb{R}^k)\) with \(q(v_1, \cdots , v_n) = \operatorname{Span}\{ v_1, \cdots , v_n \}\).
+
+    Give \(G_n(\mathbb{R}^k)\) the quotient topology, i.e. \(U \subset G_n(\mathbb{R}^k)\) is open iff \(q ^{-1} U\) is open.
+
+    \begin{lemma}
+        [5.1] \(G_n(\mathbb{R}^k)\) is a compact smooth manifold of dimension \(n(k-n)\). Furthermore, there is a diffeomorphism \(G_n(\mathbb{R}^k) \to G_{k-n}(\mathbb{R}^k)\) by \(X \mapsto X^{\perp}\). 
+    \end{lemma}
+
+    
+
 \end{document}

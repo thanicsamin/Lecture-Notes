@@ -1922,6 +1922,8 @@
 
     \begin{definition}
         [Scheme] A \textit{scheme} is a pair \((X, \mathcal{O}_X)\) consisting of a topological space and a sheaf of commutative rings such that \(X = \bigcup_{\alpha \in I} U_\alpha\) with the property that \(\forall \alpha \in I, \exists\) a commutative ring \(A_\alpha\) and an isomorphism of ringed spaces \((U_\alpha , \eval{\mathcal{O}_X}_{U_\alpha}) \cong (\operatorname{Spec} A_\alpha, \mathcal{O}_{\operatorname{Spec} A_\alpha})\).
+
+        If \(X = \operatorname{Spec} A\) then \(X\) is an affine scheme.
     \end{definition}
 
     \begin{definition}
@@ -1984,7 +1986,129 @@
         \item Infinite disjoint union of schemes.
         \item \(A^2_k \setminus \{ 0,0 \} \)
         \item \(P^1\) 
-        \item \(-:-\) the non Hausdorff space, the affine line with the origin dobuled. 
+        \item \(\longleftarrow:\longrightarrow\) the non Hausdorff space, the affine line with the origin dobuled. 
     \end{enumerate} 
+
+    \section*{Monday, 9/29/2025}
+    
+    If \(\mathcal{F}\) is a sheaf on \(X\) and \(U \subset X\) is open,  sometimes we write:
+
+    \(\mathcal{F}(U) = \Gamma(U,\mathcal{F})\).
+
+    \(\Gamma\) stands for the `global sections functor'. If \(U = X\) then it is really the global section.
+
+    We use the two interchangably.
+
+    Suppose we have a SES
+
+    \[
+        0 \to \mathcal{F} \to \mathcal{G} \to \mathcal{H} \to 0
+    \]
+
+    Question: do we have a section of global section? Answer is no: it is left exact, but not exact. It's failure to be exact gives us the existence of cohomology. In fact we can think of cohomology as the derived functor of the global sections functor.
+
+    Recall that infinite disjoint union of affine scheme is not affine.
+
+    If we have product of \(n\) rings then,
+    
+    \[
+        \operatorname{Spec} (A_1 \times \cdots \times A_n) = \coprod_{i=1}^n \operatorname{Spec} A_i
+    \]
+
+    So, for finite disjoint union of affine schemes is affine. But it doesn't work for infinite product.
+
+    If \((X, \mathcal{O}_X)\) is a scheme and \(U \subset X\) is an open subset then \((U, \eval{\mathcal{O}_X}_U)\) is a scheme.
+
+    If \(X\) is a scheme and \(x\in X\) and \(U\) is an open neighborhood of \(x\) then there exists an smaller open neighborhood \(V\) of \(X\) in \(U\) which is affine. If we let \(W = \operatorname{Spec} A\) then we want \(V \subset U \cap W\) affine.
+
+    In \(\operatorname{Spec} A\) we have a point \(x\) and an open neighborhood \(U\) and we want an open affine neighborhood \(V\) of \(X\) with \(V \subset U\).
+
+    \(U^c = V(I)\). Want \(f\) such that \(V(f) \supset V(I)\) and \(x\in V(f)^c = D(f)\).
+
+    \(x \leftrightarrow P\) means \(f\notin P\).
+    
+    \(x\notin V(I)\) so \(\exists f\in I\) such that \(f\notin P\).
+
+    \begin{theorem}
+        If \(U \subset X\) is an open set then \((U, \eval{\mathcal{O}_X}_U)\) is again a scheme.
+    \end{theorem}
+
+    Now, consider \(X = \mathbb{A}_\mathbb{C}^2 \setminus \{ 0,0 \}\).
+
+    This is a scheme. Now, \(\Gamma(X, \mathcal{O}_X) = \mathbb{C} [x,y]\).
+
+    Thus, if \(X\) is affine, it must be isomorphic to \(\operatorname{Spec} \mathbb{C} [x,y] \cong \mathbb{A}^2_{\mathbb{C}}\).
+
+    Thus, in order to show \(X\) is not affine we need to show \(\mathbb{A}^2_{\mathbb{C}} \not\cong \mathbb{A}^2_{\mathbb{C}} - \{(0,0) \}\).
+    
+    We need to talk a bit more about locally ringed spaces \((X,\mathcal{O}_X)\).
+
+    If \(f\in \Gamma (X,\mathcal{O}_X)\) then we can define \(V(f) \coloneqq \{ x\in X \mid f(x) = 0 \}\). Talking about \(f(x)\) makes sense since \(f = 0 \iff f\in \mathfrak{m}_x \subset \mathcal{O}_{X,x}\).
+
+    WTS: \(V(f)\) is a closed set.
+
+    We show that \(f\notin \mathfrak{m}_x\) is an open condition. \(f\in \mathcal{O}_{X,x} = \lim_{U \ni x} \mathcal{O}_X(U) \).
+    
+    Recall that \(\frac{1}{f} \in \mathcal{O}_{X,x}\). So \(\frac{1}{f} = h_x\) for some \(h\in \mathcal{O}_X(V)\).
+    
+    Then \(V(I) = \bigcap_{f\in I} V(f)\) is also closed.
+
+    Now consider \(X = \mathbb{A}^2 \setminus \{ (0,0) \} \).
+
+    \(\Gamma (X, \mathcal{O}_X) = \mathbb{C} [x,y]\). Consider \(I = (x,y)\). Then \(V(I) =\) closed subset of \(X\).
+
+    Then \(V(I) = \varnothing\). 
+
+    If \(X \cong \operatorname{Spec} \mathbb{C} [x,y]\) then \(V(I)\) must match, but it does not.
+    
+    Note that all examples of non affine schemes must be achieved via `gluing' by definition.
+
+    Now we glue together two pieces of \(\mathbb{A}^1\) so that all but \(0\) is glued in two different ways: one is \(\longleftarrow:\longrightarrow\) and the other is \(P^1\).
+
+    [insert picture here]
+
+    Lets talk about \(\longleftarrow:\longrightarrow\) first.
+
+    \(\underset{c_1}{\mathbb{A}^1_{\mathbb{C}}} \coprod \underset{c_2}{\mathbb{A}^1_{\mathbb{C}}} / \sim, c_1 \sim c_2\) if \(c \neq 0, 0_1 \not\sim 0_2\).
+
+    This is \((X = \mathbb{C} \setminus \{ 0 \}) \cup \{ o_1, o_2, \eta \} \) 
+
+    Topology is the profinite topology, except \(\overline{\{ \eta \} } = X\). Note that \(0_2 \notin \overline{\{ 0_1 \} } \) and vice versa.
+
+    All functions live in \(\mathbb{C}(x)\). 
+
+    Constants are regular everywhere.
+
+    Functions look like: \(a \frac{(x - \alpha_1) \cdots (x - \alpha_n)}{(x - \beta_1) \cdots (x - \beta_m)}\) where \(a\neq 0, \alpha_i \neq \beta_j\).
+
+    This is regular except on \(\beta_1, \cdots, \beta_m\) and if some \(\beta_i = 0\) it is not regular in both \(0_1\) and \(0_2\).
+
+    \(\Gamma(U, \mathcal{O}_X) =\) all functions in \(\mathbb{C}(x)\) regular on all points on \(U\).
+
+    This has a cover by \(X \setminus \{ 0_1 \} \cong \mathbb{A}^1_{\mathbb{C}_2}\) and \(X \setminus \{ 0_2 \}\cong \mathbb{A}^1_{\mathbb{C}_1}\).
+
+    Why isn't \(X\) affine? \(\Gamma(X, \mathcal{O}_X) = \mathbb{C} [x]\).
+
+    Every function in \(\mathbb{C}[x]\) which vanishes at \(0_1\) vanishes at \(0_2\). So, if it were affine, we would have the property \(f\in \mathfrak{m}_1 \iff f \in \mathfrak{m}_2\) which is not possible.
+    
+    For the \(\mathbb{P}^1\) picture, call the first \(\mathbb{A}^1_{\mathbb{C}} \setminus \{ 0 \}\) as \(\operatorname{Spec} \mathbb{C} \left[ x, \frac{1}{x} \right] \) and the second one \(\mathbb{A}^1_{\mathbb{C}} \setminus \{ 0 \} = \operatorname{Spec} \left[ y, \frac{1}{y} \right]\) where gluing is done by setting \(y = \frac{1}{x}\).
+    
+    Then the identification is \(c_1 \sim \left( \frac{1}{c} \right)_2\) if \(c\neq 0\). There are two other equivalence classes \(0_1\) and \(0_2\) which aren't equivalent to anything. We can think \(0_1 \sim \infty_2, 0_2 \sim \infty_1\) but the points at infinity `doesn't mean anything'.
+
+    \(X = \mathbb{C} - \{ 0 \} \cup \{ 0_1, 0_2, \eta \}\).
+
+    constants are regular everywhere.
+
+    General function \(a \frac{(x-\alpha_i) \cdots (x - \alpha_n)}{(x - \beta_1) \cdots (x-\beta_m)}, a \neq 0, \alpha_i \neq \beta_j\) 
+
+    This is regular on \(\mathbb{A}^1_{\mathbb{C},1}\) except at \(\beta_1, \cdots , \beta_m\).
+
+    This is equal to \(a \frac{\left( \frac{1}{y}-\alpha_1 \right) \cdots \left( \frac{1}{y}-\beta_j \right)}{\left( \frac{1}{y}-\beta_1 \right) \cdots \left( \frac{1}{y}- \beta_j \right)} = a y^{m-n} \frac{(1 - \alpha_1 y) \cdots (1 - \alpha_n y)}{(1-\beta_1 y) \cdots (1 - \beta_m y)} = b y^{m - n} \frac{\left( y - \frac{1}{\alpha_1} \right) \cdots \left( y - \frac{1}{\alpha_n} \right) }{\left( y - \frac{1}{\beta_1} \right) \cdots \left( 1- \frac{1}{\beta_m} \right)}\)
+    
+    Then on \(\mathbb{A}^1_{\mathbb{C},2}\) the function is regular except at \(\frac{1}{\beta_1}, \cdots , \frac{1}{\beta_m}\) and if \(n > m\) then at \(0_2\).
+    
+    Thus, global sections \(\Gamma(X, \mathcal{O}_X)\)  which are regular everywhere contains only constants.
+
+    So this is not an affine scheme.
 
 \end{document}
