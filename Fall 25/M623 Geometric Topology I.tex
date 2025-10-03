@@ -1835,6 +1835,205 @@
         [5.1] \(G_n(\mathbb{R}^k)\) is a compact smooth manifold of dimension \(n(k-n)\). Furthermore, there is a diffeomorphism \(G_n(\mathbb{R}^k) \to G_{k-n}(\mathbb{R}^k)\) by \(X \mapsto X^{\perp}\). 
     \end{lemma}
 
+    \section*{Wednesday, 10/1/2025}
     
+    \(O(n)\to V_n(\mathbb{R}^k)\) Stiefell, On n
+
+    \(\downarrow q\)
+    
+    \(G_n(\mathbb{R}^k) = n\) planes in \(\mathbb{R}^k\), Grassmanian.
+
+    \(q(v_1, \cdots , v_n) = \operatorname{Span}(v_1, \cdots , v_n)\).
+    
+    Given \(V_n(\mathbb{R}^k) \subset (\mathbb{R}^k)^n\) subspace topology.
+
+    We give \(G_n(\mathbb{R}^k)\) quotient topology.
+
+    \begin{lemma}
+        \(G_n(\mathbb{R}^k)\) is a compact smooth manifold of \(\dim n(k-n)\).
+    \end{lemma}
+
+    \begin{proof}
+        hausdorff?
+
+        \(X\in G_n(\mathbb{R} ^k)\) 
+
+        \(v\in \mathbb{R}^{k} \) 
+
+        \(d(x,v) = ^{-1} d(x,v)\) 
+        
+        \(V_n(\mathbb{R}^k) \xrightarrow{q} G_n(\mathbb{R}^k) \xrightarrow{} R\) 
+
+        \(d(-,v) \circ q\) continuous.
+
+        \(d(-,v)\) continuous.
+        
+        If \(X\neq Y\) choose \(v\in Y - X\).
+        
+        Let \(d = d(X,v)\).
+
+        Separate \(X\) and \(Y\) by:
+
+        \(d(-,v)^{-1} (-\infty , \frac{d}{2})\) and \(d(-,v)^{-1} (\frac{d}{2} \infty )\)  
+    \end{proof}
+
+    Atlas? Euclidean Neighborhoods?
+
+    \(X \in G_n(\mathbb{R}^k)\)
+
+    \(U = U_X = \{ y\in G_n(\mathbb{R}^k) \mid X^{\perp}  = \{ 0 \} \} \) open and dense.
+
+    \(\Gamma : \operatorname{Hom} (X, X^{\perp}) \to U\)
+    
+    \(f \mapsto \operatorname{graph}(f) \subset \mathbb{R}^k = X \oplus X^{\perp } (\cong X \times X^{\perp})\).
+
+    \(\operatorname{graph}(f) \coloneqq \{v + f(v) \mid v\in x\} \) 
+
+    \[
+        \begin{tikzcd}
+            U \ar[r, "\Gamma^{-1}"] \ar[rr, bend right, "\phi"] & \operatorname{Hom} (X, X^{\perp}) \ar[r, "\cong"] & \mathbb{R}^{n(k-n)}
+        \end{tikzcd}
+    \]
+
+    Coordinates show \(\phi\) is homeomorphism.
+
+    Atlas \(\{ (U, \phi) \} \) 
+
+    ANother proof:
+
+    \(O(k) \curvearrowright G_n(\mathbb{R}^k)\) transitively, \((A,X) \mapsto AX\) 
+
+    Isotopy at \(\mathbb{R} \times \{ 0_{k-n} \} \):
+
+    is \(O(n) \times O(k-n)\).
+
+    Thus \(G_n(\mathbb{R}^k) = O(k) / O(n) \times O(k-n)\).
+
+    If \(G\) is a compact lie group and \(H\) is a closed subgroup then \(G / H\) is a manifold.
+
+    \[
+        \begin{tikzcd}
+            O(n) = \frac{O(n) \times O(n-k)}{O(n-k)} \ar[r] & V_n(\mathbb{R}^k) \ar[d] \ar[r,"=", phantom] & O(k)/O(n-k)  \\
+            & G_n(\mathbb{R}^k) \ar[r,"=",phantom] & O(k) / O(n) x,O(n-k)
+        \end{tikzcd}
+    \]
+
+    Associated \(\mathbb{R}^n\) bundle is \(\gamma^n\).
+
+    \(E(\gamma^n) = V_n(\mathbb{R}^k) \times_{O(n)} \mathbb{R}^n\).
+    
+    \section*{Friday, 10/3/2025}
+    
+    \begin{lemma}
+        [5.2] The tautological bundle is a bundle:
+
+        \[
+            \begin{tikzcd}
+                E(\gamma^n_k) \ar[r, phantom, "="] \ar[d,"\pi"] & \{ (X,v) \mid v\in X \} \subset G_n(\mathbb{R}^k) \times \mathbb{R}^k \\
+                G_n(\mathbb{R}^k)
+            \end{tikzcd}
+        \]
+
+        is a rank \(n\) v.b.
+    \end{lemma}
+
+    \begin{proof}
+        \(\pi ^{-1} X\) is a vector space: \((X,v)+(X,w) = (X,v+w), c(X,v) = (X,cv)\).
+
+        We also want local triviality. Consider \(X\in G_n(\mathbb{R}^k)\). Let \(U = \{ Y \mid Y\cap X^{\perp} = 0\} \).
+        
+        \[
+            \begin{tikzcd}
+                U \times \mathbb{R}^n \ar[rr,"h"] \ar[rd] & & \pi ^{-1} U \ar[ld] \\ & U
+            \end{tikzcd}
+        \]
+
+        is a fiberwise isomorphism where \(h\) is a homeomorphism.
+
+        Then \(U \times \mathbb{R}^n \cong U \times X\) by choosing a basis for \(X\). Furthermore, \(U \times X \xleftarrow{\Gamma \times \operatorname{id}_{X}} \operatorname{Hom} (X, X^{\perp}) \times X\) and \(\operatorname{Hom} (X, X^{\perp}) \times X \to \pi ^{-1} U\) by \((f,v) \mapsto (\operatorname{graph} f, v + f(v))\).  
+    \end{proof}
+
+    \begin{lemma}
+        [5.3] Any \(n\)-plane bundle \(\xi\) over a compact Hausdorff manifold, \(\exists\) a bundle map to the tautological bundle \(G_n(\mathbb{R}^k)\):
+
+        \[
+            \begin{tikzcd}
+                E(\xi) \ar[r,"\widetilde{c}"] \ar[d] & E(\gamma^n_k) \ar[d] \\ B \ar[r,"c"] & G_n(\mathbb{R}^k)
+            \end{tikzcd}
+        \]
+
+        for \(k\) large.
+
+        So the tautological bundle is final.
+    \end{lemma}
+
+    Note that we knew this for embedded manifold and tangent bundle:
+
+    \[
+        \begin{tikzcd}
+            TM \ar[d] \\ M \ar[r] & G_n(\mathbb{R}^k) \\ p \ar[r, mapsto] & T_p M
+        \end{tikzcd}
+    \]
+
+    \(c\) is called `classifying group' and \(\gamma^n\) is the universal bundle.
+
+    By defintion, a bundle map \(\xi \to \gamma_k^n\) is the same as a fiberwise isomorphism:
+    
+    \(\begin{tikzcd}E(\xi) \ar[r] \ar[d] & E(\gamma_k^n) \ar[d] \\ B \ar[r] & G_n(\mathbb{R}^k)\end{tikzcd}\) which is by definition the same as a fiberwise monomorphism \(\hat{c}: E(\xi) \to \mathbb{R}^k\).
+
+    Let \(F_b = \pi ^{-1} b\). Then \(c(b) = \hat{c}(F_b) \mapsfrom \hat{c}\).
+
+    Then \(\widetilde{c}(e) = (\hat{c}(F_b), \hat{c}(e))\).
+    
+    Now we prove lemma 5.3.
+
+    \begin{proof}
+        Compact, so choose open cover \(U_1, \cdots , U_r\) of \(B\) such that \(\eval{\xi}_{U_i}\) is trivial.
+        
+        Choose open \(W_i \subset V_i \subset U_i\) such that \(\overline{W}_i \subset V_i, \overline{V}_i \subset U_i\), and \(\{ W_i \}\) and \(\{ V_i \}\) still cover \(B\).
+
+        Note that \(\overline{W}_i\) and \(B - V_i\) are disjoint closed sets. Thus \(\exists\) continuous \(\lambda_i: B \to [0,1]\) such that \(\lambda_i(\overline{W}_i) = 1, \lambda_i(B - V_i) = 0\) by Urysohn's lemma.
+
+        \(\eval{\xi}_{U_i}\) trivial \(\iff\) fiberwise isomorphism \(h_i: \pi ^{-1} U_i \to \mathbb{R}^n\) by sections \(s_j(b) \mapsto e_i\).
+
+        Define \(\hat{c}: E(\xi) \to \underbrace{\mathbb{R}^n \oplus \cdots \oplus \mathbb{R}^n}_{r \text{ times}}\).
+
+        \[
+            \hat{c}(e) = (\lambda_1(\pi(e)) h_1(e), \cdots , \lambda_r(\pi(e)) h_r(e))
+        \]
+
+    \end{proof}
+
+    \begin{corollary}
+        [Not in MS] Every vector bundle \(\xi\) over a compact Hausdorff space \(B\) has a whitney sum inverse.
+    \end{corollary}
+
+    \begin{proof}
+        [What we need is a finite locally trivial cover].
+
+        Let \(\xi = c^{\ast} (\xi^n_k)\). Consider \(\xi \oplus c^{\ast} (\gamma^{\perp}) = c^{\ast} (\gamma \oplus \gamma^{\perp}) = c^{\ast} (\epsilon^k_{G_n(\mathbb{R}^k)})\) which is trivial. 
+    \end{proof}
+
+    Contrast this with the fact that \(\gamma^1_\infty\) has no whitney sum inverse.
+
+    Comment: \(k^{\prime} \leq k \implies \begin{tikzcd} E(\gamma^n_{k^{\prime}}) \ar[r, hook] \ar[d] & E(\gamma^n_k) \ar[d] \\ G_n(\mathbb{R}^{k^{\prime}})\ar[r, hook] & G_n(\mathbb{R}^k) \end{tikzcd}\) 
+
+    \begin{theorem}
+        If \(f,g: \xi \to \gamma^n_k\) bunndle maps then \(f \simeq g: \xi \to \gamma^n_{2k}\).
+
+        So ``classifying map unique upto homotopy.''
+    \end{theorem}
+
+    \begin{proof}
+        WTS: \(\hat{f} \simeq \hat{g} : E(\xi) \to \mathbb{R}^{2k}\) fiberwise monomorphism.
+        
+        Special case: \(\forall e\in E(\xi), \forall \lambda > 0, \hat{f}(e) \neq -\lambda \hat{g}(e)\). \(h_t(e) = (1-t) \hat{f}(e) + t \hat{g} (e)\).
+
+        General case: define embeddings \(d_0, d_1, d_2:\mathbb{R}^k \to \mathbb{R}^{2k}\).
+
+        \(d_0(e_i) = e_i, d_1(e_i) = e_{2i - 1}, d_2(e_i) = e_{2i}\).
+
+        Then \(d_0 \circ \hat{f} \simeq d_1 \circ \hat{f} \simeq d_2 \circ  \hat{g} \simeq d_0 \circ \hat{g}\).
+    \end{proof}
 
 \end{document}
