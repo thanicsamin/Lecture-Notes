@@ -2036,4 +2036,174 @@
         Then \(d_0 \circ \hat{f} \simeq d_1 \circ \hat{f} \simeq d_2 \circ  \hat{g} \simeq d_0 \circ \hat{g}\).
     \end{proof}
 
+    \section*{Monday, 10/6/2025}
+    
+    Recall lemma 5.3: all vector bundle \(\xi\) over compact hausdorff \(B\) there exists a bundle map:
+
+    \[
+        \begin{tikzcd}
+            E(\xi) \ar[r, "\widetilde{c}"] \ar[d] & E(\gamma^n_k) \ar[d] \\ B \ar[r,"c"] & G_n(\mathbb{R}^k)
+        \end{tikzcd}
+    \]
+
+    for \(k\) sufficiently large.
+
+    \begin{theorem}
+        [5.7] If \(B\) is compact Hausdroff and \(f,g: \xi \to \gamma^n_k\) are bundle maps, then \(f\simeq g: \xi \to \gamma^n_{2k}\).
+    \end{theorem}
+
+    Recall the proofs required \(E(\xi) \to \mathbb{R}^k\) fiber monomorphism.
+
+    \begin{theorem}
+        [Covering Homotopy Theorem] Slogan: ``Homotopy Invariance of Pullback.''.
+
+        Suppose we have compact hausdorff manifolds and maps:
+        
+        \[
+            \begin{tikzcd}
+                & E(\xi^{\prime}) \ar[d] \\ B \ar[r,"f \simeq g"] & B^{\prime}
+            \end{tikzcd}
+        \]
+
+        Then \(f^{\ast} \xi^{\prime} \cong g^{\ast} \xi ^{\prime} \).
+    \end{theorem}
+
+    We can `replace \(k\) by \(\infty\) and compact hausdorff by paracompact Hausdorff.'
+
+    For 5.2, we use \(\infty \cdot n = \infty\).
+
+    For 5.7, we use \(\infty + \infty = \infty\).
+
+    5.3, 5.7 and CHT implies: \(B\) paracompact Hausdroff implies there is a bijection between homotopy classes \([B, G_n(\mathbb{R}^{\infty})]\) and \([\text{iso class of \(n\)-plane v.b. over \(B\)}]\).
+
+    \(f \mapsto f^{\ast} \gamma^n\).
+
+    This is why the Grassmanian is a classifying space, it classifies all bundles.
+
+    e.g. for sphere \(B = S^l\) then \(\pi_l(G_n(\mathbb{R}^{\infty})) = \frac{\begin{Bmatrix}\mathbb{R}^n & \to & E \\ & & \downarrow \\ & & S^l\end{Bmatrix}}{\text{iso}}\).
+
+    Let \(A\) be an abelian group and \(\operatorname{w} \in H^l(G_n(\mathbb{R}^{\infty}), A)\).
+
+    Then we get characteristic class of \(n\)-plane bundle over \(B\) a CW complex. Recall CW complexes are paracompact Hausdorff!
+
+    Thus, in order to get characteristic classes, we only need:
+
+    \[
+        \begin{tikzcd}
+            E(\xi) \ar[r] \ar[d] & E(\gamma^n) \ar[d] \\ B \ar[r,"c"] & G_n(\mathbb{R}^{\infty})
+        \end{tikzcd}
+    \]
+
+    Then the characteristic class is defined to be \(\operatorname{w}(\xi) = c^{\ast} \operatorname{w} \in H^l(B;A)\).
+    
+    Then if we have \(\begin{tikzcd} & E\ar[d] \\ B^{\prime} \ar[r,"f"] & B\end{tikzcd}\) then \(f^{\ast} \operatorname{w} (\xi) = \operatorname{w} (f^{\ast} \xi)\).
+
+    \begin{theorem}
+        [Future Theorem] \(H^{\ast} (G_n(\mathbb{R}^{\infty});\mathbb{F}_2) = \mathbb{F}_2[\operatorname{w}_1, \operatorname{w}_2, \cdots ,\operatorname{w}_n]\).
+    \end{theorem}
+
+    For example, for \(n = 1\), this theorem states that \(H^{\ast} (P^{\infty}, \mathbb{F}_2) = \mathbb{F}_2[a]\).
+
+    First we talk about \(\mathbb{R}^{\infty}\) and \(G_n(\mathbb{R}^{\infty})\). We talk about colimits for that.
+
+    \section*{Colimit}
+
+    Consider Category \(\mathcal{C}\).
+
+    \begin{definition}
+        A \textit{directed system} (ds):
+
+        \[
+            X_0 \to X_1 \to X_2 \to X_3 \to \cdots
+        \]
+    \end{definition}
+
+    \begin{definition}
+        A \textit{cocone} of a directed system is an object \(X\) with maps so that:
+
+        \[
+            \begin{tikzcd}
+                X_0 \ar[rrrd] \ar[r] & X_1 \ar[r] \ar[rrd] & X_2 \ar[r] \ar[rd] & X_3 \ar[r] \ar[d] & \cdots \ar[ld] \\
+                & & & X
+            \end{tikzcd}
+        \]
+    \end{definition}
+
+    \begin{definition}
+        A \textit{colimit} of a directed system is an \textit{initial cocone}:
+
+        \[
+            \begin{tikzcd}
+                X_0 \ar[rrrd] \ar[rrrdd] \ar[r] & X_1 \ar[r] \ar[rrd] \ar[rrdd] & X_2 \ar[r] \ar[rd] \ar[rdd] & X_3 \ar[r] \ar[d] \ar[dd, bend right] & \cdots \ar[ld] \ar[ldd] \\
+                & & & C \ar[d, dotted, "\exists!"] \\
+                & & & X
+            \end{tikzcd}
+        \]
+
+    \end{definition}
+
+    Colimits may not exist. If they exist they are unique upto isomorphism. We write \(C = \operatorname{colim}_{n\to \infty} X_n\) 
+
+    Colimit is kind of a `generalized union'.
+
+    Colimits are generally `quotients of coproducts'.
+
+    In the category \(R\)-mod, 
+
+    \[
+        \operatorname{colim}_{n\to \infty} X_n = \frac{\bigoplus_{n} X_n}{\langle X_n - \operatorname{im} (X_{n}) \rangle }
+    \]
+
+    Thus \(\mathbb{R}^{\infty} \coloneqq \operatorname{colim}_{n\to \infty} \mathbb{R}^n\), if basis \(e_1, e_2, e_3, \cdots\) then almost all coordinates are zero: \((a_1, a_2, \cdots , a_n, 0, 0, \cdots)\) 
+
+    In \(\operatorname{Top}\) or \(\operatorname{Set}\),
+
+    \[
+        \operatorname{colim}_{n\to \infty} X_n = \frac{\coprod X_n}{X_n \sim \operatorname{im} (X_n)}
+    \]
+
+    Then \(G_n(\mathbb{R}^{\infty}) = \operatorname{colim}_{n\to \infty} G_n(\mathbb{R}^k) =\) set of \(n\)-planes in \(\mathbb{R}^{\infty}\) with a particular topology. In some sense, it is \(\bigcup_{k} G_n(\mathbb{R}^k)\).
+
+    \section*{Stiefel Manifolds}
+
+    Recall: we have Stiefel Manifolds:
+
+    \[
+        \begin{tikzcd}
+            O(n) \ar[r] & V_n(\mathbb{R}^{\infty}) \ar[d] & \text{orthonormal \(n\)-frames in \(\mathbb{R}^{\infty}\)} \\ & G_n(\mathbb{R}^{\infty}) 
+        \end{tikzcd}
+    \]
+
+    \(V_n(\mathbb{R}^{\infty}) \times_{O(n)} \mathbb{R}^n = E(\gamma^n)\).
+
+    \begin{theorem}
+        \(V_n(\mathbb{R}^{\infty})\) is contractible. eg for \(n=1\) we have \(S^{\infty} \simeq \ast\).
+    \end{theorem}
+
+    We need some facts from algebraic topology:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(V_n \mathbb{R}^{\infty}\) is a CW complex and \(V_n \mathbb{R}^k \subset V_n \mathbb{R}^{\infty}\) are subcomplexes.
+        \item Whitehead's Theorem: if \(X\) is CW then \(X\simeq \ast \iff \pi_{\ast} X = 0\).
+        \item Given fibration \(\begin{matrix} F & \to & E \\ & & \downarrow \\ & & B\end{matrix}\) (e.g. a \((G,F)\)-bundle) there exists long exact sequence:
+        
+        \[
+            \cdots \to \pi_i F \to \pi_i E \to \pi_i B \to \pi_{i-1} F \to \cdots
+        \]
+    \end{enumerate} 
+
+    Now we can prove the theorem:
+
+    \begin{proof}
+        \(1\implies\)  \(\pi_i(V_n(\mathbb{R}^{\infty})) = \operatorname{colim}_{k \to \infty} \pi_i(V_n(\mathbb{R}^k))\)  
+
+        \(3 \implies\) for \(i \leq l, \pi_i O(l) \xrightarrow{\approx} \pi_i O(l+1)\).
+        
+        \(\begin{matrix}O(l) & \to & O(l+1) & A \\ & & \downarrow & \downarrow \\ & & S^l & A e_{l+1}\end{matrix}\)
+
+        Then \(\begin{matrix}O(k-n) & \to & O(k) & A \\ & & \downarrow \\ & & V_n(\mathbb{R}^k) & A e_1, \cdots , A e_n\end{matrix}\) 
+
+        \(\implies i < k-n, \pi_i (V_n \mathbb{R}^k) = 0 \overset{(2)}{\implies} \) the theorem. 
+    \end{proof}
+
 \end{document}
