@@ -2206,4 +2206,141 @@
         \(\implies i < k-n, \pi_i (V_n \mathbb{R}^k) = 0 \overset{(2)}{\implies} \) the theorem. 
     \end{proof}
 
+    \section*{Monday, 10/13/2025}
+    
+    Note:
+
+    Schubert Symbol: \(\sigma = (\sigma_1, \cdots , \sigma_n)\).
+
+    \(1 \leq \sigma_1 < \cdots < \sigma_n\).
+
+    Dimension \(d = d(\sigma) = \sum_{i} \sigma_i - i\)
+
+    Partition of \(d = \sigma - (1,2,\cdots , n)\).
+
+    Recap:
+
+    \(G_n(\mathbb{R}^{\infty}) = BGL(n,\mathbb{R})\).
+
+    It is a classifying space.
+
+    Proof 1: representative object.
+
+    Proof 2: \(\begin{tikzcd}O(n) \ar[r] & V_n(\mathbb{R}^{\infty}) \simeq \ast \ar[d] \\ & G_n(\mathbb{R}^{\infty})\end{tikzcd}\).
+
+    Thus \(G_n(\mathbb{R}^{\infty}) = BO(n), BO(n) = BGL(n,\mathbb{R}), O(n) \simeq GL(n,\mathbb{R})\).
+
+    Preview of Chapter 6/7:
+
+    \begin{itemize}
+        \item Find CW structure on \(G_n \mathbb{R}^{\infty}\).
+        \item Show \(\mod 2\) cellular chain complex has zero differentials. [So this is just like \(\mathbb{R}P^{\infty}\)].
+    \end{itemize} 
+
+    Then \(H_k(G_n(\mathbb{R}^{\infty}); \mathbb{F}_2) = C_k(G_n \mathbb{R}^{\infty}) \otimes \mathbb{F}_2 = \mathbb{F}_2^{\text{\# of \(k\)-cells}}\).
+
+    We use the following two definitions of CW-complexes.
+
+    \begin{definition}
+        [Using Pushouts] A topological space \(X\) together with the filtration \(\{ X^n \}_{n=0}^{\infty}\) called skeleton, written \(\left( X, \{ X^n \}_{n=0}^{\infty} \right) \) so that,
+
+        \[
+            X^0 \subset X^1 \subset \cdots \subset X = \bigcup_{n=0}^{\infty} X^n 
+        \]
+
+        such that,
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\forall n, \exists\) pushout diagram:
+            
+            \[
+                \begin{tikzcd}
+                    \coprod S^{n-1} \ar[r] \ar[d] & X^{n-1} \ar[d] \\ \coprod D^n \ar[r] & X^n
+                \end{tikzcd}
+            \]
+
+            \item \(X = \operatorname{colim}_{n\to \infty} X^n\).
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{definition}
+        [Whitehead] Instead of a filtration we have a partition with cells \(e_\alpha\).
+
+        Let \(X\) be a Hausdorff space. Consider \(\left( (X, \{ e_\alpha \}) \right)\) so that,
+
+        \(\{ e_\alpha \} \) form partition of \(X\). i.e. \(X = \bigcup_{\alpha} e_\alpha, e_\alpha \cap e_\beta = \varnothing\) so that,
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\forall \alpha, \exists\) characteristic map \(\chi_\alpha : D^n \to \overline{e_\alpha}\) such that \(\eval{\chi_\alpha}_{\overset{\circ}{D^n}}: \overset{\circ}{D^n}\xrightarrow{\approx} e_\alpha\) homeomorphism.
+            \item \(\chi_\alpha (S^{n-1}) \subset\) finite union of \(n-1\) cells.
+            \item \(B \subset X\) closed \(\iff \forall \alpha, B \cap \overline{e_{\alpha}}\) closed in \(\overline{e_\alpha}\).    
+        \end{enumerate} 
+    \end{definition}
+
+    We can get the skeleton from the cells in the following way: \(X^n = \bigcup_{\dim e_\alpha \leq n} e_\alpha\).
+
+    Also note \(2^{\prime}\) alternate: \(\overline{e_\alpha} - e_\alpha \subset\) finite union of \(n-1\) cells.
+
+    For skeleton to cell, note that \(X^n - X^{n-1}\) is topologically \(\coprod_{n \text{-cells}} e_\alpha\).
+    
+    We want to figure out the CW complex of the Grassmanian. This is connected to combinatorics.
+
+    \begin{definition}
+        [Schubert Symbol] The cells will be indexed by Schubert Symbol, which will be increasing sequence of integers: \(\sigma  = (\sigma_1, \cdots , \sigma_n)\) so that \(1 \leq \sigma_1 < \sigma_2 < \cdots < \sigma_n\). This will index a `Schubert cell' of \(G_n \mathbb{R}^k\) if \(\sigma_n \leq k\):
+
+        \[
+            e(\sigma) = \left\{ X \in G_n \mathbb{R}^k \mid \forall i, \dim (X \cap \mathbb{R}^{\sigma_i}) = i, \dim (X \cap \mathbb{R}^{\sigma_{i-1}}) = i - 1 \right\} 
+        \]
+
+        So we have a dimension jump at \(\mathbb{R}^{\sigma_i}\).
+
+        \(\dim e(\sigma) = \sum_{i} \sigma_i - i\)
+    \end{definition}
+
+    \begin{theorem}
+        [6.4] \((G_n \mathbb{R}^k, \{ e(\sigma)\})\) is a CW complex [note: \(1 \leq \sigma_1 < \cdots < \sigma_n \leq k\)], and \(\dim e(\sigma) = d(\sigma)\).
+
+        It also holds for \(k=\infty\), i.e. \(G_n \mathbb{R}^{\infty}, \{ e(\sigma) \}\) where \(1 \leq \sigma_1 < \cdots < \sigma_n\) is a CW complex.
+    \end{theorem}
+
+    Example: \(G_1(\mathbb{R}^3)\). \(\sigma = (1), (2), (3)\).
+
+    Thus \(G_1 \mathbb{R}^3 = e^0 \cup e^1 \cup e^2\).
+
+    \(e^{(1)}\) is the line given by the \(x\)-axis.
+
+    \(e^{(2)}\) is the set of lines through origin in the \(xy\)-plane except the \(x\)-axis.
+
+    \(e^{(3)}\) is the set of lines through origin that are not contained in \(xy\)-plane.
+
+    Now consider \(G_2(\mathbb{R}^3). \sigma =(1,2),(1,3),(2,3)\).
+
+    \(e(1,2)\) is the \(xy\)-plane.
+    
+    \(e(1,3)\) are the planes with one basis \(x\)-axis, other basis not the \(y\)-axis.
+
+    \(e(2,3)\) are the planes that doesn't contain the \(x\)-axis.
+
+    Now consider \(G_2(\mathbb{R}^4)\). Then \(\sigma = (1,2) [d=0],(1,3) [d=1],(1,4) [d=2], (2,3) [d=2], (2,4) [d=3], (3,4) [d=4]\).
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c|c}
+            \toprule
+                \(\sigma\) & \(\dim, d = d(\sigma)\) & \(\sigma - (1,2,\cdots , n)\) \\
+            \midrule
+                \((1)\) & \(0\) & \(0\) \\
+                \((2)\) & \(1\) & \(1\)  \\
+                \((3)\) & \(2\) & \(2\) \\
+                \((4)\) & \(3\) & \(3\) \\
+                \((1357)\) & \(6\) & \(0\,1\,2\,3\)  \\
+            \bottomrule
+        \end{tabular}
+        \caption{Schubert Symbol Dimensions}
+    \end{table}
+
+    \begin{corollary}
+        [6.7] \(\#\) of \(d\)-cells in \(G_n\mathbb{R}^k = \#\) of paritions of \(d\) into at most \(n\) integers \(\leq k - n\).
+    \end{corollary}
+
 \end{document}

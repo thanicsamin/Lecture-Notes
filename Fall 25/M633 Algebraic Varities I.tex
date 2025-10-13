@@ -40,7 +40,7 @@
     
     Link: \url{https://math.stanford.edu/~vakil/216blog/FOAGjul2724public.pdf}
 
-    Office Hours: Wednesdays 3-4, Fridays 1-2
+    Office Hours: Wednesdays 4-5, Fridays 1-2
 
     It's basically an introduction to the scheme point of view for algebraic geometry.
 
@@ -2229,7 +2229,9 @@
 
     Claim: \(V(x_i)^{c}\) is homeomorphic to \(U_i = \operatorname{Spec} k[x_{0 / i}, \cdots , x_{i-1 / i}, x_{i+1 / i}, \cdots , x_{n / i}]\).
     
-    There is a bijection between homogeneous prime ideals in \(A\) and prime ideals \(k[x_{0 / i}, \cdots , x_{n / i}]\) together with the ideal \((1)\).
+    There is a bijection between homogeneous prime ideals in \(A\) and prime ideals:
+    
+    \(k[x_{0 / i}, \cdots , x_{n / i}]\) together with the ideal \((1)\).
     
     Let \(P = \bigoplus_{i=0}^{\infty} P_i\) be a homogeneous prime ideal in \(A\). Define \(P_0\) in \(A_0\):
 
@@ -2331,5 +2333,297 @@
 
         Equivalently, a reduced scheme  is one on which every section is determined by its function.
     \end{definition}
+
+    \section*{Wednesday, 10/8/2025}
+    
+    Notation: Scheme is \(X\), we have \(X_\alpha, U_{\alpha , \beta} \subset X_\alpha, i_{\alpha,\beta} : U_{\alpha ,\beta} \xrightarrow{\cong} U_{\beta,\alpha}\).
+    
+    \[
+        \eval{\mathcal{O}_{X_\alpha}}_{U_{\alpha,\beta}} \xrightarrow{\cong} i_{\alpha ,\beta}^{\ast} \eval{\mathcal{O}_{X_\beta}}_{U_{\beta,\alpha}}
+    \]
+
+    \[
+        \begin{tikzcd}
+            & & X \ar[d, dotted] \\
+            U_{\alpha,\beta} \ar[r, hook] \ar[d] & X_\alpha \ar[r, "f_\alpha"] \ar[ur] & Y \\ U_{\beta,\alpha} \ar[r, hook] & X_\beta \ar[ur, "f_\beta"] \ar[uur]
+        \end{tikzcd}
+    \]
+
+    Reduced scheme:
+
+    \(X\) is reduced means \(\mathcal{O}_{X,x}\) has no non-trivial nilpotent elements for all \(x \in X\).
+    
+    \begin{theorem}
+        \(X\) is reduced iff \(\forall U \subset X, \mathcal{O}_X(U)\) has no non-trivial unipotents.
+    \end{theorem}
+
+    \begin{proof}
+        If \(\exists x\) such that \(\mathcal{O}_{X,x}\) has a non-zero nilpotent element \(n_x\) then \(\exists\) a neighborhood \(U\) of \(x\) andd a section \(n\in \mathcal{O}_X(U)\) which gives \(n_x\) at \(x\).
+
+        Then there exists an integer \(k \geq 2\) such that \((n^k)_x = n_x^k = 0\).
+
+        Then \(n^k\) is zero in an open neighborhood \(V \subset U\) of \(x\). So \(\eval{n}_{U} \neq 0\) but \(\left( \eval{n}_{V} \right)^k = 0\).
+        
+        Conversely, let \(f\in \mathcal{O}_X(U)\) be a non-zero nilpotent. Then for all \(x\in U, f_x\) is nipotent. For some \(x\in U, f_x\) is non-zero. Otherwise, each \(x\) would have an open neighborhood on which \(f\) restricts to \(0\). These neighborhoods would cover \(U\) so \(f\) would not be non-zero.
+    \end{proof}
+
+    \begin{theorem}
+        TFAE:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(X\) is irreducible and reduced.
+            \item For every affine open \(\operatorname{Spec} A\) of \(X, A\) is an integral domain.  
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{definition}
+        If the equivalent conditions of the above theorem holds, then \(X\) is integral.
+    \end{definition}
+
+    \begin{proof}
+        Suppose \(X\) is not reduced. Then there exists \(f_x \in \mathcal{O}_{X,x}\) which is non-zero and nilpotent. There exists an affine open neighborhood \(\operatorname{Spec} A\) of \(x\) such that \(f_x\) comes from a non-zero nilpotent \(f\in A\) so \(A\) is not an integral domain.
+
+        Suppose \(A\) is not reducible. We can construct open subscheme of \(X\):
+        
+        \(\operatorname{Spec} A \coprod \operatorname{Spec} B = \operatorname{Spec} A \times B\) but \(\operatorname{Spec} A \times B\) is not an integral domain since \((1,0)(0,1) = (0,0)\).
+
+        Now, suppose \(\operatorname{Spec} A \subset X\) is not an integral domain. Then \(\exists f,g\in A\) such that \(fg=0\) but \(f\neq 0, g\neq 0\).
+
+        \(f,g\in A = \Gamma (\operatorname{Spec} A, \mathcal{O}_X)\). \(V(f) \cup V(g) = V(fg) = \operatorname{Spec} A\). Suppose \(V(f), V(g)\) are both proper subsets of \(\operatorname{Spec} A\). Then \(\operatorname{Spec} A\) is not irreducible. In fact \(X\) is not irreducible because it is the union of the following two closed subsets: \((\operatorname{Spec} A)^c \cup V(f)\) and \((\operatorname{Spec} A)^c \cup V(g)\). Only exception is when \(V(f)\) or \(V(g)\) equals \(\operatorname{Spec} A\).
+
+        WLOG suppose \(V(f) = \operatorname{Spec} A\). Then \(f\in P\) for all prime \(P \implies f \in \bigcap_{P \text{ prime} } P = \operatorname{rad} A\).
+
+        Thus \(f\) is nilpotent and \(A\) has a non-trivial nilpotent element.
+    \end{proof}
+
+    Note that if \(\mathcal{O}_{X,x}\) is integral domain for all \(x\in X\) it doesnt mean that \(X\) is integral. \(X\) could be a disjoint union of integral schemes.
+
+    Non-Examples: \(\operatorname{Spec} k[xy] / (xy)\) fails to be irreducible. [Picture: Coordinate axes \(+\)].
+
+    We claim that it is reduced. Suppose \(k[x,y]\) represents a nilpotent class in \(k[x,y] / (xy)\). Then \(f(x,y)^k \in (xy)\) so \(x \mid f^k, y\mid f^k \implies x\mid f, y\mid f\) so \(xy\mid f\).
+
+    \(\operatorname{Spec} k[x] / (x^2)\) failes to be fails to be reduced. [Picture: Just a point \(\cdot\)]. But it is irreducible.
+
+    Suppose \(K\) is a field and \(A\) is a \(K\)-algebra. Suppose \(L / K\) is an extension field and consider the \(L\)-algebra \(A \otimes_K L\).
+
+    Are the properties irreducibility, integrality, reducedness preserved by this operation?
+
+    In general, the answer is no.
+
+    Examples: \(K=\mathbb{R}, A=\mathbb{C}, L=\mathbb{C}\). Note that \(\mathbb{C}\otimes_{\mathbb{R}} \mathbb{C}\).
+
+    Think of this as \(\mathbb{R}[x] / (x^2 + 1) \otimes_{\mathbb{R}} \mathbb{C}  = \mathbb{C} [x] / (x^2 + 1) = \mathbb{C} [x] / (x+i)(x-i) \cong \mathbb{C} [x] / (x+i) \times \mathbb{C} [x] / (x-i) \cong \mathbb{C} \times \mathbb{C}\). 
+
+    \(A\) is a \(K\)-algebra. We say \(\operatorname{Spec} A\) is \textit{geometrically} irreducible, integral etc. iff \(A \otimes_K L\) is irreducible, integral, etc for all extension fields \(L / K\).
+
+    When we talk about property of a commutative ring, (say Noetherian), we can think about it as a property of an affine scheme. We can ask questions: is there a cover of the scheme by affine open schemes? Is it true that every affine open subscheme has this property?
+
+    \begin{definition}
+        [Distinguished Open Subset] A distinguished open subset of the affine scheme \(\operatorname{Spec} A\) is a set of the form \(D(f)\) for some \(f\in A\). Regarded as an open subscheme of \(\operatorname{Spec} A, D(f)\) is \(\operatorname{Spec} A \left[ \frac{1}{f} \right] \).
+    \end{definition}
+
+    \begin{lemma}
+        [Affine Communication Lemma] Suppose we have a property \(P\) of affine open subsets of a scheme \(X\) such that the following are true:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(\operatorname{Spec} A\) has property \(P\), every distinguished open subset of \(\operatorname{Spec} A\) has property \(P\).
+            \item If \(f_1, \cdots , f_n \in A\) with \((f_1, \cdots , f_n) = (1)\) and the distinguished open subsets of \(\operatorname{Spec} A\) given by \(D(f_1), \cdots , D(f_n)\) all have property \(P\) then \(\operatorname{Spec} A\) itself has property \(P\).  
+        \end{enumerate} 
+
+        Then, if there is any affine open cover of \(X\) with property \(P\) then all affine opens have property \(P\).
+    \end{lemma}
+
+    \begin{proof}
+        Let \(\operatorname{Spec} A_i\) be a cover of \(X\) by affine opens with property \(P\). Let \(\operatorname{Spec} A \subset X\) be any affine open.
+
+        Claim: \(\forall x\in \operatorname{Spec} A\) there exists an affine open neighborhood of \(x\) which is distinguished as an affine open subset of some \(\operatorname{Spec} A_i\) and also as an affine open subset of \(\operatorname{Spec} A\).
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/commlemma}
+            \caption{Claim}
+        \end{figure}
+
+        We omit the proof of the claim for now.
+
+        Then this open set \(\operatorname{Spec} A_{f_x}\) has property \(P\) from \(\operatorname{Spec} A_i\). \(\bigcup_{x\in \operatorname{Spec} A} \operatorname{Spec} A_{f_x} = \operatorname{Spec} A\).
+
+        So \(\operatorname{Spec} A = \operatorname{Spec} A_{f_{x_1}} \cup \cdots \cup \operatorname{Spec} A_{f_{x_n}}\).
+        
+        Since \((f_{x_1}, \cdots , f_{x_n}) = (1)\) we deduce that \(\operatorname{Spec} A\) has property \(P\).
+    \end{proof}
+
+    \begin{lemma}
+        Let \(\operatorname{Spec} A, \operatorname{Spec} B\) denote open affine subsets of \(\operatorname{Spec} X\). Suppose \(x\in \operatorname{Spec} A\cap \operatorname{Spec} B\).
+
+        Then \(x\) has an affine open neighborhood which is distinguished in both \(\operatorname{Spec} A\) and \(\operatorname{Spec} B\).
+    \end{lemma}
+
+    \begin{proof}
+        A distinguished open subset of a distinguished open subset is distinguished.
+
+        \(D(\operatorname{Spec} A, f)\)
+
+        \(D\left(\operatorname{Spec} A \left[ \frac{1}{f} \right], \frac{g}{f^n}\right)\) 
+
+        \(D(\operatorname{Spec} A, fg)\)
+
+        So we may replace \(\operatorname{Spec} B\) by an open neighborhood of \(x\), \(D(\operatorname{Spec} B, g)\) which is contained in \(\operatorname{Spec} A \cap \operatorname{Spec} B\). Thus we can assume \(\operatorname{Spec} B \subset \operatorname{Spec} A\).
+
+        We can take \(D(\operatorname{Spec} A, f)\) a neighborhood of \(x\) inside \(\operatorname{Spec} B\).
+
+        \(f\in A = \Gamma (\operatorname{Spec} A, \mathcal{O}_X) \xrightarrow{\operatorname{Res}} \Gamma(\operatorname{Spec} B, \mathcal{O}_X) = B\).
+
+        So \(\operatorname{Res}(f) = f^{\prime} \in B\).
+
+        Claim: \(D(\operatorname{Spec} B, f^{\prime}) = D(\operatorname{Spec} A, f)\).
+
+        This finishes the proof.
+
+    \end{proof}
+
+    \section*{Monday, 10/13/2025}
+    
+    Recall affine communication lemma: given a ring property \(P\) such that:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(A\) has \(P\) then \(A \left[ \frac{1}{f} \right] \) has \(P\).
+        \item If \(f_1, \cdots , f_n \in A, (f_1, \cdots , f_n) = (1)\) and \(A \left[ \frac{1}{f_i} \right] \) has \(P\) then \(A\) has \(P\). 
+    \end{enumerate} 
+
+    then every scheme \(X\) with an affine open cover by \(\operatorname{Spec} A_\alpha\) where \(A_\alpha\) all have \(P\) has the property that every affine open \(\operatorname{Spec} B \subset X, B\) has \(P\).
+
+    In this case we say \(X\) locally has property \(P\).
+
+    Furthermore, if \(X\) is quasi-compact [so it has a finite affine open cover] then \(X\) has \(P\). i.e. If \(X\) is quasi-compact, then \(X\) having a property locally implies \(X\) has the property.
+
+    Examples: Let \(P =\) Noetherian. First we verify:
+
+    \begin{proposition}
+        If \(f\in A\) and \(A\) is Noetherian then \(A[1 / f]\) is Noetherian. 
+    \end{proposition}
+
+    \begin{proof}
+        Easy using Hilbert Basis Theorem: \(A [ 1 / f] = A [x] / (fx - 1)\). Hilbert Basis Theorem implies \(A[x]\) is Noetherian, and any quotient of a Noetherian ring is Noetherian.
+    \end{proof}
+
+    \begin{proposition}
+        If \(f_1, \cdots , f_n \in A\) generate \((1)\) and each \(A[1 / f_i]\) is Noetherian then \(A\) is Noetherian.
+    \end{proposition}
+
+    \begin{proof}
+        Let \(I_1 \subset I_2 \subset I_3 \subset\) an ascending chain of ideals of \(A\).
+
+        Fix \(i\). \(I_1[1 / f_i] \subset I_2[1 / f_i] \subset \cdots\) is an ascending chain of ideals in \(A [1 / f_i]\). Noetherian implies they eventually stabilize. Since there are finitely many \(f_i\) then \(\exists N\) such that \(\forall m > N, \forall i, I_m [1 / f_i] = I_{m+1} [1 / f_i]\).
+
+        Claim: \(\forall m > N, I_m = I_{m+1}\) [so the original chain of ideal stabilizes].
+
+        Proof: \(I_{m+1} / I_m\) is an \(A\)-module. Now consider \((I_{m+1} / I_m) [1 / f_i]\). We claim that \((I_m / I_{m+1}) \cong I_{m+1} [1 / f_i] / I_m [1 / f_i]\).
+        
+        To see this, consider the SES:
+
+        \[
+            0 \to I_m \to I_{m+1} \to I_{m+1} / I_m \to 0
+        \]
+
+        Flatness of localization implies:
+
+        \[
+            0 \to I_m [1 / f_i] \to I_{m+1} [1 / f_i] \to (I_{m+1} / I_m) [1 / f_i] \to 0
+        \]
+
+        When is \(S ^{-1} M = (0)\)? when \(\forall m, \exists s \in S\) such that \(sm = 0\).
+
+        If \(x\in I_{m+1}\) representing a class in \(I_{m+1} / I_m\) then \(\forall i, \exists k_i\) such that \(f_i^{k_i} x = 0\) in \(I_{m+1} / I_m\). \(\exists k\) such that \(f_i^k x \in I_m\). Write \(1 = \sum_{i=1}^n c_i f_i\).
+
+        \(1 = 1^{nk} = \left( \sum_{i=1}^n c_i f_i \right)^{nk} = \sum_{i=1}^n d_i f_i^k\).
+        
+        \(\implies x = \sum_{i=1}^n d_i x f_i^k \in I_m\).
+
+    \end{proof}
+
+    \begin{corollary}
+        Every locally Noetherian scheme is quasiseparated.
+    \end{corollary}
+
+    \begin{proof}
+        Let \(\operatorname{Spec} A, \operatorname{Spec} B\) be affine open in \(X\). We are interested in \(\operatorname{Spec} A \cap \operatorname{Spec} B \subset \operatorname{Spec} A =\) Noetherian topological space. Open subset of Noetherian topological space must be Noetherian. So \(\operatorname{Spec} A \cap \operatorname{Spec} B\) must also be Noetherian.
+
+        Noetherian spaces are quasicompact. 
+    \end{proof}
+
+    Current notion of scheme is built up by spectra of commutative ring, and a commutative ring is the same thing as a \(\mathbb{Z}\)-algebra. A sheaf of commutative ring is a shief of \(\mathbb{Z}\)-algebras. We can thus generalize the notion of schemes:
+
+    \begin{definition}
+        [\(A\)-scheme] If \(A\) is any commutative ring, then an \(A\)-scheme is a ringed space, i.e. a pair \(X, \mathcal{O}_X\) consisting of a space  and a sheaf of \(A\)-algebras with the property that \(X\) has a cover by \(\operatorname{Spec} B_\alpha\) where \(B_\alpha\) are \(A\)-algebras.
+    \end{definition}
+
+    An \(A\)-scheme is the same thing as a scheme \(X\) with a morphism to \(\operatorname{Spec} A\).
+
+    Now, property \(P\) is no longer necessarily a property of a ring, it is rather property of \(A\)-algebra.
+
+    We write \(P_A\) to be a property of \(A\)-algebra.
+    
+    Let \(P_A\) be the property \(B\) is a finitely generated \(A\)-algebra.
+
+    Any finitely generated \(A\)-algebra can be thought of as a quotient of a polynomial ring over \(A\). So finitely generated \(A\)-algebras are noetherian. \(P_A\) satisfies the conditions for the affine communication lemma.
+
+    \begin{lemma}
+        If \(B\) is finitely generated over \(A\) then \(B[1 / f]\) is finitely generated over \(A\).
+    \end{lemma}
+
+    \begin{proof}
+        \(B[1 / f] = B[x] / (fx - 1)\).
+    \end{proof}
+
+    \begin{theorem}
+        Suppose \(B\) is an \(A\)-algebra and \(f_1, \cdots , f_n\in B\) generating the unit ideal, and each \(B[1 / f_i]\) is a finitely generated \(A\)-algebra. Then \(B\) is a finitely generated \(A\)-algebra.
+    \end{theorem}
+
+    \begin{proof}
+        \(\forall f_i \exists\) generators \(\frac{b_{i,j}}{f_i^{N_{i,j}}}\) of \(B[1 / f_i]\). We have \(\sum_{i=1}^n c_i f_i = 1\). Assume WLOG all \(N_{i,j} = N\) for some fixed \(N\). 
+
+        Claim: \(\{ f_i \} \cup \{ c_i \} \cup \{ b_{i,j} \} \) generate \(B\).
+
+        Proof: Given \(b\in B\), for each \(f_i\) we can write \(b \in B[1 / f_i]\) as a polynomial in \(b_{ij} / f_i^N\).
+
+        Clearing the denominator, WLOG for some big \(M_i\), we can write \(b f_i^{M_i}\) as a polynomial in \(b_{i,j}\) together with \(f_i\).
+        
+        WLOG \(M_i = M\) for some large \(M\).
+
+        Then \(b f_i^M \in A[b_{i,j}, f_i]\).
+
+        \(\sum_{i} c_i f_i = 1 \implies \left( \sum_{i} c_i f_i \right)^{Mn} = 1 \implies d_i f_i^M = 1, d_i \in A[c_1, \cdots , c_n, f_1, \cdots , f_n]\).
+
+        Thus \(b = \sum_{i} d_i b f_i^M \in A[c_i, f_i, b_{i,j}]\).
+    \end{proof}
+
+    \begin{definition}
+        [Harthshorne] Let \(X\) be a \(k\)-scheme where \(k = \overline{k}\). Then \(X\) is a \(k\)-variety means that \(X\) is integral, separated and of finite type.
+    \end{definition}
+
+    \begin{definition}
+        [Vakil] A \(k\)-scheme \(X\) is a \(k\)-variety means \(X\) is reduced, separated, and of finite type.
+    \end{definition}
+
+    Why does Harthshorne restrict to algebraically closed fields? Base change in algebraic geometry lets us turn \(A\)-schemes to \(B\)-schemes. It might happen that if we go from a field to a field extension, we can lose the property of being irreducible: see \(\mathbb{C} \otimes_\mathbb{R} \mathbb{C}\). Harthshorne doesn't want to worry about that. A lot of authors want to follow Harthshorne, so when they define \(k\)-scheme they want to restrict to the case where we don't have problem if we base change to \(\overline{k}\).
+
+    Let \(k\) be a field, \(X\) a \(k\)-scheme which is locally of finite type and \(x\in X\) a closed point. Then we can define the degree \(\deg(x)\) as follows:
+
+    \(\mathbb{K} (x) = \mathcal{O}_{X,x} / \mathfrak{m}\) is a field which is also a \(k\)-vector space. i.e. \(\mathbb{K} (x) / k\) is a field extension. Then \(\deg(x)\) is the degree of the field extension. Why should it be a finite extension?
+    
+    \(X\in \operatorname{Spec} A \subset X, A\) is a finitely generated \(k\)-algebra.
+
+    Note that \(\mathbb{K} (x) = A_{\mathfrak{m}} / \mathfrak{m}_{\mathfrak{m}} = A / \mathfrak{m}\).
+
+    As a ring, \(\mathbb{K} (x)\) is finitely generated over \(k\). By the Nullstellensatz, \(\mathbb{K} (x)\) is a finite extension of \(k\).
+
+    Example: Suppose \(k=\mathbb{R}, X = \operatorname{Spec} k[x,y] / (x^2 + y^2 - 1)\). This is the circle in \(\mathbb{R}^2\). Consider a point on the circle, let's say \((3 / 5, 4 / 5)\). This corresponds to the ideal \(I = (x - 3 / 5, y - 4 / 5)\). This is a degree \(1\) point.
+
+    If we take \((2, \pm \sqrt{-3})\), then we get the ideal \((x-2, y^2 + 3)\) which has degree \(2\).
+    
+    It roughly tracks what happens if we change base to a field extension.
+
+    Now, suppose we have \(A\) an integral domain. \(A \subset K = A_{(0)}\). Consider a monic polynomial \(x^n + a_1 x^{n-1} + \cdots + a_n\) with \(a_i \in A\). Since \(A\) might not be \(\mathbb{Z}\), we might have a root in \(K\) that is not in \(A\). This doesn't happen in \(\mathbb{Z}\). This can be captured by normality. A self intersecting curve doesn't have normality, for example.
 
 \end{document}
