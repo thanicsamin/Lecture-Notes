@@ -2343,4 +2343,194 @@
         [6.7] \(\#\) of \(d\)-cells in \(G_n\mathbb{R}^k = \#\) of paritions of \(d\) into at most \(n\) integers \(\leq k - n\).
     \end{corollary}
 
+    \section*{Wednesday, 10/15/2025}
+    
+    Chapter 7 assumes existence of SW classes satisfying axioms 1-4.
+
+    Abbreviate \(G_n = G_n(\mathbb{R}^{\infty})\). We have bundles:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R}^n \ar[r] & E(\gamma^n) \ar[d] \ar[r,"\subset", phantom] & G_n \times \mathbb{R}^{\infty} \\ & G_n \ar[r,"\coloneqq", phantom] & G_n(\mathbb{R}^{\infty})
+        \end{tikzcd}
+    \]
+
+    Notation: \(\operatorname{w}_k \coloneqq \operatorname{w}_k(\gamma^n)\).
+
+    \(H^{\ast} X = H^{\ast} (X;\mathbb{F}_2)\). `\(\mathbb{F}_2\)-coefficients understood'.
+
+    \begin{theorem}
+        [7.1]
+
+        \[
+            H^{\ast} G_n = \mathbb{F}_2[w_1, \cdots , \operatorname{w}_n]
+        \]
+    \end{theorem}
+    
+    
+    The free polynomial ring on generators of degs \(1, 2, \cdots , n\).
+
+    \(\iff\) There is no polynomial relationship between them: if \(p\) is a polynomial in \(n\) variables and \(p(\operatorname{w}_1, \cdots , \operatorname{w}_n) = 0\), we must have \(p \equiv 0\).
+        
+    \(\iff \operatorname{w}_1, \cdots , \operatorname{w}_n\) are \textit{algebraically independent}.
+    
+    \begin{lemma}
+        Recall \(\gamma^1\) is the tautological line bundle.
+
+        Let \(\xi = \underbrace{\gamma^1 \times \cdots \gamma^1}_{n \text{ times}}\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\operatorname{w}_1(\xi), \cdots , \operatorname{w}_n(\xi)\) are algebraically independent.
+            \item \(\operatorname{w}_1, \cdots , \operatorname{w}_n\) are algebraically independent.  
+        \end{enumerate} 
+    \end{lemma}
+
+    \begin{proof}
+        \[
+            \begin{tikzcd}
+                \mathbb{R}^n \ar[r] & E(\xi) = E(\gamma^1) \times \cdots \times E(\gamma^1) \ar[d] \\ & \mathbb{P}^{\infty} \times \cdots \times \mathbb{P}^{\infty}
+            \end{tikzcd}
+        \]
+
+        \(H^{\ast} \mathbb{P}^{\infty} = \mathbb{F}_2[a]\) by Poincar\'e duality.
+
+        Thus \(H^{\ast} (\mathbb{P}^{\infty} \times  \cdots \times \mathbb{P}^{\infty}) = H^{\ast} \mathbb{P} ^{\infty} \otimes_{\mathbb{F}_2} \cdots \otimes_{\mathbb{F}_2} H^{\ast} \mathbb{P}^{\infty} = \mathbb{F}_2[a_1, \cdots , a_n]\) by K\"unneth Theorem.
+
+        By exercise, \(\operatorname{w} (\xi) = \operatorname{w} (\pi_1^{\ast} \gamma^1 \oplus \cdots \oplus \pi_n^{\ast} \gamma^1) = \prod_k \operatorname{w} (\pi_k^{\ast} \gamma^1) = (1+a_1) \cdots (1+a_n)\).
+        
+        Then \(\operatorname{w}_k(\xi) = \sigma_k(a_1, \cdots , a_n)\) the \(k\)'th elementary symmetric function.
+
+        \(\sigma_1, \cdots , \sigma_n\) are algebraically independent [Newton].
+
+        ii follows from this. We have:
+
+        \[
+            \begin{tikzcd}
+                E(\xi) \ar[r] \ar[d] & E(\gamma^n) \ar[d] \\ \mathbb{P}^{\infty} \times \cdots \mathbb \times {P}^{\infty} \ar[r,"c"] & G_n
+            \end{tikzcd}
+        \]
+
+        Suppose \(p(\operatorname{w}_1, \cdots , \operatorname{w}_n) = 0\). Apply \(c^{\ast}\) to see \(p(\operatorname{w}_1(\xi), \cdots , \operatorname{w}_n(\xi)) = 0 \implies p = 0\).
+    \end{proof}
+
+    Now we finally prove theorem 7.1. We need to prove that the polynomials on SW classes generate the cohomology.
+
+    \begin{proof}
+        We have:
+
+        \[
+            \mathbb{F}_2[\operatorname{w}_1, \cdots , \operatorname{w}_n] \subset H^{\ast} (G_n)
+        \]
+
+        Let \(\mathbb{F}_2[\operatorname{w}_1, \cdots , \operatorname{w}_n]^d\) be the subspace of degree \(d\) polynomials on the \(\operatorname{w}\)'s.
+
+        \[
+            \mathbb{F}_2[\operatorname{w}_1, \cdots , \operatorname{w}_n]^d \subset H^d(G_n)
+        \]
+
+        \(H^d(G_n)\) is a \textit{subquotient} of \(C^d(G_n)\). Meaning it is quotient of a subgroup / subgroup of a quotient [same thing].
+
+        Note that:
+
+        \[
+            \dim_{\mathbb{F}_2} \mathbb{F}_2[\operatorname{w}_1, \cdots , \operatorname{w}_n]^d \leq \dim_{\mathbb{F}_2} H^d(G_n) \leq \dim_{\mathbb{F}_2} C^d(G_n)
+        \]
+
+        We will show this is an equality.
+
+        Note that \(\dim_{\mathbb{F}_2} \mathbb{F}_2[\operatorname{w}_1, \cdots , \operatorname{w}_n]^d\) is the number of monomials \(\operatorname{w}_1^{r_1} \cdots \operatorname{w}_n^{r_n}\) of degree \(d\), meaning we need \(r_1 + 2r_2 + \cdots + n r_n = d\).
+
+        \(\dim_{\mathbb{F}_2} C^d(G_n)\) is the number of schubert symbols \(1 \leq \sigma_1 < \sigma_2 < \cdots < \sigma_n\) of dimension \(d\), meaning \(d = \sum_i (\sigma_i - i)\).
+
+        We claim they are in bijection as follows:
+
+        \[
+            r_n + 1 < r_n + r_{n-1} + 2 < \cdots < r_n + r_{n-1} + \cdots + r_1 - n
+        \]
+
+        Thus all three dimensions are equal. Therefore,
+
+        \[
+            \mathbb{F}_2 [\operatorname{w}_1, \cdots , \operatorname{w}_n] = H^{\ast} G_n
+        \]
+
+        Furthermore, we can deduce that \(\partial \equiv = 0 \pmod 2\) in \(C^{\ast} G_n\).
+    \end{proof}
+
+    \begin{corollary}
+        We have a classifying map:
+
+        \[
+            H^{\ast} (G_n) \xrightarrow{c^{\ast}} H^{\ast} (\mathbb{P}^{\infty} \times \cdots \times \mathbb{P}^{\infty})
+        \]
+
+        \[
+            \operatorname{w}_k \mapsto \sigma_k(a_1, \cdots , a_n)
+        \]
+
+        Thus, \(H^{\ast} (G^n) \cong H^{\ast} (\mathbb{P}^{\infty} \times \cdots \times \mathbb{P}^{\infty})^{S_n}\)
+
+        \(c^{\ast}\) is injective.
+    \end{corollary}
+
+    \begin{theorem}
+        [7.3 Uniqueness]
+
+        If \(\operatorname{w} (\eta) = 1 + \operatorname{w}_1(\eta) + \cdots\) and \(\widetilde{\operatorname{w}}(\eta) = 1 + \widetilde{\operatorname{w}}_1(\eta) + \cdots \) satisfying axioms 1-4, then \(\operatorname{w} = \widetilde{\operatorname{w}}\) 
+    \end{theorem}
+
+    \begin{proof}
+        Step 1: By axiom 4, \(\operatorname{w} (\gamma^1_1) = \widetilde{\operatorname{w}} (\gamma^1_1)\).
+
+        Step 2: we have
+
+        \[
+            \begin{tikzcd}
+                E(\gamma^1_1) \ar[r] \ar[d] & E(\gamma^1) \ar[d] \\ P^1 \ar[r,"c"] & P^{\infty}
+            \end{tikzcd}
+        \]
+
+        Recall \(c^{\ast} : H^1 \mathbb{P}^{\infty}  \rightarrowtail H^1 \mathbb{P}^1\) is an injection so \(\operatorname{w}(\gamma^1) = \widetilde{\operatorname{w}}(\gamma^1)\).
+
+        Step 3: Set \(\xi = \gamma^1 \times \cdots \times \gamma^1\). Then \(\operatorname{w} (\xi) = \widetilde{\operatorname{w}}(\xi)\).
+
+        To see this, \(\xi = \pi_1 ^{\ast} \gamma^1 \oplus \cdots \oplus \pi^n_{\ast} \gamma^1\).
+
+        \(\operatorname{w} (\xi) = \prod_i (1 + a_i) = \widetilde{\operatorname{w} } (\xi)\).
+        
+        Step 4: \(\operatorname{w} (\gamma^n) = \widetilde{\operatorname{w}}(\gamma^n) \).
+        
+        \[
+            \begin{tikzcd}
+                E(\xi) \ar[r] \ar[d] & E(\gamma^n) \ar[d] \\ \mathbb{P}^{\infty} \times \cdots \times \mathbb{P} ^{\infty} \ar[r,"c"] & G_n
+            \end{tikzcd}
+        \]
+
+        \(c^{\ast}\) is injective on \(H^{\ast}\). \(\operatorname{w}(\xi) = \widetilde{\operatorname{w}}(\xi)\) so \(c^{\ast} \operatorname{w} (\xi) = c^{\ast} \widetilde{\operatorname{w}} (\xi) \implies \operatorname{w} (\gamma^n) = \widetilde{w}(\gamma^n)\).
+
+        Step 5: \(\operatorname{w}(\eta) = \widetilde{\operatorname{w}} (\eta)\) when \(B(\eta)\) is CW complex.
+
+        To see this, just check:
+
+        \[
+            \begin{tikzcd}
+                E(\eta) \ar[r] \ar[d] & E(\gamma^n) \ar[d] \\ B(\eta) \ar[r] & G_n
+            \end{tikzcd}
+        \]
+
+        Step 6: \(\operatorname{w} (\eta) = \widetilde{\operatorname{w}} (\eta)\) for alll \(\eta\).
+
+        Take CW approximation:
+
+        \[
+            \begin{tikzcd}
+                E \ar[r] \ar[d] & E(\eta) \ar[d] \\ B \ar[r] & B(\eta)
+            \end{tikzcd}
+        \]
+
+        \(\operatorname{w} (E) = \widetilde{\operatorname{w}} (E)\) so \(\widetilde{\operatorname{w}} (\eta) = \widetilde{\operatorname{w}} (\eta)\). 
+    \end{proof}
+
+
+
 \end{document}

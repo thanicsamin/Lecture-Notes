@@ -2626,4 +2626,236 @@
 
     Now, suppose we have \(A\) an integral domain. \(A \subset K = A_{(0)}\). Consider a monic polynomial \(x^n + a_1 x^{n-1} + \cdots + a_n\) with \(a_i \in A\). Since \(A\) might not be \(\mathbb{Z}\), we might have a root in \(K\) that is not in \(A\). This doesn't happen in \(\mathbb{Z}\). This can be captured by normality. A self intersecting curve doesn't have normality, for example.
 
+    \section*{Wednesday, 10/15/2025}
+    
+    Let \(A\) be an integral domain, \(K = \operatorname{Frac} (A)\).
+
+    \(A\) is integrally closed means that every root in \(K\) of any monic polynomial in \(A\) lies in \(A\).
+
+    For example \(\mathbb{Z}\) is integrally closed:
+
+    Suppose \(a,b\in \mathbb{Z} \) and \(\frac{a}{b}\) is a root of \(x^n + c_1 x^{n-1} + \cdots + c_n\) with \(c_i\in \mathbb{Z}\). Further suppose \(\frac{a}{b}\) is written in lowest terms, i.e. \(\gcd(a,b)=1\).
+
+    \[
+        \left( \frac{a}{b} \right)^n + c_1 \left( \frac{a}{b} \right)^{n-1} + \cdots + c_n = 0
+    \]
+
+    Clearing denominators,
+
+    \[
+        a^n + c_1 a^{n-1} b + \cdots + c_n b^n = 0
+    \]
+
+    So \(b\mid a^n\). Thus a prime factor of \(b\) must be a prime factor of \(a\), so \(b=1\).
+
+    We only used the fact that \(\mathbb{Z}\) is a UFD. We can deduce:
+
+    \begin{theorem}
+        Every UFD is integrally closed.
+    \end{theorem}
+
+    In particular, note that polynomial ring over UFD is UFD.
+
+    Non example: let \(A = k[t^2, t^3] = \operatorname{Span}_k (1, t^2, t^3, t^4, \cdots)\). Then \(\operatorname{Frac} (A) = k(t)\). \(t\) is a root of \(x^2 - t^2\).
+
+    \begin{proposition}
+        If \(A\) is integrally closed and \(S\) is a mutiplicative system in \(A\), then \(S ^{-1} A\) is integrally closed.
+    \end{proposition}
+
+    \begin{proof}
+        Let \(x^n + c_1 x^{n-1} + \cdots + c_n \in S ^{-1} A [x]\).
+
+        We can write \(c_i = \frac{d_i}{s^i}\) for some \(s\in S\).
+
+        Let \(\alpha \in \operatorname{Frac} (S ^{-1} A) = \operatorname{Frac} (A)\) be a root of this polynomial.
+
+        Then \(s \alpha\) is a root of \(x^n + d_1 x^{n-1} + \cdots + d_n\).
+
+        Thus \(s \alpha \in A \implies \alpha \in S ^{-1} A\).
+    \end{proof}
+
+    \begin{corollary}
+        If \(A\) is integrally closed and \(P\) is a prime ideal in \(A\) then the local ring \(A_P\) is integrally closed.
+    \end{corollary}
+
+    The (right) converse is also true.
+
+    \begin{proposition}
+        If \(A\) is an integral domain and \(A_P\) is integrally closed for all prime ideals \(P\) of \(A\) then \(A\) is integrally closed. 
+    \end{proposition}
+
+    \begin{proof}
+        Let \(K = \operatorname{Frac} (A)\). Suppose \(\alpha \in K\) is the root of a monic polynomial with coefficients in \(A\). Let \(I = \{ a\in A \mid a \alpha \in A \}\). This is an ideal.
+
+        If \(I = A\) then \(1\in I \implies \alpha \in A\) so we're done.
+
+        Note that if \(\alpha \neq 0\) we have \(I\neq 0\).
+
+        Now suppose \(I\) is a proper ideal.
+
+        Let \(\mathfrak{m} \subset A\) be a maximal ideal containing \(I\).
+
+        Claim: \(\alpha \notin A_{\mathfrak{m}}\). Suppose otherwise. Then \(\alpha = \frac{t}{m}\) where \(m\in A\setminus  \mathfrak{m} \) but \(m \alpha \in A \implies m\in I \subset \mathfrak{m} \).   
+
+        However, \(A_{\mathfrak{m}}\) is integrallly closed and contains \(A\). Contradiction.
+    \end{proof}
+
+    \begin{definition}
+        \(X\) is a \textit{normal scheme} if it is irreducible and every \(\mathcal{O}_{X,x}\) is integrally closed.
+    \end{definition}
+
+    \begin{theorem}
+        TFAE:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(X\) is normal.
+            \item \(X\) is irreducible and has an affine cover.
+            \item \(X\) is irreducible and every affine open is the spectrum of an integrally closed ring. 
+        \end{enumerate} 
+    \end{theorem}
+
+    \subsection*{Chapter 6: Quasicoherent Sheaves}
+
+    \((X, \mathcal{O}_X)\).
+
+    A sheaf \(\mathcal{F}\) of \(\mathcal{O}_X\)-modules means a sheaf of abelian groups with for each \(U \subset X\), an \(\mathcal{O}_X(U)\)-module structure on \(\mathcal{F} (U)\) compatible with restriction maps.
+    
+    Quasicoherent sheaves are the main and most important class of \(\mathcal{O}_X\)-modules.
+
+    Let \(A\) be a commutative ring, \(M\) an \(A\)-module. Set \(X = \operatorname{Spec} A\). We define \(\widetilde{M}\) to be a sheaf of \(\mathcal{O}_X\)-modules satisfying:
+    
+    \[
+        \widetilde{M}(D(f)) = M \left[ \frac{1}{f} \right]
+    \]
+
+    Note that \(M \left[ \frac{1}{f} \right] \) is a module over \(\mathcal{O}_X(D(f)) = A \left[ \frac{1}{f} \right]\).
+
+    One of the ways to define a sheaf are on a base, and distinguished open sets form a base.
+
+    The modules of this form are called \textit{quasicoherent}.
+
+    What are the stalks of this sheaf?
+
+    \(\widetilde{M}_P = M_P\).
+
+    Let \((f_1, \cdots , f_n) = (1)\). i.e. \(\operatorname{Spec} A = \bigcup_{i=1}^n D(f_i) \).
+
+    We have the exact sequence (proved earlier):
+
+    \[
+        0 \to A \to \bigoplus_{1 \leq i \leq n} A \left[ \frac{1}{f_i} \right] \to \bigoplus_{1 \leq i \neq j \leq n} A \left[ \frac{1}{f_i f_j} \right]  
+    \]
+
+    It generalizes to modules:
+
+    \[
+        0 \to M \to \bigoplus_{1 \leq i \leq n} M \left[ \frac{1}{f_i} \right] \to \bigoplus_{1 \leq i \neq j \leq n} M \left[ \frac{1}{f_i f_j} \right]  
+    \]
+
+    Now we can define quasicoherent sheaves in general.
+
+    \begin{definition}
+        A sheaf \(\mathcal{F}\) of \(\mathcal{O}_X\)-modules on \(X\) is \textit{quasicoherent} if and only if there exists an affine cover of \(X\) given by \(\bigcup_{\alpha \in I} \operatorname{Spec} A_\alpha\) and a collection of \(A_\alpha\)-modules \(M_\alpha\) such that,
+
+        \[
+            \eval{\mathcal{F}}_{\operatorname{Spec} A_\alpha} \text{ as a module over } \mathcal{O}_{\operatorname{Spec} A_\alpha} \cong \widetilde{M}_\alpha
+        \]
+    \end{definition}
+
+    \begin{theorem}
+        The map \(M \mapsto \widetilde{M}\) gives an equivalence of categories from \(A\)-modules to quasicoherent \(\mathcal{O}_{\operatorname{Spec} A}\)-modules. 
+    \end{theorem}
+
+    \begin{proof}
+        Check: morphisms are the same.
+
+        Let \(M,N \in \operatorname{Mod}_A\), \(\phi : M\to N\) an \(A\)-linear map.
+
+        Define \(\widetilde{\phi}: \widetilde{M} \to \widetilde{N}\) by,
+
+        \[
+            \widetilde{\phi} (D(f)): \widetilde{M} (D(f)) = M \left[ \frac{1}{f} \right] \to \widetilde{N}(D(f)) = N \left[ \frac{1}{f} \right]
+        \]
+
+        \[
+            \frac{m}{f^k} \mapsto \frac{\phi(m)}{f^k}
+        \]
+
+        The main thing to check: 
+
+        Claim: If \(\psi: \widetilde{M} \to \widetilde{N}\) is a morphism of \(\mathcal{O}_{\operatorname{Spec} A}\)-modules there exists unique \(\phi: M \to N\) such that \(\psi = \widetilde{\phi}\).
+
+        Proof of Claim: note that \(\psi (\operatorname{Spec} A): \widetilde{M} (\operatorname{Spec} A) \to \widetilde{N} (\operatorname{Spec} A)\) but \(\widetilde{M} (\operatorname{Spec} A) = M, \widetilde{N} (\operatorname{Spec} A) = N\) so we have \(M \to N\) given by \(\phi\). We claim that \(\psi = \widetilde{\phi}\).
+
+        \[
+            \begin{tikzcd}
+                \widetilde{M} (\operatorname{Spec} A) \ar[r] \ar[d] & \widetilde{N} (\operatorname{Spec} A) \ar[d] \\ \widetilde{M} (D(f)) \ar[r] & \widetilde{N} (D(f))
+            \end{tikzcd}
+        \]
+
+        \[
+            \begin{tikzcd}
+                m \ar[d, mapsto] & M \ar[r,"\phi"] \ar[d] & N \ar[d] & n \ar[d, mapsto] \\ \frac{m}{1} & M \left[ \frac{1}{f} \right] \ar[r] & N \left[ \frac{1}{f} \right] & \frac{n}{1} \\ & \phi \left( \frac{m}{1} \right) \ar[r,"=", phantom] & \frac{\phi(m)}{1}
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{theorem}
+        If \(\mathcal{F}\) is an \(\mathcal{O}_X\) module which is quasicoherent w.r.t.\ some affine cover, then it is quasicoherent w.r.t.\ all affine opens.
+    \end{theorem}
+
+    \begin{proof}
+        We use affine communication lemma. Need to check:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(\mathcal{F}\) is quasicoherent on \(\operatorname{Spec} A\) then \(\eval{\mathcal{F}}_{D(f)}\) is quasicoherent on \(\operatorname{Spec} A\left[ \frac{1}{f} \right]\):
+            
+            \(\eval{\widetilde{M}}_{D(f)} (D(fg)) = \widetilde{M} (D(fg)) = M \left[ \frac{1}{fg} \right]\). So \(\eval{\widetilde{M}}_{D(f)} = \widetilde{M \left[ \frac{1}{f} \right] }\).   
+
+            \item Suppose now \(\mathcal{F}\) is a sheaf of \(\mathcal{O}_{\operatorname{Spec} A}\)-modules on \(\operatorname{Spec} A\), \(f_1, \cdots , f_n \in A\) with \((f_1, \cdots , f_n) = 1\) and for each \(i\) we have \(A \left[ \frac{1}{f_i} \right] \)-module \(M_i\) such that \(\eval{\mathcal{F}}_{D(f_i)} \cong \widetilde{M}_i\). Then we want to show that \(\exists\) an \(A\)-module \(M\) such that \(\mathcal{F} \cong \widetilde{M}\) as \(\mathcal{O}_{\operatorname{Spec} A}\)-module:
+            
+            Main task is figuring out what \(M\) is.
+
+            \[
+                \begin{tikzcd}
+                    & \eval{\mathcal{F}}_{D(f_i f_j)} \ar[ld, "\cong"] \ar[rd,"\cong"] \\ \eval{\widetilde{M}_i}_{D(f_i f_j)} \ar[rr,"\cong"] \ar[d,"="] & & \eval{\widetilde{M}_j}_{D(f_i f_j)} \ar[d,"="] \\
+                    \widetilde{M_i \left[ \frac{1}{f_j} \right]} \ar[rr, "\widetilde{\Phi}_{ij}", "\cong"'] & & \widetilde{M_j \left[ \frac{1}{f_i} \right]} 
+                \end{tikzcd}
+            \]
+
+            \(\widetilde{\Phi}_{ij}\) must come from some \(\Phi_{ij}: M_{i,j} = M_i \left[ \frac{1}{f_j} \right] \xrightarrow{\cong} M_j \left[ \frac{1}{f_i} \right] = M_{j,i}\). 
+            
+            \[
+                M \coloneqq \ker \bigoplus_{1 \leq i \leq n} M_i \to \bigoplus_{1 \leq i \neq j \leq n} M_{i,j} 
+            \]
+
+            To prove that \(\mathcal{F} \cong \widetilde{M} \) the main thing is to prove that \(\forall i\),
+
+            \[
+                \widetilde{M}_i = \eval{\widetilde{F}}_{D(f_i)} \xrightarrow{\sim} \eval{\widetilde{M}}_{D(f_i)}
+            \]
+
+            Comparing two quasi-coherent sheaves on \(D(f_i)\).
+
+            So we're checking \(M_i \xrightarrow{\sim} M \left[ \frac{1}{f_i} \right]\).
+
+            WLOG we check \(M_1 \xrightarrow{\sim} M \left[ \frac{1}{f_1} \right]\).
+
+            Localization is exact. So,
+
+            \[
+                0 \to M \to \bigoplus_{i} M_i \to \bigoplus_{i\neq j} M_{i,j} 
+            \]
+
+            \[
+                0 \to M\left[ \frac{1}{f_1} \right]  \to \bigoplus_{i} M_i \left[ \frac{1}{f_1} \right] = M_{i1} \to \bigoplus_{i\neq j} M_{i,j} \left[ \frac{1}{f_1} \right]   
+            \]
+
+            \[
+                0 \to M_1 \to \bigoplus_{i} M_{i,1} \to \bigoplus_{i\neq j} M_{i,j,1}
+            \]
+
+        \end{enumerate} 
+    \end{proof}
+
 \end{document}
