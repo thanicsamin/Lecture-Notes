@@ -2858,4 +2858,173 @@
         \end{enumerate} 
     \end{proof}
 
+    \section*{Friday, 10/17/2025}
+    
+    \(X = \operatorname{Spec} A, \mathcal{F}\) is an \(\mathcal{O}_X\)-module.
+
+    \(X = \bigcup_{i=1}^n D(f_i), \eval{\mathcal{F}}_{D(f_i)} \cong \widetilde{M}_i\).
+
+    \(M_i\) is an \(A[1 / f_i]\)-module.
+
+    Claim: \(\exists\) an \(A\)-module \(M\) such that \(\mathcal{F} \cong \widetilde{M}\).
+
+    \[
+        \widetilde{M_i[1 / f_j]} = \eval{\widetilde{M}_i}_{D(f_i f_j)} \cong \eval{\mathcal{F}}_{D(f_i f_j)} \cong \eval{\widetilde{M}_j}_{D(f_i f_j)} = \widetilde{M_j[1 / f_i]}  
+    \]
+
+    \[
+        \Phi_{i,j} M_i[1 / f_j] \xrightarrow{\sim} M_j[1 / f_i] = M_{i,j} 
+    \]
+
+    Let \(M = \ker \gamma\) in the following:
+
+    \[
+        0 \to M \to \bigoplus_{i=1}^n M_i \xrightarrow{\gamma} \bigoplus_{1 \leq i\neq j \leq n} M_{i,j}
+    \]
+
+    We need: \(\widetilde{M}_{D(f_i)} (= \widetilde{M[1 / f_i]}) \cong M_i\).
+
+    Claim: \(M[1 / f_i] \cong M_i\). WLOG \(i = 1\).
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & M[1 / f_1] \ar[d, dotted] \ar[r] & \bigoplus_{i=1}^n M_i[1 / f_1] \ar[d,"\cong", "{\Phi_{i,1}}"'] \ar[r] & \bigoplus_{1 \leq i\neq j \leq n} M_{i,j} [1 / f_1] \ar[d,"\cong", "{\Phi_{i,1}[1 / f_j]}"'] \\ 0 \ar[r] & M_1 \ar[r] & \bigoplus_{i=1}^n M_1[1 / f_i] \ar[r,"\gamma_{M_1}"] & \bigoplus_{1 \leq i\neq j \leq n} M_1[1 / f_i f_j]     
+        \end{tikzcd}
+    \]
+
+    If \(\mathcal{F}\) is quasicoherent then \(\mathcal{F} (\operatorname{Spec} A) = M\).
+
+    [missed some stuff here]
+
+    \(\operatorname{Res}^{D(f)}_{\operatorname{Spec} A}: M \to M^{\prime}\) is \(A\)-linear.
+    
+    By universal property of localization,
+
+    \[
+        \begin{tikzcd}
+            M \ar[rr] \ar[rd] & & M^{\prime} \\ & M[1 / f] \ar[ru, dotted]
+        \end{tikzcd}
+    \]
+
+    \(M[1 / f] \to M^{\prime}\) exists for all \(\mathcal{O}_X\)-modules.
+    
+    If \(\mathcal{F}\) is a sheaf of \(\mathcal{O} _X\)-modules and for all afine opens \(\operatorname{Spec} A \subset X\) and all distinguished opens \(D(f) \subset \operatorname{Spec} A\) we have:
+
+    \[
+        \mathcal{F} (\operatorname{Spec} A)[1 / f] \to \mathcal{F} (D(f))
+    \]
+
+    is an isomorphism is an isomorphism of \(A[1 / f]\) modules then \(\mathcal{F} \) is quasicoherent.
+
+    \subsection*{Tensor Products}
+
+    Let \(\mathcal{F} , \mathcal{G}\) be \(\mathcal{O}_X\) modules.
+
+    There is a presheaf tensor product given by \(\mathcal{F} \otimes_{\mathcal{O}_{X,\text{pre}}}(U) = \mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \mathcal{G}(U)\).
+    
+    Suppose we have \(M,N\) \(A\)-modules and \(f:M \to M^{\prime} , g:N \to N^{\prime} , h:A \to A^{\prime} \).
+
+    \(F:M \otimes_A N \to M^{\prime} \otimes_{A^{\prime}} N^{\prime}\) then \(m \otimes n \mapsto f(m) \otimes g(n)\) and we extend by linearity.
+    
+    \(F(am \otimes n) = h(a)f(m)\otimes g(n) = f(m) \otimes h(a)g(n) = f(m) \otimes g(an) = F(m \otimes an)\).
+    
+    Let \(\mathcal{F} , \mathcal{G} \text{ be } \mathcal{O}_X\)-modules.
+
+    
+    \[
+        \mathcal{F} \otimes_{\mathcal{O}_{X,pre}} \mathcal{G} (U) = \mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \mathcal{G}(U)
+    \]
+
+    \[
+        \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G} = (\mathcal{F} \otimes_{\mathcal{O}_{X,pre}} \mathcal{G}) ^{\operatorname{sh}}
+    \]
+
+    \((\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G})_x = \mathcal{F}_x \otimes_{\mathcal{O}_{X,x}} \mathcal{G}_x\).
+
+    If \(\mathcal{F} , \mathcal{G} \) are quasicoherent then \(\mathcal{F} \otimes \mathcal{G}\) is again quasicoherent.
+
+    Let \(\operatorname{Spec} A\) be affine open, \(D(f)\) a distinguished open of \(\operatorname{Spec} A\). 
+
+    \(\mathcal{F} = \widetilde{M} , \mathcal{G} = \widetilde{N}\) where \(M,N\) are \(A\)-modules.
+
+    Define a sheaf \(\mathcal{H} = \widetilde{M \otimes_A N}\).
+    
+    There is a natural map of \(\mathcal{O}_X\)-module \(\mathcal{F} \otimes_{pre} \mathcal{G} \to \mathcal{H}\).
+
+    \(D(f) \subset \operatorname{Spec} A \subset X\).
+
+    \(\eval{\mathcal{F}}_{\operatorname{Spec} A} = \widetilde{M}, \eval{\mathcal{G}}_{\operatorname{Spec} A} = \widetilde{N}\).
+    
+    \[
+        \eval{\mathcal{H}}_{\operatorname{Spec} A}  = \widetilde{M \otimes_A N} 
+    \]
+
+    this defines a quasicoherent sheaf because:
+
+    \[
+        \eval{\mathcal{H}}_{\operatorname{Spec} A[1 / f]} = M[1 / f] \otimes_{A[1 / f]} N[1 / f]
+    \]
+
+    \[
+        \simeq (M \otimes_A N)[1 / f]
+    \]
+
+    \[
+        \frac{m}{f^k} \otimes \frac{n}{f^l} \mapsto \frac{m \otimes n}{f^{k+l}}
+    \]
+
+    We can check stalk level:
+
+    \[
+        \mathcal{H}_x = \mathcal{F}_x \otimes_{\mathcal{O}_{X,x}} \mathcal{G}_x
+    \]
+
+    Let \(X\) be any scheme, \(\mathcal{F}\) a sheaf of \(\mathcal{O}_X\)-modules.
+
+    Let \(f \in \Gamma(X, \mathcal{O}_X)\). Then \(X_f = \{ x\in X \mid f(x) \neq 0 \} \).
+
+    \(X_f\) is open so we can talk about \(\Gamma (X_f, \mathcal{O}_X)\).
+
+    \[
+        \begin{tikzcd}
+            \Gamma (X, \mathcal{O}_X) \ar[rr] \ar[rd] & & \Gamma (X_f, \mathcal{O}_X) \\ & \Gamma (X, \mathcal{O}_X)[1 / f] \ar[ur, dotted]
+        \end{tikzcd}
+    \]
+
+
+    \begin{lemma}
+        [QCQS Lemma] If \(X\) is QCQS (quasicompact quasiseparated) then \(\mathcal{F}\) is quasicoherent if and only if the map in the above diagram \(\Gamma (X, \mathcal{O} _X)[1 / f] \to \Gamma(X_f, \mathcal{O}_X)\) is an isomorphism for all \(f\).
+    \end{lemma}
+
+    If \(X\) is QCQS then it has a finite open cover \(X = \bigcup_{i} \operatorname{Spec} A_i\) such that each \(\operatorname{Spec} A_i \cap \operatorname{Spec} A_j = \bigcup_{k} \operatorname{Spec} B_{i,j,k}\).
+
+    We can look at the sequence:
+
+    \[
+        0 \to \Gamma (X, \mathcal{F}) \to \bigoplus_{i} \Gamma (\operatorname{Spec} A_i, \mathcal{F}) \xrightarrow{\gamma} \bigoplus_{i,j,k} \Gamma (\operatorname{Spec} B_{i,j,k}, \mathcal{F})
+    \]
+
+    [then not clear, later]
+
+    \subsection*{Gorthendieck Pretopologies}
+
+    Regularly, we have the set of affines, some collections of smaller affinees from good covers.
+
+    In a Grothendieck pretopology we have a collections of open sets \(U\) and for each \(U\) a collection of covers, which are sets of open sets contained in \(U\).
+
+    But we don't want to think of these as sets, these can be objects in a category. So actual axioms are different.
+
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(\{ U_i \} \) is a cover of \(U\) and \(V \subset U\) is any open subset then \(\{ U_i\cap V \} \) is a cover of \(V\). 
+        \item If \(\{ U_i \} \) is a cover of \(U\) and for each \(i\), \(\{ U_{i,j} \} \) is a cover of \(U_i\) then \(\{ U_{i,j}  \} \) is a cover of \(U\).
+        \item \(\{ U \}\) is a cover of \(U\). 
+    \end{enumerate} 
+
+    If we think about distinguished opens,
+
+    \begin{enumerate}[label=\alph*)]
+        \item Every \(U\) is a distinguished open of itself.
+        \item If \(V\) is a distinguished open of \(U\) and \(W\) is a distinguished open of \(U\) then \(V \cap W\) is a distinguished open of \(V\) and \(W\) itself. 
+    \end{enumerate} 
+
 \end{document}

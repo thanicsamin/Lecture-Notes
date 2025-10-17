@@ -2531,6 +2531,144 @@
         \(\operatorname{w} (E) = \widetilde{\operatorname{w}} (E)\) so \(\widetilde{\operatorname{w}} (\eta) = \widetilde{\operatorname{w}} (\eta)\). 
     \end{proof}
 
+    \section*{Friday, 10/17/2025}
+    
+    \subsection*{Existence of SW Classes following Thom}
 
+    Uses two things: Thom isomorphism theorem and Steenrod squares.
+
+    \(\mathbb{F}_2\)-coefficients understood.
+
+    Consider a rank \(n\) vector bundle \(\begin{tikzcd}
+        \mathbb{R}^n \ar[r] & E \ar[d,"z"] \\ & B
+    \end{tikzcd}\).
+
+    Then we have \(\begin{tikzcd}
+        \mathbb{R}^n - 0 \ar[r] & E_0 \ar[d] \ar[r,"=", phantom] & E - z(B) \\ & B
+    \end{tikzcd}\) 
+
+    \(z(B)\) zero section.
+
+    \(b\in B, F_b = \pi ^{-1} b, F_{b_0} = \pi ^{-1} b - \{ 0 \}\).
+
+    \begin{remark}
+        \(H^{\ast} (F_b, F_{b_0}) \cong H^{\ast} (\mathbb{R}^n, \mathbb{R}^n - 0) \cong H^{\ast} (D^n, S^{n-1}) \cong \widetilde{H}^{\ast} (D^n / S^{n-1}) = \begin{dcases}
+            \mathbb{F}_2, &\text{ if } \ast = n ;\\
+            0, &\text{ otherwise} .
+        \end{dcases} \) 
+    \end{remark}
+
+    \begin{theorem}
+        [8.1, Thom] \(\exists ! u\in H^n(E,E_0)\) such that \(\forall b\in B\), 
+        
+        \(i_b^{\ast} u \neq 0 \in H^n(F_b, F_{b_0}) = \mathbb{F}_2\).
+
+        \(\forall k\in \mathbb{Z}, H^k E \xrightarrow{\approx} H^{k+n} (E,E_0), x \mapsto x \cup u\) is an isomorphism.
+    \end{theorem}
+
+    `Every bundle behaves like the trivial bundle'.
+
+    \begin{corollary}
+        \(H^i(E,E_0)=0\) for \(i < n\).
+    \end{corollary}
+
+    \begin{definition}
+        \(u \in H^n(E,E_0)\) Thom class \(u = u_E\).
+    \end{definition}
+
+    \begin{theorem}
+        [Thom Isomorphism]
+
+        We have the following isomorphism:
+
+        \[
+            \phi : H^k B \to H^{k+n} (E,E_0)
+        \]
+
+        \[
+            \phi(X) = \pi^{\ast} x \cup u
+        \]
+    \end{theorem}
+
+    \begin{exercise}
+        Prove 8.1 for trivial bundle. [Use K\"unneth theorem]
+    \end{exercise}
+
+    What is \(\langle u, \text{relative cycle} \rangle\)? This is inner product \(H^k(E,E_0) \otimes H_k(E,E_0) \to \mathbb{F}_2\). It `counts' the number of intersections with the zero sections.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/zerosection}
+    \end{figure}    
+
+    \subsection*{Steenrod Squares (Generalizes Cup Products)}
+
+    Axioms:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\operatorname{Sq}^i: H^n(X,Y) \to H^{n+i}(X,Y) \) homology of abelian groups \(\forall n, i \geq 0\).
+        \item `naturality' \(f: (X,Y) \to (X^{\prime} , Y^{\prime})\) then \(\operatorname{Sq}^i \circ f^{\ast} = f^{\ast} \operatorname{Sq}^i\).
+        \item \(a\in H^n(X,Y)\).
+        
+        \begin{align*}
+            \operatorname{Sq}^0 a &= a \\
+            \operatorname{Sq}^n a &= a \cup a\\
+            \operatorname{Sq}^i a &= 0 \text{ when } i > n
+        \end{align*}
+
+        \item Cartan formula
+        
+        \[
+            \operatorname{Sq}^k(a\cup b) = \sum_{i+j = n} \operatorname{Sq}^i a \cup \operatorname{Sq}^j b
+        \]
+    \end{enumerate} 
+
+    These axioms look like the axioms of SW classes.
+
+    \begin{definition}
+        [SW Classes, Thom]
+
+        Let \(\phi\) be the Thom isomorphism. Then,
+
+        \[
+            \operatorname{w}_i(\xi) = \phi ^{-1} \operatorname{Sq}^i \phi (1) = \phi ^{-1} \operatorname{Sq}^i u
+        \]
+    \end{definition}
+
+    So, when \(n\) is the rank of the bundle,
+
+    \[
+        \begin{tikzcd}
+            u \ar[rrr, mapsto] & & & \operatorname{Sq}^i u \ar[ddd, mapsto, "\phi^{-1}"] \\ & H^n(E,E_0) \ar[r,"\operatorname{Sq}^i"] & H^{n+i} (E,E_0) \\ & H^0 B \ar[u] \ar[r] & H^i(B) \ar[u] \\ 1 \ar[uuu, mapsto] \ar[rrr] & & & \operatorname{w}_i(\xi)
+        \end{tikzcd}
+    \]
+
+    Goal: SW classes satisfy axioms.
+
+    Total Steenrod square: \(\operatorname{Sq}(a) = a + \operatorname{Sq}^1 a + \operatorname{Sq}^2 a + \cdots + \operatorname{Sq}^n a, a \in H^n(X,Y)\).
+
+    Then \(\operatorname{Sq}: H^{\ast} (X,Y) \to H^{\ast} (X,Y), \operatorname{Sq} = 1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots\).
+
+    Cartan: \(\operatorname{Sq}(a\cup b) = \operatorname{Sq}(a) \cup \operatorname{Sq}(b)\). 
+
+    Axioms for SW classes:
+
+    Axiom 1: \(\operatorname{w}_0 \xi = 1, \operatorname{w}_i \xi = 0\) for \(i > \operatorname{rank} \xi\) follows from 3.
+
+    Axiom 2: Naturality:
+
+    \[
+        \begin{tikzcd}
+            E \ar[r,"f"] \ar[d] & E^{\prime} \ar[d] \\ B \ar[r,"\overline{f}"] & B^{\prime}
+        \end{tikzcd}
+    \]
+
+    \(f: (E,E_0) \to (E^{\prime} , E_0^{\prime})\).
+
+    Thom class is natural [meaning \(f^{\ast} u_{E^{\prime}} = u_E\) since \(f\) is isomorphism on fibers].
+
+    Thom isomorphism is natural: \(f^{\ast} \circ \phi_{E^{\prime}} = \phi_E \circ \overline{f}^{\ast}\).
+    
+    Thus, \(\overline{f}^{\ast} \operatorname{w}_i(\xi^{\prime}) = \overline{f}^{\ast} \phi ^{-1} \operatorname{Sq}^i \phi(u_{E^{\prime}}) = \phi_E ^{-1} f^{\ast} \operatorname{Sq}^i \phi_{E^{\prime}}(u_{E^{\prime}}) =\) [some calculations] \(=\operatorname{w}_i(\overline{f}^{\ast} \xi ^{\prime} )\).
 
 \end{document}
