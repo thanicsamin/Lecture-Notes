@@ -3027,4 +3027,207 @@
         \item If \(V\) is a distinguished open of \(U\) and \(W\) is a distinguished open of \(U\) then \(V \cap W\) is a distinguished open of \(V\) and \(W\) itself. 
     \end{enumerate} 
 
+    \section*{Monday, 10/20/2025}
+    
+    We review the QCQS [Quasicompact Quasiseprated] lemma
+    
+    \begin{lemma}
+        [QCQS Lemma] Let \(X\) be a QCQS scheme. If \(\mathcal{F}\) is a quasicoherent sheaf of \(\mathcal{O}_X\)-mod and \(f\in \Gamma(X, \mathcal{O}_X)\) and \(X_f = \{ x\in X \mid f(x)\neq 0 \} \) an open subset of \(X\),
+
+        \[
+            \Gamma(X, \mathcal{F}) \left[ \frac{1}{f} \right] \xrightarrow{\sim} \Gamma(X_{f}, \mathcal{F}).
+        \]
+    \end{lemma}
+
+    Let \(X = \bigcup_{i=1}^n U_i\) where \(U_i = \operatorname{Spec} A_i\).
+
+    We can write \(U_i \cap U_j = \bigcup_{k=1}^{n_{i,j}} U_{i,j,k}\) where \(U_{i,j,k} = \operatorname{Spec} A_{i,j,k}\).
+
+    \(\eval{\mathcal{F}}_{U_i} = \widetilde{M}_i\) and \(\eval{\mathcal{F}}_{U_{i,j,k}} = \widetilde{M}_{i,j,k}\).
+        
+    Sheaf axioms:
+
+    \[
+        0 \to \Gamma(X,\mathcal{F}) \to \bigoplus_{i=1}^n \Gamma(U_{i}, \mathcal{F}) \to \bigoplus_{i,j,k} \Gamma (U_{i,j,k}, \mathcal{F})
+    \]
+
+    Sequence of \(\Gamma (X , \mathcal{O}_X)\)-modules.
+
+    Apply \((f^{\mathbb{Z}}) ^{-1}\) to the complex. Recall \(\bigoplus \Gamma (U_i , \mathcal{F}) = \bigoplus M_i\) and \(\bigoplus \Gamma (U_{i,j,k} ,\mathcal{F}) = \bigoplus M_{i,j,k}\).
+        
+    We have,
+        
+    \[
+       0 \to \Gamma(X, \mathcal{F})\left[ \frac{1}{f} \right] \to \bigoplus_{i} M_i \left[ \frac{1}{f} \right] \to \bigoplus_{i,j,k} M_{i,j,k} \left[ \frac{1}{f} \right] 
+    \]
+
+    \[
+        0 \to \Gamma(X_f , \mathcal{F}) \to \bigoplus_{i} \Gamma (X_f \cap U_i , \mathcal{F}) \to \bigoplus_{i,j,k} \Gamma (X_f \cap U_{i,j,k} , \mathcal{F})
+    \]
+
+    Intermission: when is a full subcategory of an abelian category abelian?
+
+    A full subcategory \(\mathcal{D}\) of an abelian category \(\mathcal{C}\) is an abelian category if and only if:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(0\in \mathcal{D}\).
+        \item \(\forall X , Y \in \mathcal{D}, X \oplus Y \in \mathcal{D}\).
+        \item \(\forall X,Y \in \mathcal{D}, \phi \in \operatorname{Hom}_{\mathcal{C}}(X,Y) = \operatorname{Hom}_{\mathcal{D}}(X,Y)\), we must have \(\ker \phi, \operatorname{coker} \phi \in \mathcal{D}\).  
+    \end{enumerate} 
+
+    \begin{theorem}
+        For any scheme \(X\), the category \(\operatorname{Qcoh}_X\) is abelian.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(0\) is quasi-coherent.
+            \item Suppose \(\mathcal{F}, \mathcal{G} \in \operatorname{Qcoh}_X\). Let \(\mathcal{H}(\operatorname{Spec} A) = \mathcal{F} (\operatorname{Spec} A) \oplus \mathcal{G} (\operatorname{Spec} A)\) [which we write \(M \oplus N\)]. Then,
+            
+            \[
+                \mathcal{H}(D(f)) = \mathcal{F} (D(f)) \oplus \mathcal{G}(D(f)) = M \left[ \frac{1}{f} \right] \oplus N \left[ \frac{1}{f} \right]
+            \]
+
+            \[
+                = (M \oplus N) \left[ \frac{1}{f} \right] = \mathcal{H} (\operatorname{Spec} A) \left[ \frac{1}{f} \right]
+            \]
+
+            So we have \(\mathcal{F} \oplus \mathcal{G} \to \mathcal{H}\). Then \(x\leftrightarrow P \in \operatorname{Spec} A\).
+
+            \(\mathcal{F}_x \oplus \mathcal{G}_x = M_P \oplus N_P = (M \oplus N)_P = \mathcal{H}_x\). So we have an isomorphism at the stalk level. We need to check that this map respects local compatibility, that would imply we have global isomorphism.
+
+            To check compatibility, we need to find sections on an open set containing \(x\). We can shrink those open sets to only check at affine opens, which we have done. So we're done.
+
+            \item Now we check kernels and cokernels. Consider \(\mathcal{F} \xrightarrow{\phi} \mathcal{G}\). Recall that we can patch an scheme out of affine schemes. We don't distinguish between morphisms of sheaves and what it does to \(\operatorname{Spec} A\). Let \(\mathcal{F}(\operatorname{Spec} A) \equiv  M, \mathcal{G} (\operatorname{Spec} A) = N, \phi(\operatorname{Spec} A) = \phi\).
+            
+            We have \(A\)-module homomorphism \(M \xrightarrow{\phi} N\).
+
+            Write \(K \to M \xrightarrow{\phi} N \to C \to 0\).
+
+            Let \(\mathcal{K}(\operatorname{Spec} A) = \widetilde{K}\).
+
+            Let \(\mathcal{C}(\operatorname{Spec} A) = \widetilde{C}\).
+
+            We check that these define quasicoherent sheaves. i.e. the following is exact:
+
+            \[
+                0 \to K \left[ \frac{1}{f} \right] \to M \left[ \frac{1}{f} \right] \to N \left[ \frac{1}{f} \right] \to C \left[ \frac{1}{f} \right] \to 0
+            \]
+
+            This means \(\mathcal{K}(D(f)) = \ker M[1 / f] \to N[1 / f] = K[1 / f] \simeq \widetilde{K} (\operatorname{Spec} A) [1 / f]\).
+
+            Thus \(\mathcal{K}\) and \(\mathcal{C}\) are quasicoherent sheaves. We need to check that they are actually the kernel and cokernel.
+
+            In order to do this, we need to check exactness of complexes of abelian groups at the stalk level.
+
+            \[
+                0 \to \mathcal{K}_x \to \mathcal{F}_x \to \mathcal{G}_x \to \mathcal{C}_x \to 0
+            \]
+
+            is exact of all \(x \in \operatorname{Spec} A \subset X\). If \(x \leftrightarrow P\) then,
+
+            \[
+                0 \to K_P \to M_P \to N_P \to C_P \to 0
+            \]
+        \end{enumerate} 
+    \end{proof}
+
+    Suppose \(X\) is a locally noetherian scheme. We define a coheren
+
+    \begin{definition}
+        [Coherent Sheaves]
+
+        Suppose \(X\) is a locally noetherian scheme. We define a \textit{coherent sheaf} on \(X\) to be a quasicoherent sheaf \(\mathcal{F}\) such that \(\forall \operatorname{Spec} A \subset X\) we have \(\mathcal{F} \cong \widetilde{M}\) where \(M\) is an \(A\)-module satisfying the following 3 conditions:
+        
+        \begin{enumerate}[label=\arabic*)]
+            \item \(M\) is finitely generated as an \(A\)-module.
+            \item \(M\) is finitely presented as an \(A\)-module.
+            \item \(M\) is coherent as an \(A\)-module 
+        \end{enumerate}
+        
+        Note: finitely generated means there is a finite set of generators.
+        
+        Finitely presented means there exists a surjective map of \(A\)-modules \(A^r \to M\) with finitely generated kernel, i.e. not only is it finitely generated, there are finitely many relations that generate all the other relation.
+
+        Coherent means that \(M\) is finitely generated \(M\) is finitely generated and every \(A\)-linear map from \(A^r\) to \(M\) has finitely generated kernel.
+
+        These conditions are equivalent for modules over noetherian rings.
+    \end{definition}
+
+    Why are the conditions equivalent?
+
+    If \(M \subset A^2\) is an \(A\)-submodule,
+
+    \[
+        \begin{tikzcd}
+            & & m_1 , \cdots , m_k \ar[d,"\in", phantom, sloped] & \overline{m}_1 , \cdots , \overline{m}_k \ar[d, "\in", phantom, sloped] \\ & & M \ar[d,"\subset", phantom, sloped] \ar[r] & \overline{M} \ar[d,"\subset", phantom, sloped] \\ 0 \ar[r] & A \ar[r] & A^2 \ar[r] & A \ar[r] & 0  
+        \end{tikzcd}
+    \]
+
+    \(M \cap A = (n_1 , \cdots , n_l)\). \(M = \operatorname{span}_A(m_1 , \cdots , m_k , \cdots , n_1 , \cdots , n_l)\).  
+
+    \begin{theorem}
+        If \(X\) is a locally noetherian scheme and \(\mathcal{F} \subset \mathcal{G}\) are quasiocherent sheaves and \(\mathcal{G}\) is cooherent, then \(\mathcal{F}\) is coherent.
+    \end{theorem}
+
+    \begin{proof}
+        Taking sections over \(\operatorname{Spec} A\) it suffices to show that an \(A\)-submodule \(M\) of a finitely generated \(A\)-module \(N\) is again finitely generated.
+
+        \begin{lemma}
+            If \(A\) is noetherian and \(M \subset N\) are \(A\)-modules and \(N\) is finitely generated then \(M\) is finitely generated.
+        \end{lemma}
+
+        Proof: Here is the situation:
+        
+        \[
+            \begin{tikzcd}
+                & A^r \ar[d, two heads] \\ M \ar[r, "i"] & N
+            \end{tikzcd}
+        \]
+
+        We can take the fiber product:
+
+        \[
+            \begin{tikzcd}
+                M^{\prime} \ar[r, "i"] \ar[d, two heads] & A^r \ar[d] \\ M \ar[r, "i"] & N 
+            \end{tikzcd}
+        \]
+
+        Thus \(M\) must be finitely generated.
+
+    \end{proof}
+
+    \begin{theorem}
+        If \(X\) is locally noetherian, then \(\operatorname{Coh}_X\) is an abelian category.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(O\) is coherent.
+            \item If \(\mathcal{F}, \mathcal{G}\) are coherent, \(\operatorname{Spec} A \subset X, M = \mathcal{F} (\operatorname{Spec} A), N = \mathcal{G} (\operatorname{Spec} A), (\mathcal{F} \oplus \mathcal{G}) (\operatorname{Spec} A) = M \oplus N\).
+            \item If \(M, N\) are f.g. modules, wee need to show \(\ker \phi : M \to N\) and \(\operatorname{coker} \phi : M \to N\) are fintiely generated.
+            
+        \end{enumerate} 
+    \end{proof}
+
+    A coherent sheaf \(\mathcal{F}\) is \textit{locally free} if \(X\) has an affine cover \(\bigcup_{\alpha \in I} \operatorname{Spec} A_\alpha\) such that \(\eval{\mathcal{F}}_{\operatorname{Spec} A_\alpha} \cong \widetilde{M}_\alpha\) where \(M_\alpha\) is a free f.g. \(A_\alpha\) module, i.e. \(M_\alpha \cong A_\alpha^r\).
+
+    Locally free sheaves are the algebraic geometer's version of vector bundles. 
+
+    Locally free sheaves do not form an abelian subcategory of coherent sheaves. Not even close.
+
+    Example: Suppose \(A = \mathbb{Z}\) and \(M, N \in \mathbb{Z}\) as modules over \(A\). They're rank \(1\) free modules. We further define \(M \xrightarrow{\cdot 2} N\), which is just \(\mathbb{Z} \xrightarrow{\cdot 2} \mathbb{Z}\). Then \(\operatorname{coker} \cdot 2 = \mathbb{Z} / 2 \mathbb{Z}\). But \(\mathbb{Z} / 2 \mathbb{Z}\) is not free. We want to check it is not free in all affine neighborhoods of \([(2)]\). These are \(\operatorname{Spec} \mathbb{Z}[1 / \text{odd}]\). Then cokernel is not free.
+
+    A sheaf of ideals on a loclly noetherian scheme means a coherent subsheaf of \(\mathcal{O}_X\). 
+
+    \(\mathcal{O}_X\) is a locally free sheaf of rank \(1\).
+
+    Is a sheaf of ideals necessarily locally free? Not necessarily.
+
+    Example: Let \(X = \operatorname{Spec} k[x,y], I = (x,y). \widetilde{I}\) is a sheaf of ideals on \(X\).
+    
+    If it were locally free,  we would have some open neighborhood \(\eval{\widetilde{I}}_{D(f_i)} \cong \mathcal{O}_{\operatorname{Spec} A[1 / f_i]}\).
+    
+    At the level of ideals, it means \(I[1 / f_i] \cong\) free \(A[1 / f_i]\)-module. It would actually have to be a free-module of rank \(1\). Thus it would need to have a single generator as an \(A[1 / f_i]\)-module. But any open set containing the origin would need at least two generators.
+
 \end{document}

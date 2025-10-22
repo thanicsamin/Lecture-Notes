@@ -2671,4 +2671,118 @@
     
     Thus, \(\overline{f}^{\ast} \operatorname{w}_i(\xi^{\prime}) = \overline{f}^{\ast} \phi ^{-1} \operatorname{Sq}^i \phi(u_{E^{\prime}}) = \phi_E ^{-1} f^{\ast} \operatorname{Sq}^i \phi_{E^{\prime}}(u_{E^{\prime}}) =\) [some calculations] \(=\operatorname{w}_i(\overline{f}^{\ast} \xi ^{\prime} )\).
 
+    \section*{Monday, 10/20/2025}
+    
+    Review: \(\mathbb{F}_2\)-coefficients understood. We have vector bundle \(\xi: \mathbb{R}^n \to E \xrightarrow{\pi} B\). We defined \(E_0 = E - z(B)\), the complement of the zero section. We defined the Thom class \(u = u_E \in H^n(E,E_0)\) so that \(i_b^{\ast} u \neq 0 \in H^n(F_b , F_{b_0})\) for all \(b\in B\).
+    
+    Thom isomorphism theorem: \(\phi_E = \phi : H^{\ast} B \to H^{\ast + n} (E,E_0)\) given by \(\phi(x) = (\pi^{\ast} X) \cup u_E\) is an isomorphism.
+
+    Then we can define SW class of a bundle: \(\operatorname{w} _i \xi = \phi ^{-1} \operatorname{Sq}^i u\).
+
+    Recall that \(\operatorname{Sq}^i: H^{\ast} (E,E_0) \to H^{\ast + i} (E, E_0)\).
+
+    We also have a total version: \(\operatorname{w} (\xi) = \phi ^{-1} \operatorname{Sq} u_E\) where \(\operatorname{Sq} = 1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots\)
+
+    \begin{lemma}
+        \(\operatorname{w} (\xi \oplus \xi^{\prime}) = \operatorname{w} (\xi) \cup \operatorname{w} (\xi^{\prime})\).
+    \end{lemma}
+
+    ALso recall we have the cross product: \(H^i X \otimes H^j Y \to H^{i+j} (X \times Y)\) by \(a \otimes b \mapsto a \times b\).
+
+    This comes from: if we have an \(n\)-simplex on \(X \times Y\) given by \(\sigma : \Delta^n \to X \times Y\), then \((a \times b)(\sigma) = a(_i(p_X \circ \sigma)) b((p_Y \circ \sigma)_j)\) where we have the front \(i\) and back \(j\) face maps and \(p_X , p_Y\) are projections.
+
+    Then, \(a \times b = (p_X ^{\ast} a) \cup (p_Y^{\ast} b)\) and \(a\cup b = \Delta ^{\ast} (a \times b)\).
+    
+    Now, suppose we have two bundles \(\xi: \mathbb{R}^n \to E \to B\) and \(\xi^{\prime}: \mathbb{R}^{n^{\prime}} \to E^{\prime} \to B^{\prime}\).
+    
+    Then we can have the cross version of the lemma:
+
+    \begin{lemma}[X-lemma]
+        \(\operatorname{w} (\xi) \times \operatorname{w} (\xi^{\prime}) = \operatorname{w} (\xi \times \xi^{\prime})\).
+    \end{lemma}
+
+    Claim: X-lemma implies the lemma.
+
+    \begin{proof}
+        \(\operatorname{w} (\xi \oplus \xi^{\prime}) = \operatorname{w} (\Delta^{\ast} (\xi \times \xi^{\prime})) = \Delta^{\ast} \operatorname{w} (\xi \times \xi^{\prime}) = \Delta^{\ast} (\operatorname{w} (\xi) \times \operatorname{w} (\xi^{\prime})) = w(\xi) \cup w(\xi^{\prime})\).
+    \end{proof}
+
+    Now we prove the X-lemma.
+
+    \begin{proof}
+        \(\operatorname{w} (\xi \times \xi^{\prime}) = \phi_{E \times E^{\prime}}^{-1} (\operatorname{Sq}(u_{E \times E^{\prime}})) = \phi_{E \times E^{\prime}}^{-1} (\operatorname{Sq}(u_E \times u_{E^{\prime}}))\).
+        
+        Cartan \(\implies \operatorname{Sq} (a \cup b) = \operatorname{Sq} \cup \operatorname{Sq} b\), applying \(\Delta^{\ast}\) we see that \(\operatorname{Sq} (a \times b)n = \operatorname{Sq} \times \operatorname{Sq} b\).
+
+        Thus, \(= \Phi^{-1} _{E \times E^{\prime}} (\operatorname{Sq} u_E \times \operatorname{Sq} u_{E^{\prime}}) = (\phi_E \times \phi_{E^{\prime}})^{-1} (\operatorname{Sq} u_E) \times (\operatorname{Sq} u_{E^{\prime}})\).
+        
+        \(= \operatorname{w} (\xi) \times \operatorname{w} (\xi^{\prime})\).
+    \end{proof}
+
+    Recall Axiom 4: \(\operatorname{w}_1(\gamma^1_1) \neq 0\). We want to prove that.
+
+    \begin{proof}
+        Let \(M\) be the M\"obius strip. Then we have \((E,E_0)\). We also have \((M, \partial M)\). We can collapse the boundary of the m\"obius strip to a point which gives us \(\mathbb{P}^2\). i.e. we have:
+        
+        \[
+            H^{\ast} (E, E_0) \xrightarrow[\text{htpy invariance}]{\approx} H^{\ast} (M, \partial M) \xleftarrow[\text{good pair}]{\approx} H^{\ast} (M / \partial M, \ast) \cong H^{\ast} (\mathbb{P}^2, \ast)
+        \]
+
+        Recall \(E = E(\gamma^1_1) \subset \mathbb{P}^2 \times \mathbb{R}^3, [-1,1] \times \mathbb{R} / \sim , (x,t) \sim (-x,-t)\).
+
+        \(u_E \neq 0\) by definition and \(H^1(E,E_0) \cong H^1(P^2), u \leftrightarrow a\).
+        
+        Then, \(\operatorname{Sq}^1 a = a \cup a \neq 0 \implies \operatorname{Sq}^1 u \neq 0\).
+
+        Thus, \(\operatorname{w}_1(\gamma^1_1) = \phi ^{-1} (\operatorname{Sq}^1 u_E) \neq 0\). 
+
+    \end{proof}
+
+    \subsection*{Chapter 9}
+
+    For this chapter, \(\mathbb{Z}\)-coefficients understood.
+
+    We want to talk about orientation. Let \(V\) be a \(\dim n\) vector space. Let \(V_0 = V - \{ 0 \}\).
+
+    \begin{definition}
+        An orientation for \(V\) is a generator \(\mu_V \in H_n(V, V_0)\).
+    \end{definition}
+
+    This corresponds to the linear algebra definition for \(V\). Orientation of \(V\) corresponds to \(\frac{\text{ordered bases \((b_1, ..., b_n)\) for \(V\)}}{(b_1, \cdots, b_n) \sim (b_1^{\prime}, \cdots, b_n^{\prime})\text{ if determinant of change of basis matrix is positive}}\).
+    
+    Then, the class of \([b_1 , \cdots , b_n]\) maps to the orientation in homology given by \(\sigma : \Delta^n \to V\) where \(\sigma(t_0 , \cdots , t_n) = \sum_{i=1}^n (t_i - t_{i-1}) b_i\).
+    
+    Now suppose \(\xi : \mathbb{R}^n \to E \to B\) is a vector bundle.
+
+    \begin{definition}
+        Orientation for \(\xi\) is an assignment \(b \mapsto \mu_{F_b}\) that is `continuous in \(b\)'. Meaning, \(\forall b \in B\), \(\exists (U, h)\) where \(b\in U\) and,
+        
+        \[
+            \pi ^{-1} U \xrightarrow{h} U \times \mathbb{R}^n
+        \]
+
+        \(\forall x\in U, F_x \to \{ x \} \times \mathbb{R}^n \cong \mathbb{R}^n\) is o.p.
+    \end{definition}
+
+    If there exists such an orientation we call \(\xi\) is orientizable.
+
+    \begin{theorem}
+        [Thom Isom, 9.1] Let \(\xi: \mathbb{R}^n \to E \to B\) be an oriented vector bundle.
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\exists ! u = u_E \in H^n(E,E_0)\) such that \(\forall b, i^{\ast} _b u \in H^n(F_b , F_{b_0}) \cong \mathbb{Z}\) is a generator. We call \(u\) the Thom class.
+            \item \(\phi = \phi_E : H^{\ast} B \xrightarrow{\approx} H^{\ast + n} (E, E_0)\) given by \(\phi(x) = \pi ^{\ast} x \cup u\), this is the THom isomorphism.  
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{corollary}
+        \(H^k(E,E_0) = 0\) for \(k < n\).
+
+        \(H^n(E, E_0) \cong \mathbb{Z}\) if \(B\) is path connected.
+        
+        e.g. \(\gamma^1_1\) is path connected.
+
+        \(H^1(E,E_0 ; \mathbb{Z}) = H^1(\mathbb{P}^2 ; \mathbb{Z}) = 0\) 
+    \end{corollary}
+
 \end{document}
