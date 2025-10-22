@@ -2755,7 +2755,7 @@
     Now suppose \(\xi : \mathbb{R}^n \to E \to B\) is a vector bundle.
 
     \begin{definition}
-        Orientation for \(\xi\) is an assignment \(b \mapsto \mu_{F_b}\) that is `continuous in \(b\)'. Meaning, \(\forall b \in B\), \(\exists (U, h)\) where \(b\in U\) and,
+        Orientation for \(\xi\) is an assignment \(b \mapsto \mu_{F_b} \in H_n(F_b , F_{b_0} ; \mathbb{Z})\) that is `continuous in \(b\)'. Meaning, \(\forall b \in B\), \(\exists (U, h)\) where \(b\in U\) and,
         
         \[
             \pi ^{-1} U \xrightarrow{h} U \times \mathbb{R}^n
@@ -2784,5 +2784,138 @@
 
         \(H^1(E,E_0 ; \mathbb{Z}) = H^1(\mathbb{P}^2 ; \mathbb{Z}) = 0\) 
     \end{corollary}
+
+    \section*{Wednesday, 10/22/2025}
+    
+    Let \(\xi : \mathbb{R}^n \to E \to B\). Recall that an orientation on \(\xi\) is a `continuous assignment of a point' \(b \mapsto \mu_{F_b} \in H_n(F_b , F_{b_0} ; \mathbb{Z})\).
+
+    Equivalently, continuous assignment of \([b_1 , \cdots , b_n]\) an equivalence class of ordered basis of \(F_b\).
+    
+    \[
+        \begin{tikzcd}
+            M^n \text{ manifold} & \text{local homology} \\
+            \text{cont } x \ar[r,mapsto] & \mu_x \in H_n(M, M-x) \cong \mathbb{Z}
+        \end{tikzcd}
+    \]
+
+    Puzzle: \(M^n\) is smooth, orientable on \(M \leftrightarrow\) orientation on \(TM\) how?
+    
+    Note that there is \(\exp_x : T_x M \to M\) which is a diffeomorphism near \(x\). Patch them up with orientation preserving atlas on \(M\). Meaning, \((M,\mathcal{A})\) where transition maps \(\Phi_\beta \circ \Phi_\alpha ^{-1}\) are oritentation preserving, meaning their determinant is positive.
+
+    \[
+        \begin{tikzcd}
+            \text{orientation on } M \ar[rr] \ar[rd] & & \text{orientation on } TM \ar[ll] \ar[ld] \\ & \text{o.p. atlas on } M \ar[ur] \ar[ul]
+        \end{tikzcd}
+    \]
+
+    Exercise 12A: \(\operatorname{w}_1(\xi) =  0 \iff \xi\) orientable.
+    
+    \begin{theorem}
+        \(\xi\) orientable \(\iff \operatorname{w}_1(\xi) \in H^1(B;\mathbb{F}_2)\) is \(0\).
+    \end{theorem}
+
+    Note that, \(\forall n, \exists\) two \(n\)-plane bundles over \(S^1\) given by \(\epsilon^n\) and \(\gamma^1_1 \oplus \epsilon^{n-1}\).
+
+    \[
+        \begin{tikzcd}[column sep = large]
+            \text{bundles over } S^1 \ar[r, "\text{clutching}"] & \pi_0(\text{GL}_n(\mathbb{R})) \xrightarrow[\det]{\approx} \{ \pm 1 \}
+        \end{tikzcd}
+    \]
+
+    Bundles over \(I\) are trivial.
+
+    \(\xi : \mathbb{R}^n \to E \to B\) homomorphism [orientation character] \(\widetilde{\operatorname{w}}: \pi_1 B \to \{ \pm 1 \}\).
+
+    \[
+        \begin{tikzcd}
+            \epsilon^n \ar[r] \ar[d] & E(\gamma) \ar[d] \\ I \ar[r,"\exp"] & S^1
+        \end{tikzcd}
+    \]
+
+    \(E(\gamma) \cong \frac{I \times \mathbb{R}^n}{(0,v) \sim (1,Av)}\) where \(A\in \text{GL}_n(\mathbb{R})\).
+
+    \[
+        \widetilde{\operatorname{w}} [\gamma] = \begin{dcases}
+            +1, &\text{ if } \gamma ^{\ast} \epsilon \text{ trivial}  ;\\
+            -1, &\text{ if } \gamma^{\ast} \epsilon \text{ non-trivial}.
+        \end{dcases}
+    \]
+
+    Essentially, given a loop we walk around it to see if my right hand becomes my left hand.
+
+    By UCT and Hurewicz theorem,
+
+    \[
+        H^1(B;\mathbb{F}_2) \cong \operatorname{Hom} (H_1 B, \mathbb{F}_2) \cong \operatorname{Hom} (\pi_1 B, \{ \pm 1 \})
+    \]
+
+    \[
+        \operatorname{w}_1(\xi) \longleftrightarrow \widetilde{\operatorname{w}} 
+    \]
+
+    They correspond for \(\gamma^1_1\) so they correspond for \(\gamma\).
+
+    \(\mathbb{P}^{\infty} = G_1(\mathbb{R}^{\infty}) \to G_n(\mathbb{R}^{\infty})\) is isomorphism on \(\pi_1\). Meaning,
+
+    \[
+        \pi_1 \mathbb{P}^{\infty} \to \pi_1 G_n (\mathbb{R}^{\infty})
+    \]
+
+    by cellular approximation [they have the same \(1\)-skeleton and thus \(1\)-cells. Recall the \(1\)-skeleton contains some Schubert cells with dimension \(1\). So any path on \(G_n(\mathbb{R}^{\infty})\) is homotopic to one in \(G_1(\mathbb{R}^{\infty})\)]. It is \(1-1\) because of \(\operatorname{w}_1\).
+
+    Therefore, they correspond for \(\gamma^n\). Thus, \(\operatorname{w} \rightsquigarrow \widetilde{\operatorname{w}}\) for general \(\xi\).
+
+    Milnor-Stasheff uses oriented grasmanian \(\widetilde{G}_n(\mathbb{R}^{\infty})\) to show that \(H^1(\widetilde{G}_n(\mathbb{R}^{\infty});\mathbb{F}_2) = 0\). 
+
+    \begin{theorem}
+        [Thom Isomorphism Theorem]
+
+        \(\xi : \mathbb{R}^n \to E \to B\). We have a \(\mathbb{Z}\)-coefficient version and a \(\mathbb{F}_2\)-coefficient version. In other words, we have a general manifold version and an oriented manifold version.
+
+        We can then state the theorem in a fancier way:
+
+        \(H^{\ast} (E,E_0)\) is a free rank \(1\) module over \(H^{\ast} B\) with a generator [the thom class] in \(\deg n\). This works for both \(\mathbb{Z}\) and \(\mathbb{F}_2\) coefficients.
+
+        The module action is given by the cup product. For \(x\in H^{\ast} B\) and \(a\in H^{\ast} (E, E_0)\), we can first take the pullback \(\pi ^{\ast} x\) of \(x\) into \(H^{\ast} E\). Then,
+
+        \(x \cdot a \coloneqq \underbrace{(\pi ^{\ast} x)}_{H^{\ast} E} \cup \underbrace{a}_{H^{\ast} (E,E_0)}\).
+        
+        Then \(H^{\ast} B \cong H^{\ast + n} (E,E_0) = H^{\ast} B \cup u_E\) 
+    \end{theorem}
+
+    \begin{proof}
+        [Proof 1]
+
+        We use the Serre Spectral Sequence. We look at the relative fibration:
+
+        \[
+            \begin{tikzcd}
+                (F,F_0) \ar[r] & (E,E_0) \ar[d] \\ & B
+            \end{tikzcd}
+        \]
+
+        We then have the machine that computes the cohomology of the total space in terms of the cohomology of the base with coefficients in the fiber:
+
+        \[
+            E^2 = H^p(B;H^q(F,F_0)) \implies H^{p+q}(E,E_0)
+        \]
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{c||ccccc}
+                \toprule
+                     &  &  & \(0\)  &  &  \\
+                \midrule
+                    \(n\)  &  &  & \(H^{\ast}(F,F_0)\)  &  &  \\
+                \midrule
+                     &  &  &  &  &  \\
+                     &  &  & \(0\)  &  &  \\
+                     &  &  &  &  &  \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+        [Take M622 for more information].
+    \end{proof}
 
 \end{document}

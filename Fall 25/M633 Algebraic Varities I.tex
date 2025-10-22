@@ -3230,4 +3230,198 @@
     
     At the level of ideals, it means \(I[1 / f_i] \cong\) free \(A[1 / f_i]\)-module. It would actually have to be a free-module of rank \(1\). Thus it would need to have a single generator as an \(A[1 / f_i]\)-module. But any open set containing the origin would need at least two generators.
 
+    \section*{Wednesday, 10/22/2025}
+    
+    Mentally, algebraic geometers identify locally free sheaves with vector bundles.
+
+    Suppose \(B\) is a smooth manifold. Then a vector bundle is another smooth manifold \(\begin{matrix}E \\ \pi\downarrow \\ B\end{matrix}\), and if \(E_b = \pi ^{-1} b\) then \(E_b\) is a vector space for all \(b\in B\).
+
+    We could finish the definition in two ways. We can consider \(E \times_B E \xrightarrow{+} E\) which gives fiberwise vector addition. Then,
+
+    \[
+        \begin{tikzcd}
+            E \times_B E \ar[rr,"+"] \ar[rd] & & E \ar[ld] \\ & B
+        \end{tikzcd}
+    \]
+
+    We also have scalar multiplication:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C} \times E \ar[rr, "\text{scalar}"] \ar[rd] & & E \ar[ld] \\ & B
+        \end{tikzcd}
+    \]
+
+    \(E\) also has to be locally trivial. For all \(b\in B\) there exists an open neighborhood \(U\) such that:
+
+    \[
+        \begin{tikzcd}
+            \pi ^{-1} U \ar[r,"\cong"] \ar[d,"\pi"] & U \times \mathbb{C}^n \ar[d,"\text{pr}_1"] \\ U \ar[r,"="] & U
+        \end{tikzcd}
+    \]
+
+    We also need:
+
+    \[
+        \begin{tikzcd}
+            \pi ^{-1} (U \cap V) \ar[rr, shift right] \ar[rr, shift left] \ar[rd] & & (U \cap V) \times \mathbb{C}^n \ar[ld] \\ & U \cap V
+        \end{tikzcd}
+    \]
+
+    Then \(U \cap V \to \operatorname{Map} (\mathbb{C}^n , \mathbb{C}^n) = \operatorname{GL}_n(\mathbb{C})\).
+
+    Given a vector bundle \(\pi: E \to B\) consider all sections:
+
+    \[
+        \mathcal{F} (U) = \left\{ U \xrightarrow[\text{smooth}]{s} \pi ^{-1} U : \pi \circ s = \operatorname{id}_{U} \right\} 
+    \]
+
+    Let \(\mathcal{O}_B =\) sheaf of smooth functions on \(B\).
+
+    Claim: \(\mathcal{F}(U)\) is a sheaf of \(\mathcal{O}_B\)-modules.
+
+    Then, we have the key idea:
+
+    \begin{center}
+        This sheaf is locally free
+    \end{center}
+
+    \[
+        \begin{tikzcd}
+            U \times \mathbb{C}^n \ar[d,"pr_1"] \\ U \ar[u, bend left = 80, "s"]
+        \end{tikzcd}
+    \]
+
+    So locally free sheaves and vector bundles have a lot in commmon.
+
+    There's another object that has a lot in common with them: Finitely generated projective modules.
+
+    Let \(A\) be a ring and let \(M, N\) be \(A\)-modules. Suppose we have a surjective \(A\)-linear map \(\phi: M \twoheadrightarrow N\). Suppose we have an \(A\)-linear map \(A^r \to N\). Suppose further that we can lift to a map \(A^r \to M\).
+    
+    \[
+        \begin{tikzcd}
+            & A^r \ar[ld, dotted] \ar[d] \\ M \ar[r,"\phi", two heads] & N
+        \end{tikzcd}
+    \]
+
+    This categorical property characterizes a somewhat larger class of \(A\)-modules, the projective \(A\)-modules.
+
+    \begin{definition}
+        A module \(P\) is projective if and only if for every surjective module homomorphism \(M \twoheadrightarrow N\) and a module homomorphism \(P \to N\) we can lift to a module homomorphism \(P \to M\).
+        
+        \[
+        \begin{tikzcd}
+            & P \ar[ld, dotted] \ar[d] \\ M \ar[r,"\phi", two heads] & N
+        \end{tikzcd}
+    \]
+        
+    \end{definition}
+
+    We're only interested in finitely generated projective modules. Assume \(A\) is Noetherian and \(P\) is a f.g. projective \(A\)-module.
+
+    For example: \(A = \mathbb{Z} [\sqrt{-5}], P = (2, 1+\sqrt{-5})\).
+
+    \begin{theorem}
+        If \(P\) is a f.g. projective module, then there exists an isomorphism \(A^r \cong P \oplus Q\) of \(A\)-modules for some \(r\) and some module \(Q\).
+
+        Conversely, any direct summand of \(A^r\) is projective.
+    \end{theorem}
+
+    \begin{proof}
+        The converse is easier to see.
+        
+        \[
+            \begin{tikzcd}
+                & A^r \ar[ddl, dotted] \ar[d,"pr_1"] \\ & P \ar[u, bend right = 70] \ar[d] \\ M \ar[r,"\phi", two heads] & N
+            \end{tikzcd}
+        \]
+
+        For the other direction, \(P\) is finitely generated so there exists a surjective \(f: A^r \twoheadrightarrow P\) for some \(r\).
+
+        \[
+            \begin{tikzcd}
+                & P \ar[dl, dotted,"f"'] \ar[d,"id"] \\ A^r \ar[r, two heads] & P
+            \end{tikzcd}
+        \]
+
+        \(f: P \to A^r\) is injective. Define \(Q = \operatorname{coker} f\).
+        
+        \[
+            \begin{tikzcd}
+                0 \ar[r] & P \ar[r,"f"] & A^r \ar[l, bend left, "\phi"] \ar[r,"g"] & Q \ar[r] & 0
+            \end{tikzcd}
+        \]  
+
+        Thus \(A^r \to P \oplus Q\). The map is given by \((\phi, g)\) 
+
+    \end{proof}
+
+    \(P\) projective \(\iff \widetilde{P}\) locally free.
+    
+    Suppose \(X = \operatorname{Spec} A\). Then \(\widetilde{P}_x \cong \mathcal{O}_{X,x}^r\) for some \(r\). \(P_x\) is a finitely generated projective \(\mathcal{O}_{X,x}\)-module, a local ring. \(P \oplus Q = A^r \implies P_x \oplus Q_x = A_x^r = \mathcal{O}_{X,x}^r\).
+
+    Claim: f.g. projective module over a local ring is free.
+
+    The proof follows from Nakayama's lemma.
+
+    \subsection*{Examples of Quasicoherent Scheme}
+
+    Firstly, if \(X = \operatorname{Spec} A\) then we any \(\widetilde{M}\) works.
+
+    Example: \(A^r\), projective \(A\)-modules. Recall they're like vector bundles.
+
+    \(A / I\) where \(I\) is an ideal. An special case is \(A / \mathfrak{m}\) where \(\mathfrak{m}\) is a maximal ideal.
+
+    What is the stalk at a point \(x\) corresponding to the ideal \(P\) at \(\widetilde{A / I}\)?
+
+    If \(P\notin V(I)\) we claim that \((A / I)_P = 0\). In fact \(I_P = A_P\) because \(P \notin V(I) \iff I \nsubseteq P \iff \exists a\in I \setminus P\). Then \(\frac{a}{a} \in I_P\). We have SES \(0 \to I \to A \to A / I \to 0\) so we have \(0 \to I_P \to A_P \to (A / I)_P \to 0\), and if we have \(I_P \xrightarrow{\cong} A_P\) we must have \((A / I)_P = 0\).
+    
+    Since the stalk at any \(P \in V(I)\) is \(0\), any germ must also be \(0\). We can say the sheaf `lives on \(V(I)\)'..
+
+    More generally any \(A / I\)-module \(M\) is an \(A\)-module on which \(I\) acts as \(0\). In other words \(I\) annihilates \(M\).
+
+    Notation: let \(M\) be an \(A\)-module and let \(m\in M\). Define the support of \(m\) as follows: \(\operatorname{Supp} m = \operatorname{Supp}_A m = \left\{ P \in \operatorname{Spec} A : m_P \neq 0 \right\} \).
+
+    Geometrically, \(m\) is a section of the sheaf \(\widetilde{M}\). We are asking: what points of these scheme is the germ of \(m\) non-zero?
+
+    \(\operatorname{Supp} M = \{ P \in \operatorname{Spec} A : M_P \neq 0 \} = \bigcup_{m\in M} \operatorname{Supp} m\).
+
+    Note that \(m_P = 0\) means \(\exists a\in A \setminus P\) such that \(am = 0\). Meaning, \(I = \operatorname{Ann}_A(m) \nsubseteq P\). Meaning \(P \nsubseteq V(I)\).
+
+    \(\operatorname{Supp} m\) is always a closed subset of \(\operatorname{Spec} A\). \(\operatorname{Supp} M\) is often but not always closed.
+
+    Example: let \(A = \mathbb{Z}, M = \mathbb{Z}_{(2)} / \mathbb{Z}\). \(\forall p\neq 2, \frac{1}{p} \pmod 1\) is annihilated by \((p)\). Then we have \(\operatorname{Supp} (\mathbb{Q} / \mathbb{Z}) = \{ \text{closed points except } (2)\}\) in \(\operatorname{Spec} \mathbb{Z}\). 
+
+    Now we talk about associated points.
+
+    \begin{definition}
+        \(\operatorname{Ass}_A M = \operatorname{Spec} A \cap \{ \operatorname{Ann} (m) \mid m \in M \}\)
+
+        Note that \(\operatorname{Ann} (m)\) is not necessarily prime. We collect all the annihilators that happen to be prime.
+
+        Suppose \(P = \operatorname{Ann} (m)\). Then \(Am \cong A / P \subset M\). Therefore,
+
+        \(\operatorname{Ass}_A M = \{ P \in \operatorname{Spec} A : \text{some submodule of } M \cong A / P  \}\) 
+    \end{definition}
+
+    If \(A\) is noetherian and \(M\) is finitely generated then the set of associated points \(\operatorname{Ass}_A M\) is finite and \(\operatorname{Supp} M\) is \(\overline{\operatorname{Ass}_A M}\).
+
+    \subsection*{Chapter 7}
+
+    We know what schemes are but we don't have the category of schemes. We need morphisms of schemes.
+
+    First Idea (Geometric):
+
+    If we have map of ringed spaces \((X, \mathcal{O}_X) \xrightarrow{\pi} (Y, \mathcal{O}_Y)\).
+
+    Then we have \(\mathcal{O}_Y(U) \to \mathcal{O}_X (\pi ^{-1} U)\) must be a ring homomorphism compatible of restriction. Meaning, \(\pi_{\ast} \mathcal{O}_X\) is a sheaf of \(\mathcal{O}_Y\)-algebras [algebras are modules with ring structure].
+
+    Second Idea (Algebraic):
+
+    We want \(\operatorname{Mor}_{\text{Schemes}} (\operatorname{Spec} A, \operatorname{Spec} B) = \operatorname{Mor} _{\text{Rings}}(B,A)\).
+
+    This means, if we have \(X, Y\) schemes and affine opens \(\operatorname{Spec} A \subset X\) and \(\operatorname{Spec} B \subset X\) that map then we have the map \(B \to A\).
+
+    Official definition is not this.
+
 \end{document}
