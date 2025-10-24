@@ -10,6 +10,7 @@
         bottom = 30mm
     }
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}%
 
 \theoremstyle{definition}
 \newtheorem{problem}{Problem}
@@ -3414,7 +3415,13 @@
 
     If we have map of ringed spaces \((X, \mathcal{O}_X) \xrightarrow{\pi} (Y, \mathcal{O}_Y)\).
 
-    Then we have \(\mathcal{O}_Y(U) \to \mathcal{O}_X (\pi ^{-1} U)\) must be a ring homomorphism compatible of restriction. Meaning, \(\pi_{\ast} \mathcal{O}_X\) is a sheaf of \(\mathcal{O}_Y\)-algebras [algebras are modules with ring structure].
+    Then we have \(\pi^{\ast} \mathcal{O}_Y(U) \to \mathcal{O}_X (\pi ^{-1} U)\) must be a ring homomorphism compatible with restriction. Meaning, \(\pi_{\ast} \mathcal{O}_X\) is a sheaf of \(\mathcal{O}_Y\)-algebras [algebras are modules with ring structure].
+
+    \[
+        \begin{tikzcd}
+            \mathcal{O}_Y(U) \ar[d] \ar[r] & \mathcal{O}_X(\pi ^{-1} U) \ar[d] \\ \mathcal{O}_Y(V) \ar[r] & \mathcal{O}_X(\pi ^{-1} V)
+        \end{tikzcd}
+    \]
 
     Second Idea (Algebraic):
 
@@ -3423,5 +3430,201 @@
     This means, if we have \(X, Y\) schemes and affine opens \(\operatorname{Spec} A \subset X\) and \(\operatorname{Spec} B \subset X\) that map then we have the map \(B \to A\).
 
     Official definition is not this.
+
+    \section*{Friday, 10/24/2025}
+    
+    Recap: \(\pi: X \to Y, \pi ^{\ast} : \mathcal{O}_Y \to \pi _{\ast} \mathcal{O} _X\).
+
+    \[
+        \begin{tikzcd}
+            \mathcal{O}_Y(U) \ar[r,"\pi ^{\ast} (U)"] \ar[d,"\text{res}"] & \mathcal{O} _X(\pi ^{-1} U) \ar[d, "\text{res}"] \\ \mathcal{O} _Y(V) \ar[r,"\pi ^{\ast} (V)"] & \mathcal{O}_X(\pi ^{-1} V)
+        \end{tikzcd}
+    \]
+
+    We can also look at stalks. If we have \(p\in X\) and \(\pi (p) = q \in Y\), since the map respects restrictions as in the commutative diagram, we have \(p\in \pi ^{-1} q\) and a map \(\mathcal{O}_{Y,q} \to \mathcal{O}_{X,p}\).
+
+    We don't know a priori that the stalks are local rings. But if we have schemes, which are locally affine schemes and thus \(X = \operatorname{Spec} A, x \leftrightarrow P\) we have \(\mathcal{O}_{X,x} = A_P\).
+
+    \begin{definition}
+        A local homomorphism between local rings:
+
+        \[
+            (B, \mathfrak{n}) \xrightarrow{f} (A,\mathfrak{m})
+        \]
+
+        is a homomorphism \(f\) such that \(f ^{-1} (\mathfrak{m}) = \eta\). 
+    \end{definition}
+
+    Noon-example: consider \(p\)-adics. \(A = \mathbb{Q}_p\) and \(B =\mathbb{Z}_p\) then we have \(f: \mathbb{Z}_p \hookrightarrow \mathbb{Q}_p\). [We can also think about \(A = \mathbb{C} ((t)), B = \mathbb{C} [[t]]\)].
+
+    Then \(\mathfrak{m} = (0), \mathfrak{\eta} = (p)\). But \(f ^{-1} (\mathfrak{m}) = (0) \neq \eta\). So \(f\) is not a local homomorphism.
+
+    \begin{definition}
+        A morphism \(\pi : (X, \mathcal{O} _X) \to (Y, \mathcal{O} _Y)\) of locally ringed spaces is a local homomorphism if the map \(\mathcal{O}_{Y,q} \to \mathcal{O}_{X,p}\) is local for all \(q = \pi (p)\). 
+    \end{definition}
+
+    \begin{theorem}
+        Let \(\pi^\sharp : B \to A\) be a ring homomorphism. Then the associated map of locally ringed spaces \((\operatorname{Spec} A, \mathcal{O}_{\operatorname{Spec} A}) \to (\operatorname{Spec} B, \mathcal{O}_{\operatorname{Spec} B})\) is local.
+    \end{theorem}
+
+    Suppose \(\pi: X \to Y\) where \(X = \operatorname{Spec} A\) and \(Y = \operatorname{Spec} B\). Suppose this sends the ideal \(P\) to the ideal \(Q\).
+
+    Then \(Q = \pi ^{\sharp -1} (P)\). We have: 
+
+    \[
+        B_Q = \mathcal{O} _{Y,Q} \to \mathcal{O} _{X,P} = A_P
+    \]
+
+    So it is a map \(B_Q \to A_P\).
+
+    Note that \(B_Q = B[(B \setminus Q) ^{-1}]\). We have,
+    
+    \[
+        \frac{b}{f} \to \frac{\pi^\sharp (b)}{\pi^\sharp (q)}
+    \].
+
+    Then, \(B_Q = B[(B \setminus Q)^{-1}] \to A [ \pi ^\sharp (B \setminus Q) ^{-1}] \subset A[ (A \setminus P) ^{-1}] = A_P\).
+    
+    The maximal ideal of \(A_P\) is \(PA_P\). Then, \(\pi^{\sharp -1} (P A_P) = \pi^{\sharp - 1}(P) B_Q = QB_Q\).
+    
+    Then, if we have a local homomorphism \((B,\mathfrak{n}) \to (A,\mathfrak{m})\), we claim that we have a well-defined map \(\mathbb{K} (\mathfrak{n}) = B / \mathfrak{n} \to A / \mathfrak{m} = \mathbb{K} (\mathfrak{m})\). It is a field homomorphism so it must be a field extension: we have \(\mathbb{K} (\mathfrak{n}) = \mathbb{K} (\mathfrak{m})\).
+    
+    We claim that a section of \(\mathcal{O} _X\) at a neighborhood \(U\) of \(x\in X\) has a well-defined value at \(x\), which is an element of \(\mathcal{O}_{X,x} / \mathfrak{m}_x = \mathbb{K} (x)\).
+
+    Now, suppose we have:
+
+    \[
+        (X, \mathcal{O}_X) \to (Y, \mathcal{O} _Y)
+    \]
+    
+    \[
+        p \mapsto q
+    \]
+
+    \(X = \operatorname{Spec} A, Y = \operatorname{Spec} B, \pi : (X,\mathcal{O}_X) \to (Y, \mathcal{O}_Y)\) is a morphism of ringed spaces.
+
+    \[
+        B = \mathcal{O}_Y(Y) \to \mathcal{O}_X(\pi ^{-1} (Y)) = \mathcal{O}_X(X) = A
+    \]
+
+    Then if \(\pi\) is a morphism of ringed spaces then it determines a homomorphism \(B \to A\) which we write \(\pi^\sharp (X)\).
+
+    Non-Example: A non-local morphism of ringed spaces betwwen affine schemes: Consider \(\mathbb{Q}_p\) and \(\mathbb{Z}_p\) again.
+
+    \[
+        \begin{tikzcd}[row sep=small]
+            & X & Y & \\
+            \{ (0) \} \ar[r,"=", phantom] & \operatorname{Spec} \mathbb{Q}_p \ar[r,"\pi"] & \operatorname{Spec} \mathbb{Z}_P \ar[r,"=",phantom] & \{ (0), (p) \} \\ & & & \overline{(0)} = \{ (0), (p) \}  
+        \end{tikzcd}
+    \]
+
+    Then, \(\pi (\{ (0) \}) = (p)\). Open sets in \(\operatorname{Spec} \mathbb{Z}_p\) is \(\varnothing , \{ (0) \} , \{ (0),(p) \} \).
+    
+    \(\pi^\#(U) : \mathcal{O}_Y(U) \to \mathcal{O}_X(\pi ^{-1} (U)), \mathcal{O}_Y(Y) \to \mathcal{O}_X(X), \mathbb{Z}_p \hookrightarrow \mathbb{Q}_p\).
+
+    However, if we start with \(\mathbb{Z}_p \xrightarrow{\pi^\sharp} \mathbb{Q}_p\) we get a different map of ringed spaces, \(\pi^{\sharp - 1}(0) = (0)\).
+    
+    We have two notions. Which one is the `right' notion? The latter one.
+
+    \begin{theorem}
+        There is only one local homomorphism \(\pi : X \to Y, X = \operatorname{Spec} A, Y = \operatorname{Spec} B\) corresponding to a given ring homomorphism \(\pi^\sharp : B \to A\).
+    \end{theorem}
+
+    \begin{proof}
+        If we have a local homomorphism of affine schemes, then at the level of topological spaces, we want it to do what it is supposed to do: it sends any prime ideal to the right prime ideal.
+
+        Let \(P \in \operatorname{Spec} A = X, Q \in \pi^{\sharp - 1} (P) \in \operatorname{Spec} B\).
+
+        Claim: \(\pi(P) = Q\).
+
+        To prove this: note that \(\pi(P)\) is the kernel of \(B \to \mathbb{K} (P)\), where:
+
+        \[
+            \begin{tikzcd}
+                B \ar[d,"\pi^\sharp"] \ar[r] & \mathbb{K} (P) \\ A \ar[r] & A_P \ar[u]
+            \end{tikzcd}
+        \]
+
+        Let \(Q = \{ x\in B \mid \pi^\sharp (x) \in P\}\).
+        
+        We have: \(B \to B_Q \to A_P \to \mathbb{K} (P)\).
+
+        Essentially, a a given \(\pi^\sharp\) induces a map \(B_Q \to A_P\), which forces \(\pi(P) = Q\).
+    \end{proof}
+
+    Suppose we again have \(\operatorname{Spec} A = X \to Y = \operatorname{Spec} B\) and \(g\in B\).
+
+    \[
+        \pi ^{-1} (D_B(g)) = \pi ^{-1} (D_A(\pi^{\sharp}(g)))
+    \]
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            \Gamma(Y, \mathcal{O}_Y) \ar[d,"=",phantom,sloped] \ar[r] & \Gamma(X, \mathcal{O}_X) \ar[d,"=", phantom, sloped] \\ B \ar[r,"\pi^\sharp"] & A
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            \Gamma(D_B(g), \mathcal{O}_Y) \ar[d,"=",phantom,sloped] \ar[r] & \Gamma(D_A(\pi^\sharp(g)), \mathcal{O}_X) \ar[d,"=",phantom,sloped] \\ B[1 / g] & A[1 / \pi^\sharp (g)]
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            B \ar[r, "\pi^\sharp(X)"] \ar[d] & A \ar[d] \\ B[1 / g] \ar[r,"\pi^\sharp(D_B(g))"] & A[1 / \pi^\sharp g]
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            b \ar[r,mapsto] & \pi^\sharp(b) \\
+            \frac{b}{g^n} \ar[r,mapsto] & \frac{\pi^\sharp(b)}{\pi^{\sharp}(g)^n}
+        \end{tikzcd}
+    \]
+
+    Now we're ready to define the category of schemes.
+
+    \begin{definition}
+        A morphisms between schemes \((X, \mathcal{O}_X)\) and \((Y, \mathcal{O}_Y)\) is a local morphism of locally ringed spaces.
+    \end{definition}
+
+    Example: what is a morphism from \(X\) to \(\operatorname{Spec} B\)?
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            X = \bigcup_{\alpha \in I} \operatorname{Spec} A_\alpha \ar[r] & \operatorname{Spec} B \\ \operatorname{Spec} A_\alpha \ar[r] & \operatorname{Spec} B \\ \forall \alpha \; A_\alpha & B \ar[l]
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}[row sep = tiny]
+            \operatorname{Spec} A_\beta  \subset \operatorname{Spec} A_\alpha & A_\alpha \ar[rr] & & A_\beta \\ & &  B \ar[ru] \ar[lu]
+        \end{tikzcd}
+    \]
+
+    Then we can say:
+
+    \begin{proposition}
+        A scheme together with a morphism to \(\operatorname{Spec} B\) is in fact a locally ringed space of \(B\)-algebras.
+    \end{proposition}
+
+    \begin{definition}
+        The functor of points of a scheme \(X\) is the contravariant functor from schemes to sets given by:
+
+        \[
+            Z \to \operatorname{Mor}_{\text{Sch}} (Z, X)
+        \]
+
+        For example, \(Z \to W \rightsquigarrow \operatorname{Mor}_{\text{Sch}}(W,X) \to \operatorname{Mor}_{\text{Sch}}(Z,X)\). This is just the Yoneda embedding. 
+    \end{definition}
+
+    Slogan: a morphism of schemes from \(Z\) to \(X\) is just a \(Z\)-valued point on \(X\).
+
+    For example, \(X = \operatorname{Spec} \mathbb{Q} [x,y] / (x^2 + y^2 - 1), K \supset \mathbb{Q}\). Then what is a \(\operatorname{Spec} K\)-valued point of \(X\)?
+
+    Note that we have \(\operatorname{Spec} K \to \operatorname{Spec} \mathbb{Q} [x,y] / (x^2 + y^2 - 1)\).
+    
+    \(\mathbb{Q} [x,y] / (x^2 + y^2 - 1) \to K\).
 
 \end{document}

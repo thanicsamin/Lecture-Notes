@@ -10,6 +10,7 @@
         bottom = 30mm
     }
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}%
 
 \theoremstyle{definition}
 \newtheorem{problem}{Problem}
@@ -2916,6 +2917,112 @@
         \end{table}
 
         [Take M622 for more information].
+    \end{proof}
+
+    \section*{Friday, 10/24/2025}
+    
+    \(\xi : \mathbb{R}^n \to E \to B\)
+
+    \begin{theorem}
+        [Thom Isomorphism] Here \(\mathbb{Z}\)-coefficient if oriented, else \(\mathbb{F}_2\).
+
+        Then \(H^{\ast} (E,E_0)\) is free rank \(1\) module over \(H^{\ast} B\). Generator \(u_E \in H^n(E,E_0)\).
+    \end{theorem}
+
+    \begin{theorem}
+        [Thom Isomorphism]
+
+        \(\phi : H^{\ast} B \xrightarrow{\approx} H^{\ast + n} (E,E_0)\), \(\phi (y) = \pi ^{\ast} y \cup u_E\).
+    \end{theorem}
+
+    \begin{theorem}
+        [Thom Isomorphism for Homology]
+
+        \[
+            H_{\ast} B \xleftarrow{\approx} H_{\ast + n} (E,E_0)
+        \] 
+
+        It is given by cap product with the Thom class.
+
+    \end{theorem}
+
+    We did first proof via spectral sequences.
+
+    Second proof: Mayer-Vietoris.
+
+    \begin{proof}
+        Case 1: Trivial bundle.
+
+        Here \((E, E_0) = B \times (\mathbb{R}^n , \mathbb{R}^n_0)\). In \((E,E_0)\) we have \(H^{\ast} = H^{\ast} B \otimes H^{\ast} (\mathbb{R}^n, \mathbb{R}^n_0)\) is free rank \(1\) by K\"unneth theorem.
+
+        Case 2: \(B = B^{\prime} \cup B^{\prime\prime}\) open cover. Assume Thom Isomorphism Theorem holds for \(\eval{\xi}_{B^{\prime}},\eval{\xi}_{B^{\prime\prime}} \text{ and } \eval{\xi}_{B^{\prime} \cap B^{\prime\prime}}\).
+        
+        Write \(B^\cap \coloneqq B^{\prime} \cap B^{\prime\prime}\). Let \(E^\cap = \pi ^{-1} (B^\cap)\) and \(E_0^\cap = \pi_0 ^{-1} (B^\cap)\).
+        
+        Question: why is this a thom class?
+
+        We have the relative Mayer-Vietoris exact sequence:
+
+        \[
+            \begin{tikzcd}[column sep = small]
+                \cdots \ar[r] & H^n(E,E_0) \ar[r] & H^n(E^{\prime}, E^{\prime}_0) \oplus H^n(E^{\prime\prime}_0 ,  E^{\prime\prime} _0) \ar[r] & H^n(E^\cap , E_0^\cap) \ar[r] & \cdots \\
+                & u \ar[r, mapsto] & (u^{\prime}, u^{\prime\prime}) \ar[r, mapsto] & 0
+            \end{tikzcd}
+        \]
+
+        Thus we must have \(u^{\prime} \mapsto u^\cap \mapsfrom u^{\prime\prime}\).
+        
+        Now we can use a \(5\)-lemma argument:
+        
+        \[
+            \begin{tikzcd}
+                H^i B \ar[r] \ar[d] & H^i B^{\prime} \oplus H^i B^{\prime\prime} \ar[r] \ar[d, "\phi", "\cong"'] & H^i B^\cap \ar[d, "\phi", "\cong"'] \\
+                H^{i+n} (E,E_0) \ar[r] & H^{i+n} (E^{\prime} , E^{\prime}_0) \oplus H^{i+n} (E^{\prime\prime}, E^{\prime\prime}_0) \ar[r] & H^{i+n} (E^\cap, E_0^\cap)
+            \end{tikzcd}
+        \]
+
+        So, \(H^i B \xrightarrow{\phi, \cong} H^{i+n}(E,E_0)\).
+
+        Case 3: Finite cover \(B = B_1 \cup \cdots \cup B_k\) such that \(\eval{\xi}_{B_i}\) is trivial for \(\forall i\).
+        
+        Use induction and Case 2: \((B_1 \cup \cdots \cup B_{k-1})\cup B_k\).
+        
+        Thus Thom isomorphism holds if \(B\) is compact.
+
+        Case 4: General case. Then use limits. Too hard.
+
+    \end{proof}
+
+    \begin{proof}
+        Third proof. Assume \(\xi\) is smooth \(n\)-bundle, \(B\) is a \(k\)-dimensional smooth closed manifold. 
+
+        We can give \(\xi\) a metric \(\lVert \cdot \rVert : E \to \mathbb{R}\).
+
+        Disk bundle \(D(E) = \{ e\in E \mid \lVert e \rVert \leq 1 \}\).
+
+        \(S(E) = \{ e\in E \mid \lVert e \rVert = 1 \}\).
+
+        Then \((D(E), S(E)) \to (E,E_0)\) gives isomorphism \(H_{\ast}\) and \(H^{\ast}\)
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/DESE_example}
+        \end{figure}
+
+        \(D(E)\) is a compact manifold with \(\partial D(E) = S(E)\).
+
+        Let \(PD_B \text{ and } PD_{DE}\) be Poincar\'e (Lefschetz) duality isomorphims. Define thom class to P-L dual of zero section.
+        
+        \[
+            u_E \coloneqq PD_{DE} (z_{\ast} [B]) \in H^n (DE, SE)
+        \]
+
+        Here \(z\) is the zero section.
+
+        \(\phi(y) = \pi^{\ast} y \cap u_E \overset{\text{claim}}{=} PD_{DE} (\operatorname{inc}_{\ast} PD_B y)\).
+
+        For the claim see Bredon's topology and geometry book page 369.
+
     \end{proof}
 
 \end{document}
