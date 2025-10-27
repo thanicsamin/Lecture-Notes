@@ -189,7 +189,7 @@
     
     Then, \(F(\phi): F(X) \to F(Y), F(\phi)\in \operatorname{Mor}_{\mathcal{D}}(F(X),F(Y))\). 
 
-    We have the following categories: Sets, Groups, Ab, Top, Rings, Comm, Field, \(R\)-mod, COmplexes of \(R\)-mod, Sheaves on \(X\), etc.
+    We have the following categories: Sets, Groups, Ab, Top, Rings, Comm, Field, \(R\)-mod, Complexes of \(R\)-mod, Sheaves on \(X\), etc.
 
     \begin{definition}
         A functor is \textit{faithful} if \(\forall X,Y\in \operatorname{Ob} \mathcal{C}, \operatorname{Mor}_{\mathcal{C}} (X,Y) \to \operatorname{Mor}_{\mathcal{D}}(F(X),F(Y))\) is injective.
@@ -3626,5 +3626,176 @@
     Note that we have \(\operatorname{Spec} K \to \operatorname{Spec} \mathbb{Q} [x,y] / (x^2 + y^2 - 1)\).
     
     \(\mathbb{Q} [x,y] / (x^2 + y^2 - 1) \to K\).
+
+    \section*{Monday, 10/27/2025}
+    
+    Recap: we were talking about functor oof points on a scheme.
+
+    If \(X\) is a scheme, we can find \(X \rightsquigarrow F_X(Z) = \operatorname{Mor} _{\operatorname{Sch}} (Z,X)\).
+    
+    Suppose we're interested in solving \(f_1(x_1 , \cdots , x_n), \cdots , f_m(x_1 , \cdots , x_m)\) over \(k\), maybe even extensions of \(k\).
+    
+    Thus the system defines a functor from \(k\)-algebras to sets.
+
+    Suppose \(A = k[x_1 , \cdots , x_n] / (f_1 , \cdots , f_m)\).
+
+    If \(B\) is a \(k\)-algebra, then there exists a \(k\)-algebra homomorphism.
+    
+    From \(B\) we can get \(\operatorname{Hom}_{k \text{-alg}} (A,B) = \text{solutions in \(B\) of the system}\). Indeed, \(\phi(x_j) \in B\) are the solutions.
+    
+    Equivalently, we can think about \(\operatorname{Mor}_{\operatorname{Sch} / k} (\operatorname{Spec} B, \operatorname{Spec} A)\). 
+
+    For example, consider the following:
+
+    \[
+        \left\{ \begin{bmatrix}
+            a & b \\
+            c & d \\
+        \end{bmatrix} : ad - bc = 1 \right\} = \operatorname{SL}_2(-)
+    \]
+
+    [We don't know a priori where \(a,b,c,d\) live.]
+
+    Then, we can look at \(\operatorname{Spec} \mathbb{Z} [a,b,c,d] / (ad - bc - 1)\). 
+
+    Generally, suppose we want to look at \(A = \mathbb{Z} [x]\). Consider \(\operatorname{Spec} A = \mathbb{A}^1_{\mathbb{Z}} = \mathbb{A}^1\). This is a scheme.
+
+    Question: what is a \(Z\)-point of \(\mathbb{A}^1\)?
+
+    Then, what I am really asking is, what is \(\operatorname{Mor} (Z, \mathbb{A}^1)\)?
+
+    Whenever we have an affine scheme and we look at morphisms to the affine scheme, it is the same thing as looking at schemes with extra structure.
+
+    Then, such a morphism can be thought of as a \(\mathbb{Z}[x]\)-algebraed [think of ringed space] which is covered by spectrum of \(\mathbb{Z}[x]\)-algebras.
+
+    What is a \(\mathbb{Z}[x]\)-algebra? A \(\mathbb{Z}\)-algebra is a commutative ring. Then, any \(\mathbb{Z}[x] \to B\) has only the extra data of where \(x\) goes, since \(\mathbb{Z} \to B\).
+
+    There is no constraint, \(x\) can go wherever it wants. So, it contains the same information as an element of \(B\).
+
+    i.e. there exists a \(1\) to \(1\) correspondence from \(\mathbb{Z}[x]\) algebra and an element of \(B\).
+
+    A \(\mathbb{Z}[x]\) algebra means a pair consisting of a ring and an element of that ring!
+
+    Suppose we have a scheme \(Z = \bigcup_{i} \operatorname{Spec} A_i\). Then \(\operatorname{Spec} B \subset Z\).
+
+    \(Z\) is a ringed space, \((Z, \mathcal{O}_Z)\). Then, \(\Gamma(\operatorname{Spec} A_i , \mathcal{O}_Z) = A_i\).
+    
+    This means, \(\operatorname{Mor} (Z, \mathbb{A}^1) = \Gamma(Z, \mathcal{O}_Z)\).
+
+    What is the functor of points on \(\mathbb{A}^1\)? It is just \(Z \mapsto \mathcal{O}_Z\).
+
+    Another example: instead of \(\mathbb{A}^1\), let's look at \(\operatorname{Spec} \mathbb{Z}\left[ x, \frac{1}{x} \right]\).
+
+    What is the functor of point on this?
+
+    Let's look at affine opens. What is \(\mathbb{Z} \left[ x, \frac{1}{x} \right] \to A\)?
+
+    Think of \(\mathbb{Z}[x,y] / (xy - 1) \to A\).
+
+    Then \(x\) has to go to something which has a reciprocal. And reciprocal in a ring, if it exists, must be unique: \(ab = ac = 1 \implies a(b - c) = 0 \implies ab(b-c) = 0 \implies b - c = 0 \implies b = c\).
+
+    Thus, the data of the homomorphism is just \(A\) and a choice of an unit in \(A\).
+
+    \(= A^\times =\) multiplicative group of units in \(A\).
+
+    Think now about a group scheme. A group scheme \(G\) is a scheme \(G\) together with some additional data \(G \times G \to G\). [Note that we need to show that products exist in the category of scheme. Suppose we have a reasonable notion of a product now. Now think \(G\) as a group scheme over a ground ring \(S\) and think about fiber product, then \(G \times _S G \to G\)].
+
+    \(G \times_S G \to G\) is the `group law'.
+
+    What is the functors of points for \(\mathbb{P}^1\)? Roughly speaking, \(\mathbb{P}^1\) is \(\mathbb{A}^1\) together with a point on infinity. We can define coordinate \((x:y)\) on \(\mathbb{P}^1\).
+
+    If \(x,y\in \Gamma(Z, \mathcal{O}_Z)\) we can send it to \((x:y)\).
+
+    Consider the section \(\frac{x}{y}\) of \(\operatorname{Spec} k[x,y]\). Note that it is not a global section.
+
+    There is no way oxtending the obvious map from \(\mathbb{A}^2_k \setminus \{ (0,0) \} \) to \(\mathbb{P}^1\) to all of \(\mathbb{A}^2_k\)! \(\frac{0}{0}\) is different from \(\frac{1}{0}\).
+    
+    To what extent does a homomorphism of graded rings determine in morphism of Proj schemes?
+
+    Let \(\Phi : S_\bullet \to R_\bullet\) be a homomorphism of graded rings.
+
+    What do we know about \(\operatorname{Proj}(R_\bullet) \to \operatorname{Proj}(S_\bullet)\)?
+
+    Consider the irrelevant ideal \(S_+ = \bigoplus_{n\geq 1} S_n\).
+    
+    \(\Phi\) defines a morphism of schemes \(\operatorname{Proj} R_0 \setminus V(\Phi(S_+)) \to \operatorname{Proj} S_\bullet\) 
+
+    Cover of these two schemes by affine opens and ring homomorphism from \(S\) to \(R\).
+
+    For \(f\in S_n\) let \(D_+(f) =\) non-irrelevant homogeneous prime ideals which do not contain \(f\).
+
+    \(\Gamma (D_+(f), \mathcal{O}_{\operatorname{Proj}(S_\bullet)}) = \left(S_\bullet \left[ \frac{1}{f} \right] \right)\).
+    
+    Thus \(\eval{\mathcal{O}_{\operatorname{Proj}(S_\bullet)}}_{D_+(f)} = \operatorname{Spec} \left( S_\bullet \left[ \frac{1}{f} \right] \right)_0\).
+    
+    Then, \(\Phi: S_\bullet \to R_\bullet\)
+
+    \(\Gamma(D_+(\Phi(f)), \mathcal{O}_{\operatorname{Proj}(R_\bullet)}) = \left( R_\bullet \left[ \frac{1}{\Phi(f)} \right] \right)_0\).
+    
+    \(\Phi\) determines a homomorphism of \(\mathbb{Z}\)-graded rings:
+
+    \[
+        S_\bullet \left[ \frac{1}{f} \right] \to R_\bullet \left[ \frac{1}{\Phi(f)} \right]_0
+    \]
+
+    and therefore a ring homomorphism \(S_\bullet \left[ \frac{1}{f} \right]_0 \to R \left[ \frac{1}{\Phi(f)} \right]_0\) and therefore a morphism of affine schemes:
+
+    \[
+        \begin{tikzcd}
+            \operatorname{Spec} R_\bullet \left[ \frac{1}{\Phi(f)} \right]_0 \ar[r] \ar[d, phantom, "\subset", sloped] & \operatorname{Spec} S_\bullet \left[ \frac{1}{f} \right]_0 \ar[d, phantom, "\subset", sloped] \\ \operatorname{Proj} R_\bullet & \operatorname{Proj} S_\bullet
+        \end{tikzcd}
+    \]
+
+    For the \(\operatorname{Spec} R_\bullet \left[ \frac{1}{\Phi (f_i)} \right]_0\) to cover \(\operatorname{Proj} R_\bullet\) we need for each homogeneous prime ideals \(P \subset R\) which is not contained in \(R_+\) a homogeneous \(f_i \in S_+\) such that \(\Phi(f_i) \notin P\).
+    
+    This is possible exactly if \(P\notin V(\Phi(S_+))\).
+
+    So the following diagram commutes:
+
+    \[
+        \begin{tikzcd}
+            S_\bullet \left[ \frac{1}{f} \right] \ar[r] \ar[d] & R \left[ \frac{1}{\Phi (f)} \right] \ar[d] \\ S_\bullet \left[ \frac{1}{fg} \right] \ar[r] & R_\bullet \left[ \frac{1}{\Phi(fg)} \right] 
+        \end{tikzcd}
+    \]
+
+    \(\Phi\) determines a homomorphism of \(\mathbb{Z}\)-graded rings.
+
+    Consider example. Consider the graded ring homomorphism:
+
+    \[
+        \begin{tikzcd}
+            k[x,y,z] \ar[r,"z \mapsto 0"] & k[x,y]
+        \end{tikzcd}
+    \]
+
+    Then we have \(\operatorname{Spec} k[x,y] \to \operatorname{Spec} k[x,y,z]\).
+    
+    We can think of it as follows: the \(xy\)-plane embeds naturally in the \(xyz\)-space.
+
+    \(S_+(x,y,z)\) are polynomials with trivial constant. \(\Phi(S_+) = R_+\), again polynomials with trivial constants. \(V(R_+) = \varnothing\).
+
+    i.e. \(\operatorname{Proj} k[x,y] \to \operatorname{Proj} k[x,y,z]\) is given by \((a:b) \mapsto (a:b:0)\).
+
+    Now consider \(S_\bullet = k[x,y] \to k[x,y,z] = R_\bullet\).
+
+    Then \(\operatorname{Spec} k[x,y,z] \to \operatorname{Spec} k[x,y]\) given by \((a,b,c) \mapsto (a,b)\).
+    
+    \(S_+ = (x,y)\) so \(\Phi(S_+) =\) ideal \((x,y)\) in \(k[x,y,z]\).
+
+    \(V(\Phi(S_+)) = z\)-axis \(\to (0:0:1)\).
+
+    Then we expect \(\operatorname{Proj} k[x,y,z] \dashrightarrow \operatorname{Proj} k[x,y]\) by \((a:b:c) \mapsto (a:b)\).
+    
+    But \((0:0:1) \mapsto (0:0)\) which is not a point.
+
+    \subsection*{Rational Maps}
+
+    Suppose we have schemes \(X\) and \(Y\). A rational map is an equivalence class of pairs \((U,\pi)\) where \(U\) is a dense open subset of \(X\) [thought of as an open subscheme] where \(\pi: U \to Y\).
+    
+    \((U_1 , \pi_1) \sim (U_2 , \pi_2)\) if there exists a dense open set \(V \subset U_1 \cap U_2\) such that \( \eval{\pi_1}_V = \eval{\pi_2}_V\).
+    
+    A morphism of schemes \(\pi: X \to Y\) is \textit{dominant} if \(\pi(X)\) is dense in \(Y\). If \(X , Y\) are irreducible with generic points \(\eta_X\) and \(\eta_Y\) this is the same as \(\pi(\eta_X) = \eta_Y\).
+
+    A rational map is dominant if it is represented by \((U, \pi)\) where \(\pi: U \to Y\) is dominant.
 
 \end{document}

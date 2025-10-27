@@ -3023,4 +3023,149 @@
 
     \end{proof}
 
+    \section*{Monday, 10/27/2025}
+    
+    \subsection*{Chapter 9}
+
+    Consider an oriented vector bundle \(\xi : \begin{tikzcd} \mathbb{R}^n \ar[r] & E \ar[d,"\pi"] \\ & B \end{tikzcd}\).
+
+    \begin{definition}
+        \textit{Euler Class} \(e(\xi) \in H^n(B;\mathbb{Z})\) is the image of the Thom class:
+
+        \[
+            \begin{tikzcd}
+                H^n(E,E_0) \ar[r] & H^n E & H^n B \ar[l,"\pi^{\ast}"',"\cong"] \\ u \ar[u,phantom,"\in", sloped] & & e(\xi) \ar[u,phantom,"\in", sloped]
+            \end{tikzcd}
+        \]
+    \end{definition}
+
+    Three uses:
+
+    \begin{proposition}
+        [11.12] \(M^n\) closed, oriented manifold then,
+
+        \[
+            \langle e(TM), [M] \rangle = \chi(M)
+        \]
+
+        Where \(\chi\) is the Euler characteristic. 
+    \end{proposition}
+
+    \begin{proposition}
+        Euler class is the first obstruction to the existence of a nowhere zero section.
+
+        Thus, \(\dim B < n \implies \xi\) has a nowhere zero section.
+
+        \(\dim B = n, e(\xi) = 0 \implies \xi\) has a nowhere zero section.
+
+        Thus, \(M^n\) closed, oriented, \(\chi(M) = 0 \implies \exists\) nowhere zero vector field.
+    \end{proposition}
+
+    If \(X^n \subset M^{2n}\) closed, oriented then,
+
+    \[
+        \langle e(\nu(X \hookrightarrow M)), i_{\ast} [X] \rangle = \text{self intersection \(\#\) of } X
+    \]
+
+    \[
+        = X \cdot X = \langle PD_M [X], [X] \rangle 
+    \]
+
+    For example, \(\langle e(\mathbb{C} P^n \hookrightarrow \mathbb{C} P^2), [\mathbb{C} P^1] \rangle = 1\) 
+
+    Non-oriented clase:
+
+    \(\langle e(\nu (X \hookrightarrow M)), i_{\ast}[X] \rangle = X \cdot X \mod 2\).
+
+    Example: consider \(M = \mathbb{R} P^2\).
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{img/nonorientedcase}
+    \end{figure}
+
+    [We pertrube a bit since considering the intersection doesn't really make sense]
+    
+    Then \(e(\xi) \mod 2 = \operatorname{w}_n(\xi)\).
+
+    Note that \(X \cdot X \mod  2 = X \cdot X^{\prime} \mod 2\).
+
+    \subsection*{Basic Properties, Milnor-Stasheff 9.2}
+
+    \begin{enumerate}[label=\roman*)]
+        \item 9.2 \(e(\xi)\) is natural. i.e. It is a characteristic class. If \(f: \xi^{\prime} \to \xi\) is a bundle map [meaning there is an isomorphism on the fibers]
+        
+        \[
+            \begin{tikzcd}
+                E^{\prime} \ar[r,"\widetilde{f}"] \ar[d] & E \ar[d] \\ B^{\prime} \ar[r,"\overline{f}"] & B
+            \end{tikzcd}
+        \]
+
+        Then \(e(f^{\ast} \xi) = f^{\ast} e(\xi)\).
+
+        \item 9.3 \(\overline{\xi}\) reversing orientation on \(\xi\) gives us \(e(\overline{\xi}) = - e(\xi)\).
+        \item 9.4 \(n\) odd \(\implies 2 e(\xi) = 0, \xi \cong \overline{\xi}\) [oriented vector bundle]. \(v \mapsto -v\), then \(e(\xi) \underset{9.2}{=} e(\overline{\xi }) = -e(\xi)\).  
+    \end{enumerate} 
+
+    If \(M^n\) is closed and oriented, then \(\xi(M^n) = 0, e(TM) = 0\).
+    
+    \(\chi(\mathbb{R}P^2) = 1, e(T \mathbb{R} P^2) \neq 0\) 
+
+    So, if \(H^n B \) is torsion free and \(n\) is odd, then \(e(\xi) = 0\).
+
+    If \(e(\xi) \neq 0, n\) odd then \(e(\xi) \in H^n(B)\) has order \(2\). Thus there exists a nontrivial torsion summand of \(H^n B\).
+
+    Question: does there exists unique oriented \(\xi: \mathbb{R}^n \to E \to B\) with \(n\) odd so that \(e(\xi) \neq 0\)?
+
+    \begin{proposition}
+        9.4.\(\frac{1}{2}\): \(e(\xi) = \phi ^{-1} (u \cup u)\).
+    \end{proposition}
+
+    \begin{proof}
+        \(\phi(e(\xi)) = \pi^{\ast} e(\xi) \cup u = \eval{u}_{E} \cup u = u \cup u\).
+
+        \[
+            \begin{tikzcd}[row sep = small]
+                u \quad u & u \cup u \\
+                H^n(E,E_0) \otimes H^n(E, E_0; \mathbb{F}_2) \ar[d] \ar[r] & H^{2n}(E,E_0; \mathbb{F}_2) \\ H^n E \otimes H^n(E,E_0; \mathbb{F}_2) \ar[ru] \\ \eval{u}_{E} \quad u
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{proposition}
+        \(H^n(B;\mathbb{Z}) \to H^n(B,\mathbb{F}_2)\) has \(e(\xi) \mapsto \operatorname{w}_n(\xi)\).
+    \end{proposition}
+
+    \begin{proof}
+        \(e(\xi) \mapsto \phi ^{-1} (u \cup u) = \phi ^{-1} (\operatorname{Sq}^n u) = \operatorname{w}_n(\xi)\) 
+    \end{proof}
+
+    \begin{proposition}
+        [9.6]
+
+        \begin{enumerate}[label=\alph*)]
+            \item \(e(\xi \times \xi^{\prime})= e(\xi) \times e(\xi^{\prime})\).
+            \item \(e(\xi \oplus \xi^{\prime}) = e(\xi) \cup e(\xi^{\prime})\).
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\alph*)]
+            \item Follows from \(u_{E \times E^{\prime}} = u_E \times u_{E^{\prime} }\).
+            \item Apply \(\Delta^{\ast}\) to a.  
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        [9.7] If \(\xi\) has a nowhere zero section then \(e(\xi) = 0\).
+    \end{proposition}
+
+    \begin{proof}
+        If \(B\) is paracompact we can choose a metric. Then, \(\xi = \epsilon^1 \oplus (\epsilon^1)^\perp \to e(\xi) = 0 \cup e((\epsilon^1)^\perp) = 0\).
+        
+        We use CW approximation for general case.
+    \end{proof}
+
+    In general, \(e(\xi \oplus \epsilon^1) = 0\). Thus, the Euler class is not stable, in contrast to the Stiefel-Whitney classes, where they are stable w.r.t.\ `adding' trivial bundles.
+
 \end{document}
