@@ -3167,5 +3167,162 @@
     \end{proof}
 
     In general, \(e(\xi \oplus \epsilon^1) = 0\). Thus, the Euler class is not stable, in contrast to the Stiefel-Whitney classes, where they are stable w.r.t.\ `adding' trivial bundles.
+    
+    \section*{Wednesday, 10/29/2025}
+    
+    \subsection*{Crash Course in Intersection Theory}
+
+    \begin{itemize}
+        \item Transversality
+        \item Isotopy invariance
+        \item Intersection numbers
+        \item Thom transversality theorem
+        \item Tubular neighborhood theorem
+        \item Explicit PD
+        \item Alg Int \(\# =\) Gem Int \(\# \).  
+    \end{itemize} 
+
+    \subsection*{Transversality}
+
+    Consider submanifolds \(A, B\) of \(M\).
+
+    \begin{definition}
+        \(A \pitchfork B\) [\(A\) and \(B\) intersect Transfversly] means \(\forall x\in A \cap B\), \(T_x A + T_x B = T_x M\). 
+    \end{definition}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/transverse_example}
+        \caption{Transverse}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/not_transverse}
+        \caption{Not transverse}
+    \end{figure}
+
+    \begin{theorem}
+        \(A \pitchfork B\). Then,
+
+        \begin{itemize}
+            \item \(A \cap B\) is a manifold.
+            \item \(\nu (A \cap B \hookrightarrow A) \cong \eval{\nu(B \hookrightarrow M)}_{A\cap B}\). 
+        \end{itemize}
+        
+        Furthermore, \(\dim A - \dim A \cap B = \dim M - \dim B\).
+    \end{theorem}
+
+    Recall that \(\nu(B \hookrightarrow M) = (TB)^\perp \subset \eval{TM}_{B}\).
+
+    \(\nu(B \hookrightarrow M) = \frac{\eval{TM}_{B}}{TB}\).
+
+    \begin{theorem}
+        All submanifolds \(A, B\) where \(A\) is isotopic to \(A^{\prime}, A^{\prime} \pitchfork B\).
+
+        Slogan: ``Transversality is generic''. i.e. it is a dense open condition.
+    \end{theorem}
+
+    We can pertrube \(A\) to make it transverse.
+
+    Recall isotopy means homotopy through embeddings.
+
+    \subsection*{Intersection Numbers}
+
+    Assume now that \(A ^n \pitchfork B^k \subset M^{n+k}\).
+
+    This implies that \(T_x A \oplus T_x B = T_x M\). Assume further that \(\vert A\cap B \vert < \infty\). e.g. \(M\) is compact.
+
+    Then we can define the \(\mod 2\) interserction number: \(\vert A\cap B \vert \mod 2\).
+    
+    Now assume \(A, B, M\) are all oriented.
+
+    For \(x\in A \cap B\) we can define:
+
+    \[
+        \epsilon_x = \begin{dcases}
+            +1, &\text{ if orientation of \(T_x A \oplus T_x B\) and \(T_x M\) match} ;\\
+            -1, &\text{ otherwise}.
+        \end{dcases}
+    \]
+
+    \[
+        A \cdot B = \sum_{x\in A \cap B} \epsilon_x\;.
+    \]
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/intersectionmod2}
+    \end{figure}
+
+    There \(M = T^2, A \cdot B = 1 - 1 + 1\).
+
+    \begin{theorem}
+        \(A, B, M\) are closed then \(A \cdot B\) is isotopy invariant.
+    \end{theorem}
+
+    \begin{proof}
+        [First Proof] `Geometric'
+    \end{proof}
+
+    \begin{proof}
+        [Second Proof] `Homological'.
+
+        \[
+            A \cdot B = \langle PD_M [A] \cup PD_M[B], [M] \rangle \in \mathbb{Z}
+        \]
+    \end{proof}
+
+    Observe that \(A\) not transverse to \(B\) can derive that \(A \cdot B \coloneqq A^{\prime} \cdot B^{\prime}\).
+    
+    Consider \(M = \mathbb{R}^2, A = S^1\) and \(B = I\). Then, \(A \cdot B\) is not isotopy invariant.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/nonisotopyinvariant}
+        \caption{\(A \cdot B\) is not isotopy invariant in this case}
+    \end{figure}
+
+    Suppose \(\partial M \neq \varnothing\), submanfiold \(A\) of \(F\) is called \textit{proper} if \(\partial A = A \cap \partial M\).
+
+    \begin{theorem}
+        If \(A^n, B^k\) are proper submanifolds of \(M^{n+k}\) where \(B\) is closed and \(A,M\) are compact, and suppose that \(A\pitchfork B\), then \(A \cdot B\) is isotopy invariant.
+    \end{theorem}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{img/cylinder}
+        \caption{Here \(A \cdot B = 1\)}
+    \end{figure}
+
+    \begin{corollary}
+        For closed \(A, B \subset M, A \cdot B\) is isotopy invariant.
+
+        Warning: \(A, B \subset M\) proper then \(A \cdot B\) is not isotopy invariant.
+    \end{corollary}
+
+    \begin{theorem}
+        [Thom Intersection Theorem] Suppose we have a smooth bundle \(\xi: \mathbb{R}^n \to E \to B^k\) with metric on \(\xi\) and \(B\) closed.
+
+        Recall that the thom class \(u_E = PD_E z_{\ast}[B] \in H^n(DE, SE) = H^n(E, E_0)\) where \(z\) is a zero section.
+        
+        If \(A^n \subset D(E)\) is a proper compact submanifold, then,
+
+        \[
+            A \cdot z(B) = \langle u_E , z_{\ast} [B] \rangle \in \begin{dcases}
+                \mathbb{Z}, &\text{ if oriented}  ;\\
+                \mathbb{F}_2, &\text{ otherwise}.
+            \end{dcases}
+        \]
+    \end{theorem}
+    
+    \begin{proof}
+        After isotopy of \(A\),  assume \(\exists\) neighborhood of \(z(B)\) such that each component \(A \cap V\) lies in a fiber.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/thomintersection}
+        \end{figure}
+    \end{proof}
 
 \end{document}

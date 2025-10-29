@@ -3790,12 +3790,215 @@
 
     \subsection*{Rational Maps}
 
-    Suppose we have schemes \(X\) and \(Y\). A rational map is an equivalence class of pairs \((U,\pi)\) where \(U\) is a dense open subset of \(X\) [thought of as an open subscheme] where \(\pi: U \to Y\).
+    Suppose we have reduced schemes \(X\) and \(Y\). A rational map is an equivalence class of pairs \((U,\pi)\) where \(U\) is a dense open subset of \(X\) [thought of as an open subscheme] where \(\pi: U \to Y\).
     
     \((U_1 , \pi_1) \sim (U_2 , \pi_2)\) if there exists a dense open set \(V \subset U_1 \cap U_2\) such that \( \eval{\pi_1}_V = \eval{\pi_2}_V\).
     
     A morphism of schemes \(\pi: X \to Y\) is \textit{dominant} if \(\pi(X)\) is dense in \(Y\). If \(X , Y\) are irreducible with generic points \(\eta_X\) and \(\eta_Y\) this is the same as \(\pi(\eta_X) = \eta_Y\).
 
     A rational map is dominant if it is represented by \((U, \pi)\) where \(\pi: U \to Y\) is dominant.
+
+    \section*{Wednesday, 10/29/2025}
+    
+    Recall the setup. Suppose \(X, Y\) are reduced schemes. \(f: X \dashrightarrow Y\) is a rational map, i.e. an equivalence class:
+
+    \((U, \pi: U \to Y)\) where \(U\) is a dense open subscheme of \(X\).
+
+    \((U,\pi) \sim (U^{\prime}, \pi^{\prime})\) iff there exists an open dense \(V \subset U \cap U^{\prime}\) such that \(\eval{\pi}_{V} =\eval{\pi^{\prime}}_V\).
+
+    Suppose we have dominant rational maps \(X \overset{f}{\dashrightarrow} Y, Y \overset{g}{\dashrightarrow} X\). Since they're dominant it makes sense to compose them:
+
+    \[
+        f \circ g \colon Y \dashrightarrow Y
+    \]
+
+    \[
+        g \circ f\colon X \dashrightarrow X
+    \]
+
+    Suppose these are identity maps rational maps. Then \(f,g\) are birational maps.
+
+    \begin{definition}
+        We say \(X\) and \(Y\) are birationally equivalent if and only if there exists a birational map \(X \dashrightarrow Y\).
+    \end{definition}
+
+    \begin{theorem}
+        Reduced schemes \(X, Y\) are birationally equivalent if and only if there exists dense open subschemes \(U \subset X\) and \(V \subset Y\) and an isomorphism \(U \xrightarrow{\approx} V\).
+    \end{theorem}
+
+    \begin{proof}
+        Suppose \(X\) and \(Y\) are birationally equivalent. We want dense open subsets \(X_1\) and \(Y_1\) of \(X\) and \(Y\) respectively. Consider:
+        
+        \[
+            \begin{tikzcd}[column sep = huge]
+                X \ar[r, dotted, bend right = 10] & Y \ar[l, dotted, bend right = 10] \\
+                X_1 \ar[u, "\subset", phantom, sloped] \ar[ru, "f"'] & Y_1 \ar[u, "\subset", phantom, sloped] \ar[ul,"g"] \\
+                f^{-1} (Y_1)=X_2 \ar[u, "\subset", phantom, sloped] \ar[ru, "f"] \\ X_3 \ar[u, "\subset", phantom, sloped] \ar[ruu, "f"] & Y_2 = g ^{-1} (X_3) \ar[uu, "\subset", phantom, sloped]  \ar[l,"g"] \\ f ^{-1} (Y_3) \ar[u, "\subset", phantom, sloped] = X_4 \ar[r,"f"] & Y_3 \ar[u, "\subset", phantom, sloped]
+            \end{tikzcd}
+        \]
+
+        Then \(g \circ f\) is identity on \(X_3 , f \circ g\) is identity on \(Y_3\).
+    \end{proof}
+
+    \begin{proposition}
+        Let \(k\) be a field, \(X\) an integral \(k\)-scheme, and \(Y\) an integral \(k\)-scheme of finite type.
+
+        \[
+            Y = \cup_\alpha \operatorname{Spec} A_\alpha
+        \] 
+
+        \[
+            A_\alpha = k[x_1 , \cdots , x_{n_\alpha}] / I_\alpha
+        \]
+
+        Suppose \(K(Y) \xrightarrow{\pi^\sharp} K(X)\) by field inclusion.
+
+        There exists a rational map \(X \to Y\) which induces \(\pi^\sharp\).
+
+        Note that if \(\eta_X\) is the generic point of \(X\), then \(K(X) = \mathbb{K} (\eta_X)\) and \(\eta_X \in U \subset X\) for any dense open \(U\).
+    \end{proposition}
+
+    \begin{proof}
+        WLOG we replace \(Y\) by an affine open: \(\operatorname{Spec} k[x_1 , \cdots , x_n] / I = \operatorname{Spec} B\).
+
+        We have a field extension. Then.
+        
+        \[
+            \begin{tikzcd}
+                K \ar[r,"\subset", phantom] & K(Y) \ar[r,"\pi^\sharp"] & K(X) \\ & B \ar[u,"\subset",phantom, sloped]
+            \end{tikzcd}
+        \]
+
+        Now we consider the image of \(B\) under \(\pi^\sharp\). 
+        
+        Then \(K(X)\) contains \(k[\pi^\sharp(x_1) , \cdots , \pi^\sharp(x_n)] / \pi^\sharp(I)\).
+
+        Here \(\pi^\sharp (x_i) \in \Gamma(U_i , \mathcal{O}_X)\). Let \(U = \bigcap_{i=1}^n U_i\). Choose \(V \subset U\) to be affine. \(A \subset \Gamma(V, \mathcal{O}_X)\) so that \(\operatorname{Frac} (A) = K(X)\).
+
+        We claim that \(\operatorname{Spec} A\) is an affine open subscheme of \(X\), which we use as \(U\). There exists a morphism \(\operatorname{Spec}  A \to \operatorname{Spec} B \subset Y\) which realizes \(\pi^\sharp\).
+
+        \[
+            \begin{tikzcd}
+                \operatorname{Spec} A \ar[d, "\subset", phantom, sloped] \ar[r] & Y \\ X
+            \end{tikzcd}
+        \]
+
+    \end{proof}
+
+    Example: consider the map:
+
+    \[
+        \operatorname{Spec} k[x,y] / (x^2 + y^2 - 1) \to \operatorname{Spec} k[z]
+    \]
+
+    \[
+        \text{circle} \to \mathbb{A}^1
+    \]
+
+    \[
+        (x,y) \mapsto \frac{y}{x-1}
+    \]
+
+    In fact we can extend this to a morphism in \(\mathbb{P}^1\):
+
+    \[
+        (x,y) \mapsto \left[ \frac{y}{x-1}:1 \right] = (y : x-1) = (x+1 : y)
+    \]
+
+    So the map is defined on the circle.
+
+    For another example, consider the affine curve \(y^2 = x^3 + x^2\). We claim that \((x,y) \mapsto \frac{y}{x}\) is birational. Why? Suppose \(\frac{y}{x}=m\). Then we have \(m^2 x^2 = x^3 + x^2\). As long as \(x\neq 0\) we have \(x = m^2 - 1\). Thus we have the map \(m \mapsto (m^2 - 1, m^3 - m)\). We similarly have a birational map \(\operatorname{Spec} k[x,y] / (y - x^3 - x^2) \to\mathbb{P}^1\) by \((x,y) \mapsto (y : x)\). 
+
+    Note that at \((0,0)\) this morephism is not well defined.
+
+    Given a property of schemes, we can ask for an analogous property of morphism:
+
+    \[
+        \begin{tikzcd}
+            X \ar[d,"\pi"] & \pi ^{-1} (\operatorname{Spec} A) \text{ has property } P \\ Y & \operatorname{Spec} A \ar[l, "\supset", phantom, sloped]
+        \end{tikzcd}
+    \]
+
+    A property \(P\) of morphisms is \textit{reasonable} if it satisfies the following:
+
+    \begin{enumerate}[label=\roman*)]
+        \item Isomorphisms satisfy \(P\).
+        \item Compositions of morphisms satisfying \(P\) satisfies \(P\). 
+        \item If \(X \to S\) satisfies \(P\) and \(Y \to S\) is arbitrary, then \(X \times_S Y \to Y\) also satisfies \(P\).
+    \end{enumerate} 
+
+    Fiber product:
+
+    \[
+        \begin{tikzcd}
+            & & Z \ar[lld, bend right] \ar[ldd, bend left] \ar[ld, dotted] \\ X \ar[d,"\text{has }P"] & X \times_S Y \ar[l] \ar[d, "\text{also has }P"] \\ S & Y \ar[l]
+        \end{tikzcd}
+    \]
+
+    A morphism \(X \to S\) has \(P\) if and only if \(X \times_S U \to U\) has \(P\) for all open \(U \subset S\) in an open cover.
+
+    \[
+        \begin{tikzcd}
+            X \ar[d,"\pi"] & X \times_S U \ar[l] \ar[r,"=",phantom] \ar[d] & \pi ^{-1} (U) \\ S & U \ar[l]
+        \end{tikzcd}
+    \]
+
+    Examples: Isomorphism is a reasonable property.
+
+    Open immersion is a reasonable property.
+
+    Now we do some commutative algebra.
+
+    Suppose we have a map \(B \to A\) and \(a\in B\).
+
+    We say \(a\) is integral over \(B\) if it satisfies some monic polynomial with coefficients in \(B\).
+
+    We say \(A\) is integral over \(B\) if \(a\) is integral over \(B\) for all \(a\in A\).
+
+    We say \(A\) is an integral extension over \(B\) if it is integral and \(B \to A\) is injective. i.e. we can think about \(B\) is a subring of \(A\).
+
+    \begin{lemma}
+        \(a\in A\) is integral over \(B\) if and only if there exists a subring \(A^{\prime}\) of \(A\) containing \(a\) such that \(A^{\prime}\) is a finitely generated \(B\)-module.
+    \end{lemma}
+
+    \begin{proof}
+        Suppose \(a\) satisfies the polynomial equation:
+
+        \[
+            x^n + b_1 x^{n-1} + \cdots + b_n = 0
+        \]
+
+        We can define \(A^{\prime} = \operatorname{Span}_B(1, a, a^2, \cdots , a^{n-1})\).
+
+        Note that \(a^n = -b_1 a^{n-1} - \cdots - b_n \in A^{\prime}\). Thus \(A^{\prime}\) is indeed a finitely generated \(B\)-module.
+        
+        Now, suppose \(A^{\prime}\) exists and spanned over \(B\) by \(a_1 , \cdots , a_n\). \(a a_i \in A^{\prime} \implies a a_i = \sum_{j} b_{ij} a_j\) where \(b_{ij} \in B\).
+
+        Then we have a matrix \((b_{ij}) \begin{bmatrix}
+            a_1 \\
+            \vdots \\
+            a_n
+        \end{bmatrix} = a \begin{bmatrix}
+            a_1 \\
+            \vdots \\
+            a_n
+        \end{bmatrix}\).
+        
+        Thus, \((aI - (b_{ij})) \begin{bmatrix}
+            a_1 \\
+            \vdots \\
+            a_n
+        \end{bmatrix} = 0\).
+        
+        Therefore \(\det (aI - (b_{ij})) \begin{bmatrix}
+            a_1 \\
+            \vdots \\
+            a_n
+        \end{bmatrix} = 0\).
+        
+        Therefore, \(\det(aI - (b_{ij})) A^{\prime} = 0 \implies \det (aI - (b_{ij})) = 0\).
+        
+        Computing the determinant, we see that it belongs to \(a^n + \operatorname{Span}_B(1, a, a^2, \cdots , a^{n-1})\).
+    \end{proof}
 
 \end{document}
