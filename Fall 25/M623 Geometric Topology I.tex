@@ -3325,4 +3325,149 @@
         \end{figure}
     \end{proof}
 
+    \section*{Friday, 10/31/2025}
+    
+    We are moving on to chapter 11.
+
+    Let \(M^n \subset A^{n+k}\) submanifold.
+
+    \begin{theorem}
+        [11.1 Tubular Neighborhood Theorem]
+
+        \(\exists\) embedding \(\nu(M \hookrightarrow A) \hookrightarrow A\) which is `identity' on \(M\).
+    \end{theorem}
+
+    \begin{proof}
+        (When \(A\) is compact): Give \(TM\) a metric. Consider \(\exp : TM \to M\) as follows:
+
+        \(\exp(v) = \gamma^{\prime}(1)\) where \(\gamma:[0,1] \to M\) geodesic where \(\gamma(0) = \pi(v)\) and \(\gamma^{\prime}(c) = v\) 
+
+        We start at the base point and run in the direction of \(v\). 
+
+        \(\exists \epsilon > 0\) such that \(\eval{\exp}\overset{\circ}{D}_{\epsilon}(\nu) \hookrightarrow A\).
+
+        Note that \(E(\nu) \cong \overset{\circ}{D}_{\epsilon}(v)\) by scaling. 
+
+        \(E(\nu) \hookrightarrow A, (-\epsilon, \epsilon) \cong \mathbb{R}\).
+
+    \end{proof}
+
+    \begin{corollary}
+        [11.2] If \(M\) is losed in \(A\) then restriction maps are isomorphisms:
+
+        \[
+            H^{\ast}(A, A-M) \xrightarrow[\text{excision}]{\cong} H^{\ast}(N, N-M) \xrightarrow[TMT]{\cong} H^{\ast}(E(\nu), E(\nu)_0)
+        \]
+
+        Here \(N\) is the tubular neighborhood: \(\operatorname{im} (E(\nu) \subset A)\).
+
+    \end{corollary}
+
+    \begin{definition}
+        Thom class \(u_M \in H^n(A, A-M)\) maps to \(u_\nu\).
+
+        \(u_M \in H^n(-;\mathbb{F}_2)\)
+        
+        \(u_M \in H^n(-;\mathbb{Z})\) if \(\nu\) is oriented, e.g. \(A,M\) are oriented.
+    \end{definition}
+
+    \begin{remark}
+        \(X\pitchfork M\). \([x] \in H_n(A,A-M)\).
+        
+        \(\langle u_M , [x] \rangle \in M \cdot X\).
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/imgthmclss}
+        \end{figure}
+    \end{remark}
+
+    \begin{theorem}
+        [11.3] 
+        \[
+            H^k(A, A-M) \xrightarrow{i^{\ast}} H^k A \xrightarrow{j^{\ast}} H^k M
+        \]
+
+        \begin{enumerate}[label=\alph*)]
+            \item If \(M\) is closed in \(A\) then,
+            \[
+                j^{\ast} i^{\ast} u_A = \begin{Bmatrix} \operatorname{w}_k(\nu) \\ e(\nu) \end{Bmatrix} \text{ if } \nu\text{ is } \begin{Bmatrix} \\ \text{oriented} \end{Bmatrix} 
+            \]
+
+            \item If \(M \subset A\) but closed in manifolds,
+            \[
+                i^{\ast} u_M = PD[M] \in \begin{dcases}
+                    H^k(A;\mathbb{F}_2), &\text{ if }  ;\\
+                    H^k A, &\text{ if } A \text{ and } M \text{ both oriented}.
+                \end{dcases}
+            \]
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        b: explicit Poincar\'e Duality: Poincar\'e Dual of submanifold in the image of Thom class of its normal bundle.
+
+        \[
+            \begin{tikzcd}
+                H^n A \ar[r] \ar[d,"\in",sloped,phantom] & H^k A \\
+                {[M]} \ar[r] & \operatorname{im} u_M 
+            \end{tikzcd}
+        \]
+
+        a: oriented case `Essentially definition of Euler class'
+
+        \[
+            \begin{tikzcd}
+                & u_M \\
+                H^k(N, N-M) \ar[d,"TNT"] & H^k(A , A - M) \ar[l, "\cong"'] \ar[r,"i^{\ast}"] & H^k A \ar[d,"j^{\ast}"] \\
+                H^k(E(\nu) , E(\nu)_0) \ar[r] & H^k(E(\nu)) \ar[r,"\cong"] & H^k M \\
+                u_\nu & & e(U)
+            \end{tikzcd}
+        \]
+
+    \end{proof}
+
+    In the non-oriented case, with \(\mathbb{F}_2\)-coefficients, need:
+
+    \[
+        \begin{tikzcd}
+            H^k(E(\nu), E(\nu)_0 ; \mathbb{F}_2) \ar[r] & H^k(M;\mathbb{F}_2) \\
+            u_\nu \ar[r,mapsto] & \operatorname{w}_k(\nu)
+        \end{tikzcd}
+    \]
+
+    [See 95]
+
+    Applications: 
+
+    \begin{corollary}
+        [11.3a] \(\implies\) Cor 11.4. \(M^n \subset \mathbb{R}^{n+k}\) closed subset then,
+        
+        \(0 = \operatorname{w}_k(\nu) = \overline{\operatorname{w}}_k(TM)\).
+
+        If \(M \subset \mathbb{R}^{n_k}\) is oriented, then \(e(\nu) = 0\).
+    \end{corollary}
+
+    Recall that \(\overline{\operatorname{w}}(\xi) \operatorname{w}(\xi) = 1\).
+
+    \(\overline{\operatorname{w}}(\xi) = \operatorname{w}(\xi) ^{-1} = \frac{1}{1 + (\operatorname{w}_1 + \operatorname{w}_2 + \cdots)}\)
+    
+    \(= 1 + (\operatorname{w}_1 + \operatorname{w}_2 + \cdots) + (\operatorname{w}_1 + \operatorname{w}_2 + \cdots)^2 + \cdots\)
+
+    Recall \(M^n \hookrightarrow \mathbb{R}^{n+k}\) immersion implies \(\overline{\operatorname{w}}_l(TM) = 0\) for \(l > k\).
+
+    When \(n = 2^l\), \(\operatorname{w}(TP^n) = 1 + a + a^n\).
+    
+    \(\operatorname{w}(TP^n) = 1 + a + \cdots + a^n\).
+
+    Therefore, \(\mathbb{R}P^n\) does not immerse into \(\mathbb{R}^{2n - 2}\).
+    
+    We can go down one further dimension \(\mathbb{R}P^n\) doesn't embed in \(\mathbb{R}^{2n-1}\). In particular, \(\mathbb{R}P^2 \not \hookrightarrow \mathbb{R}^3\).
+
+    Now, consider the open M\"obius strip \(M\).
+
+    \(M \hookrightarrow \mathbb{R}^3\) but \(\operatorname{w}_1 (TM) \neq 0 \implies \overline{\operatorname{w}}_1(TM) \neq 0\)
+
+    This means \(M \not \hookrightarrow \mathbb{R}^3\) as closed subset.
+
 \end{document}
