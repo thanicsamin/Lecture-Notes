@@ -4001,4 +4001,231 @@
         Computing the determinant, we see that it belongs to \(a^n + \operatorname{Span}_B(1, a, a^2, \cdots , a^{n-1})\).
     \end{proof}
 
+    No class Nov 7,12,14
+
+    If \(X,Y\) are schemes over a sheme \(S\), i.e. we have morphisms \(\pi : X \to S\) and \(\rho: Y \to S\) then an \(S\)-morphism \(\sigma : X\to Y\) means a morphism which commutes with \(\pi, \rho\).
+
+    \[
+        \begin{tikzcd}
+            X \ar[rr,"\sigma"] \ar[rd,"\pi"'] & & Y \ar[ld, "\rho"] \\ & S
+        \end{tikzcd}
+    \]
+
+    An \(S\)-rational map is \((U,\sigma)\) where \(U \subset X\) is a dense open subscheme and \(\sigma: U \to Y\) is an \(S\)-morphism.
+    
+    \begin{proposition}
+        Let \(X\) and \(Y\) be integral schemes over \(k\) and assume \(Y\) is of finite type. Given a field extension \(\pi^\sharp : K(Y) \to K(X)\) there exists a \(k\)-rational map \((U,\pi)\) from \(X\) to \(Y\) which gives \(\pi^\sharp\)  
+    \end{proposition}
+
+    Let \(\operatorname{Spec} A\) be an affine open in \(X\).
+
+    Let \(\operatorname{Spec} B\) be an affine open in \(Y\).
+
+    So, \(\operatorname{Frac} (A) = K(X) , \operatorname{Frac} (B) = K(Y)\).
+
+    Also \(B = k[y_1 , \cdots , y_n] / I\).
+
+    \(\overline{y_i} \in B \subset K(Y) \overset{\pi^\sharp}{\subset} K(X)\).
+    
+    \[
+        \pi^\sharp \overline{y_i} = \frac{a_i}{f_i};\; a_i , f_i \in A\;.
+    \]
+
+    Let \(f = f_1 f_2 \cdots f_n\).
+
+    \(A \left[ \frac{1}{f} \right]\) is a f.g. \(k\)-algebra with fraction field \(Y\) and \(\pi^\sharp \overline{y}_i \in A \left[ \frac{1}{f} \right] \). Therefore,
+
+    \[
+        \begin{tikzcd}
+            \overline{y}_i \ar[r, mapsto] & \frac{a_i}{f_i} \\
+            B \ar[r] \ar[d] & A \left[ \frac{1}{f} \right] \ar[d] \\ K(Y) \ar[r] & K(X) 
+        \end{tikzcd}
+    \]
+
+    \(U = \operatorname{Spec} A \left[ \frac{1}{f} \right] \xrightarrow{\pi} \operatorname{Spec} B\) with \(\pi^\sharp : B \to A \left[ \frac{1}{f} \right] \) with \(\operatorname{Frac} (B) \to \operatorname{Frac} \left( A \left[ \frac{1}{f} \right]  \right)\).
+    
+    \(U \subset \operatorname{Spec} A \subset X\).
+
+    Suppose \(B \to A \ni a\).
+
+    \begin{theorem}
+        [Lying over theorem]
+
+        Let \(A\) be an integral extension of \(B\). Then \(\operatorname{Spec} B \to \operatorname{Spec} A\) is surjective.
+    \end{theorem}
+
+    Let us prove something more basic first.
+
+    \begin{lemma}
+        If \(A\) is an integral extension of \(B\) and \(S\) is a multiplicative system of \(B\) then \(S ^{-1} A\) is an integral extension of \(S ^{-1} B\).
+    \end{lemma}
+
+    \begin{proof}
+        \(i: B \hookrightarrow A\).
+        
+        Define: \(S^{-1} i: \frac{b}{s} \mapsto \frac{i(b)}{i(s)} \in i(S) ^{-1} A\)  
+
+        Suppose \(\frac{i(b)}{i(s)} = 0\) in \(i(S) ^{-1} A\). Then \(\exists i(t) \in i(S)\) such that \(i(bt) = i(b) i(t) = 0 \implies bt = 0 \implies b = \frac{b}{1} = 0 \implies \frac{b}{s}= 0\).  
+        Let \(\frac{a}{s} \in S ^{-1} A\).
+        
+        \(a\) is integral over \(B\). Thus, we can find monic polynomial \(x^n + b_1 x^{n-1} + \cdots + b_n \in B[x]\) such that:
+
+        \[
+            a^n + b_1 x^{n-1} + \cdots b_n = 0
+        \]
+
+        \[
+            \implies \left( \frac{a}{s} \right) ^ n + \frac{b_1}{s} \left( \frac{a}{s} \right) ^{n-1} + \cdots + \frac{b_n}{s^n} = 0
+        \]
+    \end{proof}
+
+    \begin{lemma}
+        If \(A\) is an integral extension of \(B\) and \(A\) is a field, then \(B\) is a field.
+    \end{lemma}
+
+    Let \(0 \neq b \hookrightarrow A \ni \frac{1}{b}\).
+    
+    Then \(\left( \frac{1}{b} \right)^n + b_1 \left( \frac{1}{b} \right)^{n-1} + \cdots + b_n = 0 \implies 1 + b_1 b + b_2 b^2 + \cdots + b_n b^n = 0\).
+
+    Now the original proof:
+
+    \begin{proof}
+
+
+        \(A\) is an integral extension of \(B\). Let \(Q \in \operatorname{Spec} B\). Let \(S = B \setminus Q\).
+
+        Replace \(B\) by \(S ^{-1} B = B_Q\).
+
+        Replace \(A\) by \(S ^{-1} A\).
+
+        We have \(B \hookrightarrow A\) but \(B\) is a local ring. Let \(P\) be a maximal ideal of \(A\). Then \(P \cap B\) is a prime ideal of \(B\).
+        
+        \[
+            \begin{tikzcd}
+                B \ar[r, hook] \ar[d] & A \ar[d] \\ B / P\cap B \ar[r,hook] & A / P
+            \end{tikzcd}
+        \]
+
+        \(B / P \cap B\) is a field, so \(P \cap B\) is a maximal ideal. \(B\) is a local ring with unique maximal ideal. Thus \(P \cap B = Q\).
+    \end{proof}
+
+    \begin{lemma}
+        [Nakayama 1] If \(M\) is a f.g. \(A\)-module and \(I\) is an \(A\)-ideal such that \(IM = M\) then \(\exists a\in I, a\cong 1 \pmod I\) such that \(aM = (0)\).
+    \end{lemma}
+
+    \begin{proof}
+        Suppose \(m_1 , \cdots , m_n\) generate \(M\). Write \(m_i = \sum_{j} a_{ij} m_j\).
+        
+        \[
+            \begin{bmatrix}
+                a_{11} & a_{12} \\
+                a_{21}  & a_{22}  \\
+            \end{bmatrix} \begin{bmatrix}
+                m_1 \\
+                m_2 \\
+            \end{bmatrix} = \begin{bmatrix}
+                m_1 \\
+                m_2 \\
+            \end{bmatrix} \implies \begin{bmatrix}
+                 &  \\
+                 &  \\
+            \end{bmatrix} \begin{bmatrix}
+                a_{11} ^{-1}  & a_{12}  \\
+                a_{21}  & a_{22} ^{-1} \\
+            \end{bmatrix} \begin{bmatrix}
+                m_1 \\
+                m_2 \\
+            \end{bmatrix} = \begin{bmatrix}
+                0 \\
+                0 \\
+            \end{bmatrix} 
+        \]
+
+        \[
+            ((a_{11} - 1)(a_{22} - 1) a_{12}a_{21}) \begin{bmatrix}
+                1 & 0 \\
+                0 & 1 \\
+            \end{bmatrix} \begin{bmatrix}
+                m_1 \\
+                m_2 \\
+            \end{bmatrix} = \begin{bmatrix}
+                0 \\
+                0 \\
+            \end{bmatrix} 
+        \]
+        
+        Then \(am_i = 0\) if \(\forall i \implies a M = 0\) where \(a \cong 1 \pmod I\).
+
+    \end{proof}
+
+    \begin{lemma}
+        [Nakayama 2] If \(I\) is contained in the Jacobson radical of \(A\) and \(I M = M\) then \(M=0\).
+    \end{lemma}
+
+    \begin{proof}
+        Recall \(J(A) = \bigcap_{\mathfrak{m}} \mathfrak{m}\).
+
+        Lemma: If \(a\equiv 1 \pmod{J(A)}\) then \(a\) is invertible.
+
+        Proof: If \(a\) is not invertible then \((a)\) is proper so \((a) \subset \mathfrak{m} \) for some \(\mathfrak{m}\). Then \(a\in \mathfrak{m} \) so \(a-1 \notin \mathfrak{m}\) which is a contradiction.
+    \end{proof}
+
+    \begin{lemma}
+        [Nakayama 3]
+        Let \(N \subset M\) be finitely generated and suppose \(N / IN \to M / IM\) is surjective [Here \((N + IM) = M\)]. Then \(N = M\). 
+    \end{lemma}
+
+    \begin{proof}
+        Claim: \(I(M / N) = M / N\). Thus \(M / N = 0\).
+    \end{proof}
+
+    \begin{lemma}
+        [Nakayama 4] Let \((A, \mathfrak{m})\) be a local ring, \(M\) a finitely generated module and \(f_1 , \cdots , f_n\) elements of \(M\) such that \(\overline{f}_1 , \cdots , \overline{f}_n \) spans \(M / \mathfrak{m} M\). Then \(f_1 , \cdots , f_n\) generate \(M\). 
+    \end{lemma}
+
+    \begin{proof}
+        Let \(N = \operatorname{Span}(f_1 , \cdots , f_n)\) and \(I = \mathfrak{m}\). Then \(N / IN \twoheadrightarrow M / IM\).
+    \end{proof}
+
+    \begin{definition}
+        A morphism \(\pi: X \to Y\) is quasicompact if \(\forall U \subset Y\) affine open, \(\pi ^{-1} (U)\) is quasicompact.
+    \end{definition}
+
+    Equivalently, if \(U \subset Y\) is a quasi-compact open then \(\pi ^{-1} (U)\) is quasi-compact.
+
+    \begin{proposition}
+        \(X \xrightarrow{\pi} Y\) is quasi-compact if and only if \(\exists\) an affine open cover \(Y = \bigcup_{\alpha} U_\alpha\) such that \(\pi ^{-1} U_\alpha\) is quasi-compact for all \(\alpha\).
+    \end{proposition}
+
+    \begin{proof}
+        Use the affine communication lemma.
+
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(\pi ^{-1} \operatorname{Spec} A\) is quasi-compact, then \(\pi ^{-1} (\operatorname{Spec} A \left[ \frac{1}{f} \right] )\) is quasi-compact.
+            \item If \(\operatorname{Spec} A = \bigcup_{i=1}^n \operatorname{Spec} A \left[ \frac{1}{f_i} \right] \) and \(\pi ^{-1} D(f_i)\) are quasi-compact,
+            
+            then \(\pi ^{-1} (\operatorname{Spec} A)\) is quasi-compact.  
+        \end{enumerate} 
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\pi ^{-1} (\operatorname{Spec} A) = \bigcup_{j=1}^N \operatorname{Spec} B_j\).
+            
+            \[
+                \operatorname{Spec} B_j \xrightarrow{\eval{\pi}_{\operatorname{Spec} B_j}} \operatorname{Spec} A
+            \]
+
+            \[
+                A \xrightarrow{\pi_j^\sharp} B_j
+            \]
+
+            \[
+                \pi ^{-1} (D(f)) = \bigcup_{j=1}^N \operatorname{Spec} B_j \left[ \frac{1}{\pi_j^\sharp (f)} \right]
+            \]
+
+            \item \(\pi ^{-1} (\operatorname{Spec} A) = \pi ^{-1} \left( \bigcup_{i} D(f_i) \right) = \bigcup_{i} \pi ^{-1} (D(f_i))\)
+
+        \end{enumerate} 
+
+    \end{proof}
+
 \end{document}
