@@ -1,12 +1,12 @@
 \documentclass{article}
-\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools,enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs}
 \usetikzlibrary{arrows}
 \usepackage{geometry}
     \geometry{
         a4paper,
-        left = 40mm,
+        left = 20mm,
         top = 20mm,
-        right = 40mm,
+        right = 20mm,
         bottom = 30mm
     }
 \setlength{\parindent}{0pt}
@@ -29,7 +29,7 @@
 \newtheorem*{remark}{Remark}
 
 \title{M623 Geometric Topology I}
-\author{Taught by: Dr. James Davis \\ Written by:Thanic Nur Samin}
+\author{Taught by: Dr. James Davis \\ Written by: Thanic Nur Samin}
 \date{}
 
 
@@ -549,9 +549,9 @@
     \end{theorem}
 
     \begin{definition}
-        Sections \(s_1, \cdots , s_n\) of rank \(n\) vector bundle \(\begin{tikzcd}
+        Sections \(s_1, \cdots , s_n\) of rank \(n\) vector bundle given by \(\begin{tikzcd}
             E \ar[d] \\ B \ar[u, bend right, dotted, "s_i", swap]
-        \end{tikzcd}\) are llinearly independent (l.i) if \(\forall b\in B, \left\{ s_1(b), \cdots , s_n(b) \right\} \) is linearly independent in \(\pi ^{-1} (b)\).  
+        \end{tikzcd}\) are linearly independent (l.i) if \(\forall b\in B, \left\{ s_1(b), \cdots , s_n(b) \right\} \) is linearly independent in \(\pi ^{-1} (b)\).  
     \end{definition}
 
     \begin{theorem}
@@ -1284,7 +1284,11 @@
     eg \(H^{\ast} (\mathbb{P}^{\infty} ;\mathbb{F}_2) = \mathbb{F}_2[a]\) then we have canonical line bundle \(\gamma^1\) then \(\operatorname{w} (\gamma^1) = 1+a\) so \((1+a)^{-1} = 1 + a + a^2 + \cdots\) which has infinitely many terms so the inverse might not exist! The line bundle doesn't have any whitney sum inverse.
 
     \begin{theorem}
-        [Whitney Duality Theorem] Let \(M^n \subset \mathbb{R} ^N\) be a smooth manifold. Then \(\operatorname{w}_i(TM) = \overline{\operatorname{w}}_i \left( \nu (M \hookrightarrow \mathbb{R}^N) \right)  \) 
+        [Whitney Duality Theorem] Let \(M^n \subset \mathbb{R} ^N\) be a smooth manifold. Then,
+        
+        \[
+            \operatorname{w}_i(TM) = \overline{\operatorname{w}}_i \left( \nu (M \hookrightarrow \mathbb{R}^N) \right)
+        \] 
     \end{theorem}
 
     \begin{proof}
@@ -1731,7 +1735,9 @@
         
         Thus, for \(i\) odd, \(\operatorname{w}_i(P^{2k-1}) = 0\).
 
-        Thus, since \(\sum_{i} ir_i\) is odd, taking mod \(2 \to \sum_{i \text{ odd}} r_i\) is odd so some odd \(r_i\) is nonzero. Thus, \(\operatorname{w}_1^{r_1} \cdots \operatorname{w}_{2k-1}^{r_{2k-1}}[P^{2k-1}] = 0\).
+        Thus, since \(\sum_{i} ir_i\) is odd:
+        
+        Taking mod \(2 \to \sum_{i \text{ odd}} r_i\) is odd so some odd \(r_i\) is nonzero. Thus, \(\operatorname{w}_1^{r_1} \cdots \operatorname{w}_{2k-1}^{r_{2k-1}}[P^{2k-1}] = 0\).
         
         Second proof:
 
@@ -1826,7 +1832,9 @@
         This is a closed, bounded subsset of \((\mathbb{R}^k)^n \implies\) it is compact.
     \end{definition}
 
-    Thus this has a topology. Now, we have an onto map \(q:V_n(\mathbb{R}^k) \twoheadrightarrow G_n(\mathbb{R}^k)\) with \(q(v_1, \cdots , v_n) = \operatorname{Span}\{ v_1, \cdots , v_n \}\).
+    Thus this has a topology.
+    
+    Now, we have an onto map \(q:V_n(\mathbb{R}^k) \twoheadrightarrow G_n(\mathbb{R}^k)\) with \(q(v_1, \cdots , v_n) = \operatorname{Span}\{ v_1, \cdots , v_n \}\).
 
     Give \(G_n(\mathbb{R}^k)\) the quotient topology, i.e. \(U \subset G_n(\mathbb{R}^k)\) is open iff \(q ^{-1} U\) is open.
 
@@ -2747,7 +2755,9 @@
         An orientation for \(V\) is a generator \(\mu_V \in H_n(V, V_0)\).
     \end{definition}
 
-    This corresponds to the linear algebra definition for \(V\). Orientation of \(V\) corresponds to \(\frac{\text{ordered bases \((b_1, ..., b_n)\) for \(V\)}}{(b_1, \cdots, b_n) \sim (b_1^{\prime}, \cdots, b_n^{\prime})\text{ if determinant of change of basis matrix is positive}}\).
+    This corresponds to the linear algebra definition for \(V\).
+    
+    Orientation of \(V\) corresponds to \(\frac{\text{ordered bases \((b_1, ..., b_n)\) for \(V\)}}{(b_1, \cdots, b_n) \sim (b_1^{\prime}, \cdots, b_n^{\prime})\text{ if determinant of change of basis matrix is positive}}\).
     
     Then, the class of \([b_1 , \cdots , b_n]\) maps to the orientation in homology given by \(\sigma : \Delta^n \to V\) where \(\sigma(t_0 , \cdots , t_n) = \sum_{i=1}^n (t_i - t_{i-1}) b_i\).
     
