@@ -1,9 +1,6 @@
 ## Files
-Random Stuff.tex
-Random Stuff.pdf
-
-.stignore
-.tmp.driveupload
+MAGNTS.tex
+Talks.tex
 
 ## Core latex/pdflatex auxiliary files:
 /*/*.pdf
