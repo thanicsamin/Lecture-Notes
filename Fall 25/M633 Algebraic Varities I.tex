@@ -1047,7 +1047,11 @@
 
         Reason: \(\mathcal{H}(U) \subset \mathcal{F}(U)\) so we only need to check if \(h\) is \(0\) in \(\mathcal{F}(U)\) which follows from the sheaf axiom.
 
-        Given \(h_\alpha \in \mathcal{H}(U_\alpha)\) such that \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} h_\alpha = \operatorname{Res}_{{U_\beta , U_\alpha \cap U_\beta}} h_\beta \forall \alpha ,\beta \) then \(\exists h \in \mathcal{H}(U) \in \ker \left( \mathcal{F}(U_\alpha) \xrightarrow{\phi(U_\alpha)} \mathcal{G}(U_\alpha) \right)\).
+        Given \(h_\alpha \in \mathcal{H}(U_\alpha)\) such that:
+        
+        \(\operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} h_\alpha = \operatorname{Res}_{{U_\beta , U_\alpha \cap U_\beta}} h_\beta \forall \alpha ,\beta \)
+        
+        then \(\exists h \in \mathcal{H}(U) \in \ker \left( \mathcal{F}(U_\alpha) \xrightarrow{\phi(U_\alpha)} \mathcal{G}(U_\alpha) \right)\).
 
         \(\phi(U_\alpha \cap U_\beta) \left( \operatorname{Res}_{U_\alpha , U_\alpha \cap U_\beta} h_\alpha - \operatorname{Res}_{U_\beta , U_\alpha \cap U_\beta} h_\beta \right) = 0\) 
 
@@ -2428,7 +2432,9 @@
 
         \begin{enumerate}[label=\arabic*)]
             \item If \(\operatorname{Spec} A\) has property \(P\), every distinguished open subset of \(\operatorname{Spec} A\) has property \(P\).
-            \item If \(f_1, \cdots , f_n \in A\) with \((f_1, \cdots , f_n) = (1)\) and the distinguished open subsets of \(\operatorname{Spec} A\) given by \(D(f_1), \cdots , D(f_n)\) all have property \(P\) then \(\operatorname{Spec} A\) itself has property \(P\).  
+            \item If \(f_1, \cdots , f_n \in A\) with \((f_1, \cdots , f_n) = (1)\)
+            
+            and the distinguished open subsets of \(\operatorname{Spec} A\) given by \(D(f_1), \cdots , D(f_n)\) all have property \(P\) then \(\operatorname{Spec} A\) itself has property \(P\).  
         \end{enumerate} 
 
         Then, if there is any affine open cover of \(X\) with property \(P\) then all affine opens have property \(P\).
@@ -2519,7 +2525,9 @@
 
         Claim: \(\forall m > N, I_m = I_{m+1}\) [so the original chain of ideal stabilizes].
 
-        Proof: \(I_{m+1} / I_m\) is an \(A\)-module. Now consider \((I_{m+1} / I_m) [1 / f_i]\). We claim that \((I_m / I_{m+1}) \cong I_{m+1} [1 / f_i] / I_m [1 / f_i]\).
+        Proof: \(I_{m+1} / I_m\) is an \(A\)-module.
+        
+        Now consider \((I_{m+1} / I_m) [1 / f_i]\). We claim that \((I_m / I_{m+1}) \cong I_{m+1} [1 / f_i] / I_m [1 / f_i]\).
         
         To see this, consider the SES:
 
@@ -3007,7 +3015,7 @@
 
     [then not clear, later]
 
-    \subsection*{Gorthendieck Pretopologies}
+    \subsection*{Grothendieck Pretopologies}
 
     Regularly, we have the set of affines, some collections of smaller affinees from good covers.
 
@@ -4226,5 +4234,215 @@
         \end{enumerate} 
 
     \end{proof}
+
+    \section*{Monday, 11/3/2025}
+    
+    \begin{theorem}
+        \(\pi : X \to Y\) is a quasi-compact morphism if and only if \(\exists\) affine cover \(Y = \bigcup B_\alpha\) such that \(\pi ^{-1} (\operatorname{Spec} B_\alpha)\) is quasi-compact for all \(\alpha\).
+    \end{theorem}
+
+    \begin{theorem}
+        \(\pi: X \to Y\) is quasi-separated morphism if and only if \(\exists\) affine cover \(Y = \bigcup \operatorname{Spec} B_\alpha\) such that \(\pi ^{-1} (\operatorname{Spec} B_\alpha)\) is quasi-separated for all \(\alpha\).
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item Let \(X \xrightarrow{\pi} \operatorname{Spec} B\) where \(X\) is quasi-separated. Then \(\pi ^{-1} (D(f))\) is quasi-separated.
+            \item If \(\operatorname{Spec} B \bigcup D(f_i)\) and \(\pi ^{-1} (D(f_i))\) is quasi-separated for all \(i\) then \(X\) is quasi-separated. 
+        \end{enumerate}
+        
+        Proofs:
+
+        Let \(\operatorname{Spec} A_1\) and \(\operatorname{Spec} A_2\) be affine opens in \(X\). Then, we want to show \(\operatorname{Spec} A_1 \cap \operatorname{Spec} A_2 = \bigcup_{i=1}^n \operatorname{Spec} C_i\). Note that, we can find \(\pi^\sharp: B \to A_1\) and \(\pi^\sharp: B \to A_2\) so that if \(f\in B\) we have \(\pi^\sharp: B\left[ \frac{1}{f} \right] \to A_1 \left[ \frac{1}{\pi^\sharp f} \right] , B \left[ \frac{1}{f} \right] \to A_2 \left[ \frac{1}{f} \right]\).
+            
+        Where \(\operatorname{Spec} A_i \left[ \frac{1}{\pi^\sharp f} \right] \) is the inverse image of \(D(f)\) in \(\operatorname{Spec} A_i\).
+         
+        Note that we also have \(\pi^\sharp: B \to C_i\).
+
+        \(\operatorname{Spec} A_1 \left[ \frac{1}{\pi^\sharp f} \right] \cap \operatorname{Spec} A_2 \left[ \frac{1}{\pi^\sharp f} \right] = \bigcup_{i=1}^n \operatorname{Spec} C_i \left[ \frac{1}{\pi^\sharp f} \right]\). 
+
+        Note that,
+
+        \(\operatorname{Spec} A_j = \bigcup_{i=1}^n \operatorname{Spec} A_j \left[ \frac{1}{\pi^\sharp f_i} \right]\).
+
+        \(\operatorname{Spec} A_1 \cap \operatorname{Spec} A_2 = \bigcup_{i=1}^n \operatorname{Spec} A_1 \left[ \frac{1}{\pi^\sharp f_i} \right] \cap \operatorname{Spec} A_2 \left[ \frac{1}{\pi^\sharp f_i} \right] \) 
+
+        We have \(\operatorname{Spec} A_1 \left[ \frac{1}{\pi^\sharp f_i} \right] \cap \operatorname{Spec} A_2 \left[ \frac{1}{\pi^\sharp f_i} \right] \) can be written as the union so we're done.
+
+    \end{proof}
+
+    \begin{definition}
+        We say \(\pi: X \to Y\) is \textit{affine} if \(\exists\) affine cover \(Y = \bigcup_{\alpha} \operatorname{Spec} B_\alpha\) such that \(\pi ^{-1} (\operatorname{Spec} B_\alpha)\) is affine \(\forall \alpha\). 
+    \end{definition}
+
+    \begin{theorem}
+        If \(\pi : X \to Y\) is affine and \(\operatorname{Spec} B \subset Y\) is any affine open, then \(\pi ^{-1} (\operatorname{Spec} B)\) is affine.
+    \end{theorem}
+
+    \begin{proof}
+        Replace \(X\) by \(\pi ^{-1} (\operatorname{Spec} B)\) so that \(\pi : X \to \operatorname{Spec} B\).
+
+        Affine implies quasi-compact and quasi-separated.
+
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(X\) is affine and \(f\in B\) and \(X \xrightarrow{\pi} \operatorname{Spec} B\) then \(\pi ^{-1} (D(f))\) is affine.
+            
+            \(X = \operatorname{Spec} A\)
+
+            \(\pi ^{-1} (D(f)) = \operatorname{Spec} A \left[ \frac{1}{\pi^\sharp f} \right] \).
+
+            \item \(\operatorname{Spec} B = \bigcup_{i=1}^n \operatorname{Spec} B\left[ \frac{1}{f_i} \right] \) and \(\pi ^{-1} \left( \operatorname{Spec} B \left[ \frac{1}{f_i}\right]  \right) = \operatorname{Spec} A_i \, \forall i \) then \(X\) is affine. 
+        \end{enumerate} 
+
+        \(X \to \operatorname{Spec} A\) is the same thing as an \(A\)-algebra'd space which is locally the spectrum of an \(A\)-algebra \((X, \mathcal{O}_X)\). Then \(\mathcal{O}_X\) is a sheaf of \(A\)-algebras.
+
+        For any scheme we may define \(A\) to be the ring of global sections of the structure sheafs: \(A = \Gamma (X , \mathcal{O}_X)\) where \((X, \mathcal{O}_X)\) is the sheaf of \(A\)-algebras.
+
+        Thus we have a universal morphism \(X \to \operatorname{Spec} \Gamma (X, \mathcal{O}_X)\).
+
+        Let's define \(\operatorname{Spec} \Gamma(X, \mathcal{O}_X) = \operatorname{Spec} A\).
+
+        Then we have:
+
+        \[
+            \begin{tikzcd}
+                X \ar[rr] \ar[rd, "\pi"] & & \operatorname{Spec} A \ar[ld, "\rho"] \\ & \operatorname{Spec} B
+            \end{tikzcd}
+        \]
+
+        Since we have \(X \to \operatorname{Spec} B\), we must have a map \(B \to A\) which tells us there must be a map \(\operatorname{Spec} A \to \operatorname{Spec} B\) so that the diagram commutes.
+        
+        Now write \(\operatorname{Spec} B = \bigcup_{i} D(f_i)\)
+        
+        \(X = \bigcup_{i} \pi ^{-1} (D(f_i)) = \bigcup_{i} \operatorname{Spec} A_i\).
+
+        \(\operatorname{Spec} A = \bigcup_{i} \rho ^{-1} (D(f_i)) = \bigcup_{i} \operatorname{Spec} A \left[ \frac{1}{\pi^\sharp f_i} \right]\).
+
+        \(\forall f_i\),
+        
+        \[
+            \Gamma(X_{\pi^\sharp f_i}, \mathcal{O}_X) \cong \Gamma(X, \mathcal{O}_X) \left[ \frac{1}{\pi^\sharp f_i} \right] = A \left[ \frac{1}{\pi^\sharp f_i} \right] 
+        \]
+
+        via the qcqs lemma.
+
+    \end{proof}
+
+    Countereample when a map is not affine: consider \(\mathbb{A}^2 \setminus \{ (0,0) \} \to \mathbb{A}^2\) given by immersion.
+
+    \begin{definition}
+        A morphism \(\pi: X \to Y\) is \textit{finite} if it is an affine morphism and there exists an affine open cover \(Y = \bigcup_{\alpha} \operatorname{Spec} B_\alpha\) such that \(\pi ^{-1} (\operatorname{Spec} B_\alpha) = \operatorname{Spec} A_\alpha\) (i.e. \(A_\alpha\) is automatically a \(B_\alpha\) algebra) which makes \(A_\alpha\) a finitely generated \(B_\alpha\)-module.
+    \end{definition}
+
+    Note that \(\operatorname{Spec} A \xrightarrow{\pi} \operatorname{Spec} B\) is affine by definition. When is it finite?
+    
+    We have \(B \xrightarrow{\pi^\sharp} A\). Finiteness in this case means \(A\) is a finitely generated \(B\)-module.
+
+    Example: \(\mathbb{A}^1_k \to \operatorname{Spec} k \rightsquigarrow k \to k[x]\).
+
+    As \(\dim_k k[x] = \infty\) this is not finite.
+
+    Now consider \(\operatorname{Spec} k \to \mathbb{A}^1_k\) given by \(\bullet \mapsto 0 \rightsquigarrow k[x] \to k, P(x) \mapsto P(0)\).
+
+    This is finite since \(k\) is a finitely generated \(k[x]\)-module.
+
+    More generally if \(A = B / I\) then \(A\) is a finitely generated \(B\)-module: it is generated by \(1\) [Note: we're not talking about finitely presented, \(I\) can be whatever].
+
+    Now consider \(x\mapsto x^2 = y,\mathbb{A}^1_k \to \mathbb{A}^1_k , \operatorname{Spec} k[x] \to \operatorname{Spec} k[y] , k[y] \to k[x], y \mapsto x^2\) 
+
+    Claim: this is finite. We can think `\(x = \sqrt{y} \)'.
+
+    Then \(k[x] = k[y][\sqrt{y}]\) i.e. \(k[x] = k[y][t] / (t^2 - y)\).
+    
+    Is it finitely generated as a module?
+
+    As \(k[x^2]\)-module, \(k[x]\) is spanned by \(1\) and \(x\): \(P(X) = a_0 + a_1 x + a_2 x^2 + \cdots = (a_0 + a_2 x^2 + \cdots) + (a_1 x + a_3 x^3 + \cdots)\).
+
+    Now consider \(\operatorname{Spec} k\left[ x, \frac{1}{x} \right] = X = \mathbb{A}^1 \setminus \{ 0 \} \) and \(Y = \mathbb{A}^1 = \operatorname{Spec} k[x]\). \(X \leftrightarrow Y\).
+
+    Is \(k \left[ x, \frac{1}{x} \right] \) a finitely generated \(k[x]\)-module?
+
+    \begin{definition}
+        \(\pi: X\to Y\) is quasi-finite if and only if \(\pi ^{-1} (y)\) is finite \(\forall y\in Y\).
+    \end{definition}
+
+    \begin{theorem}
+        Every finite morphism is quasi-finite.
+    \end{theorem}
+
+    \begin{theorem}
+        [Zariski's Main Theorem, Grothendieck version]
+
+        For locally noetherian schemes \(X \to Y\) a quasi-finite morphism is always an open immersion followed by a finite morphism.
+    \end{theorem}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/ZMT}
+    \end{figure}
+
+    \begin{proposition}
+        If \(X \to \operatorname{Spec} k\) is a finite morphism then \(X\) is a finite discrete set.
+    \end{proposition}
+
+    \begin{proof}
+
+        By definition, \(X = \operatorname{Spec} A\). \(k \to A\) makes \(A\) a finitely generated \(k\)-module, i.e. a finite dimensional \(k\)-vector space.
+
+        If \(\operatorname{Spec} A = \operatorname{Spec} A_1 \sqcup \operatorname{Spec} A_2 \sqcup \cdots \sqcup \operatorname{Spec} A_n\) then \(A = A_1 \times \cdots \times A_n\).
+
+        \[
+            \dim_k A = \sum_{i} \dim_k A_i \, \text{ so } n \leq \dim_k A 
+        \]
+
+        Let \(\operatorname{Spec} A_i\) be an irreducible component. \(A_i\) is a finite dimensional \(k\)-algebra.
+
+        Let \(\overline{A}_i = A_i / \operatorname{rad} (A_i)\).
+
+        Then \(\overline{A}_i\) is irreducible and reduced. Therefore \(\overline{A}_i\) is an integral domain and also [since it is a quotient of a finite dimensional \(k\)-vector space] a finite dimensional \(k\)-vector space.
+
+        Therefore \(\operatorname{Spec} \overline{A}_i\) is a field. i.e. \(\operatorname{Spec} \overline{A}_i\) is a single point.
+
+        Modding out the radical does not change the underlying topological space. Thus \(\operatorname{Spec} A_i \cong \operatorname{Spec} \overline{A}_i\).  Therefore, \(\operatorname{Spec} A_i\) is a single point.
+
+        Thus, \(A\) is a finite discrete space.
+
+        This proves the theorem over a point. What about in general?
+
+        To prove that \(\pi : X \to Y\) is quasi-finite, choose \(y\in Y\). We want to show that \(\pi ^{-1} (y)\) is finite.
+
+        Let \(y\in \operatorname{Spec} B \subset Y\).
+
+        Replace \(X\) by \(\pi ^{-1} \operatorname{Spec} B = \operatorname{Spec} A \subset X\). \(B \to A\) where \(A\) is a finitely generated \(B\)-module. Call the map \(\pi^\sharp\).
+
+        \(y\in Y \mapsto Q\in \operatorname{Spec} B\).
+
+        Let \(S = B \setminus Q\).
+
+        \[
+            B_Q = S ^{-1} B \xrightarrow{S ^{-1} \pi^\sharp} \pi^\sharp (S) ^{-1} A
+        \]
+
+        Since \(A\) is a finitely generated \(B\)-module, it follows that \(\pi^\sharp(S) ^{-1} A\) is a finitely generated \(B_Q\)-module.
+
+        WLOG assume \(B\) is a local ring and \(Q\) is its maximal ideal.
+
+
+        \((B,Q)\) local ring, \(A\) is a \(B\)-algebra, which is a finitely generated \(B\)-module. We want to show that the inverse image of \(Q\) in \(\operatorname{Spec} A\) is a finite set.
+
+        \[
+            \begin{tikzcd}
+                A \ar[r] & A / QA \\ B \ar[u] \ar[r] & B / Q \ar[u]
+            \end{tikzcd}
+        \]
+        
+        Since \(A\) is f.g. over \(B\) we conclude that \(A / QA\) is f.g. over \(B / Q\).
+
+        Then we've reduced to the case where \(B / Q\) is a field so we're done.
+    \end{proof}
+
+    Notice: We will meet: Nov 5, Nov 10, Nov 17.
+
+    We will not meet: Nov 7, Nov 12, Nov 14.
 
 \end{document}

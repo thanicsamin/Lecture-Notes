@@ -3480,4 +3480,147 @@
 
     This means \(M \not \hookrightarrow \mathbb{R}^3\) as closed subset.
 
+    \section*{Monday, 11/3/2025}
+    
+    \subsection*{Chapter 11}
+
+    Goals: Euler class of a closed manifold integrated over the whole manifold is the Euler characteristic:
+
+    \[
+        \langle e(T), [M] \rangle = \chi(M)
+    \]
+
+    Another goal: Wu's formula for \(\operatorname{w}_k (TM)\).
+
+    Review:
+
+    Euler class \(e(\xi) \in H^n(B;\mathbb{Z})\) is the image of the Thom class:
+
+    \[
+        u \in H^n(E,E_0) \to H^n E \xleftarrow[\cong]{\pi^{\ast}} H^n B \ni e(\xi)
+    \]
+
+    Submanifold \(M^n \subset A^{n+k}\).
+
+    11.2: If \(M\) is closed in \(A\), then,
+
+    \[
+        u_\nu \in H^k(E(\nu), E(\nu)_0) \underset{T.N.T.}{\cong} H^k(N, N-M) \xleftarrow{\cong} H^k(A, A-M) \ni u_M
+    \]
+
+    Milnor-Stasheff class \(u_M\) as \(u^{\prime}\).
+
+    Intution for \(u_M\): \(\langle u_M , [X] \rangle = M \cdot X\).
+
+    11.3: \(u_M \in H^k(A, A-M)\xrightarrow{i^{\ast}} H^k A \xrightarrow{j^{\ast}} H^k M\)
+    
+    \begin{enumerate}[label=\alph*)]
+        \item \(M\) closed in \(A\) implies \(u_M \mapsto \operatorname{w}_k(\nu)\). \(\nu\) oriented implies \(u_M \mapsto e(\nu)\).
+        \item \(M, A\) closed manifolds implies \(u_M \mapsto PD_A[M]\). 
+    \end{enumerate} 
+
+    Application of 11.3(b): \(X^k \pitchfork M^n \subset A\), all closed and oriented. In that case,
+    
+    \(M \cdot X = \langle u_M , [X] \rangle = \langle PD[M] , X \rangle = \langle PD[M] \cup PD[X], [A] \rangle\), the algebraic intersection number.
+    
+    In the case \(A^{n+k}\) closed and oriented, then, we have algebraic integral pairing:
+
+    \[
+        \frac{H^n A}{\text{tor}} \otimes \frac{H^k A}{\text{tor}} \to \mathbb{Z}
+    \]
+
+    \[
+        a \otimes b \mapsto \langle a \cup b, [A] \rangle 
+    \]
+
+    Choose \(\mathbb{Z}\)-basis \(\{ e_k \}\), that gives us \(\langle e_i \otimes e_j , [A] \rangle \). It's a symmetric matrix, and P.D. implies \(\det = \pm 1\).
+
+    \subsubsection*{Tangent Bundle}
+
+    `Normal bundle of the diagonal bundle is the tangent bundle of the manifold.'
+
+    Define diagonal map \(\Delta: M \to M \times M, \Delta(x) = (x,x)\).
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{img/diagonalmap}
+        \caption{Diagonal Map}
+    \end{figure}
+
+    Consider curve \(\alpha : \mathbb{R} \to M \times M\). Then we in fact have two maps: \(\alpha = (\alpha_1 , \alpha_2)\) where \(\alpha_i : \mathbb{R} \to M\).
+
+    Therefore, \(T(M \times M) = TM \times TM\).
+
+    Notice that for any curve \(\gamma: \mathbb{R}\to M\) we can find a new curve
+    \((\gamma(t), \gamma(-t)) : \mathbb{R} \to M \times M\).
+
+    These give us lemma 11.5
+
+    \begin{lemma}
+        [11.5] \(\exists\) bundle map:
+
+        \[
+            \begin{tikzcd}
+                v \ar[r, mapsto] & (v,-v) \\
+                TM \ar[r] \ar[d] & \nu(\Delta(M) \hookrightarrow M \times M) \ar[d] \\ M \ar[r,"\Delta", "\cong"'] & M \times M
+            \end{tikzcd}
+        \]
+
+        Therefore \(TM = \nu(\Delta \hookrightarrow M \times M)\).
+    \end{lemma}
+
+    Now we jump into the algebraic topology.
+
+    \[
+        H^n(M \times M , M \times M - \Delta M) \to H^n(M \times M)
+    \]
+
+    \[
+        u_{\Delta M} \mapsto u^{\prime\prime}
+    \]
+
+    Here \(u^{\prime\prime}\) is the `diagonal cohomology class'. \(u^{\prime\prime} = PD_{M \times M} [\Delta]\).
+
+    \begin{lemma}
+        [11.8] \((1 \times a) \cup u^{\prime\prime} = (a \times 1) \cup u^{\prime\prime}\) for \(a\in H^{\ast} M\).
+    \end{lemma}
+
+    \begin{proof}
+        [Sketch] \(\Delta M \hookrightarrow M \times M\) is symmetric in the two factors. 
+    \end{proof}
+
+    \begin{lemma}
+        [11.9] When \(M\) is closed, if we take the `slant product' then \(u^{\prime\prime} / [M] = 1 \in H^0 M\) 
+    \end{lemma}
+
+    Proof ommitted.
+
+    \subsection*{Products}
+
+    Recall: Cup products \(\leftrightarrow\) cross products. Implies cohomology is a ring.
+
+    Cap products imply homology is a module over cohomology ring. It corresponds to `slant prduct'.
+
+    \[
+        / : H^{p+q} (X \times Y) \otimes H_q Y \to H^p X
+    \]
+
+    \[
+        a \otimes z \mapsto a / z
+    \]
+
+    It is supposed to be like a fraction.
+
+    It is also related to the cross product: \((a \times b) / \beta = \langle b, \beta \rangle a\).
+
+    This can work as a definition if coefficients are in a field. Theorem for general coefficients.
+
+    \begin{definition}
+        [Slant Product] At the cochain level: take \(f\in H^{p+q}(X \times Y)\) and \(\sigma : \Delta^q \to Y\), then for any \(p\)-chain \(\tau\),
+
+        \[
+            (f / \sigma)(\tau) = f(_p \sigma \times \tau)
+        \]
+    \end{definition}
+
 \end{document}
