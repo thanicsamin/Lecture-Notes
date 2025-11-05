@@ -3621,6 +3621,115 @@
         \[
             (f / \sigma)(\tau) = f(_p \sigma \times \tau)
         \]
+
+        [Note: this is not quite right]
     \end{definition}
+
+    \section*{Wednesday, 11/5/2025}
+    
+    Recap:
+
+    Slant product \(/ : H^{p+q}(X \times Y) \otimes H_q X \to H^p Y\). \(p \otimes \beta \mapsto p / \beta\).
+
+    Main idea: if \(a\in H^p X , b \in H^q Y\) then \((a \times b) / \beta = \langle b , \beta \rangle a\).
+
+    \(- / \beta\) is \(H^{\ast} X\)-linear: \(((a \times 1) \cup p) / \beta = a \cup (p / \beta)\).
+    
+    If \(M\) is oriented assume field coefficient \(F\). Otherwise assume \(\mathbb{F}_2\)-coefficients.
+
+    Now assume that \(M^n\) is closed and smooth. \(H^n (M \times M , M \times M - \Delta) \ni u_\Delta\), the thom class of the diagonal. \(u_\Delta\) maps to \(u^{\prime\prime} \in H^n(M \times M)\). It is called the diagonal cohomology class, which is the Poincar\'e dual to \(\Delta M\).
+
+    Recall when \(n\in \dim B - \dim A\), we have \(H^n(B , B - A) \cong H^n(E(\nu) , E(\nu)_0)\) where \(\nu\) is the normal bundle by excision and tubular neighborhood theorem.
+    
+    11.8: \(\forall a\in H^{\ast} M , (a \times 1) \cup u^{\prime\prime} = (1 \times a) \cup u^{\prime\prime}\), symmetry.
+
+    11.9: \(u^{\prime\prime} / [M] = 1 \in H^0 M\).
+
+    Proof omitted.
+
+    11.10: Duality Theorem: \(\forall\) basis \(b_1 , \cdots , b_r\) for \(H^{\ast} M\) there exists dual basis \(b_1^\# , \cdots , b_r^\#\) so that \(\langle b_i \cup b_j^\# , [M] \rangle = \delta_{ij}\).
+
+    11.11 \(u^{\prime\prime} = \sum_{i} (-1)^{\vert b_i \vert} b_i \times b_i^\# \in H^n(M \times M)\).
+    
+    11.10 \(\iff\) \(I : H^{\ast} M \otimes_F H^{\ast} M \to F\) given by \(a \otimes b \mapsto \langle a \cup b , [M] \rangle \) is a perfect pairing, thus \(\dim H_p M = \dim H^{n-p} M = \dim H_{n-p} M\). 
+
+    Suppose \(A, B\) are \(\Lambda\)-modules where \(\Lambda\) is a commutative ring. then \(A \otimes_\Lambda B \to C\) is perfect pairing if \(A \xrightarrow{\approx} \operatorname{Hom} (B, C)\) and \(B \xrightarrow{\approx} \operatorname{Hom} (A, C)\). In our example the perfect pairing comes from the bilinear map.
+    
+    \begin{proof}
+        We prove 11.10 and 11.11.
+
+        By K\"unneth theorem we can write \(H^n (M \times M) \ni u^{\prime\prime} = b_1 \times c_1 + \cdots + b_r \times c_r\).
+
+        11.8 \(\implies (a \times 1) \cup u^{\prime\prime} = (1 \times a) \cup u^{\prime\prime}\). By taking slat with fundamental class,
+
+        \(((a \times 1) \cup u^{\prime\prime}) / [M] = ((1\times a) \cup u^{\prime\prime}) / [M]\)
+        
+        \(a \cup (u^{\prime\prime} / [M]) = (1 \times a) \cup \left( \sum_{j} b_j \times c_j \right) / [M]\)
+
+        \(a = \left( \sum_{j} (-1)^{\vert a \vert \vert b_j \vert} (1 \cup b_j) \times (a \cup c_j) \right) / [M]\).
+        
+        \(a = \sum_{j} (-1)^{\vert a \vert \vert b_j \vert} \langle a \cup c_j , [M] \rangle b_j\).
+        
+        Now take \(a = b_i\). The \(b_i\) are a basis. Therefore, taking \(a = b_i\) we see:
+
+        \[
+            b_i = \sum_{j} (-1)^{\vert b_i \vert \vert b_j \vert} \langle b_i \cup c_j , [M] \rangle = \delta_{ij}
+        \]
+
+        Define \(b_j^\# = (-1)^{b_j} c_j\).
+
+        \(\langle b_i \cup b_j^\# , [M] \rangle = \delta_{ij}\)
+        
+        \(u^{\prime\prime} = \sum_{i} (-1)^{\vert b_i \vert } b_i \times b_i^\#\) 
+
+        When \(M = \mathbb{R} P^2 , u^{\prime\prime} = 1 \times a^2 + a \times a + a^2 \times 1 \in H^2(\mathbb{R} ^2 \times \mathbb{R} P^2)\).
+
+    \end{proof}
+
+    \begin{corollary}
+        When \(M^n\) is closed, smooth and oriented, \(\langle e(TM) , [M] \rangle = \chi(M)\).
+
+        When \(M^n\) is closed and smooth, \(\langle \operatorname{w}_n(TM) , [M] \rangle \cong \chi \xi (M) \mod 2\),
+
+    \end{corollary}
+
+
+    \begin{proof}
+        Oriented case: claim \(e(TM) = \Delta^{\ast} u^{\prime\prime}\).
+
+        \[
+            \begin{tikzcd}
+                u_{TM} & & e(TM) \\
+                H^n(TM , TM_0) \ar[rr] \ar[d,"\cong"] & & H^n (M \times M) \\
+                {H^n(E(\nu : \Delta \hookrightarrow M \times M), E(v)_0)} \ar[r, "\cong"] & H^n(M \times M , M \times M - \Delta) \ar[r] & H^{\ast} (M \times M) \ar[u,"\Delta^{\ast}"] \\
+                & u_\Delta & u^{\prime\prime} 
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/pertrubediagonal}
+    \end{figure}
+
+    Let \(\Delta^{\prime}\) be isotopic copy of \(\Delta\) such that \(\Delta^{\prime} \pitchfork \Delta\).
+
+    Then \(\Delta^{\prime} \cdot \Delta = \langle e(\nu), [\Delta] \rangle - \langle e(TM) , [M] \rangle = \chi(M)\) 
+
+    THus, \(\chi(M)\) is the self intersection number of the diagonal \(\Delta M \hookrightarrow M \times M\) 
+
+    \begin{corollary}
+        If \(M\) has a nowhere zero vector field then \(\chi(M) = 0\).
+    \end{corollary}
+
+    \begin{proof}
+        Suppose otherwise. Then \(M\) has a non-zero vector field implies \(\Delta M\) has a non-zero normal vector field. ``Flow'' implies \(\exists \Delta^{\prime} \) such that \(\Delta^{\prime} \cap \Delta = \varnothing\).
+    \end{proof}
+
+    Thus, \(\chi(M) \neq 0 \implies\) can't comb hairy \(M\).
+
+    Recall \(\chi(M) = (-1)^i \dim H_i(M , \mathbb{Q}) = \sum_{i} (-1)^i (\# \text{-of \(i\)-cells})\).
+    
+    \(= \sum_{i} (-1)^i \dim H_i(M , \mathbb{F}_p)\).
 
 \end{document}

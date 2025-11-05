@@ -4445,4 +4445,176 @@
 
     We will not meet: Nov 7, Nov 12, Nov 14.
 
+    \section*{Wednesday, 11/5/2025}
+
+    Recap:
+    
+    \begin{definition}
+        A morphism \(\pi : X \to Y\) is integral if for all affine open \(\operatorname{Spec} B \subset Y\), \(\pi ^{-1} (\operatorname{Spec} B)\) is an affine scheme \(\operatorname{Spec} A\) where \(B \to A\) is integral.
+    \end{definition}
+
+    \begin{proposition}
+        Every finite morphism is integral.
+    \end{proposition}
+
+    \begin{proposition}
+        Every integral morphism \(\pi : X \to Y\) maps closed sets to closed sets.
+    \end{proposition}
+
+    \begin{proof}
+        To prove that \(f: X \to Y\) is closed, it suffices to show that \(Y\) has an open cover \(\bigcup_{\alpha} U_\alpha\)  such that \(f ^{-1} (U_\alpha) \xrightarrow{f} U_\alpha\) is closed for all \(\alpha\), i.e. \(X \cap f ^{-1} (U_\alpha)\) is closed in the subspace topology on \(f ^{-1} (U_\alpha)\).
+        
+        \(C \subset X\) is closed \(\implies f(C \cap f ^{-1} (U_\alpha)) =f(C) \cap U_\alpha\) is closed in \(U_\alpha\).
+
+        Now, \(\pi : X \to Y = \operatorname{Spec} B_\alpha\) and \(B_\alpha \to A_\alpha\) is integral.
+
+        \(\operatorname{Spec} A_\alpha = \pi ^{-1} (\operatorname{Spec} B_\alpha) \to \operatorname{Spec} B_\alpha\) is integral. If \(C \subset \operatorname{Spec} A_\alpha\) is closed, then \(\pi(C) \subset \operatorname{Spec} B\) is closed:
+        
+        Let \(C = V(I)\) for some ideal \(I\) of \(A_\alpha\). Let \(J = (\pi^\sharp)^{-1} (I) \subset B_\alpha\).
+
+        \(B_\alpha / J \to A_\alpha / I\) is an integral extension. By the lying over theorem, \(V(I) = \operatorname{Spec} A_\alpha / I \to \operatorname{Spec} B_\alpha / J\) is surjective.
+        
+        \(V(I) = \operatorname{Spec} A_\alpha / I \to \operatorname{Spec} B_\alpha / J \to \operatorname{Spec}  B_\alpha\).
+
+        \(\pi(V(I)) = \operatorname{im} \operatorname{Spec}  B_{\alpha} / J\) in \(\operatorname{Spec} B_\alpha\), which is \(V(J)\). 
+    \end{proof}
+
+    \begin{definition}
+        A morphism \(\pi: X \to Y\) is locally of finite type if \(\forall \operatorname{Spec} B \subset Y\) affine open, we can write:
+
+        \[
+            \pi ^{-1} (\operatorname{Spec} B) = \bigcup_{\alpha} \operatorname{Spec} A_\alpha
+        \]
+
+        where each \(A_\alpha\) is a finitely generated \(B\)-algebra. Key word: we didn't say \(B\)-module. So they're not necessarily finite in the module sense: they're finite in the ring sense.
+
+        \(\pi\) is of finite type if it is both quasicompact and locally of finite type.
+    \end{definition}
+
+    Every affine variety over \(k\) is of finite type over \(\operatorname{Spec} k\).
+
+    Recall an affine variety \(V\) is as follows: \(V = k[x_1 , \cdots , x_n] / I\).
+
+    Every projective variety over \(k\) is also of finite type.
+
+    Recall: \(\mathbb{P}^n_k = \operatorname{Proj} k [x_0 , \cdots , x_n]\)
+
+    \(= \bigcup_{i=0}^n \operatorname{Spec} k[x_{0 / i} , x_{1 / i}, \cdots , x_{n / i}]\).
+
+    \(\mathbb{P}^n_k \to \operatorname{Spec} k\) is therefore of finite type.
+
+    \begin{theorem}
+        A composition of two morphisms of finite type is of finite type.
+    \end{theorem}
+
+    \begin{theorem}
+        An open immersion of Noetherian schemes is of finite type.
+    \end{theorem}
+
+    Suppose I want to show \(\mathbb{A}^n \setminus 0\) is of finite type over \(\mathbb{A}^n\).
+    
+    Think about the case \(n=2\). We can form an open cover by first taking away the \(x\)-axis \(\operatorname{Spec} k[x,y,1 / y]\) and then the \(y\)-axis \(k[x,1 / x, y]\). So that is of finite type. But we need the noetherian condition: if we had infinitely many variables then we wouldn't have this.
+
+    \(\operatorname{Spec} k[x_1 , x_2 , \cdots] \to \operatorname{Spec} k\) is not of finite type.
+
+    \(\operatorname{Spec} \mathbb{Q} \to \operatorname{Spec} \mathbb{Z}\) is not of finite type: \(\mathbb{Z} \to \mathbb{Q}\), and \(\mathbb{Q}\) is not finitely generated as a \(\mathbb{Z}\)-algebra.
+
+    \begin{proposition}
+        If \(X \to Y\) is of finite type and \(Y\) is Noetherian, then \(X\) is Noetherian.
+    \end{proposition}
+
+    \subsection*{Constructible subsets of a Noetherian space}
+
+    A constructible set is a finite disjoint union of locally closed sets. A locally closed set is \(C \cap U\), intersection of a closed and an open set. We can think about it like removing a closed subset from a closed set.
+
+
+    \begin{theorem}
+        The constructible subsets of a Noetherian topological space form a \textit{Boolean Algebra}, i.e. they are closed under finite unions, finite intersections and complements.
+    \end{theorem}
+
+    \begin{proof}
+        Suppose \(X = \coprod_{i=1}^m C_i \cap U_i , Y = \coprod_{j=1}^n D_j \cap U_j\).
+
+        \(X \cap Y = \coprod_{i,j} (C_i \cap D_j) \cap (U_i \cap V_j)\).
+
+        Now, note that \((C \cap U)^c = C^c \cup U^c - D \cup V\).
+
+        Note that \(D \cup V = V \cup (D \setminus V) = V \coprod (D \cap V^c)\).
+
+        What about \(\left( \coprod C_i \cap U_i \right)^c\)? This boils down to the intersection case.
+
+        Union follows from intersection and complements.
+    \end{proof}
+
+    Consider \(\mathbb{A}^2 \to \mathbb{A}^2\) given by \((x,y) \mapsto (x, xy)\).
+
+    In order to unpack what this is, consider \(\operatorname{Spec} k[x,y] \mapsto \operatorname{Spec} k[u,v]\) so that \(u \mapsto x\) and \(v \mapsto xy\).
+
+    We want to answer: Is \((u,v)\) is in the image?
+
+    \(x = u, xy = v\) has solutiion \(x = u, y = \frac{v}{u}\) when \(u\neq 0\).
+    
+    So, if \(u\neq 0\) there is no problem.
+
+    If \(u\) is \(0\) and \(v\neq 0\) then it is not in the image.
+
+    If \(u=0, v=0\) then \(x=0, y = \text{anything}\) is a solution.
+
+    Then the image is constructible.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{img/constructible}
+    \end{figure}
+
+    \begin{theorem}
+        [Chevalley's Theorem] If \(\pi : X \to Y\) is a morphism of finite type between Noetherian schemes and \(C\) is any constructible subset of \(X\) then \(\pi(C)\) is constructible.
+    \end{theorem}
+
+    \begin{corollary}
+        \(\pi(X)\) is constructible.
+    \end{corollary}
+
+    We really need the finite type condition: Look at \(\operatorname{Spec} \mathbb{Q} \to \operatorname{Spec} \mathbb{Z}\). Then \(\pi(\operatorname{Spec} \mathbb{Q}) = \eta \in \operatorname{Spec} \mathbb{Z}\).
+
+    Opens in \(\operatorname{Spec} \mathbb{Z}\) are cofinite sets where we're not allowed to throw out \(\eta\).
+
+    Constructible sets are also open and closed sets. Just having the generic point is not constructible.
+
+    \subsubsection*{Elimination Theory}
+
+    If we're trying trying to generalize high-school algebra: trying to bring together solving simultaneous linear equations and polynomials? Suppose we want to solve \(A x^2 + B xy + \cdots + F = 0, A^{\prime} x^2 + B^{\prime} xy + \cdots + F^{\prime} = 0\). i.e. I'm trying to find intersections of two conic sections.
+
+    This is what elimination theory does. There is an object called the \textit{resultant}. 
+
+    \begin{definition}
+        [Resultant]
+
+        The resultant of two polynomials is an expression [in terms of the coefficients] which vanishes exactly when the two equations have a common root.
+    \end{definition}
+
+    Suppose we have \(y^2 + Ay + B\) and \(y^2 + Cy + D\), and we want to find common roots.
+
+    First one: we have \(r_1 + r_2 = -A, r_1 r_2 = B\).
+    
+    Second one: we have \(s_1 + s_2 = -C, s_1 s_2 = D\).
+
+    Then our resultant should be \((r_1 - s_1)(r_1 - s_2)(r_2 - s_1)(r_2 - s_2)\). We want to show that we can write it in terms of the cooefficients. 
+
+    \((r_1 - s_1)(r_1 - s_2)(r_2 - s_1)(r_2 - s_2) = (r_1^2 + Cr_1 + D)(r_2^2 + Cr_2 + D) = r_1^2 r_2^2 + C(r_1^2 r_2 + r_1 r_2^2) + D(r_1 ^2 + r_2^2) + C^2 (r_1 r_2) + CD(r_1 + r_2) + D^2\). Each \(r_1 , r_2\) poly can be written in terms of \(A\) and \(B\).
+
+    Now let's look at a more complicated case: \(P(x,y,z) = 0\) and \(Q(x,y,z) = 0\). We can project this into the \(xy\)-plane: this is what elimination theory does for us.
+
+    Suppose \(C \subset X \xrightarrow{\pi} Y = \bigcup \operatorname{Spec} B_i\).
+
+    \(\pi(C)\) constructible \(\impliedby \pi (C) \cap \operatorname{Spec} B_i\) is constructible for all \(i\). Thus WLOG \(Y = \operatorname{Spec} B\).
+
+    Let \(X = \bigcup_{i} \operatorname{Spec} A_i\). It suffices to prove that \(\pi(\operatorname{Spec} A_i \cap C)\) is constructible. WLOG \(X = \operatorname{Spec} A\).
+
+    \(\operatorname{Spec} A \to \operatorname{Spec} B\) where \(A\) is a finitely generated \(B\)-algebra.
+
+    Suppose \(A = B[x_1 , \cdots , x_n] / I\).
+
+    \(C = \operatorname{Spec} A = V(I) \subset \operatorname{Spec} B[x_1 , \cdots , x_n] \to \operatorname{Spec} B\).
+
 \end{document}
