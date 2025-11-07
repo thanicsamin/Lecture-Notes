@@ -3732,4 +3732,220 @@
     
     \(= \sum_{i} (-1)^i \dim H_i(M , \mathbb{F}_p)\).
 
+    \section*{Friday, 11/7/2025}
+    
+    \subsection*{Wu classes / Wu Formula / Wu Theorem}
+
+    Coefficients in \(\mathbb{F}_2\) understood.
+
+    Wu classes are polynomials of whitney classes.
+
+    \(\operatorname{v}_0 = \operatorname{w}_0 = 1\)
+    
+    \(\operatorname{v}_1 = \operatorname{w}_1\) 
+
+    \(\operatorname{v}_2 = \operatorname{w}_1^2 + \operatorname{w}_2\)
+    
+    \(\operatorname{v}_3 = \operatorname{w}_1 \operatorname{w}_2\).
+
+    They're defined as following:
+
+    \begin{definition}
+        [Total Wu Class]
+
+        \[
+            \operatorname{v} =  \operatorname{v}_0 + \operatorname{v}_1 + \operatorname{v}_2 + \cdots
+        \]
+
+        \[
+            \operatorname{w} = \operatorname{Sq} v
+        \]
+    \end{definition}
+
+    i.e. \(v = \operatorname{Sq}^{-1} \operatorname{w} = (1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots)^{-1} \operatorname{w}\).
+    
+    \begin{proposition}
+        [Wu's Formula, Execrise 8A]
+
+        \(\operatorname{Sq}^k \operatorname{w}_m\) is `something in the cohomology of the Grassmanian', so it must be some polynomial over Stiefel Whitney Classes.
+
+        \[
+            \operatorname{Sq}^k \operatorname{w}_m = \sum_{i} \binom{k-m}{i} \operatorname{w}_{k-i} \operatorname{w}_{m+i}
+        \]
+    \end{proposition}
+
+    Hint on 8A:
+
+    \[
+        H^{\ast} (G_n) \cong H^{\ast} (P^m \times \cdots \times P^m)^{S_n}
+    \]
+
+    \[
+        \operatorname{w}_i \mapsto \sigma_i (a_1 , \cdots , a_n)
+    \]
+
+    Compute \(\operatorname{Sq}^i\) using Cartan.
+
+    eg \(\operatorname{Sq}^1 \operatorname{w}_2 = \operatorname{w}_1 \operatorname{w}_2 + \operatorname{w}_3\).
+
+    Computation:
+
+    \[
+        \operatorname{w} = \operatorname{Sq} \operatorname{v} = (1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots)(v_0 + v_1 + v_2 + \cdots)
+    \]
+
+    Then, \(1 = \operatorname{w}_0 = \operatorname{v}_0\).
+
+    \(\operatorname{w}_1 = \operatorname{v}_1\)
+
+    \(\operatorname{w}_2 = \operatorname{Sq}^1 \operatorname{v}_1 + \operatorname{v}_2 \implies \operatorname{w}_2 = \operatorname{w}_1^2 + \operatorname{v}_2\)
+    
+    \(\operatorname{w}_3 = \cancel{\operatorname{Sq}^2 \operatorname{v}_1} + \operatorname{Sq}^1 \operatorname{v}_2 + \operatorname{v}_3 = \operatorname{Sq}^1 \operatorname{w}_1^2 + \operatorname{Sq}^1 \operatorname{w}_2 + \operatorname{v}_3\)
+    
+    \(= \underbrace{\cancel{\operatorname{Sq}^0 \operatorname{w}_1 \operatorname{Sq}^1 \operatorname{w}_1 + \operatorname{Sq}^1 \operatorname{w}_1 \operatorname{Sq}^0 \operatorname{w}_1}}_{\text{cartan}} + \underbrace{\operatorname{w}_1 \operatorname{w}_2 + \operatorname{w}_3}_{\text{Wu Formula}} + \operatorname{v}_3\) 
+
+    Now, suppose we have \(M^n\) a closed \(n\)-manifold.
+
+    \begin{theorem}
+        [Wu Theorem]
+
+        Let \(\operatorname{v}(TM)\) be the total Wu class of a tangent bundle.
+
+        \[
+            \langle \operatorname{v}(TM) \cup - , [M] \rangle = \langle \operatorname{Sq}(-), [M]\rangle 
+        \] 
+
+        i.e. if \(x\in H^{n-k} M\) then \(\operatorname{v}_k(TM) \cup x = \operatorname{Sq}^k x\).
+        
+        i.e. \(\langle \operatorname{v}_k(TM) \cup x , [M] \rangle = \langle \operatorname{Sq}(-), [M] \rangle\).
+    \end{theorem}
+
+    \begin{corollary}
+        Let \(M \underset{h}{\simeq} M^{\prime}\) be homotopy equivalent manifolds. Then, \(\operatorname{w}(TM) = h^{\ast} \operatorname{w}(TM^{\prime})\).
+    \end{corollary}
+
+    \begin{proof}
+        [Sketch] Wu classes are determined by algebraic topology. Thus, homotopy equivalent implies same algebraic topology which implies same Wu class which implies same Stiefel-Whitney class.
+    \end{proof}
+
+    We can connect this to intersection forms.
+
+    \begin{definition}
+        [Algebraic Intersection Form] \(I_M : H^{\ast} M \otimes H^{\ast} M \to \mathbb{F}_2\).
+
+        \[
+            I_M(a \otimes b) = \langle a\cup b , [M] \rangle
+        \]
+
+        We write \(a \cdot b = I_M(a \otimes b)\). By Poincar\'e duality it is a \textit{perfect pairing}, thus it is a \textit{non-singular pairing}.
+    \end{definition}
+
+    \subsubsection*{Key application of Wu's Theorem}
+
+    Suppose \(n = 2k\). \(M\) is a closed \(n\)-dimensional manifold.
+    
+    \[
+        \langle v_k (TM) \cup x, [M] \rangle = \langle \operatorname{Sk}^k x, [M] \rangle = \langle x\cup x, [M] \rangle 
+    \]
+
+    Thus, for \(x\in H^k M\):
+    
+    \[
+        \operatorname{v}_k(TM) \cdot x = x \cdot x\;.
+    \]
+
+    Now we restrict to the middle dimensional homology.
+
+    \[
+        \widehat{I_M} : H^k M^{2k} \otimes H^k M^{2k} \to \mathbb{F}_2
+    \]
+
+    \begin{definition}
+        \(\widehat{I_M}\) is even if \(\forall a, \widehat{I_M} (a \otimes a) = 0\).
+
+        \(\iff\) if \(\beta_i\) is a basis for \(H^k M\) then the matrix \((\beta_i \cdot \beta_j)\) has even \(\#\) on the diagonal.
+    \end{definition}
+
+    Then,
+
+    \begin{theorem}
+        [Wu's Theorem]
+
+        \[
+            \operatorname{v}_k(TM^{2k}) = 0 \iff \widehat{I_M} \text{ is even} 
+        \]
+    \end{theorem}
+
+    Example: Suppose \(n = 2\). Then \(\operatorname{v}_1 = \operatorname{w}_1\).
+
+    \(\operatorname{v}_1 = 0 \iff M^2\) orientable \(\iff \widehat{I_M}\) is even (eg Torus).
+
+    Matrix: \(\begin{bmatrix}
+        \begin{bmatrix}
+            0 & 1 \\
+            1 & 0 \\
+        \end{bmatrix}  &  &  \\
+         & \ddots &  \\
+         &  & \begin{bmatrix}
+            1 & 0 \\
+            0 & 1 \\
+         \end{bmatrix} \\
+    \end{bmatrix} \) 
+
+    \(\operatorname{v}_1 \neq 0 \iff \widehat{I_M}\) is odd. e.g. \(\mathbb{R} P^1 \cdot \mathbb{R} P^1 = 1\) in \(\mathbb{R} P^2\).
+
+    Let \(K\) be the Klein bottle. Then \(\widehat{I_K}\) has matrix \(\begin{bmatrix}
+        0 & 1 \\
+        1 & 1 \\
+    \end{bmatrix}\) since \(b \cdot b = 1\) and \(a \cdot a = 0\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{img/klein}
+        \caption{Klein Bottle}
+    \end{figure}
+
+    e.g. \(\mathbb{R} P^4: \operatorname{w}_1 \neq 0, \operatorname{w}_2 = 0, \operatorname{v}_2 \neq 0\) thus \(\mathbb{R}P^2 \cdot \mathbb{R} P^2 = 1\).
+
+    Further example: \(\mathbb{C} P^1 \cdot \mathbb{C} P^1 = 1\).
+
+    \begin{corollary}
+        Orientable \(4\)-manifold: \(\widehat{I_M}\) is even \(\iff \operatorname{w}_2 (TM) = 0 \iff \operatorname{v}_2(TM) = 0\).
+    \end{corollary}
+
+    To prove Wu's theorem we need an additional lemma:
+
+    \begin{lemma}
+        [11.3]
+
+        \[
+            \operatorname{w}(TM) = \operatorname{Sq}(u^{\prime\prime}) / [M]
+        \]
+
+        Where \(u^{\prime\prime} \in H^n(M \times M)\) the diagonal cohomology class dual to \(\Delta M\).
+    \end{lemma}
+
+    \begin{proof}
+        We assume the lemma is true. In that case, 
+
+        \(I_M\) is perfdect pairingm thus non-singular, thus \(\exists ! \hat{v} \in H^{\ast} M\) such that \(\langle \hat{v} \cup - , [M] \rangle = \langle \operatorname{Sq}(-) , [M] \rangle : H^{\ast} M \to \mathbb{F}_2\).
+
+        WTS: \(\hat{v} = \operatorname{v}(TM)\).
+
+        WTS: \(\operatorname{Sq}\hat{v} = \operatorname{w}(TM)\).
+
+        Choose basis \(b_i\) for \(H^{\ast} M\) and dual basis \(b_i^\sharp\) i.e. \(b_i \cdot b_j^\sharp = \delta_{ij}\) [11.10]
+
+        Then, 11.11 \(\implies u^{\prime\prime} = \sum_{i} b_i \times b_i^\sharp\).
+
+        11.10: \(\hat{v} = \left( \sum_{i} \hat{v} \cdot b_i^\sharp \right) b_i = \sum_{i} \langle \operatorname{Sq} (b_i^\sharp) , [M] \rangle b_i\)
+
+        \(\implies \operatorname{Sq} \hat{v} = \sum_{i} \langle \operatorname{Sq} (b_i^\sharp) , [M] \rangle \operatorname{Sq} b_i\)
+        
+        Cartan and 11.11 implies,
+
+        \(\operatorname{Sq} \hat{v} = \sum_{i} (\operatorname{Sq}(b_i) \times \operatorname{Sq}(b_i^\sharp)) / [M] = \operatorname{Sq}(u^{\prime\prime}) / [M] = \operatorname{w}(TM)\). 
+
+    \end{proof}
+
 \end{document}
