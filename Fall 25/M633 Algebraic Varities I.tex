@@ -4617,4 +4617,148 @@
 
     \(C = \operatorname{Spec} A = V(I) \subset \operatorname{Spec} B[x_1 , \cdots , x_n] \to \operatorname{Spec} B\).
 
+    \section*{Monday, 11/10/2025}
+    
+    Recall:
+
+    \begin{theorem}
+        [Chevally] Let \(\pi : X \to Y\) be a morphism of finite type, \(Y\) Noetherian, and \(Z\) be a constructible subset of \(X\). Then \(\pi(Z)\) is a constructible subset of \(Y\).
+    \end{theorem}
+
+    \begin{proof}
+        Reductions:
+
+        Since \(Y\) is Noetherian we can write it as a finite union \(Y = \bigcup_{i=1}^m \operatorname{Spec} B_i\). Then we can look at \(\pi ^{-1} (\operatorname{Spec} B_i) \to \operatorname{Spec} B_i\) where \(\pi ^{-1} (\operatorname{Spec} B_i)\) are open subsets of \(X\). Then \(Z\cap \pi ^{-1} (\operatorname{Spec} B_i)\) are open subsets of \(Z\). Furthermore,
+            
+        \[
+            \pi(Z) = \bigcup_{i=1}^m \pi (Z \cap \pi ^{-1} (\operatorname{Spec} B_i))
+        \]
+
+        If we prove that \(\pi(Z \cap \pi ^{-1} (\operatorname{Spec} B_i))\) are constructible subsets then \(\pi(Z)\) will be a constructible subset.
+
+        WLOG assume \(Y = \operatorname{Spec} B\). Since \(\pi\) is of finite type, it follows that \(X = \bigcup_{i=1}^n \operatorname{Spec} A_i\) where each \(A_i\) is a f.g. \(B\)-algebra. Agaun, \(Z = \bigcup_{i=1}^n Z\cap  \operatorname{Spec} A_i\) and \(\pi(Z) = \bigcup_{i=1}^n \pi(Z \cap \operatorname{Spec} A_i)\). Thus WLOG assume \(X = \operatorname{Spec} A\). Then,
+        
+        \[
+            \begin{tikzcd}[column sep = small]
+                Z \ar[r,"\subset",phantom] & \operatorname{Spec} A \ar[d] \ar[r,"=",phantom] & \operatorname{Spec} B [x_1 , \cdots , x_n] / I \ar[r,hook] & \mathbb{A}^n_B \ar[lld] \\ & \operatorname{Spec} B
+            \end{tikzcd}
+        \]
+
+        \[
+            \begin{tikzcd}
+                A & B[x_1 , \cdots , x_n] \ar[l] \\ B \ar[u] \ar[ur]
+            \end{tikzcd}
+        \]
+
+        \(i(Z) \subset \mathbb{A}^n_B\) is constructible.
+
+        WLOG assume \(A = B[x_1 , \cdots , x_n]\). Then,
+
+        \[
+            \begin{tikzcd}[column sep = small]
+                Z \ar[r, "\subset", phantom] & X \ar[r,"=", phantom] \ar[dddd] & \mathbb{A}^n_B \ar[d] \\
+                & & \vdots \ar[d] \\
+                & & \mathbb{A}^2_B \ar[d] \\
+                & & \mathbb{A}^1_B \ar[d] \\
+                & Y \ar[r,"=",phantom] & \operatorname{Spec} B
+            \end{tikzcd}
+        \]
+
+        By induction, enough to prove the case \(n=1\).
+
+        Assumme \(A = B[x]\). \(\mathbb{A}^1_B \to \operatorname{Spec} B\).
+
+        \(\operatorname{Spec} B[x] = \mathbb{A}^1_B\) is noetherian since \(B\) is noetherian.
+
+        Let \(Z = \bigcup_{i=1}^n Z_i\) where \(Z_i = C_i \cap U_i\).
+
+        \(\pi(Z) = \bigcup_{i=1}^n \pi(Z_i)\)
+
+        WLOG assume \(Z = C \cap U\). \(U\) is noetherian. \(\forall x\in U , \exists D(f_x)\) an affine open neighborhood of \(x \in U\).
+
+        \(U = \bigcup_{x} D(f_x) = \bigcup_{i=1}^k D(f_{x_i}) \implies Z = \bigcup_{i=1}^k C \cap D(f_i)\).
+        
+        WLOG \(Z = C \cap D(f)\). Then \(C = V(I)\).
+
+        Special case: suppose \(C = \mathbb{A}^1_B\). Then \(f = \sum_{i} b_i x^i\) where \(b_i \in B\). For prime ideal \(P \subset B\), does there exist a prime ideal \(Q\) of \(B[x]\) such that \(f\notin Q\) but \(Q\cap B = P\)?
+        
+        Of course, it is impossible if all coefficients \(\in P\), since then \(b_i \in Q \implies f\in Q\). Otherwise \(Q\) exists.
+
+        \(Q\) corresponds to a prime ideal in \(\mathbb{K} (P)[x]\). This prime ideal is in \(V(f)\) if and only if \(\overline{f} \in \overline{Q}\). If \(\overline{f}\) is non-zero, there is some prime ideal \(\overline{Q}\) to which is doesn't belong, thus \(\exists Q \in D(f)\) mappping to \(P\). If \(P\in V(b_1 , b_2 , \cdots)\) then \(\not\exists Q\), otherwise \(\exists Q\).
+
+        Therefore, \(\pi(D(f)) = \bigcup_{i} D(b_i) \subset \operatorname{Spec} B\).
+
+        Now consider a general closed set in \(B[x]\): \(C = V(I)\).
+
+        Then we can consider \(\operatorname{Spec}(B[x] / I)\).
+
+        We claim that \(B[x] / I\) is a finitely generated \(B\)-module. Since \(B\) is noetherian, we can find generating set \(1, x, \cdots , x^{k-1}\) of \(B[x]\).
+
+        Claim: Suppose \(f x_i \equiv \sum_{i,j} b_{ij} x^j \pmod I\). We have a matrix \((b_{ij})\) where \(b_{ij} \in B\).
+        
+        Then, for each \(P\in \operatorname{Spec} B\) we can look at the matrix \((\overline{b_{ij}})\in M_k (\mathbb{K} (P))\).
+        
+        This matrix is nilpotent iff \(\exists\) prime ideal \(Q \in D(f)\) lying over \(P\). [Claim finishes]
+
+        Nilpotent \(\implies\) matrix of multiplication by \(f^N\) kills \(\mathbb{K}(P)[x] / I\). Therefore \(f\) cannot be invertible on any prime ideal over \(P\) in \(\operatorname{Spec} B[x] / I\).
+
+        The other direction also works, suppose not nilpotent, then since nilradical is the intersection of all prime ideals there is some prime ideal it is invertible over.
+
+        The nilpotence of a \(k \times k\) matrix \(M\) is equivalent to \(M^k = 0\). Then \((b_{ij})^k = (\beta_{ij}) \in M_k(B)\). Now consider \(V(\beta_{ij})\).
+
+    \end{proof}
+
+    \subsection*{Fundamental Theorem of Elimination Theory}
+
+    \begin{theorem}
+        Let \(\pi: \mathbb{P}^n_B \to \operatorname{Spec} B\). Let \(Z\) be a closed subset of \(\mathbb{P}^n_B\). Then \(\pi(Z)\) is also closed.
+    \end{theorem}
+
+    \begin{proof}
+
+        \(Z = V(I)\) for some homogeneous ideal \(I \subset B[x_0 , \cdots , x_n]\). Suppose \(P \in \operatorname{Spec} B\).
+
+        \(I_P \subset B_P [x_0 , \cdots , x_n]\)
+
+        \(\overline{I_P} \subset \overline{B_P}[x_0 , \cdots , x_n] = \mathbb{K} (P) [x_0 , \cdots , x_n]\) 
+
+        This gives us \(P \mapsto \overline{I_P}\) where \(\{ P \mid V(\overline{I_P}) \neq \varnothing \} \) 
+
+        If \(J\) is a homogeneous ideal over \(k[x_0 , \cdots , x_n]\), how to tell if \(V(J)\) is non-empty?
+
+        \(V(J)\) is non-empty iff \(\exists\) a homogeneous non-irrelevant prime ideal containing \(J\).
+
+        If the only prime ideal containing \(J\) is the irrelevant one, that means \(\operatorname{rad} (J) = (x_0 , \cdots , x_n)\).
+
+        Equivalently, for all \(i\), \(\exists N\) such that \(x_i^N \in J\). Equivalently, \((x_0 , \cdots , x_n)^{Nn+1} \subset J\). Let \(M = Nn + 1\). Then \(S_M = (x_0 , \cdots , x_n)^M \subset J\). Then \(S_M\) contains homogeneous \(\deg M\) polynomials.
+        
+        Let \(J = (f_1 , \cdots , f_k)\), homogeneous generator of \(\deg d_1 , \cdots , d_k\)  
+
+        Does every element of \(S_M\) lie in \(J\) for some \(M\)?
+
+        \[
+            S_M = f_1 S_{M - d_1} + \cdots + f_k S_{M - d_k}
+        \]
+
+        Therefore, there exists a map:
+
+        \[
+            S_{M - d_1} \times \cdots \times S_{M - d_k} \to S_M
+        \]
+
+        \[
+            (s_1 , \cdots , s_k) \mapsto \sum_{i} f_i s_i
+        \]
+
+        WTS: this is surjective. A matrix irepresents a non-surjection of linear transformation \(\iff\) all minors of size \(=\) target space have zero determinant. i.e. it is the zero locus of all minors of max size. \textit{It is a closed condition}.
+    \end{proof}
+
+    Consider two homogeneous polynomials \(x_2 t^2 + x_1 t u + x_0 u^2\) and \(y_3 t^3 + y_2 t^2 u + y_1 t u^2 + y_0 u^3\).
+
+    Look at \(\mathbb{P}^1_{k[x_0 , x_1 , x_2 , y_0 , y_1 , y_2 , y_3]}\) 
+
+    Take the set \(V(x_2 t^2 + x_1 t u + x_0 u^2 , y_3 t^3 + y_2 t^2 u + y_1 t u^2 + y_0 u^3)\) 
+
+    Consider the projection of \(V(\cdots)\) in \(\mathbb{P}^1_{k[x_0 , x_1 , x_2 , y_0 , y_1 , y_2 , y_3]}\) into \(\operatorname{Spec} k[x_0 , x_1 , \cdots , y_3]\). We still get a closed set. That is the resultant. 
+
 \end{document}

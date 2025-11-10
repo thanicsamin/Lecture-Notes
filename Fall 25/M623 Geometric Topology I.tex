@@ -3948,4 +3948,144 @@
 
     \end{proof}
 
+    \section*{Monday, 11/10/2025}
+    
+    Recap: Wu classes: \(\operatorname{Sq} v = \operatorname{w}\).
+
+    Wu formula:
+
+    \[
+        \operatorname{Sq}^k \operatorname{w}_m = \sum_{i} \binom{k-m}{i} \operatorname{w}_{k-i} \operatorname{w}_{k+i}
+    \]
+
+    Using these, we can find out: \(v_1 = \operatorname{w}_1 , v_2 = \operatorname{w}_1^2 + \operatorname{w}_2 , v_3 = \operatorname{w}_1 \operatorname{w}_2\).
+
+    Wu's Theorem: If \(M\) is a closed manifold and \(x\in H^{\ast} (M;\mathbb{F}_2)\) then,
+
+    \[
+        \langle v(TM) \cup x , [M]\rangle = \langle \operatorname{Sq}^k (x), [M] \rangle
+    \]
+
+    \begin{corollary}
+        If \(k > \frac{\dim M}{2}\) then \(v_k(TM) = 0\).
+    \end{corollary}
+
+    \begin{proof}
+        \(\forall x\in H^{n-k} (M;\mathbb{F}_2)\)
+
+        \[
+            \langle v_k(TM) \cup x , [M] \rangle = \langle \operatorname{Sq}^k(x) , [M] \rangle = \langle 0, [M] \rangle = 0
+        \]
+    \end{proof}
+
+    If \(k = \frac{\dim M}{2}\) then \(\langle v_k(TM)\cup x, [M] \rangle = \langle x\cup x, [M] \rangle \) which is the `self intersection' number.
+
+    \subsubsection*{Application to 3-manifolds}
+
+    Let \(M^3\) be closed, \(\operatorname{w}_i = \operatorname{w}_i(M) , v_i = v_i(TM)\).
+
+    \begin{theorem}
+        \begin{enumerate}[label=\alph*)]
+            \item All SW numbers of \(M^3\) vanish.
+            \item \(M^3\) orienatable implies \(\operatorname{w}_1 = \operatorname{w}_2 = \operatorname{w}_3 = 0\). 
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \(\frac{\dim M}{2} \implies v_2 = 0, v_3 = 0\). Then \(\operatorname{w}_1^2 = \operatorname{w}_2\) and \(\operatorname{w}_1 \operatorname{w}_2 = 0\). So \(\operatorname{w}_1^3 = 0\). \(\chi(M^3) = 0 \implies \operatorname{w}_3 = 0\) [recall \(\chi(M^n) \equiv \langle \operatorname{w}_n(TM) , [M] \rangle \pmod 2\), apply PD].
+        
+        For part b: \(\operatorname{w}_1 = 0 \implies  \operatorname{w}_2 = 0, \operatorname{w}_3 = 0\).
+    \end{proof}
+
+    a + Thom's theorem \(\implies M^3 = \partial W^4\) compact, i.e. every \(3\)-manifold is the boundary of a compact \(4\)-manifold.
+
+    b + obstruction theorem \(\implies\) oriented closed \(3\)-manifold \(M^3\)  has trivial tangent bundle, ``paralellizable'' [Problem 12-13].
+
+    \subsection*{Gysin Sequence}
+
+    It's a long exact sequence. Consider the vector bundle \(\begin{tikzcd}\mathbb{R}^n \ar[r] & E\ar[d,"\pi"] \\ & B\end{tikzcd}\).
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\exists\) LES:
+        
+        \[
+            \cdots \to H^{j-n} (B;\mathbb{F}_2) \xrightarrow{-\cup \operatorname{w}_n} H^j(B;\mathbb{F}_2) \xrightarrow{\pi^\sharp} H^j (E_0 ; \mathbb{F}_2) \to H^{j-n+1}(B;\mathbb{F}_2) \to \cdots 
+        \]
+
+        \item If oriented, \(\exists\) LES:
+        
+        \[
+            \cdots \to H^{j-n} \xrightarrow{-\cup e} H^j B \to H^j E_0 \to H^{j-n+1} B \to \cdots 
+        \]
+
+        \item If oriented with metric,
+        
+        \[
+            \cdots \to H^{j-n} B \xrightarrow{-\cup e} H^j B \to H^j (S(E)) \to \cdots 
+        \]
+    \end{enumerate} 
+
+    Recall, suppose we have a trivial bundle. \(H^{\ast} E_0 = H^{\ast} (B \times (\mathbb{R}^n - 0)) = H^{\ast} (B \times S^{n-1}) = H^{\ast} B \oplus H^{\ast + n - 1} B\) [K\"unneth]. Since in trivial bundle, \(-\cup e\) is \(0\) this works!
+
+    \begin{proof}
+        b: LES of pair \((E, E_0)\):
+
+        \[
+            \begin{tikzcd}
+                H^j(E,E_0) \ar[r] & H^j E \ar[r] & H^j E_0 \ar[r] & H^{j+1}(E,E_0) \\ H^{j-n} \ar[u, "\cong", "-\cup u"'] \ar[ur,"\eval{-\cup u}_E"] & H^j B\ar[u,"\cong"] \\ H^{j-n}B \ar[u,"\cong"] \ar[ur, "-\cup e"]
+            \end{tikzcd}
+        \]
+
+        2nd proof: SSS tp \(\begin{tikzcd}S^1 \ar[r] & E \ar[d] \\ & S^2 \end{tikzcd}\).
+        
+        Classified by \(e\in H^2(S^2)\). eg \(E = S^3 , S^1 \times S^2 , L_n\) lens spaces, \(e = 0,1,n\).
+    \end{proof}
+
+    \begin{corollary}
+        [12.3] Any \(2\)-fold cover \(\begin{tikzcd} \widetilde{B} \ar[d,"\pi"] \\ B\end{tikzcd}\) implies: \(\exists \xi = \begin{tikzcd}\mathbb{R} \ar[r] & E \ar[d] \\ & B\end{tikzcd}\) such that,
+
+        \[
+            \begin{tikzcd}
+                SE \ar[rr,"\cong"] \ar[rd] & & \widetilde{B} \ar[ld] \\ & B
+            \end{tikzcd}
+        \]
+
+        and LES:
+
+        \[
+            \cdots \to H^{j-1}(B;\mathbb{F}_2) \xrightarrow{-\cup \operatorname{w}_1} H^j(B;\mathbb{F}_2) \to H^j(\widetilde{B},\mathbb{F}_2) \to \cdots 
+        \]
+
+        `Smith exact sequence, Hatcher'
+    \end{corollary}
+
+    \begin{proof}
+        Let \(E \coloneqq \frac{\widetilde{B} \times \mathbb{R}}{(x,t) \sim (x^{\prime}, -t)}\)
+
+        Where \(\pi(x) = \pi(x^{\prime}), x\neq x^{\prime}\).
+
+        Use Gysin. e.g. \(\begin{tikzcd} S^2 \ar[d] \\ P^2\end{tikzcd}\) or \(\begin{tikzcd} T^2 \ar[d] \\ K^2 \end{tikzcd}\).
+    \end{proof}
+
+    \(\widetilde{G}_n(\mathbb{R}^{{n+k}})=\) oriented \(n\)-planes in \(\mathbb{R}^{n+k}\). This is \(V_n(\mathbb{R}^{n+k}) / SO(n)\).
+
+    \[
+        V_n(\mathbb{R}^{n+k}) = \{ (v_1 , \cdots , v_n) \mid v_i \in \mathbb{R}^{n+k} ; v_i \cdot v_j = \delta_{ij} \} \subset \mathbb{R}^{n+k} \times \cdots \times \mathbb{R}^{n+k}
+    \]
+
+    \(SO(n) = \{ A \in M_n\mathbb{R} \mid A A^t = I, \det A = 1 \}\).
+
+    \[
+        \begin{tikzcd}
+            \widetilde{G}_n \ar[d,"\text{double cover}"] \ar[r,"=",phantom] & \widetilde{G}_n(\mathbb{R}^{\infty}) \ar[r,"=",phantom] & BSO(n) \\ G_n \ar[r,"=",phantom] & G_n(\mathbb{R}^{\infty} ) \ar[r,"=",phantom] & BO(n)
+        \end{tikzcd}
+    \]
+
+    Then we will have 12.3 (Gysin):
+
+    \[
+        H^{\ast} (\widetilde{G}_n ; \mathbb{F}_2) = \mathbb{F}_2 [ \operatorname{w}_2 , \operatorname{w}_3 , \cdots ]
+    \]
+
+
 \end{document}
