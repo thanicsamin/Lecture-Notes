@@ -3621,6 +3621,471 @@
         \[
             (f / \sigma)(\tau) = f(_p \sigma \times \tau)
         \]
+
+        [Note: this is not quite right]
     \end{definition}
+
+    \section*{Wednesday, 11/5/2025}
+    
+    Recap:
+
+    Slant product \(/ : H^{p+q}(X \times Y) \otimes H_q X \to H^p Y\). \(p \otimes \beta \mapsto p / \beta\).
+
+    Main idea: if \(a\in H^p X , b \in H^q Y\) then \((a \times b) / \beta = \langle b , \beta \rangle a\).
+
+    \(- / \beta\) is \(H^{\ast} X\)-linear: \(((a \times 1) \cup p) / \beta = a \cup (p / \beta)\).
+    
+    If \(M\) is oriented assume field coefficient \(F\). Otherwise assume \(\mathbb{F}_2\)-coefficients.
+
+    Now assume that \(M^n\) is closed and smooth. \(H^n (M \times M , M \times M - \Delta) \ni u_\Delta\), the thom class of the diagonal. \(u_\Delta\) maps to \(u^{\prime\prime} \in H^n(M \times M)\). It is called the diagonal cohomology class, which is the Poincar\'e dual to \(\Delta M\).
+
+    Recall when \(n\in \dim B - \dim A\), we have \(H^n(B , B - A) \cong H^n(E(\nu) , E(\nu)_0)\) where \(\nu\) is the normal bundle by excision and tubular neighborhood theorem.
+    
+    11.8: \(\forall a\in H^{\ast} M , (a \times 1) \cup u^{\prime\prime} = (1 \times a) \cup u^{\prime\prime}\), symmetry.
+
+    11.9: \(u^{\prime\prime} / [M] = 1 \in H^0 M\).
+
+    Proof omitted.
+
+    11.10: Duality Theorem: \(\forall\) basis \(b_1 , \cdots , b_r\) for \(H^{\ast} M\) there exists dual basis \(b_1^\# , \cdots , b_r^\#\) so that \(\langle b_i \cup b_j^\# , [M] \rangle = \delta_{ij}\).
+
+    11.11 \(u^{\prime\prime} = \sum_{i} (-1)^{\vert b_i \vert} b_i \times b_i^\# \in H^n(M \times M)\).
+    
+    11.10 \(\iff\) \(I : H^{\ast} M \otimes_F H^{\ast} M \to F\) given by \(a \otimes b \mapsto \langle a \cup b , [M] \rangle \) is a perfect pairing, thus \(\dim H_p M = \dim H^{n-p} M = \dim H_{n-p} M\). 
+
+    Suppose \(A, B\) are \(\Lambda\)-modules where \(\Lambda\) is a commutative ring. then \(A \otimes_\Lambda B \to C\) is perfect pairing if \(A \xrightarrow{\approx} \operatorname{Hom} (B, C)\) and \(B \xrightarrow{\approx} \operatorname{Hom} (A, C)\). In our example the perfect pairing comes from the bilinear map.
+    
+    \begin{proof}
+        We prove 11.10 and 11.11.
+
+        By K\"unneth theorem we can write \(H^n (M \times M) \ni u^{\prime\prime} = b_1 \times c_1 + \cdots + b_r \times c_r\).
+
+        11.8 \(\implies (a \times 1) \cup u^{\prime\prime} = (1 \times a) \cup u^{\prime\prime}\). By taking slat with fundamental class,
+
+        \(((a \times 1) \cup u^{\prime\prime}) / [M] = ((1\times a) \cup u^{\prime\prime}) / [M]\)
+        
+        \(a \cup (u^{\prime\prime} / [M]) = (1 \times a) \cup \left( \sum_{j} b_j \times c_j \right) / [M]\)
+
+        \(a = \left( \sum_{j} (-1)^{\vert a \vert \vert b_j \vert} (1 \cup b_j) \times (a \cup c_j) \right) / [M]\).
+        
+        \(a = \sum_{j} (-1)^{\vert a \vert \vert b_j \vert} \langle a \cup c_j , [M] \rangle b_j\).
+        
+        Now take \(a = b_i\). The \(b_i\) are a basis. Therefore, taking \(a = b_i\) we see:
+
+        \[
+            b_i = \sum_{j} (-1)^{\vert b_i \vert \vert b_j \vert} \langle b_i \cup c_j , [M] \rangle = \delta_{ij}
+        \]
+
+        Define \(b_j^\# = (-1)^{b_j} c_j\).
+
+        \(\langle b_i \cup b_j^\# , [M] \rangle = \delta_{ij}\)
+        
+        \(u^{\prime\prime} = \sum_{i} (-1)^{\vert b_i \vert } b_i \times b_i^\#\) 
+
+        When \(M = \mathbb{R} P^2 , u^{\prime\prime} = 1 \times a^2 + a \times a + a^2 \times 1 \in H^2(\mathbb{R} ^2 \times \mathbb{R} P^2)\).
+
+    \end{proof}
+
+    \begin{corollary}
+        When \(M^n\) is closed, smooth and oriented, \(\langle e(TM) , [M] \rangle = \chi(M)\).
+
+        When \(M^n\) is closed and smooth, \(\langle \operatorname{w}_n(TM) , [M] \rangle \cong \chi \xi (M) \mod 2\),
+
+    \end{corollary}
+
+
+    \begin{proof}
+        Oriented case: claim \(e(TM) = \Delta^{\ast} u^{\prime\prime}\).
+
+        \[
+            \begin{tikzcd}
+                u_{TM} & & e(TM) \\
+                H^n(TM , TM_0) \ar[rr] \ar[d,"\cong"] & & H^n (M \times M) \\
+                {H^n(E(\nu : \Delta \hookrightarrow M \times M), E(v)_0)} \ar[r, "\cong"] & H^n(M \times M , M \times M - \Delta) \ar[r] & H^{\ast} (M \times M) \ar[u,"\Delta^{\ast}"] \\
+                & u_\Delta & u^{\prime\prime} 
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/pertrubediagonal}
+    \end{figure}
+
+    Let \(\Delta^{\prime}\) be isotopic copy of \(\Delta\) such that \(\Delta^{\prime} \pitchfork \Delta\).
+
+    Then \(\Delta^{\prime} \cdot \Delta = \langle e(\nu), [\Delta] \rangle - \langle e(TM) , [M] \rangle = \chi(M)\) 
+
+    THus, \(\chi(M)\) is the self intersection number of the diagonal \(\Delta M \hookrightarrow M \times M\) 
+
+    \begin{corollary}
+        If \(M\) has a nowhere zero vector field then \(\chi(M) = 0\).
+    \end{corollary}
+
+    \begin{proof}
+        Suppose otherwise. Then \(M\) has a non-zero vector field implies \(\Delta M\) has a non-zero normal vector field. ``Flow'' implies \(\exists \Delta^{\prime} \) such that \(\Delta^{\prime} \cap \Delta = \varnothing\).
+    \end{proof}
+
+    Thus, \(\chi(M) \neq 0 \implies\) can't comb hairy \(M\).
+
+    Recall \(\chi(M) = (-1)^i \dim H_i(M , \mathbb{Q}) = \sum_{i} (-1)^i (\# \text{-of \(i\)-cells})\).
+    
+    \(= \sum_{i} (-1)^i \dim H_i(M , \mathbb{F}_p)\).
+
+    \section*{Friday, 11/7/2025}
+    
+    \subsection*{Wu classes / Wu Formula / Wu Theorem}
+
+    Coefficients in \(\mathbb{F}_2\) understood.
+
+    Wu classes are polynomials of whitney classes.
+
+    \(\operatorname{v}_0 = \operatorname{w}_0 = 1\)
+    
+    \(\operatorname{v}_1 = \operatorname{w}_1\) 
+
+    \(\operatorname{v}_2 = \operatorname{w}_1^2 + \operatorname{w}_2\)
+    
+    \(\operatorname{v}_3 = \operatorname{w}_1 \operatorname{w}_2\).
+
+    They're defined as following:
+
+    \begin{definition}
+        [Total Wu Class]
+
+        \[
+            \operatorname{v} =  \operatorname{v}_0 + \operatorname{v}_1 + \operatorname{v}_2 + \cdots
+        \]
+
+        \[
+            \operatorname{w} = \operatorname{Sq} v
+        \]
+    \end{definition}
+
+    i.e. \(v = \operatorname{Sq}^{-1} \operatorname{w} = (1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots)^{-1} \operatorname{w}\).
+    
+    \begin{proposition}
+        [Wu's Formula, Execrise 8A]
+
+        \(\operatorname{Sq}^k \operatorname{w}_m\) is `something in the cohomology of the Grassmanian', so it must be some polynomial over Stiefel Whitney Classes.
+
+        \[
+            \operatorname{Sq}^k \operatorname{w}_m = \sum_{i} \binom{k-m}{i} \operatorname{w}_{k-i} \operatorname{w}_{m+i}
+        \]
+    \end{proposition}
+
+    Hint on 8A:
+
+    \[
+        H^{\ast} (G_n) \cong H^{\ast} (P^m \times \cdots \times P^m)^{S_n}
+    \]
+
+    \[
+        \operatorname{w}_i \mapsto \sigma_i (a_1 , \cdots , a_n)
+    \]
+
+    Compute \(\operatorname{Sq}^i\) using Cartan.
+
+    eg \(\operatorname{Sq}^1 \operatorname{w}_2 = \operatorname{w}_1 \operatorname{w}_2 + \operatorname{w}_3\).
+
+    Computation:
+
+    \[
+        \operatorname{w} = \operatorname{Sq} \operatorname{v} = (1 + \operatorname{Sq}^1 + \operatorname{Sq}^2 + \cdots)(v_0 + v_1 + v_2 + \cdots)
+    \]
+
+    Then, \(1 = \operatorname{w}_0 = \operatorname{v}_0\).
+
+    \(\operatorname{w}_1 = \operatorname{v}_1\)
+
+    \(\operatorname{w}_2 = \operatorname{Sq}^1 \operatorname{v}_1 + \operatorname{v}_2 \implies \operatorname{w}_2 = \operatorname{w}_1^2 + \operatorname{v}_2\)
+    
+    \(\operatorname{w}_3 = \cancel{\operatorname{Sq}^2 \operatorname{v}_1} + \operatorname{Sq}^1 \operatorname{v}_2 + \operatorname{v}_3 = \operatorname{Sq}^1 \operatorname{w}_1^2 + \operatorname{Sq}^1 \operatorname{w}_2 + \operatorname{v}_3\)
+    
+    \(= \underbrace{\cancel{\operatorname{Sq}^0 \operatorname{w}_1 \operatorname{Sq}^1 \operatorname{w}_1 + \operatorname{Sq}^1 \operatorname{w}_1 \operatorname{Sq}^0 \operatorname{w}_1}}_{\text{cartan}} + \underbrace{\operatorname{w}_1 \operatorname{w}_2 + \operatorname{w}_3}_{\text{Wu Formula}} + \operatorname{v}_3\) 
+
+    Now, suppose we have \(M^n\) a closed \(n\)-manifold.
+
+    \begin{theorem}
+        [Wu Theorem]
+
+        Let \(\operatorname{v}(TM)\) be the total Wu class of a tangent bundle.
+
+        \[
+            \langle \operatorname{v}(TM) \cup - , [M] \rangle = \langle \operatorname{Sq}(-), [M]\rangle 
+        \] 
+
+        i.e. if \(x\in H^{n-k} M\) then \(\operatorname{v}_k(TM) \cup x = \operatorname{Sq}^k x\).
+        
+        i.e. \(\langle \operatorname{v}_k(TM) \cup x , [M] \rangle = \langle \operatorname{Sq}(-), [M] \rangle\).
+    \end{theorem}
+
+    \begin{corollary}
+        Let \(M \underset{h}{\simeq} M^{\prime}\) be homotopy equivalent manifolds. Then, \(\operatorname{w}(TM) = h^{\ast} \operatorname{w}(TM^{\prime})\).
+    \end{corollary}
+
+    \begin{proof}
+        [Sketch] Wu classes are determined by algebraic topology. Thus, homotopy equivalent implies same algebraic topology which implies same Wu class which implies same Stiefel-Whitney class.
+    \end{proof}
+
+    We can connect this to intersection forms.
+
+    \begin{definition}
+        [Algebraic Intersection Form] \(I_M : H^{\ast} M \otimes H^{\ast} M \to \mathbb{F}_2\).
+
+        \[
+            I_M(a \otimes b) = \langle a\cup b , [M] \rangle
+        \]
+
+        We write \(a \cdot b = I_M(a \otimes b)\). By Poincar\'e duality it is a \textit{perfect pairing}, thus it is a \textit{non-singular pairing}.
+    \end{definition}
+
+    \subsubsection*{Key application of Wu's Theorem}
+
+    Suppose \(n = 2k\). \(M\) is a closed \(n\)-dimensional manifold.
+    
+    \[
+        \langle v_k (TM) \cup x, [M] \rangle = \langle \operatorname{Sk}^k x, [M] \rangle = \langle x\cup x, [M] \rangle 
+    \]
+
+    Thus, for \(x\in H^k M\):
+    
+    \[
+        \operatorname{v}_k(TM) \cdot x = x \cdot x\;.
+    \]
+
+    Now we restrict to the middle dimensional homology.
+
+    \[
+        \widehat{I_M} : H^k M^{2k} \otimes H^k M^{2k} \to \mathbb{F}_2
+    \]
+
+    \begin{definition}
+        \(\widehat{I_M}\) is even if \(\forall a, \widehat{I_M} (a \otimes a) = 0\).
+
+        \(\iff\) if \(\beta_i\) is a basis for \(H^k M\) then the matrix \((\beta_i \cdot \beta_j)\) has even \(\#\) on the diagonal.
+    \end{definition}
+
+    Then,
+
+    \begin{theorem}
+        [Wu's Theorem]
+
+        \[
+            \operatorname{v}_k(TM^{2k}) = 0 \iff \widehat{I_M} \text{ is even} 
+        \]
+    \end{theorem}
+
+    Example: Suppose \(n = 2\). Then \(\operatorname{v}_1 = \operatorname{w}_1\).
+
+    \(\operatorname{v}_1 = 0 \iff M^2\) orientable \(\iff \widehat{I_M}\) is even (eg Torus).
+
+    Matrix: \(\begin{bmatrix}
+        \begin{bmatrix}
+            0 & 1 \\
+            1 & 0 \\
+        \end{bmatrix}  &  &  \\
+         & \ddots &  \\
+         &  & \begin{bmatrix}
+            1 & 0 \\
+            0 & 1 \\
+         \end{bmatrix} \\
+    \end{bmatrix} \) 
+
+    \(\operatorname{v}_1 \neq 0 \iff \widehat{I_M}\) is odd. e.g. \(\mathbb{R} P^1 \cdot \mathbb{R} P^1 = 1\) in \(\mathbb{R} P^2\).
+
+    Let \(K\) be the Klein bottle. Then \(\widehat{I_K}\) has matrix \(\begin{bmatrix}
+        0 & 1 \\
+        1 & 1 \\
+    \end{bmatrix}\) since \(b \cdot b = 1\) and \(a \cdot a = 0\).
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{img/klein}
+        \caption{Klein Bottle}
+    \end{figure}
+
+    e.g. \(\mathbb{R} P^4: \operatorname{w}_1 \neq 0, \operatorname{w}_2 = 0, \operatorname{v}_2 \neq 0\) thus \(\mathbb{R}P^2 \cdot \mathbb{R} P^2 = 1\).
+
+    Further example: \(\mathbb{C} P^1 \cdot \mathbb{C} P^1 = 1\).
+
+    \begin{corollary}
+        Orientable \(4\)-manifold: \(\widehat{I_M}\) is even \(\iff \operatorname{w}_2 (TM) = 0 \iff \operatorname{v}_2(TM) = 0\).
+    \end{corollary}
+
+    To prove Wu's theorem we need an additional lemma:
+
+    \begin{lemma}
+        [11.3]
+
+        \[
+            \operatorname{w}(TM) = \operatorname{Sq}(u^{\prime\prime}) / [M]
+        \]
+
+        Where \(u^{\prime\prime} \in H^n(M \times M)\) the diagonal cohomology class dual to \(\Delta M\).
+    \end{lemma}
+
+    \begin{proof}
+        We assume the lemma is true. In that case, 
+
+        \(I_M\) is perfdect pairingm thus non-singular, thus \(\exists ! \hat{v} \in H^{\ast} M\) such that \(\langle \hat{v} \cup - , [M] \rangle = \langle \operatorname{Sq}(-) , [M] \rangle : H^{\ast} M \to \mathbb{F}_2\).
+
+        WTS: \(\hat{v} = \operatorname{v}(TM)\).
+
+        WTS: \(\operatorname{Sq}\hat{v} = \operatorname{w}(TM)\).
+
+        Choose basis \(b_i\) for \(H^{\ast} M\) and dual basis \(b_i^\sharp\) i.e. \(b_i \cdot b_j^\sharp = \delta_{ij}\) [11.10]
+
+        Then, 11.11 \(\implies u^{\prime\prime} = \sum_{i} b_i \times b_i^\sharp\).
+
+        11.10: \(\hat{v} = \left( \sum_{i} \hat{v} \cdot b_i^\sharp \right) b_i = \sum_{i} \langle \operatorname{Sq} (b_i^\sharp) , [M] \rangle b_i\)
+
+        \(\implies \operatorname{Sq} \hat{v} = \sum_{i} \langle \operatorname{Sq} (b_i^\sharp) , [M] \rangle \operatorname{Sq} b_i\)
+        
+        Cartan and 11.11 implies,
+
+        \(\operatorname{Sq} \hat{v} = \sum_{i} (\operatorname{Sq}(b_i) \times \operatorname{Sq}(b_i^\sharp)) / [M] = \operatorname{Sq}(u^{\prime\prime}) / [M] = \operatorname{w}(TM)\). 
+
+    \end{proof}
+
+    \section*{Monday, 11/10/2025}
+    
+    Recap: Wu classes: \(\operatorname{Sq} v = \operatorname{w}\).
+
+    Wu formula:
+
+    \[
+        \operatorname{Sq}^k \operatorname{w}_m = \sum_{i} \binom{k-m}{i} \operatorname{w}_{k-i} \operatorname{w}_{k+i}
+    \]
+
+    Using these, we can find out: \(v_1 = \operatorname{w}_1 , v_2 = \operatorname{w}_1^2 + \operatorname{w}_2 , v_3 = \operatorname{w}_1 \operatorname{w}_2\).
+
+    Wu's Theorem: If \(M\) is a closed manifold and \(x\in H^{\ast} (M;\mathbb{F}_2)\) then,
+
+    \[
+        \langle v(TM) \cup x , [M]\rangle = \langle \operatorname{Sq}^k (x), [M] \rangle
+    \]
+
+    \begin{corollary}
+        If \(k > \frac{\dim M}{2}\) then \(v_k(TM) = 0\).
+    \end{corollary}
+
+    \begin{proof}
+        \(\forall x\in H^{n-k} (M;\mathbb{F}_2)\)
+
+        \[
+            \langle v_k(TM) \cup x , [M] \rangle = \langle \operatorname{Sq}^k(x) , [M] \rangle = \langle 0, [M] \rangle = 0
+        \]
+    \end{proof}
+
+    If \(k = \frac{\dim M}{2}\) then \(\langle v_k(TM)\cup x, [M] \rangle = \langle x\cup x, [M] \rangle \) which is the `self intersection' number.
+
+    \subsubsection*{Application to 3-manifolds}
+
+    Let \(M^3\) be closed, \(\operatorname{w}_i = \operatorname{w}_i(M) , v_i = v_i(TM)\).
+
+    \begin{theorem}
+        \begin{enumerate}[label=\alph*)]
+            \item All SW numbers of \(M^3\) vanish.
+            \item \(M^3\) orienatable implies \(\operatorname{w}_1 = \operatorname{w}_2 = \operatorname{w}_3 = 0\). 
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \(\frac{\dim M}{2} \implies v_2 = 0, v_3 = 0\). Then \(\operatorname{w}_1^2 = \operatorname{w}_2\) and \(\operatorname{w}_1 \operatorname{w}_2 = 0\). So \(\operatorname{w}_1^3 = 0\). \(\chi(M^3) = 0 \implies \operatorname{w}_3 = 0\) [recall \(\chi(M^n) \equiv \langle \operatorname{w}_n(TM) , [M] \rangle \pmod 2\), apply PD].
+        
+        For part b: \(\operatorname{w}_1 = 0 \implies  \operatorname{w}_2 = 0, \operatorname{w}_3 = 0\).
+    \end{proof}
+
+    a + Thom's theorem \(\implies M^3 = \partial W^4\) compact, i.e. every \(3\)-manifold is the boundary of a compact \(4\)-manifold.
+
+    b + obstruction theorem \(\implies\) oriented closed \(3\)-manifold \(M^3\)  has trivial tangent bundle, ``paralellizable'' [Problem 12-13].
+
+    \subsection*{Gysin Sequence}
+
+    It's a long exact sequence. Consider the vector bundle \(\begin{tikzcd}\mathbb{R}^n \ar[r] & E\ar[d,"\pi"] \\ & B\end{tikzcd}\).
+
+    \begin{enumerate}[label=\alph*)]
+        \item \(\exists\) LES:
+        
+        \[
+            \cdots \to H^{j-n} (B;\mathbb{F}_2) \xrightarrow{-\cup \operatorname{w}_n} H^j(B;\mathbb{F}_2) \xrightarrow{\pi^\sharp} H^j (E_0 ; \mathbb{F}_2) \to H^{j-n+1}(B;\mathbb{F}_2) \to \cdots 
+        \]
+
+        \item If oriented, \(\exists\) LES:
+        
+        \[
+            \cdots \to H^{j-n} \xrightarrow{-\cup e} H^j B \to H^j E_0 \to H^{j-n+1} B \to \cdots 
+        \]
+
+        \item If oriented with metric,
+        
+        \[
+            \cdots \to H^{j-n} B \xrightarrow{-\cup e} H^j B \to H^j (S(E)) \to \cdots 
+        \]
+    \end{enumerate} 
+
+    Recall, suppose we have a trivial bundle. \(H^{\ast} E_0 = H^{\ast} (B \times (\mathbb{R}^n - 0)) = H^{\ast} (B \times S^{n-1}) = H^{\ast} B \oplus H^{\ast + n - 1} B\) [K\"unneth]. Since in trivial bundle, \(-\cup e\) is \(0\) this works!
+
+    \begin{proof}
+        b: LES of pair \((E, E_0)\):
+
+        \[
+            \begin{tikzcd}
+                H^j(E,E_0) \ar[r] & H^j E \ar[r] & H^j E_0 \ar[r] & H^{j+1}(E,E_0) \\ H^{j-n} \ar[u, "\cong", "-\cup u"'] \ar[ur,"\eval{-\cup u}_E"] & H^j B\ar[u,"\cong"] \\ H^{j-n}B \ar[u,"\cong"] \ar[ur, "-\cup e"]
+            \end{tikzcd}
+        \]
+
+        2nd proof: SSS tp \(\begin{tikzcd}S^1 \ar[r] & E \ar[d] \\ & S^2 \end{tikzcd}\).
+        
+        Classified by \(e\in H^2(S^2)\). eg \(E = S^3 , S^1 \times S^2 , L_n\) lens spaces, \(e = 0,1,n\).
+    \end{proof}
+
+    \begin{corollary}
+        [12.3] Any \(2\)-fold cover \(\begin{tikzcd} \widetilde{B} \ar[d,"\pi"] \\ B\end{tikzcd}\) implies: \(\exists \xi = \begin{tikzcd}\mathbb{R} \ar[r] & E \ar[d] \\ & B\end{tikzcd}\) such that,
+
+        \[
+            \begin{tikzcd}
+                SE \ar[rr,"\cong"] \ar[rd] & & \widetilde{B} \ar[ld] \\ & B
+            \end{tikzcd}
+        \]
+
+        and LES:
+
+        \[
+            \cdots \to H^{j-1}(B;\mathbb{F}_2) \xrightarrow{-\cup \operatorname{w}_1} H^j(B;\mathbb{F}_2) \to H^j(\widetilde{B},\mathbb{F}_2) \to \cdots 
+        \]
+
+        `Smith exact sequence, Hatcher'
+    \end{corollary}
+
+    \begin{proof}
+        Let \(E \coloneqq \frac{\widetilde{B} \times \mathbb{R}}{(x,t) \sim (x^{\prime}, -t)}\)
+
+        Where \(\pi(x) = \pi(x^{\prime}), x\neq x^{\prime}\).
+
+        Use Gysin. e.g. \(\begin{tikzcd} S^2 \ar[d] \\ P^2\end{tikzcd}\) or \(\begin{tikzcd} T^2 \ar[d] \\ K^2 \end{tikzcd}\).
+    \end{proof}
+
+    \(\widetilde{G}_n(\mathbb{R}^{{n+k}})=\) oriented \(n\)-planes in \(\mathbb{R}^{n+k}\). This is \(V_n(\mathbb{R}^{n+k}) / SO(n)\).
+
+    \[
+        V_n(\mathbb{R}^{n+k}) = \{ (v_1 , \cdots , v_n) \mid v_i \in \mathbb{R}^{n+k} ; v_i \cdot v_j = \delta_{ij} \} \subset \mathbb{R}^{n+k} \times \cdots \times \mathbb{R}^{n+k}
+    \]
+
+    \(SO(n) = \{ A \in M_n\mathbb{R} \mid A A^t = I, \det A = 1 \}\).
+
+    \[
+        \begin{tikzcd}
+            \widetilde{G}_n \ar[d,"\text{double cover}"] \ar[r,"=",phantom] & \widetilde{G}_n(\mathbb{R}^{\infty}) \ar[r,"=",phantom] & BSO(n) \\ G_n \ar[r,"=",phantom] & G_n(\mathbb{R}^{\infty} ) \ar[r,"=",phantom] & BO(n)
+        \end{tikzcd}
+    \]
+
+    Then we will have 12.3 (Gysin):
+
+    \[
+        H^{\ast} (\widetilde{G}_n ; \mathbb{F}_2) = \mathbb{F}_2 [ \operatorname{w}_2 , \operatorname{w}_3 , \cdots ]
+    \]
+
 
 \end{document}
