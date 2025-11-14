@@ -4087,5 +4087,189 @@
         H^{\ast} (\widetilde{G}_n ; \mathbb{F}_2) = \mathbb{F}_2 [ \operatorname{w}_2 , \operatorname{w}_3 , \cdots ]
     \]
 
+    \section*{Friday, 11/14/2025}
+    
+    Today: \(\widetilde{G_n}\) and \(\mathbb{C}\) vector bundles.
+
+    \begin{definition}
+        [Oriented Grassmanian]
+
+        \(\widetilde{G_n}(\mathbb{R}^{n+k}) =\) oriented \(n\)-planes in \(\mathbb{R}^{n+k}\)
+
+        \[
+            = \frac{\text{Orthonormal } n \text{-frames in }\mathbb{R}^{n+k}}{\text{Orientation Preserving Rigit motions}} = \frac{V_n(\mathbb{R}^{n+k})}{\operatorname{SO}(n)}
+        \]
+    \end{definition}
+
+    Then there's a double cover:
+
+    \[
+        \begin{tikzcd}
+            \widetilde{G}_n(\mathbb{R}^{n+k}) \ar[d] \\ G_n(\mathbb{R}^{n+k})
+        \end{tikzcd}
+    \]
+
+    The double cover is not trivial. \(k > 0, \widetilde{G}_n(\mathbb{R}^{n+k})\) is connected.
+
+    There is a tautological bundle over this space.
+
+    \[
+        \begin{tikzcd}
+            E(\widetilde{\gamma}_n) \ar[d, no head]\\ \widetilde{G}_n(\mathbb{R}^{n+k})
+        \end{tikzcd}
+    \]
+
+    Definition 1: \(E(\widetilde{\gamma}_n) \subset \widetilde{G}_n (\mathbb{R}^{n+k}) \times \mathbb{R}^{n+k}\).
+
+    Definition 2: Pullback:
+
+    \[
+        \begin{tikzcd}
+            E(\widetilde{\gamma}_n) \ar[d] \ar[r] & E(\gamma_n ) \ar[d] \\ \widetilde{G}_n(\mathbb{R}^{n+k}) \ar[r] & G_n(\mathbb{R}^{n+k})
+        \end{tikzcd}
+    \]
+
+    \(\widetilde{G}_n = G_n(\mathbb{R}^{\infty}) = \underset{k \to \infty}{\operatorname{colim}} \widetilde{G}_n(\mathbb{R}^{n+k})\) 
+
+    \begin{theorem}
+        \(\begin{tikzcd}E(\widetilde{\gamma}_n) \ar[d] \\ \widetilde{G}_n \end{tikzcd}\) classifies oriented vector bundles over \(B\) CW. i.e.
+
+        \[
+            \begin{tikzcd}
+                {[B, \widetilde{G}_n]} \ar[r] & {\begin{Bmatrix}\text{iso class of} \\ \text{oriented \(n\)-planes} \\ \text{bundles }/ B \end{Bmatrix}} \ar[l] \\
+                f \ar[r, mapsto] & f^{\ast} \widetilde{\gamma}_n 
+            \end{tikzcd}
+        \]
+    \end{theorem}
+
+    \(H^{\ast} (\widetilde{G}_n) \to H^{\ast} B\). Here \(\widetilde{G}_n\) classifying space, \(\widetilde{\gamma}_n\) universal bundle.
+    
+    \begin{proof}
+        First: If \(\xi \) oriented then any bundle map \(\xi  \to \gamma_n\) lifts uniquely to o.p. bundle map \(\xi \to \widetilde{\gamma}_n\)
+
+        Second: Presentation
+
+        \[
+            \begin{tikzcd}
+                SO(n) \ar[r] & V_n(\mathbb{R}^{\infty}) \ar[d] \ar[r, phantom, "\simeq"] & \ast \\ & \widetilde{G}_n
+            \end{tikzcd}
+        \]
+
+        Then \(\widetilde{G}_n = BSO(n) = BGL_n^+(\mathbb{R})\).
+    \end{proof}
+
+    \(\widetilde{G}_n \xrightarrow{\pi} G_n\): non-trivial \(2\)-fold cover. Let \(\gamma_\pi\) be the associated line bundle to the double cover. 
+
+    \(H^1(G_n , \mathbb{F}_2) = \mathbb{F}_2\). This is \(\operatorname{w}_1\).
+
+    Therefore, \(\operatorname{w}_1(\gamma_\pi) = \operatorname{w}_1(\gamma_n)\).
+
+    We can change the fiber:
+
+    \[
+        \begin{tikzcd}
+            & & & \widetilde{G}_n \times_{C_2} \mathbb{R} \ar[d,"=", phantom, sloped] \\ 
+            S^0 \ar[r] & \widetilde{G}_n \ar[d] & \mathbb{R} \ar[r] & E(\gamma_\pi) \ar[d] \\ & G_n & & G_n
+        \end{tikzcd}
+    \]
+
+    Recall 12.3: Gysin sequence for \(\gamma_\pi\).
+
+    \[
+        \xrightarrow{0} H^{j-1} (G_n ; \mathbb{F}_2) \xrightarrow{- \cup \operatorname{w}_1} H^j (G_n ; \mathbb{F}_2) \to H^j(\widetilde{G}_n ;\mathbb{F}_2) \xrightarrow{0} H^j(G_n ; \mathbb{F}_2) \xrightarrow{-\cup \operatorname{w}_1}
+    \]
+
+    \(H^{\ast}(G_n ; \mathbb{F}_2) = \mathbb{F}_2 [\operatorname{w}_1 , \cdots , \operatorname{w}_n] \). This is a polynomial ring, so multiplying by \(\operatorname{w}_1\) is injective.
+
+    Thus, \(- \cup \operatorname{w}_1\) is injective.
+
+    \begin{theorem}
+        [12.4] \(H^{\ast}(\widetilde{G}_n ; \mathbb{F}_2) / \langle \operatorname{w}_1 \rangle = \mathbb{F}_2 [\operatorname{w}_2 , \cdots , \operatorname{w}_3]\) 
+    \end{theorem}
+
+    Remark: there also exists Euler class \(e(\widetilde{\gamma}_n) \in H^n(\widetilde{G}_n ; \mathbb{Z})\) 
+
+    If we have an oriented v.b. \(\xi\), then \(e(\xi) \in H^n(B; \mathbb{Z})\). \(n\) odd means \(2e(\xi) = 0\).
+
+    Q(Davis): Find example where \(e(\xi) \neq 0 , n\) odd.
+
+    A(Mandell): \(\xi = \widetilde{\gamma}_3\), oriented grassmanian of \(3\)-planes in \(\mathbb{R}^{\infty}\). 
+
+    \(e(\widetilde{\gamma}_3) \in H^3(\widetilde{G}_3 ; \mathbb{Z})\)
+    
+    \(0 \neq e(\widetilde{\gamma}_3) \xrightarrow{mod} \operatorname{w}_3 = \operatorname{w}_3 (\widetilde{\gamma}_3) \neq 0\).
+
+    Puzzles:
+
+    1. What \(2\)-dimensional real planes in \(\mathbb{C}^n\) are complex lines?
+
+    2. P176:
+
+    \[
+        \begin{tikzcd}
+            & \text{real} \ar[rdd, bend left] \\ \\ \text{oriented} \ar[uur, bend left] & & \text{complex} \ar[ll, bend left]    
+        \end{tikzcd}
+    \]
+
+    \subsection*{\(\mathbb{C}^n\)-bundle}
+
+    \[
+        \begin{tikzcd}
+            w & \mathbb{C}^n \ar[r] & E \ar[d,"\pi"] \\ & & B
+        \end{tikzcd}
+    \]
+
+    MS Definition, of Steenrod \(\operatorname{GL}_n(\mathbb{C}, \mathbb{C}^n)\)-bundle
+
+    Complex projective space \(\mathbb{C} P^n = G_1(\mathbb{C}^{n+1})\).
+
+    Complex Grassmanian \(G_n(\mathbb{C}^{n+k})\)
+
+    Tautological bundle:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C}^n \ar[r] & E(\gamma_n) \ar[r, "\subset", phantom] \ar[d] & G_n(\mathbb{C}^{n+k}) \times \mathbb{C}^{n+k} \\ & G_n(\mathbb{C}^{n+k})
+        \end{tikzcd}
+    \]
+
+    Universal bundle:
+    
+    \[
+        \begin{tikzcd}
+            \mathbb{C}^n \ar[r] & E(\gamma^n) \ar[d] \\ & G_n(\mathbb{C}^{\infty})
+        \end{tikzcd}
+    \]
+
+    \(H^{\ast}(G_n \mathbb{C}^{\infty})\) characterstic classes, \(\mathbb{C}^n\)-bundle.
+
+    \(H^{\ast}(G_n \mathbb{C}^{\infty}, \mathbb{Z}) = \mathbb{Z}[c_1 , c_2 , \cdots , c_n]\) are called Chern Classes.
+
+    \(\vert c_i \vert = 2i\).
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C}^n \text{-bundle} \ar[r] & \mathbb{R}^{2n} \text{-bundle} \\
+            w \ar[r, mapsto] & \eval{w}_{\mathbb{R}}  
+        \end{tikzcd}
+    \] 
+
+    \begin{definition}
+        A complex structure on \(\xi: \mathbb{R}^n \to E \to B\) is a bundle map:
+
+        \[
+            \begin{tikzcd}
+                E(\xi) \ar[rr,"J"] \ar[rd] & & E(\xi) \ar[ld] \\ & B 
+            \end{tikzcd}
+        \]
+
+        such that \(J^2 = -\operatorname{id}\). i.e. \(J(J(v)) = -v\). 
+    \end{definition}
+
+    \[
+        \begin{tikzcd}
+            \text{complex vector bundle} \ar[r] & \text{real vector bundle with complex structure} \ar[l]  
+        \end{tikzcd}
+    \]
 
 \end{document}
