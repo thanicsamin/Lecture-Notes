@@ -4759,6 +4759,222 @@
 
     Take the set \(V(x_2 t^2 + x_1 t u + x_0 u^2 , y_3 t^3 + y_2 t^2 u + y_1 t u^2 + y_0 u^3)\) 
 
-    Consider the projection of \(V(\cdots)\) in \(\mathbb{P}^1_{k[x_0 , x_1 , x_2 , y_0 , y_1 , y_2 , y_3]}\) into \(\operatorname{Spec} k[x_0 , x_1 , \cdots , y_3]\). We still get a closed set. That is the resultant. 
+    Consider the projection of \(V(\cdots)\) in \(\mathbb{P}^1_{k[x_0 , x_1 , x_2 , y_0 , y_1 , y_2 , y_3]}\) into \(\operatorname{Spec} k[x_0 , x_1 , \cdots , y_3]\). We still get a closed set. That is the resultant.
+    
+    \section*{Monday, 11/17/2025}
+    
+    \subsection{Closed immersions/embeddings}
 
+    Let \(X = \operatorname{Spec} A\) be an affine scheme. If \(I\) is an ideal, \(V(I)\) is a closed subset of \(X\).
+
+    \(\operatorname{Spec} A / I\) has the space \(V(I) \subset X\). We think of \(\operatorname{Spec} A / I\) as a \textit{closed subscheme} of \(X\).
+    
+    \(\operatorname{Spec} A / I \to X\) is injective with closed image.
+
+    In general, a closed set has more than one structure of a closed subscheme.
+
+    Eg if \(X = \operatorname{Spec} k[x], I = (x), J = (x^2)\), then \(V(I) = V(J) = \{ 0 \}\).
+
+    One might think of the subscheme for \(J\) as a point with a tangent vector. But they have the same geometry.
+
+    If \(B \twoheadrightarrow A\) is surjective, then \(A \cong B / I\).
+
+    Thus \(\operatorname{Spec} A \cong \operatorname{Spec} B / I \subset \operatorname{Spec} B\).
+
+    Thus, morphisms \(\operatorname{Spec} A \to \operatorname{Spec} B\) is the closed embedding.
+
+    e.g. \(k \to k[x]/(x^2)\) gives us \(\operatorname{Spec} k[x] / (x^2) \to \operatorname{Spec} k\).
+
+    \begin{definition}
+        A morphism \(X \xrightarrow{\pi} Y\) is a \textit{closed embedding} if:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\pi\) is affine
+            \item For all affine open \(\operatorname{Spec} B \subset Y\) if \(\pi \operatorname{Spec} B = \operatorname{Spec} A\) then \(B \to A\) is surjective. 
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{theorem}
+        If \(Y = \bigcup_{\alpha} \operatorname{Spec} B_\alpha\) such that \(\pi ^{-1} \operatorname{Spec} B_\alpha \cong \operatorname{Spec} A_\alpha\) and \(B_\alpha \to A_\alpha\) is surjective \(\forall \alpha \) then \(\pi\) is a closed embedding.
+    \end{theorem}
+
+    \begin{proof}
+        Affine Communication Lemma.
+
+        \(B \to A\) surjective means \(B[1 / f] \to A[1 / f]\) is surjective.
+
+        Then we only need to check if \(B \to A\) is a ring homomorphism and \(B[1 / f_i] \to A[1 / f_i]\) is surjective for all \(i\) and the \(f_i\) generate the unit ideal then \(B \to A\) is surjective.
+
+        If it is not surjective then we can take cokernel, and taking cokernel commutes with localization.
+
+        If cokernel is non-zero then we have some \(f\) killed by the localization, which cannot happen if \(f_i\) generate the unit ideal.
+    \end{proof}
+
+    If we have a closed embedding \(X \xrightarrow{\pi} Y\) then we can find \(\mathcal{O}_Y \to \pi_{\ast} \mathcal{O}_X\) is surjective. Then it is characterized by it's kernel.
+
+    Let \(\mathcal{I} = \ker (\mathcal{O}_Y \to \pi_{\ast} \mathcal{O}_X)\).
+
+    Then \(\mathcal{I}\) is a sheaf of \(\mathcal{O}_Y\) ideals. In fact it is a quasi-coherent sheaf of \(\mathcal{O}_Y\) ideals. We only need to check if affine opens and distinguished opens behave properly.
+
+    Let \(D(f) \subset \operatorname{Spec} B \subset Y\). Then \(\mathcal{O}_Y(\operatorname{Spec} B) = B, \pi_{\ast} \mathcal{O}_X(\operatorname{Spec} B) = A, I = \ker(B \twoheadrightarrow A), \mathcal{I}(\operatorname{Spec} B) = I\).
+
+    We then essentially want:
+
+    \[
+        I \left[ \frac{1}{f} \right] \to \mathcal{I} (D(f)) = \mathcal{I} \left( \operatorname{Spec} B \left[ \frac{1}{f} \right]  \right) 
+    \]
+
+    to be an isomorphism. Which means we want \(\ker  \left( B \left[ \frac{1}{f} \right] \to A \left[ \frac{1}{f} \right]  \right) \cong I \left[ \frac{1}{f} \right] \) which is true.
+
+    \begin{definition}
+        [Locally Closed Embedding]
+
+        \[
+            X \xrightarrow{\text{closed}} Y \xrightarrow{\text{open}} Z
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        \(X \xrightarrow{\text{open}} Y \xrightarrow{\text{closed}} Z\) is always a locally closed embedding.
+    \end{proposition}
+
+    This implies compositions of locally closed embedding is locally closed.
+
+    Let \(Y =  \mathbb{P}^n_k = \operatorname{Proj} k[x_0 , \cdots , x_n]\).
+
+    Let \(I\) be a homogeneous ideal. Let \(X = \operatorname{Proj} k[x_0 , \cdots , x_n] / I\).
+
+    Then \(X\) is naturally a closed subscheme of \(Y\).
+
+    So \(X \xrightarrow{\pi} Y\) is a morphism of schemes.
+
+    \(Y = \bigcup_{i=0}^n \operatorname{Spec} k[x_{0 / i} , x_{1 / i}, \cdots , x_{n / i}] = \bigcup_{i=0}^n U_i\).
+
+    Then the inverse image of \(U_i\) in \(X\) is:
+
+    \[
+        \operatorname{Spec} k[x_{0 / 1}, \cdots, x_{n / i}] / ``I\textrm{''}
+    \]
+
+    Let \(I = (f_1 , \cdots , f_m)\) where \(f_j\) has degree \(d_j\), each homogeneous.
+
+    We have \(\frac{f_j}{x_i^{d_j}} = F_j \left( \frac{x_0}{x_i} , \cdots , \frac{x_n}{x_i} \right) \) 
+
+    Then \(``I\textrm{''} = \left( F_1 (x_{0 / i} , \cdots , x_{n / i}), \cdots , F_m (x_{0 / i}, \cdots , x_{n / i}) \right) \).
+
+    \subsection*{Fiber Products}
+
+    Suppose we have schemes \(X , Y , Z\) and morphisms \(X \to Z , Y \to Z\).
+
+    Then, the fiber product \(X \times_Z Y\) is a scheme with morphisms called `projection maps' to \(X\) and \(Y\) which commute in the sense of the following diagram:
+
+    \[
+        \begin{tikzcd}
+            & X \times_Z Y \ar[ld] \ar[rd] \\ X \ar[rd] & & Y \ar[ld] \\ & Z
+        \end{tikzcd}
+    \]
+
+    This is also universall in the following sense:
+    \[
+        \begin{tikzcd}
+            & W \ar[ldd] \ar[rdd] \ar[d, dotted] \\\
+            & X \times_Z Y \ar[ld] \ar[rd] \\ X \ar[rd] & & Y \ar[ld] \\ & Z
+        \end{tikzcd}
+    \]
+
+    Recall the functor of points:
+
+    \[
+        h_X(W) = \operatorname{Mor}_{\operatorname{Sch}} (W, X) = \text{`Set of \(W\)-points of \(X\)'}
+    \]
+
+    Then \(h_{X \times_Z Y}(W) = h_X(W) \times_{h_Z(W)} h_Y(W)\).
+
+    \(h_{X \times Z Y} = h_X \times_{h_Z} h_Y\).
+
+    Example: Let \(X = \mathbb{A}^1_k , Y = \mathbb{A}^1_k , Z = \operatorname{Spec} k\).
+
+    Then \(X \times_Z Y = \mathbb{A}^2_k\).
+
+    \begin{theorem}
+        Fiber products exist in the category of schemes.
+    \end{theorem}
+
+    \begin{proof}
+        Basic cases:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(Y \subset Z\) is an open subscheme and \(\pi: X \to Z\) is any morphism, then the fiber product \(X \times_Y Z = \pi ^{-1} (Y)\).
+            
+            \[
+                \begin{tikzcd}
+                    & \pi ^{-1} (Y) \ar[ld, hook] \ar[rd, "\eval{\pi}_{\pi ^{-1} Y}"] \\ X \ar[rd,"\pi"] & & Y \ar[ld,hook] \\ & Z
+                \end{tikzcd}
+            \]
+
+            We check that this satisfies the universal property.
+
+            Suppose we have:
+
+            \[
+                \begin{tikzcd}
+                    & W \ar[ldd, "f"'] \\
+                    & \pi ^{-1} (Y) \ar[ld, hook] \ar[rd, "\eval{\pi}_{\pi ^{-1} Y}"] \\ X \ar[rd,"\pi"] & & Y \ar[ld,hook] \\ & Z
+                \end{tikzcd}
+            \]
+
+            Then \(\pi \circ f (W) \subset Y\). So, there exists \(W \dashrightarrow \pi ^{-1} Y\).
+
+            We need to check if this satisfies universal property.
+
+            \item 
+
+            \[
+                \begin{tikzcd}
+                    & \operatorname{Spec} A \otimes B \ar[ld] \ar[rd] \\
+                    \operatorname{Spec} A \ar[rd] & & \operatorname{Spec} B \ar[ld] \\ & \operatorname{Spec} C
+                \end{tikzcd}
+            \]
+
+            For the following:
+
+            \[
+                \begin{tikzcd}
+                    & A \otimes_C B \\
+                    A \ar[ur] & & B \ar[ul] \\
+                    & C \ar[ul] \ar[ur]
+                \end{tikzcd}
+            \]
+            
+            \(\operatorname{Mor}_{\operatorname{Sch}}(W , \operatorname{Spec} D) = \operatorname{Mor}_{\operatorname{Ring}} (D, P(W , \mathcal{O}_W))\). 
+        \end{enumerate} 
+
+        We can build these up to the general case. We know it is true when everything is affine.
+
+        Now suppose,
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(X, Z\) are affine and \(Y\) is `quasi-affine' [i.e. open subscheme of an affine scheme]. Suppose \(Y \subset Y^{\prime}\). Further suppose \(Y \to Z\) comes from \(Y^{\prime} \to Z\).
+            
+            \[
+                \begin{tikzcd}
+                    X \ar[d]  & X \times_Z Y^{\prime} \ar[l] \ar[d] & (X \times_Z Y^{\prime}) \times_{Y^{\prime}} Y \ar[l] \ar[d] \ar[r,"=", phantom] &  X \times_Z Y \\
+                    Z & Y^{\prime} \ar[l] & Y \ar[l]
+                \end{tikzcd}
+            \]
+
+            Suppose,
+
+            \[
+                \begin{tikzcd}
+                    & & & W  \ar[llld] \ar[ldd] \ar[ld, dotted] \ar[lld, dotted]\\
+                    X \ar[d]  & X \times_Z Y^{\prime} \ar[l] \ar[d] & (X \times_Z Y^{\prime}) \times_{Y^{\prime}} Y \ar[l] \ar[d] \ar[r,"=", phantom] &  X \times_Z Y \\
+                    Z & Y^{\prime} \ar[l] & Y \ar[l]
+                \end{tikzcd}
+            \]
+            \item \(X\) and \(Z\) affine, \(Y\) arbitrary.
+            
+            \(Y = \bigcup_\alpha \operatorname{Spec} B_\alpha\) then \(X \times_Z \bigcup_{\alpha} \operatorname{Spec} B_\alpha = \bigcup_{\alpha} X \times_Z \operatorname{Spec} B_\alpha\).
+        \end{enumerate} 
+    \end{proof}
 \end{document}

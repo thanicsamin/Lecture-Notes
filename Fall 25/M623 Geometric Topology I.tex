@@ -4272,4 +4272,136 @@
         \end{tikzcd}
     \]
 
+    \section*{Monday, 11/17/2025}
+    
+    1. \(\operatorname{Spin} (n) \to \operatorname{SO} (n)\)
+
+    2. BoH Periodicity:
+
+    \[
+        \pi_i O = \begin{dcases}
+            \mathbb{Z} / 2, &\text{ if } i \equiv 0 (8) ;\\
+            \mathbb{Z} / 2, &\text{ if } i \equiv  1(8) ;\\
+            0, &\text{ if } i \equiv 2 (8); \\
+            \mathbb{Z}, &\text{ if } i \equiv 3 (8); \\
+            0, &\text{ if } i \equiv 4 (8); \\
+            0, &\text{ if } i \equiv 5 (8); \\
+            0, &\text{ if } i \equiv 6 (8); \\
+            \mathbb{Z}, &\text{ if } i \equiv 7 (8); \\
+        \end{dcases}
+    \]
+
+    \(\pi_1 U = \begin{dcases}
+        0, &\text{ if } i\equiv 0(2) ;\\
+        \mathbb{Z}, &\text{ if } i\equiv 1(2).
+    \end{dcases}\) 
+
+    3. Splitting principal
+
+    \[
+        \begin{tikzcd}
+            L_1 \oplus \cdots \oplus L_n \ar[r] \ar[d] & E \ar[d] \\
+            B^{\prime} \ar[r,"f"] & B
+        \end{tikzcd}
+    \]
+
+    \(f^{\ast}\) injective.
+
+    \subsection*{Homotopy}
+
+    \(\pi_i(X , x_0) = [(S^i , \ast) , (X, x_0)]\).
+
+    \(i = 0: \pi_0 \leftrightarrow\) path-component of \(X\).
+
+    \(i \geq 2\): Abelian group.
+
+    Suppose \(X\) is path connected.
+
+    Path \(\gamma : I \to X\) with \(\gamma_{\ast} : \pi_i(X, \gamma(0)) \xrightarrow{\approx} \pi_i(X, \gamma(1))\). So we can omit \(x_0\) from the definition. We can go wrong sometimes, but we won't worry about it.
+
+    Addition structure:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{img/homotopygroup}
+    \end{figure}
+
+    \(\pi_i GL_n(\mathbb{R}) = \operatorname{Vect}_n(S^{i+1})\) isomorphisom classes.
+    
+    \(\operatorname{Vect}_n(S^{i+1})\) is \(\begin{tikzcd} \mathbb{R}^n \ar[r] & E \ar[d] \\ & S^{i+1}  \end{tikzcd}\) 
+
+    \begin{proof}
+        [Proof 1] Clutching.
+
+        \(\eval{\xi}_{H^{i+1}_+}\) and \(\eval{\xi}_{H^{i+1}_-}\) are trivial. \(\xi\) is given, \(S^i \to GL_n(\mathbb{R})\) by gluing.
+    \end{proof}
+
+    \begin{proof}
+        [Proof 2]
+
+        \[
+            \begin{tikzcd}
+                GL_n \ar[r] & EGL_n \ar[d] \ar[r,"\simeq", phantom] & \ast \\ & BGL_n
+            \end{tikzcd}
+        \]
+
+        Then \(\operatorname{Vect}_n(S^{i+1}) \overset{C.S.}{=} \pi_{i+1} BGL_n \underset{LES}{\cong} \pi_i GL_n\) 
+    \end{proof}
+
+    In general \([X, BG] \cong\) Iso class of \((G,F)\)-bundle \(/ X\).
+
+    \subsection*{Classifying Spaces}
+
+    We have the following groups:
+
+    \[
+        \begin{tikzcd}
+            \operatorname{SO}(n) \ar[r, hook] \ar[d, hook] & \operatorname{GL}_n^+(\mathbb{R}) \ar[d,hook] \\ O(n) \ar[r,hook] & \operatorname{GL}_n(\mathbb{R})
+        \end{tikzcd}
+    \]
+
+    \(\operatorname{GL}_n^+(\mathbb{R})\) corresponds to orientable bundles.
+
+    \(\operatorname{O}(n)\) corresponds to metrics.
+
+    Claim: the horizontal maps are homotopy equivalent
+
+    \begin{proof}
+        Polar decomposition: \(A \in \operatorname{GL}_n(\mathbb{R}) \implies A = PO\) where \(P\) is `positive' [i.e. symmetric and positive definite] and \(O \in \operatorname{O}(n)\).
+
+        Then \(\operatorname{O}(n)\) is a deformation retract of \(\operatorname{GL}_n\) by
+
+        \[
+            ((1-t) P + t I)O
+        \]
+    \end{proof}
+
+    \begin{corollary}
+        \(\operatorname{BO}(n) \simeq \operatorname{BGL}_n\mathbb{R}\) 
+    \end{corollary}
+
+    Every bundle over CW-complex admit a metric / unique upto isometry.
+
+    \begin{theorem}
+        \(\operatorname{SO}(n)\) is path-connected, \(\pi_0 \operatorname{O}(n) \xrightarrow{\approx}[\det] \{ \pm 1 \} \).        
+    \end{theorem}
+
+    \begin{proof}
+        Pick \(0 \neq a \in \mathbb{R}^n\). Look at reflection through \(a^{\perp}\). Call it \(R_a\).
+        
+        Then \(R_a : \mathbb{R}^n \to \mathbb{R}^n , \eval{R_a}_{a^{\perp}} = \operatorname{id}, R_a(a) = -a\).
+
+        First, if \(O \in \operatorname{O}(n)\) then \(O\) is a product of reflection.
+        
+        Second, if \(S \in \operatorname{SO}(n)\) then \(S\) is a product of even number of reflection.
+
+        Third, if \(a,b\) are linearly independent then \(R_a \simeq R_b\) via \(R_{ta+(1-t)b}\).
+
+        Fourth, \(R_a R_b \simeq R_a R_a =\operatorname{id}\).
+
+        This proves the problem. Note that \(A A^t = 1 \implies (\det A)^2 = 1 \implies \det A \in \{ \pm 1 \} \).
+    \end{proof}
+
+    Then \(\operatorname{SO}(n)\) is path-connected and \(\operatorname{O}(n)\) has two path components.
+
 \end{document}
