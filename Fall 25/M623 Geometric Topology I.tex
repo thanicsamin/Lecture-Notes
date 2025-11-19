@@ -4404,4 +4404,201 @@
 
     Then \(\operatorname{SO}(n)\) is path-connected and \(\operatorname{O}(n)\) has two path components.
 
+    \section*{Wednesday, 11/19/2025}
+    
+    Let \(R = \begin{bmatrix}
+        -1 &  &  &  \\
+         & 1 &  &  \\
+         &  & \ddots &  \\
+         &  &  & 1 \\
+    \end{bmatrix} \) 
+
+    Then we have the following split exact sequence:
+
+    \[
+        \begin{tikzcd}
+            1 \ar[r] & \operatorname{SO}(n) \ar[r] & \operatorname{O}(n) \ar[r,"\det"] & \{ \pm 1 \} \ar[r] \ar[l, bend left, dotted] & 1\\
+            & & R & -1 \ar[l, mapsto]
+        \end{tikzcd}
+    \]
+
+    Then \(\operatorname{O}(n) = \operatorname{SO}(n) \rtimes \{ \pm 1 \}.\) 
+
+    \(\pi_0 \operatorname{O}(n) = \{ \pm 1 \}\).
+
+    \(\operatorname{SO}(1) = \{ 1 \}, \operatorname{O}(1) = \{ \pm 1 \}\).
+
+    \(\operatorname{SO}(2) = S^1 , \operatorname{O}(2) = S^1 \rtimes \{ \pm 1 \}\) the dihedral group.
+
+    \begin{lemma}
+        \(\operatorname{SO}(3) \cong \mathbb{R}P^3\).
+    \end{lemma}
+
+    \begin{proof}
+        [Proof 1] \(A\in \operatorname{SO}(3)\). Then the characteristic polynomial is of degree \(3\). Thus, \(A\) has a real eigenvalue.
+        
+        Since \(A\in \operatorname{SO}(3)\) the eigenvalue \(\lambda = \pm 1\).
+        
+        Case 1: all eigenvalues are real. \(\begin{bmatrix}
+            -1 &  &  \\
+             & -1 &  \\
+             &  & -1 \\
+        \end{bmatrix}\notin \operatorname{SO}(3)\).
+        
+        Case 2: Other eigenvalues are non-real. Then \(\lambda = \pm 1, \mu , \overline{\mu}\) with \(\lambda \mu \overline{\mu} = 1 \implies \lambda = 1\).
+
+        Thus, there exists `axis' \(v\) such that \(Av = v\) with \(\overline{v} = 1\).
+
+        i.e. \(A\) is a rotation about axis \(v\) through angle \(0 \leq \theta \leq \pi\).
+
+        \[
+            \operatorname{SO}(3) \xrightarrow{\approx} D^3 / \sim = \mathbb{R} P^3
+        \]
+
+        \[
+            A \mapsto \frac{\theta}{\pi} v
+        \]
+    \end{proof}
+
+    \begin{proof}
+        [Proof 2]
+
+        \(S^3 =\) unit quarternions \(= \{ a + bi + cj + dk \mid a^2 + b^2 + c^2 + d^2 = 1 \}\).
+
+        Claim: \(S^3\) is a double cover of \(\operatorname{SO}(3)\). We essentially have to prove that:
+
+        \[
+            \begin{tikzcd}
+                1 \ar[r] & \{ \pm 1 \} \ar[r] & S^3 \ar[r] & \operatorname{SO}(3) \ar[r] & 1 \\
+                & & z \ar[r, mapsto] & (bi + cj + dk \mapsto z(bi + cj + dk) \overline{z})
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{lemma}
+        [Stability Lemma]
+
+        Recall \(\operatorname{SO}(n) \hookrightarrow \operatorname{SO}(n+1) \hookrightarrow \cdots\) by \(A \mapsto \begin{bmatrix}
+            A & 0 \\
+            0 & 1 \\
+        \end{bmatrix} \).
+
+        \begin{enumerate}[label=\alph*)]
+            \item \(\pi_{n-1} \operatorname{SO}(n) \twoheadrightarrow \pi_{n-1} \operatorname{SO}(n+1) \xrightarrow{\approx} \pi_{n-1} \operatorname{SO}(n+2) \xrightarrow{\approx}\) 
+            \item \(\pi_n \operatorname{BSO}(n) \twoheadrightarrow \pi_n \operatorname{BSO}(n+1) \xrightarrow{\approx} \pi_r \operatorname{BSO}(n+2) \xrightarrow{\approx} \)  
+        \end{enumerate} 
+    \end{lemma}
+
+    \begin{proof}
+        Fiber bundle.
+
+        \[
+            \begin{tikzcd}
+                \operatorname{SO}(n) \ar[r] & \operatorname{SO}(n+1) \ar[d] & A \ar[d,mapsto] \\ & S^n & A \begin{bmatrix}
+                    0 \\
+                    \vdots \\
+                    0 \\
+                    1 \\
+                \end{bmatrix}.
+            \end{tikzcd}
+        \]
+
+        LES on \(\pi_{\ast}\) and \(\pi_1 S^n = 0\) for \(i < n\).
+
+        \begin{enumerate}[label=\alph*)]
+            \item LES on \(\pi_{\ast}\) and \(\pi_1 S^n = 0\) for \(i < n\).
+            \item  
+            \[
+                \begin{tikzcd}
+                    \operatorname{SO}(n) \ar[r] & \operatorname{ESO}(n) \ar[r,phantom,"\simeq"] \ar[d] & \ast \\ & \operatorname{BSO}(n)
+                \end{tikzcd}
+            \]
+
+            \(\pi_i \operatorname{BSO}(n) \xrightarrow{\approx} \pi_{i-1} \operatorname{SO}(n)\).
+        
+        \end{enumerate} 
+    \end{proof}
+
+    Example:
+
+    \[
+        \begin{tikzcd}
+            \pi_1 \operatorname{SO}(2) \ar[r] & \pi_1 \operatorname{SO}(3) \ar[r,"\approx"] & \pi_1 \operatorname{SO}(4) \ar[r] & \;\\
+            TS^2 \ar[r,mapsto] & 0
+        \end{tikzcd}
+    \]
+
+    \(\pi_1 \operatorname{SO(n)} = \mathbb{Z}_2 \) for \(n > 2\). \(\pi_1 \operatorname{SO}(2) = \mathbb{Z}\).
+    
+    We define \(\operatorname{Spin}(n)\) as connected double group of \(\operatorname{SO}(n)\).
+    
+    \(\operatorname{Spin}(3) = S^3\).
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & \{ \pm 1 \} \ar[r,"\Delta"] & S^3 \times S^3 \to \operatorname{SO}(4) \ar[r] & 1 \\
+            & & (z,w) \ar[r, mapsto] & (v \mapsto zw \overline{v})
+        \end{tikzcd}
+    \]
+
+    \(\operatorname{Spin(4)} = S^3 \times S^3\).
+    
+    Spin structure on \(\xi = \mathbb{R}^n \to E \to B\) or vector bundle with metrics where \(B\) is path-connected.
+
+    \(P_{\operatorname{SO}} = \left\{ (e_1 , \cdots , e_n) \mid \pi (e_i) = \pi(e_i) = \pi(e_j), \text{ orthonormal}  \right\} \) 
+
+    Then we can define spin structure to \(\operatorname{Spin}n\). i.e.
+
+    principal \(\operatorname{Spin}(n)\):
+    
+    \[
+        \begin{tikzcd}
+            \operatorname{Spin}(n) \ar[r] & P_{\operatorname{Spin} (n)} \ar[d] \\ & B
+        \end{tikzcd}
+    \]
+
+    Furthermore,
+
+    \[
+        \begin{tikzcd}
+            P_{Spin} \times_{Spin} \operatorname{SO} \ar[rr, "\approx"] \ar[rd] && \operatorname{P}_{\operatorname{SO}} \ar[ld] \\ & B
+        \end{tikzcd}
+    \]
+
+    \(\iff\) the following happens:
+
+    \[
+        \begin{tikzcd}
+            P \ar[rr] \ar[rd] & & P_{\operatorname{SO} } \ar[ld] \\ & B
+        \end{tikzcd}
+    \]
+   
+    \[
+        \begin{tikzcd}
+            \operatorname{Spin} \ar[rr, dash] \ar[d] & & \operatorname{SO} \ar[d] \\
+            P_{\operatorname{spin}} \ar[rr] \ar[rd] & & P_{\operatorname{SO}} \ar[dl] \\
+            & B
+        \end{tikzcd}
+    \]
+
+    Deine: \(\operatorname{Spin}(n)\) as conected double cover of \(\operatorname{Spin}(n)\) 
+
+    \begin{theorem}
+        \(\xi\) admits a spin structure \(\iff \operatorname{w}_2 \xi = 0\).
+
+        If \(\xi\) admits a spin structure then,
+
+        \[
+            \text{spin structures} \leftrightarrow H^1(B;\mathbb{Z}_2) 
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        \[
+            \begin{tikzcd}
+                \mathbb{R} P^{\infty} \ar[r] & \operatorname{BSpin}(n) \ar[d] \\
+                B \ar[ru, dotted] \ar[r] & \operatorname{BSO}(n) 
+            \end{tikzcd}
+        \]
+    \end{proof}
 \end{document}
