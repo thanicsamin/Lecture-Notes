@@ -5161,4 +5161,245 @@
         \end{tikzcd}
     \]
 
+    \section*{Friday, 11/21/2025}
+    
+    \begin{theorem}
+
+        Suppose we have morphisms
+
+        \[
+            \begin{tikzcd}
+                & Y \ar[d,"\text{closed embedding}"] \\
+                X \ar[r] & Z
+            \end{tikzcd}
+        \]
+
+        Then we can deduce we have:
+
+        \[
+            \begin{tikzcd}
+                X \times_Z Y \ar[r] \ar[d,"\pi"] & Y \ar[d] \\
+                X \ar[r] & Z
+            \end{tikzcd}
+        \]
+
+        such that \(X \times_Z Y \xrightarrow{\pi} X\) is also a closed embedding.
+
+        Slogan: `Closed embeddings are preserved by base change'.
+    
+    \end{theorem}
+
+    \begin{proof}
+        Enough to find an affine cover \(\bigcup_{\alpha} \operatorname{Spec} A_\alpha\) of \(X\) such that \(\pi ^{-1} (\operatorname{Spec} A_\alpha)\) is a closed embedding.
+
+        Take an affine cover \(\bigcup_\gamma \operatorname{Spec} C_\gamma\) of \(Z\).
+        
+        For each \(x\in X\) take some \(\operatorname{Spec} C_\gamma\) containing \(\phi(x)\). Choose some affine open \(\operatorname{Spec} A_\alpha\) contained in \(\phi ^{-1} (\operatorname{Spec} C_\gamma)\) and containing \(\alpha\).
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/phimap}
+        \end{figure}
+
+        \(\pi ^{-1} (\operatorname{Spec} C_\gamma) = \operatorname{Spec} B_\gamma \subset \gamma\) 
+
+        \(C_\gamma \to B_\gamma\) surjective.
+
+        \(\operatorname{Spec} B_\gamma = \pi ^{-1} (\operatorname{Spec} C_\gamma)\)
+
+        \(\pi_Z ^{-1} (\operatorname{Spec} A_\alpha) = \operatorname{Spec} A_\alpha \times_Z Y\)
+        
+        \(= \operatorname{Spec} A_\alpha \times_{\operatorname{Spec} C_\gamma} \pi ^{-1} (\operatorname{Spec} C_\gamma)\) 
+
+        \(= \operatorname{Spec} A_\alpha \otimes_{C_\gamma} C_\gamma / I\).
+
+        \(A_\alpha \otimes_{C_\gamma} C_\gamma / I \cong A_\alpha / I^e\).
+
+        \(\pi_Z ^{-1} (\operatorname{Spec} A_\alpha) \to \operatorname{Spec} A_\alpha \).
+
+        \(\pi_Z ^{-1} (\operatorname{Spec} A_\alpha) = \operatorname{Spec} (A_\alpha / I^e)\).
+
+        So, \(\operatorname{Spec} (A_\alpha / I^e) \to \operatorname{Spec} A_\alpha \) is a closed embedding.
+
+        \(\bigcup_{\alpha} \operatorname{Spec} A_\alpha = X\) so \(\pi_X\) is a closed embedding.
+
+    \end{proof}
+
+    \[
+        \begin{tikzcd}
+            X \times_Z Y \ar[r] \ar[d,"\pi_X"] & Y \ar[d,"\pi"] \\ 
+            X \ar[r] & Z
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            X \times_Z Y \ar[r] \ar[d,"\pi_X"] & Y \ar[d,"\pi"] \\ 
+            X = \operatorname{Spec} S ^{-1} C \ar[r] & \operatorname{Spec} C = Z
+        \end{tikzcd}
+    \]
+
+    \begin{proposition}
+        \(X \times_Z Y \to Y\) is injective and the topology on \(X \times_Z Y\) is the subspace topology.
+    \end{proposition}
+
+    \begin{proof}
+        Sufficient to prove this true after intersecting with \(\operatorname{Spec} B_\beta\) for each \(\operatorname{Spec} B_\beta\) in an affine cover of \(Y\).
+
+        May assume \(Y = \operatorname{Spec} B\).
+
+        \[
+            \begin{tikzcd}
+                & B \\
+                S ^{-1} C & C\ar[l] \ar[u,"\pi^\sharp"]
+            \end{tikzcd}
+        \] 
+
+        \(S ^{-1} C \otimes_C B \cong \pi^\sharp (S) ^{-1} (B)\).
+
+        Suppose \(z\in Z\) and consider residue field \(\mathbb{K}(z)\). Then we have:
+
+        \[
+            \begin{tikzcd}
+                \operatorname{Spec} \mathbb{K}(z) \times_Z Y \ar[r] \ar[d] & Y \ar[d] \\
+                \operatorname{Spec} \mathbb{K} (z) \ar[r] & Z
+            \end{tikzcd}
+        \]
+
+        
+        \[
+            \begin{tikzcd}
+                Y \times_Z \operatorname{Spec} \mathbb{K}(z) \ar[r] & Y \times_Z \overline{\{ z \}} \ar[r] & Y \ar[d] \\
+                \{ z \} \ar[r,phantom, "\subset"] & \overline{\{ z \} } \ar[r,"\subset", phantom] & Z
+            \end{tikzcd}
+        \]
+
+
+        Reduce to the case \(Z = \operatorname{Spec} C\). Let \(I\) be the radical ideal in \(C\) with \(V(I) = \overline{\{ z \} }\).
+
+        Let \(K = \mathbb{K}(z) = \operatorname{Frac} (C / I)\).
+
+        \[
+            \begin{tikzcd}
+                & \pi ^{-1} (\operatorname{Spec} C / I) \ar[d,"\cong",phantom,sloped] \\
+                Y \times_{\operatorname{Spec} C} \operatorname{Spec} K \ar[r] \ar[d] & Y \times_{\operatorname{Spec} C} \operatorname{Spec} C / I \ar[r] \ar[d] & Y \ar[d,"\pi"] \\
+                \operatorname{Spec} K \ar[r] & \operatorname{Spec} C / I \ar[r] & \operatorname{Spec} C
+            \end{tikzcd}
+        \]
+
+        \[
+            \begin{tikzcd}
+                & Y \times_Z \overline{\{ z \} } \ar[r,phantom, "\subset"] \ar[d] & Y \ar[d] \\
+                \{ z \} \ar[r,phantom, "\subset"] & \overline{\{ z \} } \ar[r,phantom,"\subset"] & Z
+            \end{tikzcd}
+        \]
+
+    \end{proof}
+
+    \subsection*{Morphisms as families of varieties}
+
+    Let \(z \in Z \leftarrow Y\). Define \(Y_z = \operatorname{Spec} \mathbb{K}(z) \times_Z Y\).
+
+    We have \(Y_z \to \operatorname{Spec} \mathbb{K}(z)\).
+
+    Suppose we're interested in looking at the family of all degree \(2\) varieties.
+
+    We have \(k[x,y] / (Ax^2 + Bxy + Cy^2 + Dx + Ey + + F)\).
+    
+    We can instead look at:
+
+    \[
+        Y = \operatorname{Spec} \mathbb{C}[x,y,A,B,C,D,E,F] / (Ax^2 + Bxy + Cy^2 + Dx + Ey + F)
+    \]
+
+    Now we look at:
+
+    \[
+        \begin{tikzcd}
+            Y_z = ? & Y = \dfrac{\operatorname{Spec} \mathbb{C}[x,y,A,B,C,D,E,F]}{(Ax^2 + Bxy + Cy^2 + Dx + Ey + F)} \ar[d] \\
+            \{ z \} = \operatorname{Spec} \mathbb{C} \ar[r] & \operatorname{Spec} \mathbb{C}[A,B,C,D,E,F]
+        \end{tikzcd}
+    \]
+
+    We can look at:
+
+    \[
+        \frac{\mathbb{C}[x,y,A,B,C,D,E,F]}{(Ax^2 + Bxy + Cy^2 + Dx + Ey + F)} \otimes_{\mathbb{C}[A, B,C,D,E,F]} \frac{\mathbb{C}[A,B,C,D,E,F]}{(A-a,B-b,C-c,D-d,E-e,F-f)}
+    \]
+
+    \[
+        \frac{\mathbb{C}[x,y,A,B,C,D,E,F]}{(Ax^2 + Bxy + Cy^2 + Dx + Ey + F, A-a, B-b, \cdots ,F-f)} \cong \frac{\mathbb{C}[x,y]}{(ax^2 + bxy + cy^2 + dx + ey + f)}
+    \]
+
+    We can generalize this as follows:
+
+    Suppose we have some family of varities and we have a map \(Y \to Z\) with the property that each variety in the family occurs exactly once as a fiber over a closed point [these are \(Y_z\)].
+
+    Now let \(W \to X\) be another family of same kind of varieties such that for each \(x\in X\) there exists a fiber \(W_x\) corresponding to exactly one of the \(Y_z\) [we denote this via \(x \mapsto z\)].
+
+    It would be nice if this map comes from a morphism \(X \to Z\).
+
+    \[
+        \begin{tikzcd}
+            W \times_X \{ x \} \ar[d,"=", phantom, sloped] & W \ar[d,"=",phantom, sloped] \\
+            W_x \ar[r] \ar[d] & X \times_Z Y \ar[r] \ar[d] & Y \ar[d] \\
+            x = \operatorname{Spec} \mathbb{K}(x) \ar[r] & X & Z \\
+            x \ar[rr, mapsto] & & z
+        \end{tikzcd}
+    \]
+
+    \(W_x = W \times_X \{ x \} = Y \times_Z \{ x \} = Y_z\).
+
+    It hapennes `more often than we expect but not as often as we'd like.'
+
+    \subsection*{Fiber over Generic Points}
+
+    It is a variety since we're working over a field.
+
+    What does it look like? In our example,
+
+    \[
+        \frac{\mathbb{C}(A,B,C,D,E,F)[x,y]}{(Ax^2 + \cdots + F)}
+    \]
+
+    The reason it is called a generic fiber is because it captures `generic behaviour'.
+
+    There are a lot of special behaviour that particular fibers will exhibit.
+
+    It can be a pair of line, \(\times\) or \(=\).
+
+    It can be just a double line, \(\mathbf{-}\).
+
+    All \(A\) through \(F\) can be \(0\), then it is the whole plane \(\square\).
+
+    `Generic' ones don't have these behaviour.
+
+    \begin{theorem}
+        [Meta Theorem]
+
+        Let \(\pi: Y \to Z, \eta \in Z\) the generic point [we're assuming \(Z\) is irreducible] and \(Y_\eta\) the generic fiber.
+
+        Then \(Y_\eta\) has property \(X\) [not always, but usually true] if and only if there is a \textit{dense open subset} \(U\) of \(Z\) such that \(\forall z\in U\) the fiber \(Y_z\) has property \(X\).
+
+        `For many properties, being true for the generic point is equivalent to being true for a dense open subset'
+
+        generic points: minimal amount of constraints
+
+        closed points: maximal amount of constraints
+    \end{theorem}
+
+    Interesting example: Generically Finite.
+
+    Here is a list of properties of morphisms which are preserved via base change:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Affine morphisms
+        \item Closed embeddings (we already talked about)
+        \item finite morphisms
+        \item Morphisms of finite type
+        \item Quasicompact morphisms
+        
+        And more
+    \end{enumerate} 
+
 \end{document}
