@@ -5401,5 +5401,241 @@
         
         And more
     \end{enumerate} 
+    
+    \section*{Monday, 12/1/2025}
+    
+    Reminder:
+
+    A `reasonable' property (of a morphism) \(P\) is such that:
+
+    The composition of two \(P\)-morphisms is a \(P\)-morphism. Meaning, if we have \(X \to Z\) and \(Y \to Z\) such that \(Y \to Z\) is a \(P\)-morphism, then \(X \times_Z Y\) is a \(P\)-morphism.
+
+    \[
+        \begin{tikzcd}
+            X \times_Z Y \ar[r] \ar[d,"\therefore P"] & Y \ar[d,"P"] \\ X \ar[r] & Z
+        \end{tikzcd}
+    \]
+
+    A pullback of a \(P\)-morphism is a \(P\)-morphism.
+
+    \(P\) is affine local on the target. Meaning: if \(U_\alpha \times_Z Y \to U_\alpha\) always has \(P\) then \(Y \to Z\) is \(P\).
+
+    \[
+        \begin{tikzcd}
+            U_\alpha \times_Z Y \ar[d,"P"] \ar[r] & Y \ar[d,"\therefore P"] \\ U_\alpha \ar[r] & Z
+        \end{tikzcd}
+    \]
+
+    There are commonly use properties which don't respect pullback.
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Open
+        \item Closed
+        \item Irreducible fibers
+        \item Connected fibers
+        \item reduced fibers
+        
+        etc.
+    \end{enumerate} 
+
+    For non-example, consider the pullback:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C} \times \mathbb{C} \ar[r,phantom,"\cong"] & \operatorname{Spec} \mathbb{C} \otimes_\mathbb{R} \mathbb{C} \ar[r] \ar[d] & \operatorname{Spec} \mathbb{C} \ar[d] \\
+            & \operatorname{Spec} \mathbb{C} \ar[r] & \operatorname{Spec} \mathbb{R}
+        \end{tikzcd}
+    \]
+
+    What happens if we have a property which doesn't respect pullback?
+
+    If \(P\) is such a property, define `universally \(P\)' to mean that all pullbacks have property \(P\).
+
+    For any \(P\), universally \(P\) respects pullback.
+
+    Suppose \(Y \to Z\) is universally \(P\). Now suppose we have \(X \to Z\). Then by definition \(X \times_Z Y \to X\) is \(P\). How do we know if it is universally \(P\)?
+
+    \[
+        \begin{tikzcd}
+            W \times_X Y \ar[r,phantom,"="] & W \times_X (X \times_Z Y) \ar[d] \ar[r] & X \times_Z Y \ar[r] \ar[d] & Y \ar[d] \\
+            & W \ar[r] & X \ar[r] & Z
+        \end{tikzcd}
+    \]
+
+    Thus cancellation of fiber product implies \(X \times_Z Y \to X\) is universally \(P\).
+
+    Why is cancellation of fiber products true?
+
+    \((X \times Y) \times Z = X \times (Y \times Z)\)
+    
+    \(\implies (X \times Y)(W) = (X \times Y)(W) \times Z(W) = (X(W) \times Y(W)) \times Z(W)\). Same for the other. It is true in the category of sets so it is true in all categories.
+    
+    Then we need \(X \times_Y Y \xrightarrow{\approx} X\).
+
+    \[
+        \begin{tikzcd}
+            X \times_Y Y \ar[d] \ar[r] & Y \ar[d,"="] \\
+            X \ar[r] & Y
+        \end{tikzcd}
+    \]
+
+    WTS: pullback of isomorphism is isomorphism.
+
+    \((X \times_Y Y) (W) = X(W) \times_{Y(W)} Y(W) \xrightarrow{\approx} X(W)\).
+
+    Suppose \(P =\) connected fibers. Checking universally-\(P\).
+
+    When is \(X \to \operatorname{Spec} k\) universally \(P\)?
+
+    \begin{theorem}
+        When \(k\) is algebraically closed and \(X\) is connected, then it is universally connected.
+    \end{theorem}
+
+    Suppose we have:
+
+    \[
+        \begin{tikzcd}
+            & Y \ar[d] \\
+            X \ar[r] & \operatorname{Spec} k
+        \end{tikzcd}
+    \]
+
+    Pick a point \(x\in X\) then it corresponds to \(\operatorname{Spec} \mathbb{K}(x)\) the residue field.
+
+    \[
+        \begin{tikzcd}
+            Y \times_{\operatorname{Spec} k} \operatorname{Spec} \mathbb{K} (x) \ar[r,phantom,"="] & (Y \times_{\operatorname{Spec} k} \times X) \times_X \operatorname{Spec} \mathbb{K} (x) \ar[r] \ar[d] & Y \times_{\operatorname{Spec} k} X \ar[r] \ar[d] & Y \ar[d] \\
+            & \operatorname{Spec} \mathbb{K}(x) \ar[r] & X \ar[r] & \operatorname{Spec} k
+        \end{tikzcd}
+    \]
+
+    Recall: \(X\) is connected iff every idempotent element of \(\Gamma(\mathcal{O}_X)\) is \(0\) or \(1\).
+
+    \begin{theorem}
+        Suppose \(k = \overline{k} \) and \(f_1 , \cdots , f_m \in k[x_1, \cdots , x_n]\). Suppose \(K \supset k\). Then,
+
+        \(f_1(x_1, \cdots , x_n) = 0 , \cdots , f_m(x_1 , \cdots , x_n) = 0\) has a solution in \(k\) if and only if it has a solution in \(K\).
+        
+        i.e. bigger field doesn't give you solution if smaller field is algebraically closed.
+    \end{theorem}
+
+    \begin{proof}
+        Let \(I = (f_1 , \cdots , f_m) \subset A = k[x_1 , \cdots , x_n]\).
+
+        Consider the SES:
+
+        \[
+            0 \to I \to A \to A / I \to 0
+        \]
+
+        Let \(I^e = (f_1 , \cdots , f_m) K \subset K[x_1 ,\cdots , x_n] = A \otimes_k K\).
+        
+        We have SES:
+
+        \[
+            0 \to I \otimes_k K \to A \otimes_k K \to (A / I) \otimes_k K \to 0
+        \]
+        
+        Furthermore, \(\operatorname{im} (I \otimes_k K \to A \otimes_k K) = I^e\). \(I \otimes_k K = I^e\).
+
+        If \(A / I = 0\) then \((A / I) \otimes_k K = (0)\) so \(I^e = A \otimes_k K\).
+
+        If \(f_1 = \cdots = f_m = 0\) has no solutions in \(k\) then \(I = A\). Then \(I^e = A\). Then there is no maximal ideal of \(K[x_1, \cdots , x_n]\) containing \(I^e\). i.e. no solution to the system in \(K\).
+
+    \end{proof}
+
+    We can use this result in the connectedness problem.
+
+    It suffices to consider the case that \(X\) is an affine scheme over \(k\).
+
+    Consider \(\operatorname{Spec} A\) so that \(A\) has no non-trivial nilpotents.
+
+    Claim: \(A \otimes_k K\) has no non-trivial nilpotents.
+
+    Assume not true. Let \(e\in A \otimes_k K\) satisfy \(e^2 = e, e \neq 0,1\).
+
+    Write \(e = \sum_{i=1}^n a_i \otimes l_i\) where \(l_i \in K\).
+
+    Let \(A = k[l_1 , \cdots , l_n] \subset K\).
+
+    Let \(B = k[a_1 , \cdots , a_n]\).
+
+    Claim: any polynomial equation in the elements \(a_i\) with coefficients in \(k\) can be encoded as a set of linear equatino in the coefficients:
+
+    \[
+        \sum c_{r_1, \cdots , r_n} a_i^{r_1} \cdots a_n^{r_n} = 0 \; c_{r_1, \cdots , r_n} \in k
+    \]
+
+    \(a_1^{r_1} \cdots a_n^{r_n}\) is a \(k\)-vector space.
+
+    \(e = \sum_{i} a_i \otimes e_i\) 
+
+    \(e^2 = \sum_{i,j} a_i a_j \otimes l_i l_j\).
+
+    \(e^2 - e\) has a non-trivial solution in \(l_1 , \cdots , l_n\).
+
+    A system of homogeneous linear equations in the variables \(x_i = l_i, y_{i,j} = l_i l_j\) gives a system of polynomial equations in the variables \(l_i\).
+
+    We need the following lemma to make the argument rigorous.
+
+    Let \(X\) be an affine variety, \(/ k = \overline{k}\).
+
+    \(Y \subset X\) a closed subvariety.
+
+    Then \(X(k) \supsetneq Y(k) \implies X(k) \supsetneq Y(k)\).
+
+    Take \(X \setminus Y\).
+
+
+    \subsection*{Segre Embeddings}
+
+    This is a useful and nice geometric construction.
+
+    \(\exists\) closed embedding \(\mathbb{P}^m_A \times \mathbb{P}^n_A \to \mathbb{P}^{mn + m + n}_A\).
+
+    \[
+        ((x_0 : \cdots : x_m), (y_0 : \cdots : y_n)) \mapsto (x_0 y_0 : x_0 y_1 : \cdots x_0 y_m : x_1 y_0 : \cdots : x_m y_n)
+    \]
+
+    We can't always take homogeneous coordinates in graded rings. What should we do?
+
+    Consider homomorphism from graded ring: \(A [z_{i,j} \mid 0 \leq i \leq m , 0 \leq j \leq n] \to A[x_0 , \cdots , x_m] \otimes_A A[y_0 , \cdots , y_n]\) by:
+
+    \[
+        z_{i,j} \mapsto x_i \otimes y_j
+    \]
+
+    \[
+        \operatorname{Proj}(S_\bullet) \times_{\operatorname{Spec} A} \operatorname{Proj}(T_\bullet) \xrightarrow{\approx} \operatorname{Proj} (S_\bullet \otimes_A T_\bullet).
+    \]
+
+    If \(U_i\) and \(V_j\) are the \(i\)'th and \(j\)'th standard affine opens of \(\mathbb{P}^m_A\) and \(\mathbb{P}^n_A\) respectively then we can write:
+    
+    
+    \[
+        U_i = \operatorname{Spec} A[x_{0 / i} , \cdots , x_{m / i}]
+    \]
+
+    \[
+        V_j = \operatorname{Spec} A[y_{0 / j}, \cdots , y_{n / j}]
+    \]
+
+    Then we need:
+
+    \[
+        \operatorname{Spec} A[x_{0 / i} , \cdots , x_{m / i}] \otimes_A A[y_{0 / j}, \cdots , y_{n / j}] \to \operatorname{Spec} A[z_{ab / ij}] \subset \mathbb{P}^{mn + m + n}
+    \]
+
+    On the other hand,
+
+    \[
+        A[z_{ab / ij}] \to A[x_{0 / i}, ,\cdots , x_{m / i}] \otimes_A A[y_{0 / j} , \cdots , y_{n / j}]
+    \]
+
+    \[
+        z_{ab / ij} \mapsto x_{a / i} \otimes y_{b / j}
+    \]
+
+    This is a surjective homomorphism. So the corresponding map of affine scheme is a closed immersion. Since being a closed immersion is reasonable, the original map is a closed immersion.
 
 \end{document}
