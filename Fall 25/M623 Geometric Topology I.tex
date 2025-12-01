@@ -4601,4 +4601,174 @@
             \end{tikzcd}
         \]
     \end{proof}
+
+    \section*{Monday, 12/1/2025}
+    
+    Let \(\xi = \mathbb{R}^n \to E \to B\) be oriented with metric.
+
+    \begin{theorem}
+        \(\xi\) admits a spin structure iff \(\operatorname{w}_2(\xi) = 0\).
+
+        If so, spin structure on \(\xi \leftrightarrow H^1(B;\mathbb{Z}_2)\).
+    \end{theorem}
+
+    Consider the \textit{frame bundle}.
+
+    \[
+        \begin{tikzcd}
+            \operatorname{SO}(n) = \operatorname{SO} \ar[r] & P_{\operatorname{SO}} \ar[d,"p"] \ar[r,"=",phantom] & \{ (e_1 , \cdots , e_n) \mid p(e_i) = p(e_j), e_i \text{ O.N.}  \} \subset E \times \cdots \times E \\
+            & B 
+        \end{tikzcd}
+    \]
+
+    spin structure on \(\xi \leftrightarrow \alpha \in H^1(P_{\operatorname{SO}};\mathbb{Z}_2)\) such that \(i^{\ast} \alpha \neq 0\).
+
+    \(\leftrightarrow \alpha : \pi_1 P_{\operatorname{SO}} \to \mathbb{Z}_2\) such that \(\alpha \circ i \neq 0\). 
+
+    This gives rise to the double cover \(\begin{tikzcd}
+        P_{\text{spin}} \ar[d] \\ P_{\operatorname{SO}}
+    \end{tikzcd}\) 
+
+    Given the fibration, we have the Serre \(5\)-term exact sequence [with \(\mathbb{Z}_2\)-coefficients]
+
+    \[
+        \begin{tikzcd}
+            H^1 B \ar[r] & H^1 P_{\operatorname{SO}} \ar[r] & H^1 \operatorname{SO} \ar[r,"\delta_3"] \ar[d,phantom,sloped,"="] & H^2 B \ar[r] & H^2 P_{\operatorname{SO}} \\
+            & & \{ 0, g \} 
+        \end{tikzcd}
+    \]
+
+    This is a consequence of the Serre Spetral Sequence.
+
+    Claim: \(\delta_3(g) = \operatorname{w}_2(\xi)\).
+
+    Proof: (i): \(\delta_3(g)\in H^1 B\) is a characteristic class for oriented vector bundle with metric [everything natural, we have a pullback].
+
+    (ii): `universal case': \(\begin{tikzcd}
+        \operatorname{SO}(n) \ar[r] & \operatorname{ESO}(n) \ar[d] \ar[r,phantom,"\simeq"] & \ast \\
+        & \operatorname{BSO}(n) \ar[r,phantom,"="] & \widehat{G}_n  
+    \end{tikzcd}\) 
+
+    \[
+        \begin{tikzcd}
+            0 \ar[r] & H^1(\operatorname{SO}) \ar[r,tail,"\approx"] & H^2(\operatorname{BSO}(n)) \\
+            & (0,g) & (0,\operatorname{w}_2)
+        \end{tikzcd}
+    \]
+
+    END OF SPIN!
+
+    Recall stability lemma:
+
+    \[
+        \begin{tikzcd}
+            \pi_k \operatorname{O}(k+1) \ar[r, two heads] \ar[d,phantom,sloped,"="] & \pi_k \operatorname{O}(k+2) \ar[r,"\approx"] \ar[d,phantom,sloped,"="] & \pi_k \operatorname{O}(k+3) \ar[r,"\approx"] \ar[d,phantom,sloped,"="] & \, \\
+            \pi_{k+1} \operatorname{BO}(k+1) \ar[r, two heads] & \pi_{k+1} \operatorname{BO}(k+2) \ar[r] & \pi_{k+1} \operatorname{BO}(k+3) \ar[r,"\approx"] & \,
+        \end{tikzcd}
+    \]
+
+    For example,
+
+    \[
+        \begin{tikzcd}
+            \pi_1 \operatorname{O}(2) \ar[r] & \pi_1 \operatorname{O}(3) \ar[r,"\approx"] & \pi_1 \operatorname{O}(4) \ar[r] & \, \\
+            \mathbb{Z} \ar[r] & \mathbb{Z}_2 \ar[r,phantom,"="] & \mathbb{Z}_2
+        \end{tikzcd}
+    \]
+
+    Corollary: \(\pi_2 \operatorname{O}(k) = 0\) for \(k \gg 0\).
+
+    \begin{corollary}
+        Let \(B\) be CW complex.
+
+        \begin{enumerate}[label=\alph*)]
+            \item \(\begin{tikzcd}
+                \xi = \mathbb{R}^n \ar[r] & E \ar[d] \\ & B
+            \end{tikzcd}\, n > \dim B\).
+            
+            \(\implies \exists\) nowhere zero secttion (\(\iff \xi = \alpha \oplus \epsilon\)).
+
+            \item \(\begin{tikzcd}
+                \xi , \eta = \mathbb{R}^n \ar[r] & E \ar[d] \\ & B
+            \end{tikzcd}\; n > \dim B\).
+            
+            \(\xi \oplus \epsilon \cong \eta \oplus \epsilon\) [stability isomorphism] \(\implies \xi \cong \eta\) isomorphism.
+        \end{enumerate} 
+    \end{corollary}
+
+    Now we can define stably orthonormal group:
+
+    \[
+        \operatorname{O} = \operatorname{colim}_{n \to \infty} O(n) (= \bigcup_{n} O(n) \text{ with topology})
+    \]
+
+    Then \(\pi_k \operatorname{O} = \pi_k \operatorname{O}(n)\) for \(n \geq k + 2\).
+
+    Then we have Bott periodicity
+
+    \[
+        \pi_k \operatorname{O} = \begin{dcases}
+            \mathbb{Z}_2, &\text{ if } k\equiv 0(8) ;\\
+            \mathbb{Z}_2, &\text{ if }k\equiv 1(8)  ;\\
+            0, &\text{ if } k\equiv 2(8);\\
+            \mathbb{Z}, &\text{ if } k\equiv 3(8);\\
+            0, &\text{ if } k\equiv 4(8);\\
+            0, &\text{ if } k\equiv 5(8);\\
+            0, &\text{ if } k\equiv 6(8);\\
+            \mathbb{Z}, &\text{ if } k\equiv 7(8).
+        \end{dcases}
+    \]
+
+    \[
+        \pi_k U = \begin{dcases}
+            0, &\text{ if } k\equiv 0(2) ;\\
+            \mathbb{Z}, &\text{ if } k\equiv 1(2).
+        \end{dcases}
+    \]
+
+    For \(k \leq 7\), the generators are all Hopf bundles over \(S^{k+1}\). There are \(4\) hopf bundles (reals, complex, quarternions, octonions) and they correspond to the non-zero \(\pi_k \operatorname{O}\).
+
+    Canonical example: \(k = 1\).
+
+    \[
+        \begin{tikzcd}
+            S^1 \ar[r] & {S^3 \; (z_1, z_2)} \ar[d] \\
+            & {\mathbb{C} P^1\; [z_1:z_2]} \ar[r,phantom,"\cong"] & S^2
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C} \ar[r] & E(\gamma^1) \ar[d] \\
+            & \mathbb{C} P^1
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            S^3\ar[d] & {(z_1, z_2)} \\
+            \mathbb{C} \cup  \infty  & z_1 / z_2
+        \end{tikzcd}
+    \]
+
+    \begin{theorem}
+        [Splitting Principle]
+
+        We can have splitting principles for real bundles \(\xi  = \mathbb{R}^n \to E \to B\) or complex bundles \(\mathbb{C}^n \to E^{\prime} \to B^{\prime}\).
+
+        Assume \(B, B^{\prime}\) are CW. Splitting principle says \(\exists\) maps \(S \xrightarrow{f} B , S^{\prime} \xrightarrow{f^{\prime}} B^{\prime}\) such that:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(f^{\ast} E = L_1 \oplus \cdots \oplus L_n\) and \(f^{\prime \ast} E^{\prime} = L^{\prime}_1 \oplus \cdots \oplus L^{\prime}_n\), i.e. direct sum of line bundles.
+            \item These maps are cohomology injections: \(f^{\ast} : H^{\ast} (B;\mathbb{F}_2) \rightarrowtail H^{\ast} (S;\mathbb{F}_2), f^{\prime \ast} : H^{\ast} (B^{\prime} ; \mathbb{Z}) \to H^{\ast} (S^{\prime} ; \mathbb{Z})\).
+        \end{enumerate} 
+    \end{theorem}
+
+
+    idea: We can pretend every vector bundle is a sum of line bundle.
+
+    For existence of SW (and chern) classes, instead of Steenrod squares, we can try to take \(f^{\ast} \operatorname{w}(E) = \operatorname{w}(L_1) \cdots \operatorname{w}(L_n)\).
+
+    These are just line bundles so we can define them by orientations.
+
 \end{document}
