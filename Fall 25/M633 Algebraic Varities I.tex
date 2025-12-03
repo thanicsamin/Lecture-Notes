@@ -5637,5 +5637,161 @@
     \]
 
     This is a surjective homomorphism. So the corresponding map of affine scheme is a closed immersion. Since being a closed immersion is reasonable, the original map is a closed immersion.
+    
+    \section*{Wednesday, 12/3/2025}
+    
+    Zariski topology has so few open sets we cannot often have Hausdorff property. How do we deal with it?
+    
+    Let \(X\) be a topological space. Consider the diagonal map \(\delta : X \to X \times X\) given by \(x \mapsto (x,x)\). This map is continuous.
+
+    \(\delta (X) = \Delta \subset X \times X\). Question: is \(\Delta\) a closed subset?
+
+    Note that \(\Delta^c = \{ (x,y)\in X^2 \mid x \neq y \} \).
+    
+    Any open neighborhood of \((x,y)\) contains an ipen neigborhood of the form \(U_x \times V_y\) where \(U_x\) and \(V_y\) are open neighborhoods of \(x\) and \(y\) in \(X\).
+    
+    \(U_x \times V_y \subset \Delta^c \iff (U_x \times V_y) \cap \Delta = \varnothing  \iff U_x \cap V_y = \varnothing\).
+
+    Consider the sequence \(x_1 , x_2 , \cdots\) and \(X \xrightarrow{f} Y\).
+
+    If \(\lim_{n \to \infty} f(x_n) = y_0\) then there is at most one \(x_0\in X\) such that \(f(x_0) = y_0\) and \(x_0\) is a limit of \(x_1 , x_2 , x_3 , \cdots\).
+
+    \(X \to Y\) is not a morphism of schemes.
+
+    \[
+        \begin{tikzcd}
+            & X \times X \ar[r] \ar[dd,"id"] & X \ar[dd] \\
+            X \ar[ur,dotted,"\delta"] \ar[urr] \ar[dr,"\operatorname{id}"] \\
+            & X \ar[r] & Y
+        \end{tikzcd}
+    \]
+
+    \begin{definition}
+        \(X \to Y\) is \underline{sepearated}  means that \(\delta\) is a closed embedding.
+    \end{definition}
+
+    Non-example: considered the origin doubled complex line as \(X: -:-\) over \(\mathbb{C}\)  
+
+    \begin{theorem}
+        Any morphism of affine schemes is separated.
+    \end{theorem}
+
+    \begin{proof}
+        \(\operatorname{Spec} A = X \xrightarrow{\pi} Y = \operatorname{Spec} B, \pi, \pi^\sharp: B \to A\)
+        
+        \(X \times_Y X - \operatorname{Spec} B \otimes_A B\).
+
+        \[
+            \begin{tikzcd}
+                X \times_Y X \ar[r] \ar[d] & X \ar[d] & B \otimes_A & B \ar[l] \\
+                X & Y \ar[l] & A \ar[r] & B \ar[u]\ar[l]
+            \end{tikzcd}
+        \]
+
+        [Part of proof skipped]
+
+    \end{proof}
+
+
+    A monomorphism is a morphism \(X \to Y\) such that \(W \xrightarrow[\pi_2]{\pi_1} X \to Y\) commutes iff \(\pi_1 = \pi_2\). 
+    
+    \begin{theorem}
+        If \(X \to Y\) is a monomorphism then it is separated.
+    \end{theorem}
+
+    \begin{proof}
+        \(X \to Y\) is a monomorphism \(\iff \delta : X \to X \times_Y X\) is an isomorphism.
+
+        \((X \times_Y X) (W) = \{ \phi_1 : W \to X , \phi_2 : W \to X \mid \pi \circ \phi_1 = \pi \circ  \} \) 
+
+        Therefore the claim is that every isomorphism of schemes is a closed embeddings.
+
+        Examples: both open and closed embeddings are monomorphisms.
+    \end{proof}
+
+    Given any property \(P\) of morphism the property \(P \delta\) means property \(P\) of  for \(\delta : X \to X \times_Y X\).
+
+    Example: If \(P \delta\) is `isomorphism' then \(P\) is monomorphism.
+
+    If \(P \delta\) is closed embedding then \(P\) is separated.
+
+    \begin{theorem}
+        \[
+            \begin{tikzcd}
+                X \ar[rr,"f"',"\therefore"] \ar[rd,"P"] & & Y \ar[ld,"\delta P"]\\
+                & Z
+            \end{tikzcd}
+        \]
+
+        assuming \(P\) is a reasonable property.
+    \end{theorem}
+
+    \begin{proof}
+        \(Y \xrightarrow{P} Y \times_Z Y\)
+
+        \(X \xrightarrow{P} Z\).
+
+        Together,
+
+        \[
+            X = X \times_Y Y \xrightarrow{P} X \times_Z Y \xrightarrow{P} Z \times_Z Y = Y
+        \]
+    \end{proof}
+
+    \begin{theorem}
+        If \(P\) is reasonable then \(P \delta\) is reasonable.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Composition: take \(X \xrightarrow{P \delta} Y \xrightarrow{P \delta} Z\).
+            
+            Take \(X \xrightarrow{P} X \times_Y X, Y \xrightarrow{P} Y \times_Z Y\).
+
+            \[
+                \begin{tikzcd}
+                    X \ar[rr, bend left] \ar[r,"P"] & X \times_Y \times Z \ar[d] \ar[r,"P"] & X \times_Z X \ar[d] \\
+                    & Y \xrightarrow{P} & Y \times_Z Y
+                \end{tikzcd}
+            \]
+
+            \item Pullbacks. Take \(Y \xrightarrow{P \delta} Z\) and \(Y \xrightarrow{P} Y \times_Z Y\).
+            Want \(X \times_Z Y \xrightarrow{"P \delta"} X\).
+            
+            \(X \times_Z Y \xrightarrow{"P"} (X \times_Z Y) \times_X (X \times_Z Y) = X \times_Z Y \times_Z Y\).
+
+            \(Y \xrightarrow{P} Y \times_Z Y\).
+
+            \item \(P \delta\) is affine local on the target. Suppose \(Y = \bigcup_{\alpha} U_\alpha\)
+            
+            \(X \times_Y U_\alpha\) is \(P \delta \; \forall \alpha\)
+
+            \(X \times_Y U_\alpha \xrightarrow{P} (X \times_Y U_\alpha) \times_{U_\alpha} (X \times_Y U_\alpha) = X \times_Y X \times_Y U_\alpha\). Thus we have \(X \to X \times_Y X\).
+            
+            Thus, \(P\) is affine local on the target.
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{corollary}
+        Separated morphisms are reasonable.
+    \end{corollary}
+
+    Example: \(\mathbb{P}^n_A \to \operatorname{Spec} A\) is separated.
+
+    Note: we can check whether \(X \to Y\) is a closed embedding by checking wether \(\Delta \subset X \times_Y X\) 
+
+    Closed embeddings are reasonable, therefore affine local on the base.
+
+    For any \(X \to Y\) and any \((x_1 , x_2) \in X \times_Y X\),
+
+    \(\exists\) affine neighborhood of \((x_1 , x_2)\) whose inverse image in \(Y\) is of the form \(\operatorname{Spec} C / I\).
+
+    \((x_1 , x_2) \in \operatorname{Spec} A_1 \times_{\operatorname{Spec} B} \operatorname{Spec} A_2 = \operatorname{Spec} A_1 \otimes_B \operatorname{Spec} A_2\).
+
+    If \((x_1 , x_2) \in \operatorname{im} \Delta\) then \(x_1 = x_2\) and we can take \(A_1 = A_2\).
+
+    \(C = A_1 \otimes_B A_1 \twoheadrightarrow A_1 = C / I\).
+
+    Finish Monday
 
 \end{document}

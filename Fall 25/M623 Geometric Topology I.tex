@@ -4756,11 +4756,11 @@
 
         We can have splitting principles for real bundles \(\xi  = \mathbb{R}^n \to E \to B\) or complex bundles \(\mathbb{C}^n \to E^{\prime} \to B^{\prime}\).
 
-        Assume \(B, B^{\prime}\) are CW. Splitting principle says \(\exists\) maps \(S \xrightarrow{f} B , S^{\prime} \xrightarrow{f^{\prime}} B^{\prime}\) such that:
+        Assume \(B, B^{\prime}\) are CW. Splitting principle says \(\exists\) maps \(F \xrightarrow{f} B , F^{\prime} \xrightarrow{f^{\prime}} B^{\prime}\) such that:
 
         \begin{enumerate}[label=\arabic*)]
             \item \(f^{\ast} E = L_1 \oplus \cdots \oplus L_n\) and \(f^{\prime \ast} E^{\prime} = L^{\prime}_1 \oplus \cdots \oplus L^{\prime}_n\), i.e. direct sum of line bundles.
-            \item These maps are cohomology injections: \(f^{\ast} : H^{\ast} (B;\mathbb{F}_2) \rightarrowtail H^{\ast} (S;\mathbb{F}_2), f^{\prime \ast} : H^{\ast} (B^{\prime} ; \mathbb{Z}) \to H^{\ast} (S^{\prime} ; \mathbb{Z})\).
+            \item These maps are cohomology injections: \(f^{\ast} : H^{\ast} (B;\mathbb{F}_2) \rightarrowtail H^{\ast} (F;\mathbb{F}_2), f^{\prime \ast} : H^{\ast} (B^{\prime} ; \mathbb{Z}) \to H^{\ast} (F^{\prime} ; \mathbb{Z})\).
         \end{enumerate} 
     \end{theorem}
 
@@ -4772,5 +4772,155 @@
     Instead of Steenrod squares, we can try to take \(f^{\ast} \operatorname{w}(E) = \operatorname{w}(L_1) \cdots \operatorname{w}(L_n)\).
 
     These are just line bundles so we can define them by orientations.
+
+    \section*{Wednesday, 12/3/2025}
+    
+    \begin{theorem}
+        [One Step Splitting Principle]
+
+        \(\exists f: P \to B, f^{\prime} : P^{\prime} \to B^{\prime}\) such that:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(f^{\ast} E = L_1 \oplus E_1 , (f^{\prime})^{\ast} E = L^{\prime}_1 \oplus E^{\prime}_1\).
+            \item \(H^{\ast} (f,\mathbb{F}_2), H^{\ast}(f;\mathbb{Z})\) are injective.
+        \end{enumerate} 
+    \end{theorem}
+
+    One step splitting principle implies splitting principle by induction.
+
+    \(P\) will be the projective bundle associated to \(B\).
+
+    If \(V\) is a vector space we have \(P(V) =\) lines in \(V = \operatorname{Gr}_1(V)\).
+
+    Then we have projective bundles:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R}P^{n-1} \ar[r] & P(E) \ar[d] \ar[r,"=", phantom] & \bigcup P(E_b) = E_0 / e \sim \lambda e : \lambda \neq 0 \\
+            & B
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            \mathbb{C} P^{n-1} \ar[r] & P(E^{\prime}) \ar[d,"f^{\prime}"] \\
+            & B^{\prime}
+        \end{tikzcd}
+    \]
+
+    We have the tautological line bundle:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R} \ar[r] & L_1 \ar[d] \ar[r,"=",phantom] & \{ (l,e) \mid e\in l \} \subset P(E) \times E \\
+            & P(E)
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            L_1 \ar[rr,"\subset", phantom] \ar[rd] & & f^{\ast} E \ar[ld] \\
+            & P(E)
+        \end{tikzcd}
+    \]
+
+    Assume \(B,B^{\prime}\) are CW. Then \(f^{\ast} E = L_1 \oplus (L_1^{\perp})\).
+    
+    \begin{theorem}
+        [Leray-Hirsch, See Hatcher]
+
+        Let \(a = \operatorname{w}_1(\gamma^{\prime}) \in H^1(P(E);\mathbb{F}_2)\).
+
+        Let \(b = e(\gamma^1) \in H^2(P(E^{\prime}))\)
+
+        Then \(H^{\ast}(P(E);\mathbb{F}_2)\) is a free \(H^{\ast} (B,\mathbb{F}_2)\)-mmodule with basis \(1,a,a^2,\cdots,a^{n-1}\).
+        
+        \(H^{\ast} (PE^{\prime})\) is a free \(H^{\ast} B\)-module with basis \(1,b,b^2,\cdots,b^{n-1} \) 
+
+    \end{theorem}
+
+    This implies \(1\)-step S.P. \(f^{\ast}, f^{\prime \ast}\) are injective since \(\{ 1 \} \) is linearly independent. 
+
+    \subsection*{Grothendieck's Definition of SW and Chern Classes}
+
+    LH \(\implies a^n =\) sum of basis elements, \(b^n =\) sum of basis elements.
+
+    \(a^n = \sum_{i=1}^{n} f^{\ast}(a_i)a^{n-i}\) 
+
+    \(b^n = \sum_{i=1}^{n} f^{\prime \ast}(b_i)b^{n-i}\)
+
+    Define \(\operatorname{w}_i E = a_i \in H^1(B;\mathbb{F}_2)\).
+
+    \(c_i E^{\prime} = - b_i \in H^{2i}(B^{\prime};\mathbb{Z})\).
+
+    Back to the splitting principle. What are \(F\) and \(F^{\prime}\)?
+
+    \subsection*{Flags}
+
+    Suppose we have vector spae \(V\) where \(\dim V = n\).
+
+    \begin{definition}
+        [Flag]
+
+        \(F(V) = \{ 0 \subsetneq V_1 \subsetneq \cdots \subsetneq V_n = V \} \)
+
+        If \(V\) has an inner product then \(F(V) \cong F_0(V) = \{ V = L_1 \oplus \cdots \oplus L_n \} \) where \(L_i\) are orthogonal lines.
+
+        \(F = F(E), F^{\prime} = F^{\prime}(E)\).
+    \end{definition}
+
+    \subsection*{Why are SW classes \(\mathbb{F}_2\)  coefficient but Chern class \(\mathbb{Z}\)-coefficient}
+
+    This boils down to \(\operatorname{O}(n)\) vs \(\operatorname{U}(n)\).
+
+    We have:
+
+    \[
+        (\mathbb{Z}_2)^n \hookrightarrow \operatorname{O}(n)
+    \]
+
+    \[
+        (S^1)^n \hookrightarrow \operatorname{U}(n)
+    \]
+
+    Then,
+
+    \[
+        \begin{tikzcd}
+            E(\gamma^1) \times \cdots \times E(\gamma^1)\ar[d] \ar[rr] & & E(\gamma^n) \ar[d] \\
+            \mathbb{R}P^{\infty} \times \cdots \times \mathbb{R}P^{\infty} \ar[r,"=",phantom] & (B\mathbb{Z}_2)^n = B(\mathbb{Z}_2)^n \ar[r,"g"] & \operatorname{BO}(n) = \operatorname{Gr}_n\mathbb{R}^{\infty}
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            E(\gamma^1) \times \cdots \times E(\gamma^1)\ar[d] \ar[rr] & & E(\gamma^n) \ar[d] \\
+            \mathbb{R}P^{\infty} \times \cdots \times \mathbb{R}P^{\infty} \ar[r,"=",phantom] & (B\mathbb S^1)^n = B(S^1)^n \ar[r,"g"] & \operatorname{BU}(n) = \operatorname{Gr}_n\mathbb{\mathbb{C}}^n
+        \end{tikzcd}
+    \]
+
+    \begin{theorem}
+        [Borel]
+
+        \[
+            H^{\ast} (\operatorname{BO}(n);\mathbb{F}_2) \overset{g^{\ast}}{\rightarrowtail} H^{\ast}(\mathbb{R}P^{\infty} \times \cdots \times \mathbb{R} P^{\infty} ;\mathbb{F}_2)
+        \]
+
+        \(\operatorname{im} g^{\ast} = \mathbb{F}_2 [a_1, \cdots , a_n]^{S_n}\).
+
+        \[
+            H^{\ast} (\operatorname{BU}(n);\mathbb{Z}) \xrightarrow{\approx} \mathbb{Z}[a_1, \cdots , a_n]^{S_n}
+        \]
+    \end{theorem}
+
+    This gives us another definition of SW classes and chern class.
+
+    \[
+        g^{\ast} \operatorname{w}_i(\gamma^n) = \sigma_i (a_1 , \cdots , a_n) = \sigma_i (\operatorname{w}_1(\gamma^1),\cdots ,\operatorname{w}_n(\gamma^1))
+    \]
+
+    \[
+        (g^{\prime})^{\ast} c_i(\gamma^n) = \sigma_1(b_1 , \cdots , b_n)
+    \]
 
 \end{document}
