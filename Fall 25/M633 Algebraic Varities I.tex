@@ -5794,4 +5794,193 @@
 
     Finish Monday
 
+    \section*{Friday, 12/5/2025}
+    
+    Consider continuous \(f: X \to Y\). 
+    
+    The following are always true: \(f ^{-1} (\text{open}) = \text{open}, f ^{-1} (\text{closed}) = \text{closed}, f(\text{compact}) = \text{compact}\).
+    
+    But maybe we want \(f(\text{open}) = \text{open}, f (\text{closed}) = \text{closed}, f ^{-1} (\text{compact}) = \text{compact}\).
+    
+    \begin{definition}
+        \(f\) proper means \(f ^{-1} (\text{compact}) = \text{compact}\). 
+    \end{definition}
+
+    \begin{theorem}
+        [?]
+
+        If \(X\) is Hausdorff then \(f: X \to Y\) is proper if and only if it is \textit{universally closed}.
+
+        A map \(X \xrightarrow{f} Y\) is universally closed if and only if for all continuous maps \(W \to Y\) we have:
+
+        \[
+            \begin{tikzcd}
+                W \times_Y X \ar[d] \ar[r,"f_W"] & W \ar[d] \\
+                X \ar[r,"f"] & Y
+            \end{tikzcd}
+        \]
+
+        \(f_W\) is closed.
+    \end{theorem}
+
+    Example: Consider \(\mathbb{Z} \to \{ \cdot \}\). This is a closed map. But it is not univerally closed: let \(W\) be a nice space with a discrete sequence which converges: \(x_1 , x_2 , x_3, \cdots \to x_0\). Then \(W \times_Y X\) fais to be closed since the associated fibers to the sequence doesn't converge in \(W \times_X Y\).
+
+    \begin{definition}
+        \(X \xrightarrow{\pi} Y\) is \textit{proper} if and only if it is separated, of finite type, and universally closed.
+    \end{definition}
+
+    \begin{theorem}
+        The property of being proper is reasonable.
+    \end{theorem}
+
+    \[
+        \begin{tikzcd}
+            X \times_Y (Y \times_Z W) \ar[d,phantom,sloped,"="] \\
+            W \times_Z X \ar[r,"cl."] \ar[d] & Y \times_Z W \ar[r,"cl."] \ar[d] & W \ar[d] \\
+            X \ar[r,"u.c."] & Y \ar[r,"u.c."] & Z
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}[column sep = small]
+            & & X \ar[d] \ar[r,phantom,"\supset"] & X \times_Y U_\alpha & (X \times_Y U_\alpha) \times_{U_\alpha} W \ar[l] \ar[r,"=",phantom] \ar[d] & X \times_Y W \\
+            \bigcup W_\alpha \ar[r,phantom,"="] & W \ar[r]  & Y \ar[r,phantom,"\supset"] & U_\alpha & W \ar[l] 
+        \end{tikzcd}
+    \]
+
+    This proves the theorem.
+
+    Example: \(\mathbb{A}^1_k \to \operatorname{Spec} k\) is not proper.
+
+    \[
+        \begin{tikzcd}
+            \mathbb{A}^1_k \ar[r,"\delta"] & \mathbb{A}^1_k \times \mathbb{P}^1_k \ar[r] & \mathbb{P}^1_k \\
+            x & (x,x)
+        \end{tikzcd}
+    \]
+
+    \(\operatorname{Spec} L \to \operatorname{Spec} K\) where \(K \subset L\) is proper.
+
+    \begin{theorem}
+        Every finite morphism is proper.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item Finite \(\implies\) Affine \(\implies\) Separated.
+            \item Module-finite \(\implies\) Finitely generated \(\implies\) Finite \(\implies\) Finite type
+            \item Finiteness is a reasonable property. Enough to check finite morphisms are closed. 
+        \end{enumerate} 
+    \end{proof}    
+
+    We also have Finite \(\implies\) Integral \(\implies\) Closed.
+
+    Recall lying over theorem: if \(B \subset A\) is an integral extension then \(\operatorname{Spec} A \to \operatorname{Spec} B\) is surjective.
+
+    We can reduce to proving that if \(A\) is an integral extension of \(B\) then \(\operatorname{Spec} A \xrightarrow{\pi} \operatorname{Spec} B\) is closed.
+
+    Essentially wts \(\pi(V(I)) = V(J)\) for some \(J\).
+
+    We have \(\pi^\sharp B \to A\) and \(I \subset A\).
+
+    Define \(J = (\pi^\sharp) ^{-1} (I)\). We have the diagram:
+
+    \[
+        \begin{tikzcd}
+            B \ar[r] \ar[d] & A \ar[d] \\
+            B / J \ar[r] & A / I
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            \operatorname{Spec} B & \operatorname{Spec} A \ar[l] \\
+            V(J) \ar[u] & V(I) = \operatorname{Spec} A / I \ar[l]
+        \end{tikzcd}
+    \]
+
+    \[
+        \operatorname{Spec} A / I \to \operatorname{Spec} B / J
+    \]
+
+    \(A\) int. over \(B \implies A / I\) is an integral extension of \(B / J\). Surjectivity follows.
+
+    \begin{theorem}
+        \(\mathbb{P}_A^n \to \operatorname{Spec} A\) is proper.
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\arabic*)]
+            \item Separated we proved last time.
+            \item Finiteness is clear from the cover by finitely many copies of \(\mathbb{A}^n_A\). 
+            \item Consider any \(W \to \operatorname{Spec} A\). WTS: \(\mathbb{P}^n_A \times_{\operatorname{Spec} A} W \to W\) is closed. It suffices to take an open cover of \(W\) and show that all pullbacks are closed.
+        \end{enumerate} 
+    \end{proof}
+
+    \(W = \bigcup_{\alpha} \operatorname{Spec} B_\alpha\).
+
+    \(\mathbb{P}^n_A \times_{\operatorname{Spec} A} \operatorname{Spec} B_\alpha \cong \mathbb{P}^n_{B_\alpha}\).
+
+    \(\mathbb{P}^n_{B_\alpha} \xrightarrow{\text{closed?}} \operatorname{Spec} B_\alpha\)
+    
+    Closedness follows from fundamental theorem of elimination theory.
+
+    \begin{corollary}
+        Every projective variety over \(k\) is proper over \(\operatorname{Spec} k\).
+    \end{corollary}
+
+    \[
+        X \to \mathbb{P}_k^n \to \operatorname{Spec} k
+    \]
+
+    \begin{theorem}
+        If \(X\) is proper  over \(\operatorname{Spec} k\) and \(k = \overline{k}\) and \(X\) is integral then \(\Gamma(X,\mathcal{O}_X) = k\).
+    \end{theorem}
+
+    Non-examples: \(\operatorname{Spec} \mathbb{C} \to \operatorname{Spec} \mathbb{R}\).
+
+    \(X = \operatorname{Spec} k \coprod \operatorname{Spec} k = \operatorname{Spec} k \times k \to \operatorname{Spec} k\)
+    
+    \(X = \operatorname{Spec} k[\epsilon] / (\epsilon^2) \to \operatorname{Spec} k\)
+
+    If \(f\in \Gamma(X,\mathcal{O}_X)\) and \(f: X \to \mathbb{A}^1_k\) 
+
+    \[
+        \begin{tikzcd}
+            X \ar[r] \ar[rd] & \mathbb{A}^1_k \ar[r,hook] & \mathbb{P}^1_k \ar[ld]  & \text{is proper} \\
+            & \operatorname{Spec} k
+        \end{tikzcd}
+    \]
+
+    The image of \(X\) in \(\mathbb{P}^1_k\) is closed. But \(X\) cannot contain the point at infinity. Thus image of \(X\) must be finite.
+
+    The image of \(X\) in \(\mathbb{P}^1_k\) is closed.
+    
+    \section*{Dimension}
+
+    \begin{definition}
+        [Krull Dimension]
+
+        The Krull dimension of a ring \(A\) is the max. length of a strictly increasing chain of prime ideals.
+
+    \end{definition}
+
+    \[
+        P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n \text{ has length } n
+    \]
+
+    A maximal chain is a chain that cannot be lengthened by insertion. Note that it isn't necessarily the longest chain.
+
+    Example:
+
+    The krull dimension of \(k[x]\) is \(1\) since all ideals are of the form \((P(x))\) or \((c)\), and if the ideal is prime then \(P\) is irreducible or \((0)\).
+
+    \begin{theorem}
+        \(\dim k[x_1 , \cdots , x_n] = n\) 
+    \end{theorem}
+
+    \begin{definition}
+        The dimension of a scheme is the max length of a chain of `points' \(x_0 , x_1 , \cdots , x_n \in X\) such that \(x_{k+1} \in \overline{\{ x_k \}}\).
+    \end{definition}
+
 \end{document}
