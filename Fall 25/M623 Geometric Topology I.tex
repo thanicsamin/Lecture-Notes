@@ -4923,4 +4923,299 @@
         (g^{\prime})^{\ast} c_i(\gamma^n) = \sigma_1(b_1 , \cdots , b_n)
     \]
 
+    \section*{Monday, 12/8/2025}
+    
+    \subsection*{Chern Classes MS Ch13-14}
+
+    Recall \(\mathbb{C}\)-vector bundles:
+
+    \(\omega = \begin{tikzcd}\mathbb{C}^n \ar[r] & E \ar[d] \\ & B\end{tikzcd}\).
+
+    This corresonds to a \(\mathbb{R}^{2n}\)-bundle with acomplex structure:
+
+    \[
+        \begin{tikzcd}
+            \mathbb{R}^{2n} \ar[rd] & & & & \mathbb{R}^{2n} \ar[ld] \\
+            & E \ar[rr,"J"] \ar[rd] & & E \ar[ld] \\
+            & & B
+        \end{tikzcd}
+    \]
+
+    Where \(J^2 = - \operatorname{Id}\) 
+
+    Open \(U \subset \mathbb{C}^n\) then \(TU \cong U \times \mathbb{C}^n\).
+
+    \[
+        \begin{tikzcd}
+            \eval{\frac{\mathrm{d}}{\mathrm{d}t}(t \mapsto x + tv)}_{t=0} \mapsfrom (x,v)
+        \end{tikzcd}
+    \]
+
+    \[
+        \begin{tikzcd}
+            U \times \mathbb{C}^n \ar[rr,"\approx"] \ar[rd] & & \pi ^{-1} U \ar[ld] \\
+            & U
+        \end{tikzcd}
+    \]
+
+    \(J_0 TU \to TU, J_0 (x,v) = (x,iv)\) 
+
+    Let \(f: U \to U\) where \(U \subset \mathbb{C}^n\).
+
+    \(f\) is \textit{holomorphic} if \(\mathrm{d} f \circ J_0 = J_0 \circ \mathrm{d} f\) [= analytic = Cauchy-Riemann eqn hold]
+
+    \(M\) a \(\mathbb{C}\)-manifold of \(\dim n\) definitions:
+
+    \begin{definition}
+        [1] Space \(M\) with \textit{holomorphic atlas} \(A = \{ \phi : V_\phi \to U \subset \mathbb{C}^n \} \) so that \(\phi_2 \circ  \phi_1^{-1}\) is holomorphic.
+    \end{definition}
+
+    \begin{definition}
+        [2] \(M\) is a manifold of \(\dim 2n\) with complex structure \(J : TM \to TM\) such that \(\forall x\in M \exists\) neighborhood \(V\) and a diffeomorphism \(\phi: V \to U\) where \(\mathrm{d} \phi \circ J = J_0 \circ \mathrm{d} \phi\) 
+    \end{definition}
+
+    \begin{definition}
+        [Allmost Complex Manifold] An \textit{almost complex manifold} is a smooth manifold on a smooth structure on its tangent bundle.
+    \end{definition}
+
+    Examples: \(\mathbb{C}^n\) is a complex manifold.
+    
+    \(\mathbb{C}P^n\) are complex manifolds. 
+    
+    Higher dimension torii: \(\mathbb{C}^n / \langle \mathbb{Z}^n , i \mathbb{Z}^n \rangle\) are complex manifolds.
+
+    \(\mathbb{C}P^1 = S^2\) are complex manifolds.
+
+    Odd dimensional spheres cannot have complex structures.
+
+    Question: When do even dimensional spheres have complex/almost complex structures?
+
+    \(S^4, S^{2n}\) for \(2n > 6\) don't have almost complex structures.
+
+    \(S^6\) has almost complex structure.
+
+    Axioms:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(C_i (\omega) = H^{2i}(B;\mathbb{Z}),C_0(\omega) = 1, C_1(\omega) = 0\) for \(i > n\). 
+        \item \(C_i \left( f^{\ast} \omega \right) = f^{\ast} c_i \omega\).
+        \item \(C_k(\omega \oplus \eta) = \sum_{i+j} c_i(\omega) \cup c_j(\eta)\)
+        \item \(c_1(\gamma^{\prime}) = - u_{\mathbb{C} P^1} \in H^2(\mathbb{C} P^1)\).   
+    \end{enumerate} 
+
+    These are called Hopf bundlles
+
+    Also \(4^{\prime}\): \(c_n(\omega) = e(\omega_\mathbb{R})\)  
+
+    \(\mathbb{C}\)-v.s. maps to oriented v.s.: \(V \to V_\mathbb{R}\).
+
+    \((e_1 , \cdots , e_n) \mapsto (e_1, ie_1 , e_2, ie_2, \cdots , e_n, i e_n)\).
+
+    \[
+        \begin{tikzcd}
+            & \mathbb{R} \\
+            M_n \mathbb{C} \ar[ru, "\det \cdot \det"] \ar[rr] \ar[d,"=",phantom, sloped] & & M_{2n}\mathbb{R} \ar[lu, "\det"] \ar[d,"=",phantom,sloped] \\
+            \operatorname{End}_\mathbb{C}(\mathbb{C}^n) \ar[rr] & & \operatorname{End}_\mathbb{R}
+        \end{tikzcd}
+    \]
+
+    So \(\operatorname{GL}_n(\mathbb{C}) \to \operatorname{GL}_{n,+}(\mathbb{R})\) 
+
+    \begin{theorem}
+        \(H^{\ast} (G_n \mathbb{C}^{\infty}) = \mathbb{Z}[c_1(\gamma^n), \cdots , c_n(\gamma^n)]\).  Algebraically independent.
+    \end{theorem}
+
+    \subsection*{Existence of Chern Classes}
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Grothendieck: \(a \in H^2 P(E), a^{n+1} = - \sum\) chern classes \(a^i\).
+        \item Borel: \(\begin{tikzcd}\gamma^1 \ar[d] & & & &  \gamma^1\ar[d] \\ \mathbb{C}P^{\infty}  & \times & \cdots & \times & \mathbb{C} P^{\infty} \ar[r,"c"] & Gr_n \mathbb{C}^{\infty}\end{tikzcd}\).
+        
+        \(c^{\ast} : H^{\ast} Gr_n(\mathbb{C}^{\infty}) \to \\mathbb{Z} [a_1 , \cdots , a_n]^{S_n}\). Then \(c_i \leftrightarrow \sigma_1(a_1 , \cdots , a_n)\).
+        
+        \item MS: \(c_i(\omega) = \begin{dcases}
+            (\pi_0^{\ast}) ^{-1} c_i (\omega_0), &\text{ if } i < n ;\\
+            e(\omega_\mathbb{R}), &\text{ if } i = n.
+        \end{dcases}\) 
+
+        Assume inductively that \(c_i \phi\) is defined for rank \(\phi < n\).
+
+        \(\omega_0 = \begin{tikzcd}\mathbb{C}^{n-1} \ar[r] & E_0 \ar[d,"\pi_0"] \ar[r,"=",phantom] & E - z(B) \\ & B\end{tikzcd}\) 
+
+        \(\pi_0^{\ast} \omega\) has nowhere zero section \(s: E_0 \to E_0 \times_B E_0 = \pi_0^{\ast} \omega, v \mapsto (v,v)\).
+
+        \(\epsilon^1 \subset \pi_0^{\ast} \omega\).
+
+        Then \(\omega_0 = \pi_0^{\ast} \omega / \epsilon^1\).
+    \end{enumerate} 
+
+    Remark: if \(\omega\) has a metric then \(\pi_0^{\ast} \omega = \epsilon^1 \oplus (\epsilon^1)^\perp\) 
+
+    Also, \(E_0 \xrightarrow{f} P(E)\) then \(f^{\ast} \gamma^1\) is trivial.
+
+    \section*{Wednesday, 12/10/2025}
+    
+    \subsection*{Chern-Weil Theory}
+
+    \[
+        c_1 L = \left[ \frac{i}{2\pi} \Omega \right] \in H^2_{DR} M
+    \]
+
+    \(\Omega\) is curvature of a metric connection
+
+    \subsection*{Complex Theory of Connection}
+
+    Let \(\begin{tikzcd}
+        \mathbb{C}^n \ar[r] & E \ar[d] \\
+        & M
+    \end{tikzcd}\) be a smooth \(\mathbb{C}\) v.b. over a smooth (real) manifold.
+
+    \(\Gamma(E) =\) smooth section \(\begin{tikzcd}E \ar[d] \\ M \ar[u, bend right, dotted,"s"']\end{tikzcd}\) 
+
+    Let \(\Omega^i(M;E)\) be \(i\)-forms with values in \(E\).
+
+    \(\Omega^0(M;E) = \Gamma (E)\).
+
+    \(\Omega^1(M;E) = \Gamma(T^{\ast} M \otimes_\mathbb{R} E) = \Gamma (\operatorname{Hom} (TM, E))\).
+
+    \(\mathbb{C}^{\infty} M =\) smooth \(M \to \mathbb{R}\).
+
+    \(\Omega^i(M;E) = \Gamma(\Lambda^i T^{\ast} M \otimes E)\) 
+
+    \begin{definition}
+        A connection on \(E\) is a \(\mathbb{C}\)-linear map \(\nabla\) akin to derivative given by:
+
+        \[
+            \nabla : \Omega^0(M;E) \to \Omega^1(M;E)
+        \]
+
+        which satisies the Liebniz law:
+
+        \[
+            \nabla (fs) = df \otimes s + f \nabla s
+        \]
+
+        Where \(s \in \Gamma E, f\in \mathbb{C}^{\infty} M\).
+    \end{definition}
+
+    For \(X\in \Gamma(TM)\), section of tangent bundle is a vector field,
+
+    \[
+        \nabla_X \Gamma(E) \to \Gamma(E)
+    \]
+
+    is kind of a `directional derivative':
+
+    \[
+        \nabla_x s \coloneqq \nabla (s) X
+    \]
+
+    \begin{definition}
+        A \textit{hermitian metric} on \(E\) is a function \(\langle , \rangle : E \times_M E \to \mathbb{C}\). It is a fancy notation for the pullback: given two points in a fiber we want a complex number. It is a \(\mathbb{C}\)-inner product on fibers. The inner product has to be hermitian.
+    \end{definition}
+
+    \begin{definition}
+        [Metric Connection] By picking two sections \(s,t\) note that \(\langle s,t \rangle\) is a function \(M \to \mathbb{C}\).
+        
+        \[
+            d\langle s,t \rangle = \langle \nabla s, t \rangle + \langle s, \nabla t \rangle \in \Omega^1(M;\mathbb{C})
+        \]
+    \end{definition}
+
+    \subsection*{Local View}
+
+    \begin{lemma}
+        [1] Consider trivial bundle \((U \times \mathbb{C}^n)\)
+
+        A connection is determined by matrix \(\omega_{ij} \in M_n(\Omega^1(M;\mathbb{C})) = \Omega^1(M;M_n\mathbb{C})\).
+        
+        In case of a metric connection, \((\omega_{ij})\) is skew hermitian.
+
+        For \(n = 1\) in the metric case \(\omega \in \Omega^1(M;i\mathbb{R})\). In this case, locally, this is given by just a one-form.
+
+        \(\omega =\) connection \(1\)-form.
+    \end{lemma}
+
+    \begin{proof}
+        Let \(s_1 , \cdots , s_n\) be linearly independent section (orthonormal in metric case):
+
+        \[
+            \nabla (s_i) = \sum \omega_{ij} \otimes s_j
+        \]
+
+        \[
+            \nabla (f_1 s_1 + \cdots + f_n s_n) = \sum d f_i \otimes s_i + f_i \nabla s_i
+        \]
+
+        In the metric case since \(s_i\) are orthonormal, \(0 = d \langle s_i , s_j \rangle = \langle \nabla s_i , s_j \rangle + \langle s_i , \nabla s_j \rangle = \omega_{ij} + \overline{\omega}_{ji}\).
+    \end{proof}
+
+    \begin{lemma}
+        [2]
+
+        Every bundle has a connection.
+    \end{lemma}
+
+    \begin{proof}
+        Take a partition of unity \((\{ U_\alpha \}, \lambda_\alpha)\) on \(M\) so that \(\eval{E}_{U_\alpha} \) are trivial. Take \(\nabla = \sum \lambda_\alpha \nabla_\alpha\).
+    \end{proof}
+
+    \subsection*{Curvature of Connection}
+
+    Consider \(
+        \begin{tikzcd}
+            \mathbb{C}^n \ar[r] & E \ar[d] \\ & M
+        \end{tikzcd}\) with metric.
+        
+    Curvature of connection:
+
+    \[
+        \Omega (\nabla) = \Omega \in \Omega^2(M;\operatorname{Hom} (E,E))
+    \]
+
+    If \(\nabla\) is metric then \(\Omega \in \Omega^2(M;U_n)\) 
+
+    Local Def: \(\Omega_{ij} = d \omega_{ij} - \omega_{ik} \wedge \omega_{kj}\).
+
+    Global Def 1: \(\Omega_{x,y}(s) = \nabla_x \nabla_y s - \nabla_y \nabla_x s - \nabla_{[x,y]} s\) 
+
+    Global Def 2: \(\Omega = \nabla \circ \nabla\).
+
+    Now we look at line bundles. Suppose we have a smooth line bundle \(\begin{tikzcd}\mathbb{C} \ar[r] & L \ar[d] \\ & M\end{tikzcd}\) with a metric.
+
+    Locally a connection is given by \(1\)-form \(\omega \in \Omega^1(U;i\mathbb{R})\).
+
+    \(\Omega = d \omega - \omega \wedge \omega \in \Omega^2(M; i\mathbb{R})\).
+
+    Facts:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item 1. \(d \Omega = 0\) curv. closed
+
+        \(d \Omega = d(d \omega) - (d \omega \wedge \omega) + \omega \wedge d \omega = 0\).
+
+        \([\frac{1}{i} \Omega] \in H^2_{DR} M = H^2(M;\mathbb{R})\) 
+
+        \item \(\Omega(\nabla) - \Omega(\nabla^{\prime}) = d \beta\)
+
+        So, \([\frac{1}{i}\Omega]\) is independent of connection.
+
+        \item \([\frac{1}{i}\Omega]\) is a characteristic class.
+        
+        \(\implies [\frac{1}{i}\Omega] = a(c_1(L)) \in H^2(M;\mathbb{R})\) for some \(a\in\mathbb{R}\).
+    
+        \item \(a = \frac{1}{2\pi}\). Compute for Hopf bundle:
+        
+        \[
+            \begin{tikzcd}
+                \mathbb{C} \ar[r] & E(\gamma^1) \ar[d] & \mathbb{R}^2 \ar[r] & E \ar[d] \\
+                & \mathbb{C} P^1 & & S^2
+            \end{tikzcd}
+        \]
+        
+        Use Gauss Bonnet.
+    \end{enumerate}
+
+    
+
 \end{document}

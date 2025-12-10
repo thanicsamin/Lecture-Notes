@@ -5983,4 +5983,139 @@
         The dimension of a scheme is the max length of a chain of `points' \(x_0 , x_1 , \cdots , x_n \in X\) such that \(x_{k+1} \in \overline{\{ x_k \}}\).
     \end{definition}
 
+    \section*{Monday, 12/8/2025}
+    
+    Recall dimension. We can think of it very geometrically:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/dimension}
+    \end{figure}
+
+    As in \((x_1 , \cdots , x_n) \supset (x_1 , \cdots , x_{n-1}) \supset \cdots \supset (x_1) \supset (0)\) 
+
+    \begin{theorem}
+        Suppose \(B \hookrightarrow A\) is an integral extension. Then \(\dim B = \dim A\).
+    \end{theorem}
+
+    \begin{proof}
+        \(\operatorname{Spec} A \to \operatorname{Spec} B\) so if we have \(Q_0 \subsetneq Q_1 \subsetneq \cdots \subsetneq Q_n\) and \(P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n\) where \(P_i = Q_i \cap B\).
+
+        Suppose \(Q_0 \subsetneq Q_1 \subsetneq \cdots \subsetneq Q_n \subset A\).
+
+        We can define \(P_i = Q_i \cap B\).
+
+        Then \(P_0 \subset P_1 \subset \cdots \subset P_n \subset B\).
+
+        We need to show \(P_i \neq P_{i+1}\) for all \(i\).
+
+        Suppose,
+
+        \[
+            \begin{tikzcd}
+                Q_i \ar[rd] \ar[r,"\subsetneq",phantom] & Q_{i+1} \ar[d] \ar[r,"\in",phantom] & \operatorname{Spec} A \ar[d] \\
+                x_i \ar[r,"=",phantom] & P_i \ar[r,"\in",phantom] & \operatorname{Spec} B
+            \end{tikzcd}
+        \]
+
+        We know that if \(B \xrightarrow{\pi^\sharp} A\) is any integral map then the fibers of \(\operatorname{Spec} A \xrightarrow{\pi} \operatorname{Spec} B\) are discrete sets. Replace \(B\) by \((B \setminus P) ^{-1} B = B_P\) and \(A\) by \((A \setminus \pi^\sharp(P)) ^{-1} A\). So we may assume \(P\) is the unique closed point of \(B\). We may replace \(B\) by \(B / P\) and \(A / P^e\) and assume \(B\) is a field.
+        
+        So, we claim that for an integral extension of a field, \(\operatorname{Spec} B\) is discrete.
+
+        Suppose \(P_1 \subset P_2\) in \(A\). Replace \(A\) by \(A / P_1\). Then \(P_1\) becomes the zero ideal, \(P_2\) becomes \(P_2 / P_1\).
+
+        Then \(B\) is a field, \(A\) is an integral domain that is integral over \(B\).
+
+        If \(a\in A\) then it satisfies a monic polynomial over \(B\):
+
+        \[
+            a^n + b_1 a^{n-1} + \cdots + b_n = 0
+        \]
+
+        \[
+            \implies \frac{1}{a} = - \frac{a^{n-1} + \cdots + b_{n-1}}{b_n}
+        \]
+
+    \end{proof}
+
+    Note, in general, \(\pi ^{-1} (y) \cong X \times_{\operatorname{Spec} \mathbb{K}(y)} Y\). So, prime ideal \(P\) of \(Y\) corresponding to \(Y\) then the associated ideal in \(A\) is \(\operatorname{Frac} (B / P) \otimes_B A\).
+
+    \begin{definition}
+        [Codimension] Suppose we have irreducible \(X \subset\) irreducible \(Y\).
+
+        Then \(\operatorname{codim}_X Y =\) longest chain of irreducibles:
+
+        \[
+            X = X_0 \subsetneq X_1 \subsetneq X_2 \subsetneq \cdots \subsetneq X_n = Y
+        \]
+    \end{definition}
+
+    Then \(\dim X + \operatorname{codim}_X Y \leq \dim  Y\).
+
+    Now suppose \(A\) is a finitely generated \(k\)-algebra and also an integral domain.
+
+    We can define \(K = \operatorname{Frac} (A) \supset K\).
+
+    Then we can look at the transcendance degree. We define \(\Tr \deg_k K\).
+
+    A subset \(S \subset K \supset k\) is algebraically independnent over \(k\) if there is no nontrivial polynomial relation with \(k\)-coefficients among elements of \(S\).
+
+    A maximal algebraically independent set is called a transcendence basis.
+
+    \begin{theorem}
+        The cardinality of any two transcendence basis of \(K\) over \(k\) are the same.
+    \end{theorem}
+
+    To prove this we need exchange lemma.
+
+    \begin{lemma}
+        [Exchange lemma] If \(S\) is a transcendence basis and \(a\in K\) then there exists \(s\in S\) such that \((S \setminus \{ s \}) \cup \{ a \}\) is a transcendance basis. 
+    \end{lemma}
+    
+    Then we can define the Transcendance dimension:
+
+    \[
+        \operatorname{dim} A = \text{tr deg}_k \operatorname{Frac}(A) 
+    \]
+
+    Example 1:  \(\text{tr deg}_k k(x_1 , \cdots , x_n) = n\)
+    
+    Example 2:\(\text{tr deg}_k \operatorname{Frac} (k [x_1 , x_2] / f(x_1 , x_2))\) if \(f\) irreducible and \(\{ x_1 \}\) and \(\{ x_2 \}\) are both tr. bases. Let \(A\) be the quotient. \(x_2\) is algebraic over \(k(x_1)\). So anything is a polynomial over \(k(x_1)\). Then anything in \(A\) is polynomial over \(k(x_1)\).
+
+    Example 3: If \(k=\mathbb{C}\) and \(X\) is a compact Riemann surface and \(K = \operatorname{mero}(X)\). Then \(\text{tr deg}_\mathbb{C} K = 1\).
+    
+    \(f \in K \setminus \mathbb{C}\) must have a poly at some \(x_0 \in X\).
+
+    \(\{ {f} \} \) must have a pole at some \(x_0\in X\). \(\{ f \} \) is algebraically independent.
+
+    Then \(\{ f,g \} \) correspond satisfy:
+
+    \(\{ f,g \} \) 
+
+    \(\{ f^i g^j \} \) 
+
+    \(\{ f^i g^j \mid0 \leq 0 < i,j \} \) 
+
+    Big theorem:
+
+    \begin{theorem}
+        If \(A\) is an int. degree finitely generated over \(k\) then \(\text{tr deg}_k \operatorname{Frac} (A) = \dim  A\).
+    \end{theorem}
+
+    \begin{theorem}
+        [Noether Normalization] If \(A\) is as above and \(n = \text{tr deg}_k \operatorname{Frac} A\) then there exists a basis \(\{ a_1 , \cdots , a_n \} \subset A\) s.t.
+        
+        \(A\) is integral over \(k[x_1 , \cdots , x_n]\) withthe injective map:
+
+        \([x_1 , \cdots , x_n] \to A, x_1 \mapsto a_i\) via the injective map: \(L \)  
+    \end{theorem}
+
+    \begin{proof}
+        Let \(A = k[y_1 , \cdots , y_m]\).
+
+        \(\overline{y_1} , \cdots ., \overline{y_m} \) are generators of \(A\) so \(m \geq n\). If \(m = n\) we can just take \(a_1 =  \overline{y}_1, \cdots , a_m = \overline{y}_{m}  \) 
+        
+        Otherwise we find elements \(z_1 , \cdots , z_{m-1} \) of \(A\) such that \(A\) is finitely generated as a module over the \(k\)-subalgebra generated by these elements.
+    \end{proof}
+
 \end{document}
