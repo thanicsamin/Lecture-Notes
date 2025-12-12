@@ -6299,4 +6299,148 @@
 
     \(A\) is module-finite over \(k[a_1, \cdots , a_n]\) and \(B\) is module-finite over \(k[b_1, \cdots , b_m]\) then \(A \otimes_k B\) is module finite over \(k[a_1 , \cdots , a_n] \otimes k[b_1 , \cdots , b_m] = k[a_1 \otimes 1, \cdots , a_n \otimes 1, 1 \otimes b_1 , \cdots , 1 \otimes b_m]\).
 
+    \section*{Friday, 12/12/2025}
+    
+
+    \begin{theorem}
+        Suppose we have fields \(K_1 \subset K_2 \subset K_3\).
+
+        Then, \(\text{tr deg}_{K_1} K_3 = \text{tr deg}_{K_1} K_2 + \text{tr deg}_{K_2} K_3\)
+    \end{theorem}
+
+    \begin{proof}
+        Suppose \(\{ \alpha_1 , \cdots , \alpha_m \} \in K_2\) is a transcendence basis over \(K_1\) and \(\{ \beta_1 , \cdots , \beta_n \in K_3 \}\) is a transcendence basis over \(K_2\).
+        
+        Then \(\alpha_1 , \cdots , \alpha_m, \beta_1 , \cdots , \beta_n\) is a transcendence basis of \(K_3\). 
+        \[
+            \begin{tikzcd}
+                K_3 \ar[d, no head, "alg"]\\
+                K_2(\beta_1 , \cdots , \beta_n) \ar[d, no head] \ar[dr, no head, "alg?"] \\
+                K_2 \ar[d, no head, "alg"] & K_1(\alpha_1 , \cdots , \alpha_m , \beta_1 , \cdots , \beta_m) \ar[ld, no head] \\
+                K_1(\alpha_1 , \cdots , \alpha_m) \ar[d, no head] \\
+                K_1
+            \end{tikzcd}
+        \]
+
+        We also need independence.
+
+        \(P (\alpha_1 , \cdots , \alpha_m, \beta_1 , \cdots , \beta_n) = 0\)
+
+
+        \(0 \neq P(x_1 , \cdots , y_n) \in K_1[x_1 , \cdots , y_n]\)
+
+        \[
+            \sum Q_{i_1 , \cdots , i_n}(x_1 , \cdots , x_m) y_1^{i_1} \cdots y_n^{i_n}
+        \]
+
+        Then \(0 = Q_{i_1 , \cdots , i_n}(\alpha_1 , \cdots , \alpha_m) \in K_2 \)
+        
+
+    \end{proof}
+
+    \begin{theorem}
+        Suppose \(X \to Y\) is a dominant morphism of \(k\)-varieties and \(\eta\) is generic. Then \(\dim X = \dim Y + \dim X_\eta\).
+    \end{theorem}
+
+    \begin{proof}
+        Reduce to the case \(\operatorname{Spec} A \to \operatorname{Spec} B\) where \(A\) and \(B\) are integral domains.
+
+        Let \(K_1 = k, K_2 = \mathbb{K}(\eta) = \operatorname{Frac} (B), K_3 = \operatorname{Frac}(A)\)
+        
+        \(B^c \xrightarrow{\pi^\sharp} A\) gives us \(K_1 \subset K_2 \subset K_3\). 
+    \end{proof}
+
+    \begin{theorem}
+        If \(X \to \operatorname{Spec} k\) is of dimension \(n\) and \(K\) is a field extension of \(k\) then \(X \times_{\operatorname{Spec} k} \operatorname{Spec} K\) has dimension \(n\). 
+    \end{theorem}
+
+    \begin{theorem}
+        [Cohen-Seidelberg; Going Down]
+
+        Suppose \(B \subset A\) is an integral extension of integral domains and \(B\) is normal.
+
+        If \(P_1 \subsetneq P_2 \subsetneq \cdots \subsetneq P_n\) in \(B\) and \(Q_n \in \operatorname{Spec} A\) maps to \(P_n = Q_n \cap B\) then \(\exists\) a chain of prime ideals \(Q_1 \subsetneq \cdots \subsetneq Q_n\) such that \(Q_i \mapsto P_i\). 
+    \end{theorem}
+
+    \begin{corollary}
+        Given any maximal chain of prime ideals in \(A\):
+
+        \[
+            P_0 \subsetneq P_1 \subsetneq \cdots \subsetneq P_n
+        \]
+
+        in any finitely generated \(k\)-algebra \(A_1\) we have \(n = \dim A\).
+    \end{corollary}
+
+    \begin{proof}
+        [Sketch]
+
+        \begin{enumerate}[label=\arabic*)]
+            \item Equivalent to proving the theorem for \(\mathbb{A}^n\). Indeed, use Noether normalization to map \(X \to \mathbb{A}^n\) which is integral and dominant. Use `going down' on this map.
+            
+            \(k[x_1 , \cdots , x_n] \subset A\). We can lift the `intermediate dimension' stuff on \(\mathbb{A}^n\) to \(A\).
+            
+            \item Suppose \(P_0 \subsetneq \cdots \subsetneq P_m\) is a maximal chain in \(k[x_1 , \cdots , x_n]\) but \(m < n\).
+            
+            Let \(f\in P_1\) be an irreducible polynomial so that \(P_0 \subsetneq (f) \subset P_1 \implies (f)=P_1\).
+
+            \(k[x_1 , \cdots , x_n] / (f)\) has a maximal chain of prime ideals \(P_1 / P_1 \subsetneq P_2 / P_1 \subsetneq \cdots \subsetneq P_n / P_1\) with length \(m - 1\).
+
+            Continuing, we see that we must have \(m = n\).
+        \end{enumerate} 
+    \end{proof}
+    
+    \begin{theorem}
+        [Krull]
+
+        Let \(X\) be a noetherian scheme. Let \(f\in \Gamma(X,\mathcal{O}(X))\). Then every irreducible component of \(V(f)\) has codimension \(0\) or \(1\). 
+    \end{theorem}
+
+    \begin{theorem}
+        If \(X \subset \mathbb{P}^n_k\) is any closed subset of \(\dim > 0\) and \(H\) is any hyperplane in \(\\PP\mathbb{P}^n_k\) then \(H\cap X \neq \varnothing\).
+    \end{theorem}
+
+    \begin{proof}
+        Think about \(X\) corresponding to a homogeneous ideal \((P_m(x_0 , \cdots , x_n))\) in \(k[ x_0 , \cdots , x_n]\). This defines a cone.
+
+        Then \(\dim \operatorname{cone}(X) = \dim X + 1\).
+        
+        Now consider hyperplane \(H\). Point \((0, \cdots , 0)\) is in the intersection when we project.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{img/cone}
+        \end{figure}
+
+        Take the cone of the intersection.
+    \end{proof}
+
+    Suppose \(X, Y\) are integral and \(X \to Y\) is dominant. Let \(\eta\in Y\) be generic point and \(X_\eta\) be the generic fiber.
+
+    Then \(\dim X_\eta = \dim X - \dim Y\).
+
+    Claim: \(\dim X_s = \dim X_\eta\) for all \(s\) in a dense open subset \(S\) of \(Y\).
+    
+    Think about the map \(\mathbb{A}^2 \to \mathbb{A}^2\) given by \((x,y) \mapsto (x,xy)\).
+
+    Fiber of \((a,b)\) when \(a\neq 0\) is \((a,b / a)\) which is \(0\) dimensional.
+
+    \((0,b) \mapsto (0,0)\) so fiber of \((0,0)\) is \(1\)-dimensional.
+
+    So not all fiber dimensions have to be same, even though generic dimension is the same.
+
+    Suppose \(y_1 , y_2 \in Y\) and \(y_2 \in \overline{\{ y_1 \} }\) and fibers \(X_{y_1}, X_{y_2}\) are non-empty.
+    
+    Then, \(\dim X_{y_2} \geq \dim X_{y_1}\).
+
+    `The dimension of \(X_y\) is an upper semicontinuous function'.
+
+    An integer-valued function \(f: X \to \mathbb{Z}\) is upper semicontinuous if \(f ^{-1} ((-\infty, a))\) is open for all \(z\in\mathbb{Z}\). 
+
+    All non-empty fibers thus have \(\dim \geq \dim X - \dim Y\).
+
+    In fact, every irreducible component of every non-empty fiber satisfies the same inequality.
+
+    This describes how fibers of morphisms look like.
+
 \end{document}
