@@ -1,0 +1,542 @@
+\documentclass{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, mathtools, enumitem, stmaryrd,physics, cancel, tikz-cd, graphicx, float, booktabs, mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+    \geometry{
+        a4paper,
+        left = 20mm,
+        top = 20mm,
+        right = 20mm,
+        bottom = 30mm
+    }
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}%
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution}
+\newtheorem*{example}{Example}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem*{notation*}{Notation}
+
+
+\title{M503 Non-Commutative Algebra}
+\author{Taught by Matthias Strauch \\ Notes written by Thanic Nur Samin}
+
+
+\begin{document}
+    \maketitle
+
+    Office Hours: Wednesdays 4:30, RH316.
+
+    \section*{Tuesday, 1/13/2026}
+    
+    \section{Introduction}
+
+    We are interested in non-commutative algebras of finite dimension over a field.
+
+    Reference: Lorenz Algebra Vol. 2, chapters 28 and following.
+
+    General convention:
+
+    \begin{enumerate}[label=\roman*)]
+        \item Rings will always assumed to be associative and unital.
+        \item Modules are always left modules [unless stated otherwise]. Even when philosophically it's better to consider them as right modules we will turn them into the opposite ring.
+    \end{enumerate} 
+
+    \(R =\) commutative unital ring.
+
+    \(A =\) unital \(R\)-algebra, not necessarily commutative.
+
+    Recall: this mens that \(A\) is an \(R\)-module, and one has \(\forall x\in R, \forall a,b\in A, x \cdot (ab) = (xa) \cdot b = a \cdot (xb)\).
+
+    \begin{remark}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\varphi : R \to A, x \mapsto x \cdot 1_A\) is a ring homomorphism with image in \(Z(A) = \{ a\in A \mid \forall b\in A, ab = ba \}\). 
+            
+            \[
+                (x \cdot 1) \cdot a = x \cdot (1 \cdot a) = x \cdot a = x \cdot (a \cdot a) = a \cdot (x \cdot 1_A)
+            \]
+
+            \item Converselly, if \(\psi : R \to B\) [where \(B\) is any unital ring] is a unital ring homomorphism with \(\operatorname{im} (\psi) \subset Z(B)\), then the multiplicatin \(x \cdot b \coloneqq \psi(x) b\) gives \(B\) the structure of an \(R\)-module and \(B\) becomes an \(R\)-algebra.
+            \item The map \(\psi\) in (1) need not be injective. \(\mathbb{Z} = R, \mathbb{Z} / n\mathbb{Z} = A\) is allowed.
+            \item Subalgebras of an algebra contain the unit element by convention.
+            \item By an \textit{ideal} in \(A\) we always mean a \(2\)-sided ideal. We have left ideals and right ideals defined in the usual way.
+            \item A \textit{division algebra} is an \(R\)-algebra \(A\) such that \(\forall a \in A \setminus \{ 0_A \} \exists b \in A\) such that \(ab = ba = 1_A\). It is often also called a skew field. The center of a division algebra is a field.
+            
+            Modules over a division algebra will also be called vector spaces.
+
+            \item \(A\text{-Mod}\) denotes the category of (left) \(A\)-modules.
+        \end{enumerate} 
+    \end{remark}
+
+    \begin{proposition}
+        Let \(A\) be an \(R\)-algebra and \(M,N \in A\text{-Mod}\). Set \(H = \operatorname{Hom}_A(M,N)\). Then \(H\) is an \(R\)-module with the following action: \(R \times H \to  H, (x,f) \mapsto [m \mapsto x \cdot f(m)]\). This gives \(H\) the structure of an \(R\)-module. 
+        
+        We need \(R\) to be commutative, because otherwise \(am \mapsto x f(am) = xa f(m)\) which is not necessarily \(ax f(m)\). 
+        
+        If \(N = M\) then \(H = \operatorname{End}_A(M)\) is in fact an \(R\)-algebra w.r.t.\ the same module structure and composition of maps as multiplication.
+    \end{proposition}
+
+    \begin{proof}
+        HW1
+    \end{proof}
+
+    \begin{remark}
+        For \(M \in A\text{-Mod}\) we can regard it also as a module over \(\operatorname{End}_R(M)\).
+    \end{remark}
+
+    \begin{notation}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(A_\ell = A\) considered as an \(A\)-module by left multiplication \(A \times A_\ell \to A_\ell, (a,b) \mapsto ab\).
+            \item \(A^o =\) opposite algebra of \(A = A\), but with multiplication defined by \(A \underset{A^o}{\cdot} b \coloneqq b \underset{A}{\cdot} a\). \(A^o\) is still an \(R\)-algebra. We set \(A_r = (A^o)_\ell\). This is just \(A\) but with \(A^o\)-module structure.
+            
+            \[
+                A^o \times A_r \to A_r, (a,b) \mapsto a \underset{A^o}{\cdot} b = ba
+            \]
+        \end{enumerate} 
+    \end{notation}
+
+    \subsection*{The \(R\)-algebra \(M_n(A)\)}
+
+    \(M_n(A)\) denotes the \(R\)-module of \(n \times n\)-matrices with entries in \(A\).
+
+    Multiplication: \((a_{ij})_{1 \leq i,j\leq n} \cdot (b_j)_{i \leq i,j \leq n} \coloneqq \left( \sum_{k = 1}^n a_{ik}b_{kj} \right)_{1 \leq i,j \leq n}\).
+    
+    \begin{proposition}
+        \begin{enumerate}[label=\roman*)]
+            \item The map \(\lambda : A \to \operatorname{End}_R(A), \alpha (a) = [b \mapsto ab]\) is injective and induces an isomorphism of \(R\)-algebras \(A \xrightarrow[\lambda]{\cong}\operatorname{End}_{A^o}(A) \subset \operatorname{End}_R(A)\). 
+            \item The map \(\rho : A^o \to \operatorname{End}_R(A), \rho (a) = [b \mapsto ba]\) is injective and induces an isomorphism of \(R\)-algebras \(A^o \xrightarrow[\rho]{\cong} \operatorname{End}_A(A) \subset \operatorname{End}_R(A)\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    We will discuss this later.
+
+    \begin{proposition}
+
+        \begin{enumerate}[label=\roman*)]
+            \item The map \(\operatorname{End}_A(A_{\ell}^{\oplus n}) \xrightarrow{\cong} M_n(A^o)\), given by \(f \mapsto (a_{ij})_{i,j}\) where \(f(e_j) = \sum_{i=1}^n a_{ij}e_i\) is an isomorphism of \(R\)-algebras.
+            
+            \item The map \(\operatorname{End}_{A^o}(A_r^{\oplus n}) \xrightarrow{\cong} M_n(A)\), given by \(f \mapsto (a_{ij})_{i,j}\) where \(f(e_j) = \sum_{i=1}^n a_{ij}e_i\) is an isomorphism of \(R\)-algebras. 
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Suppose \(f \mapsto (a_{ij})_{i,j}, g \mapsto (a_{ij})_{i,j}\). Then \((f \circ g)(e_j) = f(g(e_j)) = f \left( \sum_{i=1}^n b_{ij} e_j \right) = \sum_{i=1}^n b_{ij} f(e_j) = \sum_{i=1}^n b_{ij} \sum_{k=1}^n a_{k_i} e_k = \sum_{k=1}^n \left( \sum_{i=1}^n b_{ij} a_{k_i} \right) e_k = \sum_{k=1}^n \left( \sum_{i=1}^n a_{ki} \underset{A^o}{\cdot} b_{ij} \right) e_k\). Note that \(\sum_{i=1}^n a_{ki} \underset{A^o}{\cdot} b_{ij} \)  is simply the entry in position \((k,j)\) of \((a_{ij}) \cdot (b_{ij})\) where they're elements of \(M_n(A^o)\).
+            
+            Hence \(f \circ g \mapsto (a_{ij}) \underset{M_n(A^o)}{\cdot} (b_{ij})\).
+            
+            \item is identical.
+        \end{enumerate} 
+
+    \end{proof}
+
+    Now we generalize. Let \(N \in A \text{-Mod}\) and consider \(N^n\) [which is a shorthand for \(N^{\oplus n}\)] as an \(A \text{-Mod}\) by diagonal multiplication of \(A\).
+
+    Let \(\iota_j : N \to N^n\) be the inclusion of the \(j\)'th summand, \(x \mapsto (0 , \cdots , 0, x , 0, \cdots , 0)\) where \(x\) is in the \(j\)'th position.
+
+    Let \(\pi_i : N^n \to N\) be the projection onto \(i\)'th direct summand, \((x_1 , \cdots , x_n) \mapsto x_i\).  
+
+    \begin{proposition}
+        The map \(\operatorname{End}_A(N^n) \xrightarrow{\cong} M_n(\operatorname{End}_A(N))\) where \(f \mapsto (f_{ij})_{1 \leq i,j \leq n}, f_{ij} = \pi_i \circ f \circ \iota_j\) is an isomorphism of \(R\)-algebras. Concretely, \((x_1 , \cdots , x_n) \mapsto \left(\sum_{j=1}^n f_{ij}(x_j) \right)_{i=1,\cdots ,n}\).
+
+        Moreover setting \(C = \operatorname{End}_A(N), N^{\prime} = N^n, C^{\prime} = \operatorname{End}_A(N^{\prime})\) then the inclusion \(\operatorname{End}_C(N) = \operatorname{End}_{\operatorname{End}_A(N)}(N) \xrightarrow{\Delta} \operatorname{End}_C(N^{\prime}) = \operatorname{End}_{\operatorname{End}_A(N)}(N^n) \cong M_n(\operatorname{End}_C(N))\).
+
+        Here \(\Delta : g \mapsto [(x_1 , \cdots , x_n) \mapsto (g(x_1), \cdots , g(x_n))]\).
+
+        This induces an isomorphism (of \(R\)-algebras) \(\operatorname{End}_C(N) \to \operatorname{End}_{C''C^{\prime}}(N^{\prime}) = \operatorname{End}_{\operatorname{End}_A(N^n)}(N^n)\). 
+    \end{proposition}
+
+    Note that \(\operatorname{End}_A(A_\ell) \cong A^o\), so this is sort of a generalization to the previous proposition. 
+
+    \begin{proof}
+        The first assertion is an easy exercise.
+
+        Let \(g\in \operatorname{End}_C(N)\) and let \(\widetilde{g}: N^n \to N^n\) be \((x_1 , \cdots , x_n) \mapsto (g(x_1), \cdots , g(x_n))\). We want to show that \(\widetilde{g}\) commutes with ellements of \(C^{\prime}\).
+
+        Let \(f\in C^{\prime} = \operatorname{End}_A (N^{\prime})\). 
+        
+        \(\widetilde{g} (f(x_1, \cdots , x_n)) = \widetilde{g} \left( \left( \sum_{j=1}^n f_{ij}(x_j) \right)\right)_i = \left( g \left( \sum_{j=1}^n f_{ij}(x_j) \right)  \right) _i = \left( \sum_{j} g(f_{ij}(x_j)) \right)_i\)
+        
+        \(= f \left( (g(x_1), \cdots , g(x_n)) \right)\).
+        
+        Here \(f_{ij} \in C\).
+        
+        Surjectivity of \(\operatorname{End}_C(N) \to \operatorname{End}_{C^{\prime}}(N^{\prime})\): given \(h\in \operatorname{End}_{C^{\prime}}(N^{\prime}) [\subset \operatorname{End}_C (N^{\prime}) \cong M_n(\operatorname{End}_C(N))]\), we need to show that it is diagonal. Which means we have to show that \(\forall i \neq j: \pi_i \circ h \circ \iota_j = 0\) and \(\pi_i \circ h \circ \iota_i = \pi_j \circ h \circ \pi_j\).
+
+        \(h \in \operatorname{End}_{C^{\prime}}(N^n) \implies h\) commutes with \(\iota_j \circ \pi_i : N^n \to N^n\). Note that \(\iota_j \circ \pi_i \in C^{\prime} = \operatorname{End}_A(N^n)\).
+
+        Then \(h \circ \iota_j = h \circ \iota_j \circ \pi_i \circ \iota_i\).
+        
+        Compose with \(\pi_i\) on the left: \(\pi_i \circ h \circ \iota_j = \underbrace{\pi_i \circ \iota_j}_{=0} \omega \pi_i \circ h \circ \iota_i = 0\). 
+
+        Compose with \(\pi_j\) on the left: \(\pi_j \circ h \circ \iota_j = \pi_i \circ h \circ \iota_i\).
+
+    \end{proof}
+
+    \section*{Thursday, 1/15/2026}
+    
+    \begin{corollary}
+        \begin{enumerate}[label=\roman*)]
+            \item \(\operatorname{End}_A(A^n) \xrightarrow{\cong} M_n(A^o)\).
+            \item \(A \xrightarrow{\cong} \operatorname{End}_{\operatorname{End}_A(A^n)}(A^n)\).
+            \item \(A^o \cong \operatorname{End}_{M_n(A)}(A^n)\).
+            \item \(Z \left( \operatorname{End}_A(A^n) \right) = Z(A^o) \cdot \operatorname{id}_{A^n} = Z(A) \cdot \operatorname{id}_{A^n}\).
+            \item \(Z(M_n(A)) = Z(A) \cdot 1_n\) where \(1_n = n \times n\) identity matrix.
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Follows from 1.7 and 1.5.
+            \item Take \(N = A_\ell\) in 1.7 and \(C = \operatorname{End}_A(A) \overset{1.5}{=} A^o\).
+            
+            \(\operatorname{End}_C(N) = \operatorname{End}_{A^o}(A_\ell) = A \xrightarrow[1.7]{\cong} \operatorname{End}_{\operatorname{End}_A(A^n_\ell)}(A^n_\ell)\).  
+        \end{enumerate} 
+
+        iii to v are exercises.
+    \end{proof}
+
+    \begin{definition}
+        [Anti-isomorphism] \(\alpha\) is an \textit{anti-isomorphism} if it is an isomorphism of \(R\)-modules sending \(1_A\) to \(1_A\) and \(\forall a,b \in A \colon \alpha (ab) = \alpha(b) \alpha(a)\).
+    \end{definition}
+
+    \begin{proposition}
+        \begin{enumerate}[label=\roman*)]
+            \item Supppose \(\exists\) anti-isomorphism \(\alpha : A \to A\). Then \(\alpha\) is an isomorphism \(A \to A^o\).
+            \item The map \(M_n(A) \to M_n(A^o)^o\) given by \(x \mapsto x^T\) is an isomorphism of algebras.
+            \item If \(A\cong A^o\) [as \(R\)-algebras], then \(M_n(A) \cong M_n(A)^o\). In particular, matrix algebras over fields are isomorphic to their opposite. 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        HW1.
+    \end{proof}
+
+    \begin{example}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(\mathbb{H} = \mathbb{R} 1 \oplus \mathbb{R} i \oplus \mathbb{R} j \oplus \mathbb{R} k\) the Hamilton Quaternions are isomorphic to \(\mathbb{H}^o\) has an anti-isomorphism given by \(a + bi + cj + dk \mapsto a - bi - cj - dk\). 
+            \item Let \(R\) be a field and \(A = \left\{ \begin{bmatrix}
+                a & b \\
+                0 & d \\
+            \end{bmatrix} : a,b,d\in R \right\}\). Then \(A^o \not\cong A\).
+        \end{enumerate} 
+    \end{example}
+
+    \begin{definition}
+        \begin{enumerate}[label=\arabic*)]
+            \item A module \(N\) is called \textit{simple} (or \textit{irreducible}) if \(N\neq 0\) and the only submodules of \(N\) are \(0\) and \(N\).
+            \item A module \(N\) is called \textit{semisimple} if it is isomorphic to a direct sum of (not necessarily finitely many) simple modules. Formally, we allow the empty direct sum. As a consequence, \(0\) is a semisimple module. 
+            \item A submodule \(N \subset M\) is called \textit{minimal} (resp. \textit{maximal}) if it is minimal (resp. maximal) among all non-zero submodules (resp. among all proper submodules). \(0\) doesn't have any minimal or maximal submodule.
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{example}
+        Let \(R = K\) be a field. The simple \(K\)-modules are just the \(1\)-dimensional vector spaces and they're all isomorhic to \(K\) itself.
+
+        Recall that every vector space has a basis [assuming axiom of choice]. Therefore, every \(K\)-module is semisimple.
+
+        Same is true for division algebras.
+    \end{example}
+
+    \setcounter{theorem}{10}
+    % proposition 1.10 missing
+
+    \begin{proposition}
+        Let \(M\) be a \textit{finitely generated} (f.g.) \(A\)-module, and \(N_0 \subsetneq M\) a proper submodule. Then \(M\) has a maximal submodule \(N\) containing \(N_0\).
+    \end{proposition}
+
+    \begin{proof}
+        We use Zorn's Lemma.
+
+        Let \(\mathscr{M} = \{ N \subsetneq M : N \text{ submodule, } N \supseteq N_0 \}\).
+
+        \(N_0 \in \mathscr{M} \implies \mathscr{M} \neq \varnothing\).
+
+        Let \(N_1 \subset N_2 \subset \cdots \subset\) an ascending chain in \(\mathscr{M}\). Define \(\widetilde{N} = \bigcup_{i \geq 1} N_i\).
+
+        Let \(m_1 , m_2 , \cdots , m_r\) be generators of \(M\). If \(\widetilde{N} = M\) then there exists \(i \geq 1\) such that \(m_1 , \cdots , m_r \in N_i\). But that would imply \(N_i = M\). This is a contradiction.
+
+        Now we apply Zorn's Lemma. \(\mathscr{M}\) contains a maximal element \(N\). This \(N\) is maximal among all proper submodules. Therefore, \(N \supset N_0\) is maximal.
+    \end{proof}
+
+    \begin{proposition}
+        Let \(0\neq N \in A\text{-Mod}\). TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(N\) is simple.
+            \item \(\forall x\in N \setminus \{ 0 \} : Ax = N\).
+            \item \(\exists \) maximal (left) ideal \(I \subset A : N \underset{A}{\cong} A / I\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        Consider the map \(A \twoheadrightarrow N\) given by \(a \mapsto ax\). Let \(I = \operatorname{Ann}_A(x) \xrightarrow{N \text{ simple}} I\) is maximal.
+    \end{proof}
+
+    \begin{proposition}
+        Let \(n > 0\) and \(V\) be an \(n\)-dimensional vector space over a division algebra \(D\), and set \(A = \operatorname{End}_D(V)\). Regard \(V\) as an \(A\)-module. Then,
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(V\) is simple as an \(A\)-module.
+            \item \(A_\ell \cong V^n\). In particular \(A_\ell\) is a semisimple \(A\)-module.
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item We use the fact that if \(v_1 , \cdots , v_n\) is a basis of \(V\) over \(D\), then the map \(\operatorname{End}_D (V) \to \underbrace{V \oplus \cdots \oplus V}_{n} = V^n\) given by \(a \mapsto (a(v_1), \cdots , a(v_n))\) is a bijection of abelian groups.
+            
+            It is not necessarily a bijection of \(D\)-vector spaces.
+            
+            Given any \(v_1 \in V \setminus \{ 0 \} \) and any \(w\in V\), we can extend \(\{ v_1 \}\) to be a basis of \(V\) and find \(a\in A\) such that \(a(v_1) = w\). Then \(Av_1 = V \underset{1.12}{\implies} V\) is simple.
+
+            \item Note that the map \(A = \operatorname{End}_D(V) \to V^n\) in (i) is \(A\)-linear, hence an isomorphism of \(A\)-modules.
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{remark*}
+        Take in 1.13 \(V = D^n\). Then \(\operatorname{End}_D(D^n) \underset{1.8}{\cong} M_n(D^o)\).
+
+        Then, 1.13 says \(M_n(D^o) \cong \underbrace{D^n \oplus \cdots \oplus D^n}_{n}\) where the \(D^n\) are columns of the matrices in the LHS. 
+    \end{remark*}
+
+    \begin{definition}
+        \begin{enumerate}[label=\arabic*)]
+            \item An algebra \(A\) is called \textit{semisimple} if \(A_\ell\) is a semisimple \(A\)-module.
+            \item \(A\) is called \textit{simple}, if \(A\neq 0\) and does not contain any (\(2\)-sided) ideals other than \(0\) and \(A\).
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{example}
+        \(M_n(D)\) where \(D\) is a division ring is a semisimple algebra by 1.13. This algebra is also simple.
+
+        Note that not every semisimple algebra is simple. Let \(A\) and \(B\) be semisimple. Exercise: \(A \times B\) with componentwise addition and multiplication is semisimple.
+
+        Let \(K_1 , \cdots , K_n\) be fields (or skew fields). Then \(K_1 \times \cdots \times K_n\) is semisimple.
+    \end{example}
+
+    Caution: There are simple algebras which are not semisimple (HW1).
+
+    \begin{proposition}
+        [Schur's Lemma]
+
+        Let \(M, N \in A\text{-Mod}\). Set \(H = \operatorname{Hom}_A(M,N)\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item If \(M\) is simple, any non-zero \(f\in H\) is injective. If \(N\) is simple, any non-zero \(f\in H\) is surjective.
+            \item If \(M, N\) are simple, then \(M\cong N\) or \(H = 0\).
+            \item If \(M\) is simple, then \(\operatorname{End}_A(M)\) is a division algebra.
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        Straightforward.
+    \end{proof}
+
+    \begin{lemma}
+        Suppose \(M = \sum_{i\in I} N_i\) is the sum of a family \((N_i)_{i\in I}\) of \textit{simple} submodules.
+        
+        Let \(N \subset M\) be any submodule. Then \(\exists J \subset I\) such that,
+
+        \[
+            M = N \oplus \bigoplus_{j\in J} N_j
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Let \(\mathscr{S} = \left\{ J \subset I : \text{s.t. } M + \sum_{j\in J} N_j = N \oplus \bigoplus_{j\in J} N_j  \right\} \). Note that \(\varnothing \in \mathscr{S} \implies \mathscr{S} \neq \varnothing\).
+
+        If \(J_1 \subset J_2 \subset \cdots\) is a chain in \(\mathscr{S}\) and \(\widetilde{J} = \bigcup_{k=1}^{\infty} J_k\) then [exercise] \(\widetilde{J} \in \mathscr{S}\).
+
+        Zorn's lemma implies that \(\mathscr{S}\) has a maximal element \(J\).
+
+        Check: \(J\) works.
+
+    \end{proof}
+
+    \section*{Tuesday, 1/20/2026}
+    
+    \begin{proposition}
+        For \(M \in A \text{-Mod}\). TFAE:
+
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(M\) is the sum of simple submodules.
+            \item \(M\) is semisimple.
+            \item Every submodule is a direct summand of \(M\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        i \(\implies\) ii: take \(N = 0\) in 1.15.
+
+        ii \(\implies\) iii: Apply 1.15 with the submodule as \(N\).
+
+        iii \(\implies\) i: Let \(x\in M \setminus \{ 0 \} \) and consider the `cyclic submodule' \(C = Ax \subset M\). Note that \(x\in C \implies 0\neq C\).
+
+        1.11 implies \(\exists\) maximal submodule \(L \subsetneq C\). Since \(L\) is a maximal submodule, \(C / L\) must be simple.
+
+        By assumption, \(\exists N \subset M\) such that \(M = L \oplus N\). Since \(L \subset C\) it follows that \(C = L \oplus (C \cap N)\).
+
+        Therefore, \(C / L \cong C \cap N \implies C \cap N\) is a simple module.
+
+        It follows that every non-zero submodule of \(M\) contains a simple submodule.
+
+        Set \(M^{\prime} = \sum_{N \subset M \text{ simple}} N\). Let \(M^{\prime\prime} \subset M\) be the summand, i.e. \(M = M^{\prime} \oplus M^{\prime\prime}\).
+        
+        If \(M^{\prime\prime} \neq 0\), it contains a simple submodule \(N_0 \subseteq M^{\prime\prime}\). But then \(N_0 \subset M^{\prime}\). This is a contradiction.
+        
+        Thus, \(M^{\prime\prime} = 0\). Which means \(M = M^{\prime} =\) sum of simple submodules.
+    \end{proof}
+
+    \begin{remark*}
+        Given any \(M \in A\text{-Mod}\), the \textit{socle} of \(M\), \(\operatorname{soc}(M)\) is defined to be the largest semisimple submodule of \(M\).
+        
+        By 1.16, \(\operatorname{soc}(M) = \sum_{N \subset M \text{ simple}} N\). 
+    \end{remark*}
+
+    \begin{proposition}
+        Suppose \(M\) is the sum of simple submodules \((N_i)_{i\in I}\). Then,
+
+        \begin{enumerate}[label=\roman*)]
+            \item Every submodule or quotient module is isomorphic to \(\bigoplus_{j\in J} N_j\) for some \(J \subset I\). Note that it need not be directly equal, just isomorphic. Consider \(K \xhookrightarrow{\Delta} K \oplus K\).
+            \item Any simple submodule \(N \subset M\) is isomorphic to one of the \(N_i\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        ii follows from i.
+
+        For i: Let \(M \underset{\pi}{\twoheadrightarrow} M^{\prime\prime}\) be a quotient of \(M\). Then, \(\overline{N_i} \coloneqq \pi (N_i)\) is zero or simple.
+        
+        Set \(\overline{I} \coloneqq \{ i\in I \mid \overline{N_i} \neq 0 \} \).
+        
+        \(\implies M^{\prime\prime} = \sum_{i\in \overline{I}} \overline{N_i}\). Applying 1.15, \(\exists \overline{J} \subset \overline{I}\) so that \(M^{\prime\prime} = \bigoplus_{j\in \overline{J}} \overline{N_j} \cong \bigoplus_{j\in \overline{J}} N_j\).
+
+        If \(M^{\prime} \subset M\) is a submodule, 1.16 \(\implies \exists N \subset M : M = N \oplus M^{\prime}\). Then \(M^{\prime} \cong M / N\), which is a quotient of \(M\).
+    \end{proof}
+
+    \begin{corollary}
+        \begin{enumerate}[label=\roman*)]
+            \item Every submodule or a quotient module of a semisimple module is semisimple.
+            \item If \(A\) is semisimple, any simple \(A\)-module is isomorphic to a submodule of \(A_\ell\), and so is isomorphic to a minimal left ideal of \(A\). 
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Directly follows from 1.17.
+            \item  Suppose \(A\) is semisimple. Then by definition, \(A_\ell = \bigoplus_{i\in I} N_i\) where \(N_i\) are simple. If \(N\) is a simple module, 1.12 implies \(N \cong A_\ell / I\) where \(I \subset A\) is a maximal submodule.
+            
+            1.17 implies that \(N\cong N_i\) for some \(i\).
+
+            Note that each \(N_i\) is a left ideal. Since it is simple, it must be minimal among the non-zero submodules.
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        For an algebra \(A\) TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(A\) is semisimple.
+            \item Every \(A\)-module is semisimple. 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        ii \(\implies\) i is direct.
+
+        i \(\implies\) ii: Suppose \((m_i)_{i\in I}\) is a set of generators of \(M\) as an \(A\)-module. Consider \(A_\ell^{(I)} \coloneqq \bigoplus_{i\in I} A_\ell \twoheadrightarrow M\) given by \((a_i)_{i\in I} \mapsto \sum_{i} a_i m_i\).
+
+        Thus \(M\) must be a quotient of a semisimple module. The statement follows from 1.18.
+    \end{proof}
+
+    \begin{definition}
+        Denote by \(\mathcal{T}(A)\) the set of isomorphism classes of simple \(A\)-modules.
+
+        We call a simple module \(N\) of type \(\tau \in \mathcal{T}(A)\) if the isomorphism class of \(N\) is \(\tau\).
+
+        Given \(M\in A\text{-Mod}, \tau \in \mathcal{T}(A)\), we set \(M_{\tau} = \sum_{N \subset M \text{ simple of type } \tau} N\) [note that it must be a direct sum of some submodules of type \(\tau\).] \(M_{\tau} \) is called the \textit{\(\tau\)-isotypic component}.
+
+        If \(M = M_{\tau}\) then we say that \(M\) is \textit{isotypic of type \(\tau\).} 
+    \end{definition}
+
+    \begin{remark*}
+        By 1.12, \(\left\{ I \subset A_\ell \mid \text{maximal left ideal} \right\} \to \mathcal{T}(A)\) given by \(I \mapsto \text{isomorphism class of } A / I\) is surjective. Thus \(\mathcal{T}(A)\) is a set.
+        
+        Exercise: This map is bijective (HW2).
+    \end{remark*}
+
+    \begin{notation*}
+        \(A\text{-Mod}^{\text{ss}} =\) category of semisimple \(A\)-modules.
+    \end{notation*}
+
+    \begin{corollary}
+        Let \(M \in A\text{-Mod}^{\text{ss}}\). Then,
+        
+        \begin{enumerate}[label=\roman*)]
+            \item \(M = \bigoplus_{\tau \in \mathcal{T}(A)} M_{\tau}\).
+            \item \(\forall\) submodule \(M^{\prime} \subset M: M^{\prime} = \bigoplus_{\tau \in \mathcal{T}(A)} (M^{\prime} \cap M_{\tau})\).   
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(M\) semisimple \(\implies M = \sum_{\tau} M_{\tau}\). Fix \(\tau\). 1.18 implies that \(M^{\prime} \coloneqq M_{\tau} \cap \left( \sum_{\tau^{\prime} \neq \tau} M_{\tau^{\prime}} \right)\) is semisimple.
+            
+            If \(M^{\prime} \neq 0\) then \(\exists N \subset M^{\prime}\) which is simple. \(N \subset M_\tau\) implies \(N\) must be of type \(\tau\). However, \(N \subset \sum_{\tau^{\prime} \neq \tau} M_{\tau^{\prime}}\),, which implies that \(N\) must not be of type \(\tau\). This is a contradiction. Therefore, \(M^{\prime} = 0\).
+
+            This means the sum is direct, i.e. \(M^{\prime} = \bigoplus_{\tau} M_{\tau}\).
+
+            \item 1.18 implies that \(M^{\prime}\) must be semisimple. Therefore \(M^{\prime} = \bigoplus_{\tau} M^{\prime}_{\tau}\).
+            
+            Clearly \(M_{\tau}^\prime \subset M^{\prime} \cap M_{\tau}\).
+
+            Conversely, \(M^{\prime} \cap M_{\tau}\) is semisimple by 1.18. Therefore, \(M^{\prime} \cap M_{\tau} = \sum_{N \subset M^{\prime} \cap M_{\tau}, N \text{ simple} } N\). Note that each \(N\) is of type \(\tau\). Thus \(M^{\prime} \cap M_\tau = M^\prime_{\tau}\).
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        If \(M, M^{\prime} \in A \text{-Mod}^{\text{ss}}\), then \(\operatorname{Hom}_A (M,M^{\prime}) = \coprod_{\tau \in \mathcal{T}(A)} \operatorname{Hom}_A(M_{\tau}, M_{\tau}')\). 
+    \end{proposition}
+
+    \begin{proof}
+        Suppose \(f\in \operatorname{Hom}_A(M, M^{\prime})\). Consider \(\eval{f}_{M_{\tau}}: M_{\tau} \twoheadrightarrow f(M_{\tau}) \subset M^{\prime}\).
+        
+        Note that \(f(M_{\tau}) = \sum_{N \subset M \text{ simple of type } \tau} f(N)\). Thus \(f(M_{\tau}) \subset M^{\prime}_{\tau}\).  
+    \end{proof}
+
+    \begin{proposition}
+        \(M \in A \text{-Mod}^{ss}\). For a submodule \(U \subset M\) TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\forall f\in \operatorname{End}_A(M), f(U) \subset U\).
+            \item \(U\) is a direct sum of some \(M_{\tau}, \tau \in \mathcal{T}(A)\).  
+        \end{enumerate}
+        
+        \begin{proof}
+            ii \(\implies\) i is a direct consequence of 1.21.
+
+            i \(\implies\) ii: 1.20 and 1.18 imply \(U = \bigoplus_{\tau} U_{\tau}\).
+
+            If \(U_{\tau} \subsetneq M_{\tau}\), 1.15 \(\implies M_{\tau} = U_{\tau} \bigoplus_{i\in I} N_i\) where the sum is non-zero and each \(N_i\) is of type \(\tau\).
+
+            Then one finds \(f: U \to M\) such that \(f(U) \not\subset U\). Can extend \(f\) to a homomorphism \(f: M \to M\). 
+        \end{proof}
+    \end{proposition}
+
+\end{document}
