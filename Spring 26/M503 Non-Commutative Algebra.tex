@@ -30,6 +30,7 @@
 \newtheorem*{remark*}{Remark}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem*{notation*}{Notation}
+\newtheorem*{example*}{Example}
 
 
 \title{M503 Non-Commutative Algebra}
@@ -60,7 +61,7 @@
 
     \(A =\) unital \(R\)-algebra, not necessarily commutative.
 
-    Recall: this mens that \(A\) is an \(R\)-module, and one has \(\forall x\in R, \forall a,b\in A, x \cdot (ab) = (xa) \cdot b = a \cdot (xb)\).
+    Recall: this means that \(A\) is an \(R\)-module, and one has \(\forall x\in R, \forall a,b\in A, x \cdot (ab) = (xa) \cdot b = a \cdot (xb)\).
 
     \begin{remark}
         \begin{enumerate}[label=\arabic*)]
@@ -70,7 +71,7 @@
                 (x \cdot 1) \cdot a = x \cdot (1 \cdot a) = x \cdot a = x \cdot (a \cdot a) = a \cdot (x \cdot 1_A)
             \]
 
-            \item Converselly, if \(\psi : R \to B\) [where \(B\) is any unital ring] is a unital ring homomorphism with \(\operatorname{im} (\psi) \subset Z(B)\), then the multiplicatin \(x \cdot b \coloneqq \psi(x) b\) gives \(B\) the structure of an \(R\)-module and \(B\) becomes an \(R\)-algebra.
+            \item Conversely, if \(\psi : R \to B\) [where \(B\) is any unital ring] is an unital ring homomorphism with \(\operatorname{im} (\psi) \subset Z(B)\), then the multiplication \(x \cdot b \coloneqq \psi(x) b\) gives \(B\) the structure of an \(R\)-module and \(B\) becomes an \(R\)-algebra.
             \item The map \(\psi\) in (1) need not be injective. \(\mathbb{Z} = R, \mathbb{Z} / n\mathbb{Z} = A\) is allowed.
             \item Subalgebras of an algebra contain the unit element by convention.
             \item By an \textit{ideal} in \(A\) we always mean a \(2\)-sided ideal. We have left ideals and right ideals defined in the usual way.
@@ -137,9 +138,9 @@
         \begin{enumerate}[label=\roman*)]
             \item Suppose \(f \mapsto (a_{ij})_{i,j}, g \mapsto (a_{ij})_{i,j}\). Then \((f \circ g)(e_j) = f(g(e_j)) = f \left( \sum_{i=1}^n b_{ij} e_j \right) = \sum_{i=1}^n b_{ij} f(e_j) = \sum_{i=1}^n b_{ij} \sum_{k=1}^n a_{k_i} e_k = \sum_{k=1}^n \left( \sum_{i=1}^n b_{ij} a_{k_i} \right) e_k = \sum_{k=1}^n \left( \sum_{i=1}^n a_{ki} \underset{A^o}{\cdot} b_{ij} \right) e_k\). Note that \(\sum_{i=1}^n a_{ki} \underset{A^o}{\cdot} b_{ij} \)  is simply the entry in position \((k,j)\) of \((a_{ij}) \cdot (b_{ij})\) where they're elements of \(M_n(A^o)\).
             
-            Hence \(f \circ g \mapsto (a_{ij}) \underset{M_n(A^o)}{\cdot} (b_{ij})\).
+            Hence, \(f \circ g \mapsto (a_{ij}) \underset{M_n(A^o)}{\cdot} (b_{ij})\).
             
-            \item is identical.
+            \item Is identical.
         \end{enumerate} 
 
     \end{proof}
@@ -165,7 +166,7 @@
     \begin{proof}
         The first assertion is an easy exercise.
 
-        Let \(g\in \operatorname{End}_C(N)\) and let \(\widetilde{g}: N^n \to N^n\) be \((x_1 , \cdots , x_n) \mapsto (g(x_1), \cdots , g(x_n))\). We want to show that \(\widetilde{g}\) commutes with ellements of \(C^{\prime}\).
+        Let \(g\in \operatorname{End}_C(N)\) and let \(\widetilde{g}: N^n \to N^n\) be \((x_1 , \cdots , x_n) \mapsto (g(x_1), \cdots , g(x_n))\). We want to show that \(\widetilde{g}\) commutes with elements of \(C^{\prime}\).
 
         Let \(f\in C^{\prime} = \operatorname{End}_A (N^{\prime})\). 
         
@@ -245,7 +246,7 @@
     \end{definition}
 
     \begin{example}
-        Let \(R = K\) be a field. The simple \(K\)-modules are just the \(1\)-dimensional vector spaces and they're all isomorhic to \(K\) itself.
+        Let \(R = K\) be a field. The simple \(K\)-modules are just the \(1\)-dimensional vector spaces, and they're all isomorphic to \(K\) itself.
 
         Recall that every vector space has a basis [assuming axiom of choice]. Therefore, every \(K\)-module is semisimple.
 
@@ -538,5 +539,150 @@
             Then one finds \(f: U \to M\) such that \(f(U) \not\subset U\). Can extend \(f\) to a homomorphism \(f: M \to M\). 
         \end{proof}
     \end{proposition}
+
+    \section*{Thursday, 1/22/2026}
+    
+    \begin{corollary}
+        Let \(A\) be semisimple. For a subset \(U \subseteq A\) TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(U\) is an ideal of \(A\). (By convention we mean a two-sided ideal). 
+            \item \(U\) is a direct sum of isotypic components of \(A_\ell\).
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        i \(\implies\) ii: \(U\) is an ideal \(\implies U\) is a submodule of \(A_\ell\), and \(U\) is stable under `right multiplication by \(a\)'. We denote this right multiplication by \(a\) map to be \(_A a : A_\ell \to A_\ell\), \(_A a (b) = ba\). So \(U\) is stable under all \(_A a\).
+        
+        1.5 \(\implies \operatorname{End}_A(A_\ell) = A^o\).
+        
+        Therefore, \(\forall f\in \operatorname{End}_A(A_\ell) : f(U) \subset U\). Statement ii follows from 1.22.
+
+        ii \(\impliedby\) i: same argument in reverse order.
+    \end{proof}
+
+    \begin{corollary}
+        Let \(A\) be semisimple.
+
+        \begin{enumerate}[label=\roman*)]
+            \item The isotypic components of \(A_\ell\) are precisely the minimal ideals of \(A\), and every ideal is a direct sum of minimal ideals.
+            \item \(A\) has only finitely many minimal ideals. 
+            \item \(\vert \mathcal{T}(A) \vert < \infty\).
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(I \subseteq A_\ell\) a direct sum of isotypic components \(\underset{1.23}{\iff} I\) is an ideal.
+            
+            Therefore, \(I\) is an isotypic component \(\iff\) \(I\) is a minimal ideal.
+
+            \item Write \(A = \bigoplus_{\tau \in \mathcal{T}(A)} (A_\ell)_{\tau}\). Then we can write \(1 = \sum_{\tau} a_{\tau} \) where \(a_{\tau} \in (A_{\ell})_{\tau}\) and all but finitely many \(a_\tau\) are zero.
+            
+            Then, \(A = \sum_{\tau, a_{\tau} \neq 0} A a_{\tau} \subseteq \bigoplus_{a_{\tau} \neq 0} (A_\ell)_{\tau} \subseteq A\).
+
+            \item 1.18: any simple \(A\)-module \(N\) is isomorphic to a submodule of \(A_\ell\). Suppose \(\tau\) is the type of \(N\). Then, \((A_\ell)_{\tau} \supseteq N\).
+            
+            Since there are only finitely many isotypic components, there are only finitely many \(\tau \in \mathcal{T}(A)\).
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{example*}
+        \begin{enumerate}[label=\arabic*)]
+            \item Let \(K_1 , \cdots , K_n\) be fields. Then, \(A = K_1 \times \cdots \times K_n\) is semisimple, and \(K_i = \{ 0 \} \times \cdots \times \{ 0 \} \times K_i \times \{ 0 \} \times \cdots \times \{ 0 \} \) is a simple module, and these exhaust all of \(\mathcal{T}(A)\).  
+            
+            \item Suppose \(K\) is a field, and let \(A = M_n(K)\). We can write \(A_\ell\) as a direct sum of columns, i.e. \(A_\ell = Ae_1 \oplus \cdots \oplus Ae_n\).
+            
+            Here, \(A_{e_i} \underset{A}{\cong} K^n\) is up to isomorphism the only simple \(A\)-module. Denote by \(\tau\) this type. \((A_\ell)_{\tau}\) is the only isotypic component.
+
+            \item \(A = M_{n_1} (K_1) \times \cdots \times M_{n_s}(K_s)\) has \(s\) isotypic components.
+        \end{enumerate} 
+    \end{example*}
+
+    \begin{lemma}
+        Let \(M \in A\text{-Mod}^{\text{ss}}\) and suppose \(M = \bigoplus_{i\in I} N_i\) and \(M = \bigoplus_{j\in J} N_j^{\prime}\) with simple submodules \(N_i , N_j^{\prime} \subset M\).
+        
+        Then \(\exists\) bijection \(\sigma : I \to J\) such that \(\forall i\in I : N^{\prime}_{\sigma(i)} \underset{A}{\cong} N_i\). In particular, \(I\) and \(J\) must have the same cardinality.
+    \end{lemma}
+
+    \begin{proof}
+        WLOG we may assume \(M = M_{\tau}\). Let \(N\) be a fixed simple module of type \(\tau\).
+
+        Then \(N \cong N_i \cong N_j^{\prime}\) for all \(i\in I, j \in J\).
+
+        Put \(D = \operatorname{End}_A(N)^o\). 1.44 \(\implies D\) is a division algebra.
+
+        Then, the map \(D \times \operatorname{Hom}_A(N,M) \to \operatorname{Hom}_A(N,M)\) given by \((d,f) \mapsto f \circ d\) makes \(\operatorname{Hom}_A(N,M)\) into a \(D\)-module.
+        
+        Moreover, \(\operatorname{Hom}_A(N, M) = \bigoplus_{i\in I} \operatorname{Hom}_A (N, N_i)\).
+        
+        However, \(\operatorname{Hom}_A(N, N_i) \cong \operatorname{Hom}_A(N,N) = \operatorname{End}_A(N) \cong D^o\). Therefore, \(\operatorname{Hom}_A(N, N_i)\) is free of rank \(1\) over \(D\).
+        
+        Then, \(\dim_D \operatorname{Hom}_A(N, M) = \vert I \vert\).
+
+        By the same argument, \(\dim_D \operatorname{Hom}_A(N, M) = \vert J \vert\) using the other decomposition.
+    \end{proof}
+
+    \begin{definition}
+        If we write \(M\in A\text{-Mod}^{\text{ss}}\) as \(M = \bigoplus_{i \in I} N_i\) where \(N_i\) are simple, then \(\ell_A(M) = \vert I \vert \) is called the \textit{length} of \(M\) (as an \(A\)-module).
+        
+        The \textit{length of a semisimple algebra \(A\)} is by definition \(\ell_A(A_\ell)\).
+
+        Given a simple module \(N\) of type \(\tau\) we also use the notation:
+
+        \[
+            M : \tau = M : N \coloneqq \ell_A(M_{\tau})
+        \]
+    \end{definition}
+
+    \begin{remark*}
+        If \(N\) is simple and \(D = \operatorname{End}_A(N)^o\), then \(M : N = \dim_D \operatorname{Hom}_A(N,M)\) and \(\ell_A(M) = \sum_{\tau \in \mathcal{T} (A)} M : \tau\) 
+    \end{remark*}
+
+    \begin{theorem}
+        [Jacobson Density Theorem]
+
+        Let \(M\in A\text{-Mod}^{\text{ss}}\) and \(C = \operatorname{End}_A(M)\) and consider the canonical map:
+
+        \begin{enumerate}[label=(\arabic*)]
+            \item \(A \to \operatorname{End}_C(M), a \mapsto a_M = [m \mapsto am]\). Note that this map is not necessarily \(A\)-linear. But it is \(C\)-linear.
+        \end{enumerate} 
+
+        Then, the image of (1) is `dense' in \(\operatorname{End}_C(M)\) in the following sense:
+
+        \(\forall f\in \operatorname{End}_C(M)\) and \(\forall x_1 , \cdots , x_n \in M, \exists a \in A\) such that \(\forall 1 \leq i \leq n : f(x_i) = a \cdot x_i \quad (2)\).
+
+        If \(M\) is finitely generated as a \(C\)-module, the map (1) is surjective.
+    \end{theorem}
+
+    \begin{proof}
+        Consider \(M^{\prime} \coloneqq M^{\oplus n} \in A\text{-Mod}^{\text{ss}}\) and \(x \coloneqq (x_1 , \cdots , x_n) \in M^{\prime}\).
+        
+        1.16 \(\implies \exists M^{\prime\prime} \subset M^{\prime}\) with the property \(M^{\prime} = M^{\prime\prime} \oplus Ax\).
+
+        Then we can define a projection \(p\) as follows: \(p: M^{\prime} \to M^{\prime}\) as follows: every element of \(M^{\prime} = M^{\prime\prime} + Ax\) can be written as \(m^{\prime\prime} + ax\) where \(m^{\prime\prime} \in M^{\prime\prime}\). Then, \(p(m^{\prime\prime} + ax) \coloneqq ax \in M^{\prime}\).
+
+        Then, \(p\in \operatorname{End}_A(M^{\prime}) \eqqcolon C^{\prime}\).
+        
+        Now define \(\widetilde{f}: M^{\prime} \to M^{\prime}\) as follows: \(\widetilde{f}(y_1 , \cdots , y_n) = (f(y_1) , \cdots , f(y_n))\).
+
+        1.7 \(\implies \operatorname{End}_C (M) \xrightarrow{\cong} \operatorname{End}_{C^{\prime}}(M^{\prime})\) given by \(f \mapsto \widetilde{f}\) is a \(C^{\prime}\)-linear bijection.
+
+        Thus, \(\widetilde{f} \circ p = p \circ \widetilde{f}\).
+
+        Therefore, \((f(x_1), \cdots , f(x_n)) = \widetilde{f}(x) = \widetilde{f}(p(x)) = p(\widetilde{f}(x)) = a \cdot x\) for some \(a\in A\) [since \(\operatorname{im} p = Ax\)].
+
+        Therefore, \(\forall 1 \leq i \leq n : f(x_i) = a x_i\).
+    \end{proof}
+
+    \begin{corollary}
+        Let \(N\in A\text{-Mod}\) be simple and \(D = \operatorname{End}_A(N)\). Consider \(N\) as a \(D\)-vector space. Let \(x_1 , \cdots , x_n\) be linearly independent over \(D\). Then for any \(y_1 , \cdots , y_n \in N \exists a \in A \forall 1 \leq i \leq n : y_i = a x_i\). 
+    \end{corollary}
+
+    \begin{proof}
+        We apply 1.26 with \(C = \operatorname{End}_A(N) = D\).
+
+        We extend \((x_1 , \cdots , x_n)\) to a \(D\)-basis of \(N\). Then we can choose \(f \in \operatorname{End}_{D = C} (N)\) such that \(f(x_i) = y_i\) for all \(1 \leq i \leq n\).
+    \end{proof}
 
 \end{document}
