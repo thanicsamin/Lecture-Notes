@@ -685,4 +685,332 @@
         We extend \((x_1 , \cdots , x_n)\) to a \(D\)-basis of \(N\). Then we can choose \(f \in \operatorname{End}_{D = C} (N)\) such that \(f(x_i) = y_i\) for all \(1 \leq i \leq n\).
     \end{proof}
 
+    \section*{Tuesday, 1/27/2026}
+    
+    \subsection*{Noetherian and Artinian Modules (E. Artin, 1898-1962, IU 1938-1946)}
+
+    \begin{definition}
+        A module \(M\) is called:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \textit{Noetherian} if every non-empty subset of submodules of \(M\) has a maximal element.
+            \item \textit{Artinian} if every non-empty subset of submodules of \(M\) has a minimal element. 
+        \end{enumerate} 
+
+        An algebra \(A\) is called \textit{artinian} (resp. \textit{artinian}) if \(A_\ell\) is noetherian (resp. artinian).
+    \end{definition}
+
+    \begin{remark}
+        \begin{enumerate}[label=\roman*)]
+            \item \(M\) is noetherian (resp. artinian) iff every increasing (resp. decreasing) (countable) chain is stationary (i.e. all members are the same from some index on).
+            \item For a division ring \(D\) and \(V\) a \(D\)-Mod, TFAE:
+            
+            \(V\) is noetherian \(\iff V\) is artinian \(\iff \dim_D(V) < \infty\).
+
+            \item If \(M = \bigoplus_{i\in I} M_i\) with all \(M_i\) non-zero and \(\vert I \vert = \infty\), then \(M\) is neither noetherian nnor artinian.
+            \item \(\mathbb{Z}\) is not artinia: \((2) \supsetneq (6) \supsetneq (24) \supsetneq (120) \supsetneq \cdots\). \(\mathbb{Z}\) is noetherian, as is any PID.
+            \item \(\mathbb{Q} / \mathbb{Z}\) (as a \(\mathbb{Z}\)-module) is not noetherian: \(\frac{1}{2}\mathbb{Z} / \mathbb{Z} \subsetneq \frac{1}{6}\mathbb{Z} / \mathbb{Z}  \subsetneq \frac{1}{24} \mathbb{Z} / \mathbb{Z} \subsetneq \cdots\).
+            
+            \(\mathbb{Q} / \mathbb{Z}\) is also not artinian: \(M = \sum_{p \text{ prime}} \frac{1}{p}\mathbb{Z} / \mathbb{Z} \supsetneq \sum_{p > 2} \frac{1}{p} \mathbb{Z}  / \mathbb{Z} \supsetneq \sum_{p > 3} \frac{1}{p}\mathbb{Z} / \mathbb{Z} \supsetneq \cdots\).
+
+            But for \(\mathbb{Z}_{(p)}\) [the localization of \(\mathbb{Z}\) at \(p\)], the module \(\mathbb{Q} / \mathbb{Z}_{(p)}\) is artinian.
+
+            \item If \(K\) is a field, then any finite dimensional \(K\)-algebra \(A\) is noetherian and artinian.
+            \item \(\exists\) noetoherian and artiniain \(K\)-algebra \(A\) such that \(A^o\) is neither noetherian nor artinian.
+            \item We'll prove: \(A\) artinian \(\implies A\) is noetherian. 
+        \end{enumerate} 
+    \end{remark}
+
+    \begin{proposition}
+        \(M\) is noetherian iff every submodule is finitely generated.
+    \end{proposition}
+
+    \begin{proof}
+        \(\implies\): given \(N \subset M\) set \(S = \{ N^{\prime} \subset N \mid N^{\prime} \text{ is f.g.} \} \).
+
+        \(0 \in S \implies S \neq \varnothing\), and by assumption \(S\) has a maximal element \(N_0 \subseteq N\). It is easy t show that \(N_0 = N \implies N\) is f.g.
+
+        \(\impliedby\): Let \(N_1 \subseteq N_2 \subseteq \cdots\) be submodules of \(M\). By assumption we can show that \(N = \bigcup_{i} N_i\) is finiely generated. Let \(m_1 , \cdots , m_s\) be generators of \(N\). Then \(\exists i_0: m_1 , \cdots , m_s \in N_{i_0}\). Thus \(N = N_{i_0} = N_{i_0 + 1} = \cdots\). 
+    \end{proof}
+
+    \begin{remark*}
+        For \(M\) to be noetherian it does not suffice that \(M\) is finitely generated.
+
+        If \(A\) is noetherian and \(M\) is finitely generated, then \(M\) is noetherian.
+    \end{remark*}
+
+    \begin{proposition}
+        Let \(M\) be a module and \(N \subset M\) be a submodule.
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(N\) and \(M / N\) are noetherian \(\iff M\) is noetherian.
+            \item \(N\) and \(M / N\) are artinian \(\iff\) \(M\) is artinian. 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        HW3
+    \end{proof}
+
+    \begin{corollary}
+        Let \(p\) be the property `noetherian' or `artinian'. 
+
+        \begin{enumerate}[label=\roman*)]
+            \item Suppose \(M = \bigoplus_{i=1}^n M_i\). Then \(M\) is \(p\) iff all \(M_i\) are \(p\).
+            \item If an algebra \(A\) is \(p\), every \(M \in A\text{-Mod}^{\text{f.g.}}\) is \(p\).
+        \end{enumerate} 
+    \end{corollary}
+
+    Suppose,
+
+    \[
+        0 \to N \hookrightarrow M \to M / N \to 0
+    \]
+
+    say: \(M\) is an extension of \(M / N\) by \(N\).
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Reduce to the case \(n = 2\) and apply 1.30.
+            \item \(A\) is \(p \implies A_\ell\) is \(p \xrightarrow{\text{(i)}} A_\ell^{\oplus n}\) is \(p. 1.30 \implies A_\ell^{\oplus n} / L\) is \(p\) for any submodule \(L \subset A_\ell^{\oplus n}\). Any finitely generated module is of this form which implies the assertion.  
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        Let \(M \in A\text{-Mod}^{\text{ss}}\). TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(M\) is finitely generated.
+            \item \(M\) is a finite direct sum of simple submodules.
+            \item \(M\) is artinian.
+            \item \(M\) is noetherian. 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        Write \(M = \bigoplus_{i\in I} N_i\) where \(N_i\) are simple. Assume i, and let \(m_1 , \cdots , m_s\) be generators. \(\forall j : 1 \leq j \leq s \exists I_j \subset I\) such that \(\vert I_j \vert < \infty\) such that \(m_j \in \bigoplus_{i\in I_j} N_i\).
+        
+        Then, \(m_1 , \cdots , m_s \in \bigoplus_{i\in \bigcup_{j=1}^s I_j} N_i = M\) which implies ii.
+        
+        ii \(\implies\) iii, iv is implied by 1.31.
+
+        iv \(\implies\) i: Noetherian implies finitely generated.
+
+        To complete the full circle, assume iii. Use remark 1.28. HW3.
+    \end{proof}
+
+    \begin{corollary}
+        Every semisimple algebra \(A\) is noetherian and artinian.
+    \end{corollary}
+
+    \begin{proof}
+        \(A_\ell\) is semisimple and f.g., \(A_\ell = A \cdot 1_A\). Apply 1.32.
+    \end{proof}
+
+    \section*{Thursday, 1/29/2026}
+    
+    \begin{remark*}
+        The study of Semisimple Algebras has very little overlap with Commutative Algebras, namely finite product of fields.
+
+        There is a generalization: \textit{Azumaya algebras}.
+
+        Goro Azumaya: IU (1968-1992)
+    \end{remark*}
+
+    \begin{proposition}
+        [Definition of Composition Series]
+        For \(M\in A\text{-Mod}\) TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(M\) is both artinian and noetherian.
+            \item \(M\) has a \textit{composition series}: a chain of submodules:
+            
+            \[
+                M = M_n \supsetneq M_{n-1} \supsetneq \cdots \supsetneq M_0 \coloneqq 0
+            \]
+
+            where \(M_i / M_{i-1}\) is simple for \(1 \leq i \leq n [n=0 \text{ if } M = 0]\).
+
+            \(n\) is called the \textit{length of the composition series}.
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        ii \(\implies\) i: Suppose \(M\) has a composition series of some length. Then \(M_1\) must be simple. If there is an \(M_2\), \(M_2 / M_1\) must be simple. We have the exact sequence:
+
+        \[
+            0 \to M_1 \to M_2 \to M_2 / M_1
+        \]
+
+        1.30 then implies that \(M_2\) is noetherian and artinian. The fact that \(M\) must be both noetherian and artinian follows from induction.
+
+        i \(\implies\) ii: HW3.
+    \end{proof}
+
+    \begin{theorem}
+        [Jordan-H\"older Theorem for Modules]
+
+        If \(M\) has to composition series:
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(M = M_n \supsetneq M_{n-1} \supsetneq \cdots \supsetneq M_0 = 0\).
+            \item \(M = L_m \supsetneq L_{m-1} \supsetneq \cdots \supsetneq L_0 = 0\).
+        \end{enumerate} 
+
+        then \(m = n\). Furthermore, the simple quotient are the same under permutation: \(\exists \sigma \in \mathcal{S}_n\) such that \(\forall 1 \leq i \leq n: L_i / L_{i-1} \underset{A}{\cong} M_{\sigma(i)} / M_{\sigma(i) - 1}\).
+    \end{theorem}
+
+    \begin{definition}
+        A module \(M\) is called of \textit{finite length} if \(M\) satisfies the equivalent conditions of 1.34.
+
+        The length of any composition series is called \textit{the length of} \(M\), denoted by \(\ell(M)\).
+    \end{definition}
+
+    \begin{remark*}
+        \begin{enumerate}[label=\roman*)]
+            \item If \(M\) is of finite length and \(N\) is a submodule, then \(N\) is of finite length. Furthermore,
+            
+            \[
+                \ell(M) = \ell(N) + \ell(M / N).
+            \]
+
+            We use the exact sequence:
+
+            \[
+                0 \to N \to M \to M / N.
+            \]
+
+            \item \(M\) semisimple of finite length, i.e. \(M = \bigoplus_{i=1}^n N_i\) where \(N_i\) are simple \(\implies \ell(M) = n\).
+            
+            \(M\) is not always the direct sum of the simple quotients. For example, suppose \(K\) is a field and \(A = \left\{ n \times n \text{ upper triangular \(K\)-matrices} \right\} \) acting on \(K^n\). Then \(Ke_1\) is a submodule but \(Ke_2\) is not one.
+            
+            \[
+                K^n \supsetneq Ke_1 \oplus \cdots Ke_{n-1} \supsetneq Ke_1 \oplus \cdots \oplus Ke_{n-2} \supsetneq \cdots \supsetneq Ke_1 \supsetneq 0.
+            \]
+
+            Hence \(\ell(K^n) = n\).
+        \end{enumerate} 
+    \end{remark*}
+
+    \begin{definition}
+        A module \(N\) is called \textit{indecomposable} if \(N\neq 0\) and \(N\) has no direct summand other than \(0\) and \(N\).
+
+        i.e. We cannot write \(N = A \oplus B\) where \(A, B\) are non-zero submodules. For example, \(K^n\) in the previous example is indecomposable as an \(A\)-module.
+    \end{definition}
+
+    \begin{example}
+        \begin{enumerate}[label=\roman*)]
+            \item Again, suppose \(K\) is a field and \(A = \left\{ n \times n \text{ upper triangular \(K\)-matrices} \right\} \) acting on \(K^n\). Then \(K^n\) is indecomposable as an \(A\)-module.
+            \item Any simple module is indecomposable.
+            \item Suppose \(K\) is a field, and \(A = K[x]\) acting on \(K^n\) where \(x \mapsto \begin{bmatrix}
+                0 & 1 & 0 & 0 & 0  \\
+                 & \ddots & \ddots & \ddots & 0 \\
+                 &  & \ddots & \ddots & 0 \\
+                 &  &  & \ddots & 1 \\
+                 &  &  &  & 0 \\
+            \end{bmatrix} \) [jordan block]. Then \(K^n\) is indecomposable as an \(A\)-module.
+        \end{enumerate} 
+    \end{example}
+
+    \begin{proposition}
+        If \(M\) is artinian or noetherian, then it is a direct sum of finitely many indecomposable modules.
+    \end{proposition}
+
+    \begin{proof}
+        Assume \(M\) is artinian. Suppose \(M\neq 0\) and \(M\) is decomposable. Then, \(\exists\) non-zero submodules \(M_1, M_2\) such that \(M = M_1 \oplus M_2\).
+        
+        Consider \(S(M) = \left\{ 0 \subsetneq N \subsetneq M : N \text{ is a direct summand of } M \right\} \) \(M_1 \in S(M) \implies S(M) \neq \varnothing\).
+
+        \(M\) is artinian. Therefore, \(S(M)\) must have a minimal element \(N_0\). \(N_0\) must be indecomposable, since any non-trivial decomposition of \(N_0\) contraditcs its minimality.
+
+        Write \(M = N_0 \oplus M_0^{\prime}\). 
+
+        Consider \(S^{\prime} = \left\{ M^{\prime} \subset M : \exists M_0 \subset M : M = M_0 \oplus M^{\prime} \text{ and } M_0 \text{ is a finite direct sum of indecomposables}  \right\} \).
+
+        Then, \(M^{\prime}_0 \in S^{\prime}\). Thus, \(S^{\prime} \neq \varnothing\). Therefore \(S^{\prime}\) contains a minimal element which we claim is \(M^{\prime}\).
+
+        Suppose \(M^{\prime} \neq 0\). If \(M^{\prime}\) is indecomposable then \(M = (M_0 \oplus M^{\prime}) \oplus 0\) which contradicts the minimality of \(M^{\prime}\), since \(0 \in  S^{\prime}\).
+        
+        Hence \(M^{\prime}\) is indecomposable. Therefore, \(S(M^{\prime}) \neq \varnothing\). \(M^{\prime}\) must also be artinian, therefore \(S(M^{\prime})\) has minimal element \(N^{\prime}_0\) which is indecomposable. We write \(M^{\prime} = N^{\prime}_0 \oplus M^{\prime\prime} \implies M = (M_0 \oplus N^{\prime}_0) \oplus M^{\prime\prime}\) where \(M^{\prime\prime}\) is minimal in \(S^{\prime}\), which is a contradiction.
+
+        Noetherian case: HW3.
+    \end{proof}
+
+    \begin{lemma}
+        Let \(M \in A\text{-Mod}\) and \(g\in \operatorname{End}_A(M)\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item If \(g\) is surjective and \(M\) is noetherian \(\implies g\) is injective.
+            \item If \(g\) is injective and \(M\) is artinian \(\implies g\) is surjective.
+        \end{enumerate} 
+    \end{lemma}
+
+    \begin{proof}
+        HW3.
+    \end{proof}
+
+    \begin{lemma}
+        Let \(M\) be of finite length and \(f\in \operatorname{End}_A(M)\). Then \(\exists\) decomposition \(M = U \oplus N\) such that \(f(U) \subset U, f(N) \subset N\) and \(\eval{f}_{U}\) is bijective and \(\eval{f}_{N}\) is nilpotent, \((\eval{f}_{N})^k = 0\). 
+    \end{lemma}
+
+    \begin{proof}
+        HW3.
+    \end{proof}
+
+    \begin{lemma}
+        Let \(M\) be of finite length and indecomposable. Then every endomorphism \(f\in C \coloneqq \operatorname{End}_A(M)\) is either bijective or nilpotent.
+
+        Moreover, \(I = \left\{ f\in C : f \text{ is nilpotent} \right\} \) is the unique maximal (\(2\)-sided) ideal of \(C\).
+    \end{lemma}
+
+    \begin{proof}
+        Suppose \(f\) is not bijective. 1.39 implies that \(M = U \oplus N\) where \(f(U) \subset U, f(N) \subset N\), \(\eval{f}_{U}\) is bijective, \(\eval{f}_{N}\) is nilpotent. Since \(f\) is not bijective, \(M\neq U\). Therefore, \(N \neq 0\). Since \(M\) must be indecomposable, \(U = 0\) and \(M = N\). Therefore, \(f\) must be nilpotent.
+
+        Now we prove that \(I\) must be an ideal.
+
+        \(f\in I, h\in C \implies \ker (h \circ  f) \neq 0 \implies h \circ f \in I\).
+
+        \(f\in I, h\in C \implies \operatorname{im} (f \circ h) \subsetneq M \implies f \circ h\) is not bijective \(\implies f \circ h \in I\). 
+
+        We need to show \(I\) is closed under addition. Suppose \(f,g \in I\) but \(f+g\notin I\). Then \(f+g\) must be invertible.
+
+        \(h(f+g)=1 \implies hg = 1-hf\). Since \(hf\) is nilpotent it follows that \(hg\) is invertible, which is a contradiction.
+    \end{proof}
+
+    \begin{theorem}
+        [Krull-Remak-Schmidt] Let \(M\) be a module of finite length. Suppose \(M = N_1 \oplus \cdots \oplus N_m = N^{\prime}_1 \oplus \cdots \oplus N^{\prime}_n\) with indecomposable submodules \(N_i, N_j^{\prime}\). Then \(m = n\) and \(\exists \sigma \in \mathcal{S}_n\) such that \(\forall 1 \leq i \leq n : N_i^{\prime} \cong N_{\sigma(i)}\).
+    \end{theorem}
+
+    \begin{proof}
+        By induction on \(\ell(M)\). If \(\ell(M) = 1\) there is nothing to show. Let \(\ell(M) > 1\) and suppose the sttement is true for all modules of length \(< \ell(M)\).
+
+        Let \(\iota_j : N_j \hookrightarrow M\) be the inclusion and \(\pi_j: M \to N_j\) the projection onto \(N_j\).
+
+        Let \(p_j = \iota_j \circ \pi_j \in \operatorname{End}_A(M)\). Then \(p_j\) is an idempotent, \(p_j \circ p_j = p_j\) and \(p_j \circ p_i = 0\) if \(i\neq j\). Furthermore \(p_1 + \cdots + p_m = \operatorname{id}_{M}\).
+
+        We can do the same for the other decomposition: we get \(p_j^{\prime}\) where \(p^{\prime}_1 + \cdots + p^{\prime}_n = \operatorname{id}_{M}\) etc.
+        
+        Consider: \(\operatorname{End}_A(N_1)\ni f_j = \pi_1 \circ p_j^{\prime} \circ \iota_1: N_1 \hookrightarrow M \xrightarrow{\pi_j^{\prime}} N^{\prime}_j \xhookrightarrow{\iota^{\prime}_j} M \to N_1\).
+        
+        \(f_1 + f_2 + \cdots + f_n = \pi_1 \circ  \underbrace{(p^{\prime}_1 + \cdots +p^{\prime}_n)}_{\operatorname{id}_{M}} \circ \iota_1 = \operatorname{id}_{N_1}\).        
+
+        1.39 implies that \(\exists 1 \leq j \leq n\) such that \(f_j\) is bijective. After renumbering, we may assume that \(f_1\) is bijective.
+
+        Consider \(g=p^{\prime}_1 \circ p_1: M \to M\). Note that \(\pi_1 \circ g = f_1 \circ \pi_1\).
+
+
+        Set \(h = g + p_2 + \cdots + p_m : M \to M\). Then \(p_1 \circ h = p_1 \circ  g = \iota_1 \circ \pi_1 \circ g = \iota_1 \circ f_1 \circ \pi_1\). We want to show that \(h\) is bijective.
+
+        Suppose \(x\in M\) such that \(h(x) = 0\).
+
+        \(\implies 0 = p_1(h(x)) = p_1(g(x)) = \iota_1(f_1(\pi_1(x))) = 0\). Since \(\iota_1\) and \(f_1\) are injective, it follows that \(\pi_1(x) = 0\). Therefore \(x\in N_2 \oplus \cdots \oplus N_m \eqqcolon M^{\prime}\). Since \(g = p^{\prime}_1 \circ p_1\) it follows that \(g(x) = 0\).
+
+        \(0 = h(x) = g(x) + p_2(x) + \cdots + p_m(x) = x\) where \(g(x) = 0\) and \(p_j(x) \in N_j\). Therefore \(h\) is injective.
+
+        It follows from 1.37 that \(h\) is bijective.
+
+        Since \(h\) is an automorphism and \(\eval{h}_{N_k} = \operatorname{id}_{N_k}\) for \(k \geq 2\) it follows that \(M = N^{\prime}_1 \oplus N_2 \oplus \cdots \oplus N_m\). By quotienting out \(N^{\prime}_1\) it follows that \(N_2 \oplus \cdots \oplus N_m \cong N^{\prime}_2 \oplus \cdots \oplus N^{\prime}_n\). The theorem follows from induction.
+
+    \end{proof}
+
 \end{document}
