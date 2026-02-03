@@ -35,10 +35,12 @@
 
 \title{M503 Non-Commutative Algebra}
 \author{Taught by Matthias Strauch \\ Notes written by Thanic Nur Samin}
-
+\date{}
 
 \begin{document}
     \maketitle
+
+    \tableofcontents
 
     Office Hours: Wednesdays 4:30, RH316.
 
@@ -1012,5 +1014,181 @@
         Since \(h\) is an automorphism and \(\eval{h}_{N_k} = \operatorname{id}_{N_k}\) for \(k \geq 2\) it follows that \(M = N^{\prime}_1 \oplus N_2 \oplus \cdots \oplus N_m\). By quotienting out \(N^{\prime}_1\) it follows that \(N_2 \oplus \cdots \oplus N_m \cong N^{\prime}_2 \oplus \cdots \oplus N^{\prime}_n\). The theorem follows from induction.
 
     \end{proof}
+    
+    \section*{Tuesday, 2/3/2026}
+    
+    \section{Wedderburn Theory}
+
+    Recall: An algebra \(A\) is called \textit{simple} if \(A\) is non-zero and it has no ideals other than \(0\) and \(A\).
+
+    Recall that by ideal we mean ideals that are both left and right ideals. There can be left ideals that are not right ideals and vice versa. Meaning, an algebra \(A\) being simple doesn't necessarily imply that the module \(A_\ell\) is simple.
+
+    \begin{proposition}
+        Let \(A\) be simple. TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(A\) is semisimple.
+            \item \(A\) is artinian.
+            \item \(A\) possesses a minimal left ideal \(N\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    Minimal ideals are by convention non-zero. This forces \(A\) to be non-zero from iii as well.
+
+    Recall by saying \(A\) is noetherian/artinian we mean \(A_\ell\) is noetherian/artinian.
+
+    \begin{proof}
+        i \(\implies\) ii: Corollary 1.33 (because \(A_\ell\) is semisimple and finitely generated, hence it has finite length).
+
+        ii \(\implies\) iii: Trivial.
+
+        iii \(\implies\) i: Let \(0 \neq N \subset A\) be the minimal left ideal. Then, \(0 \neq NA = \sum_{a\in A} Na\) is a \(2\)-sided ideal. Since \(A\) is simple, \(NA = A\).
+
+        \(N\) minimal left ideal \(\implies N\) is simple as an \(A\)-module. \(Na\) is the image of \(N\) under the \(A\)-module map \(N \to Na, x \mapsto xa\). If \(Na\) is non-zero, it is the non-zero image of a simple module, which implies \(Na\) is simple. Then, \(NA\) is a sum of simple modules: \(A = NA = \sum_{Na\neq 0} Na\) is a sum of simple modules. Therefore, \(1.16 \implies A\) must be semisimple.
+    \end{proof}
+
+    \begin{corollary}
+        Let \(A\) be simple and semisimple and \(N \subset A\) a minimal left ideal. Then, \(A_\ell \underset{A}{\cong} N^{\oplus m}\) for some \(m > 0\), and \(A_\ell\) is hence isotypic.
+    \end{corollary}
+
+    \begin{proof}
+        2.1 implies the existence of a minimal ideal \(N\). Then, \(A_\ell = \sum_{a\in A, Na\neq 0} Na\) where \(Na\) are simple. By 1.17, \(A_\ell \cong \bigoplus_{i\in I} Na_i\) for some subset \(\{ a_i : i \in I \} \) of \(A\). WLOG we assume that \(Na_i \neq 0\) for all \(i\in I\).
+
+        Then, the identity \(1_A = \sum_{j\in J \subset I} n_j a_j\) for some finite \(J \subset I\) and \(n_i \in N\). Therefore, \(\forall a\in A: a = \sum_{j\in J} a n_j a_j\). Note that \(a n_j a_j \in Na_j\) since \(N\) is a left ideal. Therefore, \(A = \bigoplus_{i\in J} Na_i\). Therefore \(J = I\). Furthermore, for each \(i\in I\), \(Na_i \cong N\).
+        
+        Therefore, \(A_\ell \cong \bigoplus_{i\in I} Na_i \cong N^{\oplus \vert I \vert}\).
+
+    \end{proof}
+
+    \begin{proposition}
+        Let \(A\) be a non-zero semisimple algebra. TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(A\) is simple.
+            \item \(A_\ell\) is isotypic.
+            \item \(\vert \mathcal{T} (A) \vert = 1\). Recall that \(\mathcal{T} (A)\) is the set of isomorphism classes of simple \(A\)-modules.
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        i \(\implies\) ii follows from 2.2.
+
+        ii \(\implies\) iii follows from 1.18: every simple module is isomorphic to a submodule of \(A_\ell\).
+        
+        Recall 1.24 which says that minimal ideals are precisely the isotypic components of \(A_\ell\). in fact, \(A_\ell = \bigoplus_{\tau \in \mathcal{T}(A)} (A_\ell)_\tau\).
+        
+        If \(N\) is simple of type \(\tau \implies (A_\ell)_{\tau} \cong \bigoplus_{i\in I_\tau} N\).
+        
+        If \(N\) is simple \(A_\ell / L \cong N \to N\) appears as a direct summand in \(A_\ell = \bigoplus_{\tau \in \mathcal{T}(A)} (A_\ell)_{\tau}\). \((A_\ell)\tau \neq 0\) for all \(\tau \in \mathcal{T}(A)\).
+        
+        iii \(\implies\) ii is trivial.
+
+        ii \(\implies\) i follows from 1.24.
+
+        Summarizing,
+
+        \[
+            \begin{tikzcd}[column sep = huge]
+                \text{i} \ar[r,Rightarrow, bend left, "2.2"] & \text{ii} \ar[r, Rightarrow, bend left, "1.18"] \ar[l, Rightarrow, bend left, "1.24"] & \text{iii} \ar[l, Rightarrow, bend left, "\text{trivial}"]
+            \end{tikzcd}
+        \]
+    \end{proof}
+
+    \begin{proposition}
+        If \(D\) is a division algebra, then \(M_n (D)\) is a simple artinian algebra for any \(n \geq 1\).
+    \end{proposition}
+
+    \begin{proof}
+        Set \(V = (D^o)^{\oplus n} \implies A \coloneqq \operatorname{End}_{D^o}(V) \cong M_n((D^o)^o) = M_n(D)\).
+
+        By 1.13: \(A_\ell \overset{(\ast)}{=} \underbrace{V \oplus \cdots \oplus V}_{n \text{ copies}}\) and \(V\) is simple as \(A\)-module (1.13). Then \(A_\ell\) is isotypic and seimisimple because of \(\ast\). Then by 2.3 \(A\) is simple. 
+    \end{proof}
+
+    Recall: \(Z(A) \coloneqq\) center of \(A\).
+
+    \begin{proposition}
+        \(A\) simple \(\implies Z(A)\) is a field.
+    \end{proposition}
+
+    \begin{proof}
+        Pick non-zero element of the center \(a\in Z(A) \setminus \{ 0 \}\). Note that \(Aa=aA\) must be a non-zero two-sided ideal, and since \(A\) is simple it follows that \(aA = A\). \(aA = A \implies \exists b\in A\) such that \(ab (=ba) = 1\). Therefore \(a\) must have a two-sided inverse.
+
+        Given \(c\in A: (cb - bc) a = c(ba) - (ba) c = c1 - 1c = c-c = 0\). Multiplying by \(b\) on the right, it follows that \((cb - bc) ab = 0 \implies cb - bc = 0  \implies cb = bc\) for all \(c\in A\). Therefore \(b\in Z(A)\).
+    \end{proof}
+
+
+    \begin{theorem}
+        A non-zero semisimple algebra \(A\) has only finitely many distinct minimal ideals \(A_1, \cdots , A_n\). Each \(A_i\) is a unital algebra in its own right with the induced addition and multiplication from \(A\). Note that the identity in \(A_i\) is not equal to the identity in \(A\) if \(n > 1\).
+
+        Moreover, \(A = A_1 \times \cdots \times A_n\) is the product of the algebras \(A_1 , \cdots , A_n\) (with componentwise addition and multiplication), and each \(A_i\) is simple and artinian.
+
+        Conversely, if \(A_1 , \cdots , A_n\) are simple artinian algebras, then \(A \coloneqq A_1 \times \cdots \times A_n\) is semisimple and \(A_1, \cdots , A_n\) are precisely the minimal ideals of \(A\).
+    \end{theorem}
+
+    Note that direct sum and product carry the same meaning in this case. We generally use direct sums when we're thinking about the object as a module, and products when we're thinking about the object as a ring.
+
+    \begin{proof}
+        1.24 \(\implies A = A_1 \oplus \cdots \oplus A_n\) where \(A_1, \cdots , A_n\) are the isotypic components of \(A_\ell\). These are precisely the (2-sided) ideals.
+
+        We also have: \(A_i A_j \subset A_1 \cap A_j = 0\) for \(i\neq j\).
+
+        Write \(1_A = e_1 + \cdots + e_n\) with \(e_i \in A_i\). \(1_A = 1_A \cdot 1_A \implies 1_A = e_1^2 + \cdots + e_n^2\). Taking projections it follows that \(\forall 1 \leq i \leq n: e_i^2 = e_i\).
+        
+        \(\forall a\in A_i, a = a\cdot 1_A = ae_1 + \cdots + ae_i + \cdots + ae_n = ae_i = e_i a\).
+        
+        Therefore, \(e_i\) is the identity element in \(A_i\).
+
+        If \(0\neq I \subset A_i\) is an ideal, then \(I\) is an ideal in \(A\). However, since \(A_i\) is minimal, it follows that \(I = A_i\). Therefore \(A_i\) must be simple.
+
+        If \(0 \neq I \subset A_i\) is a left ideal, then \(I\) is a left ideal in \(A\). Since \(A\) is a semisimple algebra \(A\) must be artinian. Thus \(A_i\) must also be artinian.
+
+        The converse is easy to check (HW4)
+    \end{proof}
+
+    \begin{corollary}
+        Let \(A = A_1 \times \cdots \times A_n\) be a semisimple algebra with simple algebras \(A_1, \cdots , A_n\). Then,
+        
+        \[
+            Z(A) = Z(A_1) \times \cdots \times Z(A_n)
+        \]
+
+        is a product of fields, by 2.5. IN particular, \(Z(A)\) is a field if and only if \(A\) is simple.
+    \end{corollary}
+
+    \begin{corollary}
+        A commutative semisimple algebra \(A\) is a product of finitely many fields: \(A = K_1 \times \cdots \times K_n\).
+
+        These fields are uniquely determined as subsets of \(A\). Namely, they are the minimal ideals of \(A\).
+    \end{corollary}
+
+    \begin{remark}
+        A commutative artinian algebra \(A\) is semisimple if and only if its nilradical \(\{ a\in A \mid \exists n > 0 : a^n = 0 \} \) is zero.
+
+        \(\implies\) follows from 2.8.
+
+        \(\impliedby\) uses the theory of redical at the end of chapter 28. Direct proof on HW4.
+    \end{remark}
+
+    \begin{corollary}
+        Let \(K\) be a field. A finite dimensional commutative \(K\)-algebra having no non-zero nilpotent elements is a product of finitely many field extensions \(K_i / K\) with \([K_i : K] < \infty\).
+    \end{corollary}
+
+    \begin{proof}
+        By the preceding remark, \(A\) is semisimple. By 2.8, it is a product of fields \(K_1, \cdots , K_n\), all of which have finite degree over \(K\).
+    \end{proof}
+
+    Now we state a key theorem of this course.
+
+    \begin{theorem}
+        [Wedderburn's Theorem]
+
+        An artinian algebra \(A\) is simple if and only if it is isomorphic (as rings) to a matrix algebra \(M_n(D)\) for a division algebra \(D\) and \(n > 0\):
+
+        \[
+            A \cong M_n(D)
+        \]
+
+        \(D\) and \(n\) are uniquely determined by \(A\).
+    \end{theorem}
 
 \end{document}
