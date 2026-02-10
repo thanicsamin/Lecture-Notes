@@ -18,6 +18,8 @@
 \newtheorem*{example}{Example}
 \newtheorem*{exercise}{Exercise}
 \newtheorem*{definition}{Definition}
+
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -26,6 +28,8 @@
 \newtheorem*{lemma*}{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem*{corollary*}{Corollary}
+
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem*{remark*}{Remark}
 \newtheorem{notation}[theorem]{Notation}
@@ -76,8 +80,8 @@
             \item Conversely, if \(\psi : R \to B\) [where \(B\) is any unital ring] is an unital ring homomorphism with \(\operatorname{im} (\psi) \subset Z(B)\), then the multiplication \(x \cdot b \coloneqq \psi(x) b\) gives \(B\) the structure of an \(R\)-module and \(B\) becomes an \(R\)-algebra.
             \item The map \(\psi\) in (1) need not be injective. \(\mathbb{Z} = R, \mathbb{Z} / n\mathbb{Z} = A\) is allowed.
             \item Subalgebras of an algebra contain the unit element by convention.
-            \item By an \textit{ideal} in \(A\) we always mean a \(2\)-sided ideal. We have left ideals and right ideals defined in the usual way.
-            \item A \textit{division algebra} is an \(R\)-algebra \(A\) such that \(\forall a \in A \setminus \{ 0_A \} \exists b \in A\) such that \(ab = ba = 1_A\). It is often also called a skew field. The center of a division algebra is a field.
+            \item By an \underline{ideal} in \(A\) we always mean a \(2\)-sided ideal. We have left ideals and right ideals defined in the usual way.
+            \item A \underline{division algebra} is an \(R\)-algebra \(A\) such that \(\forall a \in A \setminus \{ 0_A \} \exists b \in A\) such that \(ab = ba = 1_A\). It is often also called a skew field. The center of a division algebra is a field.
             
             Modules over a division algebra will also be called vector spaces.
 
@@ -160,7 +164,7 @@
 
         Here \(\Delta : g \mapsto [(x_1 , \cdots , x_n) \mapsto (g(x_1), \cdots , g(x_n))]\).
 
-        This induces an isomorphism (of \(R\)-algebras) \(\operatorname{End}_C(N) \to \operatorname{End}_{C''C^{\prime}}(N^{\prime}) = \operatorname{End}_{\operatorname{End}_A(N^n)}(N^n)\). 
+        This induces an isomorphism (of \(R\)-algebras) \(\operatorname{End}_C(N) \to \operatorname{End}_{C^{\prime}}(N^{\prime}) = \operatorname{End}_{\operatorname{End}_A(N^n)}(N^n)\). 
     \end{proposition}
 
     Note that \(\operatorname{End}_A(A_\ell) \cong A^o\), so this is sort of a generalization to the previous proposition. 
@@ -182,11 +186,21 @@
 
         \(h \in \operatorname{End}_{C^{\prime}}(N^n) \implies h\) commutes with \(\iota_j \circ \pi_i : N^n \to N^n\). Note that \(\iota_j \circ \pi_i \in C^{\prime} = \operatorname{End}_A(N^n)\).
 
-        Then \(h \circ \iota_j = h \circ \iota_j \circ \pi_i \circ \iota_i\).
+        Then \(h \circ \iota_j = \iota_j \circ \pi_i \circ h \circ \iota_i\).
         
-        Compose with \(\pi_i\) on the left: \(\pi_i \circ h \circ \iota_j = \underbrace{\pi_i \circ \iota_j}_{=0} \omega \pi_i \circ h \circ \iota_i = 0\). 
+        Compose with \(\pi_i\) on the left: \(\pi_i \circ h \circ \iota_j = \underbrace{\pi_i \circ \iota_j}_{=0} \circ \pi_i \circ h \circ \iota_i = 0\). 
 
         Compose with \(\pi_j\) on the left: \(\pi_j \circ h \circ \iota_j = \pi_i \circ h \circ \iota_i\).
+
+        This shows that the matrix of \(h\) is diagonal with constant entries. Let \(\delta = \pi_1 \circ h \circ \iota_1 \in \operatorname{End}(N)\). Then \(h\) corresponds to the diagonal matrix \(\operatorname{diag}(\delta, \dots, \delta)\).
+
+        It remains to show that \(\delta \in \operatorname{End}_C(N)\). Let \(c \in C\) and consider the element \(\bar{c} \in C^{\prime} \cong M_n(C)\) represented by the scalar matrix \(\operatorname{diag}(c, \dots, c)\). Since \(h \in \operatorname{End}_{C^{\prime}}(N^n)\), \(h\) must commute with \(\bar{c}\).
+    
+        \(\Delta(\delta) \circ \bar{c} = \bar{c} \circ \Delta(\delta) \implies \operatorname{diag}(\delta c, \dots, \delta c) = \operatorname{diag}(c \delta, \dots, c \delta)\).
+        
+        Thus \(\delta \circ c = c \circ \delta\) for all \(c \in C\), so \(\delta \in \operatorname{End}_C(N)\). Hence \(h = \Delta(\delta)\), proving surjectivity.
+        
+        Injectivity is clear, as \(\Delta(g)=0\) implies each component \(g=0\).
 
     \end{proof}
 
@@ -214,7 +228,7 @@
     \end{proof}
 
     \begin{definition}
-        [Anti-isomorphism] \(\alpha\) is an \textit{anti-isomorphism} if it is an isomorphism of \(R\)-modules sending \(1_A\) to \(1_A\) and \(\forall a,b \in A \colon \alpha (ab) = \alpha(b) \alpha(a)\).
+        [Anti-isomorphism] \(\alpha\) is an \underline{anti-isomorphism} if it is an isomorphism of \(R\)-modules sending \(1_A\) to \(1_A\) and \(\forall a,b \in A \colon \alpha (ab) = \alpha(b) \alpha(a)\).
     \end{definition}
 
     \begin{proposition}
@@ -241,9 +255,9 @@
 
     \begin{definition}
         \begin{enumerate}[label=\arabic*)]
-            \item A module \(N\) is called \textit{simple} (or \textit{irreducible}) if \(N\neq 0\) and the only submodules of \(N\) are \(0\) and \(N\).
-            \item A module \(N\) is called \textit{semisimple} if it is isomorphic to a direct sum of (not necessarily finitely many) simple modules. Formally, we allow the empty direct sum. As a consequence, \(0\) is a semisimple module. 
-            \item A submodule \(N \subset M\) is called \textit{minimal} (resp. \textit{maximal}) if it is minimal (resp. maximal) among all non-zero submodules (resp. among all proper submodules). \(0\) doesn't have any minimal or maximal submodule.
+            \item A module \(N\) is called \underline{simple} (or \underline{irreducible}) if \(N\neq 0\) and the only submodules of \(N\) are \(0\) and \(N\).
+            \item A module \(N\) is called \underline{semisimple} if it is isomorphic to a direct sum of (not necessarily finitely many) simple modules. Formally, we allow the empty direct sum. As a consequence, \(0\) is a semisimple module. 
+            \item A submodule \(N \subset M\) is called \underline{minimal} (resp. \underline{maximal}) if it is minimal (resp. maximal) among all non-zero submodules (resp. among all proper submodules). \(0\) doesn't have any minimal or maximal submodule.
         \end{enumerate} 
     \end{definition}
 
@@ -259,7 +273,7 @@
     % proposition 1.10 missing
 
     \begin{proposition}
-        Let \(M\) be a \textit{finitely generated} (f.g.) \(A\)-module, and \(N_0 \subsetneq M\) a proper submodule. Then \(M\) has a maximal submodule \(N\) containing \(N_0\).
+        Let \(M\) be a \underline{finitely generated} (f.g.) \(A\)-module, and \(N_0 \subsetneq M\) a proper submodule. Then \(M\) has a maximal submodule \(N\) containing \(N_0\).
     \end{proposition}
 
     \begin{proof}
@@ -319,8 +333,8 @@
 
     \begin{definition}
         \begin{enumerate}[label=\arabic*)]
-            \item An algebra \(A\) is called \textit{semisimple} if \(A_\ell\) is a semisimple \(A\)-module.
-            \item \(A\) is called \textit{simple}, if \(A\neq 0\) and does not contain any (\(2\)-sided) ideals other than \(0\) and \(A\).
+            \item An algebra \(A\) is called \underline{semisimple} if \(A_\ell\) is a semisimple \(A\)-module.
+            \item \(A\) is called \underline{simple}, if \(A\neq 0\) and does not contain any (\(2\)-sided) ideals other than \(0\) and \(A\).
         \end{enumerate} 
     \end{definition}
 
@@ -351,7 +365,7 @@
     \end{proof}
 
     \begin{lemma}
-        Suppose \(M = \sum_{i\in I} N_i\) is the sum of a family \((N_i)_{i\in I}\) of \textit{simple} submodules.
+        Suppose \(M = \sum_{i\in I} N_i\) is the sum of a family \((N_i)_{i\in I}\) of \underline{simple} submodules.
         
         Let \(N \subset M\) be any submodule. Then \(\exists J \subset I\) such that,
 
@@ -407,7 +421,7 @@
     \end{proof}
 
     \begin{remark*}
-        Given any \(M \in A\text{-Mod}\), the \textit{socle} of \(M\), \(\operatorname{soc}(M)\) is defined to be the largest semisimple submodule of \(M\).
+        Given any \(M \in A\text{-Mod}\), the \underline{socle} of \(M\), \(\operatorname{soc}(M)\) is defined to be the largest semisimple submodule of \(M\).
         
         By 1.16, \(\operatorname{soc}(M) = \sum_{N \subset M \text{ simple}} N\). 
     \end{remark*}
@@ -473,9 +487,9 @@
 
         We call a simple module \(N\) of type \(\tau \in \mathcal{T}(A)\) if the isomorphism class of \(N\) is \(\tau\).
 
-        Given \(M\in A\text{-Mod}, \tau \in \mathcal{T}(A)\), we set \(M_{\tau} = \sum_{N \subset M \text{ simple of type } \tau} N\) [note that it must be a direct sum of some submodules of type \(\tau\).] \(M_{\tau} \) is called the \textit{\(\tau\)-isotypic component}.
+        Given \(M\in A\text{-Mod}, \tau \in \mathcal{T}(A)\), we set \(M_{\tau} = \sum_{N \subset M \text{ simple of type } \tau} N\) [note that it must be a direct sum of some submodules of type \(\tau\).] \(M_{\tau} \) is called the \underline{\(\tau\)-isotypic component}.
 
-        If \(M = M_{\tau}\) then we say that \(M\) is \textit{isotypic of type \(\tau\).} 
+        If \(M = M_{\tau}\) then we say that \(M\) is \underline{isotypic of type \(\tau\).} 
     \end{definition}
 
     \begin{remark*}
@@ -626,9 +640,9 @@
     \end{proof}
 
     \begin{definition}
-        If we write \(M\in A\text{-Mod}^{\text{ss}}\) as \(M = \bigoplus_{i \in I} N_i\) where \(N_i\) are simple, then \(\ell_A(M) = \vert I \vert \) is called the \textit{length} of \(M\) (as an \(A\)-module).
+        If we write \(M\in A\text{-Mod}^{\text{ss}}\) as \(M = \bigoplus_{i \in I} N_i\) where \(N_i\) are simple, then \(\ell_A(M) = \vert I \vert \) is called the \underline{length} of \(M\) (as an \(A\)-module).
         
-        The \textit{length of a semisimple algebra \(A\)} is by definition \(\ell_A(A_\ell)\).
+        The \underline{length of a semisimple algebra \(A\)} is by definition \(\ell_A(A_\ell)\).
 
         Given a simple module \(N\) of type \(\tau\) we also use the notation:
 
@@ -695,11 +709,11 @@
         A module \(M\) is called:
 
         \begin{enumerate}[label=\roman*)]
-            \item \textit{Noetherian} if every non-empty subset of submodules of \(M\) has a maximal element.
-            \item \textit{Artinian} if every non-empty subset of submodules of \(M\) has a minimal element. 
+            \item \underline{Noetherian} if every non-empty subset of submodules of \(M\) has a maximal element.
+            \item \underline{Artinian} if every non-empty subset of submodules of \(M\) has a minimal element. 
         \end{enumerate} 
 
-        An algebra \(A\) is called \textit{artinian} (resp. \textit{artinian}) if \(A_\ell\) is noetherian (resp. artinian).
+        An algebra \(A\) is called \underline{artinian} (resp. \underline{artinian}) if \(A_\ell\) is noetherian (resp. artinian).
     \end{definition}
 
     \begin{remark}
@@ -814,7 +828,7 @@
     \begin{remark*}
         The study of Semisimple Algebras has very little overlap with Commutative Algebras, namely finite product of fields.
 
-        There is a generalization: \textit{Azumaya algebras}.
+        There is a generalization: \underline{Azumaya algebras}.
 
         Goro Azumaya: IU (1968-1992)
     \end{remark*}
@@ -825,7 +839,7 @@
 
         \begin{enumerate}[label=\roman*)]
             \item \(M\) is both artinian and noetherian.
-            \item \(M\) has a \textit{composition series}: a chain of submodules:
+            \item \(M\) has a \underline{composition series}: a chain of submodules:
             
             \[
                 M = M_n \supsetneq M_{n-1} \supsetneq \cdots \supsetneq M_0 \coloneqq 0
@@ -833,7 +847,7 @@
 
             where \(M_i / M_{i-1}\) is simple for \(1 \leq i \leq n [n=0 \text{ if } M = 0]\).
 
-            \(n\) is called the \textit{length of the composition series}.
+            \(n\) is called the \underline{length of the composition series}.
         \end{enumerate} 
     \end{proposition}
 
@@ -863,9 +877,9 @@
     \end{theorem}
 
     \begin{definition}
-        A module \(M\) is called of \textit{finite length} if \(M\) satisfies the equivalent conditions of 1.34.
+        A module \(M\) is called of \underline{finite length} if \(M\) satisfies the equivalent conditions of 1.34.
 
-        The length of any composition series is called \textit{the length of} \(M\), denoted by \(\ell(M)\).
+        The length of any composition series is called \underline{the length of} \(M\), denoted by \(\ell(M)\).
     \end{definition}
 
     \begin{remark*}
@@ -895,7 +909,7 @@
     \end{remark*}
 
     \begin{definition}
-        A module \(N\) is called \textit{indecomposable} if \(N\neq 0\) and \(N\) has no direct summand other than \(0\) and \(N\).
+        A module \(N\) is called \underline{indecomposable} if \(N\neq 0\) and \(N\) has no direct summand other than \(0\) and \(N\).
 
         i.e. We cannot write \(N = A \oplus B\) where \(A, B\) are non-zero submodules. For example, \(K^n\) in the previous example is indecomposable as an \(A\)-module.
     \end{definition}
@@ -1019,7 +1033,7 @@
     
     \section{Wedderburn Theory}
 
-    Recall: An algebra \(A\) is called \textit{simple} if \(A\) is non-zero and it has no ideals other than \(0\) and \(A\).
+    Recall: An algebra \(A\) is called \underline{simple} if \(A\) is non-zero and it has no ideals other than \(0\) and \(A\).
 
     Recall that by ideal we mean ideals that are both left and right ideals. There can be left ideals that are not right ideals and vice versa. Meaning, an algebra \(A\) being simple doesn't necessarily imply that the module \(A_\ell\) is simple.
 
@@ -1190,5 +1204,344 @@
 
         \(D\) and \(n\) are uniquely determined by \(A\).
     \end{theorem}
+
+    \begin{proof}
+        By the remark, \(A\) is semisimple. By 2.8 it is a product of fields \(K_1, \cdots , K_n\), all of which have finite degree \(/ K\).
+    \end{proof}
+
+    \(A\) semisimple \(\implies A \cong M_{n_1}(D_1) \times \cdots \times M_{n_r}(D_r)\).
+
+    \([D_1] \cdot [D_2] = [D_1 \otimes_K D_2] = [M_n(D_3)] = [D_3]\). 
+    
+    \section*{Thursday, 2/5/2026}
+    
+    \begin{remark*}
+        Prop 2.4: \(M_n(D)\) is simple.
+    \end{remark*}
+
+    \begin{notation*}
+        If \(K\) is a (skew) field then \([V:K] \coloneqq \dim_K(V)\).
+    \end{notation*}
+
+    \begin{theorem}
+        Let \(A\) be a simple artinian algebra, and let \(N\) be a simple \(A\)-module (unique upto isomorphism). Set \(D = \operatorname{End}_A(N)\) which is a division algebra.
+
+        \begin{enumerate}[label=\roman*)]
+            \item The canonical map \(A \to \operatorname{End}_D(N), a \mapsto a_N, a_N(x) = ax\), is an isomorphism, and \(r \coloneqq \dim_D(N)\) is finite and equal to \(\ell_A(A_\ell)\).
+            
+            Therefore, \(A \cong M_r(D^o)\). \(Z(A)\) is a field, isomorphic to \(Z(D)\).
+
+            \item If \(M\) is a non-zero f.g. \(A\)-module, then \(B = \operatorname{End}_A(M)\) is simple and artinian, and \(B\cong M_n(D)\), with \(D\) as in (i)and \(n = \ell_A(M)\). If \(K\) is a field and \(A\) is a \(K\)-algebra, then,
+            
+            \[
+                [M:K]^2 = [A:K][B:K]
+            \]
+
+            and all these dimensions are finite provided one of them is finite.
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        Step 1: 2.1 implies \(A\) is semisimple. 2.3 \(\implies \vert \mathcal{T} (A) = 1 \vert.\) Let \(N\) be a simple \(A\)-module, \(M\) a f.g. \(A\)-module. 1.19 \(\implies M\) is semisimple. \(\overset{1.32}{\implies} M \cong N^{\oplus n}\). \(n = \ell_A(M)\).
+
+        \(1.7 \implies B \coloneqq \operatorname{End}_A(M) \cong \operatorname{End}_A(N^n) \cong M_n(\operatorname{End}_A(N)) \overset{def}{=} M_n(D)\).
+
+        Thus \(B\) is simple and artinian.
+
+        Step 2: Apply Step 1 with \(M = A_\ell \cong N^{\oplus m}, m = \ell_A(A_\ell)\).
+
+        Step 1 \(\implies \operatorname{End}_A(A_\ell \cong M_m(\operatorname{End}_A(N))) = M_m(D)\).
+
+        Proposition 1.5 (HW1): \(\operatorname{End}_A(A_\ell) = A^o\).
+
+        \(\implies A\cong \operatorname{End}_A(A_\ell)^o \cong M_m(D)^o \overset{HW1}{\cong} M_m(D^o)\).
+        
+        Step 3: It remains to show: \(\boxed{m (= \ell_A(A_\ell)) = \dim_D (N) \eqqcolon r.}\)
+
+        Fix an isomorphism of \(A\)-modules \(\varphi : A_\ell \xrightarrow{\cong}N^{\oplus m}\).
+
+        Consider the diagram:
+
+        \[
+            \begin{tikzcd}
+                A \ar[r,"a \mapsto a_N"] \ar[d,"\alpha","1.5\implies\cong"'] & \operatorname{End}_D(N) \ar[d,"\beta", "1.7 \implies \cong"'] \\ \operatorname{End}_{A^o}(A^o_\ell) = \operatorname{End}_{\operatorname{End}_A(A_\ell)}(A_\ell^o) \ar[r,"\cong","\varphi^{\ast}"'] & \operatorname{End}_{\operatorname{End}_A(N^m)}(\underbrace{N^m}_{=N^{\prime} \text{ in 1.7}})
+            \end{tikzcd}
+        \]
+
+        \[
+            \varphi^{\ast} (\tau)(\underbrace{x}_{\in N^{\prime} = N^m}) = \varphi (\tau (\varphi ^{-1} (x))).
+        \]
+
+        Easy to check: this diagram is commutative.
+
+        Upshot: the canonical map \(A \to \operatorname{End}_D(N)\) is an isomorphism!
+
+        \(\implies \operatorname{End}_D(N)\) is artinian.
+
+        \(\implies \operatorname{End}_D(N)\) is artinian \(\underset{\text{easy (HW4)}}{\implies} [N:D] = \dim_D(N) < \infty\).
+        
+        \(\implies N \underset{D}{\cong} D^{\oplus r}\).
+
+        1.13 \(\implies \operatorname{End}_D(N)_\ell \underset{\text{as } \operatorname{End}_D(N) \text{-modules} }{\cong} N^r \).
+
+        In the other hand, \(\operatorname{End}_D(N)_\ell \cong M_n(D^o) \cong \operatorname{End}_D(D)\).
+        
+        Therefore, \(r = \dim_D(N) = \ell_A(A_\ell) = m\).
+        
+        Consider again \(A \xrightarrow{\cong} \operatorname{End}_D(N) \cong M_r(D^o)\).
+
+        \(\implies Z(A) \xrightarrow{\cong} Z(M_r(D^o)) \underset{\text{easy (HW4)}}{=} Z(D^o) = Z(D)\).
+        
+        Step 4: Let \(M\in A\text{-Mod}^{\text{f.g.}}\). Assume \(A\) is a \(K\)-algebra. Write \(M = N^n\).
+
+        Then, \([M:K] = n[N:K] = n[N:D][D:K] = nr [D:K]\).
+
+        i \(\implies [A:K] = r^2 [D:K]\).
+
+        Step 1 \(\implies [B:K] = n^2[D:K]\).
+
+        This shows the formula.
+
+    \end{proof}
+
+    \begin{theorem}
+        Suppose \(D_1, D_2\) are division algebras and \(M_r(D_1) \cong M_s(D_2)\) as rings. Then \(r=s\) and \(D_1 \cong D_2\).
+    \end{theorem}
+
+    \begin{proof}
+        Step 1: Suppose \(N, N^{\prime}\) are \(A\)-modules over \(A\) (any algebras). Then any isomorphism f\(: N \to N^{\prime}\) of \(A\)-modules induces an isomorphism of rings \(\operatorname{End}_A(N) \to \operatorname{End}_A(N^{\prime})\) given by \(\tau \mapsto f \circ \tau \circ f ^{-1}\).
+
+        Step 2: If \(g: A \to A^{\prime}\) is an isomorphismm of simple artinian algebras, and \(N\in A\text{-Mod}\) and \(N^{\prime} \in A^{\prime}\text{-Mod}\) are simple, then \(a \cdot x^{\prime} \eqqcolon g(a) \cdot x^{\prime}\) gives \(N^{\prime}\) the structure of an \(A\)-module. Since \(g\) is an isomorphism, \(N^{\prime}\) becomes a simple \(A\)-module. \(2.3 \implies N^{\prime} \cong N\) as \(A\)-modules. 
+
+        Step 1 \(\implies \operatorname{End}_A(N) \cong \operatorname{End}_A(N^{\prime}) = \operatorname{End}_{A^{\prime}}(N^{\prime})\) immediately.
+
+        Step 3: \(D\) division algebra \(\underset{1.13}{\implies} D^r\) is a simple module over \(A\coloneqq \operatorname{End}_D(D^r) (\cong M_n(D^o))\) and \(\operatorname{End}_{M_r(D^o)}(D^r) \underset{1.8}{\cong} D\).
+
+        Now suppose \(M_r(D_1) \cong M_s(D_2)\).
+
+        HW1 \(\implies M_r(D_1^o) \underset{\text{HW1}}{\cong} M_n(D_1)^o \cong M_s(D_2)^o \underset{\text{HW1}}{\cong} M_s(D_2^o)\).
+        
+        \(N \coloneqq D_1^r\) is a simple \(M_r(D_1^o)\)-module.
+
+        \(N^{\prime} \coloneqq D_2^s\) is a simple \(M_s(D_2^o)\)-module.
+
+        Step 2\(\implies D_1 \underset{(\ast)}{\cong} \operatorname{End}_{M_r(D_1^o)} (N) \cong \operatorname{End}_{M_s(D_2^o)}(N^{\prime}) \underset{(\ast)}{\cong} D_2 \).
+
+        Step 4: If \(A \coloneqq M_r(D) \underset{\text{rings}}{\cong} M_s(D) \eqqcolon B\) then \(r = \ell_A(A_\ell) = \ell_B(B_\ell) = s\). 
+    \end{proof}
+
+    \begin{proof}
+        [Proof of Wedderburn's Theorem] Combine 2.12 and 2.13.
+    \end{proof}
+
+    \begin{corollary}
+        \begin{enumerate}[label=\roman*)]
+            \item A simple algebra \(A\) is artinian if and only if \(A^o\) is artinian, in which case \(\ell_A(A_\ell) = \ell_{A^o}(A_\ell^o)\).
+            \item \(A\) is semisimple if and only if \(A^o\) is semisimple, in which case \(\ell_A(A_\ell) = \ell_{A^o}(A^o_\ell)\). 
+        \end{enumerate} 
+    \end{corollary}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(A\) simple artinian \(\underset{2.13}{\implies} A \cong M_n(D) \implies A^o \cong M_n(D^o)\).
+            \item follows from 2.6 and (i).
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{corollary}
+        A unital associative algebra \(A\) is semisimple if and only if \(A \cong M_{n_1}(D_1) \times \cdots \times M_{N_r}(D_r)\) where \(D_1 , \cdots , D_r\) are division algebras and \(n_1, \cdots , n_r\) and the isomorphism classes of \(D_r, \cdots , D_r\) are uniquely determined upto permutation. 
+    \end{corollary}
+
+    \section*{Tuesday, 2/10/2026}
+    
+    An immediate consequence of corollary 2.15 is as follows:
+
+    \begin{theorem}
+        [HW4] A finite dimensional \(K\)-algebra \(A\) is simple if and only if it is isomorphic to \(M_n(D)\) [as \(K\)-algebras] where \(D\) is a finite dimensional division algebra over \(K\).
+
+        One also has \(Z(A) \underset{\text{HW}}{=} Z(D)\).
+    \end{theorem}
+
+    Then, \(\dim_K(A) = n^2 \cdot \dim_K(D)\).
+
+    Another easy consequence:
+
+    \begin{theorem}
+        If \(K\) is algebraically closed and \(A\) is a finite dimensional simple \(K\)-algebra, then \(A \cong M_n(K)\) as \(K\)-algebras for some \(n > 0\).
+    \end{theorem}
+
+    \begin{corollary}
+        Let \(A\) be an algebra over an algebraically closed field \(K\), and let \(M\) be a simple \(A\)-module satisfying \([M : K] < \infty\).
+
+        Then, the canonical map \(K \to \operatorname{End}_A(M), \lambda \mapsto \lambda \cdot \operatorname{id}_{M}\) is an isomorphism, and \(A \to \operatorname{End}_K(M), a \mapsto a_M\) is surjective.
+
+        If \(A\) is commutative, we have \([M:K] = 1\).
+    \end{corollary}
+
+    \begin{proof}
+        HW5.
+    \end{proof}
+
+    \begin{definition}
+        Two simple artinian \(R\)-algebras \(A, B\) are called \underline{similar} if there exists an \(R\)-division algebra \(D\) and \(R\)-algebra isomorphisms \(A \cong M_n(D)\) and \(B\cong M_m(D)\). 
+    \end{definition}
+
+    \begin{notation*}
+        \(A \underset{R}{\sim} B \iff A\) and \(B\) are similar.
+    \end{notation*}
+
+    \begin{remark*}
+        \begin{enumerate}[label=\arabic*)]
+            \item \(A \underset{R}{\cong} B \implies A \underset{R}{\sim} B\).
+            \item \(A \underset{R}{\sim} B\) and \(\ell_A(A) = \ell_B(B) \implies A \underset{R}{\cong} B\).
+            \item \(\underset{R}{\sim}\) is an equivalence relation.
+            \item \(A \underset{R}{\sim} B \implies Z(A) = Z(B)\).
+        \end{enumerate} 
+    \end{remark*}
+
+    General convention: \(K\) is always considered a field. \(K\)-Alg \(=\) category of unital associative \(K\)-algebras.
+
+    \begin{definition}
+        Let \(A\in K\text{-Alg}\). \(A\) is called:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \underline{central} if \(Z(A) = K\).
+            \item \underline{central simple} if \(A\) is central, simple, and \([A:K] < \infty\).
+            \item \(\operatorname{CSA}(K) = \) category of central simple \(K\)-algebras with \(K\)-algebra homomorphisms as morphisms.
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{remark*}
+        Let \(A\in K\text{-alg}\)
+
+        \(A \in \operatorname{CSA}(K) \iff A \cong M_n(D)\) with \(D\in \operatorname{CSA}(K)\) \([D:K] < \infty , Z(D) = K\).
+    \end{remark*}
+
+    \begin{definition}
+        A set of \underline{similarity} classes of central simple \(K\)-algebras is called the \underline{Brauer Group} of \(K\), denoted \(\operatorname{Br}(K)\).
+    \end{definition}
+
+    We thus have \(\operatorname{Br}(K) =\) set of \(K\)-isomorphism classes of central simple \(K\)-division algebras.
+
+    \begin{remark*}
+
+        \begin{enumerate}[label=\arabic*)]
+            \item  Richard Brower, 1901-1977. Kentrucky, Toronoto, Michigan, Harvard. Visited E. Artin in Bloomington in 1941.
+            \item \(\operatorname{Br}(K)\) is indeed a set: \(A \hookrightarrow \operatorname{End}_K(A) \cong M_n(K), n = [A:K]\).
+            \item We write \([A]\) for an object in \(\operatorname{Br}(K)\) represented by \(A\in \operatorname{CSA}(K)\).
+        \end{enumerate} 
+
+    \end{remark*}
+
+    \underline{Towards the group structures of \(\operatorname{Br}(K)\):}
+
+    \underline{Convention}: \(\otimes = \otimes_K\).
+
+    \begin{proposition}
+        Let \(A\) be a \(K\)-algebra.
+
+        \begin{enumerate}[label=\roman*)]
+            \item Setting \((a \otimes b) \cdot x = axb, a,b,x\in A\) gives \(A\) the structure of a module over \(A \underset{\otimes}{K} A^0\).
+            \item \(A\) is a simple \(K\)-algebra \(\iff A\) is a simple \(A \otimes A^o\)-module.
+            \item \(\operatorname{End}_{A \otimes_K A^o}(A) = Z(A)\).
+            \item If \(B \subset A\) is a \(K\)-subalgebra, then \(B \otimes_K A^o \subset A \otimes_K A^o\) is a subalgebra, and:
+            
+            \[
+                \operatorname{End}_{B \otimes_K A^o}(A) = Z_A(B) = \left\{ a\in A : \forall b\in B: ab = ba \right\}\;.
+            \]
+
+            is called the \underline{centralizer of \(B\) in \(A\)}.
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Immediate.
+            \item A \(A \otimes A^o\)-submodule of \(A\) is an ideal and vice versa.
+            \item is a consequence of iv.
+            \item Consier the map \(Z_A(B) \to \operatorname{End}_{B \otimes A^o}(A)\) given by \(a \mapsto \varphi_a, \varphi_a(x) = ax\). The map in the other direction is given by \(\varphi(1) \mapsfrom \varphi\).  
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        Let \(A,B \in K\)-alg, \(A^{\prime} \subset A, B^{\prime} \subset B\) subalgebras.
+
+        Then the map \(Z_A(A^{\prime}) \otimes_K Z_B(B^{\prime}) \to Z_{A \otimes B} (A^{\prime} \otimes B^{\prime})\) given by \(a \otimes b \mapsto a \otimes b\) where \(a\in Z_A(A^{\prime}), b\in Z_B(B^{\prime})\) is an isomorphism of \(K\)-algebras.
+    \end{proposition}
+
+    \begin{proof}
+        Let \((a_i)_{i\in I}\) be a \(K\)-basis of \(A\), and \(z\in Z_{A \otimes B}(A^{\prime} \otimes B^{\prime})\).
+
+        Write \(z = \sum_{i} a_i \otimes b_i\) with uniquely determined \(b_i\).
+
+        Given \(b\in B^{\prime}\), we find that \(\sum_{i} a_i \otimes (bb_i) = (1 \otimes b) z = z (1 \otimes b) = \sum_{i} a_i \otimes (b_i b)\).
+        
+        By uniqueness, \(\forall i, bb_i = b_i b\). Therefore, \(\forall i, b_i \in Z_B(B^{\prime}).\) It follows that \(z \in A \otimes Z_B(B^{\prime})\).
+
+        We can apply the same argument with a \(K\)-basis of \(B\) implies that \(Z \in Z_A(A^{\prime}) \otimes_K B\).
+
+        Then, \(z\in A \otimes_K Z_B(B^{\prime}) \cap Z_A(A^{\prime}) \otimes_K B = Z_A(A^{\prime}) \otimes_K Z_B(B^{\prime})\).
+    \end{proof}
+
+    \begin{remark*}
+        The tensor product of simple algebras need not be simple.
+
+        \(\mathbb{C}\) is a simple \(\mathbb{R}\)-algebra. However, \(\mathbb{C} \otimes_\mathbb{R} \mathbb{C} \cong \mathbb{C} \times \mathbb{C}\) as \(\mathbb{R}\)-algebras.
+    \end{remark*}
+
+    \begin{theorem}
+        Let \(A,B \in K\)-Alg be simple and suppose at least one of them is central.
+
+        Then, \(A \otimes_K B\) is simple.
+    \end{theorem}
+
+    \begin{proof}
+        WLOG suppose \(Z(A) = K\). Let \(T \subset A \otimes B\) be any (two-sided by default) ideal.
+
+        \underline{Claim}: \(T = A \otimes I\), where \(I = T \cap B\) [where we think of this \(B\) as \(K \otimes_K B \subset A \otimes_K B\).]
+
+        \underline{Proof of Claim}: Let \(t\in T\) and write \(t = \sum_{i=1}^n x_i \otimes y_i\), where \(\{ x_1, \cdots , x_n \} \) is linearly independent over \(K\).
+
+        Set \(\mathscr{M} = A, \mathscr{A} = A \otimes_K A^o\) and \(\mathscr{C} = \operatorname{End}_{\mathscr{A}} (\mathscr{M}) = \operatorname{End}_{A \otimes A^o}(A) \overset{2.19}{=} Z(A)= K\).
+
+        Apply Jacobson's Density Theorem to \(\mathscr{A} = A \otimes A^o \to \operatorname{End}_{\mathscr{C}}(\mathscr{M}) = \operatorname{End}_K (A)\) and choose \(f_i \in \operatorname{End}_K(A)\) such that \(f_i(x_j) = \delta_{ij} 1_A\), which exists since \(x_1, \cdots , x_n\) are linearly independent.
+
+        1.26 \(\implies \exists \alpha \in \mathscr{A} = A \otimes A^o\) such that \(\alpha_i \cdot x_j = \delta_{ij}1_A\).
+
+        Consider \(A \otimes_K B\) as a module over \(A \otimes A^o\) by \((a_1 \otimes a_2) (\underset{\in A}{x} \otimes \underset{\in B}{y})= (a_1 x a_2) \otimes y\).
+        
+        Note that \((a_1 \otimes a_2)(x \otimes y) = (a_1 \otimes 1) (x \otimes y) (a_2 \otimes 1)\). Then, if we have a two-sided ideal of \(A \otimes_K B\), it would be stable under the action of \(A \otimes A^o\).
+
+        \(\implies T\) is an \(A \otimes A^o\)-submodule of \(A \otimes B\).
+        
+        Therefore, \(\alpha_i \cdot t = \sum_{j} (\alpha_i \cdot x_j) \otimes y_j = 1_A \otimes y_i \in T \cap (K \otimes_K B) = T \cap B = I\).
+
+        It follows that \(A \otimes I \supset T \supset A \cdot \underset{\subset T}{I}  = (A \otimes K) \cdot (K \otimes_K I)\). 
+
+        Therefore \(T = A \otimes I\).
+
+    \end{proof}
+
+    \begin{remark*}
+        \(I = T\cap B\) is a \(2\)-sided ideal in \(B\).
+
+        \(B\) simple \(\implies I = 0\) or \(I = B \implies T = A \otimes 0 = 0\) or \(T = A \otimes B\). 
+    \end{remark*}
+
+    \begin{proposition}
+        \(A, B \in K\)-Alg.
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(A \otimes B\) simple \(\implies A\) \underline{and} \(B\) are simple.
+            \item \(A \otimes B\) artinian \(\implies A\) and \(B\) are artinian.
+            \item If \([A : K] < \infty\) and \(B\) is artinian, then \(A \otimes B\) is artinian. 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        i and ii are easy.
+
+        iii) Let \([A:K] = n\). Since \(A\) is finite dimensional, as a left \(B\)-module, \(A \otimes_K B \cong K^n \otimes_K B\). But this is isomorphic to \(B^n\) as a left \(B\)-module, which implies that it must be artinian by corollary 1.31. 
+    \end{proof}
 
 \end{document}
