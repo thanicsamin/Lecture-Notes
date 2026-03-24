@@ -35,6 +35,7 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem*{notation*}{Notation}
 \newtheorem*{example*}{Example}
+\newtheorem*{convention*}{Convention}
 
 
 \title{M503 Non-Commutative Algebra}
@@ -1543,5 +1544,1044 @@
 
         iii) Let \([A:K] = n\). Since \(A\) is finite dimensional, as a left \(B\)-module, \(A \otimes_K B \cong K^n \otimes_K B\). But this is isomorphic to \(B^n\) as a left \(B\)-module, which implies that it must be artinian by corollary 1.31. 
     \end{proof}
+    
+    \section*{Thursday, 2/12/2026}
+
+    Rings \(R\) and \(S\) are called \underline{Monta equivalent} if \(R\)-mod and \(S\)-mod are equivalent as additive categores.
+
+    Action \(D \curvearrowright V\) gives us a corresponding action \(M_n(D) \curvearrowright V^n\).
+    
+    Functor \(D\)-Mod \(\to M_n(D)\)-Mod, \(V \rightsquigarrow V^{\oplus n}\) is an equivalence of additive categories.
+    
+    If \(A, B \in \operatorname{CSA}(K)\) and are \(K\)-Monta equivalent theb \(A\) and \(B\) are similar as \(K\)-algebras.
+
+    \[
+        A \otimes_K B \underset{B\text{-module}}{\cong} K^n \otimes_K B \cong B^{\oplus n}\;.
+    \]
+    
+    \begin{proposition}
+        \(A, B \in K\)-Alg simple artinian. If at least one of them is f.d. over \(K\) and at least one of them is central, then \(C = A \otimes_K B\) is simple and artinian. 
+    \end{proposition}
+
+    \begin{proof}
+        2.21 \(\implies C\) is simple.
+
+        2.22(iii) \(\implies C\) is artinian.
+    \end{proof}
+
+    \begin{theorem}
+        \(A, B \in \operatorname{CSA}(K) \implies C\coloneqq A \otimes_K B \in \operatorname{CSA}(K)\).
+    \end{theorem}
+
+    \begin{proof}
+        \(A, B\) simple (and artinian) \(\implies C\) is simple.
+
+        \([C:K] = [A:K][B:K] < \infty\).
+
+        \(Z(C) \underset{2.20}{=} Z(A) \otimes_K Z(B) = K \otimes_K K \xrightarrow{\cong} K\) by \(a \otimes b \mapsto ab\).
+    \end{proof}
+
+    \begin{proposition}
+        \(A \in \operatorname{CSA}(K) \implies\) the canonical map \(A \otimes_K A^o \to \operatorname{End}_K (A), a \otimes b \mapsto [x \mapsto axb]\), is an isomorphism of \(K\)-algebras. Hence, \(A \otimes_K A^{\prime} \cong M_n(K), n = [A:K]\). In particular, \([A \otimes_K A^o] = [K]\).
+    \end{proposition}
+
+    \begin{proof}
+        2.24 [\(A^o \in \operatorname{CSA}(K)\)]  implies \(A \otimes_K A^o\) simple \(\implies \ker (\gamma)\) is a \(2\)-sided ideal and \(\gamma \neq 0 \implies \ker (\gamma) = 0\).
+
+        Comparing dimensions, we see \(\gamma\) is an isomorphism.
+    \end{proof}
+
+    \begin{proposition}[Definition of Base Change]
+        Let \(A\in K\)-Alg and \(L / K\) a field extension. Then \(A_L = L \otimes_K A\) is an \(L\)-algebra, called the \underline{base change} of \(A\) to \(L\).
+
+
+        \begin{enumerate}[label=\roman*)]
+            \item \([A_L : L] = [A:K]\).
+            \item \(Z(A) = K \underset{2.20}{\implies} Z(A_L) = L\).
+            \item If \(A\) is simple and \(Z(A) = K\) then \(A_L\) is simple.
+            \item \(A\in \operatorname{CSA}(K) \implies A_L \in \operatorname{CSA}(L)\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    Note that:
+
+    \[
+        \left( \bigoplus_{i\in I} V_i \right) \otimes_K W \cong \bigoplus_{i\in I} \left( V_i \otimes_K W \right) \;.
+    \]
+
+    \[
+        K \otimes_K V \xrightarrow{\cong} V, \quad \lambda \otimes v \mapsto \lambda v \;.
+    \]
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(A \underset{K\text{-v.s.}}{\cong} K^{(I)} \implies A \otimes_K L \cong K^{(I)} \otimes_K L \cong (K \otimes_K L)^{(I)}\cong L^{(I)}\).
+            
+            \((e_i)_{i\in I}\) basis of \(A\) as \(K\)-v.s. \(\implies (a_i \otimes 1)_i\) is a basis of \(A \otimes_K L\) as \(L\)-v.s.
+
+            \item[iii)] \(2.21 \implies A \otimes_K L\) is simple.
+            
+            \item[iv)] \(\impliedby\) i, ii, iii.
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{corollary}
+        \(A \in \operatorname{CSA}(K) \implies [A:K]\) is a square.
+    \end{corollary}
+
+    \begin{proof}
+        Let \(C / K\) be an algebraically closed field. Then \(A \otimes_K C \in \operatorname{CSA}(C) \implies A \otimes_K C \underset{HW4}{\cong} M_n(C) \implies n^2 = [A_C : C] = [A:K]\).
+    \end{proof}
+
+    \begin{corollary}
+        [Definition of Reduced Degree]
+        If \(D\) is a \(K\)-division algebra with \(Z(D) = K\), then \([D:K]\) is infinite or a square. In the latter case we set \(s(D) = \sqrt{[D:K]}\) and call it the Schur index of \(D\).
+
+        If \(A \in \operatorname{CSA}(K)\) and \(A \sim_K D\) then \(s(A) \coloneqq s(D)\). 
+    \end{corollary}
+
+    \begin{remark*}
+        If \(A\in \operatorname{CSA}(K)\) then by Wedderburn \(A \cong_K M_r(D)\).
+
+        \(\implies [A:K] = r^2 \cdot [D:K] = r^2 s^2, s = S(D) = s(A)\).
+
+        \(n \coloneqq \sqrt{[A:K]} = r \cdot s\) is called the \underline{reduced} degree of \(A\). 
+    \end{remark*}
+
+    \begin{theorem}
+        The binary operation \([A] \cdot [B] = [A \otimes_K B]\) on \(\operatorname{Br}(K)\) is well defined and gives \(\operatorname{Br}(K)\) the structure of an abelian group with identity element \([K]\) and the inverse of \([A]\) is \([A^o]\).
+    \end{theorem}
+
+    \begin{proof}
+        There are canonical isomorphism of \(K\)-algebras:
+
+        \[
+            A \otimes_K B \xrightarrow{\cong} B \otimes_K A ; \quad a \otimes b \mapsto b \otimes a \;.
+        \]
+
+        and
+
+        \[
+            (A \otimes_K B) \otimes_K C \xrightarrow{\cong} A \otimes (B \otimes C) ; \quad (a \otimes b) \otimes c \mapsto a \otimes (b \otimes c)\;.
+        \]
+
+        We note: \(M_n(E) \underset{K\text{-algs}}{\cong} M_n(K) \otimes_K E\) for any \(E \in K\)-Alg:
+        
+        \[
+            (a_{ij}) \mapsfrom \sum e_{ij} \otimes a_{ij}
+        \]
+
+        where \(e_{ij}\) is the elementary matrix: \(e_{ij} = (\delta_{ik}\delta_{jl})_{1 \leq k,l \leq n}\).
+
+        If \(A \cong M_n(D_1), B\cong M_m(D_2), D_1 \otimes_K D_2 \cong M_\ell(D_3)\) then,
+
+        \(A \otimes B \cong (M_n(K) \otimes D_1) \otimes (M_m(K) \otimes D_2)\)
+        
+        \(\cong (M_n(K) \otimes M_m(K)) \otimes (D_1 \otimes D_2)\)
+
+        \(\cong M_n(M_m(K)) \otimes M_\ell(D_3) \cong M_{nm}(K) \otimes M_{\ell}(K) \otimes D_3 \cong M_{mn\ell}(D_3)\).
+
+        Then \([D_1] \cdot [D_2] = [A \otimes B] = [D_3]\).
+
+        2.25 yields the inverse element.
+    \end{proof}
+
+    \begin{remark*}
+
+        \begin{enumerate}[label=\arabic*)]
+            \item (division algebra) \(\otimes\) (division algebra) in general is not a division algebra.
+
+            For example, \(D \otimes_K D^o \cong M_{[D : K]}(K)\) which is a division algebra if and only if \([D:K] = 1\), which happens when \(D = K\) a field.
+
+            \item \(\mathbb{H} \otimes_\mathbb{R} \mathbb{H} \cong \mathbb{H} \otimes_\mathbb{R} \mathbb{H}^o \cong M_4(\mathbb{R})\) by \(a + bi + cj + dk \mapsto a - bi - cj - dk\).
+            \item \(K\) algebraically closed implies \(\operatorname{Br}(K)\) is the trivial group.
+            \item \(\vert K \vert < \infty \implies \operatorname{Br}(K)\) is trivial.
+        \end{enumerate}  
+    \end{remark*}
+
+    \begin{proposition}
+
+        Let \(L / K\) be a field extension. Then the map:
+
+        \[
+            \operatorname{res}_{L / K} : \operatorname{Br}(K) \to \operatorname{Br}(L)
+        \]
+
+        \[
+            [A] \mapsto [A_L] (=A \otimes_K L)
+        \]
+
+        called the \underline{restriction map} is a group homomorphism.
+
+        If \(K \subset F \subset L\) then \(\operatorname{res}_{L / K} = \operatorname{res}_{L / F} \circ \operatorname{res}_{F / K}\).
+
+        We define \(\operatorname{Br}(L / K) \coloneqq \ker (\operatorname{res}_{L / K}) = \left\{ [A] \in \operatorname{Br}(K) : [A_L] = [L] \right\}\).
+        
+        When \([A] \in \operatorname{Br}(L / K)\) then we say that \(L\) is a \underline{splitting field} of \(A\), or that \(A\) \underline{splits over} \(L\).
+
+        \[
+            A \text{ splits over } L \iff A_L\cong M_n(L) \text{ as } L \text{-algebras.}  
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        \(\operatorname{res}_{L / K}\) is a homomorphism:
+
+        \[
+            (A \otimes_K B) \otimes_K L= A \otimes_K (B \otimes_K L) \cong A \otimes_K (L \otimes_L (B \otimes_K L)) = (A \otimes_K L) \otimes_L (B \otimes_K L)\;.
+        \]
+    \end{proof}
+
+    \begin{convention*}
+        In the beginning of a statement, `\(L / K\)' stands for `Let \(L\) be a field extension of \(K\)'.
+    \end{convention*}
+
+    \begin{proposition}
+        \(L / K, A \in \operatorname{CSA}(K)\).
+        
+        \begin{enumerate}[label=\roman*)]
+            \item \(s(A_L) \mid s(A)\). 
+            \item \(s(A_L) \iff [A] \in \operatorname{Br}(L / K)\).
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \(A\cong M_n(D), s(A) = s(D)\).
+
+        \(A_L \cong M_n(D_L), s(A_L) = s(D_L), D_L \cong M_m(D^{\prime})\).
+
+        \(\implies [D:K] = [D_L:L] = m^2[D^{\prime} : L]\)
+
+        \(\implies s(A)=s(D)=\sqrt{[D:K]} = ms(D^{\prime}) = ms(D_L) = ms(A_L)\).
+    \end{proof}
+
+    \begin{theorem}
+        [Centralizer Theorem]
+
+        Let \(A \in \operatorname{CSA}(K), B \subset A\) a simple \(K\)-subalgebra. Set \( C = Z_A(B)\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(C\) is a simple \(K\)-subalgebra of \(A\).
+            \item \(C\) is similar (as \(K\)-algebra) to \(B^{o} \otimes_K A\): \(C \sim_K B^o \otimes_K A\). Furthermore, \(Z(C) \cong Z(B^o \otimes_K A) \cong Z(B)\).
+            \item \(Z_A(Z_A(B)) = Z_A(C) = B\) [main assertion].
+            \item \([A:K] = [B:K][C:K]\).
+            \item If \(L = Z(B)\) then \(B \otimes_L C \sim_L A_L = A \otimes_K L\) as \(L\)-algebras.
+            \item If \(Z(B) = K\), then the map \(B \otimes_K C \to A\), \(b \otimes c \mapsto bc\) is an isomorphism of \(K\)-algebras.  
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{remark*}
+        2.32 is more generally true if we only assume:
+
+        \begin{itemize}
+            \item \(A\) is a simple artinian \(K\)-algebra with center \(K\).
+            \item \([B:K] < \infty\). 
+        \end{itemize} 
+    \end{remark*}
+
+    \section*{Tuesday, 2/17/2026}
+    
+    \begin{proof}
+        2.19 \(\implies \operatorname{End}_{B \otimes_K A^o}(A) = Z_A(B) = C\).
+        
+        Apply 2.12(ii): \(\mathscr{A} = B \otimes_K A^o\), which is simple by 2.21 and \(\mathscr{M} = A\) as an \(\mathscr{A}\)-module. Then \(\mathscr{M}\) is finitely generated [by \(1\)].
+
+        Then, \(\mathscr{B} = \operatorname{End}_{\mathscr{A}} (\mathscr{M}) = C\) is simple.
+
+        \(C\) is a subalgebra of \(A\) which is finite dimensional over \(K\). Thus, \(C\) is finite dimensional over \(K\). This proves (i).
+
+        Moreover, 2.12(ii) tells us that \(\mathscr{B}\) is similar, as \(K\)-algebra, to \(\mathscr{A}^o\).
+
+        i.e. \(C = \mathscr{B} \sim_K \mathscr{A}^o = (B \otimes A)^o = B^o \otimes_K A\) and \(Z(C) = Z(B^o \otimes_K A) = Z(B^o) \otimes_K Z(A) = Z(B)\), hence (ii). Furthermore, \([A:K]^2 \underset{2.12}{=} [\mathscr{A} : K] [\mathscr{B} : K] = [B:K][A:K][C:K] \implies [A:K] = [B:K][C:K]\), hence (iv). 
+
+        Set \(L = Z(B) \overset{ii}{=} Z(C) \implies B \otimes_L C \overset{\text{check!!!}}{\sim_L} B \otimes_L (B^o \otimes_K A) \cong (B \otimes_L B^o) \otimes_K A \sim L \otimes_K A = A_L\), hence (v).
+        
+        Set \(B^{\prime} = Z_A(C)\). Elements in \(B\) commute with \(C\),thus \(B \subset Z_A(C)\). \(C\) is simple (by (i)). Then apply part i on the theorem where we set \(A\) to be \(A\) and \(B\) to be \(C\). Then \(B^{\prime}\) must also be simple. iv \(\implies [B:K][C:K] = [A:K] = [C:K][B^{\prime}:K] \implies [B:K]=[B^{\prime}:K]\). 
+
+        This coupled with the fact that \(B \subset B^{\prime}\) implies \(B = B^{\prime}\), hence (iii).
+
+        Assume \(Z(B) = K\) and consider \(B \otimes_K C \xrightarrow{\gamma} A, a \otimes b \mapsto ab\). Note that \(2.21 \implies B \otimes_K C\) is simple, thus \(\ker (\gamma) = 0 \implies \gamma\) is injective. iv \(\implies \gamma\) is an isomorphism of \(K\)-algebras, hence (vi). 
+    \end{proof}
+
+    \begin{theorem}
+        Let \(A \in \operatorname{CSA}(K)\) and \(L \subset A\) a \(K\)-subalgebra which is a field. TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(L\) is a maximal commutative subalgebra, i.e. \(Z_A(L) = L\). 
+            \item  \([A:K] = [L:K]^2\).
+        \end{enumerate} 
+
+        If (i) or (ii) is satisfied, then \(A_L \sim_L L\), i.e. \(L\) is a splitting field of \(A\).
+    \end{theorem}
+
+    \begin{proof}
+        Apply the Centralizer Theorem (2.32) with \(B = L\) and \(C = Z_A(L)\).
+
+        iv \(\implies\) if \(L = Z_A(L)\) then we have \([A:K]=[B:K][C:K]=[L:K]^2\quad(\ast)\).
+        
+        Conversely, if \([B:K][C:K] = [L:K][C:K] = [A:K] = [L:K]^2 \implies [L:K][C:K]\). Hence, the inclusion \(L \subseteq C \implies L = C\). 
+        
+        By 2.32(v), \(L \otimes_L L = L \sim A \otimes_K L = A_L\).
+    \end{proof}
+
+    \begin{remark*}
+        Not every \(A \in \operatorname{CSA}(K)\) has a \(K\)-subalgebra \(L\) which is a field and satisfies 2.33(i) or (ii).
+
+        E.g. suppose \(K\) is algebraically closed and \(A = M_n(K)\) with \(n > 1\).
+    \end{remark*}
+
+    \begin{theorem}
+        Let \(D \in \operatorname{CSA}(K)\) which is a division algebra. Then \(D\) has maximal subfields, and any of them is a splitting field of \(D\).
+
+        For every maximal subfield \(L\) of \(D\), we have that \(K \subset L\), and \([L : K] = s(D)\).
+    \end{theorem}
+
+    \begin{proof}
+        A maximal subfield \(L\) of \(D\) is commutative, and contains \(K\) [consider the composite field \(K . L \supset L\).] Such maximal subfields exist since \([D:K] < \infty\).
+
+        Given such an \(L\) we have \(L \subseteq Z_D(L) \eqqcolon C\). For \(c\in C\), \(L[c] =\) smallest \(K\)-subalgebra of \(D\) containing \(L\) and \(c\) must be commmutative [since \(c\) commutes with alll elements of \(L\)], is finite dimensional, and still a subfield of \(D\).
+
+        [Any non-zero element \(d \in L[c]\) acts injectively by multiplication on \(L[c]\) since \(D\) is a division algebra. \([D:K] < \infty \implies [L[c] : K] < \infty \implies\) multiplication by \(d\) is surjective, hence \(d\) is invertible in \(L[c]\).]
+
+        However, maximality of \(L\) implies that \(L[c] = L\). Therefore, \(Z_D(L) = L\).
+
+        2.33 implies that \(L\) is a splitting field of \(D\).
+
+        2.33 also implies that \([L:K] = \sqrt{[D:K]} = s(D)\). 
+
+    \end{proof}
+
+    \begin{theorem}
+        \(\forall A \in \operatorname{CSA}(K), \exists\) splitting field \(L\) such that \([L:K] = s(A)\).
+    \end{theorem}
+
+    \begin{proof}
+        \(A \sim_K M_n(D)\). Now use 2.34 and \(s(A) = s(D)\), by definition.
+    \end{proof}
+
+    \begin{theorem}
+        Let \(A \in \operatorname{CSA}(K)\). If \(L / K\) is a splitting of \(A\) with \([L : K] < \infty\), then \(\exists A^{\prime} \in \operatorname{CSA}(K)\) such that \(A^{\prime} \sim_K A\) and \(L\) is a maximal commutative subalgebra of \(A^{\prime}\).
+    \end{theorem}
+
+    \begin{proof}
+        \(A_L \cong_L M_n(L) = \operatorname{End}_L(V), V = L^n\).
+
+        Note: \(A \hookrightarrow A \otimes_K L, a \mapsto a \otimes 1\). But \(A \otimes_K L \simeq \operatorname{End}_L(V) \hookrightarrow \operatorname{End}_K(V) \eqqcolon \mathscr{A} \in \operatorname{CSA}(K)\). \(\mathscr{A} \cong M_{nd}(K)\) where \(d = [L:K]\). \([V:K] = n[L:K]\).
+
+        Set \(\mathscr{B} \coloneqq A, \mathscr{C} \coloneqq Z_{\mathscr{A}} (\mathscr{B})\). Apply 2.32(ii).
+
+        \(\mathscr{C} \sim_K \mathscr{B}^o \otimes_K \mathscr{A} = A^o \otimes_K \operatorname{End}_K(V) \sim A^o\).
+
+        2.32(iv) implies that \([\mathscr{C} : K] = \frac{[\mathscr{A} : K]}{[\mathscr{B} : K]} = \frac{[V:K]^2}{[A:K]} = \frac{n^2 [L:K]^2}{[A_L : L]} = [L:K]^2\). 
+
+        Note: \(L \hookrightarrow \mathscr{A}, \lambda \mapsto [v \mapsto \lambda v]\) and elements in \(L\) commute with elements in \(\operatorname{End}_L(V)\), hence with elements in \(A\), this gives \(L \hookrightarrow Z_{\mathscr{A}}(\mathscr{B}) = \mathscr{C}\).
+
+        By 2.33, \(L\) is a splitting field of \(\mathscr{C}\).
+
+        \(\implies L\) is also a splitting field of \(\mathscr{C}^o \sim_K A\).
+
+        Take \(A^{\prime} \coloneqq \mathscr{C}^o\).
+    \end{proof}
+
+    \begin{theorem}
+        Let \(A \in \operatorname{CSA} (K)\) have Schur index \(s\).
+
+        If \(L / K\) is a splitting field of \(A\), then \(s \mid [L:K]\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item If \(L / K\) is a splitting field of \(A\), then \(s \mid [L:K]\).
+            \item \(A\) has splitting fields \(L\) where \([L:K] = s\).
+        \end{enumerate} 
+
+         The splitting fields of \(A\) of degree \(s\) over \(K\) are precisely those \(L / K\) which are \(K\)-isomorphic to a maximal subfield of a division algebra \(D \sim_K A\).
+        
+    \end{theorem}
+
+    \begin{proof}
+        Let \(L / K\) be a splitting field of \(A\) with \([L:K] < \infty\). Assume that \(A \sim_K D\).
+
+        2.36 \(\implies \exists r \geq 1\) such that \(L\) is a maximal commutative subalgebra of \(M_r(D)\).
+
+        2.33 \(\implies [L:K]^2 = r^2[D:K] \implies \frac{[L:K]}{s(D)} = r\), hence (i).
+
+        If \([L:K] = s\), \(r = 1\) and \(L \subset D\) is a maximal subfield.
+
+        Conversely, if \(L\) is isomorphic to a maximal subfield of \(D \sim_K A\), then by 2.34, \(L\) is a splitting field of \(D \implies L\) is a splitting field of \(A\), and \([L:K] \underset{2.34}{=} s(D) = s(A)\).
+    \end{proof}
+
+    \section*{Thursday, 2/19/2026}
+    
+    \begin{remark*}
+        In the proof of the centralizer theorem, we used (ii) \(C = Z_A(B) \sim_K B \otimes_K A^o.\)
+
+        In the proof of (v), we set \(L = Z(B) \cong Z(C)\) and used that \(L\) is simillar to \(B \otimes_K A^o\) as \(L\)-algebras.
+
+        This is indeed the case.
+
+    \end{remark*}
+
+    \begin{proposition}
+        \(A \in \operatorname{CSA}(K), L / K\) fiinite extension.
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(s(A) \mid [L:K]s(A_L)\).
+            \item If \(\operatorname{gcd}([L:K] , s(A)) = 1\), then \(s(A) = s(A_L)\).  
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Let \(E / L\) be a splitting field of \(A_L\) with \([E:L] = A_L\). \(E\) exists by 2.35.
+            
+            For some \(n\), \(M_n(E) \cong A_L \otimes_L E = (A \otimes_K L) \otimes_L E = A \otimes_K E \implies E\) is a splitting field of \(A\).
+
+            2.37 \(\implies s(A) \mid [E:K] = [E:L][E:K] = [L:K] s(A_L)\).
+
+            \item \(s(A) \mid s(A_L)\) by i. By 2.31: \(s(A_L) \mid s(A)\). Therefore, \(s(A) = s(A_L)\).
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{lemma}
+        Let \(D \in \operatorname{CSA}(K)\) be a division algebra. If \(s(D) > 1\) [i.e. \(D\) is not \(K\) itself], then \(D\) contains subfields \(E / K\) which are proper separable extensions of \(K\).
+    \end{lemma}
+
+    \begin{proof}
+        HW6.
+    \end{proof}
+
+    \begin{proposition}
+        Let \(D\in \operatorname{CSA}(K)\) be a division algebra. Among the maximal subfields of \(D\), there are some \(L\) which are separable over \(K\). Hence every \(A\in \operatorname{CSA}(K)\) has a splitting field \(L\) such that:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(L / K\) is separable.
+            \item \([L:K] = s(A)\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        Fields of characteristic \(0\) only have separable extensions, thus the statement is trivially true.
+ 
+        Suppose \(\operatorname{char} (K) = p > 0\). Let \(L \subset D\) be a subfield which is maximal among all separable extensions of \(K\).
+
+        WTS: \(L = Z_D(L)\). Then \(L\) is maximal among \underline{all} subfields of \(D\).
+        
+        Set \(C\coloneqq Z_D(L)\). Apply Centralizer theorem with the setting:
+
+        \[
+            A = D \quad B = L \quad C = C\;.
+        \]
+
+        Then \(Z(B) = Z(C) = Z(L) = L\).
+
+        Furthermore, \(C\) is simple \(\implies C \in \operatorname{CSA}(L)\) and \(C\) is a division algebra.
+
+        Claim: \(C\) cannot contain a separable extension \(E \supsetneq L\).
+
+        Such an \(E\) would be a separable extension of \(K\) which is strictly larger than \(L\). This contradicts the maximality of \(L\).
+
+        Now apply the lemma. 2.39 \(\implies C = L\). Hence \(L = Z_D(L)\) and thus a maximal subfield of \(D\).
+
+    \end{proof}
+
+    \begin{corollary}
+        Every \(A \in \operatorname{CSA}(K)\) has a splitting field which is a finite Galois exxtension. In particular,
+
+        \[
+            \operatorname{Br}(K) = \bigcup_{L / K \text{ finite Galois}} \operatorname{Br}(L / K).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        2.40 \(\implies \exists\) splitting field \(L_0 / K\) finite and separable. Let \(L\) be the normal closure of \(L_0\), which is finite, separable and hence Galois \(/ K\).
+    \end{proof}
+
+    Question: Does every division algebra \(D \in \operatorname{CSA}(K)\) have a maximal subfield \(L\) which is Galois over \(K\)?
+
+    Answer: No, in general (Amitsur, 1972). But certain fields (e.g. all locally compact fields) have the property that the answer is `yes'.
+
+    Goal: Understand \(\operatorname{Br}(L / K)\) for \(L / K\) \underline{finite Galois}.
+
+    \begin{theorem}
+        [Skolem-Noether]
+
+        Let \(A, B \in K\text{-Alg}\) be simple, and assume
+
+        \begin{itemize}
+            \item \(A\) is artinian and \(Z(A) = K\).
+            \item \([B:K] < \infty\). 
+        \end{itemize} 
+
+        Then, for any two \(K\)-algebra homomorphisms \(f,g : B \to A\), there exists \(u\in A^\times\) such that \(x\forall \in B: g(x) = u ^{-1} f(x) u\).
+
+    \end{theorem}
+
+    \begin{proof}
+        Consider \(\mathscr{A} = A \otimes_K B^o\) which is simple by 2.21, and artinian by 2.22.
+
+        Define on \(A\) two \(\mathscr{A}\)-module structures:
+
+        \[
+            A_f : (\underset{\in A}{a} \otimes \underset{\in B^o}{b}) \underset{f}{\cdot} \underset{\in A}{x} = ax f(b)\;. 
+        \]
+
+        \[
+            A_g : (\underset{\in A}{a} \otimes \underset{\in B^o}{b}) \underset{g}{\cdot} x = a x g(b)\;.
+        \]
+
+        Note: \(A_f\) and \(A_g\) are generated by \(1_A\) as \(\mathscr{A}\)-modules.
+
+        Let Let \(\mathscr{N}\) be a simple \(\mathscr{A}\)-module.
+
+        By 2.3: \(\mathscr{N}\) is up to isomorphism the only simple \(\mathscr{A}\)-module.
+
+        Hence \(A_f \cong_{\mathscr{A}} \mathscr{N}^m , A_g \cong_{\mathscr{A}} \mathscr{N}^n\).
+
+        Note: \(A \to \mathscr{A} , a \mapsto a \otimes 1\) is a \(K\)-Alg homomorphism.
+
+        \(A_f\) is finitely generated by \(1_A\) as an \(A\)-module. By projecting \(\mathscr{N}^m\) onto the first summand, we get \(\mathscr{N}\) which is finitely generated as an \(A\)-module.
+
+        \(A\) is semisimple and artinian, it is semisimple. Let \(N\) be a simple \(A\)-module. Then, \(\mathscr{N} \cong N^r\) as an \(A\)-module.
+
+        Therefore, \(rm = \ell_A(\underset{\cong N^{\oplus rm}}{\mathscr{N}^m}) = \ell_A(A_f) = \ell_A(A_g) = \ell_A(\mathscr{N}^n) = rn\).
+        
+        Therefore, \(m = n\).
+
+        Thus \(\exists \mathscr{A}\)-module isomorphism \(\varphi : A_f \xrightarrow{\cong} A_g\). Set \(u \coloneqq \varphi(1)\).
+
+        \[
+            ug(\underset{\in B}{x}) = \varphi (1) g(x) = (1 \otimes x) \underset{g}{\cdot} \varphi(1) = \varphi((1 \otimes x) \underset{f}{\cdot} 1) = \varphi (f(x))
+        \]
+        \[    
+            = \varphi(f(x) \cdot 1) = \varphi((f(x) \otimes 1) \underset{f}{\cdot} 1) = (f(x) \otimes 1) \underset{g}{\cdot} \varphi (1) = f(x) \varphi (1) \cdot 1 = f(x) u 
+        \]
+
+        Multiplying by \(u ^{-1} \) in the right, we see that \(u g(x) u ^{-1} = f(x)\), which is what we wanted.
+
+        Exercise: \(u \in A^\times\).
+
+    \end{proof}
+
+    \begin{definition}
+        Let \(A\) be an algebra. An \underline{inner automorphism} of \(A\) is an automorphism of the form \(x \mapsto u ^{-1} x u\) for some \(u \in A^\times\).
+    \end{definition}
+
+    \begin{theorem}
+        \(A \in \operatorname{CSA}(K), g \in \operatorname{Aut}_{K\text{-Alg}}(A) \implies g \) is inner.
+
+        Hence \(\operatorname{Aut}_{K \text{-Alg}}(A) \cong A^\times / K^\times\). 
+    \end{theorem}
+
+    \begin{proof}
+        Apply 2.42 with \(B=A , f = \operatorname{id}_{A}, g = g \implies \exists u\in A^\times : \forall x\in A: g(x) = u ^{-1} x u\).
+
+        Thus \(A^\times \to \operatorname{Aut}_{K\text{-Alg}}(A), u \mapsto [x \mapsto u x u ^{-1}]\) is surjective, and its kernel is \(K^\times\). 
+
+    \end{proof}
+
+    \begin{theorem}
+        Let \(A\in K\text{-Alg}\) be simple and artinian, \(Z(A) = K, B \subset A\) simple subalgebra, \([B:K] < \infty\).
+        
+        Let \(N = \{ u \in A^\times : u B u ^{-1} = B \}, C = Z_A(B)\).
+
+        Then the map \(N / C^\times \to \operatorname{Aut}_{K\text{-Alg}}(B), u C^\times \mapsto [x \mapsto u x u ^{-1}]\) is an isomorphism.
+    \end{theorem}
+
+    \begin{theorem}
+        [Wedderburn] Every finite division algebra is a finite field. Hence, \(\operatorname{Br}(K)\) is trivial if \(\vert K \vert < \infty\). 
+    \end{theorem}
+
+    \begin{proof}
+        [Sketch]
+
+        Let \(K = \mathbb{F}_q , D \in \operatorname{CSA}(K)\) a division algebra.
+
+        Let \(\mathscr{L} = \left\{ L \subset D : \text{maximal subfields} \right\} \).
+
+        Theorem 2.34 \(\implies \forall L \in \mathscr{L} : [L:K] = s(D) = s\).
+
+        Then, \(\forall L \in \mathscr{L}, L \cong \mathbb{F}_{q^s}\).
+
+        Fix \(L\in \mathscr{L}\).
+
+        Skolem-Noether \(\implies \forall L_1 \in \mathscr{L}, \exists u\in D^\times : u ^{-1} L u = L_1\).
+        
+        Note: \(\forall x \in D, \exists L_x \in \mathscr{L} : x \in L_x \implies D^\times = \bigcup_{u\in D^\times} u ^{-1} L^\times u\) 
+
+        Note: \(D^\times \twoheadrightarrow \mathscr{L}, u \mapsto u ^{-1} L u\).
+
+        \(N \coloneqq \operatorname{Stab}_{D^\times}(L) = \left\{ u \in D^\times : u ^{-1} L u \equiv  L \right\} \supset L^\times\).
+
+        \(m \coloneqq \vert \mathscr{L} \vert = \vert D^\times  \vert / \vert N \vert \leq \vert D^\times  \vert / \vert L^\times \vert\).
+
+        \(m \vert L^\times \vert = \vert \mathscr{L} \vert \vert L^\times \vert  = \bigsqcup_{L_1 \in \mathscr{L}} \vert L_1^\times \vert \underset{\text{if } m > 1}{>} \left\vert \bigcup_{L_1 \in \mathscr{L}} L_1^\times \right\vert = \vert D^\times \vert \)
+        
+        Therefore, \(m > \frac{\vert D^\times \vert}{\vert L^\times \vert}\).
+
+        This is a contradiction.
+
+    \end{proof}
+
+    \section*{Tuesday, 2/24/2026}
+    
+    \section*{Thursday, 2/26/2026}
+    
+    \section*{Tuesday, 3/3/2026}
+    
+    \section*{Thursday, 3/5/2026}
+
+    \section*{Tuesday, 3/10/2026}
+    
+    \section{for numbering}
+
+    \begin{theorem}
+        for numbering
+    \end{theorem}
+
+    \subsection*{Tensor Products of Representations}
+
+    Works for group algebras \(KG\) since these are Hopf algebras.
+
+    Let \((R,V)\) and \((S,W)\) be representations of \(G\).
+
+    Define \(R \otimes S \coloneqq T : G \to GL(V \otimes_K W)\) by:
+
+    \[
+        T(g)(v \otimes w) = R(g)v \otimes S(g) w\;.
+    \]
+
+    \[
+        \left( \sum a_g g \right) (v \otimes w) = \sum a_g \left( R(g) \cdot v \otimes S(g) \cdot w \right) \;.
+    \]
+
+    Reason why this works: \(KG \to KG \otimes_K KG, \sum a_g g \mapsto \sum a_g(g \otimes g)\) is a \(K\)-algebra homomorphism.
+
+    Examples:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Let \(G = \mathbb{Z} / n\mathbb{Z}\) and \(\chi_{\lambda_1} , \chi_{\lambda_2} : G \to \mathbb{C}^\times = GL(\mathbb{C})\), \(\overline{a} \mapsto \lambda_i^a\), \(\lambda_i^n = 1\).
+        
+        Then \(\chi_{\lambda_1} \otimes \chi_{\lambda_2} : \overline{a} \mapsto (\lambda_1 \lambda_2)^a\).
+
+        i.e. \(\chi_{\lambda_1} \otimes \chi_{\lambda_2} = \chi_{\lambda_1 \lambda_2}\).
+
+        \item \(K^3 = Ke_1 \oplus Ke_2 \oplus Ke_3\). Let \(L = K(e_1 + e_2 + e_3)\) and consider \(K^3 / L\).
+        
+        \(\mathscr{S}_3\) has a unique irreducible \(2\)-dimensional representation \(V\) over any field \(K\) of \(\operatorname{char}(K) \nmid 6 \implies \operatorname{sgn} \otimes V \cong V\).
+    \end{enumerate} 
+
+    \begin{lemma}
+        If \((R,V)\) and \((S,W)\) are finite dimensional \(G\)-reps, then \(\chi_{V \otimes W} = \chi_V \cdot \chi_W\).
+    \end{lemma}
+
+    \begin{proof}
+        Choose basis \(v_1 , \cdots , v_n\) of \(V\) and \(w_1 , \cdots ,w_m\) of \(W\).
+        
+        Then, \(R(g) \leftrightarrow \begin{bmatrix}
+            a_{11} (g) & \cdots & a_{n1} (g) \\
+            \vdots &  & \vdots \\
+            a_{1n} (g) & \cdots  & a_{nn} g \\
+        \end{bmatrix}, S(g) \cong \text{matrix} \in M_m(K)\).
+
+        Then action of \(R(g) \otimes S(g)\) on the basis \(v_1 \otimes w_1 , v_1 \otimes w_2 , \cdots , v_1 \otimes w_m , v_2 \otimes w_1, \cdots , v_2 \otimes w_m, \cdots , v_n \otimes w_1, \cdots , v_n \otimes w_m\) is given by:
+
+        \[
+            \begin{bmatrix}
+                \boxed{a_{11}(g) S(g)} & \cdots & \boxed{a_{1n}(g) S(g)} \\
+                \boxed{a_{21}(g) S(g)} & \cdots & \vdots \\
+                \vdots &  & \vdots \\
+                \boxed{a_{n1}(g) S(g)} & \cdots & \boxed{a_{nn}(g) S(g)} \\
+            \end{bmatrix} \;.
+        \]
+
+        Evidently, each box is \(m \times m\).
+
+        Then, the trace of this matrix is given by:
+
+        \[
+            a_{11} (g) \Tr(S(g)) + a_{22}(g) \Tr(S(g)) + \cdots + a_{nn}(g) \Tr (S(g)) = \chi_V(g) \cdot \chi_W(g)\;.
+        \]
+    \end{proof}
+
+    Example: If \(V, \operatorname{sgn}\) are the representations of \(\mathscr{S}_3\) in the example, then:
+
+    \[
+        \chi_V = \chi_{\operatorname{sgn} \otimes V} \overset{3.2}{=} \operatorname{sgn} \cdot \chi_V\;.
+    \]
+
+    Therefore, \(\forall\) transposition \(\tau\in \left\{ (12),(23),(13)\right\}\), \(\chi_V(\tau) = - \chi_V(\tau)\).
+    
+    We have assumed that the characteristic is not \(2\). Therefore, \(\chi_V(\tau) = 0\).
+
+    \begin{proposition}
+        Let \(G\) be a finite group of order \(n\).
+
+        For the character \(\rho = \chi_{KG}\) of \(G\) on \(KG\) (by left multiplication), we have:
+
+        \[
+            \rho(g) = \begin{dcases}
+                n \cdot 1_K, &\text{ if } g = 1_G ;\\
+                0, &\text{ otherwise} .
+            \end{dcases}
+        \]
+    \end{proposition}    
+
+    \begin{proof}
+        We have already seen:
+
+        \[
+            \Tr(1_G \mid V) = [V:K] \cdot 1_K\;.
+        \]
+
+        Write \(G = \{ g_1 , \cdots , g_n \}\). Then \(g_1 , \cdots , g_n\) is a \(K\)-basis of \(KG\). The multiplication-by-\(g\) map:
+
+        \[
+            \sum_{i=1}^n a_i g_i \mapsto \sum_{i=1}^n a_i \cdot (g g_i)\;.
+        \]
+
+        is given by a permutation matrix, the diagonal entries of which are only zeroes if \(g \neq 1_G\).
+
+        Indeed, the map is \(g_i \mapsto g g_i = g_{\pi(i)}\), where \(\pi\) is a non-trivial permutation. We can have a non-zero diagonal entry if and only if \(g g_i = g_i \implies g = 1_G\).
+        
+        Therefore, \(\chi_{KG}(g) = 0\).
+
+    \end{proof}
+
+    \begin{definition}
+        A function \(f: G \to K\) is called a \underline{class function} if it is constant on every conjugacy class of \(G\).
+
+        i.e. \(\forall g,h \in G: f(hgh ^{-1}) = f(g)\). We set:
+
+        \[
+            Z_K G = \left\{ f: G \to K \mid f \text{ is a class function}  \right\} \left( \subseteq K^G \right)\;.
+        \]
+
+        This is a \(K\)-algebra with pointwise addition and multiplication, and scalar multiplication: \((f_1 + f_2)(g) = f_1(g) + f_2(g), (f_1 \cdot f_2)(g) = f_1(g) \cdot f_2(g), (c \cdot f)(g) = cf(g)\).
+
+    \end{definition}
+
+    Example: If \(G\) has only finitely many conjugacy classes \(C_1 , \cdots , C_h\) [e.g. \(\vert G \vert < \infty\)], then:
+
+    \[
+        Z_K(G) \underset{K\text{-alg}}{\cong} \underbrace{K \times K \times \cdots \times K}_{h \text{ copies}}.
+    \]
+
+    Caution: If \(G\) is finite, then \(Z_K(G)\) can be considered as a subspace of \(KG\), but the multiplication is different.
+
+
+    Example: Let \(V\) be a finite dimensional representation of \(G\). Then, \(\chi_V : G \to K\) is a class function.
+
+    If \(\mathbf{1}\) is the trivial representation on \(K\) [every \(g\in G\) acts by \(1\)], then \(\chi_{\textbf{1}}(g) = 1\) for every \(g\in G\).
+    
+    \section*{Thursday, 3/12/2026}
+    
+    \begin{definition}
+        The \underline{character ring} \(X_K(G)\) consists of all functions \(f: G \to K\) such that \(\exists\) finite-dimensional / finite-degree representations \(V_1 , \cdots , V_n \in \operatorname{Rep}_K G^{\text{f.d.}}\) and integers \(a_1 , \cdots , a_n \in G\) such that:
+        
+        \[
+            f = a_1 \chi_{V_1} + \cdots + a_n \chi_{V_n} \;.
+        \]
+
+        Such functions are trivially class functions: recall that characters are trace functions, and \(\Tr(B A B ^{-1}) = \Tr (A)\).
+
+        Hence \(H_K G \subset Z_K G\), and we equip this abelian group with the induced ring structure (pointwise multiplication). It is indeed a ring, since lemma 3.2 states that \(\chi_V \cdot \chi_W = \chi_{V \otimes W}\).
+
+    \end{definition}
+
+    \begin{remark*}
+
+        Recall that \(\chi_{V_1} + \chi_{V_2} = \chi_{V_1 \oplus V_2}\).
+
+        We can then write such a sum \(f\) as follows:
+
+        \[
+            f = \sum_{a_i \geq 0} a_i \chi_{V_i} - \sum_{a_j < 0} (-a_j) \chi_{V_j} = \chi_{\bigoplus_{a_i \geq 0} V_i^{\oplus a_i}} - \chi_{\bigoplus_{a_j < 0} V_j^{\oplus (-a_j)}}\;.
+        \]
+
+        These \(f\in X_K G\) are called \underline{virtual characters} [or characters of virtual representation].
+    \end{remark*}
+
+    \begin{proposition}
+        missed?
+    \end{proposition}
+
+    \begin{proposition}
+        Any \(f\in X_K G\) is a class function.
+    \end{proposition}
+
+    \begin{proof}
+        Easy.
+    \end{proof}
+
+    \begin{lemma}
+        Suppose \(g\in G\) satisfies \(g^m\) for some \(m > 0\), and let \(V\in \operatorname{Rep}_K G^{\text{f.d.}}\).
+
+        Then \(\exists\) roots of unity \(\xi_1 , \cdots , \xi_d \in \overline{K}\) [which is the algebraic closure of \(K\)] such that \(\xi_1^d = \cdots =\xi_d^m = 1\) and \(\chi_V(g) = \xi_1 + \cdots + \xi_d\). 
+    \end{lemma}
+
+    \begin{proof}
+        Suppose the representation \(V\) is actually \((T,V)\). \(g^m = 1 \implies T(g)^m =\operatorname{id}_{V}\). Hence the minimal polynomial of \(T(g)\) divides \(t^m - 1\). Then, all eigenvalues \(\xi\) of \(T(g)\) in \(\overline{K}\) [which are the roots of the characteristic polynomial] are the roots of the minimal polynomial, hence they satisfy \(\xi^m = 1\).
+        
+        If \(\xi_1 , \cdots , \xi_d\) are the eigenvalues of \(T(g)\) in \(\overline{K}\) (with multiplicity), then, 
+        
+        \[
+            \chi_V(g) = \Tr(T(g)) = \xi_1 + \cdots + \xi_d\;.
+        \]
+    \end{proof}
+
+    \begin{definition}
+        Let \(T: A \to \operatorname{End}_K (V)\) be a representation of any \(A\in K\)-Alg.
+
+        \begin{enumerate}[label=\arabic*)]
+            \item For any field extension \(E / K\) we obtain a representation: \(T^E : A_E \coloneqq A \otimes_K E \to \operatorname{End}_E(V_E)\) by `scalar extension':
+            
+            \[
+                T^E(\underset{\in A}{a} \otimes \underset{\in E}{c})(\underset{\in V}{v} \otimes \underset{\in E}{c^{\prime}}) = T(a) \cdot v \otimes cc^{\prime}\;.
+            \]
+
+            \((T^E , V_E = V \otimes_K E)\) is called the \underline{base change} of \((T,V)\) to \(E\).
+
+            Note: When \([V:K] < \infty\), then \(\chi_{T^E}(a \otimes 1) = \chi_T(a)\) for all \(a\in A\).
+
+            Example: \(\operatorname{char} (K) = p, g^p = 1 \implies \chi_V(g) = [V:K] \cdot 1_K\).
+
+            Notation: We set \(\chi_T^E \coloneqq \chi_{T^E}\).
+
+            \item \(T: A \to \operatorname{End}_K(V)\) is called \underline{absolutely irreducible} [abs. irred.] if \((T^E, V_E)\) is irreducible for every field extension \(E / K\).
+            
+            Character \(\chi_T\) is called \underline{abs. irred.} if \(T\) is absolutely irreducible.
+
+        \end{enumerate} 
+    \end{definition}
+
+    Examples:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item Every \(1\)-dimensional representation is absolutely irreducible.
+        \item Any irreducible representation of \(\mathscr{S}_3\) over any field \(K\) of \(\operatorname{char}(K) \neq 2,3\) is absolutely irreducible [HW8: list of irreducible representations is \(\mathbf{1}, \operatorname{sgn},\) unique (up to isomorphism) \(2\)-dimensional representations. These stay irreducible after base change].
+        
+        Analogous statement is true for \(\mathscr{S}_n\) in general, condition is \(\operatorname{char}(K) \nmid n!\).
+        \item \(G = \mathbb{Z} / n\mathbb{Z}, n \geq 3, \rho : G \to \operatorname{GL}_2(\mathbb{R}), \overline{a} \mapsto \begin{bmatrix}
+            \cos \frac{2 \pi a}{n} & - \sin \frac{2 \pi a}{n} \\
+            \sin \frac{2 \pi a}{n} & \cos \frac{2\pi a}{n}\\
+        \end{bmatrix} = T_1(\overline{a})\) is not absolutely irreducible: \(\rho^\mathbb{C} \cong \chi_{\xi_n} \oplus \chi_{\xi_n ^{-1}}, \chi_n = e^{\frac{2\pi i}{n}}\).
+    \end{enumerate} 
+
+    \begin{theorem}
+        Let \((T,V)\) be a f.d. representation of \(A\) over \(K\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(T\) is absolutely irreducible \(\iff T(A) = \operatorname{End}_K(V)\).
+            \item \(T\) is absolutely irreducible \(\implies \operatorname{End}_A(V) = K \cdot \operatorname{id}_{V}\).
+            \item \(V\) is semisimple as an \(A\)-module and \(\operatorname{End}_A(V) = K \cdot \operatorname{id}_{V} \implies T\) is absolutely irreducible.
+            \item \(T\) is irreducible and \(K = \overline{K} \implies T\) is absolutely irreducible.
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+
+        \ \
+
+        \begin{enumerate}[label=\roman*)]
+            \item[i\(\implies\):] Suppose \(T(A) \subsetneq \operatorname{End}_K(V) \implies\) for any \(E / K\):
+            
+            \(T^E(A_E) = \operatorname{span}_E(T(A)) \subsetneq \operatorname{End}_E(V_E)\). Take \(E = \overline{K}\) and set \(W = V_E, B = A_E\).
+
+            \(T\) abs. irred. so \(W\) is a simple \(B\)-module.
+            
+            Claim: The map \(B \to \operatorname{End}_E(W)\) is surjective.
+
+            Proof: Let \(D \coloneqq \operatorname{End}_B(W)\). Since \(W\) is simple, \(D\) must be a division algebra. \(\operatorname{End}_B(W) \subseteq \operatorname{End}_E(W)\). So, \(D\) is a division algebra which is finite dimensional over \(E\). \(E\) is algebraically closed. Therefore, \(D = E\).
+
+            Jacobson Density Theorem: \(B \to \operatorname{End}_{\operatorname{End}_B(W)}(W) = \operatorname{End}_E(W)\), and since \([W:E] < \infty\), this map is surjective. Thus the claim is proven.
+
+            This claim contradicts that \(T^E(A_E) \subsetneq \operatorname{End}_E(V_E)\). Hence i is proven.
+
+            \item[i \(\impliedby\):] \(T(A) = \operatorname{End}_K(V) \implies V\) is simple as an \(A\)-module.
+            
+            Choose any \(E / K\). Note that \(T^E(A_E) = \operatorname{End}_E(V_E) \implies V_E\) is simple as an \(A_E\)-module.
+
+            \(\implies T\) is abs. irred.
+
+            \item[ii :] \(T\) abs. irred \(\underset{\text{(i)}}{\implies} T(A)=\operatorname{End}_K(V) \implies \operatorname{End}_A(V) = K \cdot \operatorname{id}_{V}\).
+            
+            \item[iii :] Assume \((T,V)\) is semisimple. The map in Jacobson's Density Theorem is the map:
+            
+            \[
+                A \to \operatorname{End}_{\operatorname{End}_A(V)}(V) = \operatorname{End}_K(V)\;.
+            \]
+
+            which is surjective. i \(\implies T\) is absolutely irreducible.
+
+            \item[iv :] \(T\) irreducible. \(\overset{\text{Schur}}{\implies} \operatorname{End}_A(V) \eqqcolon D\) is a division algebra over \(K = \overline{K} \implies D = K \overset{\text{iii}}{\implies} T\) is abs. irred. 
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{definition}
+        \begin{enumerate}[label=\roman*)]
+            \item Given \(A\in K\)-Alg, we call an extension \(E / K\) a splitting field of \(A\) if every f.d. irred. rep's of \(A_E\) is abs. irred.
+            
+            \begin{remark*}
+                When \(A \in \operatorname{CSA}(K)\), then \(E / K\) is a splitting in the sense defined above iff \(E\) is a splitting in the sense of ch. 2 [HW9].
+            \end{remark*}
+
+            \item If \(G\) is a group, we call \(E\) a \underline{splitting field of \(G\)}. if all irr. rep's of \(G\) over \(E\) (equiv. if all simple \(EG\)-modules) are abs. irred.
+        \end{enumerate} 
+    \end{definition}
+
+    Example:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(G = \mathbb{Z} / n\mathbb{Z}, n \geq 3, K = \mathbb{R}\). A splitting for \(\mathbb{R} G\) is \(\mathbb{C}\). \(\mathbb{R}\) is not a splitting field of \(G\), since \(G\) has irreducible \(2\)-dimensional representations. But the complex irreducible rep's of \(G\) are all \(1\)-dimensional, so \(\mathbb{C}\) is a splitting field.
+        \item \(G = \mathbb{Z} / n\mathbb{Z}, n \geq 3, K = \mathbb{Q}\), a splitting field for \(\mathbb{Q} G \cong \mathbb{Q}[T] / (T^n - 1)\) is \(\mathbb{Q}(\xi_n)\) where \(\xi_n\) is a primitive \(n\)-th root of unity. Recall that \(\mathbb{Q}[T]/(T^n - 1) = \prod_{d\mid N} \mathbb{Q}[T] / (\Phi_d(T))\). Note that \(\Phi_d(T) = \prod_{\zeta \text{ prim. \(d\)'th root of unity}} (T- \zeta)\). Hence \(\mathbb{Q}(\zeta_n)\), where \(\zeta_n\) is a primitive \(n\)'th root of \(1\), is a splitting field.  
+        \item \(\mathbb{F}_q\) is a splitting field of \(\mathbb{Z} / (q-1)\mathbb{Z}\) [HW10].
+        \item Any field \(K\) of char \(\neq 2,3\) is a splitting field of \(\mathscr{S}_3\).  
+    \end{enumerate} 
+
+    \section*{Tuesday, 3/24/2026}
+    
+    \begin{proposition}
+        Let \(A\) be any commutative \(K\)-algebra. Then,
+        
+        \begin{enumerate}[label=\roman*)]
+            \item every absolutely irreducible finite-dimensional representation is \(1\)-dimensional.
+            
+            \item TFAE:
+            
+            \begin{enumerate}[label=\alph*)]
+                \item \(K\) is a splitting field of \(A\).
+                \item Every irreducible f.d. represantation of \(A / K\) is one dimensional. 
+            \end{enumerate} 
+
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \((T,V)\) absolutely irreducible and f.d. \(\implies T(A) = \operatorname{End}_K(V)\) is hence commutative. But \(\operatorname{End}_K(V) \cong M_{\dim_K(V)}(K) \implies [V:K] = 1\).
+            
+            \item a \(\implies\) b by i and the definition of splitting fields.
+            
+            b \(\implies\) because any one dimensional representation is absolutely irreducible.
+        \end{enumerate} 
+    \end{proof}
+
+    These statements apply in particular to the case \(A = KG\) of a commutative group \(KG\).
+
+    \begin{remark*}
+        Infinite groups can have finite dimensional irreducible representations.
+    \end{remark*}
+
+
+    For example, consider \(G = \mathbb{Z}\) acting on \(\mathbb{C}^{(\mathbb{Z})} = \oplus_{n\in \mathbb{Z}} \mathbb{C} e_n\) . 
+
+    \begin{definition}
+        Let \(G\) be any irrep and \((T,V) \in \operatorname{Rep}_K(G)\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item If \(\vert G \vert < \infty\), we call \(N_G = \sum_{g\in G=1} g \in KG\) the \underline{norm element} of \(KG\).
+            
+            The map \(v \mapsto T(N_G)(v) = \sum_{g\in G} T(g) \cdot v\) is called the \underline{norm map} on \(V\).
+            
+            \item The subspace \(H^o(G,V) \coloneqq V^G \coloneqq \{ v\in V : \forall g\in G, T(g) \cdot v = v \}\) is callled the fixed module of \(V\).
+        \end{enumerate} 
+    \end{definition}
+
+    \begin{remark*}
+
+        \begin{enumerate}[label=\arabic*)]
+            \item \(V^G\) is itself a \(G\)-representation: every \(g\in G\) acts trivially (i.e. as identity) on \(V^G\). It is thus the direct sum of \([V^G : K]\) many copies of the trivial representation \(\mathbf{1}\).
+            
+            \(\mathbf{1}\) is the trivial \(1\)-dimensional vector space \(K\) with trivial group action.
+            
+            \item In the case of a finite group, \(\forall h\in G : h \cdot N_G = \sum_{g\in G} hg = \sum_{g\in G} g = N_G = N_G \cdot h\) in \(KG\).
+            
+            \item \(\forall v\in V: N_G \cdot v (= T(N_G) \cdot v) \in V^G\). \(h(N_G \cdot v) = (hN_G) \cdot v = N_G \cdot v\).
+            \item \(\operatorname{Hom}_K(V,W)\) is naturally a \(G\)-rep for any \(V,W \in \operatorname{Rep}_K(G)\).
+            
+            \(\varphi : V \to W, (g \cdot \varphi)(v) = g \cdot \varphi (g ^{-1} \cdot v)\). We set \(V^{\ast} = \operatorname{Hom}_K(V,K)\). Then, \(\operatorname{Hom}_K(V,W)^G = \operatorname{Hom}_{KG}(V,W)\) [HW8].
+            
+            \item The assignment \(V \rightsquigarrow V^G = H^o(G,V)\) is a functor \(\operatorname{Rep}_K(G) \to K\text{-Mod}\) [= cat. of \(K\)-v.s.]
+            
+            i.e. there is a map \(\operatorname{Hom}_G(V,W) \to \operatorname{Hom}_K(V^G , W^G)\) given by \(\alpha \mapsto [v \mapsto \alpha(v)] = \alpha^G\) such that whenever \(V \xrightarrow{\alpha} W \xrightarrow{\beta} U\) in \(\operatorname{Rep}_K(G)\) we have \((\beta \circ \alpha)^G = \beta^G \circ \alpha^G\). \((\operatorname{id}_V)^G = \operatorname{id}_{V^G}\).  
+        \end{enumerate} 
+    \end{remark*}
+
+    \begin{theorem}
+        \begin{enumerate}[label=\roman*)]
+            \item \(H^o(G,-)\) is left-exact. i.e. for any exact sequence:
+            
+            \[
+                0 \to X \xrightarrow{\alpha} Y \xrightarrow{\beta} Z \to 0 \;. \tag*{$(\ast)$}
+            \]
+
+            in \(\operatorname{Rep}_K(G)\), the sequence:
+
+            \[
+                0 \to X^G \to Y^G \to Z^G\;.
+            \]
+
+            is exact.
+
+            \item If \(\vert G \vert < \infty\) and \(\operatorname{char}(K) \nmid \vert G \vert\), then \(H^o(G,-)\) is an exact functor, i.e. for any exact sequence \((\ast)\), the sequence \(0 \to X^G \to Y^G \to Z^G \to 0\) is exact.
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item \(\alpha^G\) is clearly injective.
+            
+            \(\beta \circ \alpha = 0 \to \beta^G \circ \alpha^G = (\beta \circ \alpha)^G = 0^G = 0 \implies \operatorname{im}(\alpha^G) \subseteq \ker(\beta^G)\).
+
+            Let \(y\in Y^G\) such that \(\beta(y) = 0\). Then \(y\in \ker(\beta) = \operatorname{im}(\alpha) \implies \exists x\in X : \alpha(x) = y\).
+
+            \(\implies \forall g\in G, \alpha(gx) = g \cdot \alpha(x) = g\cdot y = y = \alpha(x)\). \(\alpha\) injective \(\implies \forall g\in G:  gx = x \implies x \in X^G\). We then have \(\alpha^G(x) = \alpha(x) = y\), thus \(\ker(\beta^G) \subseteq \operatorname{im}(\alpha^G)\).
+            
+            Therefore, \(\operatorname{im}(\alpha^G) = \ker(\beta^G)\) which proves the exactness at \(Y^G\).
+
+            \item We need to prove that \(\beta^G\) is surjective. Let \(z\in Z^G\). \(\beta\) is surjective, so \(\exists y_0 \in Y\) such that \(\beta(y_0) = z\).
+            
+            Let \(y \in \frac{1}{\vert G \vert} \sum_{g\in G} g \cdot y_0\). Then, \(y\in Y^G\), and \(\beta(y) = \frac{1}{\vert G \vert} \sum_{g\in G} g \cdot \beta(y_0) = \frac{1}{\vert G \vert} \sum_{g\in G} g \cdot z = \frac{1}{\vert G \vert} (\vert G \vert \cdot z) = z\). 
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{remark*}
+        \begin{enumerate}[label=\arabic*)]
+            \item If \(\operatorname{char}(K) \nmid \vert G \vert < \infty\), then \(V = \ker(N_G : V\to V) \oplus V^G\) is a direct sum decomposition of \(G\)-representations.
+            
+            \begin{proof}
+                Let \(\widetilde{N} = \frac{1}{\vert G \vert} N_G\). Then \(\operatorname{im}(\widetilde{N}) = V^G\) [since \(\widetilde{N} \cdot v = v\) for all \(v\in V^G\).] If \(v\in \ker(\widetilde{N}) \cap \operatorname{im}(\widetilde{N})\) then \(0 = \widetilde{N} v, v = \widetilde{N} w \implies 0 = \widetilde{N}^2 w = \widetilde{N} w = v\) where \(v= \widetilde{N}w\) for some \(w\in V\). This is because \(\widetilde{N}^2 = \frac{1}{\vert G \vert^2} \sum_{g_1 , g_2 \in G} g_1 g_2 = \frac{1}{\vert G \vert^2} \sum_{h \in G} \left( \sum_{(g_1 , g_2) \in G \times G , g_1 g_2 = h} 1 \right) h = \frac{1}{\vert G \vert^2} \sum_{h\in G} \vert G \vert h = \frac{1}{\vert G \vert} \sum_{h\in G} h = \widetilde{N}\).    
+            \end{proof}
+
+            \item The condition \(\operatorname{char}(K) \nmid \vert G \vert\) is \underline{necessary} for \(H^o(G,-)\) to be exact.
+            
+            For example, let \(G = \mathbb{Z} / 2 \mathbb{Z} = \{ \overline{0}, \overline{1} \} \) and \(K\) is any field of \(\operatorname{char} 2\). Let \(Y\) in the exact sequence by \(Ke_1 \oplus Ke_2\). Let \(X = Ke_1, Z = Y / X \cong K \overline{e_2}\) where \(T: G \to \operatorname{GL}(Y) = \operatorname{GL}_2(K)\) is given by \(\overline{0} \mapsto \begin{bmatrix}
+                1 & 0 \\
+                0 & 1 \\
+            \end{bmatrix}\) and \(\overline{1} \mapsto \begin{bmatrix}
+                1 & 1 \\
+                0 & 1 \\
+            \end{bmatrix}\). Note that in characteristic \(2\) it is indeed a representation.
+
+            Note that, under this representation, \(e_2 \mapsto e_1 + e_2\). \(e_2\) is not fixed by the group action, but the image of \(e_2\) is fixed by the group action:
+
+            \[
+                \begin{bmatrix}
+                    1 & 1 \\
+                    0 & 1 \\
+                \end{bmatrix} \overline{e_2} = \overline{e_1 + e_2} = \overline{e_2}.
+            \]
+
+            \[
+                0 \to \underset{\cong \mathbf{1}}{X} \to Y  \to \underset{\cong \mathbf{1}}{Z} \to 0\;. 
+            \]
+
+            \[
+                0 \to X^G = X \xrightarrow{\operatorname{id}_{X}} Y^G = X \to Z^G = Z = Y / X\;.
+            \]
+
+            Thus \(\beta^G\) must be the zero map, which is not surjective.
+
+        \end{enumerate} 
+    \end{remark*}
 
 \end{document}
