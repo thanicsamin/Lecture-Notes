@@ -1312,7 +1312,7 @@
     \begin{proof}
         Step 1: Suppose \(N, N^{\prime}\) are \(A\)-modules over \(A\) (any algebras). Then any isomorphism f\(: N \to N^{\prime}\) of \(A\)-modules induces an isomorphism of rings \(\operatorname{End}_A(N) \to \operatorname{End}_A(N^{\prime})\) given by \(\tau \mapsto f \circ \tau \circ f ^{-1}\).
 
-        Step 2: If \(g: A \to A^{\prime}\) is an isomorphismm of simple artinian algebras, and \(N\in A\text{-Mod}\) and \(N^{\prime} \in A^{\prime}\text{-Mod}\) are simple, then \(a \cdot x^{\prime} \eqqcolon g(a) \cdot x^{\prime}\) gives \(N^{\prime}\) the structure of an \(A\)-module. Since \(g\) is an isomorphism, \(N^{\prime}\) becomes a simple \(A\)-module. \(2.3 \implies N^{\prime} \cong N\) as \(A\)-modules. 
+        Step 2: If \(g: A \to A^{\prime}\) is an isomorphism of simple artinian algebras, and \(N\in A\text{-Mod}\) and \(N^{\prime} \in A^{\prime}\text{-Mod}\) are simple, then \(a \cdot x^{\prime} \eqqcolon g(a) \cdot x^{\prime}\) gives \(N^{\prime}\) the structure of an \(A\)-module. Since \(g\) is an isomorphism, \(N^{\prime}\) becomes a simple \(A\)-module. \(2.3 \implies N^{\prime} \cong N\) as \(A\)-modules. 
 
         Step 1 \(\implies \operatorname{End}_A(N) \cong \operatorname{End}_A(N^{\prime}) = \operatorname{End}_{A^{\prime}}(N^{\prime})\) immediately.
 
@@ -2583,5 +2583,283 @@
 
         \end{enumerate} 
     \end{remark*}
+
+    \section*{Thursday, 3/26/2026}
+    
+    \begin{remark*}
+        \(\operatorname{char} (K) \nmid \vert G \vert < \infty \implies V = V^G \oplus \ker (\widetilde{N}_G)\). Here \(\widetilde{N}_G = \frac{1}{\vert G \vert} N_G : V \to V\).
+    \end{remark*}
+
+    \begin{proposition}
+        Let \(V, W \in \operatorname{Rep}_K(G)^{f.d.}\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\forall g\in G: \chi_{V^{\ast}}(g) = \chi_V(g ^{-1})\) [here \(V^{\ast} = \operatorname{Hom}_K(V,K)\)].
+            \item Let \(\varphi \in \operatorname{Hom}_K(V,W)\). Recall that \((g \circ \varphi)(v) = g \cdot \varphi(g ^{-1} \cdot v)\). Thus, \(\chi_{\operatorname{Hom}_K(V,W)}(g) = \chi_V(g ^{-1}) \chi_W(g)\). 
+        \end{enumerate} 
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item HW8.
+            \item \(V^{\ast} \otimes_K W \xrightarrow{\cong} \operatorname{Hom}_K (V,W)\) given by \(\lambda \otimes w \mapsto [v \mapsto \lambda(v)w]\) is an isomorphism of \(G\)-reps given \([V:K] < \infty\). Therefore, \(\chi_{\operatorname{Hom}_K(V,W)}(g) = \chi_{V^{\ast} \otimes_K W}(g) \overset{3.2}{=} \chi_{V^{\ast}}(g) \chi_W(g) = \chi_V(g ^{-1}) \chi_W(g)\).
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{proposition}
+        Assume \(\operatorname{char}(K) \nmid n \coloneqq \vert G \vert < \infty\). Let \(V \in \operatorname{Rep}_K(G)^{f.d.}\).
+
+        Then, \([V^G:K] \cdot 1_K = \frac{1}{n} \sum_{g\in G} \chi_V(g) = \frac{1}{n} \chi_V(N_G) = \chi_V(\widetilde{N}_G)\). 
+    \end{proposition}
+
+    \begin{proof}
+        Remark after 3.9 \(\implies V = V^G \oplus \ker(\widetilde{N}_G)\). Let \(V_0 \coloneqq \ker(\widetilde{N}_G)\).
+
+        Then, \(\widetilde{N}_G v = v\) for all \(v\in V^G\). Thus, \(\eval{\widetilde{N}_G}_{V^G} = \operatorname{id}_{V^G}, \eval{\widetilde{N}_G}_{V^0}=0_{V_G}\).
+        
+        Therefore, \([V^G:K]\cdot 1_K \equiv  \Tr(\operatorname{id}_{V_G}) = \Tr(\widetilde{N}_G : V \to V) = \frac{1}{n} \sum_{g} \Tr(T(g): V \to V) = \frac{1}{n} \sum_{g} \chi_V(g)\). 
+    \end{proof}
+
+    \begin{theorem}
+        Suppose \(\operatorname{char}(K) \nmid n \coloneqq \vert G \vert < \infty\). Then every subrepresentation \(W\) of a representation \(V\) is a \underline{direct summand}.
+
+        Equivalently, every submodule \(W\) of a \(KG\)-module \(V\) is a direct summand.
+
+        Hence, every \(G\)-representation on a \(K\)-vector space is semisimple.
+
+        Key: we don't need finite dimensional representation for this theorem.
+    \end{theorem}
+
+    \begin{proof}
+        Let \(W \subset V\) be a \(G\)-subrepresentation. Consider the exact sequence of \(K\)-vector spaces:
+
+        \[
+            0 \to W \xrightarrow{\alpha=\text{inclusion}} V \xrightarrow[\text{canonical}]{\beta} Q \coloneqq V / W \to 0\;.
+        \]
+
+        Every short exact sequence of \(K\)-vector spaces splits. We can choose a section of \(\beta\): \(\sigma \in \operatorname{Hom}_K(Q, V)\) such that \(\beta \circ \sigma = \operatorname{id}_{Q}\).
+
+        \underline{Claim}: \(\operatorname{Hom}_K(V,W) \xrightarrow{\alpha^{\ast}} \operatorname{Hom}_K(W,W) : \psi \mapsto \alpha^{\ast}(\psi) = \psi \circ \alpha = \eval{\psi}_{W}\) is surjective.
+
+        \underline{Proof of Claim}: First note that \(\beta(v - \sigma(\beta(v))) = \beta(v) - \beta(\sigma(\beta(v))) = \beta(v) - \beta(v) = 0\).
+        
+        Therefore, \(v - \sigma(\beta(v)) \in \ker(\beta) = \operatorname{im}(\alpha) = W\).
+
+        Given \(\varphi: W \to W\), set \(\psi : V \to W\) by \(\psi(v) = \phi(v - \sigma(\beta(v)))\).
+
+        Then, \(\psi(\underset{\in W}{w}) = \varphi(w - \sigma(\beta(w))) = \varphi(w)\). So \(\varphi\) restricts to \(\psi\). Hence the restriction map is surjective.
+        
+        Now, Claim \(\implies 0 \to \operatorname{Hom}_K(Q,W) \xrightarrow[\lambda \mapsto \lambda \circ \beta]{\beta^{\ast}} \operatorname{Hom}_K(V,W) \xrightarrow{\alpha^{\ast}} \operatorname{Hom}_K(W,W) \to 0\) is an exact sequence.
+
+        [\(\beta^{\ast}\) is injective, and the surjectivity of \(\alpha^{\ast}\) follows from the claim.]
+
+        Theorem 3.9(ii) \(\implies 0 \to \operatorname{Hom}_K(Q,W)^G \to \operatorname{Hom}_K(V,W)^G \to \operatorname{Hom}_K(W,W)^G \to 0\) is exact.
+
+        HW8 implies that \(\operatorname{Hom}_K(Q,W)^G = \operatorname{Hom}_{KG}(Q,W)\) etc. So we have the exact sequence:
+
+        \[
+            0 \to \operatorname{Hom}_{KG}(Q,W) \to \operatorname{Hom}_{KG}(V,W) \to \operatorname{Hom}_{KG}(W,W) \to 0
+        \]
+
+        By surjectivity, there must be a \(KG\)-module homomorphism \(\psi : V \to W\) such that \(\eval{\varphi}_{W} = \operatorname{id}_{W}\).
+
+        \underline{Claim}: \(V = W \oplus \ker(\psi)\).
+
+        \underline{Proof of Claim}: \(v = \psi(v) + (v - \psi(v))\). Note that, \(\psi(v-\psi(v)) = \psi(v) - \psi(\psi(v))\). \(\psi(v) \in W\) and \(\eval{\psi}_{W} = \operatorname{id}_{W} \implies \psi(\psi(v)) = \psi(v) \implies \psi(v-\psi(v)) = 0\). Therefore \(v - \psi(v) \in \ker(\psi)\).
+
+        Now, suppose \(w\in W\cap \ker(\psi)\). \(w\in W \implies \psi(w) = w \implies w = 0\). Thus \(W \cap \ker(\psi) = 0\).
+
+        Thus indeed \(V = W \oplus \ker(\psi)\).
+
+    \end{proof}
+
+    \begin{theorem}
+        [Maschke's Theorem, 1899]
+
+        Suppose \(G\) is a finite group of order \(n\). TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(KG\) is semisimple.
+            \item \(\operatorname{char}(K) \nmid n\). 
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        ii \(\implies\) i: \((KG)_\ell\) is a semisimple \(KG\)-module by Theorem 3.12.
+
+        i \(\implies\) ii: Suppose \(KG\) is semisimple but \(p \coloneqq \operatorname{char}(K), p\mid n\).
+        
+        Consider \(x \coloneqq N_G = \sum_{g\in G} g \in KG\).
+
+        \(\forall h\in G: h \cdot N_G = h \cdot \sum_{g\in G} g = \sum_{g\in G} h \cdot g = \sum_{g\in G} g = N_G\).
+
+        So, \(x\in Z(KG)\). \(Z(KG)\) must be a finite product of fields [Corollary 2.7].
+
+        On the other hand, \(x^2 = \sum_{(g_1 , g_2) \in G \times G} g_1 g_2 = \sum_{h\in G} \left( \sum_{(g_1, g_2) \in G \times G , g_1 g_2 = h} 1 \right) h = \sum_{h\in G} n h = 0\). 
+
+        In a product of fields, \(x^2 = 0\) has solution \(x = 0\). But \(\sum_{g\in G} g \neq 0\), which is a contradiction.
+    \end{proof}
+
+    \section*{Tuesday, 3/31/2026}
+    
+    \begin{theorem}
+        Suppose \(\operatorname{char}(K) \nmid \vert G \vert = n < \infty\). Let \(A = KG = A_1 \times \cdots \times A_k.\). \(\forall 1 \leq i \leq k\) let \((T_i , V_i)\) be a simple \(A_i\)-module.
+
+        \begin{enumerate}[label=\roman*)]
+            \item Each simple \(KG\)-module is isomorphic to exactly one of these \(V_i\). 
+            \item If \(D_i = \operatorname{End}_{A_i}(V_i)\) and \((A_i)_\ell \cong V_i^{\oplus n_i}\) then,
+            
+            \(A_i = \operatorname{End}_{A_i}((A_i)_\ell)^o \cong \operatorname{End}_{A_i}(V^{\oplus n_i})^o = M_{n_i}(\operatorname{End}_{A_i}(V_i))^o = M_{n_i}(D_i)^o = M_{n_i}(D_i^o)\).
+
+            \item If \(e_i = 1_{A_i} \implies 1_A = e_1 + \cdots + e_k , e_i e_j = \delta_{ij} e_i\) [central idempotents], \(T_i(e_j) = \delta_{ij} \operatorname{id}_{V_i}\).
+            \item Set \(d_i = [V_i : K] , K_i = Z(A_i) = Z(D_i), s_i = s(D_i)\) [so \(s_i^2 = [D_i : K_i]\)], then \(d_i = n_i [D_i : K] = n_i s_i^2 [K_i : K]\) and \(\boxed{(1)\; n = \sum_{i=1}^k n_i^2 s_i^2 [K_i : K]}\).
+            \item If \(\chi_i \coloneqq \chi_{V_i}\) then \(\chi_i(e_j) = \delta_{ij} \cdot d_i \cdot 1_K\), and \(\boxed{\rho_G \coloneqq \rho_{(KG)_\ell} \overset{(2)}{=} \sum_{i=1}^k n_i \chi_i}\).
+            \item Assume \(\operatorname{char}(K) = 0\). Then, \(V,W \in \operatorname{Rep}_{K}(G)^{\text{f.d.}}\) are isomorphic \(\iff \chi_V = \chi_W\). 
+        \end{enumerate} 
+    \end{theorem}    
+
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+            \item Follows from ch. 2. [HW2/6]
+
+            \item The isomorphism \(A_i \xrightarrow{\cong} M_{n_i}(D^o)\) follows from the proof of Wedderburn's theorem.
+             
+
+            \item If \(e_i = 1_{A_i} \implies 1_A = e_1 + \cdots + e_k , e_i e_j = \delta_{ij} e_i\) [central idempotents]. \(T_i(e_j) = \delta_{ij} \operatorname{id}_{V_i}\).
+            
+            \item ii \(\implies [A_i : K] = n_i^2 [D_i : K] = n_i^2 [D_i : K_i][K_i : K] = n_i^2 s_i^2 [K_i : K]\). \([A_i : K] = [V_i^{\oplus n_i} : K] = n_i [V_i : K]\). Cancel \(n_i \implies [V_i : K] = n_i s_i^2 [K_i : K]\) and \(n = [A:K] = \sum_{1 \leq i \leq k} [A_i : K] = \sum_{1 \leq i \leq k} n_i^2 s_i^2 [K_i : K]\). 
+            
+            \item \(\chi_i(e_j) = \Tr(T_i(e_j): V_i \to V_i) = \begin{dcases}
+                0, &\text{ if } j\neq i ;\\
+                [V_i : K] \cdot 1_K, &\text{ if } j=i.
+            \end{dcases}\) 
+
+            \((KG)_\ell = A_\ell = (A_1)_\ell \times \cdots \times (A_k)_\ell \cong V_1^{\oplus n_1} \oplus \cdots \oplus V_k^{\oplus n_k} \implies \rho_G = \chi_{(KG)_\ell} = \sum_{i=1}^k n_i \chi_i\).
+
+            \item \(KG\) semisimple, so \(V \cong V_1^{\oplus n_1} \oplus \cdots \oplus V_k^{\oplus n_k}, W = V_1^{\oplus \ell_1} \oplus \cdots \oplus V_k^{\oplus \ell_k}\).
+            
+            \(V \cong W \iff \forall 1 \leq i \leq k : m_i = \ell_i \iff  \sum_{i=1}^k m_i \chi_i = \sum_{i=1}^k \ell_i \chi_i\). Apply both sides to \(e_j: m_j \chi_j(e_j) = \ell_j \chi_j(e_j)\). Since \(\chi_j(e_j) = d_j \cdot 1_K\), \(\operatorname{char}(K) = 0 \implies m_j = \ell_j\). 
+
+        \end{enumerate} 
+    \end{proof}
+
+    \begin{theorem}
+        Suppose \(\operatorname{char}(K) \nmid \vert G \vert = n < \infty\) and let \(KG = A = A_1 \times \cdots \times A_k\) and \((T_i , V_i), 1 \leq i \leq k\), as in 3.14. Then TFAE:
+        
+        \begin{enumerate}[label=\roman*)]
+            \item \(K\) is a splitting field of \(G\) [every f.d. irreducible representation of \(G\) over \(K\) is absolutely irreducible.]
+            \item \(\forall 1 \leq i \leq k : (T_i , V_i)\) is absolutely irreducible.
+            \item \(\forall 1 \leq i \leq k : D_i = \operatorname{End}_A(V_i) = \operatorname{End}_{A_i}(V_i) = K\).
+            \item \(\forall 1 \leq i \leq k : A_i \cong M_{\ell_i}(K)\) for some \(\ell_i\). 
+            \item \(n = \vert G \vert = \sum_{1 \leq i \leq k} d_i^2 , d_i = [V_i : K]\).
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+
+        \ \
+
+        \begin{enumerate}
+            \item[i \(\iff\) ii:] Every irreducible representation of \(G\) over \(K\) is one of \(V_1 , \cdots , V_k\) by 3.14(i).
+            \item[ii \(\iff\) iii:] 3.7 : \(V_i\) is absolutely irreducible \(\iff \operatorname{End}_A(V_i) = K\).
+            \item[iii \(\iff\) iv:] \(A_i = M_{n_i}(D_i^o) = M_{\ell_i}(K) \overset{\text{Wedderburn}}{\iff} K = D_i^o [\iff K = D_i]\).
+            \item[v \(\iff\) iii] \(n \overset{3.14(vi)}{=} \sum_{i=1}^k n_i^2 s_i^2 [K_i : K] \overset{d_i^2 = n_i^2 s_i^4 [K_i : K]^2}{\leq} \sum_{i=1}^n d_i^2 \overset{(v)}{=} n\). Equality holds \(\iff \forall 1 \leq i \leq k: n_i^2 s_i^4 [K_i : K]^2 = n_i^2 s_i^2 [K_i : K]\). Cancelling, \(\iff s_i = 1, [K_i : K] = 1\).
+            
+            \(s_i = 1\) means \(D_i\) is its center, and \([K_i : K] = 1\) means \(K_i = K\), so this is equivalent to \(D_i = K\).
+        \end{enumerate}
+    \end{proof}
+
+    Examples:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item \(\operatorname{char}(K) \nmid 6 \overset{\text{HW 8}}{\implies} K[\mathscr{S}_3] \cong \underset{\textbf{1}}{K} \times \underset{\text{sgn}}{K} \times M_2(K)\), where \(M_2(K)\) is the irreducible 2\(\)-dimensional representation.
+        
+        \(6 = 1^2 + 1^2 + 2^2\).
+        
+        \item \(G = \mathbb{Z} / n\mathbb{Z}, K = \mathbb{C} \text{ or } K = \mathbb{Q}(\zeta_n), \zeta_n =\) primitive \(n\)'th root of unity, or \(K = \mathbb{F}_q\) with \(n\mid q-1\).
+        
+        Then \(KG \cong K[T] / (T^n - 1) \cong \prod_{i=0}^{n} K[T] / (T - \zeta_n^i)\) and \(K[T] / (T - \zeta_n^i) \cong K\) so \(KG \cong \underbrace{K \times \cdots \times K}_{n \text{ times}}\).
+        
+        \(n = 1^2 + \cdots + 1^2\).
+
+        Representations correspond to \((T \mapsto 1), (T \mapsto \zeta_n) , (T \mapsto \zeta_n^2) , \cdots , (T \mapsto \zeta_n^{n-1})\).
+
+        \item \(G = D_n\), dihedral group of order \(2n\), which is \(\mathbb{Z} / n\mathbb{Z}  \rtimes \mathscr{S}_2\) with \(\sigma \in \mathscr{S}_2\), \(\sigma = [\overline{a} \mapsto -\overline{a}]\).
+        
+        Irreducible representations of \(D_n\) over \(\mathbb{C}\) are \(1\) or \(2\)-dimensionals. Proof (HW10).
+        
+        Check \(2n = \underbrace{1^2 + \cdots + 1^2}_{1\text{-dim  reps}} + \underbrace{2^2 + \cdot + 2^2}_{2\text{-dim reps}}\), so we can tell when we have exhausted finding all such representations. 
+
+        All \(s_i = 1, [K_i : K] = 1\).
+    \end{enumerate} 
+
+    \begin{theorem}
+        Suppose \(\operatorname{char}(K) \nmid n = \vert G \vert < \infty\) and \(G\) is abelian. TFAE:
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(K\) is a splitting field of \(G\).
+            \item Every irreducible representations of \(G\) has degree \(1\).
+            \item \(G\) has exactly \(n\) inequivalent irreducible representations over \(K\). 
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        Combine 3.15 and 3.8
+    \end{proof}
+
+    Example: \(G = \mathbb{Z} / n_1 \mathbb{Z} \times \cdots \times \mathbb{Z} / n_s \mathbb{Z}\).
+
+    Any \(1\)-dimensional representation of \(G\) over \(K\) is of the form:
+
+    \[
+        \chi(\overline{a_1}, \cdots , \overline{a_s}) = \zeta_{n_1}^{a_1} \cdots \zeta_{n_s}^{a_s}
+    \]
+
+    where \((\zeta_{n_i})^{n_i} = 1\).
+
+    \(K\) is a splitting field of \(G \iff K\) contains primitive roots of unity of orders \(n_1 , \cdots , n_s\). Which is equivalent to containing one primitive root of unity of order \(\operatorname{lcm}(n_1 , \cdots , n_s)\).
+
+    \(\iff \#\) of absolutely irreducible representations of \(G\) over \(K = n_1 \times \cdots \cdots \times n_s = n\).
+
+    There are \(n_j\) choices, since we have \(n_j \leftrightarrow [\sigma \mapsto \zeta_{n_j}^{f_i}, 0 \leq f_i \leq n_j]\). 
+
+    \begin{theorem}
+        Suppose \(\operatorname{char}(K) \nmid \vert G \vert < \infty\). Denote by \(k = k(G,K)\) the number of inequivalent irreducible representations of \(G\) over \(K\). Let \(h\) be the number of conjugacy classes in \(G\). \(h\) is also often called the class number of \(G\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(k \leq h\).
+            \item TFAE: \begin{enumerate}[label=\alph*)]
+                \item \(k = h\).
+                \item \([Z(KG):K] = k\).
+                \item \([Z_K(G):K] =  k\), \(Z_K(G)\) class functions.
+                \item \(Z(KG)\) is a product of copies of \(k\).   
+            \end{enumerate}
+            
+            \item \(K\) is a splitting field of \(G\), then \(k = h\).
+            \item If \(\operatorname{char}(K) > 0\) and \(k = h\), then \(K\) is a splitting field of \(G\).
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        Write \(KG \overset{(1)}{=} A_1 \times \cdots \times A_k\) as in 3.14, \(A_i \cong M_{n_i}(D_i^o), Z(D_i) \eqqcolon K_i\).
+
+        Theorem 3.4 \(\implies [Z(KG):K] \overset{(2)}{=} h\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item (1) \(\implies Z(KG) = Z(A_1) \times \cdots \times Z(A_k) = K_1 \times \cdots \times K_k \implies \sum_{i=1}^k [K_i : K] \overset{(2)}{=} h \implies k \leq h\).
+            \item (a): \(h = k \implies [Z(KG):K] = k\), hence b and c [since \([Z_K(G) : K] = h\)].
+            
+            \(h=k \iff \forall 1 \leq i \leq k : K_i = K \overset{(1)}{\iff} (KG)\) is a product of copies of \(K\) itself.
+
+            \item \(\implies\): If \(K\) is a splitting field of \(G\), by 3.15, \(KG = M_{n_1}(K) \times \cdots \times M_{n_k}(K)\). Taking center, \(Z(KG) = K \times \cdots \times K\). Thus the conditions in ii are satisfied.
+            
+            \item Later.
+            
+        \end{enumerate} 
+    \end{proof}
+
+    \section*{Thursday, 4/2/2026}
+    
+    
 
 \end{document}
