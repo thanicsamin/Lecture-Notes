@@ -2860,6 +2860,157 @@
 
     \section*{Thursday, 4/2/2026}
     
-    
+    \subsection*{Example of group \(G\) and a field \(K\) with \(h\) irreducible inequivalent representations over \(K\), but \(K\) is \underline{not} a splitting field.}
 
+    Let \(\mathbb{H} = \mathbb{R} \cdot 1 \oplus \mathbb{R} i \oplus \mathbb{R} j \oplus \mathbb{R} k\) be the quarternion algebra and let \(Q = \{ \pm 1, \pm i, \pm j, \pm k \}\).
+
+    The `easiest' represnetations to think about for a group \(G\). first is the one-dimensional representation, which are homomorphisms \(G \to K^\times\). But \(K^\times\) is abelian, so such a homomorphism must factor through the abelianization of the group. So \(G^{\text{ab}} = [G,G]\) is important to consider.
+
+    Here \(G=Q\), \([Q,Q] \ni ij i ^{-1} j ^{-1} = k (ji) ^{-1} = k(-k)^{-1}=-1\). Thus all commutators \(\in \{ 1, -1 \}\).
+    
+    \(Q / \{ \pm 1 \} \cong \mathbb{Z} / 2 \times \mathbb{Z} / 2\). So there are four one-dimensional represnetations.
+
+    Note: \(KG\) semisimple \(\iff \operatorname{char}(K) \neq 2\) which we assumed.
+
+    Let \(\mathbf{1}\) be the the trivial representation. The four representations are:
+    
+    \(V_1 = \mathbf{1} \otimes \mathbf{1}, V_2 =  \mathbf{1} \otimes \text{sgn}, V_3 = \text{sgn} \otimes \mathbf{1}, V_4 = \text{sgn} \otimes \text{sgn}\).
+
+    \(\text{sgn}(1 \text{ mod } 2) = -1\).
+    
+    Identify \(\mathbb{C} = \mathbb{R} \cdot 1 \oplus \mathbb{R} i\) and \(\mathbb{H} = \mathbb{C} \oplus \mathbb{C} \cdot j\), which is possible since \(\mathbb{C} \cdot j = \mathbb{R} \cdot j \oplus \mathbb{R} \cdot (ij) = \mathbb{R} \cdot j \oplus \mathbb{R} \cdot k\). So \(\mathbb{H}\) is a \(2\)-dimensional \(\mathbb{C}\)-v.s.
+    
+    \(\mathbb{R} G = \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{H}\), where each \(\mathbb{R}\) corresponds to each of of the four \(1\)-dimensional representations.
+
+    Naming in order, \(\mathbb{R} G = A_1 \times A_2 \times A_3 \times A_4 \times A_5\) as in 3.14. Then \(\mathbb{H} = \operatorname{End}_G(V_5)\)
+
+    The decomposition of \(\mathbb{R} G\) is not split, since \(\mathbb{H}\) is a division algebra not \(\mathbb{R}\). Hence \(\mathbb{R}\) is not a splitting field of \(G\).
+
+    But \(Z(\mathbb{R} G) = \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R} \times \mathbb{R}\).
+
+    \(G\) has \(5\) conjugacy classes: \(1, -1, i,j,k\).
+
+    \subsection*{The Semisimplicity Hypothesis (SSH)}
+
+    We say a group has SSH if \(\operatorname{char}(K) \nmid \vert G \vert \eqqcolon n < \infty\). \(n\) will be always used as the order of the group.
+
+    \begin{theorem}
+        Assume SSH. Let \(A = KG = A_1 \times \cdots \times A_k\) as in 3.14 with \(e_i = 1_{A_i}\).
+        
+        Then, \(e_i = \frac{(n_i \cdot 1_K)}{(n\cdot 1_K)} \sum_{g\in G} \chi_i(g ^{-1}) \cdot g \in KG\).
+        
+        Here, \(n_i = \frac{[V_i : K]}{[D_i : K]}\), as in 3.14. As \(e_i \neq 0\), we find that \(n_i \cdot 1_K \neq 0_K\).
+
+        If \(K\) is a splitting field of \(G\), then \(D_i = K\) and thus \(n_i = [V_i : K]\) for \(1 \leq i \leq k\).
+    \end{theorem}
+
+    \begin{proof}
+        We can write \(e_i = \sum_{x\in G} a_x x\), \(a_x\in K\). 
+
+
+        \(\forall g\in G\), let the character of the regular representation be \(\rho_G\). Then, \(\rho_G(g ^{-1} e_i) = \sum_{x\in G} a_x \rho_G(g ^{-1} x)\).
+
+        Note that \(\rho_G(g ^{-1} x) = n\) if \(x = g\), \(0\) otherwise. So, \(\rho_G(g ^{-1} e_i) = a_g \cdot n\;(1)\).
+
+        3.14(v) \(\implies \rho_G = \sum_{i=1}^k n_i \chi_i\).
+        
+        Then \(\rho_G(g^{-1} e_i) = \sum_{j=1}^k n_j \chi_j(g^{-1} e_i) = n_i \chi_i (g^{-1})\;(2)\).
+        
+        Since \(A \twoheadrightarrow A_j\) and then \(A_j\) acts on \(V_j\).
+
+        (1) and (2) together imply \(n a_g = n_i \chi_i(g^{-1})\). Dividing by \(n\), we see: \(a_g = \frac{n_i}{n}\chi (g ^{-1})\).
+
+
+    \end{proof}
+
+    Now we show the proof of 3.17(iv).
+
+    \begin{proof}
+        By 3.18, \(e_i = \frac{n_i}{n} \sum_{g\in G} \chi_i(g ^{-1}) g\).
+
+        Lemma 3.6 implies that the coefficients are sums of roots of unity, which implies that \(\chi_i(g ^{-1})\) are algebraic over \(\mathbb{F}_p\) where \(p = \operatorname{char}(K)\).
+        
+        Let \(F / \mathbb{F}_p\) be a finite field extension which contains all the values \(\chi_i(g)\) for all \(1 \leq i \leq k\). \(F \subseteq K \implies e_i \in FG \subset KG\).
+
+        Then \(FG = FG_1 \oplus FG_2 \oplus \cdots \oplus FG_n\), where \(FG_i = e_i FGe_i \subset FG \subset KG\) is a non-zero \(F\)-subalgebra of \(FG\).
+
+        \(FG_i \otimes_F K \subset e_i KG e_i = A_i \implies [FG_i : F] \leq [A_i : K]\). Note that \([FG_i : F] \equiv  [FG_i \otimes_F K : K]\). Take \(\sum_{i}\) and compare, the inequality is an equality. Thus \(FG_i \otimes_F K = A_i\).
+        
+        Therefore, \(FG_i\) is simple. Wedderburn 2.11 \(\implies FG_i \cong M_{\ell_i}(\text{division algebra})\). \(F\) is a finite field, so the division algebra is some field extension of \(F\).
+
+        Thus \(FG_i \cong M_{\ell_i}(F_i)\).
+
+        \(Z(FG) = Z(FG_1) \times \cdots \times (FG_h) = F_1 \times \cdots \times F_h\).
+
+        But \(k(G,F) = h\). 3.17(ii) implies that \([Z(FG):F] = h\). Then each field extension must be the trivial extension. i.e. \(F_i = F\) for all \(i\). This implies that indeed, the group algebra is split.
+
+        By 3.15(iii), \(F\) is a splitting field. By extending scalars, \(K\) is a splitting field.
+    \end{proof}
+
+    \begin{definition}
+        Assume SSH. For \(\lambda , \mu \in Z_K(G)\), any two class functions, we define a pairing as follows:
+
+        \[
+            \langle \lambda , \mu \rangle \coloneqq \frac{1}{n} \sum_{x\in G} \lambda(x) \mu(x ^{-1}) \in K
+        \]
+
+        Note that \(\langle \lambda , \mu \rangle = \langle \mu , \lambda \rangle \).
+    \end{definition}
+    
+    \begin{theorem}
+        [Orthogonality Relations]
+
+        Assume SSH. Let \(\chi_1 , \cdots , \chi_k\) be the characters of the pairwise inequivalent irreducible reps \(V_1 , \cdots , V_k\) over \(K\).
+
+        \begin{enumerate}[label=\roman*)]
+            \item \(\forall 1 \leq i, j \leq k\),
+            
+            \begin{enumerate}[label=\alph*)]
+                \item \(\frac{1}{n} \sum_{x\in G} \chi_i(xg) \chi_j(x ^{-1}) = \begin{dcases}
+                    \frac{1}{n_i}\chi_i(g), &\text{ if } j=i ;\\
+                    0, &\text{ if } j\neq i.
+                \end{dcases}\)  
+                \item \(\langle \chi_i , \chi_j \rangle \coloneqq \frac{1}{n} \sum_{x\in G} \chi_i(x) \chi_j(x ^{-1}) = \delta_{ij} [D_i : K] \cdot 1_K\).
+            \end{enumerate} 
+
+            \item If \(K\) is a splitting field of \(G\), then \(\forall 1 \leq i , j \leq k : \langle \chi_i, \chi_j \rangle = \delta_{ij} \cdot 1_K\).
+        \end{enumerate} 
+    \end{theorem}
+
+    \begin{proof}
+        \(e_i \overset{3.18}{=} \frac{n_i}{n} \sum_{x\in G} \chi_i(x) x ^{-1} = \frac{n_i}{n} \sum_{x\in G} \chi_i(xg)(xg)^{-1} = g ^{-1} \frac{n_i}{n} \sum_{x\in G} \chi_i(xg) x ^{-1}\).
+
+        Thus, \(g e_i = \frac{n_i}{n} \sum_{x\in G} \chi_i(xg) x ^{-1}\).
+
+        Apply \(\chi_j\). Then,
+
+        \(\frac{n_i}{n} \sum_{x\in G} \chi_i(xg) \chi_j(x ^{-1}) =\chi _j(ge_i)\).
+        
+        \(ge_i \in A_i \implies \chi_j(ge_i) = \begin{dcases}
+            0, &\text{ if } j\neq i ;\\
+            \chi_i(g), &\text{ if } j=i.
+        \end{dcases}\)
+
+        Hence (a).
+
+        For (b), evaluate (a) at \(g=1_G\).
+
+        We get: \(\langle \chi_i , \chi_i \rangle = \frac{1}{n_i} \chi_i(1_G) = \frac{[V_i : K]}{n_i} = \frac{[V_i : D_i] \cdot [D_i : K]}{n_i} = [D_i : K]\) 
+
+        ii follows from 3.15(iii).
+    \end{proof}
+
+    \begin{theorem}
+        Assume SSH. Let \(m\) be the exponent of \(G\).
+
+        If \(K\) contains a primitive \(m\)'th root of unity, then \(k(G,K) = h\), and hence the equivalent statements in 3.17(ii) hold.
+    \end{theorem}
+    
+    \begin{remark*}
+        In fact, if \(K\) contains a primitive \(m\)'th root of unity, then \(K\) is a splitting field of \(G\). If \(\operatorname{char}(K) > 0\), we have seen this in 3.17(iv). If \(\operatorname{char}(K) = 0\), then it will be shown later.
+    \end{remark*}
+
+    \begin{proof}
+        Similar to 3.17(iv). HW10.
+    \end{proof}
 \end{document}
